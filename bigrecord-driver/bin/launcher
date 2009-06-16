@@ -16,7 +16,7 @@ CONF_DIR=`dirname "$0"`
 CONF_DIR=`cd "$CONF_DIR/../conf"; pwd`
 
 # Ruby file that contains the drb server of the hbase driver
-DRIVER=$VENDOR_DIR/../lib/hbase_driver/server.rb
+DRIVER=$VENDOR_DIR/../lib/big_record_driver/hbase_driver/server.rb
 
 
 # location where the pids are stored

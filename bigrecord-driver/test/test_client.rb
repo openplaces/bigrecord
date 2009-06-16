@@ -1,9 +1,7 @@
 $:.unshift(File.dirname(__FILE__) + '/../lib')
 
 require 'test/unit'
-require 'hbase_driver'
-require 'client'
-require 'exceptions'
+require 'big_record_driver'
 
 class TestHbaseClient < Test::Unit::TestCase
 
@@ -13,7 +11,7 @@ class TestHbaseClient < Test::Unit::TestCase
   # Prepare the connection and the test tables.
   def setup
     unless @@hbase
-      Hbase::DriverManager.restart(40005)
+      BigDB::DriverManager.restart(40005)
       #TODO: don't use hard coded values for the config
       @@hbase = BigRecord::Client.new(:drb_port => 40005)
     end
@@ -23,8 +21,8 @@ class TestHbaseClient < Test::Unit::TestCase
     # Create the test table
 #    unless @@hbase.table_exists?(TABLE_NAME)
       columns_descriptors = []
-      columns_descriptors << Hbase::ColumnDescriptor.new(:columnfamily1)
-      columns_descriptors << Hbase::ColumnDescriptor.new(:columnfamily2)
+      columns_descriptors << BigDB::ColumnDescriptor.new(:columnfamily1)
+      columns_descriptors << BigDB::ColumnDescriptor.new(:columnfamily2)
       @@hbase.create_table(TABLE_NAME, columns_descriptors)
 #    end
     

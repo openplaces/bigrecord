@@ -1,7 +1,7 @@
 $:.unshift(File.dirname(__FILE__) + '/../lib')
 
 require 'test/unit'
-require 'hbase_driver'
+require 'big_record_driver'
 
 class TestDriverManager < Test::Unit::TestCase
 
@@ -11,35 +11,35 @@ class TestDriverManager < Test::Unit::TestCase
   
     # stop the driver if it's already running
     assert_nothing_raised do
-      Hbase::DriverManager.stop(port) if Hbase::DriverManager.running?(port)
+      BigDB::DriverManager.stop(port) if BigDB::DriverManager.running?(port)
     end
-    assert !Hbase::DriverManager.running?(port), "The driver is already running and it couldn't be stopped"
+    assert !BigDB::DriverManager.running?(port), "The driver is already running and it couldn't be stopped"
 
     # start the real tests
     assert_nothing_raised do
-      Hbase::DriverManager.start(port)
+      BigDB::DriverManager.start(port)
     end
-    assert Hbase::DriverManager.running?(port), "The driver couldn't be started"
+    assert BigDB::DriverManager.running?(port), "The driver couldn't be started"
     
     assert_nothing_raised do
-      Hbase::DriverManager.restart(port)
+      BigDB::DriverManager.restart(port)
     end
-    assert Hbase::DriverManager.running?(port), "The driver couldn't be restarted"
+    assert BigDB::DriverManager.running?(port), "The driver couldn't be restarted"
     
     assert_nothing_raised("The driver should be able to do a silent start when it's already running") do
-      Hbase::DriverManager.silent_start(port)
+      BigDB::DriverManager.silent_start(port)
     end
-    assert Hbase::DriverManager.running?(port), "The driver stopped during a silent start instead of staying alive"
+    assert BigDB::DriverManager.running?(port), "The driver stopped during a silent start instead of staying alive"
 
     assert_nothing_raised do
-      Hbase::DriverManager.stop(port)
+      BigDB::DriverManager.stop(port)
     end
-    assert !Hbase::DriverManager.running?(port), "The driver couldn't be stopped"
+    assert !BigDB::DriverManager.running?(port), "The driver couldn't be stopped"
     
     assert_nothing_raised("The driver should be able to do a silent start when it's not running") do
-      Hbase::DriverManager.silent_start(port)
+      BigDB::DriverManager.silent_start(port)
     end
-    assert Hbase::DriverManager.running?(port), "The driver couldn't be started silently"
+    assert BigDB::DriverManager.running?(port), "The driver couldn't be started silently"
 
   end
   

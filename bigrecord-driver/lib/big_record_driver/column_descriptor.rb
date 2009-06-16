@@ -1,4 +1,4 @@
-module Hbase
+module BigDB
   class ColumnDescriptor
     
     attr_accessor :name

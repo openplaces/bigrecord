@@ -1,4 +1,4 @@
-require File.dirname(__FILE__) + '/column_descriptor'
+require File.dirname(__FILE__) + '/../column_descriptor'
 require File.dirname(__FILE__) + '/../exceptions'
 require File.dirname(__FILE__) + '/../bigrecord_server'
 

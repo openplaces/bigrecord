@@ -1,21 +1,11 @@
 require File.dirname(__FILE__) + '/column_descriptor'
-require File.dirname(__FILE__) + '/exceptions'
+require File.dirname(__FILE__) + '/../exceptions'
+require File.dirname(__FILE__) + '/../bigrecord_server'
 
 require 'drb'
 
-# The name of the java String class conflicts with ruby's String class.
-module Java
-  include_class "java.lang.String"
-  include_class "java.lang.Exception"
-end
 
-class String
-  def to_bytes
-    Java::String.new(self).getBytes
-  end
-end
-
-class HbaseServer
+class HbaseServer < BigRecordServer
   include_class "java.util.TreeMap"
   
   include_class "java.io.IOException"
@@ -29,7 +19,6 @@ class HbaseServer
   include_class "org.apache.hadoop.hbase.HTableDescriptor"
   include_class "org.apache.hadoop.hbase.HColumnDescriptor"
   
-  include_class "org.apache.hadoop.io.Text"
   include_class "org.apache.hadoop.io.Writable"
 
   # Establish the connection with HBase with the given configuration parameters.
@@ -248,7 +237,7 @@ class HbaseServer
         end
         @admin.createTable(tdesc)
       else
-        raise Hbase::TableAlreadyExists, table_name
+        raise BigDB::TableAlreadyExists, table_name
       end
     end
   end
@@ -265,7 +254,7 @@ class HbaseServer
         # Remove the table connection from the cache
         @tables.delete(table_name) if @tables.has_key?(table_name)
       else
-        raise Hbase::TableNotFound, table_name
+        raise BigDB::TableNotFound, table_name
       end
     end
   end
@@ -298,16 +287,6 @@ class HbaseServer
     end
   end
   
-  def method_missing(method, *args)
-    super
-  rescue NoMethodError
-    raise NoMethodError, "undefined method `#{method}' for \"#{self}\":#{self.class}"
-  end
-  
-  def respond_to?(method)
-    super
-  end
-  
 #  def const_missing(const)
 #    super
 #  rescue NameError => ex
@@ -325,7 +304,7 @@ private
         @tables[table_name] = HTable.new(@conf, table_name)
       else
         if table_name and !table_name.empty?
-          raise Hbase::TableNotFound, table_name
+          raise BigDB::TableNotFound, table_name
         else
           raise ArgumentError, "Table name not specified"
         end
@@ -367,7 +346,7 @@ private
       puts e2.backtrace.join("\n")
       
       if e2.kind_of?(NativeException)
-        raise Hbase::JavaError, e2.message
+        raise BigDB::JavaError, e2.message
       else
         raise e2
       end

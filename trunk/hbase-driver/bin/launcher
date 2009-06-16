@@ -1,0 +1,151 @@
+#! /bin/bash
+
+# Fix for Amazon EC2 instances
+unset RUBYLIB
+
+# Needs the $JRUBY_HOME environment variable to be set
+if [ "$JRUBY_HOME" == "" ]; then
+  echo "\$JRUBY_HOME is not set. Please set it in your ~/.bashrc file."
+  exit 1
+fi
+
+VENDOR_DIR=`dirname "$0"`
+VENDOR_DIR=`cd "$VENDOR_DIR/../vendor"; pwd`
+
+CONF_DIR=`dirname "$0"`
+CONF_DIR=`cd "$CONF_DIR/../conf"; pwd`
+
+# Ruby file that contains the drb server of the hbase driver
+DRIVER=$VENDOR_DIR/../lib/hbase_driver/server.rb
+
+
+# location where the pids are stored
+PIDS_DIR=/tmp/hbase-driver/run
+mkdir -p $PIDS_DIR
+
+# startup delay
+STARTUP_TIMEOUT=60
+
+# location where the log files are stored
+LOGS_DIR=/tmp/hbase-driver/log
+mkdir -p $LOGS_DIR
+
+# set the environment to use jruby by default
+PATH=$JRUBY_HOME/bin:$PATH
+CLASSPATH=$CLASSPATH:$VENDOR_DIR/java/hadoop-0.19.1-core.jar:$VENDOR_DIR/java/hbase-0.19.1.jar:$VENDOR_DIR/java/commons-logging-1.0.4.jar:$VENDOR_DIR/java/commons-logging-api-1.0.4.jar:$VENDOR_DIR/java/log4j-1.2.13.jar:$CONF_DIR/log4j.properties
+
+export PATH CLASSPATH
+
+# TODO: find a way to use the return value of this function instead of
+# manipulating the global variable
+PIDS="" 
+
+refresh_pids() {
+		if [ -f $PIDS_DIR/$PORT.pid ]; then
+        	PID=`cat $PIDS_DIR/$PORT.pid`
+        else
+        	PID=""
+        fi
+}
+
+start() {
+        echo -n "Starting HBase driver on port $PORT."
+        
+        refresh_pids
+
+        if [ -f "$PIDS_DIR/$PORT.pid" -a "$PID" != "" ] ; then
+                echo -e "\nAlready running (pid="$PID")." 
+                exit 1
+        else
+            rm -f $LOGS_DIR/$PORT.log
+            nohup jruby $DRIVER $PORT >> $LOGS_DIR/$PORT.log 2>&1 < /dev/null &
+            PID=$!
+            if [ "$PID" != "" ] ; then
+                # monitor the log file for the message saying that the server is started
+                for ((i=0; i<$STARTUP_TIMEOUT; i+=1)); do
+                  sleep 1
+                  echo -n "."
+                  if [ "$(cat $LOGS_DIR/$PORT.log | grep 'Started drb server')" != "" ] ; then
+                    break
+                  fi
+                done
+
+                if [ "$i" == $STARTUP_TIMEOUT ] ; then
+                  echo -e "\nStartup timeout: couldn't start the DRb server."
+                else
+                  echo $PID > $PIDS_DIR/$PORT.pid
+                fi
+                echo ""
+            else
+            	echo -e "\nAn error occured while starting the DRb server."
+            fi
+        fi
+}
+
+stop() {
+        echo "Stopping HBase driver on port $PORT."
+
+        refresh_pids
+
+        if [ -f "$PIDS_DIR/$PORT.pid" -a "$PID" != "" ] ; then
+        		echo "Stopping driver (pid = $PID)." >> $LOGS_DIR/$PORT.log
+                kill $PID
+                rm $PIDS_DIR/$PORT.pid
+        else
+                echo "No HBase driver to kill." 
+        fi
+}
+
+status() {
+		refresh_pids
+		
+		if [ -f "$PIDS_DIR/$PORT.pid" -a "$PID" != "" ] ; then
+				echo "Running."
+		else
+				echo "Stopped."
+		fi
+}
+
+start_debug() {
+  jruby $DRIVER
+}
+
+print_usage() {
+	echo "Usage: hbase-driver {start|stop|restart|status|start_debug} [-p <port>"]
+}
+
+set_port() {
+  if [ "$2" == "-p" -a "$3" != "" ]; then
+    PORT="$3"
+  else
+    PORT=40000
+  fi  
+}
+
+case "$1" in
+    start)
+    	set_port $@
+   		start
+        ;;
+    stop)
+    	set_port $@
+   		stop
+        ;;
+    restart)
+    	set_port $@
+   		stop
+   		start
+        ;;
+    status)
+        set_port $@
+        status
+        ;;
+    start_debug)
+    	set_port $@
+    	start_debug
+    	;;
+    *)
+        print_usage 
+        exit 1
+esac
+exit 0

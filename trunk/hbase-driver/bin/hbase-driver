@@ -1,0 +1,5 @@
+#!/usr/bin/env ruby
+
+launcher = File.join(File.dirname(__FILE__), 'launcher')
+
+exec "bash", launcher, *$*

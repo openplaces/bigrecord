@@ -2,6 +2,8 @@ $:.unshift(File.dirname(__FILE__) + '/../lib')
 
 require 'test/unit'
 require 'hbase_driver'
+require 'client'
+require 'exceptions'
 
 class TestHbaseClient < Test::Unit::TestCase
 
@@ -13,7 +15,7 @@ class TestHbaseClient < Test::Unit::TestCase
     unless @@hbase
       Hbase::DriverManager.restart(40005)
       #TODO: don't use hard coded values for the config
-      @@hbase = Hbase::Client.new(:drb_port => 40005)
+      @@hbase = BigRecord::Client.new(:drb_port => 40005)
     end
 
     @@hbase.drop_table(TABLE_NAME) if @@hbase.table_exists?(TABLE_NAME)
@@ -311,7 +313,7 @@ class TestHbaseClient < Test::Unit::TestCase
   def test_ping
     hbase = nil
     assert_nothing_raised("Couldn't initialize the client") do
-      hbase = Hbase::Client.new(:drb_port => 40005)
+      hbase = BigRecord::Client.new(:drb_port => 40005)
     end
     assert_not_nil hbase, "Couldn't initialize the client"
     assert hbase.ping, "The client was initialized but we cannot communicate with hbase itself"
@@ -333,7 +335,7 @@ class TestHbaseClient < Test::Unit::TestCase
   end
 
   def test_invalid_column_family
-    assert_raises Hbase::JavaError do
+    assert_raises BigDB::JavaError do
       @@hbase.get(TABLE_NAME, 'dog-key', 'nonexistentcolumnfamily:name')
     end
   end

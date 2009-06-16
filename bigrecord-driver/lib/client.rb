@@ -3,7 +3,7 @@ require 'activesupport'
 require 'set'
 require 'drb'
 
-module Hbase
+module BigRecord
   class Client
     
     def initialize(config={}) # :nodoc:
@@ -19,7 +19,7 @@ module Hbase
       begin
         @server = DRbObject.new(nil, "druby://#{@config[:drb_host]}:#{@config[:drb_port]}")
       rescue DRb::DRbConnError
-        raise Hbase::ConnectionError, "Failed to connect to the DRb server (jruby) " +
+        raise BigDB::ConnectionError, "Failed to connect to the DRb server (jruby) " +
                                       "at #{@config[:drb_host]}:#{@config[:drb_port]}."
       end
       @server.configure(:master => @config[:master], :regionserver => @config[:regionserver])

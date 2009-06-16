@@ -1,0 +1,45 @@
+#!/usr/bin/env ruby
+
+require 'rubygems'
+require 'rake'
+require 'rake/testtask'
+require 'rake/rdoctask'
+require 'rake/gempackagetask'
+
+
+spec = Gem::Specification.new do |s|
+  s.name = 'bigrecord'
+  s.author = "openplaces.org"
+  s.email = "bigrecord@openplaces.org"
+  s.homepage = "http://www.bigrecord.org"
+  s.platform = Gem::Platform::RUBY
+  s.summary = "ActiveRecord like ORM for column-oriented data stores"
+  s.has_rdoc = true
+
+  s.add_dependency "uuidtools", ">= 1.0.7"
+end
+
+Rake::GemPackageTask.new(spec) do |package|
+  package.gem_spec = spec
+  package.need_tar = true
+  package.need_zip = true
+end
+
+desc 'Default: run unit tests.'
+task :default => :test
+
+desc 'Test the big_record plugin.'
+Rake::TestTask.new(:test) do |t|
+  t.libs << 'lib'
+  t.pattern = 'test/**/*_test.rb'
+  t.verbose = true
+end
+
+desc 'Generate documentation for the big_record plugin.'
+Rake::RDocTask.new(:rdoc) do |rdoc|
+  rdoc.rdoc_dir = 'rdoc'
+  rdoc.title    = 'BigRecord'
+  rdoc.options << '--line-numbers' << '--inline-source'
+  rdoc.rdoc_files.include('README')
+  rdoc.rdoc_files.include('lib/**/*.rb')
+end

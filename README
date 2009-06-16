@@ -1,0 +1,3 @@
+= BigRecord
+
+A Ruby Object/Relational Mapper for distributed column-oriented data stores (inspired by BigTable) such as Hbase.

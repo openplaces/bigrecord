@@ -1,7 +1,11 @@
+require File.dirname(__FILE__) + '/exceptions'
+require File.dirname(__FILE__) + '/column_descriptor'
+require 'drb'
 # The name of the java String class conflicts with ruby's String class.
 module Java
   include_class "java.lang.String"
   include_class "java.lang.Exception"
+
 end
 
 class String
@@ -10,6 +14,8 @@ class String
   end
 end
 class BigRecordServer
+  include_class "java.io.IOException"
+  
   def configure(config = {})
     raise NotImplementedError 
   end
@@ -67,4 +73,41 @@ class BigRecordServer
   def respond_to?(method)
     super
   end
+
+  protected
+
+    def to_ruby_string(cell)
+      Java::String.new(cell.getValue).to_s
+    end
+    # Try to recover from network related exceptions. e.g. hbase has been restarted and the
+    # cached connections in @tables are no longer valid. Every method in this class (except connect_table)
+    # should have its code wrapped by a call to this method.
+    def safe_exec
+      yield
+    rescue IOException => e
+      puts "A network error occured: #{e.message}. Trying to recover..."
+      init_connection
+      begin
+        yield
+      rescue Exception, Java::Exception => e2
+        if e2.class == e.class
+          puts "Failed to recover the connection."
+        else
+          puts "Failed to recover the connection but got a different error this time: #{e2.message}."
+        end
+        puts "Stack trace:"
+        puts e2.backtrace.join("\n")
+
+        if e2.kind_of?(NativeException)
+          raise BigDB::JavaError, e2.message
+        else
+          raise e2
+        end
+      end
+      puts "Connection recovered successfully..."
+    rescue Exception => e
+      puts "\n#{e.class.name}: #{e.message}"
+      puts e.backtrace.join("\n")
+      raise e
+    end
 end

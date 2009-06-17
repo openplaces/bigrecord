@@ -8,8 +8,6 @@ module BigRecord
     
     def initialize(config={}) # :nodoc:
       config = config.symbolize_keys
-      config[:master]       ||= 'localhost:60000'
-      config[:regionserver] ||= 'regionserver:60020'
       config[:drb_host]     ||= 'localhost'
       config[:drb_port]     ||= 40000
       
@@ -22,7 +20,7 @@ module BigRecord
         raise BigDB::ConnectionError, "Failed to connect to the DRb server (jruby) " +
                                       "at #{@config[:drb_host]}:#{@config[:drb_port]}."
       end
-      @server.configure(:master => @config[:master], :regionserver => @config[:regionserver])
+      @server.configure(@config)
     end
     
     # Delegate the methods to the server

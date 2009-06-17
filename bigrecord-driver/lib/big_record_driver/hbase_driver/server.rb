@@ -2,13 +2,8 @@ require File.dirname(__FILE__) + '/../column_descriptor'
 require File.dirname(__FILE__) + '/../exceptions'
 require File.dirname(__FILE__) + '/../bigrecord_server'
 
-require 'drb'
-
-
 class HbaseServer < BigRecordServer
   include_class "java.util.TreeMap"
-  
-  include_class "java.io.IOException"
 
   include_class "org.apache.hadoop.hbase.client.HTable"
   include_class "org.apache.hadoop.hbase.client.HBaseAdmin"
@@ -281,9 +276,9 @@ class HbaseServer < BigRecordServer
     end
   end
   
-  def table_names
+  def table_exists?(table_name)
     safe_exec do
-      @admin.listTables.collect{|td| Java::String.new(td.getName).to_s}
+      @admin.listTables.index()
     end
   end
   
@@ -313,10 +308,6 @@ private
     end
   end
   
-  def to_ruby_string(cell)
-    Java::String.new(cell.getValue).to_s
-  end
-  
   def init_connection
     @conf = HBaseConfiguration.new
     @conf.set('hbase.master', "#{@config[:master]}")
@@ -326,37 +317,6 @@ private
     @tables = {}
   end
 
-  # Try to recover from network related exceptions. e.g. hbase has been restarted and the 
-  # cached connections in @tables are no longer valid. Every method in this class (except connect_table)
-  # should have its code wrapped by a call to this method.
-  def safe_exec
-    yield
-  rescue IOException => e
-    puts "A network error occured: #{e.message}. Trying to recover..."
-    init_connection
-    begin
-      yield
-    rescue Exception, Java::Exception => e2
-      if e2.class == e.class
-        puts "Failed to recover the connection."
-      else
-        puts "Failed to recover the connection but got a different error this time: #{e2.message}."
-      end
-      puts "Stack trace:"
-      puts e2.backtrace.join("\n")
-      
-      if e2.kind_of?(NativeException)
-        raise BigDB::JavaError, e2.message
-      else
-        raise e2
-      end
-    end
-    puts "Connection recovered successfully..."
-  rescue Exception => e
-    puts "\n#{e.class.name}: #{e.message}"
-    puts e.backtrace.join("\n")
-    raise e
-  end
 end
 
 port = ARGV[0]

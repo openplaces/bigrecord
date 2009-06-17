@@ -1,5 +1,5 @@
 #! /bin/bash
-
+DRIVERNAME=$1
 # Fix for Amazon EC2 instances
 unset RUBYLIB
 
@@ -15,24 +15,28 @@ VENDOR_DIR=`cd "$VENDOR_DIR/../vendor"; pwd`
 CONF_DIR=`dirname "$0"`
 CONF_DIR=`cd "$CONF_DIR/../conf"; pwd`
 
-# Ruby file that contains the drb server of the hbase driver
-DRIVER=$VENDOR_DIR/../lib/big_record_driver/hbase_driver/server.rb
-
+# Ruby file that contains the drb server
+DRIVER=$VENDOR_DIR/../lib/big_record_driver/"$DRIVERNAME"_driver/server.rb
 
 # location where the pids are stored
-PIDS_DIR=/tmp/hbase-driver/run
+PIDS_DIR=/tmp/$DRIVERNAME-driver/run
 mkdir -p $PIDS_DIR
 
 # startup delay
 STARTUP_TIMEOUT=60
 
 # location where the log files are stored
-LOGS_DIR=/tmp/hbase-driver/log
+LOGS_DIR=/tmp/$DRIVERNAME-driver/log
 mkdir -p $LOGS_DIR
 
 # set the environment to use jruby by default
 PATH=$JRUBY_HOME/bin:$PATH
-CLASSPATH=$CLASSPATH:$VENDOR_DIR/java/hadoop-0.19.1-core.jar:$VENDOR_DIR/java/hbase-0.19.1.jar:$VENDOR_DIR/java/commons-logging-1.0.4.jar:$VENDOR_DIR/java/commons-logging-api-1.0.4.jar:$VENDOR_DIR/java/log4j-1.2.13.jar:$CONF_DIR/log4j.properties
+for f in $VENDOR_DIR/java/$DRIVERNAME/*.jar; do
+  if [ -f $f ]; then
+    CLASSPATH=${CLASSPATH}:$f;
+  fi
+done
+#CLASSPATH=$CLASSPATH:$VENDOR_DIR/java/hadoop-0.19.1-core.jar:$VENDOR_DIR/java/hbase-0.19.1.jar:$VENDOR_DIR/java/commons-logging-1.0.4.jar:$VENDOR_DIR/java/commons-logging-api-1.0.4.jar:$VENDOR_DIR/java/log4j-1.2.13.jar:$CONF_DIR/log4j.properties
 
 export PATH CLASSPATH
 
@@ -49,7 +53,7 @@ refresh_pids() {
 }
 
 start() {
-        echo -n "Starting HBase driver on port $PORT."
+        echo -n "Starting $DRIVERNAME driver on port $PORT."
         
         refresh_pids
 
@@ -83,7 +87,7 @@ start() {
 }
 
 stop() {
-        echo "Stopping HBase driver on port $PORT."
+        echo "Stopping $DRIVERNAME driver on port $PORT."
 
         refresh_pids
 
@@ -92,7 +96,7 @@ stop() {
                 kill $PID
                 rm $PIDS_DIR/$PORT.pid
         else
-                echo "No HBase driver to kill." 
+                echo "No $DRIVERNAME driver to kill."
         fi
 }
 
@@ -111,18 +115,18 @@ start_debug() {
 }
 
 print_usage() {
-	echo "Usage: hbase-driver {start|stop|restart|status|start_debug} [-p <port>"]
+	echo "Usage: $DRIVERNAME-driver {start|stop|restart|status|start_debug} [-p <port>]"
 }
 
 set_port() {
-  if [ "$2" == "-p" -a "$3" != "" ]; then
-    PORT="$3"
+  if [ "$3" == "-p" -a "$4" != "" ]; then
+    PORT="$4"
   else
     PORT=40000
   fi  
 }
 
-case "$1" in
+case "$2" in
     start)
     	set_port $@
    		start

@@ -90,7 +90,7 @@ BigRecord::Base.class_eval do
     attributes.each do |k, v|
       if v.kind_of?(BigRecord::Embedded)
         errors.add(k, "is invalid: @errors=#{v.errors.full_messages.inspect}") unless v.valid?
-      elsif v.is_a?(Array) and v.first.kind_of?(HbaseRecord::Embedded)
+      elsif v.is_a?(Array) and v.first.kind_of?(BigRecordRecord::Embedded)
         v.each_with_index do |item, i|
           next if item.blank?
           unless item.valid?

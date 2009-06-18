@@ -837,38 +837,38 @@ module Test #:nodoc:
   module Unit #:nodoc:
     class TestCase #:nodoc:
       superclass_delegating_accessor :fixture_path
-      superclass_delegating_accessor :hbase_fixture_table_names
-      superclass_delegating_accessor :hbase_fixture_class_names
-      superclass_delegating_accessor :hbase_use_transactional_fixtures
-      superclass_delegating_accessor :hbase_use_instantiated_fixtures   # true, false, or :no_instances
-      superclass_delegating_accessor :hbase_pre_loaded_fixtures
+      superclass_delegating_accessor :bigrecord_fixture_table_names
+      superclass_delegating_accessor :bigrecord_fixture_class_names
+      superclass_delegating_accessor :bigrecord_use_transactional_fixtures
+      superclass_delegating_accessor :bigrecord_use_instantiated_fixtures   # true, false, or :no_instances
+      superclass_delegating_accessor :bigrecord_pre_loaded_fixtures
 
-      self.hbase_fixture_table_names = []
-      self.hbase_use_transactional_fixtures = false
-      self.hbase_use_instantiated_fixtures = true
-      self.hbase_pre_loaded_fixtures = false
+      self.bigrecord_fixture_table_names = []
+      self.bigrecord_use_transactional_fixtures = false
+      self.bigrecord_use_instantiated_fixtures = true
+      self.bigrecord_pre_loaded_fixtures = false
 
-      @@already_loaded_hbase_fixtures = {}
-      self.hbase_fixture_class_names = {}
+      @@already_loaded_bigrecord_fixtures = {}
+      self.bigrecord_fixture_class_names = {}
 
-      def self.hbase_set_fixture_class(class_names = {})
-        self.hbase_fixture_class_names = self.hbase_fixture_class_names.merge(class_names)
+      def self.bigrecord_set_fixture_class(class_names = {})
+        self.bigrecord_fixture_class_names = self.bigrecord_fixture_class_names.merge(class_names)
       end
 
-      def self.hbase_fixtures(*hbase_table_names)
-        if hbase_table_names.first == :all
-          hbase_table_names = Dir["#{fixture_path}/*.yml"] + Dir["#{fixture_path}/*.csv"]
-          hbase_table_names.map! { |f| File.basename(f).split('.')[0..-2].join('.') }
+      def self.bigrecord_fixtures(*bigrecord_table_names)
+        if bigrecord_table_names.first == :all
+          bigrecord_table_names = Dir["#{fixture_path}/*.yml"] + Dir["#{fixture_path}/*.csv"]
+          bigrecord_table_names.map! { |f| File.basename(f).split('.')[0..-2].join('.') }
         else
-          hbase_table_names = hbase_table_names.flatten.map { |n| n.to_s }
+          bigrecord_table_names = bigrecord_table_names.flatten.map { |n| n.to_s }
         end
 
-        self.hbase_fixture_table_names |= hbase_table_names
-        require_hbase_fixture_classes(hbase_table_names)
-        setup_hbase_fixture_accessors(hbase_table_names)
+        self.bigrecord_fixture_table_names |= bigrecord_table_names
+        require_bigrecord_fixture_classes(bigrecord_table_names)
+        setup_bigrecord_fixture_accessors(bigrecord_table_names)
       end
 
-      def self.require_hbase_fixture_classes(table_names = nil)
+      def self.require_bigrecord_fixture_classes(table_names = nil)
         (table_names || fixture_table_names).each do |table_name|
           file_name = table_name.to_s
           file_name = file_name.singularize if ActiveRecord::Base.pluralize_table_names
@@ -880,20 +880,20 @@ module Test #:nodoc:
         end
       end
 
-      def self.setup_hbase_fixture_accessors(table_names = nil)
+      def self.setup_bigrecord_fixture_accessors(table_names = nil)
         (table_names || fixture_table_names).each do |table_name|
           table_name = table_name.to_s.tr('.', '_')
 
           define_method(table_name) do |*fixtures|
             force_reload = fixtures.pop if fixtures.last == true || fixtures.last == :reload
 
-            @hbase_fixture_cache[table_name] ||= {}
+            @bigrecord_fixture_cache[table_name] ||= {}
 
             instances = fixtures.map do |fixture|
-              @hbase_fixture_cache[table_name].delete(fixture) if force_reload
+              @bigrecord_fixture_cache[table_name].delete(fixture) if force_reload
 
-              if @loaded_hbase_fixtures[table_name][fixture.to_s]
-                @hbase_fixture_cache[table_name][fixture] ||= @loaded_hbase_fixtures[table_name][fixture.to_s].find
+              if @loaded_bigrecord_fixtures[table_name][fixture.to_s]
+                @bigrecord_fixture_cache[table_name][fixture] ||= @loaded_bigrecord_fixtures[table_name][fixture.to_s].find
               else
                 raise StandardError, "No fixture with name '#{fixture}' found for table '#{table_name}'"
               end
@@ -905,8 +905,8 @@ module Test #:nodoc:
       end
 
       def self.uses_transaction(*methods)
-        @hbase_uses_transaction = [] unless defined?(@hbase_uses_transaction)
-        @hbase_uses_transaction.concat methods.map(&:to_s)
+        @bigrecord_uses_transaction = [] unless defined?(@bigrecord_uses_transaction)
+        @bigrecord_uses_transaction.concat methods.map(&:to_s)
       end
 
       def self.uses_transaction?(method)
@@ -914,10 +914,10 @@ module Test #:nodoc:
         @uses_transaction.include?(method.to_s)
       end
 
-      def setup_with_hbase_fixtures
-        return if @hbase_fixtures_setup
-        @hbase_fixtures_setup = true
-        return unless defined?(HbaseRecord::Base) && !HbaseRecord::Base.configurations.blank?
+      def setup_with_bigrecord_fixtures
+        return if @bigrecord_fixtures_setup
+        @bigrecord_fixtures_setup = true
+        return unless defined?(BigRecord::Base) && !BigRecord::Base.configurations.blank?
 
         setup_with_fixtures
 
@@ -925,31 +925,31 @@ module Test #:nodoc:
           raise RuntimeError, 'pre_loaded_fixtures requires use_transactional_fixtures'
         end
 
-        @hbase_fixture_cache = {}
+        @bigrecord_fixture_cache = {}
 
-        HbaseFixtures.reset_cache
-        @@already_loaded_hbase_fixtures[self.class] = nil
-        load_hbase_fixtures
+        BigRecordFixtures.reset_cache
+        @@already_loaded_bigrecord_fixtures[self.class] = nil
+        load_bigrecord_fixtures
 
         # Instantiate fixtures for every test if requested.
         instantiate_fixtures if use_instantiated_fixtures
       end
-      alias_method :setup, :setup_with_hbase_fixtures
+      alias_method :setup, :setup_with_bigrecord_fixtures
 
-      def teardown_with_hbase_fixtures
-        return if @hbase_fixtures_teardown
-        @hbase_fixtures_teardown = true
-        return unless defined?(HbaseRecord::Base) && !HbaseRecord::Base.configurations.blank?
+      def teardown_with_bigrecord_fixtures
+        return if @bigrecord_fixtures_teardown
+        @bigrecord_fixtures_teardown = true
+        return unless defined?(BigRecord::Base) && !BigRecord::Base.configurations.blank?
 
         unless use_transactional_fixtures?
-          HbaseFixtures.reset_cache
+          BigRecordFixtures.reset_cache
         end
 
-        HbaseRecord::Base.verify_active_connections!
+        BigRecord::Base.verify_active_connections!
 
         teardown_with_fixtures if defined?(ActiveRecord::Base)
       end
-      alias_method :teardown, :teardown_with_hbase_fixtures
+      alias_method :teardown, :teardown_with_bigrecord_fixtures
 
       def self.method_added(method)
         return if @__disable_method_added__
@@ -960,7 +960,7 @@ module Test #:nodoc:
           undef_method :setup_without_fixtures if method_defined?(:setup_without_fixtures)
           alias_method :setup_without_fixtures, :setup
           define_method(:full_setup) do
-            setup_with_hbase_fixtures
+            setup_with_bigrecord_fixtures
             setup_without_fixtures
           end
           alias_method :setup, :full_setup
@@ -969,7 +969,7 @@ module Test #:nodoc:
           alias_method :teardown_without_fixtures, :teardown
           define_method(:full_teardown) do
             teardown_without_fixtures
-            teardown_with_hbase_fixtures
+            teardown_with_bigrecord_fixtures
           end
           alias_method :teardown, :full_teardown
         end
@@ -978,39 +978,39 @@ module Test #:nodoc:
       end
 
       private
-        def load_hbase_fixtures
-          @loaded_hbase_fixtures = {}
-          fixtures = HbaseFixtures.create_fixtures(fixture_path, hbase_fixture_table_names, hbase_fixture_class_names)
+        def load_bigrecord_fixtures
+          @loaded_bigrecord_fixtures = {}
+          fixtures = BigRecordFixtures.create_fixtures(fixture_path, bigrecord_fixture_table_names, bigrecord_fixture_class_names)
 
           unless fixtures.nil?
-            if fixtures.instance_of?(HbaseFixtures)
-              @loaded_hbase_fixtures[fixtures.table_name] = fixtures
+            if fixtures.instance_of?(BigRecordFixtures)
+              @loaded_bigrecord_fixtures[fixtures.table_name] = fixtures
             else
-              fixtures.each { |f| @loaded_hbase_fixtures[f.table_name] = f }
+              fixtures.each { |f| @loaded_bigrecord_fixtures[f.table_name] = f }
             end
           end
         end
 
         # for pre_loaded_fixtures, only require the classes once. huge speed improvement
-        @@required_hbase_fixture_classes = false
+        @@required_bigrecord_fixture_classes = false
 
-        def instantiate_hbase_fixtures
+        def instantiate_bigrecord_fixtures
           if pre_loaded_fixtures
             raise RuntimeError, 'Load fixtures before instantiating them.' if Fixtures.all_loaded_fixtures.empty?
-            unless @@required_hbase_fixture_classes
+            unless @@required_bigrecord_fixture_classes
               self.class.require_fixture_classes Fixtures.all_loaded_fixtures.keys
-              @@required_hbase_fixture_classes = true
+              @@required_bigrecord_fixture_classes = true
             end
-            HbaseFixtures.instantiate_all_loaded_fixtures(self, load_instances?)
+            BigRecordFixtures.instantiate_all_loaded_fixtures(self, load_instances?)
           else
-            raise RuntimeError, 'Load fixtures before instantiating them.' if @loaded_hbase_fixtures.nil?
-            @loaded_hbase_fixtures.each do |table_name, fixtures|
-              HbaseFixtures.instantiate_fixtures(self, table_name, fixtures, load_instances?)
+            raise RuntimeError, 'Load fixtures before instantiating them.' if @loaded_bigrecord_fixtures.nil?
+            @loaded_bigrecord_fixtures.each do |table_name, fixtures|
+              BigRecordFixtures.instantiate_fixtures(self, table_name, fixtures, load_instances?)
             end
           end
         end
 
-        def load_hbase_instances?
+        def load_bigrecord_instances?
           use_instantiated_fixtures != :no_instances
         end
     end

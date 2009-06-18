@@ -578,7 +578,7 @@ module BigRecord
     # Update this record in hbase. Cannot be directly in the method 'update' because it would trigger callbacks and
     # therefore weird behaviors.
     def update_hbase
-      timestamp = self.respond_to?(:updated_at) ? self.updated_at.to_hbase_timestamp : Time.now.to_hbase_timestamp
+      timestamp = self.respond_to?(:updated_at) ? self.updated_at.to_bigrecord_timestamp : Time.now.to_bigrecord_timestamp
       connection.update(self.class.table_name, id, clone_in_persistence_format, timestamp)
     end
 
@@ -691,7 +691,7 @@ private
       attr_name = attr_name.to_s
       column = column_for_attribute(attr_name)
 
-      raise "Invalid column for this hbase object (e.g., you tried to set a predicate value for an entity that is out of the predicate scope)" if column == nil
+      raise "Invalid column for this bigrecord object (e.g., you tried to set a predicate value for an entity that is out of the predicate scope)" if column == nil
 
       if column.number?
         @attributes[attr_name] = convert_number_column_value(value)

@@ -141,7 +141,7 @@ module BigRecord
         attributes = fixture.to_hash.dup
         id = attributes.delete("attribute:id")
         raise ArgumentError, "the id is missing" unless id
-        update(table_name, id, attributes, Time.now.to_hbase_timestamp)
+        update(table_name, id, attributes, Time.now.to_bigrecord_timestamp)
       end
 
 #      def empty_insert_statement(table_name)

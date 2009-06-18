@@ -185,7 +185,7 @@ module BigRecord
 #
 #        def raise_on_type_mismatch(record)
 #          unless record.is_a?(@reflection.klass)
-#            raise HbaseRecord::AssociationTypeMismatch, "#{@reflection.class_name} expected, got #{record.class}"
+#            raise BigRecordRecord::AssociationTypeMismatch, "#{@reflection.class_name} expected, got #{record.class}"
 #          end
 #        end
 

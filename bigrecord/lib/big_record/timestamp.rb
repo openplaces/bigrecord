@@ -1,0 +1,67 @@
+module BigRecord
+  # Active Record automatically timestamps create and update if the table has fields
+  # created_at/created_on or updated_at/updated_on.
+  #
+  # Timestamping can be turned off by setting
+  #   <tt>ActiveRecord::Base.record_timestamps = false</tt>
+  #
+  # Keep in mind that, via inheritance, you can turn off timestamps on a per
+  # model basis by setting <tt>record_timestamps</tt> to false in the desired
+  # models.
+  #
+  #   class Feed < ActiveRecord::Base
+  #     self.record_timestamps = false
+  #     # ...
+  #   end
+  #
+  # Timestamps are in the local timezone by default but can use UTC by setting
+  #   <tt>ActiveRecord::Base.default_timezone = :utc</tt>
+  module Timestamp
+    def self.included(base) #:nodoc:
+      super
+
+      base.alias_method_chain :create, :timestamps
+      base.alias_method_chain :update, :timestamps
+
+      base.cattr_accessor :record_timestamps, :instance_writer => false
+      base.record_timestamps = true
+    end
+
+    def create_with_timestamps #:nodoc:
+      if record_timestamps
+        t = self.class.default_timezone == :utc ? Time.now.utc : Time.now
+        self.send(:created_at=, t) if respond_to?(:created_at) && created_at.nil?
+        self.send(:created_on=, t) if respond_to?(:created_on) && created_on.nil?
+
+        self.send(:updated_at=, t) if respond_to?(:updated_at)
+        self.send(:updated_on=, t) if respond_to?(:updated_on)
+      end
+      create_without_timestamps
+    end
+
+    def update_with_timestamps #:nodoc:
+      if record_timestamps
+        t = self.class.default_timezone == :utc ? Time.now.utc : Time.now
+        self.send(:updated_at=, t) if respond_to?(:updated_at)
+        self.send(:updated_on=, t) if respond_to?(:updated_on)
+      end
+      update_without_timestamps
+    end
+  end
+end
+
+# Open the time class to add logic for the hbase timestamp
+class Time
+
+  # Return this time is the hbase timestamp format, i.e. a 'long'. The 4 high bytes contain
+  # the number of seconds since epoch and the 4 low bytes contain the microseconds. That
+  # format is an arbitrary one and could have been something else.
+  def to_bigrecord_timestamp
+    (self.to_i << 32) + self.usec
+  end
+
+  def self.from_bigrecord_timestamp(timestamp)
+    Time.at(timestamp >> 32, timestamp & 0xFFFFFFFF)
+  end
+
+end

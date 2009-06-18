@@ -120,7 +120,7 @@ module BigRecord
               # Normal behavior
 
               # Retrieve the version of the attribute matching the current record version
-              options[:timestamp] = self.updated_at.to_hbase_timestamp if self.has_attribute?('attribute:updated_at') and self.updated_at
+              options[:timestamp] = self.updated_at.to_bigrecord_timestamp if self.has_attribute?('attribute:updated_at') and self.updated_at
 
               # get the content of the cell
               value = connection.get_raw(self.class.table_name, self.id, attr_name, options)
@@ -137,7 +137,7 @@ module BigRecord
               write_attribute(attr_name, column.type_cast(value_no_yaml))
             else
               # Special request... don't keep it in the attributes hash
-              options[:timestamp] ||= self.updated_at.to_hbase_timestamp if self.has_attribute?('attribute:updated_at') and self.updated_at
+              options[:timestamp] ||= self.updated_at.to_bigrecord_timestamp if self.has_attribute?('attribute:updated_at') and self.updated_at
 
               # get the content of the cell
               value = connection.get_raw(self.class.table_name, self.id, attr_name, options)
@@ -183,7 +183,7 @@ module BigRecord
           unless self.all_attributes_loaded? and attr_name =~ /\Aattribute:/
             options = {}
             # Retrieve the version of the attribute matching the current record version
-            options[:timestamp] = self.updated_at.to_hbase_timestamp if self.has_attribute?('attribute:updated_at') and self.updated_at
+            options[:timestamp] = self.updated_at.to_bigrecord_timestamp if self.has_attribute?('attribute:updated_at') and self.updated_at
             @modified_attributes ||= {}
             # get the content of the whole family
             values = connection.get_columns_raw(self.class.table_name, self.id, [attr_name], options)
@@ -306,7 +306,7 @@ module BigRecord
 
     # KEEP THE COMMENTED DEBUG IN THERE, IT HELPS A LOT!
     def update_hbase
-      timestamp = self.respond_to?(:updated_at) ? self.updated_at.to_hbase_timestamp : Time.now.to_hbase_timestamp
+      timestamp = self.respond_to?(:updated_at) ? self.updated_at.to_bigrecord_timestamp : Time.now.to_bigrecord_timestamp
       # Initialize it if it wasn't up to now
       @modified_attributes ||= {}
 #      @attributes.each { |key, value|  puts "echoing #{key} #{value}" }
@@ -506,7 +506,7 @@ module BigRecord
       end
 
       def table_name
-        (superclass == HbaseRecord::Base) ? @table_name : superclass.table_name
+        (superclass == BigRecord::Base) ? @table_name : superclass.table_name
       end
 
       def set_table_name(name)
@@ -514,7 +514,7 @@ module BigRecord
       end
 
       def base_class
-        (superclass == HbaseRecord::Base) ? self : superclass.base_class
+        (superclass == BigRecord::Base) ? self : superclass.base_class
       end
 
       def view(name, columns)
@@ -685,7 +685,7 @@ module BigRecord
 
         # Allow the client to give us other objects than integers, e.g. Time and String
         if options[:timestamp] && options[:timestamp].kind_of?(Time)
-          options[:timestamp] = options[:timestamp].to_hbase_timestamp
+          options[:timestamp] = options[:timestamp].to_bigrecord_timestamp
         end
 
         requested_columns = columns_to_find(options)
@@ -694,7 +694,7 @@ module BigRecord
         raw_record =
         if options[:num_versions] and options[:num_versions] > 1
           timestamps = connection.get(table_name, id, "attribute:updated_at", options)
-          timestamps.collect{|timestamp| connection.get_columns_raw(table_name, id, requested_columns, :timestamp => timestamp.to_hbase_timestamp)}
+          timestamps.collect{|timestamp| connection.get_columns_raw(table_name, id, requested_columns, :timestamp => timestamp.to_bigrecord_timestamp)}
         else
           connection.get_columns_raw(table_name, id, requested_columns, options)
         end

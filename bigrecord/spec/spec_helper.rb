@@ -19,3 +19,21 @@ end
 Dir.glob( File.join(File.dirname(__FILE__), "lib", "*.rb") ).each do |model|
   require model
 end
+
+
+# Redefine the Hash class to include two helper methods used only in the specs.
+class Hash
+
+  def subset_of?(other_hash)
+    self.each do |key, value|
+      false if (!other_hash.has_key?(key) || other_hash[key] != value)
+    end
+
+    true
+  end
+
+  def superset_of?(other_hash)
+    other_hash.subset_of?(self)
+  end
+
+end

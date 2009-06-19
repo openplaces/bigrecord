@@ -165,7 +165,7 @@ module BigRecord
       attributes.stringify_keys!
 
       multi_parameter_attributes = []
-#      attributes = remove_attributes_protected_from_mass_assignment(attributes) if guard_protected_attributes
+      attributes = remove_attributes_protected_from_mass_assignment(attributes) if guard_protected_attributes
 
       attributes.each do |k, v|
         begin
@@ -233,7 +233,7 @@ module BigRecord
       attributes.stringify_keys!
 
       multi_parameter_attributes = []
-#      attributes = remove_attributes_protected_from_mass_assignment(attributes) if guard_protected_attributes
+      attributes = remove_attributes_protected_from_mass_assignment(attributes) if guard_protected_attributes
 
       attributes.each do |k, v|
         k.include?("(") ? multi_parameter_attributes << [ k, v ] : send(k + "=", v)
@@ -612,6 +612,51 @@ module BigRecord
       end
     end
 
+    def remove_attributes_protected_from_mass_assignment(attributes)
+      safe_attributes =
+        if self.class.accessible_attributes.nil? && self.class.protected_attributes.nil?
+          attributes.reject { |key, value| attributes_protected_by_default.include?(key.gsub(/\(.+/, "")) }
+        elsif self.class.protected_attributes.nil?
+          attributes.reject { |key, value| !self.class.accessible_attributes.include?(key.gsub(/\(.+/, "")) || attributes_protected_by_default.include?(key.gsub(/\(.+/, "")) }
+        elsif self.class.accessible_attributes.nil?
+          attributes.reject { |key, value| self.class.protected_attributes.include?(key.gsub(/\(.+/,"")) || attributes_protected_by_default.include?(key.gsub(/\(.+/, "")) }
+        else
+          raise "Declare either attr_protected or attr_accessible for #{self.class}, but not both."
+        end
+
+      if !self.new_record? && !self.class.create_accessible_attributes.nil?
+        safe_attributes = safe_attributes.delete_if{ |key, value| self.class.create_accessible_attributes.include?(key.gsub(/\(.+/,"")) }
+      end
+
+      removed_attributes = attributes.keys - safe_attributes.keys
+
+      if removed_attributes.any?
+        log_protected_attribute_removal(removed_attributes)
+      end
+
+      safe_attributes
+    end
+
+    # Removes attributes which have been marked as readonly.
+    def remove_readonly_attributes(attributes)
+      unless self.class.readonly_attributes.nil?
+        attributes.delete_if { |key, value| self.class.readonly_attributes.include?(key.gsub(/\(.+/,"")) }
+      else
+        attributes
+      end
+    end
+
+    def log_protected_attribute_removal(*attributes)
+      logger.debug "WARNING: Can't mass-assign these protected attributes: #{attributes.join(', ')}"
+    end
+
+    # The primary key and inheritance column can never be set by mass-assignment for security reasons.
+    def attributes_protected_by_default
+      # default = [ self.class.primary_key, self.class.inheritance_column ]
+      # default << 'id' unless self.class.primary_key.eql? 'id'
+      # default
+      []
+    end
 
   protected
     # Returns the value of the attribute identified by <tt>attr_name</tt> after it has been typecast (for example,
@@ -881,6 +926,103 @@ private
         record.instance_variable_set(:@new_record, false)
         record.safe_attributes = raw_record
         record
+      end
+
+      # Attributes named in this macro are protected from mass-assignment,
+      # such as <tt>new(attributes)</tt>,
+      # <tt>update_attributes(attributes)</tt>, or
+      # <tt>attributes=(attributes)</tt>.
+      #
+      # Mass-assignment to these attributes will simply be ignored, to assign
+      # to them you can use direct writer methods. This is meant to protect
+      # sensitive attributes from being overwritten by malicious users
+      # tampering with URLs or forms.
+      #
+      #   class Customer < ActiveRecord::Base
+      #     attr_protected :credit_rating
+      #   end
+      #
+      #   customer = Customer.new("name" => David, "credit_rating" => "Excellent")
+      #   customer.credit_rating # => nil
+      #   customer.attributes = { "description" => "Jolly fellow", "credit_rating" => "Superb" }
+      #   customer.credit_rating # => nil
+      #
+      #   customer.credit_rating = "Average"
+      #   customer.credit_rating # => "Average"
+      #
+      # To start from an all-closed default and enable attributes as needed,
+      # have a look at +attr_accessible+.
+      def attr_protected(*attributes)
+        write_inheritable_attribute(:attr_protected, Set.new(attributes.map {|a| a.to_s}) + (protected_attributes || []))
+      end
+
+      # Returns an array of all the attributes that have been protected from mass-assignment.
+      def protected_attributes # :nodoc:
+        read_inheritable_attribute(:attr_protected)
+      end
+
+      # Specifies a white list of model attributes that can be set via
+      # mass-assignment, such as <tt>new(attributes)</tt>,
+      # <tt>update_attributes(attributes)</tt>, or
+      # <tt>attributes=(attributes)</tt>
+      #
+      # This is the opposite of the +attr_protected+ macro: Mass-assignment
+      # will only set attributes in this list, to assign to the rest of
+      # attributes you can use direct writer methods. This is meant to protect
+      # sensitive attributes from being overwritten by malicious users
+      # tampering with URLs or forms. If you'd rather start from an all-open
+      # default and restrict attributes as needed, have a look at
+      # +attr_protected+.
+      #
+      #   class Customer < ActiveRecord::Base
+      #     attr_accessible :name, :nickname
+      #   end
+      #
+      #   customer = Customer.new(:name => "David", :nickname => "Dave", :credit_rating => "Excellent")
+      #   customer.credit_rating # => nil
+      #   customer.attributes = { :name => "Jolly fellow", :credit_rating => "Superb" }
+      #   customer.credit_rating # => nil
+      #
+      #   customer.credit_rating = "Average"
+      #   customer.credit_rating # => "Average"
+      def attr_accessible(*attributes)
+        write_inheritable_attribute(:attr_accessible, Set.new(attributes.map(&:to_s)) + (accessible_attributes || []))
+      end
+
+      # Returns an array of all the attributes that have been made accessible to mass-assignment.
+      def accessible_attributes # :nodoc:
+        read_inheritable_attribute(:attr_accessible)
+      end
+
+      # Attributes listed as readonly can be set for a new record, but will be ignored in database updates afterwards.
+      def attr_readonly(*attributes)
+       write_inheritable_attribute(:attr_readonly, Set.new(attributes.map(&:to_s)) + (readonly_attributes || []))
+      end
+
+      # Returns an array of all the attributes that have been specified as readonly.
+      def readonly_attributes
+       read_inheritable_attribute(:attr_readonly)
+      end
+
+      # Attributes listed as create_accessible work with mass assignment ONLY on creation. After that, any updates
+      # to that attribute will be protected from mass assignment.
+      #
+      #   class Customer < BigRecord::Base
+      #     attr_create_accessible :name
+      #   end
+      #
+      #   customer = Customer.new(:name => "Greg")
+      #   customer.name # => "Greg"
+      #   customer.attributes = { :name => "Nerd" }
+      #   customer.name # => "Greg"
+      #
+      def attr_create_accessible(*attributes)
+       write_inheritable_attribute(:attr_create_accessible, Set.new(attributes.map(&:to_s)) + (create_accessible_attributes || []))
+      end
+
+      # Returns an array of all the attributes that have been specified as create_accessible.
+      def create_accessible_attributes
+       read_inheritable_attribute(:attr_create_accessible)
       end
 
     protected

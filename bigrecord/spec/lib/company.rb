@@ -7,8 +7,8 @@ class Company < BigRecord::Base
 
   column 'log:change',            'string', :alias => 'change_log', :collection => true
 
-  # attr_create_accessible :name
-  # attr_protected :employees
-  # attr_readonly :readonly
+  attr_create_accessible :name
+  attr_protected :employees
+  attr_readonly :readonly
 
 end

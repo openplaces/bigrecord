@@ -74,11 +74,13 @@ describe BigRecord::Base do
       @book.author = "Alex Garland"
       @book.description = "A furiously intelligent first novel."
 
-      @book.attributes.sort.should == {"log:change"=>[], "attribute:description"=>"A furiously intelligent first novel.", "attribute:title"=>"The Beach", "attribute:links"=>[], "attribute:author"=>"Alex Garland"}.sort
+      expected_hash = {"log:change"=>[], "attribute:description"=>"A furiously intelligent first novel.", "attribute:title"=>"The Beach", "attribute:links"=>[], "attribute:author"=>"Alex Garland"}
+
+      @book.attributes.superset_of?(expected_hash).should be_true
     end
 
     it "should return a hash with all nil or empty list values if the instance is new and has no default values" do
-      @book.attributes.sort.should == {"log:change"=>[], "attribute:description"=>nil, "attribute:title"=>nil, "attribute:links"=>[], "attribute:author"=>nil}.sort
+      @book.attributes.superset_of?({"log:change"=>[], "attribute:description"=>nil, "attribute:title"=>nil, "attribute:links"=>[], "attribute:author"=>nil}).should be_true
     end
 
   end
@@ -91,29 +93,29 @@ describe BigRecord::Base do
                         :author => "Alex Garland",
                         :description => "A furiously intelligent first novel.")
 
-      @book.attributes.sort.should == {"log:change"=>[], "attribute:description"=>"A furiously intelligent first novel.", "attribute:title"=>"The Beach", "attribute:links"=>[], "attribute:author"=>"Alex Garland"}.sort
+      @book.attributes.superset_of?({"log:change"=>[], "attribute:description"=>"A furiously intelligent first novel.", "attribute:title"=>"The Beach", "attribute:links"=>[], "attribute:author"=>"Alex Garland"}).should be_true
 
       # Check that it works with the #attributes= method
       @book.attributes = {:title => "28 Days Later"}
 
-      @book.attributes.sort.should == {"log:change"=>[], "attribute:description"=>"A furiously intelligent first novel.", "attribute:title"=>"28 Days Later", "attribute:links"=>[], "attribute:author"=>"Alex Garland"}.sort
+      @book.attributes.superset_of?({"log:change"=>[], "attribute:description"=>"A furiously intelligent first novel.", "attribute:title"=>"28 Days Later", "attribute:links"=>[], "attribute:author"=>"Alex Garland"}).should be_true
     end
 
     it 'should handle protected attributes properly' do
       # Employees is a protected attribute here, so it shouldn't be saved.
       @company = Company.new(:name => "The Company", :address => "Unknown", :employees => 18000, :readonly => "secret")
 
-      @company.attributes.sort.should == {"attribute:employees"=>nil, "attribute:address"=>"Unknown", "attribute:readonly"=>"secret", "log:change"=>[], "attribute:name"=>"The Company"}.sort
+      @company.attributes.superset_of?({"attribute:employees"=>nil, "attribute:address"=>"Unknown", "attribute:readonly"=>"secret", "log:change"=>[], "attribute:name"=>"The Company"}).should be_true
 
       # Check it against the attributes= method
       @company.attributes = {:employees => 18000}
 
-      @company.attributes.sort.should == {"attribute:employees"=>nil, "attribute:address"=>"Unknown", "attribute:readonly"=>"secret", "log:change"=>[], "attribute:name"=>"The Company"}.sort
+      @company.attributes.superset_of?({"attribute:employees"=>nil, "attribute:address"=>"Unknown", "attribute:readonly"=>"secret", "log:change"=>[], "attribute:name"=>"The Company"}).should be_true
 
       # Now check that we can access it with the employees= method
       @company.employees = 18000
 
-      @company.attributes.sort.should == {"attribute:employees"=>18000, "attribute:address"=>"Unknown", "attribute:readonly"=>"secret", "log:change"=>[], "attribute:name"=>"The Company"}.sort
+      @company.attributes.superset_of?({"attribute:employees"=>18000, "attribute:address"=>"Unknown", "attribute:readonly"=>"secret", "log:change"=>[], "attribute:name"=>"The Company"}).should be_true
     end
 
     it 'should handle accessible attributes properly' do
@@ -124,24 +126,24 @@ describe BigRecord::Base do
       @company = Company.new(:name => "Another Company", :address => "Unknown")
 
       # It should've been set successfully since this is a new record
-      @company.attributes.sort.should == {"attribute:employees"=>nil, "attribute:address"=>"Unknown", "attribute:readonly"=>nil, "log:change"=>[], "attribute:name"=>"Another Company"}.sort
+      @company.attributes.superset_of?({"attribute:employees"=>nil, "attribute:address"=>"Unknown", "attribute:readonly"=>nil, "log:change"=>[], "attribute:name"=>"Another Company"}).should be_true
 
       # It should still also be accessible with the attributes= method
       @company.attributes = {:name => "The Company"}
 
-      @company.attributes.sort.should == {"attribute:employees"=>nil, "attribute:address"=>"Unknown", "attribute:readonly"=>nil, "log:change"=>[], "attribute:name"=>"The Company"}.sort
+      @company.attributes.superset_of?({"attribute:employees"=>nil, "attribute:address"=>"Unknown", "attribute:readonly"=>nil, "log:change"=>[], "attribute:name"=>"The Company"}).should be_true
 
       # Now when we save it, it should no longer be accessible with mass assignment
       @company.save.should be_true
 
       @company.attributes = {:name => "Another Company"}
 
-      @company.attributes.sort.should == {"attribute:employees"=>nil, "attribute:address"=>"Unknown", "attribute:readonly"=>nil, "log:change"=>[], "attribute:name"=>"The Company"}.sort
+      @company.attributes.superset_of?({"attribute:employees"=>nil, "attribute:address"=>"Unknown", "attribute:readonly"=>nil, "log:change"=>[], "attribute:name"=>"The Company"}).should be_true
 
       # But it should still be accessible with the explicit setter
       @company.name = "Another Company"
 
-      @company.attributes.sort.should == {"attribute:employees"=>nil, "attribute:address"=>"Unknown", "attribute:readonly"=>nil, "log:change"=>[], "attribute:name"=>"Another Company"}.sort
+      @company.attributes.superset_of?({"attribute:employees"=>nil, "attribute:address"=>"Unknown", "attribute:readonly"=>nil, "log:change"=>[], "attribute:name"=>"Another Company"}).should be_true
     end
 
     it 'should handle readonly attributes properly' do
@@ -149,24 +151,24 @@ describe BigRecord::Base do
       @company = Company.new(:name => "The Company", :address => "Unknown", :readonly => "secret")
 
       # It should've been set successfully since this is a new record
-      @company.attributes.sort.should == {"attribute:employees"=>nil, "attribute:address"=>"Unknown", "attribute:readonly"=>"secret", "log:change"=>[], "attribute:name"=>"The Company"}.sort
+      @company.attributes.superset_of?({"attribute:employees"=>nil, "attribute:address"=>"Unknown", "attribute:readonly"=>"secret", "log:change"=>[], "attribute:name"=>"The Company"}).should be_true
 
       # It should still also be accessible with the attributes= method
       @company.attributes = {:readonly => "another secret"}
 
-      @company.attributes.sort.should == {"attribute:employees"=>nil, "attribute:address"=>"Unknown", "attribute:readonly"=>"another secret", "log:change"=>[], "attribute:name"=>"The Company"}.sort
+      @company.attributes.superset_of?({"attribute:employees"=>nil, "attribute:address"=>"Unknown", "attribute:readonly"=>"another secret", "log:change"=>[], "attribute:name"=>"The Company"}).should be_true
 
       # Now when we save it, it should no longer be accessible with mass assignment
       @company.save.should be_true
 
       @company.attributes = {:readonly => "compromised secret"}
 
-      @company.attributes.sort.should == {"attribute:employees"=>nil, "attribute:address"=>"Unknown", "attribute:readonly"=>"another secret", "log:change"=>[], "attribute:name"=>"The Company"}.sort
+      @company.attributes.superset_of?({"attribute:employees"=>nil, "attribute:address"=>"Unknown", "attribute:readonly"=>"another secret", "log:change"=>[], "attribute:name"=>"The Company"}).should be_true
 
       # And it should still not be accessible with the explicit setter
       @company.readonly = "compromised secret"
 
-      @company.attributes.sort.should == {"attribute:employees"=>nil, "attribute:address"=>"Unknown", "attribute:readonly"=>"another secret", "log:change"=>[], "attribute:name"=>"Another Company"}.sort
+      @company.attributes.superset_of?({"attribute:employees"=>nil, "attribute:address"=>"Unknown", "attribute:readonly"=>"another secret", "log:change"=>[], "attribute:name"=>"Another Company"}).should be_true
     end
 
   end

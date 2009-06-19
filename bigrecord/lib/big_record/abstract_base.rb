@@ -872,6 +872,8 @@ private
 
       def column(name, type, options={})
         name = name.to_s
+        name = "#{self.default_family}:#{name}" unless (name =~ /:/)
+
         @columns_hash = default_columns unless @columns_hash
 
         # The other variables that are cached and depend on @columns_hash need to be reloaded
@@ -1005,7 +1007,8 @@ private
       end
 
       # Attributes listed as create_accessible work with mass assignment ONLY on creation. After that, any updates
-      # to that attribute will be protected from mass assignment.
+      # to that attribute will be protected from mass assignment. This differs from attr_readonly since that macro
+      # prevents attributes from ever being changed (even with the explicit setters) after the record is created.
       #
       #   class Customer < BigRecord::Base
       #     attr_create_accessible :name
@@ -1013,8 +1016,12 @@ private
       #
       #   customer = Customer.new(:name => "Greg")
       #   customer.name # => "Greg"
+      #   customer.save # => true
+      #
       #   customer.attributes = { :name => "Nerd" }
       #   customer.name # => "Greg"
+      #   customer.name = "Nerd"
+      #   customer.name # => "Nerd"
       #
       def attr_create_accessible(*attributes)
        write_inheritable_attribute(:attr_create_accessible, Set.new(attributes.map(&:to_s)) + (create_accessible_attributes || []))

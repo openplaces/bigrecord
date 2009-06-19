@@ -1,6 +1,6 @@
 require 'logger'
 
-BigRecord::Base.logger = Logger.new("debug.log")
+BigRecord::Base.logger = Logger.new(File.join(File.dirname(__FILE__), "debug.log"))
 
 BigRecord::Base.configurations = {
   'brunit' => {

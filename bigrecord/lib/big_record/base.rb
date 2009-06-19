@@ -43,6 +43,9 @@ module BigRecord
 
     attr_accessor :modified_attributes
 
+    class_inheritable_accessor :default_family, :instance_write => false
+    self.default_family = "attribute"
+
     def self.inherited(child) #:nodoc:
       @@subclasses[self] ||= []
       @@subclasses[self] << child
@@ -343,9 +346,10 @@ module BigRecord
   public
     class << self
 
-      def default_family
-        "attribute"
-      end
+      # Replaced with: class_inheritable_accessor :default_family (line 46)
+      # def default_family
+      #   "attribute"
+      # end
 
       def primary_key
         @primary_key ||= "#{default_family}:id"

@@ -199,6 +199,8 @@ describe BigRecord::Base do
     end
 
     it 'should be handled properly' do
+      pending "this still needs to be implemented in BigRecord::Base"
+
       # readonly is the readonly attribute here
       @company = Company.new(:name => "The Company", :address => "Unknown", :readonly => "secret")
 
@@ -267,7 +269,7 @@ describe BigRecord::Base do
 
   end
 
-  describe '#save' do
+  describe 'record#save' do
 
     describe 'with a new resource' do
       it 'should set defaults before create'
@@ -279,6 +281,14 @@ describe BigRecord::Base do
       it 'should update'
     end
 
+  end
+
+  describe 'record#update' do
+    it 'should update a record'
+  end
+
+  describe 'record#create' do
+    it 'should create a new record'
   end
 
 end

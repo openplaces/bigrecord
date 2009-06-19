@@ -10,8 +10,7 @@ SPEC_ROOT = Pathname(__FILE__).dirname.expand_path
 require SPEC_ROOT.parent + 'lib/big_record'
 
 begin
-  # require 'connection'
-  require File.join(File.dirname(__FILE__), "connections", "hbase", "connection")
+  require 'connection'
 rescue LoadError
   puts "requires connection file"
 end

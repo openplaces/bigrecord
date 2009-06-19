@@ -19,7 +19,8 @@ module BigRecord
         @type       = type.to_sym
         @collection = options[:collection]
         @name       = name.to_s
-        @alias      = options[:alias]
+        @name =~ /.*?:(.+)/
+        @alias      = options[:alias] || $1
 
         if options[:default]
           @default = options[:default]

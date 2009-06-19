@@ -5,7 +5,12 @@ require 'rake'
 require 'rake/testtask'
 require 'rake/rdoctask'
 require 'rake/gempackagetask'
+require 'pathname'
 
+require 'spec/rake/spectask'
+
+
+DATA_STORES = ["hbase", "cassandra"]
 
 spec = Gem::Specification.new do |s|
   s.name = 'bigrecord'
@@ -13,10 +18,12 @@ spec = Gem::Specification.new do |s|
   s.email = "bigrecord@openplaces.org"
   s.homepage = "http://www.bigrecord.org"
   s.platform = Gem::Platform::RUBY
-  s.summary = "ActiveRecord like ORM for column-oriented data stores"
+  s.summary = "ActiveRecord like ORM for column-oriented data stores (supports #{DATA_STORES.join(" ")})"
   s.has_rdoc = true
+  s.version = "1.0"
 
   s.add_dependency "uuidtools", ">= 1.0.7"
+  s.add_dependency "bigrecord-driver"
 end
 
 Rake::GemPackageTask.new(spec) do |package|
@@ -25,14 +32,18 @@ Rake::GemPackageTask.new(spec) do |package|
   package.need_zip = true
 end
 
-desc 'Default: run unit tests.'
+desc 'Run all tests by default'
 task :default => :test
 
-desc 'Test the big_record plugin.'
-Rake::TestTask.new(:test) do |t|
-  t.libs << 'lib'
-  t.pattern = 'test/**/*_test.rb'
-  t.verbose = true
+desc "Run #{DATA_STORES.join(" and ")} tests"
+task :test => DATA_STORES.map{|store| "test_#{store}" }
+
+DATA_STORES.each do |adapter|
+  Rake::TestTask.new("test_#{adapter}") do |t|
+    connection_path = "test/connections/#{adapter}"
+    t.libs << "test" << connection_path
+    t.verbose = true
+  end
 end
 
 desc 'Generate documentation for the big_record plugin.'
@@ -42,4 +53,41 @@ Rake::RDocTask.new(:rdoc) do |rdoc|
   rdoc.options << '--line-numbers' << '--inline-source'
   rdoc.rdoc_files.include('README')
   rdoc.rdoc_files.include('lib/**/*.rb')
+end
+
+ROOT = Pathname(__FILE__).dirname.expand_path
+
+desc "Run #{DATA_STORES.join(" and ")} specs"
+task :spec => DATA_STORES.map{|store| "spec:#{store}" }
+
+namespace :spec do
+  unit_specs        = ROOT + 'spec/unit/**/*_spec.rb'
+  integration_specs = ROOT + 'spec/integration/**/*_spec.rb'
+  all_specs         = ROOT + 'spec/**/*_spec.rb'
+
+  def run_spec(name, adapter, files, rcov)
+    Spec::Rake::SpecTask.new(name) do |t|
+      t.spec_opts << '--colour' << '--loadby' << 'random' << '--debugger' << "--format specdoc"
+      t.spec_files = Pathname.glob(files.to_s).map { |f| f.to_s }
+      connection_path = "spec/connections/#{adapter}"
+      t.libs << "spec" << connection_path
+    end
+  end
+
+  DATA_STORES.each do |adapter|
+    task adapter.to_sym => "spec:#{adapter}:all"
+
+    namespace adapter.to_sym do
+
+      desc "Run all specifications"
+      run_spec('all', adapter, all_specs, false)
+
+      desc "Run unit specifications"
+      run_spec('unit', adapter, unit_specs, false)
+
+      desc "Run integration specifications"
+      run_spec('integration', adapter, integration_specs, false)
+
+    end
+  end
 end

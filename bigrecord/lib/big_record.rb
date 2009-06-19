@@ -23,6 +23,17 @@ unless defined?(ActiveRecord)
   end
 end
 
+#unless defined?(BigRecordDriver)
+#  begin
+#    $:.unshift(File.join(File.dirname(__FILE__), "..", "..", "bigrecord-driver", "lib"))
+#    require 'big_record_driver'
+#  rescue
+#    require 'rubygems'
+#    gem 'bigrecord-driver'
+#    require 'big_record_driver'
+#  end
+#end
+
 # FIXME: this shouldn't be required
 require 'active_record/fixtures'
 
@@ -90,7 +101,7 @@ BigRecord::Base.class_eval do
     attributes.each do |k, v|
       if v.kind_of?(BigRecord::Embedded)
         errors.add(k, "is invalid: @errors=#{v.errors.full_messages.inspect}") unless v.valid?
-      elsif v.is_a?(Array) and v.first.kind_of?(BigRecordRecord::Embedded)
+      elsif v.is_a?(Array) and v.first.kind_of?(BigRecord::Embedded)
         v.each_with_index do |item, i|
           next if item.blank?
           unless item.valid?

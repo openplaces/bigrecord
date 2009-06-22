@@ -5,6 +5,19 @@ require 'big_record/connection_adapters/view'
 require 'set'
 require 'drb'
 
+# BigRecordDriver needs to be placed in the proper namespaces for this to work
+#unless defined?(BigRecordDriver)
+ # begin
+ #   require File.join(File.dirname(__FILE__), "..", "..", "..", "..", "bigrecord-driver", "lib", "big_record_driver")
+ #   include HbaseServer
+ # rescue
+ #   puts "Couldn't load bigrecord_server gem"
+ #   #require 'rubygems'
+ #   #gem 'bigrecord-driver'
+ #   #require 'big_record_driver'
+ # end
+#end
+
 module BigRecord
   class Base
     # Establishes a connection to the database that's used by all Active Record objects.

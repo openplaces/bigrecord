@@ -118,12 +118,12 @@ module BigRecord
           super(attr_name)
         # Elsif the column exist, we try to lazy load it
         elsif !(is_loaded?(attr_name)) and attr_name != self.class.primary_key and !new_record?
-          unless self.all_attributes_loaded? and attr_name =~ /\Aattribute:/
+          unless self.all_attributes_loaded? and attr_name =~ /\A#{self.class.default_family}:/
             if options.blank?
               # Normal behavior
 
               # Retrieve the version of the attribute matching the current record version
-              options[:timestamp] = self.updated_at.to_bigrecord_timestamp if self.has_attribute?('attribute:updated_at') and self.updated_at
+              options[:timestamp] = self.updated_at.to_bigrecord_timestamp if self.has_attribute?('#{self.class.default_family}:updated_at') and self.updated_at
 
               # get the content of the cell
               value = connection.get_raw(self.class.table_name, self.id, attr_name, options)
@@ -140,7 +140,7 @@ module BigRecord
               write_attribute(attr_name, column.type_cast(value_no_yaml))
             else
               # Special request... don't keep it in the attributes hash
-              options[:timestamp] ||= self.updated_at.to_bigrecord_timestamp if self.has_attribute?('attribute:updated_at') and self.updated_at
+              options[:timestamp] ||= self.updated_at.to_bigrecord_timestamp if self.has_attribute?('#{self.class.default_family}:updated_at') and self.updated_at
 
               # get the content of the cell
               value = connection.get_raw(self.class.table_name, self.id, attr_name, options)
@@ -186,7 +186,7 @@ module BigRecord
           unless self.all_attributes_loaded? and attr_name =~ /\Aattribute:/
             options = {}
             # Retrieve the version of the attribute matching the current record version
-            options[:timestamp] = self.updated_at.to_bigrecord_timestamp if self.has_attribute?('attribute:updated_at') and self.updated_at
+            options[:timestamp] = self.updated_at.to_bigrecord_timestamp if self.has_attribute?('#{self.class.default_family}:updated_at') and self.updated_at
             @modified_attributes ||= {}
             # get the content of the whole family
             values = connection.get_columns_raw(self.class.table_name, self.id, [attr_name], options)
@@ -295,52 +295,23 @@ module BigRecord
     def create
       self.id = generate_new_id unless self.id
       @new_record = false
-      update_hbase
+      update_big_record
     end
 
     # Updates the associated record with values matching those of the instance attributes.
     # Returns the number of affected rows.
     def update
-      update_hbase
+      update_big_record
     end
 
     # Update this record in hbase. Cannot be directly in the method 'update' because it would trigger callbacks and
     # therefore weird behaviors.
-
-    # KEEP THE COMMENTED DEBUG IN THERE, IT HELPS A LOT!
-    def update_hbase
+    def update_big_record
       timestamp = self.respond_to?(:updated_at) ? self.updated_at.to_bigrecord_timestamp : Time.now.to_bigrecord_timestamp
-      # Initialize it if it wasn't up to now
-      @modified_attributes ||= {}
-#      @attributes.each { |key, value|  puts "echoing #{key} #{value}" }
+
       data = clone_in_persistence_format
-      serialized_content = {}
-      data.each {|k,v| serialized_content[k] = v.to_yaml }
-      # Reject if
-      # - Old value is nil and new value is too or
-      # - Both hash are equals
-      #puts "modified size #{@modified_attributes.length}"
-#      serialized_content.each { |k,v| puts "#{k} (#{v.nil?} && #{@modified_attributes[k].nil?}) || (#{!v.nil?} && #{!@modified_attributes[k].nil?} && #{v.hash} == #{@modified_attributes[k]})}"}
-      serialized_content.reject! {|k,v| (v.nil? && @modified_attributes[k].nil?) || (!v.nil? && !@modified_attributes[k].nil? && v.hash == @modified_attributes[k]) }
 
-      if self.respond_to?(:change_log)
-        # Build the change log from the remaining keys and clean it
-        change_log = serialized_content.keys.to_a
-        change_log.delete("attribute:updated_by_id")
-        change_log.delete("attribute:updated_at")
-        change_log.delete("attribute:model_version")
-        change_log.delete("attribute:related_types")
-        change_log.delete("log:change")
-
-        #Finally put the change log in data and in the attributes for further gets
-        serialized_content["log:change"] = change_log.to_yaml
-        @attributes["log:change"] = change_log
-       end
-#      puts "==="
-#      serialized_content.each { |key, value|  puts "saving #{key} #{value}" }
-#      puts "==="
-      connection.update_raw(self.class.table_name, id, serialized_content, timestamp)
-      @modified_attributes.clear
+      connection.update(self.class.table_name, id, data, timestamp)
     end
 
   public
@@ -499,8 +470,8 @@ module BigRecord
       #
       # TODO: take into consideration the conditions
       def delete_all(conditions = nil)
-        connection.get_consecutive_rows(table_name, nil, nil, ["attribute:"]).each do |row|
-          connection.delete(table_name, row['attribute:id'])
+        connection.get_consecutive_rows(table_name, nil, nil, ["#{default_family}:"]).each do |row|
+          connection.delete(table_name, row["#{default_family}:id"])
         end
       end
 
@@ -562,6 +533,10 @@ module BigRecord
 
       def default_views
         {:all=>ConnectionAdapters::View.new('all', nil, self), :default=>ConnectionAdapters::View.new('default', nil, self)}
+      end
+
+      def set_default_family(name)
+        self.default_family = name.to_s
       end
 
     protected
@@ -697,7 +672,7 @@ module BigRecord
         # TODO: this is a hack... it should be done in a single call but currently hbase doesn't allow that
         raw_record =
         if options[:num_versions] and options[:num_versions] > 1
-          timestamps = connection.get(table_name, id, "attribute:updated_at", options)
+          timestamps = connection.get(table_name, id, "#{default_family}:updated_at", options)
           timestamps.collect{|timestamp| connection.get_columns_raw(table_name, id, requested_columns, :timestamp => timestamp.to_bigrecord_timestamp)}
         else
           connection.get_columns_raw(table_name, id, requested_columns, options)

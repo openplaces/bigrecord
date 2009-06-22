@@ -113,6 +113,58 @@ module BigRecord
         @connection
       end
 
+      # DATABASE STATEMENTS ======================================
+
+      def update_raw(table_name, row, values, timestamp)
+        raise NotImplementedError
+      end
+
+      def update(table_name, row, values, timestamp)
+        raise NotImplementedError
+      end
+
+      def get_raw(table_name, row, column, options={})
+        raise NotImplementedError
+      end
+
+      def get(table_name, row, column, options={})
+        raise NotImplementedError
+      end
+
+      def get_columns_raw(table_name, row, columns, options={})
+        raise NotImplementedError
+      end
+
+      def get_columns(table_name, row, columns, options={})
+        raise NotImplementedError
+      end
+
+      def get_consecutive_rows_raw(table_name, start_row, limit, columns, stop_row = nil)
+        raise NotImplementedError
+      end
+
+      def get_consecutive_rows(table_name, start_row, limit, columns, stop_row = nil)
+        raise NotImplementedError
+      end
+
+      def delete(table_name, row)
+        raise NotImplementedError
+      end
+
+      def delete_all(table_name)
+        raise NotImplementedError
+      end
+
+      # SCHEMA STATEMENTS ========================================
+
+      def create_table(table_name, column_families)
+        raise NotImplementedError
+      end
+
+      def drop_table(table_name)
+        raise NotImplementedError
+      end
+
     end # class AbstractAdapter
   end # module ConnectionAdapters
 end # module BigRecord

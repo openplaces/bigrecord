@@ -86,6 +86,16 @@ describe BigRecord::Base do
       @book.description.should == "A furiously intelligent first novel."
     end
 
+    it 'should provide a list of modified attributes with #modified_attributes' do
+      book = Book.new(  :title => "The Beach",
+                        :author => "Alex Garland",
+                        :description => "A furiously intelligent first novel.")
+
+      book.modified_attributes.each_pair do |key, value|
+        %w( title author description ).include?(key.to_s).should be_true
+      end
+    end
+
     it 'should return a hash of attribute-names and values' do
       # Set some attributes, and verify that they get stored in the model
       @book.title = "The Beach"
@@ -267,28 +277,6 @@ describe BigRecord::Base do
       @company.attributes.superset_of?({"attribute:employees"=>nil, "attribute:address"=>"Unknown", "attribute:readonly"=>nil, "log:change"=>[], "attribute:name"=>"Another Company"}).should be_true
     end
 
-  end
-
-  describe 'record#save' do
-
-    describe 'with a new resource' do
-      it 'should set defaults before create'
-      it 'should create when dirty'
-      it 'should create when non-dirty, and it has a serial key'
-    end
-
-    describe 'with an existing resource' do
-      it 'should update'
-    end
-
-  end
-
-  describe 'record#update' do
-    it 'should update a record'
-  end
-
-  describe 'record#create' do
-    it 'should create a new record'
   end
 
 end

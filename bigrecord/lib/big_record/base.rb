@@ -1,43 +1,5 @@
 ## The sub-classes of this class must implement the abstract method 'column_names' of this class.
 module BigRecord
-  class BigRecordError < StandardError #:nodoc:
-  end
-  class SubclassNotFound < BigRecordError #:nodoc:
-  end
-  class AssociationTypeMismatch < BigRecordError #:nodoc:
-  end
-  class WrongAttributeDataType < BigRecordError #:nodoc:
-  end
-  class AttributeMissing < BigRecordError #:nodoc:
-  end
-  class UnknownAttribute < BigRecordError #:nodoc:
-  end
-  class AdapterNotSpecified < BigRecordError # :nodoc:
-  end
-  class AdapterNotFound < BigRecordError # :nodoc:
-  end
-  class ConnectionNotEstablished < BigRecordError #:nodoc:
-  end
-  class ConnectionFailed < BigRecordError #:nodoc:
-  end
-  class RecordNotFound < BigRecordError #:nodoc:
-  end
-  class RecordNotSaved < BigRecordError #:nodoc:
-  end
-  class StatementInvalid < BigRecordError #:nodoc:
-  end
-  class PreparedStatementInvalid < BigRecordError #:nodoc:
-  end
-  class StaleObjectError < BigRecordError #:nodoc:
-  end
-  class ConfigurationError < StandardError #:nodoc:
-  end
-  class ReadOnlyRecord < StandardError #:nodoc:
-  end
-  class NotImplemented < BigRecordError #:nodoc:
-  end
-  class ColumnNotFound < BigRecordError #:nodoc:
-  end
 
   class Base < AbstractBase
 
@@ -183,7 +145,7 @@ module BigRecord
 
         # Elsif the column exist, we try to lazy load it
         elsif !(is_loaded?(attr_name)) and attr_name != self.class.primary_key and !new_record?
-          unless self.all_attributes_loaded? and attr_name =~ /\Aattribute:/
+          unless self.all_attributes_loaded? and attr_name =~ /\A#{self.class.default_family}:/
             options = {}
             # Retrieve the version of the attribute matching the current record version
             options[:timestamp] = self.updated_at.to_bigrecord_timestamp if self.has_attribute?('#{self.class.default_family}:updated_at') and self.updated_at

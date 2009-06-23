@@ -43,7 +43,7 @@ describe BigRecord::Base do
 
   end
 
-  # Protected instance method called by #save
+  # Protected instance method called by #save (different than Class#create)
   it 'should provide #create' do
     Book.new.should respond_to(:create)
   end
@@ -136,15 +136,7 @@ describe BigRecord::Base do
 
   end
 
-  describe 'attribute methods and tracking' do
-
-    it 'update_attribute(nil) should raise an exception' do
-      book = Book.new
-
-      lambda {
-        book.update_attribute(nil)
-      }.should raise_error(ArgumentError)
-    end
+  describe 'modified attribute tracking' do
 
     it "should not mark attributes as modified if they are similar" do
       pending "attribute tracking needs to be implemented in BigRecord::Base"
@@ -174,6 +166,86 @@ describe BigRecord::Base do
       book.attributes = {:description => "One of the Ten All-Time Best Novels of Vampirism."}
 
       book.modified_attributes.has_key?(:description).should be_true
+    end
+
+  end
+
+  describe 'attribute updating method' do
+
+    it '#update_attribute(nil) should raise an exception' do
+      lambda {
+        Book.new.update_attribute(nil)
+      }.should raise_error(ArgumentError)
+    end
+
+    it "#update_attribute should update a single attribute of a record" do
+      book = Book.new(  :title => "I Am Legend",
+                        :author => "Richard Matheson",
+                        :description => "The most clever and riveting vampire novel since Dracula.")
+
+      book.new_record?.should be_true
+      book.id.should be_nil
+      book.save.should be_true
+
+      book.update_attribute(:description, "One of the Ten All-Time Best Novels of Vampirism.")
+
+      book.description.should == "One of the Ten All-Time Best Novels of Vampirism."
+    end
+
+    it "#update_attribute should return false if the attribute could not be updated" do
+      book = Book.new(  :title => "I Am Legend",
+                        :author => "Richard Matheson",
+                        :description => "The most clever and riveting vampire novel since Dracula.")
+
+      book.new_record?.should be_true
+      book.id.should be_nil
+      book.save.should be_true
+
+      book.should_receive(:save).and_return(false)
+      book.update_attribute(:description, "One of the Ten All-Time Best Novels of Vampirism.").should be_false
+    end
+
+    describe '' do
+
+      before(:each) do
+        @book = Book.new( :title => "I Am Legend",
+                          :author => "Richard Matheson",
+                          :description => "The most clever and riveting vampire novel since Dracula.")
+
+        @book.new_record?.should be_true
+        @book.id.should be_nil
+        @book.save.should be_true
+
+        @new_attributes = {:title => "A Stir of Echoes", :description => "One of the most important writers of the twentieth century."}
+      end
+
+      it "#update_attributes should update all attributes of a record" do
+        @book.update_attributes(@new_attributes).should be_true
+
+        @new_attributes.each do |key, value|
+          @book.send(key).should == value
+        end
+      end
+
+      it "#update_attributes should return false if the record couldn't be updated with those attributes" do
+        @book.should_receive(:save).and_return(false)
+        @book.update_attributes(@new_attributes).should be_false
+      end
+
+      it "#update_attributes! should update all attributes of a record" do
+        @book.update_attributes(@new_attributes).should be_true
+
+        @new_attributes.each do |key, value|
+          @book.send(key).should == value
+        end
+      end
+
+      it "#update_attributes! should raise an error when the record couldn't be updated" do
+        @book.should_receive(:save!).and_raise(BigRecord::RecordNotSaved)
+
+        lambda { @book.update_attributes!(@new_attributes) }.should raise_error(BigRecord::RecordNotSaved)
+      end
+
     end
 
   end

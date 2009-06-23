@@ -2,6 +2,10 @@ require File.expand_path(File.join(File.dirname(__FILE__), '..', 'spec_helper'))
 
 describe BigRecord::Base do
 
+  it "should provide .id" do
+    Book.new.should respond_to(:id)
+  end
+
   it 'should provide Class#create' do
     Book.should respond_to(:create)
   end
@@ -170,7 +174,11 @@ describe BigRecord::Base do
 
   end
 
-  describe 'attribute updating method' do
+  describe 'attribute functionality' do
+
+    it "should provide attribute accessors " do
+
+    end
 
     it '#update_attribute(nil) should raise an exception' do
       lambda {

@@ -2,6 +2,10 @@ require File.expand_path(File.join(File.dirname(__FILE__), '..', 'spec_helper'))
 
 describe BigRecord::Base do
 
+  it "should provide #primary_key" do
+    Book.should respond_to(:primary_key)
+  end
+
   describe '#columns' do
 
     before(:all) do

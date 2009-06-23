@@ -3,7 +3,7 @@ require 'activesupport'
 require 'set'
 require 'drb'
 
-module BigRecord
+module BigRecordDriver
   class Client
     
     def initialize(config={}) # :nodoc:
@@ -17,7 +17,7 @@ module BigRecord
       begin
         @server = DRbObject.new(nil, "druby://#{@config[:drb_host]}:#{@config[:drb_port]}")
       rescue DRb::DRbConnError
-        raise BigDB::ConnectionError, "Failed to connect to the DRb server (jruby) " +
+        raise ConnectionError, "Failed to connect to the DRb server (jruby) " +
                                       "at #{@config[:drb_host]}:#{@config[:drb_port]}."
       end
       @server.configure(@config)

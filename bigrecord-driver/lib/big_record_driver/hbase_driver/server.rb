@@ -2,6 +2,8 @@ require File.dirname(__FILE__) + '/../column_descriptor'
 require File.dirname(__FILE__) + '/../exceptions'
 require File.dirname(__FILE__) + '/../bigrecord_server'
 
+module BigRecordDriver
+
 class HbaseServer < BigRecordServer
   include_class "java.util.TreeMap"
 
@@ -232,7 +234,7 @@ class HbaseServer < BigRecordServer
         end
         @admin.createTable(tdesc)
       else
-        raise BigDB::TableAlreadyExists, table_name
+        raise BigRecordDriver::TableAlreadyExists, table_name
       end
     end
   end
@@ -249,7 +251,7 @@ class HbaseServer < BigRecordServer
         # Remove the table connection from the cache
         @tables.delete(table_name) if @tables.has_key?(table_name)
       else
-        raise BigDB::TableNotFound, table_name
+        raise BigRecordDriver::TableNotFound, table_name
       end
     end
   end
@@ -276,9 +278,9 @@ class HbaseServer < BigRecordServer
     end
   end
   
-  def table_exists?(table_name)
+  def table_names
     safe_exec do
-      @admin.listTables.index()
+      @admin.listTables.collect{|td| Java::String.new(td.getName).to_s}
     end
   end
   
@@ -299,7 +301,7 @@ private
         @tables[table_name] = HTable.new(@conf, table_name)
       else
         if table_name and !table_name.empty?
-          raise BigDB::TableNotFound, table_name
+          raise BigRecordDriver::TableNotFound, table_name
         else
           raise ArgumentError, "Table name not specified"
         end
@@ -319,8 +321,10 @@ private
 
 end
 
+end
+
 port = ARGV[0]
 port ||= 40000
-DRb.start_service("druby://:#{port}", HbaseServer.new)
+DRb.start_service("druby://:#{port}", BigRecordDriver::HbaseServer.new)
 puts "Started drb server on port #{port}."
 DRb.thread.join

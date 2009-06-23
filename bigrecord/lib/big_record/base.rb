@@ -35,7 +35,7 @@ module BigRecord
         attrs.each do |k,v|
           begin
             attrs[k] =
-            if k == "attribute:id"
+            if k == "#{self.class.default_family}:id"
               v
             elsif v.is_a?(Array)
               v.collect do |e|
@@ -82,7 +82,7 @@ module BigRecord
               # Normal behavior
 
               # Retrieve the version of the attribute matching the current record version
-              options[:timestamp] = self.updated_at.to_bigrecord_timestamp if self.has_attribute?('#{self.class.default_family}:updated_at') and self.updated_at
+              options[:timestamp] = self.updated_at.to_bigrecord_timestamp if self.has_attribute?("#{self.class.default_family}:updated_at") and self.updated_at
 
               # get the content of the cell
               value = connection.get_raw(self.class.table_name, self.id, attr_name, options)
@@ -99,7 +99,7 @@ module BigRecord
               write_attribute(attr_name, column.type_cast(value_no_yaml))
             else
               # Special request... don't keep it in the attributes hash
-              options[:timestamp] ||= self.updated_at.to_bigrecord_timestamp if self.has_attribute?('#{self.class.default_family}:updated_at') and self.updated_at
+              options[:timestamp] ||= self.updated_at.to_bigrecord_timestamp if self.has_attribute?("#{self.class.default_family}:updated_at") and self.updated_at
 
               # get the content of the cell
               value = connection.get_raw(self.class.table_name, self.id, attr_name, options)
@@ -145,7 +145,7 @@ module BigRecord
           unless self.all_attributes_loaded? and attr_name =~ /\A#{self.class.default_family}:/
             options = {}
             # Retrieve the version of the attribute matching the current record version
-            options[:timestamp] = self.updated_at.to_bigrecord_timestamp if self.has_attribute?('#{self.class.default_family}:updated_at') and self.updated_at
+            options[:timestamp] = self.updated_at.to_bigrecord_timestamp if self.has_attribute?("#{self.class.default_family}:updated_at") and self.updated_at
             @modified_attributes ||= {}
             # get the content of the whole family
             values = connection.get_columns_raw(self.class.table_name, self.id, [attr_name], options)
@@ -336,7 +336,7 @@ module BigRecord
           options[:view] = :default
         end
 
-        if options[:bypass_index]
+        if options[:bypass_index] || (options[:conditions] && options[:conditions][:bypass_index])
           case args.first
             when :first then find_every_from_hbase(options.merge({:limit => 1})).first
             when :all   then find_every_from_hbase(options)
@@ -642,7 +642,7 @@ module BigRecord
           if raw_record.is_a?(Array)
             unless raw_record.empty?
               raw_record.collect do |r|
-                r['attribute:id'] = id
+                r["#{default_family}:id"] = id
                 add_missing_cells(r, requested_columns)
                 rec = instantiate(r)
                 rec.all_attributes_loaded = true if options[:view] == :all
@@ -652,7 +652,7 @@ module BigRecord
               raise RecordNotFound, "Couldn't find #{name} with ID=#{id}"
             end
           else
-            raw_record['attribute:id'] = id
+            raw_record["#{default_family}:id"] = id
             add_missing_cells(raw_record, requested_columns)
             rec = instantiate(raw_record)
             rec.all_attributes_loaded = true if options[:view] == :all
@@ -671,14 +671,14 @@ module BigRecord
         elsif options[:view]
           raise ArgumentError, "Unknown view: #{options[:view]}" unless views_hash[options[:view]]
           if options[:view] == :all
-            ["attribute:"]
+            ["#{default_family}:"]
           else
             views_hash[options[:view]].column_names
           end
         elsif views_hash[:default]
           views_hash[:default].column_names
         else
-          ["attribute:"]
+          ["#{default_family}:"]
         end
         c += [options[:include]] if options[:include]
         c.flatten

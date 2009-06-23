@@ -9,37 +9,37 @@ module AbstractTestClient #< Test::Unit::TestCase
 
   def test_update_without_timestamps
     ret = @big_db.update(TABLE_NAME,
-                         'dog-key', 
-                        {'columnfamily1:name' => 'Dog', 
-                         'columnfamily1:size' => 'medium', 
+                         'dog-key',
+                        {'columnfamily1:name' => 'Dog',
+                         'columnfamily1:size' => 'medium',
                          'columnfamily2:toto' => 'some value'})
-    
+
     assert_not_nil ret, "The row was not inserted properly"
     assert_equal 'Dog', @big_db.get(TABLE_NAME, 'dog-key', 'columnfamily1:name'), "A saved cell couldn't be retrieved"
     assert_equal 'medium', @big_db.get(TABLE_NAME, 'dog-key', 'columnfamily1:size'), "A saved cell couldn't be retrieved"
     assert_equal 'some value', @big_db.get(TABLE_NAME, 'dog-key', 'columnfamily2:toto'), "A saved cell couldn't be retrieved"
   end
-  
+
   def test_update_with_timestamps_in_chronological_order
     t1 = Time.now.to_i
     t2 = t1 + 1000
     t3 = t2 + 1000
-  
+
     ret1 = @big_db.update(TABLE_NAME,
-                          'dog-key', 
-                         {'columnfamily1:name' => 'Dog', 
-                          'columnfamily1:size' => 'medium', 
+                          'dog-key',
+                         {'columnfamily1:name' => 'Dog',
+                          'columnfamily1:size' => 'medium',
                           'columnfamily2:toto' => 'some value1'},
                           t1)
-    
+
     ret2 = @big_db.update(TABLE_NAME,
-                          'dog-key', 
-                         {'columnfamily1:size' => 'small', 
+                          'dog-key',
+                         {'columnfamily1:size' => 'small',
                           'columnfamily2:toto' => 'some value2'},
                           t2)
 
     ret3 = @big_db.update(TABLE_NAME,
-                          'dog-key', 
+                          'dog-key',
                          {'columnfamily1:size' => 'big'},
                           t3)
 
@@ -56,22 +56,22 @@ module AbstractTestClient #< Test::Unit::TestCase
     t1 = Time.now.to_i
     t2 = t1 - 1000
     t3 = t2 - 1000
-  
+
     ret1 = @big_db.update(TABLE_NAME,
-                          'dog-key', 
-                         {'columnfamily1:name' => 'Dog', 
-                          'columnfamily1:size' => 'medium', 
+                          'dog-key',
+                         {'columnfamily1:name' => 'Dog',
+                          'columnfamily1:size' => 'medium',
                           'columnfamily2:toto' => 'some value1'},
                           t1)
-    
+
     ret2 = @big_db.update(TABLE_NAME,
-                          'dog-key', 
-                         {'columnfamily1:size' => 'small', 
+                          'dog-key',
+                         {'columnfamily1:size' => 'small',
                           'columnfamily2:toto' => 'some value2'},
                           t2)
 
     ret3 = @big_db.update(TABLE_NAME,
-                          'dog-key', 
+                          'dog-key',
                          {'columnfamily1:size' => 'big'},
                           t3)
 
@@ -88,25 +88,25 @@ module AbstractTestClient #< Test::Unit::TestCase
     t1 = Time.now.to_i
     t2 = t1 + 1000
     t3 = t2 + 1000
-  
+
     @big_db.update(TABLE_NAME,
-                    'dog-key', 
-                   {'columnfamily1:name' => 'Dog', 
-                    'columnfamily1:size' => 'medium', 
+                    'dog-key',
+                   {'columnfamily1:name' => 'Dog',
+                    'columnfamily1:size' => 'medium',
                     'columnfamily2:toto' => 'some value1'},
                     t1)
-    
+
     @big_db.update(TABLE_NAME,
-                    'dog-key', 
-                   {'columnfamily1:size' => 'small', 
+                    'dog-key',
+                   {'columnfamily1:size' => 'small',
                     'columnfamily2:toto' => 'some value2'},
                     t2)
-    
+
     @big_db.update(TABLE_NAME,
-                    'dog-key', 
+                    'dog-key',
                    {'columnfamily1:size' => 'big'},
                     t3)
-    
+
     # normal calls
     assert_equal 'big', @big_db.get(TABLE_NAME, 'dog-key', 'columnfamily1:size'), "Didn't retrieved the last version of the cell"
     assert_nil @big_db.get(TABLE_NAME, 'dog-key-that-does-not-exist', 'columnfamily1:size'), "Got a value for a cell that doesn't even exist"
@@ -118,7 +118,7 @@ module AbstractTestClient #< Test::Unit::TestCase
     assert_equal 'big', @big_db.get(TABLE_NAME, 'dog-key', 'columnfamily1:size', :timestamp => t3), "Didn't retrieved the requested version of the cell"
     assert_equal 'big', @big_db.get(TABLE_NAME, 'dog-key', 'columnfamily1:size', :timestamp => t3+1000), "Didn't retrieved the last version of the cell"
     assert_nil @big_db.get(TABLE_NAME, 'dog-key', 'columnfamily1:size', :timestamp => t1-1000), "Got a value for a cell that was not even existing at that time"
-    
+
     # num_versions
     assert_raises ArgumentError, "Specifying a number of version = 0 should be forbidden" do
       @big_db.get(TABLE_NAME, 'dog-key', 'columnfamily1:size', :num_versions => 0)
@@ -132,7 +132,7 @@ module AbstractTestClient #< Test::Unit::TestCase
     assert_equal 3, @big_db.get(TABLE_NAME, 'dog-key', 'columnfamily1:size', :num_versions => 3).size
     assert_equal 3, @big_db.get(TABLE_NAME, 'dog-key', 'columnfamily1:size', :num_versions => 10).size
     assert_equal ['big', 'small', 'medium'], @big_db.get(TABLE_NAME, 'dog-key', 'columnfamily1:size', :num_versions => 10)
-    
+
     # timestamps + num_versions
     assert_equal ['big', 'small', 'medium'], @big_db.get(TABLE_NAME, 'dog-key', 'columnfamily1:size', :num_versions => 10, :timestamp => t3+1000)
     assert_equal ['big', 'small', 'medium'], @big_db.get(TABLE_NAME, 'dog-key', 'columnfamily1:size', :num_versions => 10, :timestamp => t3)
@@ -175,28 +175,28 @@ module AbstractTestClient #< Test::Unit::TestCase
     expected = {'attribute:id' => 'dog-key', 'columnfamily1:name' => 'Dog', 'columnfamily1:size' => 'big'}
     assert_equal expected, @big_db.get_columns(TABLE_NAME, 'dog-key', ['columnfamily1:'], :timestamp => t3+500), "Didn't retrieved the expected data"
   end
-  
+
   def test_get_consecutive_rows
     @big_db.update(TABLE_NAME,
-                    'dog-key', 
-                   {'columnfamily1:name' => 'Dog', 
-                    'columnfamily1:size' => 'medium', 
+                    'dog-key',
+                   {'columnfamily1:name' => 'Dog',
+                    'columnfamily1:size' => 'medium',
                     'columnfamily2:description' => 'lives on earth',
                     'columnfamily2:$pt-707' => '343220'})
     @big_db.update(TABLE_NAME,
                     'fish-key',
-                   {'columnfamily1:name' => 'Fish', 
-                    'columnfamily1:size' => 'varies but usually small', 
+                   {'columnfamily1:name' => 'Fish',
+                    'columnfamily1:size' => 'varies but usually small',
                     'columnfamily2:description' => 'must stay in water'})
     @big_db.update(TABLE_NAME,
                     'mouse-key',
-                   {'columnfamily1:name' => 'Mouse', 
-                    'columnfamily1:size' => 'small', 
+                   {'columnfamily1:name' => 'Mouse',
+                    'columnfamily1:size' => 'small',
                     'columnfamily2:description' => 'cats love them'})
     @big_db.update(TABLE_NAME,
                     'cat-key',
-                   {'columnfamily1:name' => 'Cat', 
-                    'columnfamily1:size' => 'small but bigger than a mouse and smaller than a dog', 
+                   {'columnfamily1:name' => 'Cat',
+                    'columnfamily1:size' => 'small but bigger than a mouse and smaller than a dog',
                     'columnfamily2:description' => 'likes mice'})
 
     # find(:all)
@@ -206,7 +206,7 @@ module AbstractTestClient #< Test::Unit::TestCase
                 {'attribute:id' => 'mouse-key', 'columnfamily1:name' => 'Mouse', 'columnfamily1:size' => 'small', 'columnfamily2:description' => 'cats love them'}]
 
     assert_equal expected, @big_db.get_consecutive_rows(TABLE_NAME, nil, nil, ['columnfamily1:', 'columnfamily2:']), "Didn't retrieved the expected data"
-    
+
     # find(:all, :condition => ...)
     expected = [{'attribute:id' => 'cat-key', 'columnfamily1:name' => 'Cat', 'columnfamily2:description' => 'likes mice'},
                 {'attribute:id' => 'dog-key', 'columnfamily1:name' => 'Dog', 'columnfamily2:description' => 'lives on earth', 'columnfamily2:$pt-707' => '343220'},
@@ -257,21 +257,21 @@ module AbstractTestClient #< Test::Unit::TestCase
 
   def test_delete
     @big_db.update(TABLE_NAME,
-                    'dog-key', 
-                   {'columnfamily1:name' => 'Dog', 
-                    'columnfamily1:size' => 'medium', 
+                    'dog-key',
+                   {'columnfamily1:name' => 'Dog',
+                    'columnfamily1:size' => 'medium',
                     'columnfamily2:description' => 'lives on earth'})
     @big_db.update(TABLE_NAME,
                     'fish-key',
-                   {'columnfamily1:name' => 'Fish', 
-                    'columnfamily1:size' => 'varies but usually small', 
+                   {'columnfamily1:name' => 'Fish',
+                    'columnfamily1:size' => 'varies but usually small',
                     'columnfamily2:description' => 'must stay in water'})
-    
+
     # make sure the cells are there
     expected = [{'attribute:id' => 'dog-key', 'columnfamily1:name' => 'Dog', 'columnfamily1:size' => 'medium', 'columnfamily2:description' => 'lives on earth'},
                 {'attribute:id' => 'fish-key', 'columnfamily1:name' => 'Fish', 'columnfamily1:size' => 'varies but usually small', 'columnfamily2:description' => 'must stay in water'}]
     assert_equal expected, @big_db.get_consecutive_rows(TABLE_NAME, nil, nil, ['columnfamily1:', 'columnfamily2:']), "The test data was not inserted properly"
-    
+
     # actual test
     @big_db.delete(TABLE_NAME, 'dog-key')
 
@@ -282,21 +282,21 @@ module AbstractTestClient #< Test::Unit::TestCase
 
     assert_nil @big_db.get_columns(TABLE_NAME, 'dog-key', ['columnfamily1:']), "The deleted data was found by a get_columns()"
   end
-  
+
   def test_ping
     db = nil
     assert_nothing_raised("Couldn't initialize the client") do
-      db = BigRecord::Client.new(:drb_port => 40005)
+      db = BigRecordDriver::Client.new(:drb_port => 40005)
     end
     assert_not_nil db, "Couldn't initialize the client"
     assert db.ping, "The client was initialized but we cannot communicate with the db itself"
   end
-  
+
   def test_table_exists
     assert @big_db.table_exists?(TABLE_NAME)
     assert !@big_db.table_exists?(:some_non_existent_table)
   end
-  
+
   def test_table_names
     assert @big_db.table_names.include?(TABLE_NAME.to_s)
   end
@@ -308,9 +308,9 @@ module AbstractTestClient #< Test::Unit::TestCase
   end
 
   def test_invalid_column_family
-    assert_raises BigDB::JavaError do
+    assert_raises BigRecordDriver::JavaError do
       @big_db.get(TABLE_NAME, 'dog-key', 'nonexistentcolumnfamily:name')
     end
   end
-  
+
 end

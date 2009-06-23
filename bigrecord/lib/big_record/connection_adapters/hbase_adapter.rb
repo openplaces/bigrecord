@@ -5,18 +5,16 @@ require 'big_record/connection_adapters/view'
 require 'set'
 require 'drb'
 
-# BigRecordDriver needs to be placed in the proper namespaces for this to work
-#unless defined?(BigRecordDriver)
- # begin
- #   require File.join(File.dirname(__FILE__), "..", "..", "..", "..", "bigrecord-driver", "lib", "big_record_driver")
- #   include HbaseServer
- # rescue
- #   puts "Couldn't load bigrecord_server gem"
- #   #require 'rubygems'
- #   #gem 'bigrecord-driver'
- #   #require 'big_record_driver'
- # end
-#end
+unless defined?(BigRecordDriver)
+ begin
+   require File.join(File.dirname(__FILE__), "..", "..", "..", "..", "bigrecord-driver", "lib", "big_record_driver")
+ rescue
+   puts "Couldn't load bigrecord_server gem"
+   #require 'rubygems'
+   #gem 'bigrecord-driver'
+   #require 'big_record_driver'
+ end
+end
 
 module BigRecord
   class Base
@@ -33,14 +31,7 @@ module BigRecord
       drb_host      = config[:drb_host]
       drb_port      = config[:drb_port]
 
-      # Only start the drb service once. If it's not started yet we get an exception and
-      # recover by starting it.
-      begin
-        DRb.current_server
-      rescue DRb::DRbServerNotFound
-        DRb.start_service
-      end
-      hbase = DRbObject.new(nil, "druby://#{drb_host}:#{drb_port}")
+      hbase = BigRecordDriver::Client.new(config)
 
       ConnectionAdapters::HbaseAdapter.new(hbase, logger, [master, regionserver], config)
     end
@@ -100,7 +91,7 @@ module BigRecord
       def update_raw(table_name, row, values, timestamp)
         result = nil
         log "UPDATE #{table_name} SET #{values.inspect if values} WHERE ROW=#{row};" do
-          result = rpc(:update, table_name, row, values, timestamp)
+          result = @connection.update(table_name, row, values, timestamp)
         end
         result
       end
@@ -116,7 +107,7 @@ module BigRecord
       def get_raw(table_name, row, column, options={})
         result = nil
         log "SELECT (#{column}) FROM #{table_name} WHERE ROW=#{row};" do
-          result = rpc(:get, table_name, row, column, options)
+          result = @connection.get(table_name, row, column, options)
         end
         result
       end
@@ -136,7 +127,7 @@ module BigRecord
       def get_columns_raw(table_name, row, columns, options={})
         result = {}
         log "SELECT (#{columns.join(", ")}) FROM #{table_name} WHERE ROW=#{row};" do
-          result = rpc(:get_columns, table_name, row, columns, options)
+          result = @connection.get_columns(table_name, row, columns, options)
         end
         result
       end
@@ -160,7 +151,7 @@ module BigRecord
       def get_consecutive_rows_raw(table_name, start_row, limit, columns, stop_row = nil)
         result = nil
         log "SCAN (#{columns.join(", ")}) FROM #{table_name} WHERE START_ROW=#{start_row} AND STOP_ROW=#{stop_row} LIMIT=#{limit};" do
-          result = rpc(:get_consecutive_rows, table_name, start_row, limit, columns, stop_row)
+          result = @connection.get_consecutive_rows(table_name, start_row, limit, columns, stop_row)
         end
         result
       end
@@ -189,33 +180,18 @@ module BigRecord
       def delete(table_name, row)
         result = nil
         log "DELETE FROM #{table_name} WHERE ROW=#{row};" do
-          result = rpc(:delete, table_name, row)
+          result = @connection.delete(table_name, row)
         end
         result
       end
 
-      def delete_all(table_name)
-        result = nil
-        log "DELETE FROM #{table_name};" do
-          result = rpc(:delete_all, table_name)
-        end
-        result
-      end
-
-      def stop_drb_service
-        result = nil
-        log "STOP DRB SERVICE;" do
-          result = rpc(:stop_drb_service)
-        end
-        result
-      end
 
       # SCHEMA STATEMENTS ========================================
 
       def create_table(table_name, column_families)
         result = nil
 #        log "CREATE TABLE #{table_name} (#{column_families});" do
-          result = rpc(:create_table, table_name, column_families)
+          result = @connection.create_table(table_name, column_families)
 #        end
         result
       end
@@ -223,7 +199,7 @@ module BigRecord
       def drop_table(table_name)
         result = nil
         log "DROP TABLE #{table_name};" do
-          result = rpc(:drop_table, table_name)
+          result = @connection.drop_table(table_name)
         end
         result
       end
@@ -235,13 +211,6 @@ module BigRecord
         rescue DRb::DRbConnError
           raise BigRecord::ConnectionFailed, "Failed to connect to the DRb server (jruby) " +
                                                 "at #{@config[:drb_host]}:#{@config[:drb_port]}."
-        end
-
-        def rpc(method_id, *args)
-          @connection.send(method_id, *args)
-        rescue
-          connect
-          @connection.send(method_id, *args)
         end
 
       protected

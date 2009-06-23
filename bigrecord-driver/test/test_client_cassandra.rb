@@ -5,12 +5,12 @@ class TestCassandraClient < Test::Unit::TestCase
 
   def setup
     unless @big_db
-      BigDB::DriverManager.set_cmd('cassandra')
-      unless BigDB::DriverManager.running?(40005)
-        BigDB::DriverManager.restart(40005)
+      BigRecordDriver::DriverManager.set_cmd('cassandra')
+      unless BigRecordDriver::DriverManager.running?(40005)
+        BigRecordDriver::DriverManager.restart(40005)
       end
       #TODO: don't use hard coded values for the config
-      @big_db = BigRecord::Client.new(:drb_port => 40005)
+      @big_db = BigRecordDriver::Client.new(:drb_port => 40005)
     end
   end
 

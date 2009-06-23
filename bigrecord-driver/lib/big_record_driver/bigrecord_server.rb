@@ -13,13 +13,17 @@ class String
     Java::String.new(self).getBytes
   end
 end
+
+
+module BigRecordDriver
+
 class BigRecordServer
   include_class "java.io.IOException"
-  
+
   def configure(config = {})
-    raise NotImplementedError 
+    raise NotImplementedError
   end
-  
+
   def update(table_name, row, values, timestamp=nil)
     raise NotImplementedError
   end
@@ -99,7 +103,7 @@ class BigRecordServer
         puts e2.backtrace.join("\n")
 
         if e2.kind_of?(NativeException)
-          raise BigDB::JavaError, e2.message
+          raise BigRecordDriver::JavaError, e2.message
         else
           raise e2
         end
@@ -110,4 +114,6 @@ class BigRecordServer
       puts e.backtrace.join("\n")
       raise e
     end
+end
+
 end

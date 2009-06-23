@@ -1,4 +1,4 @@
-module BigDB
+module BigRecordDriver
   class BigDBError < StandardError
   end
   class TableNotFound < BigDBError

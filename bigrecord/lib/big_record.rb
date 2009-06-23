@@ -46,17 +46,6 @@ unless defined?(ActiveRecord)
   end
 end
 
-#unless defined?(BigRecordDriver)
-#  begin
-#    $:.unshift(File.join(File.dirname(__FILE__), "..", "..", "bigrecord-driver", "lib"))
-#    require 'big_record_driver'
-#  rescue
-#    require 'rubygems'
-#    gem 'bigrecord-driver'
-#    require 'big_record_driver'
-#  end
-#end
-
 # FIXME: this shouldn't be required
 require 'active_record/fixtures'
 

@@ -2,6 +2,7 @@ require File.dirname(__FILE__) + '/../column_descriptor'
 require File.dirname(__FILE__) + '/../exceptions'
 require File.dirname(__FILE__) + '/../bigrecord_server'
 
+module BigRecordDriver
 class CassandraServer < BigRecordServer
   include_class "org.apache.cassandra.service.Cassandra"
   include_class "org.apache.cassandra.service.InvalidRequestException"
@@ -12,7 +13,7 @@ class CassandraServer < BigRecordServer
   include_class "org.apache.thrift.protocol.TBinaryProtocol"
   include_class "org.apache.thrift.transport.TSocket"
   include_class "org.apache.thrift.transport.TTransport"
-  
+
   def configure(config = {})
     config[:adr]        ||= 'localhost'
     config[:port]       ||= 9160
@@ -71,9 +72,10 @@ class CassandraServer < BigRecordServer
       @socket.open;
     end
 end
+end
 
 port = ARGV[0]
 port ||= 45000
-DRb.start_service("druby://:#{port}", CassandraServer.new)
+DRb.start_service("druby://:#{port}", BigRecordDriver::CassandraServer.new)
 puts "Started drb server on port #{port}."
 DRb.thread.join

@@ -5,9 +5,6 @@ module BigRecord
 
     attr_accessor :modified_attributes
 
-    class_inheritable_accessor :default_family, :instance_write => false
-    self.default_family = "attribute"
-
     def self.inherited(child) #:nodoc:
       @@subclasses[self] ||= []
       @@subclasses[self] << child

@@ -6,11 +6,16 @@ describe BigRecord::Base do
     Book.new.should respond_to(:id)
   end
 
-  it 'should provide Class#create' do
+  it "should provide hash-like attribute accessors, i.e. [] and []=" do
+    Book.new.should respond_to(:[])
+    Book.new.should respond_to(:[]=)
+  end
+
+  it 'should provide #create' do
     Book.should respond_to(:create)
   end
 
-  describe 'Class#create' do
+  describe '#create' do
 
     it 'should create a new record in the data store' do
       book = Book.create(:title => "I Am Legend", :author => "Richard Matheson")
@@ -48,21 +53,21 @@ describe BigRecord::Base do
   end
 
   # Protected instance method called by #save (different than Class#create)
-  it 'should provide #create' do
+  it 'should provide .create' do
     Book.new.should respond_to(:create)
   end
 
   # Protected instance method called by #save
-  it 'should provide #update' do
+  it 'should provide .update' do
     Book.new.should respond_to(:update)
   end
 
-  it 'should provide #save and #save!' do
+  it 'should provide .save and .save!' do
     Book.new.should respond_to(:save)
     Book.new.should respond_to(:save!)
   end
 
-  describe '#save and #save!' do
+  describe '.save and .save!' do
 
     describe 'with a new resource' do
 
@@ -87,7 +92,7 @@ describe BigRecord::Base do
         book2.description.should == "The most clever and riveting vampire novel since Dracula."
       end
 
-      it 'should raise an exception with #save! if a record was not saved or true if successful' do
+      it 'should raise an exception with .save! if a record was not saved or true if successful' do
         book = Book.new(  :title => "I Am Legend",
                           :author => "Richard Matheson",
                           :description => "The most clever and riveting vampire novel since Dracula.")
@@ -176,17 +181,57 @@ describe BigRecord::Base do
 
   describe 'attribute functionality' do
 
-    it "should provide attribute accessors " do
-
+    it "should return a list of attribute names with .attribute_names" do
+      (Book.new.attribute_names & ["attribute:author", "attribute:description", "attribute:links", "attribute:title"]).should == ["attribute:author", "attribute:description", "attribute:links", "attribute:title"]
     end
 
-    it '#update_attribute(nil) should raise an exception' do
+    it "should provide hash-like attribute accessors, i.e. [] and []=" do
+      Book.new.should respond_to(:[])
+      Book.new.should respond_to(:[]=)
+    end
+
+    it "should provide attribute accessing with .read_attribute" do
+      book = Book.new(  :title => "I Am Legend",
+                        :author => "Richard Matheson",
+                        :description => "The most clever and riveting vampire novel since Dracula.")
+
+      book.save.should be_true
+
+      book.read_attribute("attribute:title").should == "I Am Legend"
+      book.read_attribute("attribute:author").should == "Richard Matheson"
+      book.read_attribute("attribute:description").should == "The most clever and riveting vampire novel since Dracula."
+    end
+
+    it "should determine whether an attribute is present with .has_attribute?" do
+      book = Book.new
+
+      ["attribute:author", "attribute:description", "attribute:links", "attribute:title"].each do |attr|
+        book.has_attribute?(attr).should be_true
+      end
+    end
+
+    it "should determine whether an attribute is present (i.e. set either by the user or db) with .attribute_present?" do
+      book = Book.new
+
+      # Initially they should all be false
+      ["attribute:author", "attribute:description", "attribute:title"].each do |attr|
+        book.attribute_present?(attr).should be_false
+      end
+
+      book.attributes = { :title => "I Am Legend", :author => "Richard Matheson", :description => "The most clever and riveting vampire novel since Dracula." }
+
+      ["attribute:author", "attribute:description", "attribute:title"].each do |attr|
+        book.attribute_present?(attr).should be_true
+      end
+    end
+
+    it '.update_attribute(nil) should raise an exception' do
       lambda {
         Book.new.update_attribute(nil)
       }.should raise_error(ArgumentError)
     end
 
-    it "#update_attribute should update a single attribute of a record" do
+    it ".update_attribute should update a single attribute of a record" do
       book = Book.new(  :title => "I Am Legend",
                         :author => "Richard Matheson",
                         :description => "The most clever and riveting vampire novel since Dracula.")
@@ -200,7 +245,7 @@ describe BigRecord::Base do
       book.description.should == "One of the Ten All-Time Best Novels of Vampirism."
     end
 
-    it "#update_attribute should return false if the attribute could not be updated" do
+    it ".update_attribute should return false if the attribute could not be updated" do
       book = Book.new(  :title => "I Am Legend",
                         :author => "Richard Matheson",
                         :description => "The most clever and riveting vampire novel since Dracula.")
@@ -227,7 +272,7 @@ describe BigRecord::Base do
         @new_attributes = {:title => "A Stir of Echoes", :description => "One of the most important writers of the twentieth century."}
       end
 
-      it "#update_attributes should update all attributes of a record" do
+      it ".update_attributes should update all attributes of a record" do
         @book.update_attributes(@new_attributes).should be_true
 
         @new_attributes.each do |key, value|
@@ -235,12 +280,12 @@ describe BigRecord::Base do
         end
       end
 
-      it "#update_attributes should return false if the record couldn't be updated with those attributes" do
+      it ".update_attributes should return false if the record couldn't be updated with those attributes" do
         @book.should_receive(:save).and_return(false)
         @book.update_attributes(@new_attributes).should be_false
       end
 
-      it "#update_attributes! should update all attributes of a record" do
+      it ".update_attributes! should update all attributes of a record" do
         @book.update_attributes(@new_attributes).should be_true
 
         @new_attributes.each do |key, value|
@@ -248,7 +293,7 @@ describe BigRecord::Base do
         end
       end
 
-      it "#update_attributes! should raise an error when the record couldn't be updated" do
+      it ".update_attributes! should raise an error when the record couldn't be updated" do
         @book.should_receive(:save!).and_raise(BigRecord::RecordNotSaved)
 
         lambda { @book.update_attributes!(@new_attributes) }.should raise_error(BigRecord::RecordNotSaved)

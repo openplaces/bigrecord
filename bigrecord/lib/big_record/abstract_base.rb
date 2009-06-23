@@ -61,6 +61,9 @@ module BigRecord
     # on to any new database connections made and which can be retrieved on both a class and instance level by calling +logger+.
     cattr_accessor :logger, :instance_writer => false
 
+    class_inheritable_accessor :default_family, :instance_write => false
+    self.default_family = "attribute"
+
     # Constants for special characters in generated IDs. An ID might then look
     # like this: 'United_States-Hawaii-Oahu-Honolulu-b9cef848-a4e0-11dc-a7ba-0018f3137ea8'
     ID_FIELD_SEPARATOR = '-'
@@ -284,6 +287,7 @@ module BigRecord
       self.class.human_attribute_name(attribute_key)
     end
 
+    # Overridden by FamilySpanColumns
     # Returns the column object for the named attribute.
     def column_for_attribute(name)
       self.class.columns_hash[name.to_s]

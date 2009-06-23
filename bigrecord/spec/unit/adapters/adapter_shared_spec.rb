@@ -30,4 +30,14 @@ describe "a BigRecord Adapter", :shared => true do
     end
   end
 
+  describe "timestamp functionality" do
+    it "should use the default Time.to_bigrecord_timestamp or implement it's own method" do
+      Time.now.should respond_to(:to_bigrecord_timestamp)
+      Time.should respond_to(:from_bigrecord_timestamp)
+
+      Time.now.to_bigrecord_timestamp.should_not be_nil
+      Time.from_bigrecord_timestamp(Time.now.to_bigrecord_timestamp).should_not be_nil
+    end
+  end
+
 end

@@ -62,7 +62,7 @@ describe BigRecord::Base do
 
   end
 
-  describe '#attributes' do
+  describe '.attributes' do
 
     before(:each) do
       @book = Book.new
@@ -117,7 +117,7 @@ describe BigRecord::Base do
 
   end
 
-  describe "#attributes=" do
+  describe ".attributes=" do
 
     it 'should be able to mass assign attributes' do
       # Check that the mass asssignment of attributes works with #new

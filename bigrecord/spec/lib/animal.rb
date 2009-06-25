@@ -4,8 +4,9 @@ class Animal < BigRecord::Base
   column 'attribute:type',         'integer'
   column :description,       :string
 
-
   column 'attribute:zoo_id',      'string'
-  belongs_to_big_record :zoo, :class_name => 'Zoo', :foreign_key => 'attribute:zoo_id'
+  column 'attribute:book_ids',    'string', :collection => true
 
+  belongs_to_big_record :zoo, :foreign_key => 'attribute:zoo_id'
+  belongs_to_many :books, :foreign_key => 'attribute:book_ids'
 end

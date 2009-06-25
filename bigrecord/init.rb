@@ -8,4 +8,4 @@ BigRecord::Embedded.logger = ActiveRecord::Base.logger
 BigRecord::Base.configurations = YAML::load(File.open("#{RAILS_ROOT}/config/bigrecord.yml"))
 BigRecord::Base.establish_connection
 
-raise "Cannot connect to the data store." unless BigRecord::Base.connection.active?
+raise "Cannot connect to the data store" unless BigRecord::Base.connection.active?

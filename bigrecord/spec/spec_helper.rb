@@ -21,7 +21,7 @@ rescue LoadError
 end
 
 # Load the various helpers for the spec suite
-Dir.glob( File.join(File.dirname(__FILE__), "lib", "*.rb") ).each do |model|
+Dir.glob( File.join(File.dirname(__FILE__), "lib", "**", "*.rb") ).each do |model|
   require model
 end
 

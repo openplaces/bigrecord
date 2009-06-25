@@ -52,12 +52,12 @@ describe BigRecord::Base do
 
   end
 
-  # Protected instance method called by #save (different than Class#create)
+  # Protected instance method called by .save (different than Class#create)
   it 'should provide .create' do
     Book.new.should respond_to(:create)
   end
 
-  # Protected instance method called by #save
+  # Protected instance method called by .save
   it 'should provide .update' do
     Book.new.should respond_to(:update)
   end

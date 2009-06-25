@@ -99,13 +99,13 @@ describe BigRecord::Base do
 
         # The actual method that's called just before the data store write is #update_big_record, which returns
         # a boolean. We're going to mock this method and have it return false.
-        book.should_receive(:update_big_record).and_return(false)
+        book.should_receive(:update_bigrecord).and_return(false)
 
         # Verify that an exception is raised
         lambda { book.save! }.should raise_error(BigRecord::RecordNotSaved)
 
         # Verify that true gets returned on success
-        book.should_receive(:update_big_record).and_return(true)
+        book.should_receive(:update_bigrecord).and_return(true)
         book.save.should be_true
       end
 

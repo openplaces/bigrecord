@@ -581,7 +581,7 @@ module BigRecord
 
     # Update this record in hbase. Cannot be directly in the method 'update' because it would trigger callbacks and
     # therefore weird behaviors.
-    def update_hbase
+    def update_bigrecord
       timestamp = self.respond_to?(:updated_at) ? self.updated_at.to_bigrecord_timestamp : Time.now.to_bigrecord_timestamp
       connection.update(self.class.table_name, id, clone_in_persistence_format, timestamp)
     end

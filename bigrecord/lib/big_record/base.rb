@@ -254,18 +254,18 @@ module BigRecord
     def create
       self.id = generate_new_id unless self.id
       @new_record = false
-      update_big_record
+      update_bigrecord
     end
 
     # Updates the associated record with values matching those of the instance attributes.
     # Returns the number of affected rows.
     def update
-      update_big_record
+      update_bigrecord
     end
 
     # Update this record in hbase. Cannot be directly in the method 'update' because it would trigger callbacks and
     # therefore weird behaviors.
-    def update_big_record
+    def update_bigrecord
       timestamp = self.respond_to?(:updated_at) ? self.updated_at.to_bigrecord_timestamp : Time.now.to_bigrecord_timestamp
 
       data = clone_in_persistence_format
@@ -336,19 +336,19 @@ module BigRecord
           options[:view] = :default
         end
 
-        if options[:bypass_index] || (options[:conditions] && options[:conditions][:bypass_index])
+        #if options[:bypass_index] || (options[:conditions] && options[:conditions][:bypass_index])
           case args.first
-            when :first then find_every_from_hbase(options.merge({:limit => 1})).first
-            when :all   then find_every_from_hbase(options)
+            when :first then find_every_from_bigrecord(options.merge({:limit => 1})).first
+            when :all   then find_every_from_bigrecord(options)
             else             find_from_ids(args, options)
           end
-        else
-          case args.first
-            when :first then find_every_from_index(options.merge({:limit => 1})).first
-            when :all   then find_every_from_index(options)
-            else             find_from_ids(args, options)
-          end
-        end
+        # else
+        #           case args.first
+        #             when :first then find_every_from_index(options.merge({:limit => 1})).first
+        #             when :all   then find_every_from_index(options)
+        #             else             find_from_ids(args, options)
+        #           end
+        #         end
       end
 
       # Returns true if the given +id+ represents the primary key of a record in the database, false otherwise.
@@ -517,7 +517,7 @@ module BigRecord
         options.assert_valid_keys(VALID_FIND_OPTIONS)
       end
 
-      def find_every_from_hbase(options)
+      def find_every_from_bigrecord(options)
         requested_columns = columns_to_find(options)
 
         raw_records = connection.get_consecutive_rows_raw(table_name, options[:offset],

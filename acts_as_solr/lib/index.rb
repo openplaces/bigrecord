@@ -11,6 +11,19 @@ module ActsAsSolr
 
     module ClassMethods
 
+      def indexed?
+          if @indexed.nil?
+          @indexed = false
+          ancestors.each do |a|
+            if a.respond_to?(:indexed?) and a.indexed?
+              @indexed = true
+              break
+            end
+          end
+        end
+        @indexed
+      end
+
       def rebuild_index(options={}, finder_options={})
         if options[:drop]
           logger.info "Dropping #{self.name} index..." unless options[:silent]

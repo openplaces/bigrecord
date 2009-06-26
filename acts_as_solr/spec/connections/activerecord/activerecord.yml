@@ -1,0 +1,7 @@
+mysql:
+  adapter: mysql
+  database: actsassolr_tests
+  username: root
+  password:
+  host: localhost
+  socket: /tmp/mysql.sock

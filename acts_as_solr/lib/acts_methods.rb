@@ -101,6 +101,7 @@ module ActsAsSolr #:nodoc:
     def acts_as_solr(options={}, solr_options={})
       
       @acting_as_solr = true
+      @indexed = true
       
       extend ClassMethods
       include InstanceMethods

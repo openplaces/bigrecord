@@ -33,7 +33,7 @@ require File.dirname(__FILE__) + '/search_results'
 require File.dirname(__FILE__) + '/index'
 
 # reopen ActiveRecord and include the acts_as_solr method
-BigRecord::Base.extend ActsAsSolr::ActsMethods
+BigRecord::Base.extend ActsAsSolr::ActsMethods if defined? BigRecord
+BigRecord::Embedded.extend ActsAsSolr::ActsMethods if defined? BigRecord
 
-BigRecord::Embedded.extend ActsAsSolr::ActsMethods
-#ActiveRecord::Base.extend ActsAsSolr::ActsMethods
+ActiveRecord::Base.extend ActsAsSolr::ActsMethods if defined? ActiveRecord

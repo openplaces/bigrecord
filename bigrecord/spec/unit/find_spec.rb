@@ -8,7 +8,7 @@ describe BigRecord::Base do
     it "should dispatch properly to #find_every_from_bigrecord when given :first" do
       zoo = Zoo.new
 
-      Zoo.should_receive(:find_every_from_bigrecord).with(hash_including(:limit => 1)).and_return([zoo])
+      Zoo.should_receive(:find_every).with(hash_including(:limit => 1)).and_return([zoo])
 
       Zoo.find(:first).should == zoo
     end
@@ -16,7 +16,7 @@ describe BigRecord::Base do
     it "should dispatch properly to #find_every_from_bigrecord when given :all" do
       zoo = Zoo.new
 
-      Zoo.should_receive(:find_every_from_bigrecord).and_return([zoo])
+      Zoo.should_receive(:find_every).and_return([zoo])
 
       Zoo.find(:all).should == [zoo]
     end

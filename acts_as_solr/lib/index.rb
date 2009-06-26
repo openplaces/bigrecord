@@ -1,7 +1,12 @@
-module BigRecord
+module ActsAsSolr
   module Index
     def self.included(base) #:nodoc:
       base.extend(ClassMethods)
+      base.class_eval do
+        class << self
+          alias_method_chain :find, :index
+        end
+      end
     end
 
     module ClassMethods
@@ -16,6 +21,7 @@ module BigRecord
 
         finder_options[:batch_size] ||= 100
         finder_options[:view] ||= :all
+        finder_options[:bypass_index] = true
 
         options[:batch_size] ||= 150
         options[:commit] = true unless options.has_key?(:commit)
@@ -59,7 +65,7 @@ module BigRecord
         unless items.empty?
           # FIXME: remove this... it shouldn't be here. It's a temporary fix
           # for not indexing article that are not indexable.
-          items_to_index = self <= Article ? items.select { |item| item.indexable? } : items
+          items_to_index = items.select { |item| item.respond_to?(:indexable?) ? item.indexable? : true }
           unless options[:silent] || items_to_index.size == items.size
             $stderr.puts "reporter:counter:openplaces,not_indexable,#{items.size - items_to_index.size}" unless options[:silent]
           end
@@ -174,6 +180,75 @@ module BigRecord
           elsif value = self.send(field_name.to_sym)
             f.values << value
           end
+        end
+      end
+
+      def find_with_index(*args)
+        options = args.extract_options!
+        unless options[:bypass_index]
+          validate_index_find_options(options)
+          case args.first
+            when :first then find_every_by_solr(options.merge({:limit => 1})).first
+            when :all   then find_every_by_solr(options)
+            else             find_from_ids(args, options) #TODO: implement in solr
+          end
+        else
+          options.delete(:bypass_index)
+          find_without_index(*(args + [options]))
+        end
+      end
+      
+      INDEX_FIND_OPTIONS = [ :source, :offset, :limit, :conditions, :order, :group, :fields, :debug, :view ]
+
+      def validate_index_find_options(options) #:nodoc:
+        options.assert_valid_keys(INDEX_FIND_OPTIONS)
+      end
+
+      def find_every_by_solr(options)
+        # Construct the query. First add the type information.
+        #query = "type:#{self.name}^4 "
+        query =""
+
+        # set default operator
+           options[:operator] ||= :or
+
+        # First add the conditions predicates
+        conditions = options[:conditions]
+        if conditions.is_a?(String)
+          query << conditions
+        elsif conditions.is_a?(Array) and !conditions.empty?
+          nb_conditions = conditions.size - 1
+          i = 0
+          query << conditions[0].gsub(/\?/) do |c|
+            i += 1
+            raise ArgumentError, "Missing condition argument" unless i <= nb_conditions
+            "#{conditions[i]}"
+          end
+        elsif conditions.is_a?(Hash) and !conditions.empty?
+          conditions.each do |k, v|
+            query << "#{k}:#{v} "
+          end
+        end
+
+        fields =
+        if options[:fields]
+          options[:fields]
+        else
+          fields = options[:view] ? index_views_hash[options[:view]] : index_views_hash[:default]
+          fields ||= []
+        end
+        if options[:source] == :index
+          find_values_by_solr(query, :offset    =>options[:offset],
+                                      :order    => options[:order],
+                                      :limit    => options[:limit],
+                                      :fields   => fields,
+                                      :operator => options[:operator],
+                                      :debug    => options[:debug]).docs
+        else
+          find_by_solr(query, :offset   => options[:offset],
+                              :order    => options[:order],
+                              :limit    => options[:limit],
+                              :operator => options[:operator]).docs
         end
       end
 

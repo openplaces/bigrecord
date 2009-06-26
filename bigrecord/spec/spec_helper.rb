@@ -20,6 +20,9 @@ rescue LoadError
   require File.join(File.dirname(__FILE__), 'connections', 'hbase', 'connection')
 end
 
+
+require File.join(File.dirname(__FILE__), "..", "..", "acts_as_solr", "lib", "acts_as_solr")
+
 # Load the various helpers for the spec suite
 Dir.glob( File.join(File.dirname(__FILE__), "lib", "**", "*.rb") ).each do |model|
   require model

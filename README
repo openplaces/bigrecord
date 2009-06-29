@@ -1,3 +1,9 @@
 = BigRecord
 
-A Ruby Object/Relational Mapper for distributed column-oriented data stores (inspired by BigTable) such as Hbase.
+A Ruby Object/Relational Mapper for distributed column-oriented data stores (inspired by BigTable) such as Hbase. Intended to work as a drop-in for Rails applications. More information soon...
+
+= Links
+
+* Contact Us
+  * Website - http://www.bigrecord.org
+  * IRC Channel - <tt>##bigrecord</tt> on irc.freenode.net

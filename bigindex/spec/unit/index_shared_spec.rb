@@ -16,8 +16,6 @@ describe "a model with BigIndex", :shared => true do
   it "should mixin index related instance methods into the model" do
     @model_class.new.should respond_to(:indexed?)
     @model_class.new.indexed?.should be_true
-
-    @model_class.new.should respond_to(:index_id)
   end
 
   it "should override the default #find with the indexed version" do

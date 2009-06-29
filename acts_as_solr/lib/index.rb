@@ -3,6 +3,8 @@ module ActsAsSolr
     def self.included(base) #:nodoc:
       base.extend(ClassMethods)
       base.class_eval do
+        include InstanceMethods
+
         class << self
           alias_method_chain :find, :index
         end
@@ -210,7 +212,7 @@ module ActsAsSolr
           find_without_index(*(args + [options]))
         end
       end
-      
+
       INDEX_FIND_OPTIONS = [ :source, :offset, :limit, :conditions, :order, :group, :fields, :debug, :view ]
 
       def validate_index_find_options(options) #:nodoc:
@@ -317,5 +319,18 @@ module ActsAsSolr
         end_eval
       end
     end
+
+    module InstanceMethods
+
+      def indexed?
+        self.class.indexed?
+      end
+
+      def index_id
+        solr_id
+      end
+
+    end
+
   end
 end

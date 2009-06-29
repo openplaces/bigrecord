@@ -1,1 +1,1 @@
-require 'bigindex'
+require 'big_index'

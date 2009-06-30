@@ -11,10 +11,8 @@
 # limitations under the License.
 
 
-module Solr
-  module Importer
 
-class ArrayMapper < Solr::Importer::Mapper
+class Solr::Importer::ArrayMapper < Solr::Importer::Mapper
   # TODO document that initializer takes an array of Mappers [mapper1, mapper2, ... mapperN]
 
   # TODO: make merge conflict handling configurable.  as is, the last map fields win.
@@ -24,8 +22,5 @@ class ArrayMapper < Solr::Importer::Mapper
       mapped_data.merge!(@mapping[i].map(data))
     end
     mapped_data
-  end
-end
-
   end
 end

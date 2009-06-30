@@ -10,12 +10,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-module Solr
-  module Response
-
-class IndexInfo < Solr::Response::Ruby
+class Solr::Response::IndexInfo < Solr::Response::Ruby
   def initialize(ruby_code)
-    super(ruby_code)
+    super
   end
 
   def num_docs
@@ -26,7 +23,4 @@ class IndexInfo < Solr::Response::Ruby
     return @data['fields'].keys
   end
 
-end
-
-  end
 end

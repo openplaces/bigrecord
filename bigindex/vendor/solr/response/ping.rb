@@ -12,14 +12,11 @@
 
 require 'rexml/xpath'
 
-module Solr
-  module Response
-
-class Ping < Solr::Response::Xml
+class Solr::Response::Ping < Solr::Response::Xml
 
   def initialize(xml)
-    super(xml)
-    @ok = REXML::XPath.first(@doc, "//[@name='status'][.='OK']") ? true : false
+    super
+    @ok = REXML::XPath.first(@doc, './solr/ping') ? true : false
   end
 
   # returns true or false depending on whether the ping
@@ -28,7 +25,4 @@ class Ping < Solr::Response::Xml
     @ok
   end
 
-end
-
-  end
 end

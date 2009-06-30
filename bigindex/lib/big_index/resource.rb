@@ -21,10 +21,14 @@ module BigIndex
           :include => nil,
           :facets => nil,
           :boost => nil,
-          :if => "true"
+          :if => "true",
+          :type_field => model.adapter.default_type_field,
+          :primary_key_field => model.adapter.default_primary_key_field,
+          :default_boost => 1.0
         }
 
         class << self
+          # Defines find_with_index() and find_without_index()
           alias_method_chain :find, :index
         end
       end
@@ -69,7 +73,7 @@ module BigIndex
       # as indexed.
       #
       # This method checks whether the current class, as well as any ancestors
-      # in the inheritance tree.
+      # in its inheritance tree, is indexed.
       #
       # @return [TrueClass, FalseClass] whether or not the current class, or any
       #   of its ancestors are indexed.
@@ -91,12 +95,12 @@ module BigIndex
       #
       # Dispatches a command to the current adapter to rebuild the index.
       #
-      # @return [TrueClass, FalseClass] whether the command was successful.
+      # @return <Integer> representing number of items processed.
       #
       def rebuild_index(options={}, finder_options={})
         if options[:drop]
           logger.info "Dropping #{self.name} index..." unless options[:silent]
-          adapter.drop_index
+          adapter.drop_index(self)
         end
 
         $stderr.puts "reporter:status:Indexation is under way" unless options[:silent]
@@ -132,7 +136,8 @@ module BigIndex
         else
           $stderr.puts "Nothing to index for #{self.name}." unless options[:silent]
         end
-        true
+
+        return items_processed
       end
 
       def index_view(name, columns)
@@ -183,19 +188,22 @@ module BigIndex
         @returned_index_fields
       end
 
+      ##
+      #
+      # Macro for defining a class attribute as an indexed field.
+      #
+      # Also creates the corresponding attribute finder method, which defaults
+      # to the field name. This can be defined with the :finder_name => "anothername"
+      # option.
+      #
       def index(field, options={}, &block)
-        # Mixin the other methods only if the class is to be used for index, else keep it clean
-        # unless self.respond_to?(:acting_as_solr) and acting_as_solr
-        #   acts_as_solr :fields => [], :auto_commit => true # (ENV['RAILS_ENV']=='test')
-        # end
-
         add_index_field(field, block)
 
         field_name = field.is_a?(Hash) ? field.keys[0] : field
         finder_name = options[:finder_name] || field_name
 
-        # default finder: exact match on the index name
-        #define_finder finder_name, [{:field => field, :weight => 1}]
+        # Create the attribute finder method
+        define_finder finder_name, [{:field => field, :weight => 1}]
       end
 
       def add_index_field(field, block)
@@ -212,6 +220,17 @@ module BigIndex
         field_name = field.is_a?(Hash) ? field.keys[0] : field
       end
 
+      ##
+      #
+      # Class #find method
+      #
+      # From - alias_method_chain :find, :index
+      #
+      # This redefines the original #find method of the class, and
+      # replaces it with an indexed version of #find. The indexed version can be
+      # bypassed (dispatch to original instead) by passing the option
+      # <tt>:bypass_index => true</tt> to the method.
+      #
       def find_with_index(*args)
         options = args.extract_options!
         unless options[:bypass_index]
@@ -219,7 +238,7 @@ module BigIndex
           case args.first
             when :first then find_every_by_index(options.merge({:limit => 1})).first
             when :all   then find_every_by_index(options)
-            else             find_from_ids(args, options) #TODO: implement in solr
+            else             find_from_ids(args, options) #TODO: implement this
           end
         else
           options.delete(:bypass_index)
@@ -227,6 +246,11 @@ module BigIndex
         end
       end
 
+      ##
+      #
+      # Indexed find method called by <tt>find_with_index</tt> and dispatches
+      # the actual search to the adapter.
+      #
       def find_every_by_index(options)
         # Construct the query. First add the type information.
         query =""
@@ -277,8 +301,70 @@ module BigIndex
 
       INDEX_FIND_OPTIONS = [ :source, :offset, :limit, :conditions, :order, :group, :fields, :debug, :view ]
 
+      ##
+      #
+      # Validates the options passed to the find methods based on the accepted keys
+      # defined in <tt>INDEX_FIND_OPTIONS</tt>
+      #
       def validate_index_find_options(options) #:nodoc:
         options.assert_valid_keys(INDEX_FIND_OPTIONS)
+      end
+
+      private
+
+      ##
+      #
+      # Creates the attribute finder methods based on the indexed fields of the class,
+      # i.e. #find_by_#{attribute_name}
+      #
+      def define_finder(finder_name, fields)
+        class_eval <<-end_eval
+          def self.find_by_#{finder_name}(user_query, options={})
+
+              options[:fields] ||= index_views_hash[:default]
+
+              write_inheritable_attribute(:string_finders, {}) if read_inheritable_attribute(:string_finders).nil?
+
+              if read_inheritable_attribute(:string_finders)["#{finder_name}"].nil?
+                # FIXME: this is crap... the lookup should be done using a hash
+                read_inheritable_attribute(:string_finders)["#{finder_name}"] =
+                    !index_configuration[:fields].select{|f| f.is_a?(Hash) and f.keys.first and f.keys.first.to_s == "#{finder_name}" and f.values.first==:string}.empty?
+              end
+
+              # quote the query if the field type is :string
+              if read_inheritable_attribute(:string_finders)["#{finder_name}"]
+                query = "#{finder_name}:(\\"\#{user_query}\\")"
+              else
+                query = "#{finder_name}:(\#{user_query})"
+              end
+
+              if options[:source] == :index
+                results = adapter.find_values_by_index(query,  :fields   => options[:fields],
+                                                      :order    =>options[:order],
+                                                      :offset   => options[:offset],
+                                                      :limit    => options[:limit],
+                                                      :query_function => options[:query_function],
+                                                      :no_parsing   => options[:no_parsing],
+                                                      :scores   => :true,
+                                                      :operator => :or)
+              else
+                results = adapter.find_by_index(query, :fields    => options[:fields],
+                                              :view      => options[:view],
+                                              :include_deleted => options[:include_deleted],
+                                              :force_reload => options[:force_reload],
+                                              :timestamp => options[:timestamp],
+                                              :order     => options[:order],
+                                              :offset    => options[:offset],
+                                              :limit     => options[:limit],
+                                              :query_function => options[:query_function],
+                                              :no_parsing   => options[:no_parsing],
+                                              :scores    => :true,
+                                              :operator  => :or)
+              end
+
+              return results
+            end
+        end_eval
       end
 
     end # module ClassMethods

@@ -12,11 +12,6 @@
 
 require 'rexml/xpath'
 
-module Solr
-  module Response
-
-class Commit < Solr::Response::Xml
+class Solr::Response::Commit < Solr::Response::Xml
 end
 
-  end
-end

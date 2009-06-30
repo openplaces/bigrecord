@@ -2,7 +2,6 @@ require 'pathname'
 require 'rubygems'
 require 'set'
 
-
 dir = Pathname(__FILE__).dirname.expand_path + 'big_index'
 vendor_dir = Pathname(__FILE__).dirname.parent.expand_path + 'vendor'
 

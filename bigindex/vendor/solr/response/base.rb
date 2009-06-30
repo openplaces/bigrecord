@@ -10,10 +10,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-module Solr
-  module Response
-
-class Base
+class Solr::Response::Base
   attr_reader :raw_response
 
   def initialize(raw_response)
@@ -42,7 +39,4 @@ class Base
 
   end
 
-end
-
-  end
 end

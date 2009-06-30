@@ -10,16 +10,17 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-#module Solr; module Request; end; end
-
-require File.dirname(__FILE__) + '/request/add_document'
-require File.dirname(__FILE__) + '/request/base'
-require File.dirname(__FILE__) + '/request/commit'
-require File.dirname(__FILE__) + '/request/delete'
-require File.dirname(__FILE__) + '/request/ping'
-require File.dirname(__FILE__) + '/request/select'
-require File.dirname(__FILE__) + '/request/standard'
-require File.dirname(__FILE__) + '/request/dismax'
-require File.dirname(__FILE__) + '/request/update'
-require File.dirname(__FILE__) + '/request/index_info'
-require File.dirname(__FILE__) + '/request/optimize'
+module Solr; module Request; end; end
+require 'solr/request/add_document'
+require 'solr/request/modify_document'
+require 'solr/request/base'
+require 'solr/request/commit'
+require 'solr/request/delete'
+require 'solr/request/ping'
+require 'solr/request/select'
+require 'solr/request/standard'
+require 'solr/request/spellcheck'
+require 'solr/request/dismax'
+require 'solr/request/update'
+require 'solr/request/index_info'
+require 'solr/request/optimize'

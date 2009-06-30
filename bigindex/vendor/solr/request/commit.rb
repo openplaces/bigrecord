@@ -10,12 +10,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-#require 'solr/xml'
+require 'solr/xml'
 
-module Solr
-  module Request
-
-class Commit < Solr::Request::Update
+class Solr::Request::Commit < Solr::Request::Update
 
   def initialize(options={})
     @wait_searcher = options[:wait_searcher] || true
@@ -31,7 +28,4 @@ class Commit < Solr::Request::Update
     e.to_s
   end
 
-end
-
-  end
 end

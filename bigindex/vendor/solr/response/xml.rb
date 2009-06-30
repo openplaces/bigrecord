@@ -11,16 +11,13 @@
 # limitations under the License.
 
 require 'rexml/document'
-#require 'solr/exception'
+require 'solr/exception'
 
-module Solr
-  module Response
-
-class Xml < Solr::Response::Base
+class Solr::Response::Xml < Solr::Response::Base
   attr_reader :doc, :status_code, :status_message
 
   def initialize(xml)
-    super(xml)
+    super
     # parse the xml
     @doc = REXML::Document.new(xml)
 
@@ -42,7 +39,4 @@ class Xml < Solr::Response::Base
     return @status_code == '0'
   end
 
-end
-
-  end
 end

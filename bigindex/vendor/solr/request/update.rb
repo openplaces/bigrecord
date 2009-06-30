@@ -12,19 +12,12 @@
 
 # a parent class for all requests that go through the solr update handler
 # TODO: Use new xml update handler for better error responses
-
-module Solr
-  module Request
-
-class Update < Solr::Request::Base
+class Solr::Request::Update < Solr::Request::Base
   def response_format
     :xml
   end
 
   def handler
     'update'
-  end
-end
-
   end
 end

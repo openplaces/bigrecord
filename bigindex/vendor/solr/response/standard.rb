@@ -10,15 +10,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-module Solr
-  module Response
-
-class Standard < Solr::Response::Ruby
+class Solr::Response::Standard < Solr::Response::Ruby
   FacetValue = Struct.new(:name, :value)
   include Enumerable
 
   def initialize(ruby_code)
-    super(ruby_code)
+    super
     @response = @data['response']
     raise "response section missing" unless @response.kind_of? Hash
   end
@@ -39,6 +36,7 @@ class Standard < Solr::Response::Ruby
     @response['maxScore']
   end
 
+  # TODO: consider the use of json.nl parameter
   def field_facets(field)
     facets = []
     values = @data['facet_counts']['facet_fields'][field]
@@ -59,12 +57,4 @@ class Standard < Solr::Response::Ruby
     @response['docs'].each {|hit| yield hit}
   end
 
-  alias num_found total_hits
-  alias total total_hits
-  alias offset start
-  alias docs hits
-
-end
-
-  end
 end

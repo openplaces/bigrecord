@@ -15,14 +15,11 @@ require 'erb'
 # "Abstract" base class, only useful with subclasses that add parameters
 class Solr::Request::Select < Solr::Request::Base
 
-  # TODO add a constant for the all-docs query, which currently is [* TO *]
-  #      (caveat, that is all docs that have a value in the default field)
-  #      When the Lucene JAR is upgraded in Solr, the all-docs query becomes simply *
-  attr_reader   :query_type
-  attr_accessor :shards
+  attr_reader :query_type
 
-  def initialize(qt=nil)
+  def initialize(qt=nil, params={})
     @query_type = qt
+    @select_params = params
   end
 
   def response_format
@@ -38,16 +35,7 @@ class Solr::Request::Select < Solr::Request::Base
   end
 
   def to_hash
-    hsh = {:qt => query_type, :wt => 'ruby'}
-
-    # Set the shards only if they are configured so we stay backward compatible
-    # with non sharded index
-    if shards
-      hsh['shards'] = shards
-      hsh['shards.qt'] = @query_type
-    end
-
-    hsh
+    return {:qt => query_type, :wt => 'ruby'}.merge(@select_params)
   end
 
   def to_s
@@ -55,9 +43,7 @@ class Solr::Request::Select < Solr::Request::Base
 
     http_params = []
     raw_params.each do |key,value|
-      if value == shards
-        http_params << "#{key}=#{value.join(',')}" unless value.nil?
-      elsif value.respond_to? :each
+      if value.respond_to?(:each) && !value.is_a?(String)
         value.each { |v| http_params << "#{key}=#{ERB::Util::url_encode(v)}" unless v.nil?}
       else
         http_params << "#{key}=#{ERB::Util::url_encode(value)}" unless value.nil?

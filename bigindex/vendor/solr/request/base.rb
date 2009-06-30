@@ -10,10 +10,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-module Solr
-  module Request
-
-class Base
+class Solr::Request::Base
 
 
   #TODO : Add base support for the debugQuery flag, and such that the response provides debug output easily
@@ -33,14 +30,7 @@ class Base
   # respond to this type of request
 
   def handler
-    raise "unkown request type: #{self.class}"
+    raise "unknown request type: #{self.class}"
   end
 
-  def to_s
-    ""
-  end
-
-end
-
-  end
 end

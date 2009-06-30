@@ -4,7 +4,7 @@ require File.expand_path(File.join(File.dirname(__FILE__), 'adapter_shared_spec'
 describe BigIndex::Adapters::SolrAdapter do
 
   before do
-    @adapter = BigIndex::Adapters::SolrAdapter.new("test", {})
+    @adapter = BigIndex::Adapters::SolrAdapter.new("test", {:adapter => "solr"})
   end
 
   it_should_behave_like "a BigIndex Adapter"

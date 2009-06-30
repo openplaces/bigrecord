@@ -10,13 +10,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-#require 'solr'
+require 'solr'
 
-module Solr
-  module Importer
-
-class SolrSource
-  def initialize(solr_url, query, filter_queries, options={})
+class Solr::Importer::SolrSource
+  def initialize(solr_url, query, filter_queries=nil, options={})
     @connection = Solr::Connection.new(solr_url)
     @query = query
     @filter_queries = filter_queries
@@ -42,8 +39,5 @@ class SolrSource
       done = start + @page_size >= response.total_hits
       start = start + @page_size
     end
-  end
-end
-
   end
 end

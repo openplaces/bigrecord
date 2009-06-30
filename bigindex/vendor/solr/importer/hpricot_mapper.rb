@@ -9,24 +9,19 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-module Solr
-  module Importer
 
 begin
   require 'hpricot'
 
-  class HpricotMapper < Solr::Importer::Mapper
+  class Solr::Importer::HpricotMapper < Solr::Importer::Mapper
     def field_data(doc, path)
       doc.search(path.to_s).collect { |e| e.inner_html }
     end
   end
 rescue LoadError => e # If we can't load hpricot
-  class HpricotMapper
+  class Solr::Importer::HpricotMapper
     def initialize(mapping, options={})
       raise "Hpricot not installed."
     end
-  end
-end
-
   end
 end

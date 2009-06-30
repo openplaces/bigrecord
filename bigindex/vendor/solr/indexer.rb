@@ -10,9 +10,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-module Solr
-
-class Indexer
+class Solr::Indexer
   attr_reader :solr
 
   # TODO: document options!
@@ -51,6 +49,4 @@ class Indexer
     @solr.add(documents) unless @debug
     puts documents.inspect if @debug
   end
-end
-
 end

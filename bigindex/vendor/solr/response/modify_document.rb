@@ -10,4 +10,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-class Solr::Response::Delete < Solr::Response::Xml; end
+class Solr::Response::ModifyDocument < Solr::Response::Xml
+  def initialize(xml)
+    super
+  end
+end

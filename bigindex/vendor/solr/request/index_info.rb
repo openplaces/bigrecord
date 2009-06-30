@@ -10,10 +10,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-module Solr
-  module Request
-
-class IndexInfo < Solr::Request::Select
+class Solr::Request::IndexInfo < Solr::Request::Select
 
   def handler
     'admin/luke'
@@ -21,8 +18,5 @@ class IndexInfo < Solr::Request::Select
 
   def to_hash
     {:numTerms => 0}.merge(super.to_hash)
-  end
-end
-
   end
 end

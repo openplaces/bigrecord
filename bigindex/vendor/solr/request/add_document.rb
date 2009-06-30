@@ -15,12 +15,7 @@ require 'solr/request/base'
 require 'solr/document'
 require 'solr/request/update'
 
-module Solr
-  module Request
-
-class AddDocument < Update
-
-  attr_reader :docs
+class Solr::Request::AddDocument < Solr::Request::Update
 
   # create the request, optionally passing in a Solr::Document
   #
@@ -28,7 +23,7 @@ class AddDocument < Update
   #
   # as a short cut you can pass in a Hash instead:
   #
-  #   request = Solr::Request.new :creator => 'Jorge Luis Borges'
+  #   request = Solr::Request::AddDocument.new :creator => 'Jorge Luis Borges'
   #
   # or an array, to add multiple documents at the same time:
   #
@@ -53,18 +48,16 @@ class AddDocument < Update
     return e.to_s
   end
 
+  private
   def add_doc(doc)
     case doc
-    when Hash, String
+    when Hash
       @docs << Solr::Document.new(doc)
     when Solr::Document
       @docs << doc
     else
-      raise "must pass in Solr::Document, Hash or String"
+      raise "must pass in Solr::Document or Hash"
     end
   end
 
-end
-
-  end
 end

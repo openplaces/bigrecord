@@ -10,4 +10,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-class Solr::Response::Delete < Solr::Response::Xml; end
+class Solr::Response::Spellcheck < Solr::Response::Ruby
+  attr_reader :suggestions
+
+  def initialize(ruby_code)
+    super
+    @suggestions = @data['suggestions']
+  end
+end

@@ -10,14 +10,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-module Solr
-  module Response
-
-class Ruby < Solr::Response::Base
-  attr_reader :data
+class Solr::Response::Ruby < Solr::Response::Base
+  attr_reader :data, :header
 
   def initialize(ruby_code)
-    super(ruby_code)
+    super
     begin
       #TODO: what about pulling up data/header/response to ResponseBase,
       #      or maybe a new middle class like SelectResponseBase since
@@ -42,7 +39,4 @@ class Ruby < Solr::Response::Base
     @header['QTime']
   end
 
-end
-
-  end
 end

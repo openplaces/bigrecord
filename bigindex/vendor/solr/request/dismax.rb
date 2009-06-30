@@ -10,10 +10,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-module Solr
-  module Request
-
-class Dismax < Solr::Request::Standard
+class Solr::Request::Dismax < Solr::Request::Standard
 
   VALID_PARAMS.replace(VALID_PARAMS + [:tie_breaker, :query_fields, :minimum_match, :phrase_fields, :phrase_slop,
                                        :boost_query, :boost_functions])
@@ -22,7 +19,7 @@ class Dismax < Solr::Request::Standard
     @alternate_query = params.delete(:alternate_query)
     @sort_values = params.delete(:sort)
 
-    super(params)
+    super
 
     @query_type = "dismax"
   end
@@ -46,7 +43,4 @@ class Dismax < Solr::Request::Standard
     return hash
   end
 
-end
-
-  end
 end

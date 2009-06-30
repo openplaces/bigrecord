@@ -9,6 +9,14 @@ module BigIndex
         'abstract'
       end
 
+      def default_type_field
+        raise NotImplementedError
+      end
+
+      def default_primary_key_field
+        raise NotImplementedError
+      end
+
       def process_index_batch(items, loop, options={})
         raise NotImplementedError
       end
@@ -17,8 +25,8 @@ module BigIndex
         raise NotImplementedError
       end
 
-      def get_field_type(type)
-        type
+      def get_field_type(field_type)
+        field_type
       end
 
       def find_values_by_index(query, options={})

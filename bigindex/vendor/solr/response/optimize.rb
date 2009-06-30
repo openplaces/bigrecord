@@ -10,11 +10,5 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-module Solr
-  module Response
-
-class Optimize < Solr::Response::Commit
-end
-
-  end
+class Solr::Response::Optimize < Solr::Response::Commit
 end

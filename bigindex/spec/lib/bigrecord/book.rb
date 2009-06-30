@@ -5,7 +5,7 @@ class Book < BigRecord::Base
   column 'attribute:author',      'string'
   column 'attribute:description', 'string'
 
-  index :name => :string
+  index :title => :string
   index :author => :string
   index :description => :text
 

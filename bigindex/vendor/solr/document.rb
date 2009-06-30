@@ -13,8 +13,7 @@
 require 'solr/xml'
 require 'solr/field'
 
-module Solr
-class Document
+class Solr::Document
   include Enumerable
   attr_accessor :boost
 
@@ -23,13 +22,13 @@ class Document
   #
   #   doc = Solr::Document.new(:creator => 'Jorge Luis Borges')
   def initialize(hash={})
-    @fields_entries = []
+    @fields = []
     self << hash
   end
 
   # Append a Solr::Field
   #
-  #   doc << Solr::FieldEntry.new(:creator => 'Jorge Luis Borges')
+  #   doc << Solr::Field.new(:creator => 'Jorge Luis Borges')
   #
   # If you are truly lazy you can simply pass in a hash:
   #
@@ -39,45 +38,36 @@ class Document
     when Hash
       fields.each_pair do |name,value|
         if value.respond_to?(:each) && !value.is_a?(String)
-          value.each {|v| @fields_entries << Solr::FieldEntry.new(name => v)}
+          value.each {|v| @fields << Solr::Field.new(name => v)}
         else
-          @fields_entries << Solr::FieldEntry.new(name => value)
+          @fields << Solr::Field.new(name => value)
         end
       end
-    when Solr::FieldEntry
-      @fields_entries << fields
-    when String
-      # Assume that we're manipulating a xml document. Parse it.
-      REXML::Document.new(fields).elements.each('/doc/field') do |ele|
-        name = ele.attributes['name']
-        value = ele.text
-        boost = ele.attributes['boost']
-        @fields_entries << Solr::FieldEntry.new(name => value, :boost => boost)
-      end
+    when Solr::Field
+      @fields << fields
     else
-      raise "must pass in Solr::FieldEntry, Hash or String"
+      raise "must pass in Solr::Field or Hash"
     end
   end
 
   # shorthand to allow hash lookups
   #   doc['name']
   def [](name)
-    field = @fields_entries.find {|f| f.name == name.to_s}
+    field = @fields.find {|f| f.name == name.to_s}
     return field.value if field
     return nil
   end
 
   # shorthand to assign as a hash
   def []=(name,value)
-    @fields_entries << Solr::FieldEntry.new(name => value)
+    @fields << Solr::Field.new(name => value)
   end
 
   # convert the Document to a REXML::Element
   def to_xml
     e = Solr::XML::Element.new 'doc'
     e.attributes['boost'] = @boost.to_s if @boost
-    @fields_entries.each {|f| e.add_element(f.to_xml)}
+    @fields.each {|f| e.add_element(f.to_xml)}
     return e
   end
-end
 end

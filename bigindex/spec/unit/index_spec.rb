@@ -12,7 +12,7 @@ describe BigIndex::Resource do
     it_should_behave_like "a model with BigIndex::Resource"
 
     it "should choose the proper fields in the model to index" do
-      book_expected = [ {:name => :string},
+      book_expected = [ {:title => :string},
                         {:author => :string},
                         {:description => :text} ]
 
@@ -156,6 +156,20 @@ describe BigIndex::Resource do
         results.total.should == 1
         results.docs.first.id.should == book.id
       end
+    end
+
+    it "should create dynamic finders based on the indexed fields (i.e. find_by_attribute() methods)" do
+      result = Book.new
+
+      Book.should respond_to(:find_by_title)
+      Book.should respond_to(:find_by_author)
+
+      # It should dispatch a call to #find_by_index with some defined conditions
+      Book.adapter.should_receive(:find_by_index).with("title:(\"I Am Legend\")", an_instance_of(Hash)).and_return([result])
+      Book.find_by_title("I Am Legend").should == [result]
+
+      Book.adapter.should_receive(:find_by_index).with("author:(\"Richard Matheson\")", an_instance_of(Hash)).and_return([result])
+      Book.find_by_author("Richard Matheson").should == [result]
     end
 
   end

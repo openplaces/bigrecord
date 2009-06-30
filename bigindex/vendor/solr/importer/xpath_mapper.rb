@@ -9,14 +9,12 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-module Solr
-  module Importer
 
 begin
   require 'xml/libxml'
 
   # For files with the first line containing field names
-  class XPathMapper < Solr::Importer::Mapper
+  class Solr::Importer::XPathMapper < Solr::Importer::Mapper
     def field_data(doc, xpath)
       doc.find(xpath.to_s).collect do |node|
         case node
@@ -29,12 +27,9 @@ begin
     end
   end
 rescue LoadError => e # If we can't load libxml
-  class XPathMapper
+  class Solr::Importer::XPathMapper
     def initialize(mapping, options={})
       raise "libxml not installed"
     end
-  end
-end
-
   end
 end

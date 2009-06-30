@@ -10,9 +10,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-module Solr
-
-class Util
+class Solr::Util
   # paired_array_each([key1,value1,key2,value2]) yields twice:
   #     |key1,value1|  and |key2,value2|
   def self.paired_array_each(a, &block)
@@ -24,15 +22,11 @@ class Util
 
   # paired_array_to_hash([key1,value1,key2,value2]) => {key1 => value1, key2, value2}
   def self.paired_array_to_hash(a)
-    h = {}
-
-    paired_array_each(a) do |key,value|
-      h[key] = value
-    end
-
-    h
+    Hash[*a]
   end
 
-end
-
+  def self.query_parser_escape(string)
+    # backslash prefix everything that isn't a word character
+    string.gsub(/(\W)/,'\\\\\1')
+  end
 end

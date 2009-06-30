@@ -10,10 +10,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-module Solr
-  module Importer
-
-class Mapper
+class Solr::Importer::Mapper
   def initialize(mapping, options={})
     @mapping = mapping
     @options = options
@@ -28,7 +25,7 @@ class Mapper
       when String
         field_mapping
       when Proc
-        field_mapping.call(orig_data)
+        field_mapping.call(orig_data)  # TODO pass in more context, like self or a function for field_data, etc
       when Symbol
         field_data(orig_data, @options[:stringify_symbols] ? field_mapping.to_s : field_mapping)
       when Enumerable
@@ -48,7 +45,7 @@ class Mapper
     mapped_data
   end
 
-end
 
-  end
+
+
 end

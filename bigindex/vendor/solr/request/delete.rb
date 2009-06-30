@@ -10,14 +10,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-#require 'solr/xml'
+require 'solr/xml'
 
-module Solr
-  module Request
-
-class Delete < Solr::Request::Update
-
-  attr_reader :query
+class Solr::Request::Delete < Solr::Request::Update
 
   # A delete request can be for a specific document id
   #
@@ -53,5 +48,3 @@ class Delete < Solr::Request::Update
   end
 end
 
-  end
-end

@@ -13,10 +13,7 @@
 # For files with the first line containing field names
 # Currently not designed for enormous files, as all lines are
 # read into an array
-module Solr
-  module Importer
-
-class DelimitedFileSource
+class Solr::Importer::DelimitedFileSource
   include Enumerable
 
   def initialize(filename, splitter=/\t/)
@@ -38,7 +35,4 @@ class DelimitedFileSource
     end
   end
 
-end
-
-  end
 end

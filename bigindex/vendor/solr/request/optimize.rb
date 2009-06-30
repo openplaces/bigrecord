@@ -10,18 +10,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-#require 'solr/xml'
+require 'solr/xml'
 
-module Solr
-  module Request
-
-class Optimize < Solr::Request::Update
+class Solr::Request::Optimize < Solr::Request::Update
 
   def to_s
     Solr::XML::Element.new('optimize').to_s
   end
 
-end
-
-  end
 end

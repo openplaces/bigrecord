@@ -17,6 +17,10 @@ module BigIndex
         raise NotImplementedError
       end
 
+      def get_field_type(type)
+        type
+      end
+
       def find_values_by_index(query, options={})
         raise NotImplementedError
       end

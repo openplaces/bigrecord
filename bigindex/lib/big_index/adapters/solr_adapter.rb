@@ -8,15 +8,12 @@ module BigIndex
       end
 
       def process_index_batch(items, loop, options={})
-        raise NotImplementedError
       end
 
       def drop_index
-        raise NotImplementedError
       end
 
-      def process_index_batch(items, loop, options={})
-        raise NotImplementedError
+      def get_field_type(type)
       end
 
       def find_values_by_index(query, options={})

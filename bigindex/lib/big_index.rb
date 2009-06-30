@@ -11,10 +11,7 @@ require dir + 'adapters'
 require dir + 'repository'
 require dir + 'resource'
 
-# Pathname.glob(vendor_dir + '*.rb') do |file|
-#   autoload :Solr, file
-# end
-
+# Autoload the vendor files
 autoload :Solr, (vendor_dir + 'solr').to_s
 
 module BigIndex
@@ -105,4 +102,4 @@ module BigIndex
     config
   end
 
-end
+end # module BigIndex

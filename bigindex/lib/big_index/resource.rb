@@ -94,7 +94,45 @@ module BigIndex
       # @return [TrueClass, FalseClass] whether the command was successful.
       #
       def rebuild_index(options={}, finder_options={})
-        adapter.rebuild_index(options, finder_options)
+        if options[:drop]
+          logger.info "Dropping #{self.name} index..." unless options[:silent]
+          adapter.drop_index
+        end
+
+        $stderr.puts "reporter:status:Indexation is under way" unless options[:silent]
+
+        finder_options[:batch_size] ||= 100
+        finder_options[:view] ||= :all
+        finder_options[:bypass_index] = true
+
+        options[:batch_size] ||= 150
+        options[:commit] = true unless options.has_key?(:commit)
+        options[:optimize] = true unless options.has_key?(:optimize)
+
+        $stderr.puts "Offset: #{finder_options[:offset]}" unless options[:silent]
+        $stderr.puts "Stop row: #{finder_options[:stop_row]}" unless options[:silent]
+
+        buffer = []
+        items_processed = 0
+        loop = 0
+        self.scan(finder_options) do |r|
+          items_processed += 1
+          buffer << r
+          if buffer.size > options[:batch_size]
+            loop += 1
+            adapter.process_index_batch(buffer, loop, options)
+            buffer.clear
+          end
+        end
+
+        adapter.process_index_batch(buffer, loop, options) unless buffer.empty?
+
+        if items_processed > 0
+          $stderr.puts "Index for #{self.name} has been rebuilt (#{items_processed} records)." unless options[:silent]
+        else
+          $stderr.puts "Nothing to index for #{self.name}." unless options[:silent]
+        end
+        true
       end
 
       def index_view(name, columns)
@@ -137,7 +175,8 @@ module BigIndex
               fields[item] = :text unless unreturned_index_fields.find{|n| n == item}
             end
           end
-          @returned_index_fields = fields.collect {|field, type| "#{field}_#{get_solr_field_type(type)}".to_sym}
+          @returned_index_fields = fields.collect {|field, type| "#{field}_#{adapter.get_field_type(type)}".to_sym}
+          # TODO: Check with Sebastien about this
           @returned_index_fields += [:score, :pk_s, :type_s_mv]
           @returned_index_fields.uniq!
         end
@@ -190,7 +229,6 @@ module BigIndex
 
       def find_every_by_index(options)
         # Construct the query. First add the type information.
-        #query = "type:#{self.name}^4 "
         query =""
 
         # set default operator
@@ -223,7 +261,7 @@ module BigIndex
           end
 
         if options[:source] == :index
-          adapter.find_values_by_index(query, :offset    =>options[:offset],
+          adapter.find_values_by_index(query, :offset   => options[:offset],
                                               :order    => options[:order],
                                               :limit    => options[:limit],
                                               :fields   => fields,
@@ -243,7 +281,7 @@ module BigIndex
         options.assert_valid_keys(INDEX_FIND_OPTIONS)
       end
 
-    end
+    end # module ClassMethods
 
 
     module InstanceMethods
@@ -252,7 +290,7 @@ module BigIndex
         self.class.indexed?
       end
 
-    end
+    end # module InstanceMethods
 
   end # module Resource
 end # module BigIndex

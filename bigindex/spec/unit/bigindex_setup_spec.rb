@@ -47,10 +47,6 @@ describe BigIndex do
       check_for_symbolic_keys(BigIndex.configurations)
     end
 
-    it "should description" do
-
-    end
-
   end
 
   describe "repository" do

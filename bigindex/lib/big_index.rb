@@ -64,17 +64,11 @@ module BigIndex
 
     Repository.clear_adapters
 
-    @configurations = {}
-    configurations.each do |key,value|
+    @configurations = symbolize_keys(configurations)
+    @configurations.each do |key, value|
       assert_kind_of 'value', value, Hash
 
-      options = {}
-      value.each do |k, opts|
-        options[k.to_sym] = opts
-      end
-
-      @configurations[key.to_sym] = options
-      setup(key.to_sym, options)
+      setup(key, value)
     end
 
     BigIndex::Repository.default_name = @configurations.keys[0] if @configurations.size == 1
@@ -93,6 +87,22 @@ module BigIndex
     else
       current_repository
     end
+  end
+
+  def self.symbolize_keys(h)
+    config = {}
+
+    h.each do |k, v|
+      if k == 'port'
+        config[k.to_sym] = v.to_i
+      elsif v.is_a?(Hash)
+        config[k.to_sym] = symbolize_keys(v)
+      else
+        config[k.to_sym] = v
+      end
+    end
+
+    config
   end
 
 end

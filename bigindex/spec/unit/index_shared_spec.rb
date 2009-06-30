@@ -1,16 +1,29 @@
-describe "a model with BigIndex", :shared => true do
+describe "a model with BigIndex::Resource", :shared => true do
 
   it "should mixin index related class methods into the model" do
     @model_class.should respond_to(:indexed?)
     @model_class.indexed?.should be_true
 
+    # Verifying the configuration related methods
+    @model_class.should respond_to(:index_configuration)
+    @model_class.should respond_to(:index_configuration=)
+
     # Verifying the index setup methods
+    @model_class.should respond_to(:add_index_field)
     @model_class.should respond_to(:index)
     @model_class.should respond_to(:rebuild_index)
-    @model_class.should respond_to(:process_index_batch)
+
+    # Verifying that the index view and name related methods are present
+    @model_class.should respond_to(:index_view)
+    @model_class.should respond_to(:index_views)
+    @model_class.should respond_to(:index_view_names)
+    @model_class.should respond_to(:index_views_hash)
+    @model_class.should respond_to(:default_index_views_hash)
 
     # Verifying that all the find methods are present
     @model_class.should respond_to(:find_with_index)
+    @model_class.should respond_to(:find_without_index)
+    @model_class.should respond_to(:find_every_by_index)
   end
 
   it "should mixin index related instance methods into the model" do

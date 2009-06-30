@@ -5,19 +5,15 @@ module BigIndex
 
       attr_reader :name, :options
 
-      def rebuild_index(options={}, finder_options={})
-        raise NotImplementedError
+      def adapter_name
+        'abstract'
       end
 
       def process_index_batch(items, loop, options={})
         raise NotImplementedError
       end
 
-      def index(field, options={}, &block)
-        raise NotImplementedError
-      end
-
-      def add_index_field(field, block)
+      def drop_index
         raise NotImplementedError
       end
 
@@ -29,7 +25,7 @@ module BigIndex
         raise NotImplementedError
       end
 
-      def find_id_by_index(query, options={})
+      def find_ids_by_index(query, options={})
         raise NotImplementedError
       end
 

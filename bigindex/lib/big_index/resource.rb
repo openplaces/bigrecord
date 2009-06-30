@@ -11,7 +11,7 @@ module BigIndex
 
         @indexed = true
 
-        @configuration = {
+        @index_configuration = {
           :fields => [],
           :additional_fields => nil,
           :exclude_fields => [],
@@ -55,14 +55,25 @@ module BigIndex
         repository.adapter
       end
 
-      def configuration
-        @configuration
+      def index_configuration
+        @index_configuration
       end
 
-      def configuration=(config)
-        @configuration = config
+      def index_configuration=(config)
+        @index_configuration = config
       end
 
+      ##
+      #
+      # Whenever a Ruby class includes BigIndex::Resource, it'll be considered
+      # as indexed.
+      #
+      # This method checks whether the current class, as well as any ancestors
+      # in the inheritance tree.
+      #
+      # @return [TrueClass, FalseClass] whether or not the current class, or any
+      #   of its ancestors are indexed.
+      #
       def indexed?
         if @indexed.nil?
           @indexed = false
@@ -76,12 +87,14 @@ module BigIndex
         @indexed
       end
 
+      ##
+      #
+      # Dispatches a command to the current adapter to rebuild the index.
+      #
+      # @return [TrueClass, FalseClass] whether the command was successful.
+      #
       def rebuild_index(options={}, finder_options={})
         adapter.rebuild_index(options, finder_options)
-      end
-
-      def process_index_batch(items, loop, options={})
-        adapter.process_index_batch(items, loop, options={})
       end
 
       def index_view(name, columns)
@@ -102,7 +115,7 @@ module BigIndex
       end
 
       def default_index_views_hash
-        {:default => self.configuration[:fields]}
+        {:default => self.index_configuration[:fields]}
       end
 
       def set_unreturned_index_fields(fields)
@@ -116,7 +129,7 @@ module BigIndex
       def returned_index_fields
         unless @returned_index_fields
           fields = {}
-          configuration[:solr_fields].each do |item|
+          index_configuration[:fields].each do |item|
             if item.is_a?(Hash)
               name = item.keys[0]
               fields.merge!(item) unless (unreturned_index_fields.find{|n| n == name} || item.values[0].to_s =~ /not_stored/)
@@ -147,14 +160,14 @@ module BigIndex
       end
 
       def add_index_field(field, block)
-        if self.configuration[:fields]
-          unless self.configuration[:fields].include?(field)
-            self.configuration[:fields] << field
+        if self.index_configuration[:fields]
+          unless self.index_configuration[:fields].include?(field)
+            self.index_configuration[:fields] << field
           else
             return
           end
         else
-          self.configuration[:fields] = [field]
+          self.index_configuration[:fields] = [field]
         end
 
         field_name = field.is_a?(Hash) ? field.keys[0] : field
@@ -211,16 +224,16 @@ module BigIndex
 
         if options[:source] == :index
           adapter.find_values_by_index(query, :offset    =>options[:offset],
-                                      :order    => options[:order],
-                                      :limit    => options[:limit],
-                                      :fields   => fields,
-                                      :operator => options[:operator],
-                                      :debug    => options[:debug])
+                                              :order    => options[:order],
+                                              :limit    => options[:limit],
+                                              :fields   => fields,
+                                              :operator => options[:operator],
+                                              :debug    => options[:debug])
         else
-          adapter.find_by_index(query, :offset   => options[:offset],
-                              :order    => options[:order],
-                              :limit    => options[:limit],
-                              :operator => options[:operator])
+          adapter.find_by_index(query,  :offset   => options[:offset],
+                                        :order    => options[:order],
+                                        :limit    => options[:limit],
+                                        :operator => options[:operator])
         end
       end
 
@@ -231,6 +244,7 @@ module BigIndex
       end
 
     end
+
 
     module InstanceMethods
 

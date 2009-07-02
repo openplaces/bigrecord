@@ -5,13 +5,14 @@ require 'set'
 dir = Pathname(__FILE__).dirname.expand_path + 'big_index'
 vendor_dir = Pathname(__FILE__).dirname.parent.expand_path + 'vendor'
 
+# Autoload the vendor files
+autoload :Solr, (vendor_dir + 'solr').to_s
+
 require dir + 'support'
 require dir + 'adapters'
 require dir + 'repository'
 require dir + 'resource'
 
-# Autoload the vendor files
-autoload :Solr, (vendor_dir + 'solr').to_s
 
 module BigIndex
   extend Assertions

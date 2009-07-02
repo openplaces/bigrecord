@@ -27,6 +27,9 @@ module BigIndex
           :default_boost => 1.0
         }
 
+        after_save    :index_save
+        after_destroy :index_destroy
+
         class << self
           # Defines find_with_index() and find_without_index()
           alias_method_chain :find, :index
@@ -60,7 +63,7 @@ module BigIndex
       end
 
       def index_configuration
-        @index_configuration
+        @index_configuration.dup
       end
 
       def index_configuration=(config)
@@ -89,6 +92,10 @@ module BigIndex
           end
         end
         @indexed
+      end
+
+      def index_type
+        name
       end
 
       ##
@@ -218,6 +225,8 @@ module BigIndex
         end
 
         field_name = field.is_a?(Hash) ? field.keys[0] : field
+
+        define_field_value(field)
       end
 
       ##
@@ -285,21 +294,28 @@ module BigIndex
           end
 
         if options[:source] == :index
-          adapter.find_values_by_index(query, :offset   => options[:offset],
+          adapter.find_values_by_index(self, query, {:offset   => options[:offset],
                                               :order    => options[:order],
                                               :limit    => options[:limit],
                                               :fields   => fields,
                                               :operator => options[:operator],
-                                              :debug    => options[:debug])
+                                              :debug    => options[:debug]})
         else
-          adapter.find_by_index(query,  :offset   => options[:offset],
+          if options[:format] == :ids
+            adapter.find_ids_by_index(self, query,  {:offset   => options[:offset],
+                                          :order    => options[:order],
+                                          :limit    => options[:limit],
+                                          :operator => options[:operator]})
+          else
+          adapter.find_by_index(self, query,  {:offset   => options[:offset],
                                         :order    => options[:order],
                                         :limit    => options[:limit],
-                                        :operator => options[:operator])
+                                        :operator => options[:operator]})
+          end
         end
       end
 
-      INDEX_FIND_OPTIONS = [ :source, :offset, :limit, :conditions, :order, :group, :fields, :debug, :view ]
+      INDEX_FIND_OPTIONS = [ :source, :offset, :limit, :conditions, :order, :group, :fields, :debug, :view, :format ]
 
       ##
       #
@@ -367,13 +383,64 @@ module BigIndex
         end_eval
       end
 
+      def define_field_value(field)
+        type = field.is_a?(Hash) ? field.values[0] : nil
+        field = field.is_a?(Hash) ? field.keys[0] : field
+        define_method("#{field}_for_index".to_sym) do
+          begin
+            value = self.instance_variable_get("@#{field.to_s}".to_sym) || self.send(field.to_sym)
+            case type
+              # format dates properly; return nil for nil dates
+              when :date: value ? value.utc.strftime("%Y-%m-%dT%H:%M:%SZ") : nil
+              else value
+            end
+          rescue
+            value = ''
+            logger.debug "There was a problem getting the value for the field '#{field}': #{$!}"
+          end
+        end
+      end
+
     end # module ClassMethods
 
 
     module InstanceMethods
 
+      def adapter
+        self.class.repository.adapter
+      end
+
+      def index_configuration
+        self.class.index_configuration
+      end
+
       def indexed?
         self.class.indexed?
+      end
+
+      def record_id
+        self.id
+      end
+
+      def index_type
+        self.class.index_type
+      end
+
+      def index_id
+        classname = index_type
+        "#{classname}:#{record_id}"
+      end
+
+      def index_save
+        unless index_configuration[:auto_save] == false
+          adapter.index_save(self)
+        end
+      end
+
+      def index_destroy
+        unless index_configuration[:auto_save] == false
+          adapter.index_destroy(self)
+        end
       end
 
     end # module InstanceMethods

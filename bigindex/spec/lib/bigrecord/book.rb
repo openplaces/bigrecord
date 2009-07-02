@@ -8,6 +8,7 @@ class Book < BigRecord::Base
   index :title => :string
   index :author => :string
   index :description => :text
+  index :current_time => :text
 
   def current_time
     Time.now.to_s

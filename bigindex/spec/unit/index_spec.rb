@@ -46,30 +46,28 @@ describe BigIndex::Resource do
       book = Book.new(:title => "I Am Legend", :author => "Richard Matheson")
       book.save.should be_true
 
-      books = Book.find(:all, :conditions => "title:\"I Am Legend\"")
-      books.size.should == 1
-      books.first.title.should == "I Am Legend"
+      books_check = Book.find(:all, :conditions => "title:\"I Am Legend\"")
+      books_check.size.should == 1
+      books_check.first.title.should == "I Am Legend"
     end
 
     it "indexed #find should return proper results given different terms" do
-      pending "Refactor for BigIndex"
       book = Book.new(  :title => "I Am Legend",
                         :author => "Richard Matheson",
                         :description => "The most clever and riveting vampire novel since Dracula.")
       book.save.should be_true
 
-      [ 'legend', 'i am', 'am', 'title:legend', 'title:legend AND author:richard',
+      [ 'I Am Legend', 'i am', 'am', 'title:legend', 'title:legend AND author:richard',
         'author:matheson', 'author:richard', 'richard legend' ].each do |term|
         # Now verify the results
         results = Book.find(:all, :conditions => term)
-        results.total.should == 1
+        results.size.should == 1
 
-        results.docs.first.id.should == book.id
+        results.first.id.should == book.id
       end
     end
 
     it "indexed #find should search dynamic fields" do
-      pending "Refactor for BigIndex"
       book = Book.new(  :title => "I Am Legend",
                         :author => "Richard Matheson",
                         :description => "The most clever and riveting vampire novel since Dracula.")
@@ -77,17 +75,16 @@ describe BigIndex::Resource do
 
       date = Time.now.strftime('%b %d %Y')
 
-      ["legend AND #{date}", "author:richard AND #{date}", "richard legend #{date}",
-        "legend #{date}"].each do |term|
+      ["#{date}", "author:\"Richard Matheson\" AND #{date}", "title:\"I Am Legend\" #{date}"].each do |term|
         results = Book.find(:all, :conditions => term)
 
-        results.total.should == 1
-        results.docs.first.id.should == book.id
+        results.size.should == 1
+        results.first.id.should == book.id
       end
     end
 
     it "#find_id_by_solr should return a list of ids as the results" do
-      pending "Refactor for BigIndex"
+      pending "Implement this in BigIndex"
       book = Book.new(  :title => "I Am Legend",
                         :author => "Richard Matheson",
                         :description => "The most clever and riveting vampire novel since Dracula.")
@@ -96,15 +93,14 @@ describe BigIndex::Resource do
       [ 'legend', 'i am', 'am', 'title:legend', 'title:legend AND author:richard',
         'author:matheson', 'author:richard', 'richard legend' ].each do |term|
         # Now verify the results
-        results = Book.find(:all, :conditions => term)
-        results.total.should == 1
+        results = Book.find(:all, :conditions => term, :format => :ids)
+        results.size.should == 1
 
-        results.docs.should ==  [book.id]
+        results.should ==  [book.id]
       end
     end
 
     it "#find should correctly search with html entities" do
-      pending "Refactor for BigIndex"
       description = "
       inverted exclamation mark  	&iexcl;  	&#161;
       ¤ 	currency 	&curren; 	&#164;
@@ -153,8 +149,8 @@ describe BigIndex::Resource do
       description_keywords.each do |term|
         results = Book.find(:all, :conditions => term)
 
-        results.total.should == 1
-        results.docs.first.id.should == book.id
+        results.size.should == 1
+        results.first.id.should == book.id
       end
     end
 
@@ -170,6 +166,13 @@ describe BigIndex::Resource do
 
       Book.adapter.should_receive(:find_by_index).with("author:(\"Richard Matheson\")", an_instance_of(Hash)).and_return([result])
       Book.find_by_author("Richard Matheson").should == [result]
+    end
+
+    it "should" do
+      book = Book.new(:title => "I Am Legend", :author => "Richard Matheson", :description => "This book is great")
+      book.save.should be_true
+
+      book.destroy
     end
 
   end

@@ -6,6 +6,8 @@ require 'spec'
 # TODO: Remove this later
 class Object; def self.deprecate(*options); end; end
 
+#NotImplementedError = Spec::Example::NotYetImplementedError
+
 SPEC_ROOT = Pathname(__FILE__).dirname.expand_path
 
 # Require ActiveRecord

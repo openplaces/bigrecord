@@ -3,7 +3,11 @@ module BigIndex
 
     class SolrAdapter < AbstractAdapter
 
+      include ::Solr::AdapterMethods
+
       attr_reader :connection
+
+      # BigIndex Adapter API methods ====================================
 
       def adapter_name
         'solr'
@@ -17,10 +21,39 @@ module BigIndex
         "pk_s"
       end
 
-      def process_index_batch(items, loop, options={})
+      def process_index_batch(items, loop, options = {})
+        unless items.empty?
+          # This checks that if the item has a method indexable? defined, then it will determine
+          # whether or not to index the item based on that method's returned boolean value.
+          items_to_index = items.select { |item| item.respond_to?(:indexable?) ? item.indexable? : true }
+
+          unless items_to_index.empty?
+            docs = items_to_index.collect{|content| content.to_solr_doc}
+            if options[:only_generate]
+              # Collect the documents. This is to be used within a mapred job.
+              docs.each do |doc|
+                key = doc['id']
+
+                # Cannot have \n and \t in the value since they are
+                # document and field separators respectively
+                value = doc.to_xml.to_s
+                value = value.gsub("\n", "__ENDLINE__")
+                value = value.gsub("\t", "__TAB__")
+
+                puts "#{key}\t#{value}"
+              end
+            else
+              solr_add(docs)
+              solr_commit if options[:commit]
+            end
+          else
+            break
+          end
+        end
       end
 
       def drop_index(model)
+        @connection.logger = model.logger if model.respond_to?(:logger)
         @connection.solr_execute(Solr::Request::Delete.new(:query => "type_s_mv:\"#{model.name}\""))
       end
 
@@ -65,23 +98,49 @@ module BigIndex
         end
       end
 
-      def find_by_index(query, options={})
-        data = parse_query(query, options)
+      def index_save(model)
+        configuration = model.index_configuration
 
-        return parse_results(data, options) if data
+        results = []
+        if configuration[:if] && evaluate_condition(configuration[:if], model)
+          results << solr_add(to_solr_doc(model))
+          results << solr_commit if configuration[:auto_commit]
+        end
+
+        !results.map{|result| result.status_code == "0"}.include?(false)
       end
 
-      def find_values_by_index(query, options={})
-        data = parse_query(query, options)
+      def index_destroy(model)
+        configuration = model.index_configuration
 
-        return parse_results(data, {:format => :values}) if data
+        results = []
+
+        results << solr_delete(model.index_id)
+        results << solr_delete(":#{model.record_id}")
+        results << solr_commit if configuration[:auto_commit]
+
+        !results.map{|result| result.status_code == "0"}.include?(false)
       end
 
-      def find_ids_by_index(query, options={})
-        data = parse_query(query, options)
+      def find_by_index(model, query, options={})
+        data = parse_query(model, query, options)
 
-        return parse_results(data, {:format => :ids}) if data
+        return parse_results(model, data, options).results if data
       end
+
+      def find_values_by_index(model, query, options={})
+        data = parse_query(model, query, options)
+
+        return parse_results(model, data, {:format => :values}).results if data
+      end
+
+      def find_ids_by_index(model, query, options={})
+        data = parse_query(model, query, options)
+
+        return parse_results(model, data, {:format => :ids}) if data
+      end
+
+      # End of BigIndex Adapter API ====================================
 
     private
 
@@ -90,16 +149,6 @@ module BigIndex
 
         super(name, options)
       end
-
-
-      def parse_query(query, options = {})
-        raise NotImplementedError
-      end
-
-      def parse_results(data, options)
-        raise NotImplementedError
-      end
-
 
     end # class SolrAdapter
 

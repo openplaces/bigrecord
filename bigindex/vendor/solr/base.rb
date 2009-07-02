@@ -2,7 +2,7 @@ module Solr
 
   class Base
     attr_reader :configurations
-    attr_reader :logger
+    attr_accessor :logger
 
     # URL and Shard methods ====================================
 
@@ -86,12 +86,14 @@ module Solr
     end
 
 
-    def initialize(options, logger = nil)
-      raise ArgumentError, "Adapter: #{options[:adapter]} is not for Solr" unless options[:adapter] == "solr"
+    private
 
-      @configurations = options
-      @logger = logger
-    end
+      def initialize(options, logger = nil)
+        raise ArgumentError, "Adapter: #{options[:adapter]} is not for Solr" unless options[:adapter] == "solr"
+
+        @configurations = options
+        @logger = logger
+      end
 
     protected
 

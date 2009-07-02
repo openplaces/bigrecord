@@ -490,6 +490,16 @@ module BigRecord
         self.default_family = name.to_s
       end
 
+      def find_all_by_id(ids, options={})
+        ids.inject([]) do |result, id|
+          begin
+            result << find_one(id, options)
+          rescue BigRecord::RecordNotFound => e
+          end
+          result
+        end
+      end
+
     protected
       def invalidate_views
         @views = nil
@@ -518,16 +528,6 @@ module BigRecord
           rec = instantiate(raw_record)
           rec.all_attributes_loaded = true if options[:view] == :all
           rec
-        end
-      end
-
-      def find_all_by_id(ids, options={})
-        ids.inject([]) do |result, id|
-          begin
-            result << find_one(id, options)
-          rescue BigRecord::RecordNotFound => e
-          end
-          result
         end
       end
 

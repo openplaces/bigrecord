@@ -12,19 +12,36 @@ describe BigIndex::Resource do
     it_should_behave_like "a model with BigIndex::Resource"
 
     it "should choose the proper fields in the model to index" do
+
+      # The expected fields (and their types) to be indexed for the Book model
       book_expected = [ {:title => :string},
                         {:author => :string},
                         {:description => :text} ]
 
       book_expected.each do |h|
-        Book.index_views_hash[:default].should include(h)
+        # The indexed fields should contain the expected attributes/field names
+        Book.index_views_hash[:default].map{|x| x.field_name}.should include(h.keys.first)
+
+        # Now we check that only one field matches that name
+        Book.index_views_hash[:default].select{|x| x.field_name == h.keys.first}.size.should == 1
+
+        # And the type of that field should match the expected type
+        Book.index_views_hash[:default].select{|x| x.field_name == h.keys.first}.first[:type].should == h.values.first
       end
 
-      animal_expected = [ {:name => :string},
+      # The expected fields (and their types) to be indexed for the Animal model
+      animal_expected = [ {:name => :text},
                           {:description => :text} ]
 
       animal_expected.each do |h|
-        Animal.index_views_hash[:default].should include(h)
+        # The indexed fields should contain the expected attributes/field names
+        Animal.index_views_hash[:default].map{|x| x.field_name}.should include(h.keys.first)
+
+        # Now we check that only one field matches that name
+        Animal.index_views_hash[:default].select{|x| x.field_name == h.keys.first}.size.should == 1
+
+        # And the type of that field should match the expected type
+        Animal.index_views_hash[:default].select{|x| x.field_name == h.keys.first}.first[:type].should == h.values.first
       end
     end
 
@@ -35,8 +52,10 @@ describe BigIndex::Resource do
     before(:each) do
       # TODO: This is specific to BigRecord and will need to be taken out
       Book.truncate
+      Animal.truncate
 
       Book.rebuild_index :silent => true, :drop => true
+      Animal.rebuild_index :silent => true, :drop => true
     end
 
     it "should insert new index data" do
@@ -57,8 +76,8 @@ describe BigIndex::Resource do
                         :description => "The most clever and riveting vampire novel since Dracula.")
       book.save.should be_true
 
-      [ 'I Am Legend', 'i am', 'am', 'title:legend', 'title:legend AND author:richard',
-        'author:matheson', 'author:richard', 'richard legend' ].each do |term|
+      [ 'I Am Legend', 'i am', 'am', 'legend', 'legend AND author:"Richard Matheson"',
+        'author:"Richard Matheson"', 'richard', 'richard legend' ].each do |term|
         # Now verify the results
         results = Book.find(:all, :conditions => term)
         results.size.should == 1
@@ -84,14 +103,13 @@ describe BigIndex::Resource do
     end
 
     it "#find_id_by_solr should return a list of ids as the results" do
-      pending "Implement this in BigIndex"
       book = Book.new(  :title => "I Am Legend",
                         :author => "Richard Matheson",
                         :description => "The most clever and riveting vampire novel since Dracula.")
       book.save.should be_true
 
-      [ 'legend', 'i am', 'am', 'title:legend', 'title:legend AND author:richard',
-        'author:matheson', 'author:richard', 'richard legend' ].each do |term|
+      [ 'legend', 'i am', 'am', 'title:"I Am Legend"', 'title:"I Am Legend" AND author:"Richard Matheson"',
+        'matheson', 'richard', 'richard legend' ].each do |term|
         # Now verify the results
         results = Book.find(:all, :conditions => term, :format => :ids)
         results.size.should == 1

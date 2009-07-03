@@ -5,7 +5,7 @@ class Animal < BigRecord::Base
   column :type,         :integer
   column :description,  :string
 
-  index :name => :string
-  index :description => :text
+  index :name
+  index :description
 
 end

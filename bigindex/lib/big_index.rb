@@ -12,6 +12,7 @@ require dir + 'support'
 require dir + 'adapters'
 require dir + 'repository'
 require dir + 'resource'
+require dir + 'index_field'
 
 
 module BigIndex

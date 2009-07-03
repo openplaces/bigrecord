@@ -137,7 +137,7 @@ module BigIndex
       def find_ids_by_index(model, query, options={})
         data = parse_query(model, query, options)
 
-        return parse_results(model, data, {:format => :ids}) if data
+        return parse_results(model, data, {:format => :ids}).results if data
       end
 
       # End of BigIndex Adapter API ====================================

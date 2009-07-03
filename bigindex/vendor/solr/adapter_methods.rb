@@ -42,38 +42,36 @@ module Solr
 
         # iterate through the fields and add them to the document,
         configuration[:fields].each do |field|
-          field_name = field
-          field_type = configuration[:facets] && configuration[:facets].include?(field) ? :facet : :text
-          field_boost= configuration[:default_boost]
+          field_name = field.field_name
+          field_type = get_field_type(field[:type]) if field[:type]
+          field_boost= field[:boost] if field[:boost]
 
-          if field.is_a?(Hash)
-            field_name = field.keys.pop
-            if field.values.pop.respond_to?(:each_pair)
-              attributes = field.values.pop
-              field_type = get_field_type(attributes[:type]) if attributes[:type]
-              field_boost= attributes[:boost] if attributes[:boost]
-            else
-              field_type = get_field_type(field.values.pop)
-              field_boost= field[:boost] if field[:boost]
-            end
-          end
-          value = model.send("#{field_name}_for_index")
-          value = set_value_if_nil(field_type) if value.to_s == ""
+          field_type  ||= configuration[:facets] && configuration[:facets].include?(field) ? :facet : :text
+          field_boost ||= configuration[:default_boost]
 
           # add the field to the document, but only if it's not the id field
           # or the type field (from single table inheritance), since these
           # fields have already been added above.
           if field_name.to_s != model.class.primary_key and field_name.to_s != "type"
             suffix = get_field_type(field_type)
+            value = model.send("#{field_name}_for_index")
+            if value.is_a?(Hash)
+              boost = value.values.first
+              value = value.keys.first
+            end
+
+            value = set_value_if_nil(field_type) if value.to_s == ""
+
             # This next line ensures that e.g. nil dates are excluded from the
             # document, since they choke Solr. Also ignores e.g. empty strings,
             # but these can't be searched for anyway:
             # http://www.mail-archive.com/solr-dev@lucene.apache.org/msg05423.html
             next if value.nil? || value.to_s.strip.empty?
+
             [value].flatten.each do |v|
               v = set_value_if_nil(suffix) if value.to_s == ""
               field = Solr::Field.new("#{field_name}_#{suffix}" => ERB::Util.html_escape(v.to_s))
-              field.boost = validate_boost(field_boost, model)
+              field.boost = validate_boost((boost || field_boost), model)
               doc << field
             end
           end
@@ -363,7 +361,7 @@ module Solr
                if options[:no_parsing]
                   field_list += options[:fields]
                else
-                  field_list += replace_types(options[:fields].collect{|f|"#{f}_t"}, false)
+                  field_list += replace_types(model, options[:fields].collect{|f|"#{f}_t"}, false)
                end
              end
            else
@@ -383,7 +381,7 @@ module Solr
            query_options[:query] = options[:no_parsing] ? query : replace_types(model, [query])[0]
            if options[:order]
              # TODO: set the sort parameter instead of the old ;order. style.
-             query_options[:query] << ';' << (options[:no_parsing] ? order : replace_types([order], false)[0])
+             query_options[:query] << ';' << (options[:no_parsing] ? order : replace_types(model, [order], false)[0])
            end
 
            @connection.solr_execute(Solr::Request::Standard.new(query_options))
@@ -438,9 +436,6 @@ module Solr
         results.update(:facets => solr_data.data['facet_counts']) if options[:facets]
         results.update(:debug => solr_data.data['debug'])
 
-        # FIXME: this is stupid and should be removed... it's only required for find_articles
-        results.update(:exact_match => solr_data.exact_match) if solr_data.respond_to?(:exact_match)
-
         results.update({:docs => result, :total => solr_data.total_hits, :max_score => solr_data.max_score})
         SearchResults.new(results)
       end
@@ -462,16 +457,10 @@ module Solr
 
         suffix = include_colon ? ":" : ""
         if configuration[:fields] && configuration[:fields].is_a?(Array)
-          configuration[:fields].each do |solr_field|
-            field_type = get_field_type(:text)
-            if solr_field.is_a?(Hash)
-              solr_field.each do |name,value|
-                if value.respond_to?(:each_pair)
-                  field_type = get_field_type(value[:type]) if value[:type]
-                else
-                  field_type = get_field_type(value)
-                end
-                field = "#{name.to_s}_#{field_type}#{suffix}"
+          configuration[:fields].each do |index_field|
+
+              field_type = get_field_type(index_field[:type])
+              field = "#{index_field.field_name.to_s}_#{field_type}#{suffix}"
 
                 # Replace the type suffix only when the previous and next character is not a letter or other character
                 # that is valid for a field name. That way, we ensure that we replace on a match of the field and not
@@ -480,14 +469,12 @@ module Solr
                 # would be name_s & ancestor_name_s)
                 strings.each_with_index do |s,i|
                   if suffix.empty?
-                    strings[i] = s.gsub(/(^|[^a-z|A-Z|_|-|0-9])#{name.to_s}_t([^a-z|A-Z|_|-|0-9]|$)/) {|match| "#{$1}#{field}#{$2}"}
+                    strings[i] = s.gsub(/(^|[^a-z|A-Z|_|-|0-9])#{index_field.field_name.to_s}_t([^a-z|A-Z|_|-|0-9]|$)/) {|match| "#{$1}#{field}#{$2}"}
                   else
-                    strings[i] = s.gsub(/(^|[^a-z|A-Z|_|-|0-9])#{name.to_s}_t#{suffix}/) {|match| "#{$1}#{field}"}
+                    strings[i] = s.gsub(/(^|[^a-z|A-Z|_|-|0-9])#{index_field.field_name.to_s}_t#{suffix}/) {|match| "#{$1}#{field}"}
                   end
                 end
-  #              strings.each_with_index {|s,i| strings[i] = s.gsub(/#{name.to_s}_t#{suffix}/,field) }
-              end
-            end
+
           end
         end
 

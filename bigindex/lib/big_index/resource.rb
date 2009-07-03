@@ -203,30 +203,29 @@ module BigIndex
       # to the field name. This can be defined with the :finder_name => "anothername"
       # option.
       #
-      def index(field, options={}, &block)
-        add_index_field(field, block)
+      def index(*field, &block)
+        index_field = IndexField.new(field, block)
 
-        field_name = field.is_a?(Hash) ? field.keys[0] : field
-        finder_name = options[:finder_name] || field_name
+        add_index_field(index_field)
 
         # Create the attribute finder method
-        define_finder finder_name, [{:field => field, :weight => 1}]
+        define_finder index_field[:finder_name]
       end
 
-      def add_index_field(field, block)
+      def add_index_field(index_field)
         if self.index_configuration[:fields]
-          unless self.index_configuration[:fields].include?(field)
-            self.index_configuration[:fields] << field
+          unless self.index_configuration[:fields].include?(index_field)
+            self.index_configuration[:fields] << index_field
           else
             return
           end
         else
-          self.index_configuration[:fields] = [field]
+          self.index_configuration[:fields] = [index_field]
         end
 
-        field_name = field.is_a?(Hash) ? field.keys[0] : field
-
-        define_field_value(field)
+        define_method("#{index_field.field_name}_for_index") do
+          index_field.block ? index_field.block.call(self) : self.send(index_field.field_name.to_sym)
+        end
       end
 
       ##
@@ -289,30 +288,22 @@ module BigIndex
           if options[:fields]
             options[:fields]
           else
-            fields = options[:view] ? index_views_hash[options[:view]] : index_views_hash[:default]
+            fields = options[:view] ? index_views_hash[options[:view]].map{|x| x.field} : index_views_hash[:default].map{|x| x.field}
             fields ||= []
           end
 
-        if options[:source] == :index
-          adapter.find_values_by_index(self, query, {:offset   => options[:offset],
-                                              :order    => options[:order],
-                                              :limit    => options[:limit],
-                                              :fields   => fields,
-                                              :operator => options[:operator],
-                                              :debug    => options[:debug]})
+        if options[:format] == :ids
+          adapter.find_ids_by_index(self, query, {  :offset   => options[:offset],
+                                                    :order    => options[:order],
+                                                    :limit    => options[:limit],
+                                                    :operator => options[:operator]})
         else
-          if options[:format] == :ids
-            adapter.find_ids_by_index(self, query,  {:offset   => options[:offset],
-                                          :order    => options[:order],
-                                          :limit    => options[:limit],
-                                          :operator => options[:operator]})
-          else
-          adapter.find_by_index(self, query,  {:offset   => options[:offset],
-                                        :order    => options[:order],
-                                        :limit    => options[:limit],
-                                        :operator => options[:operator]})
-          end
+          adapter.find_by_index(self, query, {  :offset   => options[:offset],
+                                                :order    => options[:order],
+                                                :limit    => options[:limit],
+                                                :operator => options[:operator]})
         end
+
       end
 
       INDEX_FIND_OPTIONS = [ :source, :offset, :limit, :conditions, :order, :group, :fields, :debug, :view, :format ]
@@ -333,22 +324,14 @@ module BigIndex
       # Creates the attribute finder methods based on the indexed fields of the class,
       # i.e. #find_by_#{attribute_name}
       #
-      def define_finder(finder_name, fields)
+      def define_finder(finder_name)
         class_eval <<-end_eval
           def self.find_by_#{finder_name}(user_query, options={})
 
               options[:fields] ||= index_views_hash[:default]
 
-              write_inheritable_attribute(:string_finders, {}) if read_inheritable_attribute(:string_finders).nil?
-
-              if read_inheritable_attribute(:string_finders)["#{finder_name}"].nil?
-                # FIXME: this is crap... the lookup should be done using a hash
-                read_inheritable_attribute(:string_finders)["#{finder_name}"] =
-                    !index_configuration[:fields].select{|f| f.is_a?(Hash) and f.keys.first and f.keys.first.to_s == "#{finder_name}" and f.values.first==:string}.empty?
-              end
-
               # quote the query if the field type is :string
-              if read_inheritable_attribute(:string_finders)["#{finder_name}"]
+              if options[:fields].select{|f| f.field_name.to_s == "#{finder_name}" }.first[:type] == :string
                 query = "#{finder_name}:(\\"\#{user_query}\\")"
               else
                 query = "#{finder_name}:(\#{user_query})"
@@ -381,24 +364,6 @@ module BigIndex
               return results
             end
         end_eval
-      end
-
-      def define_field_value(field)
-        type = field.is_a?(Hash) ? field.values[0] : nil
-        field = field.is_a?(Hash) ? field.keys[0] : field
-        define_method("#{field}_for_index".to_sym) do
-          begin
-            value = self.instance_variable_get("@#{field.to_s}".to_sym) || self.send(field.to_sym)
-            case type
-              # format dates properly; return nil for nil dates
-              when :date: value ? value.utc.strftime("%Y-%m-%dT%H:%M:%SZ") : nil
-              else value
-            end
-          rescue
-            value = ''
-            logger.debug "There was a problem getting the value for the field '#{field}': #{$!}"
-          end
-        end
       end
 
     end # module ClassMethods

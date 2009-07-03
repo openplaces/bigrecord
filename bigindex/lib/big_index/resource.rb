@@ -147,6 +147,10 @@ module BigIndex
         return items_processed
       end
 
+      def drop_index
+        adapter.drop_index(self)
+      end
+
       def index_view(name, columns)
         write_inheritable_attribute(:index_views_hash, read_inheritable_attribute(:index_views_hash) || default_index_views_hash)
         read_inheritable_attribute(:index_views_hash)[name] = columns
@@ -296,17 +300,19 @@ module BigIndex
           adapter.find_ids_by_index(self, query, {  :offset   => options[:offset],
                                                     :order    => options[:order],
                                                     :limit    => options[:limit],
-                                                    :operator => options[:operator]})
+                                                    :operator => options[:operator],
+                                                    :raw_result => options[:raw_result]})
         else
           adapter.find_by_index(self, query, {  :offset   => options[:offset],
                                                 :order    => options[:order],
                                                 :limit    => options[:limit],
-                                                :operator => options[:operator]})
+                                                :operator => options[:operator],
+                                                :raw_result => options[:raw_result]})
         end
 
       end
 
-      INDEX_FIND_OPTIONS = [ :source, :offset, :limit, :conditions, :order, :group, :fields, :debug, :view, :format ]
+      INDEX_FIND_OPTIONS = [ :source, :offset, :limit, :conditions, :order, :group, :fields, :debug, :view, :format, :raw_result ]
 
       ##
       #

@@ -7,6 +7,8 @@ describe BigIndex::Resource do
 
     before(:each) do
       @model_class = Book
+      Book.truncate
+      Book.drop_index
     end
 
     it_should_behave_like "a model with BigIndex::Resource"
@@ -186,11 +188,16 @@ describe BigIndex::Resource do
       Book.find_by_author("Richard Matheson").should == [result]
     end
 
-    it "should" do
-      book = Book.new(:title => "I Am Legend", :author => "Richard Matheson", :description => "This book is great")
+    it "#find should return raw index search results when requested" do
+      book = Book.new(  :title => "I Am Legend",
+                        :author => "Richard Matheson",
+                        :description => "The most clever and riveting vampire novel since Dracula.")
       book.save.should be_true
 
-      book.destroy
+      results = Book.find(:all, :conditions => "legend", :raw_result => true)
+
+      results.should respond_to(:total_hits)
+      results.should respond_to(:results)
     end
 
   end

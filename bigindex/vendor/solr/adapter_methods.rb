@@ -335,7 +335,7 @@ module Solr
                          :view, :no_parsing, :force_reload, :timestamp]
          query_options = {}
          return if query.nil?
-         raise "Invalid parameters: #{(options.keys - valid_options).join(',')}" unless (options.keys - valid_options).empty?
+
          begin
            query_options[:start] = options[:offset]
            query_options[:rows] = options[:limit] || 100

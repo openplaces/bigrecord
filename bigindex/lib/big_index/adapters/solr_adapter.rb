@@ -54,7 +54,9 @@ module BigIndex
 
       def drop_index(model)
         @connection.logger = model.logger if model.respond_to?(:logger)
-        @connection.solr_execute(Solr::Request::Delete.new(:query => "type_s_mv:\"#{model.name}\""))
+        result = @connection.solr_execute(Solr::Request::Delete.new(:query => "type_s_mv:\"#{model.name}\""))
+
+        result.status_message == "0"
       end
 
       def get_field_type(field_type)
@@ -123,21 +125,36 @@ module BigIndex
       end
 
       def find_by_index(model, query, options={})
+        raw_result = options.delete(:raw_result)
         data = parse_query(model, query, options)
 
-        return parse_results(model, data, options).results if data
+        if data
+          parsed = parse_results(model, data, options)
+
+          return raw_result ? parsed : parsed.results
+        end
       end
 
       def find_values_by_index(model, query, options={})
+        raw_result = options.delete(:raw_result)
         data = parse_query(model, query, options)
 
-        return parse_results(model, data, {:format => :values}).results if data
+        if data
+          parsed = parse_results(model, data, {:format => :values})
+
+          return raw_result ? parsed : parsed.results
+        end
       end
 
       def find_ids_by_index(model, query, options={})
+        raw_result = options.delete(:raw_result)
         data = parse_query(model, query, options)
 
-        return parse_results(model, data, {:format => :ids}).results if data
+        if data
+          parsed = parse_results(model, data, {:format => :ids})
+
+          return raw_result ? parsed : parsed.results
+        end
       end
 
       # End of BigIndex Adapter API ====================================

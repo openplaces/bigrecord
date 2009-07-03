@@ -336,6 +336,9 @@ module Solr
          query_options = {}
          return if query.nil?
 
+         # TODO: This should provide a warning instead of raising an error. Use log? or something else...
+         # raise "Invalid parameters: #{(options.keys - valid_options).join(',')}" unless (options.keys - valid_options).empty?
+
          begin
            query_options[:start] = options[:offset]
            query_options[:rows] = options[:limit] || 100

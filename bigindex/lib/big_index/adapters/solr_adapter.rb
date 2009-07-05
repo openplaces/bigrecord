@@ -28,7 +28,7 @@ module BigIndex
           items_to_index = items.select { |item| item.respond_to?(:indexable?) ? item.indexable? : true }
 
           unless items_to_index.empty?
-            docs = items_to_index.collect{|content| content.to_solr_doc}
+            docs = items_to_index.collect{|content| to_solr_doc(content)}
             if options[:only_generate]
               # Collect the documents. This is to be used within a mapred job.
               docs.each do |doc|

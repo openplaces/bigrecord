@@ -16,8 +16,16 @@ module BigIndex
       @options[:type] ||= :text
     end
 
+    def type
+      @options[:type]
+    end
+
     def [](name)
       @options[name]
+    end
+
+    def method_missing(name)
+      @options[name.to_sym] || super
     end
 
   end # class IndexField

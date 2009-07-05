@@ -22,8 +22,8 @@ module BigIndex
           :facets => nil,
           :boost => nil,
           :if => "true",
-          :type_field => model.adapter.default_type_field,
-          :primary_key_field => model.adapter.default_primary_key_field,
+          :type_field => model.index_adapter.default_type_field,
+          :primary_key_field => model.index_adapter.default_primary_key_field,
           :default_boost => 1.0
         }
 
@@ -58,7 +58,7 @@ module BigIndex
           end
       end
 
-      def adapter
+      def index_adapter
         repository.adapter
       end
 
@@ -107,7 +107,7 @@ module BigIndex
       def rebuild_index(options={}, finder_options={})
         if options[:drop]
           logger.info "Dropping #{self.name} index..." unless options[:silent]
-          adapter.drop_index(self)
+          index_adapter.drop_index(self)
         end
 
         $stderr.puts "reporter:status:Indexation is under way" unless options[:silent]
@@ -131,12 +131,12 @@ module BigIndex
           buffer << r
           if buffer.size > options[:batch_size]
             loop += 1
-            adapter.process_index_batch(buffer, loop, options)
+            index_adapter.process_index_batch(buffer, loop, options)
             buffer.clear
           end
         end
 
-        adapter.process_index_batch(buffer, loop, options) unless buffer.empty?
+        index_adapter.process_index_batch(buffer, loop, options) unless buffer.empty?
 
         if items_processed > 0
           $stderr.puts "Index for #{self.name} has been rebuilt (#{items_processed} records)." unless options[:silent]
@@ -148,7 +148,7 @@ module BigIndex
       end
 
       def drop_index
-        adapter.drop_index(self)
+        index_adapter.drop_index(self)
       end
 
       def index_view(name, columns)
@@ -297,13 +297,13 @@ module BigIndex
           end
 
         if options[:format] == :ids
-          adapter.find_ids_by_index(self, query, {  :offset   => options[:offset],
+          index_adapter.find_ids_by_index(self, query, {  :offset   => options[:offset],
                                                     :order    => options[:order],
                                                     :limit    => options[:limit],
                                                     :operator => options[:operator],
                                                     :raw_result => options[:raw_result]})
         else
-          adapter.find_by_index(self, query, {  :offset   => options[:offset],
+          index_adapter.find_by_index(self, query, {  :offset   => options[:offset],
                                                 :order    => options[:order],
                                                 :limit    => options[:limit],
                                                 :operator => options[:operator],
@@ -344,7 +344,7 @@ module BigIndex
               end
 
               if options[:source] == :index
-                results = adapter.find_values_by_index(query,  :fields   => options[:fields],
+                results = index_adapter.find_values_by_index(query,  :fields   => options[:fields],
                                                       :order    =>options[:order],
                                                       :offset   => options[:offset],
                                                       :limit    => options[:limit],
@@ -353,7 +353,7 @@ module BigIndex
                                                       :scores   => :true,
                                                       :operator => :or)
               else
-                results = adapter.find_by_index(query, :fields    => options[:fields],
+                results = index_adapter.find_by_index(query, :fields    => options[:fields],
                                               :view      => options[:view],
                                               :include_deleted => options[:include_deleted],
                                               :force_reload => options[:force_reload],
@@ -377,8 +377,8 @@ module BigIndex
 
     module InstanceMethods
 
-      def adapter
-        self.class.repository.adapter
+      def index_adapter
+        self.class.index_adapter
       end
 
       def index_configuration
@@ -404,13 +404,13 @@ module BigIndex
 
       def index_save
         unless index_configuration[:auto_save] == false
-          adapter.index_save(self)
+          index_adapter.index_save(self)
         end
       end
 
       def index_destroy
         unless index_configuration[:auto_save] == false
-          adapter.index_destroy(self)
+          index_adapter.index_destroy(self)
         end
       end
 

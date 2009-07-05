@@ -21,7 +21,7 @@ module BigIndex
         raise NotImplementedError
       end
 
-      def drop_index
+      def drop_index(model)
         raise NotImplementedError
       end
 
@@ -29,20 +29,27 @@ module BigIndex
         field_type
       end
 
-      def find_values_by_index(query, options={})
+      def index_save(model)
         raise NotImplementedError
       end
 
-      def find_by_index(query, options={})
+      def index_destroy(model)
         raise NotImplementedError
       end
 
-      def find_ids_by_index(query, options={})
+      def find_by_index(model, query, options={})
         raise NotImplementedError
       end
 
+      def find_values_by_index(model, query, options={})
+        raise NotImplementedError
+      end
 
-      private
+      def find_ids_by_index(model, query, options={})
+        raise NotImplementedError
+      end
+
+    private
 
       def initialize(name, options)
         @name = name

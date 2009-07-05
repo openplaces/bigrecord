@@ -18,7 +18,19 @@ describe BigIndex::Adapters::AbstractAdapter do
   end
 
   it "should raise NotImplementedError when #drop_index is called" do
-    lambda{ @adapter.drop_index }.should raise_error(NotImplementedError)
+    lambda{ @adapter.drop_index(:model) }.should raise_error(NotImplementedError)
+  end
+
+  it "should return the argument when #get_field_type is called" do
+    @adapter.get_field_type(:field_type).should == :field_type
+  end
+
+  it "should raise NotImplementedError when #index_save is called" do
+    lambda{ @adapter.index_save(:model) }.should raise_error(NotImplementedError)
+  end
+
+  it "should raise NotImplementedError when #index_destroy is called" do
+    lambda{ @adapter.index_destroy(:model) }.should raise_error(NotImplementedError)
   end
 
   it "should raise NotImplementedError when #find_values_by_index is called" do

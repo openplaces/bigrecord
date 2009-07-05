@@ -32,20 +32,4 @@ describe BigRecord::Base do
 
   end
 
-  describe "dynamic attribute-based finders" do
-
-    it "should respond to #find_by_(attr)" do
-      pending "This will need to be implemented in the BigIndex project"
-      Book.should respond_to(:find_by_title)
-      Book.should respond_to(:find_by_author)
-    end
-
-    it "should dispatch to #find with the proper conditions" do
-      pending "This will need to be implemented in the BigIndex project"
-      book = Book.new
-      Book.should_receive(:find).with(:first, an_instance_of(Hash)).and_return(book)
-    end
-
-  end
-
 end

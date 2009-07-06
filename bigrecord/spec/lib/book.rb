@@ -1,6 +1,4 @@
 class Book < BigRecord::Base
-  acts_as_solr :fields => [:title, :author]
-
   column 'attribute:title',       'string'
   column 'attribute:author',      'string'
   column 'attribute:description', 'string'

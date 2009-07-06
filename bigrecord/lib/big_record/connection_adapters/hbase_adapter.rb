@@ -65,7 +65,7 @@ module BigRecord
       end
 
       def supports_migrations? #:nodoc:
-        false
+        true
       end
 
       # CONNECTION MANAGEMENT ====================================
@@ -123,7 +123,6 @@ module BigRecord
         result
       end
 
-
       def get_columns_raw(table_name, row, columns, options={})
         result = {}
         log "SELECT (#{columns.join(", ")}) FROM #{table_name} WHERE ROW=#{row};" do
@@ -177,10 +176,10 @@ module BigRecord
         result
       end
 
-      def delete(table_name, row)
+      def delete(table_name, row, timestamp = nil)
         result = nil
         log "DELETE FROM #{table_name} WHERE ROW=#{row};" do
-          result = @connection.delete(table_name, row)
+          result = @connection.delete(table_name, row, timestamp)
         end
         result
       end
@@ -188,11 +187,37 @@ module BigRecord
 
       # SCHEMA STATEMENTS ========================================
 
-      def create_table(table_name, column_families)
+      def initialize_schema_migrations_table
+        sm_table = BigRecord::Migrator.schema_migrations_table_name
+
+        unless table_exists?(sm_table)
+          column_family = BigRecordDriver::ColumnDescriptor.new("attribute", {:versions => 1})
+
+          create_table(sm_table, [column_family])
+        end
+      end
+
+      def get_all_schema_versions
+        sm_table = BigRecord::Migrator.schema_migrations_table_name
+
+        get_consecutive_rows(sm_table, nil, nil, ["attribute:version"]).map{|version| version["attribute:version"]}
+      end
+
+      def table_exists?(table_name)
+        log "TABLE EXISTS? #{table_name};" do
+          @connection.table_exists?(table_name)
+        end
+      end
+
+      def create_table(table_name, column_families, options = {})
+        if options[:force] && table_exists?(table_name)
+          drop_table(table_name)
+        end
+
         result = nil
-#        log "CREATE TABLE #{table_name} (#{column_families});" do
+        log "CREATE TABLE #{table_name} (#{column_families});" do
           result = @connection.create_table(table_name, column_families)
-#        end
+        end
         result
       end
 

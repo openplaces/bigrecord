@@ -66,6 +66,7 @@ require 'big_record/embedded_associations/association_proxy'
 require 'big_record/dynamic_schema'
 require 'big_record/deletion'
 require 'big_record/family_span_columns'
+require 'big_record/migration'
 
 # Add support for collections to tag builders
 require 'big_record/action_view_extensions'

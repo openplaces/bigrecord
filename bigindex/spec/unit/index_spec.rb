@@ -8,7 +8,9 @@ describe BigIndex::Resource do
     before(:each) do
       @model_class = Book
       Book.truncate
+
       Book.drop_index
+      Animal.drop_index
     end
 
     it_should_behave_like "a model with BigIndex::Resource"

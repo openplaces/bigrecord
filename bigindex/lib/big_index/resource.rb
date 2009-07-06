@@ -94,6 +94,10 @@ module BigIndex
         @indexed
       end
 
+      ##
+      #
+      # The index_type will be the name of the model class by default.
+      #
       def index_type
         name
       end
@@ -105,12 +109,12 @@ module BigIndex
       # @return <Integer> representing number of items processed.
       #
       def rebuild_index(options={}, finder_options={})
+        logger.info "=== Rebuilding index for: #{self.index_type}" unless options[:silent]
+
         if options[:drop]
-          logger.info "Dropping #{self.name} index..." unless options[:silent]
+          logger.info "Dropping index for: #{self.index_type}" unless options[:silent]
           index_adapter.drop_index(self)
         end
-
-        $stderr.puts "reporter:status:Indexation is under way" unless options[:silent]
 
         finder_options[:batch_size] ||= 100
         finder_options[:view] ||= :all
@@ -120,12 +124,15 @@ module BigIndex
         options[:commit] = true unless options.has_key?(:commit)
         options[:optimize] = true unless options.has_key?(:optimize)
 
-        $stderr.puts "Offset: #{finder_options[:offset]}" unless options[:silent]
-        $stderr.puts "Stop row: #{finder_options[:stop_row]}" unless options[:silent]
+        logger.info "Offset: #{finder_options[:offset]}" unless options[:silent]
+        logger.info "Stop row: #{finder_options[:stop_row]}" unless options[:silent]
 
         buffer = []
         items_processed = 0
         loop = 0
+
+        # TODO: This scan method doesn't always exist (in the case of ActiveRecord).
+        # This will need to be removed.
         self.scan(finder_options) do |r|
           items_processed += 1
           buffer << r
@@ -139,14 +146,22 @@ module BigIndex
         index_adapter.process_index_batch(buffer, loop, options) unless buffer.empty?
 
         if items_processed > 0
-          $stderr.puts "Index for #{self.name} has been rebuilt (#{items_processed} records)." unless options[:silent]
+          logger.info "Index for #{self.index_type} has been rebuilt (#{items_processed} records)." unless options[:silent]
         else
-          $stderr.puts "Nothing to index for #{self.name}." unless options[:silent]
+          logger.info "Nothing to index for #{self.index_type}." unless options[:silent]
         end
+
+        logger.info "=== Finished rebuilding index for: #{self.index_type}" unless options[:silent]
 
         return items_processed
       end
 
+      ##
+      #
+      # Drops the index for the current model.
+      #
+      # @return [TrueClass, FalseClass] whether the index was dropped.
+      #
       def drop_index
         index_adapter.drop_index(self)
       end
@@ -242,6 +257,11 @@ module BigIndex
       # replaces it with an indexed version of #find. The indexed version can be
       # bypassed (dispatch to original instead) by passing the option
       # <tt>:bypass_index => true</tt> to the method.
+      #
+      # @return the instantiated records either as a single object (case of :first),
+      #   or as an array of objects. When the option <tt>:raw_result => true</tt>
+      #   is passed to it, it will return a result object specific to the indexer used.
+      #   In the case of Solr, it will return a SolrResult object for example.
       #
       def find_with_index(*args)
         options = args.extract_options!

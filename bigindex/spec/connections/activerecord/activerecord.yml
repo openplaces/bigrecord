@@ -1,6 +1,6 @@
 mysql:
   adapter: mysql
-  database: actsassolr_tests
+  database: bigindex_specs
   username: root
   password:
   host: localhost

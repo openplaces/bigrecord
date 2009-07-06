@@ -5,5 +5,16 @@
 # - description
 
 class Book < ActiveRecord::Base
-  acts_as_solr :fields => [:title, :author]
+  include BigIndex::Resource
+
+  index :title, :type => :string
+  index :title_partial_match do |book|
+    book.title
+  end
+  index :author, :type => :string
+  index :author_partial_match do |book|
+    book.author
+  end
+  index :description
+
 end

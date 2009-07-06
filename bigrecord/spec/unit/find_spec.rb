@@ -5,7 +5,7 @@ describe BigRecord::Base do
 
   describe "#find" do
 
-    it "should dispatch properly to #find_every_from_bigrecord when given :first" do
+    it "should dispatch properly to #find_every when given :first" do
       zoo = Zoo.new
 
       Zoo.should_receive(:find_every).with(hash_including(:limit => 1)).and_return([zoo])
@@ -13,7 +13,7 @@ describe BigRecord::Base do
       Zoo.find(:first).should == zoo
     end
 
-    it "should dispatch properly to #find_every_from_bigrecord when given :all" do
+    it "should dispatch properly to #find_every when given :all" do
       zoo = Zoo.new
 
       Zoo.should_receive(:find_every).and_return([zoo])

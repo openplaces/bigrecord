@@ -6,6 +6,9 @@ describe BigRecord::Migration do
     @migrations_path = File.expand_path(File.join(File.dirname(__FILE__), "..", "lib", "migrations"))
     @migration_files = Dir["#{@migrations_path}/[0-9]*_*.rb"]
 
+    @broken_migrations_path = File.expand_path(File.join(File.dirname(__FILE__), "..", "lib", "broken_migrations"))
+    @broken_migration_files = Dir["#{@broken_migrations_path}/[0-9]*_*.rb"]
+
     # It doesn't matter whether the adapter works for this spec, so we'll mock it
     @mock_connection = mock(BigRecord::ConnectionAdapters::AbstractAdapter, :null_object => true)
     @mock_connection.stub!(:supports_ddl_transactions?).and_return(false)
@@ -60,12 +63,12 @@ describe BigRecord::Migration do
     before(:each) do
       # Setting up the migrator will initialize the schema migration table
       @mock_connection.should_receive(:initialize_schema_migrations_table)
-
-      # Initializing the migrator
-      @migrator = BigRecord::Migrator.new(:up, @migrations_path)
     end
 
     it "should show all the pending migrations" do
+      # Initializing the migrator
+      @migrator = BigRecord::Migrator.new(:up, @migrations_path)
+
       # And request all the schema versions currently within the data store
       @mock_connection.should_receive(:get_all_schema_versions).and_return([])
 
@@ -76,6 +79,9 @@ describe BigRecord::Migration do
     end
 
     it "should run the migrations and update the schema migration table in the data store" do
+      # Initializing the migrator
+      @migrator = BigRecord::Migrator.new(:up, @migrations_path)
+
       # And request all the schema versions currently within the data store
       @mock_connection.should_receive(:get_all_schema_versions).and_return([])
 
@@ -87,6 +93,50 @@ describe BigRecord::Migration do
       result.size.should == @migration_files.size
       @migrator.migrated.size.should == @migration_files.size
       @migrator.pending_migrations.should be_empty
+    end
+
+    it "should call the appropriate adapter connection methods when migrating :up" do
+      # Initializing the migrator
+      @migrator = BigRecord::Migrator.new(:up, @migrations_path, 20090706182535) # Hard-coded target. Don't change the migration!
+
+      # And request all the schema versions currently within the data store
+      @mock_connection.should_receive(:get_all_schema_versions).and_return([])
+
+      @mock_connection.should_receive(:create_table).with("animals").once.and_return(true)
+      @migrator.migrate
+    end
+
+    it "should call the appropriate adapter connection methods when reverting :down" do
+      # Initializing the migrator
+      @migrator = BigRecord::Migrator.new(:down, @migrations_path) # Hard-coded target. Don't change the migration!
+
+      # And request all the schema versions currently within the data store.
+      @mock_connection.should_receive(:get_all_schema_versions).and_return([20090706182535]) # Hard-coded target. Don't change the migration!
+
+      @mock_connection.should_receive(:drop_table).with("animals").once.and_return(true)
+      @migrator.migrate
+    end
+
+  end
+
+  describe "error handling" do
+
+    it "should raise an error on duplicate version numbers" do
+      # Initializing the migrator
+      @migrator = BigRecord::Migrator.new(:up, @broken_migrations_path+"/duplicate_version")
+
+      lambda {
+        @migrator.migrations
+      }.should raise_error(BigRecord::DuplicateMigrationVersionError)
+    end
+
+    it "should raise an error on duplicate migration names" do
+      # Initializing the migrator
+      @migrator = BigRecord::Migrator.new(:up, @broken_migrations_path+"/duplicate_name")
+
+      lambda {
+        @migrator.migrations
+      }.should raise_error(BigRecord::DuplicateMigrationNameError)
     end
 
   end

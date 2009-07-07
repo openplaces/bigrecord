@@ -209,11 +209,7 @@ module BigRecord
         end
       end
 
-      def create_table(table_name, column_families, options = {})
-        if options[:force] && table_exists?(table_name)
-          drop_table(table_name)
-        end
-
+      def create_table(table_name, *column_families, &block)
         result = nil
         log "CREATE TABLE #{table_name} (#{column_families});" do
           result = @connection.create_table(table_name, column_families)

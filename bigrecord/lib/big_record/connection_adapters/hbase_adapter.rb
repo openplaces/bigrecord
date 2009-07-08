@@ -21,10 +21,6 @@ module BigRecord
     # Establishes a connection to the database that's used by all Active Record objects.
     def self.hbase_connection(config) # :nodoc:
       config = config.symbolize_keys
-      config[:master]       ||= 'localhost:60000'
-      config[:regionserver] ||= 'regionserver:60020'
-      config[:drb_host]     ||= 'localhost'
-      config[:drb_port]     ||= 40000
 
       master        = config[:master]
       regionserver  = config[:regionserver]

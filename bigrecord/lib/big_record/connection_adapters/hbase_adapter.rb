@@ -229,7 +229,7 @@ module BigRecord
         result
       end
 
-      def add_column(table_name, column_name, options = {})
+      def add_column_family(table_name, column_name, options = {})
         column = BigRecordDriver::ColumnDescriptor.new(column_name.to_s, options)
 
         result = nil
@@ -239,7 +239,9 @@ module BigRecord
         result
       end
 
-      def remove_column(table_name, column_name)
+      alias :add_family :add_column_family
+
+      def remove_column_family(table_name, column_name)
         result = nil
         log "REMOVE COLUMN TABLE #{table_name} COLUMN #{column_name};" do
           result = @connection.remove_column(table_name, column_name)
@@ -247,7 +249,9 @@ module BigRecord
         result
       end
 
-      def modify_column(table_name, column_name, options = {})
+      alias :remove_family :remove_column_family
+
+      def modify_column_family(table_name, column_name, options = {})
         column = BigRecordDriver::ColumnDescriptor.new(column_name.to_s, options)
 
         result = nil
@@ -257,8 +261,7 @@ module BigRecord
         result
       end
 
-      alias :change_column :modify_column
-
+      alias :modify_family :modify_column_family
 
       private
         def connect

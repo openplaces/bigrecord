@@ -13,7 +13,7 @@ module BigRecordDriver
       raise ArgumentError, "name is mandatory" unless name
 
       @name = name.to_s
-      @nb_versions      = options[:versions]
+      @versions         = options[:versions]
       @max_value_length = options[:max_value_length]
       @in_memory        = options[:in_memory]
       @bloom_filter     = options[:bloom_filter]

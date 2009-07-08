@@ -187,9 +187,9 @@ module BigRecord
         sm_table = BigRecord::Migrator.schema_migrations_table_name
 
         unless table_exists?(sm_table)
-          column_family = BigRecordDriver::ColumnDescriptor.new("attribute", {:versions => 1})
-
-          create_table(sm_table, [column_family])
+          create_table(sm_table) do |t|
+            t.family :attribute, :versions => 1
+          end
         end
       end
 
@@ -205,10 +205,18 @@ module BigRecord
         end
       end
 
-      def create_table(table_name, *column_families, &block)
+      def create_table(table_name, options = {})
+        table_definition = TableDefinition.new
+
+        yield table_definition if block_given?
+
+        if options[:force] && table_exists?(table_name)
+          drop_table(table_name)
+        end
+
         result = nil
-        log "CREATE TABLE #{table_name} (#{column_families});" do
-          result = @connection.create_table(table_name, column_families)
+        log "CREATE TABLE #{table_name} (#{table_definition.column_families_list});" do
+          result = @connection.create_table(table_name, table_definition.to_adapter_format)
         end
         result
       end
@@ -217,6 +225,24 @@ module BigRecord
         result = nil
         log "DROP TABLE #{table_name};" do
           result = @connection.drop_table(table_name)
+        end
+        result
+      end
+
+      def add_column(table_name, column_name, options = {})
+        column = BigRecordDriver::ColumnDescriptor.new(column_name.to_s, options)
+
+        result = nil
+        log "ADD COLUMN TABLE #{table_name} COLUMN #{column_name} (#{options.inspect});" do
+          result = @connection.add_column(table_name, column)
+        end
+        result
+      end
+
+      def remove_column(table_name, column_name)
+        result = nil
+        log "REMOVE COLUMN TABLE #{table_name} COLUMN #{column_name};" do
+          result = @connection.remove_column(table_name, column_name)
         end
         result
       end
@@ -285,5 +311,36 @@ module BigRecord
           end
         end
     end
+
+    class TableDefinition
+
+      def initialize
+        @column_families = []
+      end
+
+      # Returns a column family for the column with name +name+.
+      def [](name)
+        @column_families.find {|column| column.name.to_s == name.to_s}
+      end
+
+      def column_family(name, options = {})
+        column = self[name] || BigRecordDriver::ColumnDescriptor.new(name.to_s, options)
+
+        @column_families << column unless @column_families.include? column
+        self
+      end
+
+      alias :family :column_family
+
+      def to_adapter_format
+        @column_families
+      end
+
+      def column_families_list
+        @column_families.map(&:name).join(", ")
+      end
+
+    end
+
   end
 end

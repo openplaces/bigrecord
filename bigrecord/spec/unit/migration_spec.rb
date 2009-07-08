@@ -102,7 +102,7 @@ describe BigRecord::Migration do
       # And request all the schema versions currently within the data store
       @mock_connection.should_receive(:get_all_schema_versions).and_return([])
 
-      @mock_connection.should_receive(:create_table).with("animals").once.and_return(true)
+      @mock_connection.should_receive(:create_table).with("animals", {:force => true}).once.and_return(true)
       @migrator.migrate
     end
 

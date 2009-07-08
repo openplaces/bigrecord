@@ -196,44 +196,8 @@ class HbaseServer < BigRecordServer
         tdesc = HTableDescriptor.new(table_name)
 
         column_descriptors.each do |cd|
-          raise ArgumentError, "a column descriptor is missing a name" unless cd.name
-          raise "bloom_filter option not supported yet" if cd.bloom_filter
+          cdesc = generate_column_descriptor(cd)
 
-          if cd.compression
-            compression =
-            case cd.compression
-              when :none;   HColumnDescriptor.CompressionType.NONE
-              when :block;  HColumnDescriptor.CompressionType.BLOCK
-              when :record; HColumnDescriptor.CompressionType.RECORD
-              else
-                raise ArgumentError, "Invalid compression type: #{cd.compression} for the column_family #{cd.name}"
-            end
-          end
-
-          n_versions    = cd.versions
-          in_memory     = cd.in_memory
-          length        = cd.max_value_length
-
-          # set the default values of the missing parameters
-          n_versions        ||= HColumnDescriptor::DEFAULT_VERSIONS
-          compression       ||= HColumnDescriptor::DEFAULT_COMPRESSION
-          in_memory         ||= HColumnDescriptor::DEFAULT_IN_MEMORY
-          length            ||= HColumnDescriptor::DEFAULT_LENGTH
-          block_cache       ||= HColumnDescriptor::DEFAULT_BLOCKCACHE
-          bloomfilter       ||= HColumnDescriptor::DEFAULT_BLOOMFILTER
-          ttl               ||= HColumnDescriptor::DEFAULT_TTL
-
-          # add the ':' at the end if the user didn't specify it
-          cd.name << ":" unless cd.name =~ /:$/
-
-          cdesc = HColumnDescriptor.new(cd.name.to_bytes,
-                                        n_versions,
-                                        compression,
-                                        in_memory,
-                                        block_cache,
-                                        length,
-                                        ttl,
-                                        bloomfilter)
           tdesc.addFamily(cdesc)
         end
         @admin.createTable(tdesc)
@@ -254,6 +218,41 @@ class HbaseServer < BigRecordServer
 
         # Remove the table connection from the cache
         @tables.delete(table_name) if @tables.has_key?(table_name)
+      else
+        raise BigRecordDriver::TableNotFound, table_name
+      end
+    end
+  end
+
+  def add_column(table_name, column_descriptor)
+    safe_exec do
+      table_name = table_name.to_s
+
+      if @admin.tableExists(table_name)
+        @admin.disableTable(table_name)
+
+        cdesc = generate_column_descriptor(column_descriptor)
+        @admin.addColumn(table_name, cdesc)
+
+        @admin.enableTable(table_name)
+      else
+        raise BigRecordDriver::TableNotFound, table_name
+      end
+    end
+  end
+
+  def remove_column(table_name, column_name)
+    safe_exec do
+      table_name = table_name.to_s
+      column_name = column_name.to_s
+
+      if @admin.tableExists(table_name)
+        @admin.disableTable(table_name)
+
+        column_name << ":" unless column_name =~ /:$/
+        @admin.deleteColumn(table_name, column_name)
+
+        @admin.enableTable(table_name)
       else
         raise BigRecordDriver::TableNotFound, table_name
       end
@@ -321,6 +320,49 @@ private
 
     @admin = HBaseAdmin.new(@conf)
     @tables = {}
+  end
+
+  def generate_column_descriptor(column_descriptor)
+    raise ArgumentError, "a column descriptor is missing a name" unless column_descriptor.name
+    raise "bloom_filter option not supported yet" if column_descriptor.bloom_filter
+
+    if column_descriptor.compression
+      compression =
+      case column_descriptor.compression
+        when :none;   HColumnDescriptor.CompressionType.NONE
+        when :block;  HColumnDescriptor.CompressionType.BLOCK
+        when :record; HColumnDescriptor.CompressionType.RECORD
+        else
+          raise ArgumentError, "Invalid compression type: #{column_descriptor.compression} for the column_family #{column_descriptor.name}"
+      end
+    end
+
+    n_versions    = column_descriptor.versions
+    in_memory     = column_descriptor.in_memory
+    length        = column_descriptor.max_value_length
+
+    # set the default values of the missing parameters
+    n_versions        ||= HColumnDescriptor::DEFAULT_VERSIONS
+    compression       ||= HColumnDescriptor::DEFAULT_COMPRESSION
+    in_memory         ||= HColumnDescriptor::DEFAULT_IN_MEMORY
+    length            ||= HColumnDescriptor::DEFAULT_LENGTH
+    block_cache       ||= HColumnDescriptor::DEFAULT_BLOCKCACHE
+    bloomfilter       ||= HColumnDescriptor::DEFAULT_BLOOMFILTER
+    ttl               ||= HColumnDescriptor::DEFAULT_TTL
+
+    # add the ':' at the end if the user didn't specify it
+    column_descriptor.name << ":" unless column_descriptor.name =~ /:$/
+
+    cdesc = HColumnDescriptor.new(column_descriptor.name.to_bytes,
+                                  n_versions,
+                                  compression,
+                                  in_memory,
+                                  block_cache,
+                                  length,
+                                  ttl,
+                                  bloomfilter)
+
+    return cdesc
   end
 
 end

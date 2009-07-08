@@ -259,6 +259,24 @@ class HbaseServer < BigRecordServer
     end
   end
 
+  def modify_column(table_name, column_descriptor)
+    safe_exec do
+      table_name = table_name.to_s
+      column_name = column_name.to_s
+
+      if @admin.tableExists(table_name)
+        @admin.disableTable(table_name)
+
+        cdesc = generate_column_descriptor(column_descriptor)
+        @admin.modifyColumn(table_name, column_descriptor.name, cdesc)
+
+        @admin.enableTable(table_name)
+      else
+        raise BigRecordDriver::TableNotFound, table_name
+      end
+    end
+  end
+
   def truncate_table(table_name)
     safe_exec do
       table_name = table_name.to_s

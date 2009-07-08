@@ -247,6 +247,18 @@ module BigRecord
         result
       end
 
+      def modify_column(table_name, column_name, options = {})
+        column = BigRecordDriver::ColumnDescriptor.new(column_name.to_s, options)
+
+        result = nil
+        log "MODIFY COLUMN TABLE #{table_name} COLUMN #{column_name} (#{options.inspect});" do
+          result = @connection.modify_column(table_name, column)
+        end
+        result
+      end
+
+      alias :change_column :modify_column
+
 
       private
         def connect

@@ -15,7 +15,7 @@ class HbaseServer < BigRecordServer
   include_class "org.apache.hadoop.hbase.HStoreKey"
   include_class "org.apache.hadoop.hbase.HTableDescriptor"
   include_class "org.apache.hadoop.hbase.HColumnDescriptor"
-  
+
   include_class "org.apache.hadoop.io.Writable"
 
   # Establish the connection with HBase with the given configuration parameters.
@@ -24,25 +24,25 @@ class HbaseServer < BigRecordServer
     config[:regionserver]  ||= '0.0.0.0:60020'
 
     @config = config
-    
+
     init_connection
   end
-  
+
   # Atomic row insertion/update. Example:
-  #   update('entities', 'b9cef848-a4e0-11dc-a7ba-0018f3137ea8', {'attribute:name' => "--- Oahu\n", 
+  #   update('entities', 'b9cef848-a4e0-11dc-a7ba-0018f3137ea8', {'attribute:name' => "--- Oahu\n",
   #                                                               'attribute:travel_rank' => "--- 0.90124565\n"})
   #   => 'b9cef848-a4e0-11dc-a7ba-0018f3137ea8'
   def update(table_name, row, values, timestamp=nil)
     safe_exec do
       return nil unless row
       table = connect_table(table_name)
-  
+
       batch = timestamp ? BatchUpdate.new(row, timestamp) : BatchUpdate.new(row)
-  
+
       values.each do |column, value|
         batch.put(column, value.to_bytes)
       end
-  
+
       table.commit(batch)
       row
     end
@@ -59,13 +59,13 @@ class HbaseServer < BigRecordServer
     safe_exec do
       return nil unless row
       table = connect_table(table_name)
-      
+
       # Retreive only the last version by default
       options[:num_versions] ||= 1
-      
+
       # validate the arguments
       raise ArgumentError, "num_versions must be >= 1" unless options[:num_versions] >= 1
-      
+
       # get the raw data from hbase
       unless options[:timestamp]
         if options[:num_versions] == 1
@@ -81,7 +81,7 @@ class HbaseServer < BigRecordServer
                               options[:timestamp],
                               options[:num_versions])
       end
-  
+
       # Return either a single value or an array, depending on the number of version that have been requested
       if options[:num_versions] == 1
         return nil unless raw_data
@@ -105,7 +105,7 @@ class HbaseServer < BigRecordServer
       return nil unless row
       table_name = table_name.to_s
       table = connect_table(table_name)
-  
+
       java_cols = Java::String[columns.size].new
       columns.each_with_index do |col, i|
         java_cols[i] = Java::String.new(col)
@@ -139,23 +139,23 @@ class HbaseServer < BigRecordServer
     safe_exec do
       table_name = table_name.to_s
       table = connect_table(table_name)
-  
+
       java_cols = Java::String[columns.size].new
       columns.each_with_index do |col, i|
         java_cols[i] = Java::String.new(col)
       end
-  
+
       start_row ||= ""
       start_row = start_row.to_s
-      
-      # We cannot set stop_row like start_row because a 
+
+      # We cannot set stop_row like start_row because a
       # default stop row would have to be the biggest value possible
       if stop_row
         scanner = table.getScanner(java_cols, start_row, stop_row, HConstants::LATEST_TIMESTAMP)
       else
         scanner = table.getScanner(java_cols, start_row)
       end
-  
+
       row_count = 0 if limit
       result = []
       while (row_result = scanner.next) != nil
@@ -181,35 +181,39 @@ class HbaseServer < BigRecordServer
   end
 
   # Delete a whole row.
-  def delete(table_name, row)
+  def delete(table_name, row, timestamp = nil)
     safe_exec do
       table = connect_table(table_name)
-      table.deleteAll(row.to_bytes)
+      timestamp ? table.deleteAll(row.to_bytes, timestamp) : table.deleteAll(row.to_bytes)
     end
   end
-  
+
   # Create a table
   def create_table(table_name, column_descriptors)
     safe_exec do
       table_name = table_name.to_s
       unless table_exists?(table_name)
         tdesc = HTableDescriptor.new(table_name)
-  
+
         column_descriptors.each do |cd|
           raise ArgumentError, "a column descriptor is missing a name" unless cd.name
           raise "bloom_filter option not supported yet" if cd.bloom_filter
-  
+
           if cd.compression
             compression =
             case cd.compression
-              when :NONE;   HColumnDescriptor.CompressionType.NONE
-              when :BLOCK;  HColumnDescriptor.CompressionType.BLOCK
-              when :RECORD; HColumnDescriptor.CompressionType.RECORD
+              when :none;   HColumnDescriptor.CompressionType.NONE
+              when :block;  HColumnDescriptor.CompressionType.BLOCK
+              when :record; HColumnDescriptor.CompressionType.RECORD
               else
                 raise ArgumentError, "Invalid compression type: #{cd.compression} for the column_family #{cd.name}"
-            end   
+            end
           end
-  
+
+          n_versions    = cd.versions
+          in_memory     = cd.in_memory
+          length        = cd.max_value_length
+
           # set the default values of the missing parameters
           n_versions        ||= HColumnDescriptor::DEFAULT_VERSIONS
           compression       ||= HColumnDescriptor::DEFAULT_COMPRESSION
@@ -218,7 +222,7 @@ class HbaseServer < BigRecordServer
           block_cache       ||= HColumnDescriptor::DEFAULT_BLOCKCACHE
           bloomfilter       ||= HColumnDescriptor::DEFAULT_BLOOMFILTER
           ttl               ||= HColumnDescriptor::DEFAULT_TTL
-  
+
           # add the ':' at the end if the user didn't specify it
           cd.name << ":" unless cd.name =~ /:$/
 
@@ -243,11 +247,11 @@ class HbaseServer < BigRecordServer
   def drop_table(table_name)
     safe_exec do
       table_name = table_name.to_s
-      
+
       if @admin.tableExists(table_name)
         @admin.disableTable(table_name)
         @admin.deleteTable(table_name)
-        
+
         # Remove the table connection from the cache
         @tables.delete(table_name) if @tables.has_key?(table_name)
       else
@@ -255,7 +259,7 @@ class HbaseServer < BigRecordServer
       end
     end
   end
-  
+
   def truncate_table(table_name)
     safe_exec do
       table_name = table_name.to_s
@@ -271,19 +275,19 @@ class HbaseServer < BigRecordServer
       @admin.isMasterRunning
     end
   end
-  
+
   def table_exists?(table_name)
     safe_exec do
       @admin.tableExists(table_name.to_s)
     end
   end
-  
+
   def table_names
     safe_exec do
       @admin.listTables.collect{|td| Java::String.new(td.getName).to_s}
     end
   end
-  
+
 #  def const_missing(const)
 #    super
 #  rescue NameError => ex
@@ -296,7 +300,7 @@ private
     safe_exec do
       table_name = table_name.to_s
       return @tables[table_name] if @tables.has_key?(table_name)
-  
+
       if table_exists?(table_name)
         @tables[table_name] = HTable.new(@conf, table_name)
       else
@@ -309,7 +313,7 @@ private
       @tables[table_name]
     end
   end
-  
+
   def init_connection
     @conf = HBaseConfiguration.new
     @conf.set('hbase.master', "#{@config[:master]}")

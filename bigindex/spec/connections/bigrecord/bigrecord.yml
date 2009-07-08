@@ -1,0 +1,13 @@
+hbase:
+  adapter: hbase
+  master: localhost:60000
+  regionserver: 0.0.0.0:60020
+  drb_host: localhost
+  drb_port: 40001
+
+cassandra:
+  adapter: cassandra
+  address: localhost
+  port: 9160
+  drb_host: localhost
+  drb_port: 40002

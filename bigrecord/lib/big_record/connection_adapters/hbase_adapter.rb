@@ -21,10 +21,6 @@ module BigRecord
     # Establishes a connection to the database that's used by all Active Record objects.
     def self.hbase_connection(config) # :nodoc:
       config = config.symbolize_keys
-      config[:master]       ||= 'localhost:60000'
-      config[:regionserver] ||= 'regionserver:60020'
-      config[:drb_host]     ||= 'localhost'
-      config[:drb_port]     ||= 40000
 
       master        = config[:master]
       regionserver  = config[:regionserver]
@@ -65,7 +61,7 @@ module BigRecord
       end
 
       def supports_migrations? #:nodoc:
-        false
+        true
       end
 
       # CONNECTION MANAGEMENT ====================================
@@ -123,7 +119,6 @@ module BigRecord
         result
       end
 
-
       def get_columns_raw(table_name, row, columns, options={})
         result = {}
         log "SELECT (#{columns.join(", ")}) FROM #{table_name} WHERE ROW=#{row};" do
@@ -177,10 +172,10 @@ module BigRecord
         result
       end
 
-      def delete(table_name, row)
+      def delete(table_name, row, timestamp = nil)
         result = nil
         log "DELETE FROM #{table_name} WHERE ROW=#{row};" do
-          result = @connection.delete(table_name, row)
+          result = @connection.delete(table_name, row, timestamp)
         end
         result
       end
@@ -188,11 +183,33 @@ module BigRecord
 
       # SCHEMA STATEMENTS ========================================
 
-      def create_table(table_name, column_families)
+      def initialize_schema_migrations_table
+        sm_table = BigRecord::Migrator.schema_migrations_table_name
+
+        unless table_exists?(sm_table)
+          column_family = BigRecordDriver::ColumnDescriptor.new("attribute", {:versions => 1})
+
+          create_table(sm_table, [column_family])
+        end
+      end
+
+      def get_all_schema_versions
+        sm_table = BigRecord::Migrator.schema_migrations_table_name
+
+        get_consecutive_rows(sm_table, nil, nil, ["attribute:version"]).map{|version| version["attribute:version"]}
+      end
+
+      def table_exists?(table_name)
+        log "TABLE EXISTS? #{table_name};" do
+          @connection.table_exists?(table_name)
+        end
+      end
+
+      def create_table(table_name, *column_families, &block)
         result = nil
-#        log "CREATE TABLE #{table_name} (#{column_families});" do
+        log "CREATE TABLE #{table_name} (#{column_families});" do
           result = @connection.create_table(table_name, column_families)
-#        end
+        end
         result
       end
 

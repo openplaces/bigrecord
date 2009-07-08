@@ -62,11 +62,11 @@ require 'big_record/ar_associations'
 require 'big_record/hr_associations'
 require 'big_record/timestamp'
 require 'big_record/attribute_methods'
-require 'big_record/index'
 require 'big_record/embedded_associations/association_proxy'
 require 'big_record/dynamic_schema'
 require 'big_record/deletion'
 require 'big_record/family_span_columns'
+require 'big_record/migration'
 
 # Add support for collections to tag builders
 require 'big_record/action_view_extensions'
@@ -80,7 +80,6 @@ BigRecord::Base.class_eval do
   include BigRecord::ArReflection
   include BigRecord::HrReflection
   include BigRecord::AttributeMethods
-  include BigRecord::Index
   include BigRecord::DynamicSchema
   include BigRecord::Deletion
   include BigRecord::FamilySpanColumns
@@ -95,7 +94,6 @@ BigRecord::Embedded.class_eval do
   include BigRecord::ArReflection
   include BigRecord::HrReflection
   include BigRecord::AttributeMethods
-  include BigRecord::Index
   include BigRecord::DynamicSchema
 end
 

@@ -1,0 +1,27 @@
+= BigIndex
+
+A Rails plugin that drops into models and provides indexing functionality. Uses an adapter/repository pattern inspired by Datamapper to abstract the actual indexer used in the background, and exposes the model to a simple indexing API.
+
+This should be used in conjunction with BigRecord in order to provide a more complete ORM.
+
+
+== Getting Started
+
+Modify your Ruby class/model similarly to the following:
+
+  class Model < BigRecord::Base
+    include BigIndex::Resource                    # 1. Include the BigIndex::Resource module into your model.
+
+    column :name, :string
+
+    index :name => :string                        # 2. Define each attribute you want to index along with its type.
+  end
+
+BigIndex will then override the default Model.find() method to pass through the indexer first. Model.find() will also accept the option {:bypass_index => true}, which bypasses the indexed #find method and dispatches it to the original Model.find() method.
+
+
+= Links
+
+* Contact Us
+  * Website - http://www.bigrecord.org
+  * IRC Channel - <tt>##bigrecord</tt> on irc.freenode.net

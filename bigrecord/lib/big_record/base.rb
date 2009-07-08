@@ -304,7 +304,7 @@ module BigRecord
         last_row_id = nil
 
         while true
-          items = find(:all, options.merge({:limit => limit, :bypass_index => true}))
+          items = find(:all, options.merge({:limit => limit}))
 
           # set the new offset as the extra record
           unless items.empty?
@@ -336,19 +336,11 @@ module BigRecord
           options[:view] = :default
         end
 
-        #if options[:bypass_index] || (options[:conditions] && options[:conditions][:bypass_index])
-          case args.first
-            when :first then find_every_from_bigrecord(options.merge({:limit => 1})).first
-            when :all   then find_every_from_bigrecord(options)
-            else             find_from_ids(args, options)
-          end
-        # else
-        #           case args.first
-        #             when :first then find_every_from_index(options.merge({:limit => 1})).first
-        #             when :all   then find_every_from_index(options)
-        #             else             find_from_ids(args, options)
-        #           end
-        #         end
+        case args.first
+          when :first then find_every(options.merge({:limit => 1})).first
+          when :all   then find_every(options)
+          else             find_from_ids(args, options)
+        end
       end
 
       # Returns true if the given +id+ represents the primary key of a record in the database, false otherwise.
@@ -498,6 +490,16 @@ module BigRecord
         self.default_family = name.to_s
       end
 
+      def find_all_by_id(ids, options={})
+        ids.inject([]) do |result, id|
+          begin
+            result << find_one(id, options)
+          rescue BigRecord::RecordNotFound => e
+          end
+          result
+        end
+      end
+
     protected
       def invalidate_views
         @views = nil
@@ -508,16 +510,14 @@ module BigRecord
         args.last.is_a?(Hash) ? args.pop : {}
       end
 
-      VALID_FIND_OPTIONS = [:bypass_index, :conditions, :limit, :order, :offset,
-                            :include, :view, :source, :fields, :num_versions, :timestamp,
-                            :operator, :debug, :query_function, :include_deleted, :force_reload, :no_parsing, :columns,
-                            :stop_row]
+      VALID_FIND_OPTIONS = [:limit, :offset, :include, :view, :num_versions, :timestamp,
+                            :include_deleted, :force_reload, :columns, :stop_row]
 
       def validate_find_options(options) #:nodoc:
         options.assert_valid_keys(VALID_FIND_OPTIONS)
       end
 
-      def find_every_from_bigrecord(options)
+      def find_every(options)
         requested_columns = columns_to_find(options)
 
         raw_records = connection.get_consecutive_rows_raw(table_name, options[:offset],
@@ -528,71 +528,6 @@ module BigRecord
           rec = instantiate(raw_record)
           rec.all_attributes_loaded = true if options[:view] == :all
           rec
-        end
-      end
-
-      def find_every_from_index(options)
-        # Construct the query. First add the type information.
-        #query = "type:#{self.name}^4 "
-        query =""
-
-        # set default operator
-        options[:operator] ||= :or
-
-        # First add the conditions predicates
-        conditions = options[:conditions]
-        if conditions.is_a?(String)
-          query << conditions
-        elsif conditions.is_a?(Array) and !conditions.empty?
-          nb_conditions = conditions.size - 1
-          i = 0
-          query << conditions[0].gsub(/\?/) do |c|
-            i += 1
-            raise ArgumentError, "Missing condition argument" unless i <= nb_conditions
-            "#{conditions[i]}"
-          end
-        elsif conditions.is_a?(Hash) and !conditions.empty?
-          conditions.each do |k, v|
-            query << "#{k}:#{v} "
-          end
-        end
-
-        fields =
-        if options[:fields]
-          options[:fields]
-        else
-          if options[:view]
-            options[:view] == :all ? ["*"] : index_views_hash[options[:view]]
-          else
-            index_views_hash[:default]
-          end
-        end
-        if options[:source] == :index
-          find_values_by_solr(query, :offset    =>options[:offset],
-                                      :order    => options[:order],
-                                      :limit    => options[:limit],
-                                      :fields   => fields,
-                                      :operator => options[:operator],
-                                      :no_parsing => options[:no_parsing],
-                                      :query_function => options[:query_function],
-                                      :debug    => options[:debug]).docs
-        else
-          find_by_solr(query, :offset   => options[:offset],
-                              :order    => options[:order],
-                              :limit    => options[:limit],
-                              :no_parsing => options[:no_parsing],
-                              :query_function => options[:query_function],
-                              :operator => options[:operator]).docs
-        end
-      end
-
-      def find_all_by_id(ids, options={})
-        ids.inject([]) do |result, id|
-          begin
-            result << find_one(id, options)
-          rescue BigRecord::RecordNotFound => e
-          end
-          result
         end
       end
 

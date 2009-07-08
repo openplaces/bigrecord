@@ -7,7 +7,7 @@ module BigRecord
       base.class_eval do
         class << self
           alias_method_chain :find_one, :flag_deleted
-          alias_method_chain :find_every_from_bigrecord, :flag_deleted
+          alias_method_chain :find_every, :flag_deleted
         end
       end
 
@@ -46,9 +46,10 @@ module BigRecord
         records
       end
 
-      def find_every_from_bigrecord_with_flag_deleted(*args)
+      def find_every_with_flag_deleted(*args)
         options = args.last.is_a?(Hash) ? args.last : {}
-        records = find_every_from_bigrecord_without_flag_deleted(*args)
+        records = find_every_without_flag_deleted(*args)
+
         unless options[:include_deleted]
           records.select do |record|
             begin

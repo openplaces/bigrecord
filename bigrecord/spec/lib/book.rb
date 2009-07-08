@@ -1,5 +1,4 @@
 class Book < BigRecord::Base
-
   column 'attribute:title',       'string'
   column 'attribute:author',      'string'
   column 'attribute:description', 'string'

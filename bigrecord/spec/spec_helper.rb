@@ -4,9 +4,6 @@ require 'rubygems'
 gem 'rspec', '~>1.2'
 require 'spec'
 
-# TODO: Remove this later
-class Object; def self.deprecate(*options); end; end
-
 SPEC_ROOT = Pathname(__FILE__).dirname.expand_path
 require SPEC_ROOT.parent + 'lib/big_record'
 

@@ -50,7 +50,6 @@ end
 require 'active_record/fixtures'
 
 require 'big_record/routing_ext'
-
 require 'big_record/abstract_base'
 require 'big_record/base'
 require 'big_record/embedded'
@@ -67,6 +66,7 @@ require 'big_record/dynamic_schema'
 require 'big_record/deletion'
 require 'big_record/family_span_columns'
 require 'big_record/migration'
+require 'big_record/connection_adapters'
 
 # Add support for collections to tag builders
 require 'big_record/action_view_extensions'
@@ -122,5 +122,3 @@ BigRecord::Base.class_eval do
     end
   end
 end
-
-require 'big_record/connection_adapters/hbase_adapter'

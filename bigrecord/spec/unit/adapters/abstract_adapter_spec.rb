@@ -41,6 +41,10 @@ describe BigRecord::ConnectionAdapters::AbstractAdapter do
     lambda{ @adapter.delete_all(:table_name) }.should raise_error(NotImplementedError)
   end
 
+  it "should raise NotImplementedError when #table_exists? is called" do
+    lambda{ @adapter.table_exists?(:table_name) }.should raise_error(NotImplementedError)
+  end
+
   it "should raise NotImplementedError when #create_table is called" do
     lambda{ @adapter.create_table(:table_name, :column_families) }.should raise_error(NotImplementedError)
   end

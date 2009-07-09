@@ -1,7 +1,4 @@
 require 'rubygems'
-require 'big_record/connection_adapters/abstract_adapter'
-require 'big_record/connection_adapters/column'
-require 'big_record/connection_adapters/view'
 require 'set'
 require 'drb'
 

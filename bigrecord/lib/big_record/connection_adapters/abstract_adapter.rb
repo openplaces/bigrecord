@@ -3,10 +3,6 @@ require 'date'
 require 'bigdecimal'
 require 'bigdecimal/util'
 
-require 'big_record/connection_adapters/abstract/database_statements'
-require 'big_record/connection_adapters/abstract/quoting'
-require 'big_record/connection_adapters/abstract/connection_specification'
-
 module BigRecord
   module ConnectionAdapters # :nodoc:
     # All the concrete database adapters follow the interface laid down in this class.
@@ -160,6 +156,10 @@ module BigRecord
       end
 
       # SCHEMA STATEMENTS ========================================
+
+      def table_exists?(table_name)
+        raise NotImplementedError
+      end
 
       def create_table(table_name, column_families)
         raise NotImplementedError

@@ -23,9 +23,17 @@ describe "a BigRecord Adapter", :shared => true do
   end
 
   describe "with schema statements" do
-    %w{create_table drop_table}.each do |meth|
+    %w{table_exists? create_table drop_table}.each do |meth|
       it "should have a ##{meth} method" do
         @adapter.should respond_to(meth.intern)
+      end
+    end
+
+    it "should have the methods needed for migrations if supports_migrations? is true" do
+      if @adapter.supports_migrations?
+        %w{initialize_schema_migrations_table get_all_schema_versions add_column_family remove_column_family modify_column_family}.each do |meth|
+          @adapter.should respond_to(meth.intern)
+        end
       end
     end
   end

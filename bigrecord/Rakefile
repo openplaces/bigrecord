@@ -2,15 +2,14 @@
 
 require 'rubygems'
 require 'rake'
-require 'rake/testtask'
 require 'rake/rdoctask'
 require 'rake/gempackagetask'
 require 'pathname'
-
 require 'spec/rake/spectask'
 
 
 DATA_STORES = ["hbase", "cassandra"]
+ROOT = Pathname(__FILE__).dirname.expand_path
 
 spec = Gem::Specification.new do |s|
   s.name = 'bigrecord'
@@ -20,7 +19,7 @@ spec = Gem::Specification.new do |s|
   s.platform = Gem::Platform::RUBY
   s.summary = "ActiveRecord like ORM for column-oriented data stores (supports #{DATA_STORES.join(" ")})"
   s.has_rdoc = true
-  s.version = "1.0"
+  s.version = "0.1.0"
 
   s.add_dependency "uuidtools", ">= 1.0.7"
   s.add_dependency "bigrecord-driver"
@@ -32,30 +31,14 @@ Rake::GemPackageTask.new(spec) do |package|
   package.need_zip = true
 end
 
-desc 'Run all tests by default'
-task :default => :test
-
-desc "Run #{DATA_STORES.join(" and ")} tests"
-task :test => DATA_STORES.map{|store| "test_#{store}" }
-
-DATA_STORES.each do |adapter|
-  Rake::TestTask.new("test_#{adapter}") do |t|
-    connection_path = "test/connections/#{adapter}"
-    t.libs << "test" << connection_path
-    t.verbose = true
-  end
-end
-
-desc 'Generate documentation for the big_record plugin.'
+desc 'Generate documentation for BigRecord.'
 Rake::RDocTask.new(:rdoc) do |rdoc|
   rdoc.rdoc_dir = 'rdoc'
   rdoc.title    = 'BigRecord'
   rdoc.options << '--line-numbers' << '--inline-source'
-  rdoc.rdoc_files.include('README')
+  rdoc.rdoc_files.include('../README.rdoc')
   rdoc.rdoc_files.include('lib/**/*.rb')
 end
-
-ROOT = Pathname(__FILE__).dirname.expand_path
 
 desc "Run #{DATA_STORES.join(" and ")} specs"
 task :spec => DATA_STORES.map{|store| "spec:#{store}" }

@@ -47,7 +47,7 @@ unless defined?(ActiveRecord)
 end
 
 # FIXME: this shouldn't be required
-require 'active_record/fixtures'
+# require 'active_record/fixtures'
 
 require 'big_record/routing_ext'
 require 'big_record/abstract_base'

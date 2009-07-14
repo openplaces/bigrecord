@@ -17,12 +17,12 @@ spec = Gem::Specification.new do |s|
   s.email = "bigrecord@openplaces.org"
   s.homepage = "http://www.bigrecord.org"
   s.platform = Gem::Platform::RUBY
-  s.summary = "ActiveRecord like ORM for column-oriented data stores (supports #{DATA_STORES.join(" ")})"
+  s.summary = "ORM for supporting column-oriented data stores (supports #{DATA_STORES.join(" ")}) in Ruby on Rails."
+  s.description = "BigRecord is built from ActiveRecord, and intended to be a nearly seamless integration into your Ruby on Rails applications."
   s.has_rdoc = true
   s.version = "0.1.0"
 
   s.add_dependency "uuidtools", ">= 1.0.7"
-  s.add_dependency "bigrecord-driver"
 end
 
 Rake::GemPackageTask.new(spec) do |package|

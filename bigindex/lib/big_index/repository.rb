@@ -74,4 +74,4 @@ module BigIndex
     end
 
   end # class Repository
-end # module DataMapper
+end # module BigIndex

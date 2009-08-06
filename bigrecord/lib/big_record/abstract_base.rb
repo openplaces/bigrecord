@@ -153,11 +153,10 @@ module BigRecord
     # attributes before initializing the record. (usefull when using a meta model where
     # the list of columns depends on the value of an attribute)
     def preinitialize(attrs = nil)
-
+      @attributes = {}
     end
 
     def deserialize(attrs = nil)
-
     end
 
     # Safe version of attributes= so that objects can be instantiated even
@@ -928,7 +927,6 @@ private
         record = self.allocate
         record.deserialize(raw_record)
         record.preinitialize(raw_record)
-        record.instance_variable_set(:@attributes, {})
         record.instance_variable_set(:@new_record, false)
         record.safe_attributes = raw_record
         record

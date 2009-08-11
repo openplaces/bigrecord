@@ -1,5 +1,5 @@
 module BigRecord
-  module HrAssociations
+  module BrAssociations
     module CachedItemProxy #:nodoc:
 
       CACHE_ATTRIBUTE = "attribute:associations_cache"

@@ -1,5 +1,5 @@
 module BigRecord
-  module HrAssociations
+  module BrAssociations
     class BelongsToAssociation < AssociationProxy #:nodoc:
       def create(attributes = {})
         replace(@reflection.klass.create(attributes))

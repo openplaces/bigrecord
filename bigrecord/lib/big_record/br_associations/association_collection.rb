@@ -1,7 +1,7 @@
 require 'set'
 
 module BigRecord
-  module HrAssociations
+  module BrAssociations
     class AssociationCollection < AssociationProxy #:nodoc:
       def to_ary
         load_target

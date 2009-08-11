@@ -1,5 +1,5 @@
 module BigRecord
-  module HrAssociations
+  module BrAssociations
     class HasAndBelongsToManyAssociation < AssociationCollection #:nodoc:
       def initialize(owner, reflection)
         super

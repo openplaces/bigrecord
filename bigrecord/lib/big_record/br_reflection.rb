@@ -1,5 +1,5 @@
 module BigRecord
-  module HrReflection # :nodoc:
+  module BrReflection # :nodoc:
     def self.included(base)
       base.extend(ClassMethods)
 
@@ -14,9 +14,9 @@ module BigRecord
       def create_reflection_big_record(macro, name, options, big_record)
         case macro
           when :has_many_big_records, :belongs_to_big_record, :belongs_to_many, :has_one_big_record, :has_and_belongs_to_many_big_records
-            reflection = HrAssociationReflection.new(macro, name, options, big_record)
+            reflection = BrAssociationReflection.new(macro, name, options, big_record)
           when :composed_of_big_record
-            reflection = HrAggregateReflection.new(macro, name, options, big_record)
+            reflection = BrAggregateReflection.new(macro, name, options, big_record)
         end
         write_inheritable_hash :reflections, name => reflection
         reflection
@@ -35,7 +35,7 @@ module BigRecord
     end
 
     # Holds all the meta-data about an aggregation as it was specified in the Active Record class.
-    class HrAggregateReflection < MacroReflectionAbstract #:nodoc:
+    class BrAggregateReflection < MacroReflectionAbstract #:nodoc:
       def klass
         @klass ||= Object.const_get(options[:class_name] || class_name)
       end
@@ -47,7 +47,7 @@ module BigRecord
     end
 
     # Holds all the meta-data about an association as it was specified in the Active Record class.
-    class HrAssociationReflection < MacroReflectionAbstract #:nodoc:
+    class BrAssociationReflection < MacroReflectionAbstract #:nodoc:
       def klass
         @klass ||= big_record.send(:compute_type, class_name)
       end

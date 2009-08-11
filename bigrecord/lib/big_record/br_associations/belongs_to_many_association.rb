@@ -1,5 +1,5 @@
 module BigRecord
-  module HrAssociations
+  module BrAssociations
     class BelongsToManyAssociation < AssociationProxy #:nodoc:
       def to_ary
         load_target

@@ -1,12 +1,12 @@
-require 'big_record/hr_associations/association_proxy'
-require 'big_record/hr_associations/association_collection'
-require 'big_record/hr_associations/belongs_to_association'
-require 'big_record/hr_associations/belongs_to_many_association'
-require 'big_record/hr_associations/has_one_association'
-require 'big_record/hr_associations/has_and_belongs_to_many_association'
+require 'big_record/br_associations/association_proxy'
+require 'big_record/br_associations/association_collection'
+require 'big_record/br_associations/belongs_to_association'
+require 'big_record/br_associations/belongs_to_many_association'
+require 'big_record/br_associations/has_one_association'
+require 'big_record/br_associations/has_and_belongs_to_many_association'
 
 module BigRecord
-  module HrAssociations # :nodoc:
+  module BrAssociations # :nodoc:
     def self.included(base)
       base.extend(ClassMethods)
     end

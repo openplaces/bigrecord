@@ -1,5 +1,5 @@
 module BigRecord
-  module HrAssociations
+  module BrAssociations
     class CachedItemProxyFactory
 
       include Singleton

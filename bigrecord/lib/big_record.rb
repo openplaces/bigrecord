@@ -56,9 +56,9 @@ require 'big_record/embedded'
 require 'big_record/validations'
 require 'big_record/callbacks'
 require 'big_record/ar_reflection'
-require 'big_record/hr_reflection'
+require 'big_record/br_reflection'
 require 'big_record/ar_associations'
-require 'big_record/hr_associations'
+require 'big_record/br_associations'
 require 'big_record/timestamp'
 require 'big_record/attribute_methods'
 require 'big_record/embedded_associations/association_proxy'
@@ -76,9 +76,9 @@ BigRecord::Base.class_eval do
   include BigRecord::Callbacks
   include BigRecord::Timestamp
   include BigRecord::ArAssociations
-  include BigRecord::HrAssociations
+  include BigRecord::BrAssociations
   include BigRecord::ArReflection
-  include BigRecord::HrReflection
+  include BigRecord::BrReflection
   include BigRecord::AttributeMethods
   include BigRecord::DynamicSchema
   include BigRecord::Deletion
@@ -90,17 +90,17 @@ BigRecord::Embedded.class_eval do
   include BigRecord::Callbacks
   include BigRecord::Timestamp
   include BigRecord::ArAssociations
-  include BigRecord::HrAssociations
+  include BigRecord::BrAssociations
   include BigRecord::ArReflection
-  include BigRecord::HrReflection
+  include BigRecord::BrReflection
   include BigRecord::AttributeMethods
   include BigRecord::DynamicSchema
 end
 
 # Mixin the BigRecord associations with ActiveRecord
 ActiveRecord::Base.class_eval do
-  include BigRecord::HrAssociations
-  include BigRecord::HrReflection
+  include BigRecord::BrAssociations
+  include BigRecord::BrReflection
 end
 
 # Patch to call the validation of the embedded objects to HbaseRecord::Base instances.

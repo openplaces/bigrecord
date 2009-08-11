@@ -1,5 +1,5 @@
 module BigRecord
-  module HrAssociations
+  module BrAssociations
     class AssociationProxy #:nodoc:
       attr_reader :reflection
       alias_method :proxy_respond_to?, :respond_to?

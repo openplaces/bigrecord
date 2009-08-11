@@ -228,7 +228,6 @@ module BigRecord
     # from this form of mass-assignment by using the +attr_protected+ macro. Or you can alternatively
     # specify which attributes *can* be accessed in with the +attr_accessible+ macro. Then all the
     # attributes not included in that won't be allowed to be mass-assigned.
-    # TODO: handle guard_protected_attributes (currently ignored)
     def attributes=(new_attributes, guard_protected_attributes = true)
       return if new_attributes.nil?
       attributes = new_attributes.dup

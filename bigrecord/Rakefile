@@ -22,7 +22,7 @@ spec = Gem::Specification.new do |s|
   s.has_rdoc = true
   s.version = "0.1.0"
 
-  s.add_dependency "uuidtools", ">= 1.0.7"
+  s.add_dependency "uuidtools", ">= 2.0.0"
 end
 
 Rake::GemPackageTask.new(spec) do |package|
@@ -85,7 +85,7 @@ namespace :data_store do
   desc 'Migrate the test schema for the data store specified by ENV=<data_store>'
   task :migrate do
     environment = ENV['ENV']
-    raise ArgumentError, "Usage: rake data_store:migrate ENV=<hbase | cassandra>" unless environment
+    raise ArgumentError, "Usage: rake data_store:migrate ENV=<#{DATA_STORES.join("|")}>" unless environment
 
     BigRecord::Base.establish_connection environment
 
@@ -96,7 +96,7 @@ namespace :data_store do
     desc 'Runs the "up" for a given migration VERSION.'
     task :up do
       environment = ENV['ENV']
-      raise ArgumentError, "Usage: rake data_store:migrate:up ENV=<hbase | cassandra>" unless environment
+      raise ArgumentError, "Usage: rake data_store:migrate:up ENV=<#{DATA_STORES.join("|")}>" unless environment
 
       BigRecord::Base.establish_connection environment
 
@@ -109,7 +109,7 @@ namespace :data_store do
     desc 'Runs the "down" for a given migration VERSION.'
     task :down do
       environment = ENV['ENV']
-      raise ArgumentError, "Usage: rake data_store:migrate:down ENV=<hbase | cassandra>" unless environment
+      raise ArgumentError, "Usage: rake data_store:migrate:down ENV=<#{DATA_STORES.join("|")}>" unless environment
 
       BigRecord::Base.establish_connection environment
 

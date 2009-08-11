@@ -2,6 +2,15 @@ require File.expand_path(File.join(File.dirname(__FILE__), '..', 'spec_helper'))
 
 describe BigRecord::Base do
 
+  # Clear the tables before and after these tests
+  before(:all) do
+    Book.delete_all
+  end
+
+  after(:all) do
+    Book.delete_all
+  end
+
   it "should provide .id" do
     Book.new.should respond_to(:id)
   end

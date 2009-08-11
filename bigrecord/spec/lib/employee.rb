@@ -28,6 +28,6 @@ class Employee < BigRecord::Base
   validates_acceptance_of :contract
 
 
-  belongs_to :company
+  belongs_to_big_record :company, :foreign_key => :company_id
 
 end

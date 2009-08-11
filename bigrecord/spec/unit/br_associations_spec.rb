@@ -2,17 +2,26 @@ require File.expand_path(File.join(File.dirname(__FILE__), '..', 'spec_helper'))
 
 describe BigRecord::HrAssociations do
 
-  it "should list associations with #reflections" do
-    Animal.reflections.should have_key(:zoo)
+  # Clear the tables before and after these tests
+  before(:all) do
+    Animal.delete_all
+    Employee.delete_all
   end
 
-  it "should be renamed" do
-    pending "use this as an integration spec"
-    zoo = Zoo.create(:name => "Some Zoo")
+  after(:all) do
+    Animal.delete_all
+    Employee.delete_all
+  end
 
-    animal = Animal.new(:name => "Stampy", :type => "Elephant")
-    animal.zoo = zoo
-    animal.save.should be_true
+  it "should list associations in #reflections" do
+    Animal.reflections.should have_key(:zoo)
+    Animal.reflections.should have_key(:books)
+
+    Animal.reflections[:zoo].macro.should == :belongs_to_big_record
+    Animal.reflections[:books].macro.should == :belongs_to_many
+
+    Employee.reflections.should have_key(:company)
+    Employee.reflections[:company].macro.should == :belongs_to_big_record
   end
 
 end

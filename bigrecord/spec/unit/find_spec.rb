@@ -23,7 +23,7 @@ describe BigRecord::Base do
 
     it "should dispatch properly to #find_from_ids when given anything else" do
       zoo = Zoo.new
-      id = UUID.timestamp_create.to_s
+      id = UUIDTools::UUID.timestamp_create.to_s
 
       Zoo.should_receive(:find_from_ids).with([id], an_instance_of(Hash)).and_return([zoo])
 

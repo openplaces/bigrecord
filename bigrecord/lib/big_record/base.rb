@@ -35,7 +35,7 @@ module BigRecord
         attrs.each do |k,v|
           begin
             attrs[k] =
-            if k == "#{self.class.default_family}:id"
+            if k == "id"
               v
             elsif v.is_a?(Array)
               v.collect do |e|
@@ -89,7 +89,7 @@ module BigRecord
 
               set_loaded(attr_name)
               value_no_yaml =
-              if attr_name == "attribute.id"
+              if attr_name == "id"
                 value
               elsif value.is_a?(Array)
                 value.collect{|e| YAML::load(e)}
@@ -282,7 +282,7 @@ module BigRecord
       # end
 
       def primary_key
-        @primary_key ||= "#{default_family}:id"
+        @primary_key ||= "id"
       end
 
       # HBase scanner utility -- scans the table and executes code on each record
@@ -422,13 +422,13 @@ module BigRecord
       # TODO: take into consideration the conditions
       def delete_all(conditions = nil)
         connection.get_consecutive_rows(table_name, nil, nil, ["#{default_family}:"]).each do |row|
-          connection.delete(table_name, row["#{default_family}:id"])
+          connection.delete(table_name, row["id"])
         end
       end
 
       # Truncate the table for this model
       def truncate
-        delete_all
+        connection.truncate_table(table_name)
       end
 
       def table_name
@@ -577,7 +577,7 @@ module BigRecord
           if raw_record.is_a?(Array)
             unless raw_record.empty?
               raw_record.collect do |r|
-                r["#{default_family}:id"] = id
+                r["id"] = id
                 add_missing_cells(r, requested_columns)
                 rec = instantiate(r)
                 rec.all_attributes_loaded = true if options[:view] == :all
@@ -587,7 +587,7 @@ module BigRecord
               raise RecordNotFound, "Couldn't find #{name} with ID=#{id}"
             end
           else
-            raw_record["#{default_family}:id"] = id
+            raw_record["id"] = id
             add_missing_cells(raw_record, requested_columns)
             rec = instantiate(raw_record)
             rec.all_attributes_loaded = true if options[:view] == :all
@@ -616,7 +616,7 @@ module BigRecord
           ["#{default_family}:"]
         end
         c += [options[:include]] if options[:include]
-        c.flatten
+        c.flatten.reject{|x| x == "id"}
       end
 
       # Add the missing cells to the raw record and set them to nil. We know that it's

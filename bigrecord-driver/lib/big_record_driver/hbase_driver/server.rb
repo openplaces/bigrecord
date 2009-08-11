@@ -124,7 +124,7 @@ class HbaseServer < BigRecordServer
           column_name = Java::String.new(entry.getKey).to_s
           values[column_name] = to_ruby_string(entry.getValue)
         end
-        values["attribute:id"] = row
+        values["id"] = row
         values
       else
         nil
@@ -171,7 +171,7 @@ class HbaseServer < BigRecordServer
         end
         unless values.empty?
           # TODO: is this really supposed to be hard coded?
-          values['attribute:id'] = Java::String.new(row_result.getRow).to_s
+          values['id'] = Java::String.new(row_result.getRow).to_s
           result << values
         end
       end

@@ -473,7 +473,7 @@ module BigRecord
 
     # Generate a new id. Override this to use custom ids.
     def generate_new_id
-      UUID.timestamp_create.to_s
+      UUIDTools::UUID.timestamp_create.to_s
     end
 
     def self.random_id #not necessarily unique! -- this is strictly for 'stumbling', not for assigning to new entities
@@ -856,7 +856,7 @@ private
       # Returns an array of column objects where the primary id, all columns ending in "_id" or "_count",
       # and columns used for single table inheritance have been removed.
       def content_columns
-        @content_columns ||= columns.reject{|c| c.primary}
+        @content_columns ||= columns.reject{|c| c.primary || "id"}
       end
 
       # Returns a hash of all the methods added to query each of the columns in the table with the name of the method as the key
@@ -928,7 +928,7 @@ private
         record.deserialize(raw_record)
         record.preinitialize(raw_record)
         record.instance_variable_set(:@new_record, false)
-        record.safe_attributes = raw_record
+        record.send("safe_attributes=", raw_record, false)
         record
       end
 

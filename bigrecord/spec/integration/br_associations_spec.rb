@@ -30,6 +30,7 @@ describe BigRecord::HrAssociations do
 
       # Now checking the association
       saved_animal = Animal.find(animal.id)
+      saved_animal.reload # ensure that it's not cached
       saved_animal.zoo.should be_a_kind_of(Zoo)
       saved_animal.zoo.new_record?.should be_false
       saved_animal.zoo.name.should == zoo_attributes[:name]

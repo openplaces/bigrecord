@@ -131,7 +131,7 @@ module BigRecord
 
         row_cols.each do |key, col|
           result[key] =
-          if key == 'attribute:id'
+          if key == 'id'
             col
           else
             YAML::load(col) if col
@@ -155,13 +155,13 @@ module BigRecord
           row_cols.each do |key, col|
             begin
               cols[key] =
-              if key == 'attribute:id'
+              if key == 'id'
                 col
               else
                 YAML::load(col) if col
               end
             rescue Exception => e
-              puts "Could not load column value #{key} for row=#{row_cols['attribute:id']}"
+              puts "Could not load column value #{key} for row=#{row_cols['id']}"
             end
           end
           cols
@@ -173,6 +173,14 @@ module BigRecord
         result = nil
         log "DELETE FROM #{table_name} WHERE ROW=#{row};" do
           result = @connection.delete(table_name, row, timestamp)
+        end
+        result
+      end
+
+      def truncate_table(table_name)
+        result = nil
+        log "TRUNCATE TABLE #{table_name}" do
+          result = @connection.truncate_table(table_name)
         end
         result
       end

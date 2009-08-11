@@ -17,7 +17,7 @@ module BigRecord
 
   protected
     def generate_id
-      UUIDTools::UUID.timestamp_create
+      UUIDTools::UUID.timestamp_create.to_s
     end
 
   public

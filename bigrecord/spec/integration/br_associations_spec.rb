@@ -3,12 +3,12 @@ require File.expand_path(File.join(File.dirname(__FILE__), '..', 'spec_helper'))
 describe BigRecord::BrAssociations do
 
   # Clear the tables before and after these tests
-  before(:all) do
+  before(:each) do
     Animal.delete_all
     Zoo.delete_all
   end
 
-  after(:all) do
+  after(:each) do
     Animal.delete_all
     Zoo.delete_all
   end
@@ -36,6 +36,37 @@ describe BigRecord::BrAssociations do
       saved_animal.zoo.name.should == zoo_attributes[:name]
       saved_animal.zoo.address.should == zoo_attributes[:address]
       saved_animal.zoo.description.should == zoo_attributes[:description]
+    end
+
+  end
+
+  describe " #belongs_to_many" do
+
+    it "should reference the appropriate list of models" do
+      # Creating the zoo
+      zoo_attributes = {:name => "Some Zoo",
+                        :address => "123 Address St.",
+                        :description => "This is Some Zoo located at 123 Address St."}
+      zoo = Zoo.new(zoo_attributes)
+      zoo.save.should be_true
+
+      # Creating the animals
+      animal1 = Animal.new(:name => "Stampy", :type => "Elephant")
+      animal1.zoo = zoo
+      animal1.save.should be_true
+
+      animal2 = Animal.new(:name => "Dumbo", :type => "Elephant")
+      animal2.zoo = zoo
+      animal2.save.should be_true
+
+      zoo.animals << animal1
+      zoo.animals << animal2
+      zoo.save.should be_true
+
+      saved_zoo = Zoo.find(zoo.id)
+      saved_zoo.reload
+      saved_zoo.animals.should be_a_kind_of(Array)
+      saved_zoo.animals.each{|animal| animal.should be_a_kind_of(Animal)}
     end
 
   end

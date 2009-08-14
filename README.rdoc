@@ -22,7 +22,7 @@ Beyond this though, there are two basic motivations that almost immediately dema
 
 * Big Record: Ruby Object/Data Mapper. Inspired and architected similarly to Active Record.
 * Big Record Driver: JRuby application that bridges Ruby and Java (through JRuby's Drb protocol) to interact with Java-based data stores and their native APIs. Required for HBase and Cassandra. This application can be run from a separate server than your Rails application.
-** JRuby 1.1.6+ is needed to run Big Record Driver.
+  * JRuby 1.1.6+ is needed to run Big Record Driver.
 * Any other requirements needed to run Hadoop, HBase or your data store of choice.
 
 == Optional Requirements

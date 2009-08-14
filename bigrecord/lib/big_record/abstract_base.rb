@@ -472,7 +472,7 @@ module BigRecord
 
     # Generate a new id. Override this to use custom ids.
     def generate_new_id
-      UUIDTools::UUID.timestamp_create.to_s
+      UUIDTools::UUID.random_create.to_s
     end
 
     def self.random_id #not necessarily unique! -- this is strictly for 'stumbling', not for assigning to new entities

@@ -8,7 +8,7 @@ class Zoo < BigRecord::Base
   column 'attr:readonly',     'string'
   column :description,        :string
   column 'attr:weblink',      'Embedded::WebLink', :alias => "weblink"
-  column 'attr:animal_ids',  :string,  :collection => true
+  column 'attr:animal_ids',   :string,  :collection => true
 
 
   attr_accessible :name, :address, :description

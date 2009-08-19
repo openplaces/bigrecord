@@ -8,12 +8,12 @@ module BigRecordDriver
     
     def initialize(config={}) # :nodoc:
       config = config.symbolize_keys
-      config[:drb_host]     ||= 'localhost'
+      config[:drb_host]     ||= '127.0.0.1'
       config[:drb_port]     ||= 40000
       
       @config = config
 
-      DRb.start_service
+      DRb.start_service('druby://127.0.0.1:0')
       begin
         @server = DRbObject.new(nil, "druby://#{@config[:drb_host]}:#{@config[:drb_port]}")
       rescue DRb::DRbConnError

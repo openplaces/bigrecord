@@ -44,8 +44,6 @@ describe BigRecord::BrAssociations do
     zoo.animals.should respond_to(:clear)
     zoo.animals.should respond_to(:empty?)
     zoo.animals.should respond_to(:size)
-
-    p zoo.animals.proxy_reflection
   end
 
   it "should mixin build() and create() methods into collection assocations" do

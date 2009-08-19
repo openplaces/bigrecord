@@ -10,7 +10,7 @@ A Ruby Object/Data Mapper for distributed column-oriented data stores (inspired 
 * Automatic versioning.
 * Scalability (depending on the data store used).
 
-== Why would I used?
+== Why would I use it?
 
 BigTable, and by extension, Big Record isn't right for everyone. A great introductory article discussing this topic can be found at http://blog.rapleaf.com/dev/?p=26 explaining why you would or wouldn't use BigTable. The rule of thumb, however, is that if your data model is simple or can fit into a standard RDBMS, then you probably don't need it.
 

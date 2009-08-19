@@ -59,13 +59,19 @@ describe BigRecord::BrAssociations do
       animal2.zoo = zoo
       animal2.save.should be_true
 
+      # Associating the animals to the zoo
       zoo.animals << animal1
       zoo.animals << animal2
       zoo.save.should be_true
 
+      # Now we'll retrieve the Zoo record and check the association
       saved_zoo = Zoo.find(zoo.id)
       saved_zoo.reload
       saved_zoo.animals.should be_a_kind_of(Array)
+
+      saved_zoo["attr:animal_ids"].should == saved_zoo.animal_ids
+      saved_zoo.animal_ids.should include(animal1.id)
+      saved_zoo.animal_ids.should include(animal2.id)
       saved_zoo.animals.each{|animal| animal.should be_a_kind_of(Animal)}
     end
 

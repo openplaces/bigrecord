@@ -19,39 +19,7 @@ module BigRecord
     def initialize(attrs = nil)
       @new_record = true
       super
-      @modified_attributes ||= {}
-      if attrs
-        attrs.each do |k,v|
-          @modified_attributes[k] = v.hash
-          set_loaded(k)
-        end
-      end
-    end
-
-    def deserialize(attrs = nil)
-      @modified_attributes ||= {}
-      if attrs
-        attrs.each { |k,v| @modified_attributes[k] = v.hash}
-        attrs.each do |k,v|
-          begin
-            attrs[k] =
-            if k == "id"
-              v
-            elsif v.is_a?(Array)
-              v.collect do |e|
-                YAML::load(e)
-              end
-            else
-              YAML::load(v) if v
-            end
-          rescue Exception => e
-            puts "#{k}"
-            puts "#{v} #{v.class}"
-            puts e.message
-            puts e.backtrace.join("\n")
-          end
-        end
-      end
+      attrs.keys.each{ |k| set_loaded(k) } if attrs
     end
 
     # Returns the value of the attribute identified by <tt>attr_name</tt> after it has been typecast (for example,
@@ -85,33 +53,21 @@ module BigRecord
               options[:timestamp] = self.updated_at.to_bigrecord_timestamp if self.has_attribute?("#{self.class.default_family}:updated_at") and self.updated_at
 
               # get the content of the cell
-              value = connection.get_raw(self.class.table_name, self.id, attr_name, options)
+              value = connection.get(self.class.table_name, self.id, attr_name, options)
 
               set_loaded(attr_name)
-              value_no_yaml =
-              if attr_name == "id"
-                value
-              elsif value.is_a?(Array)
-                value.collect{|e| YAML::load(e)}
-              else
-                YAML::load(value) if value
-              end
-              write_attribute(attr_name, column.type_cast(value_no_yaml))
+              write_attribute(attr_name, column.type_cast(value))
             else
               # Special request... don't keep it in the attributes hash
               options[:timestamp] ||= self.updated_at.to_bigrecord_timestamp if self.has_attribute?("#{self.class.default_family}:updated_at") and self.updated_at
 
               # get the content of the cell
-              value = connection.get_raw(self.class.table_name, self.id, attr_name, options)
+              value = connection.get(self.class.table_name, self.id, attr_name, options)
 
               if options[:num_versions] and options[:num_versions] > 1
-                value.collect do |v|
-                  value_no_yaml = v.is_a?(Array) ? v.collect{|e| YAML::load(e)} : YAML::load(v)
-                  column.type_cast(value_no_yaml)
-                end
+                value.collect{ |v| column.type_cast(v) }
               else
-                value_no_yaml = value.is_a?(Array) ? value.collect{|e| YAML::load(e)} : YAML::load(value)
-                column.type_cast(value_no_yaml)
+                column.type_cast(value)
               end
             end
           else
@@ -146,19 +102,17 @@ module BigRecord
             options = {}
             # Retrieve the version of the attribute matching the current record version
             options[:timestamp] = self.updated_at.to_bigrecord_timestamp if self.has_attribute?("#{self.class.default_family}:updated_at") and self.updated_at
-            @modified_attributes ||= {}
+
             # get the content of the whole family
-            values = connection.get_columns_raw(self.class.table_name, self.id, [attr_name], options)
+            values = connection.get_columns(self.class.table_name, self.id, [attr_name], options)
             if values
               values.delete(self.class.primary_key)
               casted_values = {}
               values.each do |k,v|
-                @modified_attributes[k] = v.hash
-                value =  v ? YAML::load(v): nil
                 short_name = k.split(":")[1]
-                casted_values[short_name] =  column.type_cast(value) if short_name
+                casted_values[short_name] = column.type_cast(v) if short_name
                 set_loaded(k)
-                write_attribute(k, value) if short_name
+                write_attribute(k, casted_values[short_name]) if short_name
               end
               write_attribute(attr_name, casted_values)
             else
@@ -283,6 +237,11 @@ module BigRecord
 
       def primary_key
         @primary_key ||= "id"
+      end
+
+      # Return the list of families for this class
+      def families
+        columns.collect(&:family).uniq
       end
 
       # HBase scanner utility -- scans the table and executes code on each record
@@ -569,7 +528,7 @@ module BigRecord
           timestamps = connection.get(table_name, id, "#{default_family}:updated_at", options)
           timestamps.collect{|timestamp| connection.get_columns_raw(table_name, id, requested_columns, :timestamp => timestamp.to_bigrecord_timestamp)}
         else
-          connection.get_columns_raw(table_name, id, requested_columns, options)
+          connection.get_columns(table_name, id, requested_columns, options)
         end
 
         # Instantiate the raw record (or records, if multiple versions were asked)

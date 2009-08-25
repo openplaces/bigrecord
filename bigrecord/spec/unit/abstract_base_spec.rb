@@ -90,6 +90,8 @@ describe "BigRecord::AbstractBase", :shared => true do
     end
 
     it 'should provide a list of modified attributes with #modified_attributes' do
+      pending "This was deprecated"
+
       book = Book.new(  :title => "The Beach",
                         :author => "Alex Garland",
                         :description => "A furiously intelligent first novel.")

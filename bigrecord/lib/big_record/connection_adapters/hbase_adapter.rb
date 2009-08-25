@@ -42,6 +42,24 @@ module BigRecord
         "HBase server has gone away"
       ]
 
+      # data types
+      TYPE_NULL     = 0x00;
+      TYPE_STRING   = 0x01; # utf-8 strings
+#      TYPE_INTEGER  = 0x02; # delegate to YAML
+#      TYPE_FLOAT    = 0x03; # fixed 1 byte
+      TYPE_BOOLEAN  = 0x04; # delegate to YAML
+#      TYPE_MAP      = 0x05; # delegate to YAML
+#      TYPE_DATETIME = 0x06; # delegate to YAML
+      TYPE_BINARY   = 0x07; # byte[] => no conversion
+
+      # string charset
+      CHARSET = "utf-8"
+
+      # utility constants
+      NULL = "\000"
+#      TRUE = "\001"
+#      FALSE = "\000"
+
       def initialize(connection, logger, connection_options, config)
         super(connection, logger)
         @connection_options, @config = connection_options, config
@@ -91,8 +109,8 @@ module BigRecord
 
       def update(table_name, row, values, timestamp)
         serialized_collection = {}
-          values.each do |column, value|
-            serialized_collection[column] = value.to_yaml
+        values.each do |column, value|
+          serialized_collection[column] = serialize(value)
         end
         update_raw(table_name, row, serialized_collection, timestamp)
       end
@@ -109,9 +127,9 @@ module BigRecord
         serialized_result = get_raw(table_name, row, column, options)
         result = nil
         if serialized_result.is_a?(Array)
-          result = serialized_result.collect{|e| YAML::load(e)}
+          result = serialized_result.collect{|e| deserialize(e)}
         else
-          result = YAML::load(serialized_result) if serialized_result
+          result = deserialize(serialized_result)
         end
         result
       end
@@ -134,7 +152,7 @@ module BigRecord
           if key == 'id'
             col
           else
-            YAML::load(col) if col
+            deserialize(col)
           end
         end
         result
@@ -158,7 +176,7 @@ module BigRecord
               if key == 'id'
                 col
               else
-                YAML::load(col) if col
+                deserialize(col)
               end
             rescue Exception => e
               puts "Could not load column value #{key} for row=#{row_cols['id']}"
@@ -267,6 +285,50 @@ module BigRecord
       end
 
       alias :modify_family :modify_column_family
+
+      # Serialize the given value
+      def serialize(value)
+        case value
+        when NilClass then NULL
+        when String then build_serialized_value(TYPE_STRING, value)
+        else value.to_yaml
+        end
+      end
+
+      # Serialize an object in a given type
+      def build_serialized_value(type, value)
+        type.chr + value
+      end
+
+      # Deserialize the given string. This method supports both the pure YAML format and
+      # the type header format.
+      def deserialize(str)
+        return unless str
+
+        #	stay compatible with the old serialization code
+        #	YAML documents start with "--- " so if we find that sequence at the beginning we
+        #	consider it as a serialized YAML value, else it's the new format with the type header
+        if str[0..3] == "--- "
+          YAML::load(str) if str
+        else
+          deserialize_with_header(str)
+        end
+      end
+
+      # Deserialize the given string assumed to be in the type header format.
+      def deserialize_with_header(data)
+        return unless data and data.size >= 2
+
+        # the type of the data is encoded in the first byte
+        type = data[0];
+
+        case type
+        when TYPE_NULL then nil
+        when TYPE_STRING then data[1..-1]
+        when TYPE_BINARY then data[1..-1]
+        else nil
+        end
+      end
 
       private
         def connect

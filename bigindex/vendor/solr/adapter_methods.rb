@@ -46,7 +46,7 @@ module Solr
         # iterate through the fields and add them to the document,
         configuration[:fields].each do |field|
           field_name = field.field_name
-          field_type = get_field_type(field[:type]) if field[:type]
+          field_type = get_field_type(field.field_type) if field.field_type
           field_boost= field[:boost] if field[:boost]
 
           field_type  ||= configuration[:facets] && configuration[:facets].include?(field) ? :facet : :text
@@ -293,7 +293,7 @@ module Solr
         if configuration[:fields] && configuration[:fields].is_a?(Array)
           configuration[:fields].each do |index_field|
 
-              field_type = get_field_type(index_field[:type])
+              field_type = get_field_type(index_field.field_type)
               field = "#{index_field.field_name.to_s}_#{field_type}#{suffix}"
 
                 # Replace the type suffix only when the previous and next character is not a letter or other character

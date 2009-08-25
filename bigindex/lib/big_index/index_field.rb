@@ -2,22 +2,25 @@ module BigIndex
 
   class IndexField
 
-    attr_reader :field, :field_name, :options, :block
+    attr_reader :field, :field_name, :field_type, :options, :block
 
-    def initialize(field, block = nil)
-      @field = field.dup
+    def initialize(params, block = nil)
+      raise "IndexField requires at least a field name" unless params.size > 0
+
+      @params = params.dup
       @block = block
 
-      @field_name = field.shift
-      @options = field.shift || {}
+      @field_name = params.shift
+
+      unless params.empty?
+        @field_type = params.shift
+      end
+
+      @options = params.shift || {}
 
       # Setting the default values
       @options[:finder_name] ||= field_name
-      @options[:type] ||= :text
-    end
-
-    def type
-      @options[:type]
+      @field_type ||= :text
     end
 
     def [](name)

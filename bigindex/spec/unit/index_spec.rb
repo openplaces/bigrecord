@@ -7,7 +7,7 @@ describe BigIndex::Resource do
 
     before(:each) do
       @model_class = Book
-      Book.truncate
+      Book.delete_all
 
       Book.drop_index
       Animal.drop_index
@@ -30,7 +30,7 @@ describe BigIndex::Resource do
         Book.index_views_hash[:default].select{|x| x.field_name == h.keys.first}.size.should == 1
 
         # And the type of that field should match the expected type
-        Book.index_views_hash[:default].select{|x| x.field_name == h.keys.first}.first[:type].should == h.values.first
+        Book.index_views_hash[:default].select{|x| x.field_name == h.keys.first}.first.field_type.should == h.values.first
       end
 
       # The expected fields (and their types) to be indexed for the Animal model
@@ -45,7 +45,7 @@ describe BigIndex::Resource do
         Animal.index_views_hash[:default].select{|x| x.field_name == h.keys.first}.size.should == 1
 
         # And the type of that field should match the expected type
-        Animal.index_views_hash[:default].select{|x| x.field_name == h.keys.first}.first[:type].should == h.values.first
+        Animal.index_views_hash[:default].select{|x| x.field_name == h.keys.first}.first.field_type.should == h.values.first
       end
     end
 
@@ -55,8 +55,8 @@ describe BigIndex::Resource do
 
     before(:each) do
       # TODO: This is specific to BigRecord and will need to be taken out
-      Book.truncate
-      Animal.truncate
+      Book.delete_all
+      Animal.delete_all
 
       Book.rebuild_index :silent => true, :drop => true
       Animal.rebuild_index :silent => true, :drop => true

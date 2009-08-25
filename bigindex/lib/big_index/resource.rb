@@ -222,8 +222,8 @@ module BigIndex
       # to the field name. This can be defined with the :finder_name => "anothername"
       # option.
       #
-      def index(*field, &block)
-        index_field = IndexField.new(field, block)
+      def index(*params, &block)
+        index_field = IndexField.new(params, block)
 
         add_index_field(index_field)
 
@@ -312,7 +312,7 @@ module BigIndex
           if options[:fields]
             options[:fields]
           else
-            fields = options[:view] ? index_views_hash[options[:view]].map{|x| x.field} : index_views_hash[:default].map{|x| x.field}
+            fields = options[:view] ? index_views_hash[options[:view]].map{|x| x.field_name} : index_views_hash[:default].map{|x| x.field_name}
             fields ||= []
           end
 
@@ -320,6 +320,7 @@ module BigIndex
           index_adapter.find_ids_by_index(self, query, {  :offset   => options[:offset],
                                                     :order    => options[:order],
                                                     :limit    => options[:limit],
+                                                    :fields   => fields,
                                                     :operator => options[:operator],
                                                     :raw_result => options[:raw_result]})
         else
@@ -357,7 +358,7 @@ module BigIndex
               options[:fields] ||= index_views_hash[:default]
 
               # quote the query if the field type is :string
-              if options[:fields].select{|f| f.field_name.to_s == "#{finder_name}" }.first[:type] == :string
+              if options[:fields].select{|f| f.field_name.to_s == "#{finder_name}" }.first.field_type == :string
                 query = "#{finder_name}:(\\"\#{user_query}\\")"
               else
                 query = "#{finder_name}:(\#{user_query})"

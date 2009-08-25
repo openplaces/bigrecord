@@ -54,7 +54,7 @@ module BigIndex
   end
 
   def self.configurations
-    @configurations.dup ||= {}
+    Repository.adapters || {}
   end
 
   def self.configurations=(configurations)

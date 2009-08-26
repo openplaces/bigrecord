@@ -61,9 +61,6 @@ module BigRecord
     # on to any new database connections made and which can be retrieved on both a class and instance level by calling +logger+.
     cattr_accessor :logger, :instance_writer => false
 
-    class_inheritable_accessor :default_family, :instance_write => false
-    self.default_family = "attribute"
-
     # Constants for special characters in generated IDs. An ID might then look
     # like this: 'United_States-Hawaii-Oahu-Honolulu-b9cef848-a4e0-11dc-a7ba-0018f3137ea8'
     ID_FIELD_SEPARATOR = '-'
@@ -874,7 +871,6 @@ private
 
       def column(name, type, options={})
         name = name.to_s
-        name = "#{self.default_family}:#{name}" unless (name =~ /:/)
 
         @columns_hash = default_columns unless @columns_hash
 

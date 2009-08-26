@@ -5,6 +5,9 @@ module BigRecord
 
     attr_accessor :modified_attributes
 
+    class_inheritable_accessor :default_family, :instance_write => false
+    self.default_family = "attribute"
+
     def self.inherited(child) #:nodoc:
       @@subclasses[self] ||= []
       @@subclasses[self] << child
@@ -439,6 +442,13 @@ module BigRecord
 
       def default_columns
         {primary_key => ConnectionAdapters::Column.new(primary_key, 'string')}
+      end
+
+      def column(name, type, options={})
+        name = name.to_s
+        name = "#{self.default_family}:#{name}" unless (name =~ /:/)
+
+        super(name, type, options)
       end
 
       def default_views

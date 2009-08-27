@@ -194,8 +194,9 @@ module BigIndex
       end
 
       def index_field(field_name)
-        if index_configuration[:fields].include?(field_name)
-          index_configuration[:fields].select{|field| field.field_name == field_name}.first
+        field_name = field_name.to_s
+        if index_configuration[:fields].map(&:field_name).map(&:to_s).include?(field_name)
+          index_configuration[:fields].select{|field| field.field_name.to_s == field_name}.first
         end
       end
 
@@ -340,20 +341,22 @@ module BigIndex
         class_eval <<-end_eval
           def self.find_by_#{finder_name}(user_query, options={})
 
-              options[:fields] ||= index_views_hash[:default]
+            options[:fields] ||= index_views_hash[:default]
 
-              # quote the query if the field type is :string
-              if finder_field = index_field(#{finder_name})
-                (finder_field.field_type == :string) ?
-                  query = "#{finder_name}:(\\"\#{user_query}\\")" : query = "#{finder_name}:(\#{user_query})"
-              end
-
-              if options[:format] == :ids
-                index_adapter.find_ids_by_index(self, query, options)
-              else
-                index_adapter.find_by_index(self, query, options)
-              end
+            # quote the query if the field type is :string
+            if finder_field = index_field(:#{finder_name})
+              (finder_field.field_type == :string) ?
+                query = "#{finder_name}:(\\"\#{user_query}\\")" : query = "#{finder_name}:(\#{user_query})"
+            else
+              query = user_query
             end
+
+            if options[:format] == :ids
+              index_adapter.find_ids_by_index(self, query, options)
+            else
+              index_adapter.find_by_index(self, query, options)
+            end
+          end
         end_eval
       end
 

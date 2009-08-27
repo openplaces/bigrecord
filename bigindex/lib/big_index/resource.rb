@@ -193,6 +193,11 @@ module BigIndex
         index_configuration[:fields].select{|field| field_list.include?(field.field_name)}
       end
 
+      def index_field(field_name)
+        if index_configuration[:fields].include?(field_name)
+          index_configuration[:fields].select{|field| field.field_name == field_name}.first
+        end
+      end
 
       ##
       #
@@ -338,10 +343,9 @@ module BigIndex
               options[:fields] ||= index_views_hash[:default]
 
               # quote the query if the field type is :string
-              if options[:fields].select{|f| f.to_s == "#{finder_name}" }.first.field_type == :string
-                query = "#{finder_name}:(\\"\#{user_query}\\")"
-              else
-                query = "#{finder_name}:(\#{user_query})"
+              if finder_field = index_field(finder_name)
+                (finder_field.field_type == :string) ?
+                  query = "#{finder_name}:(\\"\#{user_query}\\")" : query = "#{finder_name}:(\#{user_query})"
               end
 
               if options[:source] == :index

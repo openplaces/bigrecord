@@ -187,32 +187,12 @@ module BigIndex
         {:default => self.index_configuration[:fields]}
       end
 
-      def set_unreturned_index_fields(fields)
-        @unreturned_index_fields = fields
+      def index_fields(view_name = :default)
+        field_list = index_views_hash[view_name]
+
+        index_configuration[:fields].select{|field| field_list.include?(field.field_name)}
       end
 
-      def unreturned_index_fields
-        @unreturned_index_fields.to_a
-      end
-
-      def returned_index_fields
-        unless @returned_index_fields
-          fields = {}
-          index_configuration[:fields].each do |item|
-            if item.is_a?(Hash)
-              name = item.keys[0]
-              fields.merge!(item) unless (unreturned_index_fields.find{|n| n == name} || item.values[0].to_s =~ /not_stored/)
-            else
-              fields[item] = :text unless unreturned_index_fields.find{|n| n == item}
-            end
-          end
-          @returned_index_fields = fields.collect {|field, type| "#{field}_#{adapter.get_field_type(type)}".to_sym}
-          # TODO: Check with Sebastien about this
-          @returned_index_fields += [:score, :pk_s, :type_s_mv]
-          @returned_index_fields.uniq!
-        end
-        @returned_index_fields
-      end
 
       ##
       #

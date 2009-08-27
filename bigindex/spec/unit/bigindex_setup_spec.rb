@@ -31,11 +31,10 @@ describe BigIndex do
       original_config = BigIndex.configurations.freeze
 
       new_config_options = {:temp => {:adapter => "solr", :solr_url => "http://localhost/solr"}}
-      new_config = original_config.merge(new_config_options)
 
       lambda {
-        BigIndex.configurations = BigIndex.configurations.merge(new_config_options)
-      }.should change(BigIndex, :configurations).from(original_config).to(new_config)
+        BigIndex.configurations = new_config_options
+      }.should change(BigIndex, :configurations).from(original_config)
     end
 
     it "should change all keys to symbols" do

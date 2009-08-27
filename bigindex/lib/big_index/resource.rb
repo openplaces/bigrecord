@@ -297,7 +297,7 @@ module BigIndex
           if options[:fields]
             options[:fields]
           else
-            fields = options[:view] ? index_views_hash[options[:view]].map{|x| x.field_name} : index_views_hash[:default].map{|x| x.field_name}
+            fields = options[:view] ? index_views_hash[options[:view]] : index_views_hash[:default]
             fields ||= []
           end
 

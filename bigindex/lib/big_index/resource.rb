@@ -338,7 +338,7 @@ module BigIndex
               options[:fields] ||= index_views_hash[:default]
 
               # quote the query if the field type is :string
-              if options[:fields].select{|f| f.field_name.to_s == "#{finder_name}" }.first.field_type == :string
+              if options[:fields].select{|f| f.to_s == "#{finder_name}" }.first.field_type == :string
                 query = "#{finder_name}:(\\"\#{user_query}\\")"
               else
                 query = "#{finder_name}:(\#{user_query})"

@@ -348,31 +348,11 @@ module BigIndex
                   query = "#{finder_name}:(\\"\#{user_query}\\")" : query = "#{finder_name}:(\#{user_query})"
               end
 
-              if options[:source] == :index
-                results = index_adapter.find_values_by_index(query,  :fields   => options[:fields],
-                                                      :order    =>options[:order],
-                                                      :offset   => options[:offset],
-                                                      :limit    => options[:limit],
-                                                      :query_function => options[:query_function],
-                                                      :no_parsing   => options[:no_parsing],
-                                                      :scores   => :true,
-                                                      :operator => :or)
+              if options[:format] == :ids
+                index_adapter.find_ids_by_index(self, query, options)
               else
-                results = index_adapter.find_by_index(query, :fields    => options[:fields],
-                                              :view      => options[:view],
-                                              :include_deleted => options[:include_deleted],
-                                              :force_reload => options[:force_reload],
-                                              :timestamp => options[:timestamp],
-                                              :order     => options[:order],
-                                              :offset    => options[:offset],
-                                              :limit     => options[:limit],
-                                              :query_function => options[:query_function],
-                                              :no_parsing   => options[:no_parsing],
-                                              :scores    => :true,
-                                              :operator  => :or)
+                index_adapter.find_by_index(self, query, options)
               end
-
-              return results
             end
         end_eval
       end

@@ -489,7 +489,7 @@ module BigRecord
       def find_every(options)
         requested_columns = columns_to_find(options)
 
-        raw_records = connection.get_consecutive_rows_raw(table_name, options[:offset],
+        raw_records = connection.get_consecutive_rows(table_name, options[:offset],
           options[:limit], requested_columns, options[:stop_row])
 
         raw_records.collect do |raw_record|
@@ -536,7 +536,7 @@ module BigRecord
         raw_record =
         if options[:num_versions] and options[:num_versions] > 1
           timestamps = connection.get(table_name, id, "#{default_family}:updated_at", options)
-          timestamps.collect{|timestamp| connection.get_columns_raw(table_name, id, requested_columns, :timestamp => timestamp.to_bigrecord_timestamp)}
+          timestamps.collect{|timestamp| connection.get_columns(table_name, id, requested_columns, :timestamp => timestamp.to_bigrecord_timestamp)}
         else
           connection.get_columns(table_name, id, requested_columns, options)
         end
@@ -546,7 +546,6 @@ module BigRecord
           if raw_record.is_a?(Array)
             unless raw_record.empty?
               raw_record.collect do |r|
-                r["id"] = id
                 add_missing_cells(r, requested_columns)
                 rec = instantiate(r)
                 rec.all_attributes_loaded = true if options[:view] == :all
@@ -556,7 +555,6 @@ module BigRecord
               raise RecordNotFound, "Couldn't find #{name} with ID=#{id}"
             end
           else
-            raw_record["id"] = id
             add_missing_cells(raw_record, requested_columns)
             rec = instantiate(raw_record)
             rec.all_attributes_loaded = true if options[:view] == :all

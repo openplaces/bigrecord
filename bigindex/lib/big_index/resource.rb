@@ -30,6 +30,10 @@ module BigIndex
         after_save    :index_save
         after_destroy :index_destroy
 
+        def self.inherited(child)
+          child.index_configuration = self.index_configuration
+        end
+
         class << self
           # Defines find_with_index() and find_without_index()
           alias_method_chain :find, :index
@@ -63,7 +67,17 @@ module BigIndex
       end
 
       def index_configuration
-        @index_configuration.dup
+        begin
+          config = {}
+          config = @index_configuration.dup
+
+          config[:fields] = @index_configuration[:fields].dup if @index_configuration[:fields]
+          config[:exclude_fields] = @index_configuration[:exclude_fields].dup if @index_configuration[:exclude_fields]
+
+          config
+        rescue
+         {}
+        end
       end
 
       def index_configuration=(config)
@@ -218,14 +232,15 @@ module BigIndex
       end
 
       def add_index_field(index_field)
-        if self.index_configuration[:fields]
-          unless self.index_configuration[:fields].include?(index_field)
-            self.index_configuration[:fields] << index_field
+        configuration = @index_configuration
+        if configuration[:fields]
+          unless configuration[:fields].include?(index_field)
+            configuration[:fields] << index_field
           else
             return
           end
         else
-          self.index_configuration[:fields] = [index_field]
+          configuration[:fields] = [index_field]
         end
 
         define_method("#{index_field.field_name}_for_index") do

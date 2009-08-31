@@ -833,29 +833,38 @@ class BigRecordFixture #:nodoc:
     end
 end
 
-module Test #:nodoc:
-  module Unit #:nodoc:
-    class TestCase #:nodoc:
-      superclass_delegating_accessor :fixture_path
-      superclass_delegating_accessor :bigrecord_fixture_table_names
-      superclass_delegating_accessor :bigrecord_fixture_class_names
-      superclass_delegating_accessor :bigrecord_use_transactional_fixtures
-      superclass_delegating_accessor :bigrecord_use_instantiated_fixtures   # true, false, or :no_instances
-      superclass_delegating_accessor :bigrecord_pre_loaded_fixtures
+module BigRecord
+  module TestFixtures
+    def self.included(base)
+      base.class_eval do
+        setup :setup_bigrecord_fixtures
+        teardown :teardown_bigrecord_fixtures
 
-      self.bigrecord_fixture_table_names = []
-      self.bigrecord_use_transactional_fixtures = false
-      self.bigrecord_use_instantiated_fixtures = true
-      self.bigrecord_pre_loaded_fixtures = false
+        superclass_delegating_accessor :bigrecord_fixture_table_names
+        superclass_delegating_accessor :bigrecord_fixture_class_names
+        superclass_delegating_accessor :bigrecord_use_transactional_fixtures
+        superclass_delegating_accessor :bigrecord_use_instantiated_fixtures   # true, false, or :no_instances
+        superclass_delegating_accessor :bigrecord_pre_loaded_fixtures
 
-      @@already_loaded_bigrecord_fixtures = {}
-      self.bigrecord_fixture_class_names = {}
+        self.bigrecord_fixture_table_names = []
+        self.bigrecord_use_transactional_fixtures = false
+        self.bigrecord_use_instantiated_fixtures = true
+        self.bigrecord_pre_loaded_fixtures = false
 
-      def self.bigrecord_set_fixture_class(class_names = {})
+        @@already_loaded_bigrecord_fixtures = {}
+        self.bigrecord_fixture_class_names = {}
+      end
+
+      base.extend ClassMethods
+    end
+
+    module ClassMethods
+
+      def bigrecord_set_fixture_class(class_names = {})
         self.bigrecord_fixture_class_names = self.bigrecord_fixture_class_names.merge(class_names)
       end
 
-      def self.bigrecord_fixtures(*bigrecord_table_names)
+      def bigrecord_fixtures(*bigrecord_table_names)
         if bigrecord_table_names.first == :all
           bigrecord_table_names = Dir["#{fixture_path}/*.yml"] + Dir["#{fixture_path}/*.csv"]
           bigrecord_table_names.map! { |f| File.basename(f).split('.')[0..-2].join('.') }
@@ -868,7 +877,7 @@ module Test #:nodoc:
         setup_bigrecord_fixture_accessors(bigrecord_table_names)
       end
 
-      def self.require_bigrecord_fixture_classes(table_names = nil)
+      def require_bigrecord_fixture_classes(table_names = nil)
         (table_names || fixture_table_names).each do |table_name|
           file_name = table_name.to_s
           file_name = file_name.singularize if ActiveRecord::Base.pluralize_table_names
@@ -880,13 +889,12 @@ module Test #:nodoc:
         end
       end
 
-      def self.setup_bigrecord_fixture_accessors(table_names = nil)
+      def setup_bigrecord_fixture_accessors(table_names = nil)
         (table_names || fixture_table_names).each do |table_name|
           table_name = table_name.to_s.tr('.', '_')
 
           define_method(table_name) do |*fixtures|
             force_reload = fixtures.pop if fixtures.last == true || fixtures.last == :reload
-
             @bigrecord_fixture_cache[table_name] ||= {}
 
             instances = fixtures.map do |fixture|
@@ -904,115 +912,114 @@ module Test #:nodoc:
         end
       end
 
-      def self.uses_transaction(*methods)
+      def uses_transaction(*methods)
         @bigrecord_uses_transaction = [] unless defined?(@bigrecord_uses_transaction)
         @bigrecord_uses_transaction.concat methods.map(&:to_s)
       end
 
-      def self.uses_transaction?(method)
+      def uses_transaction?(method)
         @uses_transaction = [] unless defined?(@uses_transaction)
         @uses_transaction.include?(method.to_s)
       end
+    end
 
-      def setup_with_bigrecord_fixtures
-        return if @bigrecord_fixtures_setup
-        @bigrecord_fixtures_setup = true
-        return unless defined?(BigRecord::Base) && !BigRecord::Base.configurations.blank?
+    def run_in_transaction?
+      use_transactional_fixtures &&
+        !self.class.uses_transaction?(method_name)
+    end
 
-        setup_with_fixtures
+    def setup_bigrecord_fixtures
+      return if @bigrecord_fixtures_setup
+      @bigrecord_fixtures_setup = true
+      return unless defined?(BigRecord::Base) && !BigRecord::Base.configurations.blank?
 
-        if pre_loaded_fixtures && !use_transactional_fixtures
-          raise RuntimeError, 'pre_loaded_fixtures requires use_transactional_fixtures'
-        end
+      if pre_loaded_fixtures && !use_transactional_fixtures
+        raise RuntimeError, 'pre_loaded_fixtures requires use_transactional_fixtures'
+      end
 
-        @bigrecord_fixture_cache = {}
+      @bigrecord_fixture_cache = {}
 
+      BigRecordFixtures.reset_cache
+      @@already_loaded_bigrecord_fixtures[self.class] = nil
+      load_bigrecord_fixtures
+
+      # Instantiate fixtures for every test if requested.
+      instantiate_fixtures if use_instantiated_fixtures
+    end
+
+    def teardown_bigrecord_fixtures
+      return if @bigrecord_fixtures_teardown
+      @bigrecord_fixtures_teardown = true
+      return unless defined?(BigRecord::Base) && !BigRecord::Base.configurations.blank?
+
+      unless use_transactional_fixtures?
         BigRecordFixtures.reset_cache
-        @@already_loaded_bigrecord_fixtures[self.class] = nil
-        load_bigrecord_fixtures
-
-        # Instantiate fixtures for every test if requested.
-        instantiate_fixtures if use_instantiated_fixtures
-      end
-      alias_method :setup, :setup_with_bigrecord_fixtures
-
-      def teardown_with_bigrecord_fixtures
-        return if @bigrecord_fixtures_teardown
-        @bigrecord_fixtures_teardown = true
-        return unless defined?(BigRecord::Base) && !BigRecord::Base.configurations.blank?
-
-        unless use_transactional_fixtures?
-          BigRecordFixtures.reset_cache
-        end
-
-        BigRecord::Base.verify_active_connections!
-
-        teardown_with_fixtures if defined?(ActiveRecord::Base)
-      end
-      alias_method :teardown, :teardown_with_bigrecord_fixtures
-
-      def self.method_added(method)
-        return if @__disable_method_added__
-        @__disable_method_added__ = true
-
-        case method.to_s
-        when 'setup'
-          undef_method :setup_without_fixtures if method_defined?(:setup_without_fixtures)
-          alias_method :setup_without_fixtures, :setup
-          define_method(:full_setup) do
-            setup_with_bigrecord_fixtures
-            setup_without_fixtures
-          end
-          alias_method :setup, :full_setup
-        when 'teardown'
-          undef_method :teardown_without_fixtures if method_defined?(:teardown_without_fixtures)
-          alias_method :teardown_without_fixtures, :teardown
-          define_method(:full_teardown) do
-            teardown_without_fixtures
-            teardown_with_bigrecord_fixtures
-          end
-          alias_method :teardown, :full_teardown
-        end
-
-        @__disable_method_added__ = false
       end
 
-      private
-        def load_bigrecord_fixtures
-          @loaded_bigrecord_fixtures = {}
-          fixtures = BigRecordFixtures.create_fixtures(fixture_path, bigrecord_fixture_table_names, bigrecord_fixture_class_names)
+      BigRecord::Base.verify_active_connections!
+    end
 
-          unless fixtures.nil?
-            if fixtures.instance_of?(BigRecordFixtures)
-              @loaded_bigrecord_fixtures[fixtures.table_name] = fixtures
-            else
-              fixtures.each { |f| @loaded_bigrecord_fixtures[f.table_name] = f }
-            end
-          end
+    def self.method_added(method)
+      return if @__disable_method_added__
+      @__disable_method_added__ = true
+
+      case method.to_s
+      when 'setup'
+        undef_method :setup_without_fixtures if method_defined?(:setup_without_fixtures)
+        alias_method :setup_without_fixtures, :setup
+        define_method(:full_setup) do
+          setup_with_bigrecord_fixtures
+          setup_without_fixtures
         end
-
-        # for pre_loaded_fixtures, only require the classes once. huge speed improvement
-        @@required_bigrecord_fixture_classes = false
-
-        def instantiate_bigrecord_fixtures
-          if pre_loaded_fixtures
-            raise RuntimeError, 'Load fixtures before instantiating them.' if Fixtures.all_loaded_fixtures.empty?
-            unless @@required_bigrecord_fixture_classes
-              self.class.require_fixture_classes Fixtures.all_loaded_fixtures.keys
-              @@required_bigrecord_fixture_classes = true
-            end
-            BigRecordFixtures.instantiate_all_loaded_fixtures(self, load_instances?)
-          else
-            raise RuntimeError, 'Load fixtures before instantiating them.' if @loaded_bigrecord_fixtures.nil?
-            @loaded_bigrecord_fixtures.each do |table_name, fixtures|
-              BigRecordFixtures.instantiate_fixtures(self, table_name, fixtures, load_instances?)
-            end
-          end
+        alias_method :setup, :full_setup
+      when 'teardown'
+        undef_method :teardown_without_fixtures if method_defined?(:teardown_without_fixtures)
+        alias_method :teardown_without_fixtures, :teardown
+        define_method(:full_teardown) do
+          teardown_fixtures
+          teardown_with_bigrecord_fixtures
         end
+        alias_method :teardown, :full_teardown
+      end
 
-        def load_bigrecord_instances?
-          use_instantiated_fixtures != :no_instances
+      @__disable_method_added__ = false
+    end
+
+    private
+    def load_bigrecord_fixtures
+      @loaded_bigrecord_fixtures = {}
+      fixtures = BigRecordFixtures.create_fixtures(fixture_path, bigrecord_fixture_table_names, bigrecord_fixture_class_names)
+
+      unless fixtures.nil?
+        if fixtures.instance_of?(BigRecordFixtures)
+          @loaded_bigrecord_fixtures[fixtures.table_name] = fixtures
+        else
+          fixtures.each { |f| @loaded_bigrecord_fixtures[f.table_name] = f }
         end
+      end
+    end
+
+    # for pre_loaded_fixtures, only require the classes once. huge speed improvement
+    @@required_bigrecord_fixture_classes = false
+
+    def instantiate_bigrecord_fixtures
+      if pre_loaded_fixtures
+        raise RuntimeError, 'Load fixtures before instantiating them.' if Fixtures.all_loaded_fixtures.empty?
+        unless @@required_bigrecord_fixture_classes
+          self.class.require_fixture_classes Fixtures.all_loaded_fixtures.keys
+          @@required_bigrecord_fixture_classes = true
+        end
+        BigRecordFixtures.instantiate_all_loaded_fixtures(self, load_instances?)
+      else
+        raise RuntimeError, 'Load fixtures before instantiating them.' if @loaded_bigrecord_fixtures.nil?
+        @loaded_bigrecord_fixtures.each do |table_name, fixtures|
+          BigRecordFixtures.instantiate_fixtures(self, table_name, fixtures, load_instances?)
+        end
+      end
+    end
+
+    def load_bigrecord_instances?
+      use_instantiated_fixtures != :no_instances
     end
   end
 end

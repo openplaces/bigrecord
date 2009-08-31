@@ -54,36 +54,36 @@ class HbaseServer < BigRecordServer
   #
   # valid options:
   #   :timestamp      => integer corresponding to the time when the record was saved in hbase
-  #   :num_versions   => number of versions to retreive, starting at the specified timestamp (or the latest)
+  #   :versions   => number of versions to retreive, starting at the specified timestamp (or the latest)
   def get(table_name, row, column, options={})
     safe_exec do
       return nil unless row
       table = connect_table(table_name)
 
       # Retreive only the last version by default
-      options[:num_versions] ||= 1
+      options[:versions] ||= 1
 
       # validate the arguments
-      raise ArgumentError, "num_versions must be >= 1" unless options[:num_versions] >= 1
+      raise ArgumentError, "versions must be >= 1" unless options[:versions] >= 1
 
       # get the raw data from hbase
       unless options[:timestamp]
-        if options[:num_versions] == 1
+        if options[:versions] == 1
           raw_data = table.get(row, column)
         else
           raw_data = table.get(row,
                                 column,
-                                options[:num_versions])
+                                options[:versions])
         end
       else
         raw_data = table.get(row,
                               column,
                               options[:timestamp],
-                              options[:num_versions])
+                              options[:versions])
       end
 
       # Return either a single value or an array, depending on the number of version that have been requested
-      if options[:num_versions] == 1
+      if options[:versions] == 1
         return nil unless raw_data
         raw_data = raw_data[0] if options[:timestamp]
         to_ruby_string(raw_data)

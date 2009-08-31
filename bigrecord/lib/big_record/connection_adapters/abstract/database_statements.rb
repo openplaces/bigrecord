@@ -139,7 +139,7 @@ module BigRecord
       def insert_fixture(fixture, table_name)
 #        execute "INSERT INTO #{quote_table_name(table_name)} (#{fixture.key_list}) VALUES (#{fixture.value_list})", 'Fixture Insert'
         attributes = fixture.to_hash.dup
-        id = attributes.delete("attribute:id")
+        id = attributes.delete("id")
         raise ArgumentError, "the id is missing" unless id
         update(table_name, id, attributes, Time.now.to_bigrecord_timestamp)
       end

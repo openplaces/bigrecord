@@ -267,11 +267,15 @@ module BigIndex
       def find_with_index(*args)
         options = args.extract_options!
         unless options[:bypass_index]
-          validate_index_find_options(options)
           case args.first
-            when :first then find_every_by_index(options.merge({:limit => 1})).first
-            when :all   then find_every_by_index(options)
-            else             find_from_ids(args, options) #TODO: implement this
+            when :first then
+              validate_index_find_options(options)
+              find_every_by_index(options.merge({:limit => 1})).first
+            when :all   then
+              validate_index_find_options(options)
+              find_every_by_index(options)
+            else
+              find_from_ids(args, options) #TODO: implement this
           end
         else
           options.delete(:bypass_index)

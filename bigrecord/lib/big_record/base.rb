@@ -67,7 +67,7 @@ module BigRecord
               # get the content of the cell
               value = connection.get(self.class.table_name, self.id, attr_name, options)
 
-              if options[:num_versions] and options[:num_versions] > 1
+              if options[:versions] and options[:versions] > 1
                 value.collect{ |v| column.type_cast(v) }
               else
                 column.type_cast(value)
@@ -479,7 +479,7 @@ module BigRecord
         args.last.is_a?(Hash) ? args.pop : {}
       end
 
-      VALID_FIND_OPTIONS = [:limit, :offset, :include, :view, :num_versions, :timestamp,
+      VALID_FIND_OPTIONS = [:limit, :offset, :include, :view, :versions, :timestamp,
                             :include_deleted, :force_reload, :columns, :stop_row]
 
       def validate_find_options(options) #:nodoc:
@@ -534,7 +534,7 @@ module BigRecord
 
         # TODO: this is a hack... it should be done in a single call but currently hbase doesn't allow that
         raw_record =
-        if options[:num_versions] and options[:num_versions] > 1
+        if options[:versions] and options[:versions] > 1
           timestamps = connection.get(table_name, id, "#{default_family}:updated_at", options)
           timestamps.collect{|timestamp| connection.get_columns(table_name, id, requested_columns, :timestamp => timestamp.to_bigrecord_timestamp)}
         else

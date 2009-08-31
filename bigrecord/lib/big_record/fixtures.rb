@@ -551,7 +551,7 @@ class BigRecordFixtures < YAML::Omap
 
   def delete_existing_fixtures
     @connection.get_consecutive_rows(table_name, nil, nil, ["attribute:"]).each do |row|
-      @connection.delete(table_name, row['attribute:id'])
+      @connection.delete(table_name, row['id'])
     end
   end
 

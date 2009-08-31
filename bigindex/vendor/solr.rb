@@ -10,18 +10,5 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-$:.unshift(File.dirname(__FILE__)) unless
-  $:.include?(File.dirname(__FILE__)) || $:.include?(File.expand_path(File.dirname(__FILE__)))
-
-module Solr; end
-
-require 'solr/exception'
-require 'solr/request'
-require 'solr/connection'
-require 'solr/response'
-require 'solr/util'
-require 'solr/xml'
-require 'solr/importer'
-require 'solr/indexer'
-require 'solr/base'
-require 'solr/adapter_methods'
+require File.dirname(__FILE__) + '/solr/base'
+require File.dirname(__FILE__) + '/solr/adapter_methods'

@@ -184,10 +184,10 @@ describe BigIndex::Resource do
 
       # It should dispatch a call to #find_by_index with some defined conditions
       Book.index_adapter.should_receive(:find_by_index).with(Book, "title:(\"I Am Legend\")", an_instance_of(Hash)).and_return([result])
-      Book.find_by_title("I Am Legend").should == [result]
+      Book.find_by_title("I Am Legend").should == result
 
       Book.index_adapter.should_receive(:find_by_index).with(Book, "author:(\"Richard Matheson\")", an_instance_of(Hash)).and_return([result])
-      Book.find_by_author("Richard Matheson").should == [result]
+      Book.find_by_author("Richard Matheson").should == result
     end
 
     it "#find should return raw index search results when requested" do

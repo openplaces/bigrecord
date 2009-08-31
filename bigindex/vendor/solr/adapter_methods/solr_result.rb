@@ -123,7 +123,11 @@ module Solr
       end
 
       def logger
-        BigRecord::Base.logger
+        begin
+          BigRecord::Base.logger || ActiveRecord::Base.logger
+        rescue
+          nil
+        end
       end
 
     end

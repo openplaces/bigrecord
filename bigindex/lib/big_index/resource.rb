@@ -354,8 +354,7 @@ module BigIndex
       #
       def define_finder(finder_name)
         class_eval <<-end_eval
-          def self.find_by_#{finder_name}(user_query, options={})
-
+          def self.find_all_by_#{finder_name}(user_query, options={})
             options[:fields] ||= index_views_hash[:default]
 
             # quote the query if the field type is :string
@@ -371,6 +370,10 @@ module BigIndex
             else
               index_adapter.find_by_index(self, query, options)
             end
+          end
+
+          def self.find_by_#{finder_name}(user_query, options={})
+            find_all_by_#{finder_name}(user_query, options.merge({:limit => 1})).first
           end
         end_eval
       end

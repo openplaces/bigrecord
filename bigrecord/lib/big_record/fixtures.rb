@@ -641,7 +641,7 @@ class BigRecordFixtures < YAML::Omap
   end
 
   private
-    class HabtmFixtures < ::Fixtures #:nodoc:
+    class HabtmFixtures < ::BigRecordFixtures #:nodoc:
       def read_fixture_files; end
     end
 

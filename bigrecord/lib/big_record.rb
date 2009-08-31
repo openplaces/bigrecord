@@ -67,6 +67,7 @@ require 'big_record/deletion'
 require 'big_record/family_span_columns'
 require 'big_record/migration'
 require 'big_record/connection_adapters'
+require 'big_record/fixtures'
 
 # Add support for collections to tag builders
 require 'big_record/action_view_extensions'

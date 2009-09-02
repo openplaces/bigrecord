@@ -1,7 +1,7 @@
 hbase:
   adapter: hbase
-  master: localhost:60000
-  regionserver: 0.0.0.0:60020
+  quorum: localhost
+  zk_client_port: 2181
   drb_host: localhost
   drb_port: 40001
 

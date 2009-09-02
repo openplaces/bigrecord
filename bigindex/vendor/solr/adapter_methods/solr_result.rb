@@ -48,7 +48,7 @@ module Solr
             self.extend(eval("#{t}::SharedMethods")) rescue nil
 
             # add the shared behavior on Solr object
-            self.extend(eval("#{t}::SolrMethods")) rescue nil
+            self.extend(eval("#{t}::IndexMethods")) rescue nil
           end
         end
       end

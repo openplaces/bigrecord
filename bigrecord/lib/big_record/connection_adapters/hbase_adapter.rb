@@ -19,14 +19,14 @@ module BigRecord
     def self.hbase_connection(config) # :nodoc:
       config = config.symbolize_keys
 
-      master        = config[:master]
-      regionserver  = config[:regionserver]
-      drb_host      = config[:drb_host]
-      drb_port      = config[:drb_port]
+      quorum         = config[:quorum]
+      zk_client_port = config[:zk_client_port]
+      drb_host       = config[:drb_host]
+      drb_port       = config[:drb_port]
 
       hbase = BigRecordDriver::Client.new(config)
 
-      ConnectionAdapters::HbaseAdapter.new(hbase, logger, [master, regionserver], config)
+      ConnectionAdapters::HbaseAdapter.new(hbase, logger, [quorum, zk_client_port], config)
     end
   end
 

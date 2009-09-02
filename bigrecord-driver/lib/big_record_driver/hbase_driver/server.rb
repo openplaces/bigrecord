@@ -20,8 +20,8 @@ class HbaseServer < BigRecordServer
 
   # Establish the connection with HBase with the given configuration parameters.
   def configure(config = {})
-    config[:master]        ||= 'localhost:60000'
-    config[:regionserver]  ||= '0.0.0.0:60020'
+    config[:quorum]        ||= 'localhost'
+    config[:zk_client_port]  ||= '2181'
 
     @config = config
 
@@ -332,12 +332,13 @@ private
   end
 
   def init_connection
-    @conf = HBaseConfiguration.new
-    @conf.set('hbase.master', "#{@config[:master]}")
-    @conf.set('hbase.regionserver', "#{@config[:regionserver]}")
-
-    @admin = HBaseAdmin.new(@conf)
-    @tables = {}
+    safe_exec do
+      @conf = HBaseConfiguration.new
+      @conf.set('hbase.zookeeper.quorum', "#{@config[:quorum]}")
+      @conf.set('hbase.zookeeper.property.clientPort', "#{@config[:zk_client_port]}")
+      @admin = HBaseAdmin.new(@conf)
+      @tables = {}
+    end
   end
 
   def generate_column_descriptor(column_descriptor)
@@ -357,14 +358,13 @@ private
 
     n_versions    = column_descriptor.versions
     in_memory     = column_descriptor.in_memory
-    length        = column_descriptor.max_value_length
 
     # set the default values of the missing parameters
     n_versions        ||= HColumnDescriptor::DEFAULT_VERSIONS
     compression       ||= HColumnDescriptor::DEFAULT_COMPRESSION
     in_memory         ||= HColumnDescriptor::DEFAULT_IN_MEMORY
-    length            ||= HColumnDescriptor::DEFAULT_LENGTH
     block_cache       ||= HColumnDescriptor::DEFAULT_BLOCKCACHE
+    block_size        ||= HColumnDescriptor::DEFAULT_BLOCKSIZE
     bloomfilter       ||= HColumnDescriptor::DEFAULT_BLOOMFILTER
     ttl               ||= HColumnDescriptor::DEFAULT_TTL
 
@@ -376,7 +376,7 @@ private
                                   compression,
                                   in_memory,
                                   block_cache,
-                                  length,
+                                  block_size,
                                   ttl,
                                   bloomfilter)
 

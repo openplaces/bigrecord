@@ -377,7 +377,9 @@ module BigIndex
           end
 
           def self.find_by_#{finder_name}(user_query, options={})
-            find_all_by_#{finder_name}(user_query, options.merge({:limit => 1})).first
+            record = find_all_by_#{finder_name}(user_query, options.merge({:limit => 1})).first
+            raise BigRecord::RecordNotFound, "Couldn't find \#{self.name} with #{finder_name}='\#{user_query}'" unless record
+            record
           end
         end_eval
       end

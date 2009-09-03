@@ -145,34 +145,34 @@ module AbstractTestClient #< Test::Unit::TestCase
 
 
     ###################### GET COLUMNS ######################
-    expected = {'attribute:id' => 'dog-key', 'columnfamily1:name' => 'Dog', 'columnfamily1:size' => 'big', 'columnfamily2:toto' => 'some value2'}
+    expected = {'id' => 'dog-key', 'columnfamily1:name' => 'Dog', 'columnfamily1:size' => 'big', 'columnfamily2:toto' => 'some value2'}
     assert_equal expected, @big_db.get_columns(TABLE_NAME, 'dog-key', ['columnfamily1:name', 'columnfamily1:size', 'columnfamily2:toto']), "Didn't retrieved the expected data"
 
-    expected = {'attribute:id' => 'dog-key', 'columnfamily2:toto' => 'some value2'}
+    expected = {'id' => 'dog-key', 'columnfamily2:toto' => 'some value2'}
     assert_equal expected, @big_db.get_columns(TABLE_NAME, 'dog-key', ['columnfamily2:toto']), "Didn't retrieved the expected data"
 
     assert_nil @big_db.get_columns(TABLE_NAME, 'dog-key', ['columnfamily2:toto that does not exists']), "Didn't retrieved the expected data"
 
     assert_nil @big_db.get_columns(TABLE_NAME, 'dog-key-akdfjlka', ['columnfamily2:toto']), "Retrieved values for a row that doesn't even exist"
 
-    expected = {'attribute:id' => 'dog-key', 'columnfamily1:name' => 'Dog', 'columnfamily1:size' => 'big', 'columnfamily2:toto' => 'some value2'}
+    expected = {'id' => 'dog-key', 'columnfamily1:name' => 'Dog', 'columnfamily1:size' => 'big', 'columnfamily2:toto' => 'some value2'}
     assert_equal expected, @big_db.get_columns(TABLE_NAME, 'dog-key', ['columnfamily1:', 'columnfamily2:']), "Didn't retrieved the expected data"
 
-    expected = {'attribute:id' => 'dog-key', 'columnfamily1:name' => 'Dog', 'columnfamily1:size' => 'big', 'columnfamily2:toto' => 'some value2'}
+    expected = {'id' => 'dog-key', 'columnfamily1:name' => 'Dog', 'columnfamily1:size' => 'big', 'columnfamily2:toto' => 'some value2'}
     assert_equal expected, @big_db.get_columns(TABLE_NAME, 'dog-key', ['columnfamily1:', 'columnfamily2:']), "Didn't retrieved the expected data"
 
-    expected = {'attribute:id' => 'dog-key', 'columnfamily1:name' => 'Dog', 'columnfamily2:toto' => 'some value2'}
+    expected = {'id' => 'dog-key', 'columnfamily1:name' => 'Dog', 'columnfamily2:toto' => 'some value2'}
     assert_equal expected, @big_db.get_columns(TABLE_NAME, 'dog-key', ['columnfamily1:name', 'columnfamily2:']), "Didn't retrieved the expected data"
 
-    expected = {'attribute:id' => 'dog-key', 'columnfamily1:name' => 'Dog', 'columnfamily1:size' => 'big'}
+    expected = {'id' => 'dog-key', 'columnfamily1:name' => 'Dog', 'columnfamily1:size' => 'big'}
     assert_equal expected, @big_db.get_columns(TABLE_NAME, 'dog-key', ['columnfamily1:']), "Didn't retrieved the expected data"
 
-    expected = {'attribute:id' => 'dog-key', 'columnfamily1:name' => 'Dog', 'columnfamily1:size' => 'small'}
+    expected = {'id' => 'dog-key', 'columnfamily1:name' => 'Dog', 'columnfamily1:size' => 'small'}
     assert_equal expected, @big_db.get_columns(TABLE_NAME, 'dog-key', ['columnfamily1:'], :timestamp => t2), "Didn't retrieved the expected data"
 
     assert_nil @big_db.get_columns(TABLE_NAME, 'dog-key', ['columnfamily1:'], :timestamp => t1-500), "Didn't retrieved the expected data"
 
-    expected = {'attribute:id' => 'dog-key', 'columnfamily1:name' => 'Dog', 'columnfamily1:size' => 'big'}
+    expected = {'id' => 'dog-key', 'columnfamily1:name' => 'Dog', 'columnfamily1:size' => 'big'}
     assert_equal expected, @big_db.get_columns(TABLE_NAME, 'dog-key', ['columnfamily1:'], :timestamp => t3+500), "Didn't retrieved the expected data"
   end
 
@@ -200,57 +200,57 @@ module AbstractTestClient #< Test::Unit::TestCase
                     'columnfamily2:description' => 'likes mice'})
 
     # find(:all)
-    expected = [{'attribute:id' => 'cat-key', 'columnfamily1:name' => 'Cat', 'columnfamily1:size' => 'small but bigger than a mouse and smaller than a dog', 'columnfamily2:description' => 'likes mice'},
-                {'attribute:id' => 'dog-key', 'columnfamily1:name' => 'Dog', 'columnfamily1:size' => 'medium', 'columnfamily2:description' => 'lives on earth', 'columnfamily2:$pt-707' => '343220'},
-                {'attribute:id' => 'fish-key', 'columnfamily1:name' => 'Fish', 'columnfamily1:size' => 'varies but usually small', 'columnfamily2:description' => 'must stay in water'},
-                {'attribute:id' => 'mouse-key', 'columnfamily1:name' => 'Mouse', 'columnfamily1:size' => 'small', 'columnfamily2:description' => 'cats love them'}]
+    expected = [{'id' => 'cat-key', 'columnfamily1:name' => 'Cat', 'columnfamily1:size' => 'small but bigger than a mouse and smaller than a dog', 'columnfamily2:description' => 'likes mice'},
+                {'id' => 'dog-key', 'columnfamily1:name' => 'Dog', 'columnfamily1:size' => 'medium', 'columnfamily2:description' => 'lives on earth', 'columnfamily2:$pt-707' => '343220'},
+                {'id' => 'fish-key', 'columnfamily1:name' => 'Fish', 'columnfamily1:size' => 'varies but usually small', 'columnfamily2:description' => 'must stay in water'},
+                {'id' => 'mouse-key', 'columnfamily1:name' => 'Mouse', 'columnfamily1:size' => 'small', 'columnfamily2:description' => 'cats love them'}]
 
     assert_equal expected, @big_db.get_consecutive_rows(TABLE_NAME, nil, nil, ['columnfamily1:', 'columnfamily2:']), "Didn't retrieved the expected data"
 
     # find(:all, :condition => ...)
-    expected = [{'attribute:id' => 'cat-key', 'columnfamily1:name' => 'Cat', 'columnfamily2:description' => 'likes mice'},
-                {'attribute:id' => 'dog-key', 'columnfamily1:name' => 'Dog', 'columnfamily2:description' => 'lives on earth', 'columnfamily2:$pt-707' => '343220'},
-                {'attribute:id' => 'fish-key', 'columnfamily1:name' => 'Fish', 'columnfamily2:description' => 'must stay in water'},
-                {'attribute:id' => 'mouse-key', 'columnfamily1:name' => 'Mouse', 'columnfamily2:description' => 'cats love them'}]
+    expected = [{'id' => 'cat-key', 'columnfamily1:name' => 'Cat', 'columnfamily2:description' => 'likes mice'},
+                {'id' => 'dog-key', 'columnfamily1:name' => 'Dog', 'columnfamily2:description' => 'lives on earth', 'columnfamily2:$pt-707' => '343220'},
+                {'id' => 'fish-key', 'columnfamily1:name' => 'Fish', 'columnfamily2:description' => 'must stay in water'},
+                {'id' => 'mouse-key', 'columnfamily1:name' => 'Mouse', 'columnfamily2:description' => 'cats love them'}]
 
     assert_equal expected, @big_db.get_consecutive_rows(TABLE_NAME, nil, nil, ['columnfamily1:name', 'columnfamily2:']), "Didn't retrieved the expected data"
 
     # find(:all, :offset => before_first_row)
-    expected = [{'attribute:id' => 'cat-key', 'columnfamily1:name' => 'Cat'},
-                {'attribute:id' => 'dog-key', 'columnfamily1:name' => 'Dog'},
-                {'attribute:id' => 'fish-key', 'columnfamily1:name' => 'Fish'},
-                {'attribute:id' => 'mouse-key', 'columnfamily1:name' => 'Mouse'}]
+    expected = [{'id' => 'cat-key', 'columnfamily1:name' => 'Cat'},
+                {'id' => 'dog-key', 'columnfamily1:name' => 'Dog'},
+                {'id' => 'fish-key', 'columnfamily1:name' => 'Fish'},
+                {'id' => 'mouse-key', 'columnfamily1:name' => 'Mouse'}]
 
     assert_equal expected, @big_db.get_consecutive_rows(TABLE_NAME, 'aaa-key', nil, ['columnfamily1:name']), "Didn't retrieved the expected data"
 
     # find(:all, :offset => n_row)
-    expected = [{'attribute:id' => 'fish-key', 'columnfamily1:name' => 'Fish'},
-                {'attribute:id' => 'mouse-key', 'columnfamily1:name' => 'Mouse'}]
+    expected = [{'id' => 'fish-key', 'columnfamily1:name' => 'Fish'},
+                {'id' => 'mouse-key', 'columnfamily1:name' => 'Mouse'}]
 
     assert_equal expected, @big_db.get_consecutive_rows(TABLE_NAME, 'fish-key', nil, ['columnfamily1:name']), "Didn't retrieved the expected data"
 
     # find(:all, :limit > highest key)
-    expected = [{'attribute:id' => 'cat-key', 'columnfamily1:name' => 'Cat'},
-                {'attribute:id' => 'dog-key', 'columnfamily1:name' => 'Dog'},
-                {'attribute:id' => 'fish-key', 'columnfamily1:name' => 'Fish'},
-                {'attribute:id' => 'mouse-key', 'columnfamily1:name' => 'Mouse'}]
+    expected = [{'id' => 'cat-key', 'columnfamily1:name' => 'Cat'},
+                {'id' => 'dog-key', 'columnfamily1:name' => 'Dog'},
+                {'id' => 'fish-key', 'columnfamily1:name' => 'Fish'},
+                {'id' => 'mouse-key', 'columnfamily1:name' => 'Mouse'}]
 
     assert_equal expected, @big_db.get_consecutive_rows(TABLE_NAME, nil, 1000, ['columnfamily1:name']), "Didn't retrieved the expected data"
 
     # find(:all, :limit => x)
-    expected = [{'attribute:id' => 'cat-key', 'columnfamily1:name' => 'Cat'},
-                {'attribute:id' => 'dog-key', 'columnfamily1:name' => 'Dog'}]
+    expected = [{'id' => 'cat-key', 'columnfamily1:name' => 'Cat'},
+                {'id' => 'dog-key', 'columnfamily1:name' => 'Dog'}]
 
     assert_equal expected, @big_db.get_consecutive_rows(TABLE_NAME, nil, 2, ['columnfamily1:name']), "Didn't retrieved the expected data"
 
     # find(:all, :offset => n_row, :limit => x)
-    expected = [{'attribute:id' => 'fish-key', 'columnfamily1:name' => 'Fish'},
-                {'attribute:id' => 'mouse-key', 'columnfamily1:name' => 'Mouse'}]
+    expected = [{'id' => 'fish-key', 'columnfamily1:name' => 'Fish'},
+                {'id' => 'mouse-key', 'columnfamily1:name' => 'Mouse'}]
 
     assert_equal expected, @big_db.get_consecutive_rows(TABLE_NAME, 'fish-key', 2, ['columnfamily1:name']), "Didn't retrieved the expected data"
 
     # find(:all, :offset => n_row, :limit => 1)
-    expected = [{'attribute:id' => 'fish-key', 'columnfamily1:name' => 'Fish'}]
+    expected = [{'id' => 'fish-key', 'columnfamily1:name' => 'Fish'}]
 
     assert_equal expected, @big_db.get_consecutive_rows(TABLE_NAME, 'fish-key', 1, ['columnfamily1:name']), "Didn't retrieved the expected data"
   end
@@ -268,14 +268,14 @@ module AbstractTestClient #< Test::Unit::TestCase
                     'columnfamily2:description' => 'must stay in water'})
 
     # make sure the cells are there
-    expected = [{'attribute:id' => 'dog-key', 'columnfamily1:name' => 'Dog', 'columnfamily1:size' => 'medium', 'columnfamily2:description' => 'lives on earth'},
-                {'attribute:id' => 'fish-key', 'columnfamily1:name' => 'Fish', 'columnfamily1:size' => 'varies but usually small', 'columnfamily2:description' => 'must stay in water'}]
+    expected = [{'id' => 'dog-key', 'columnfamily1:name' => 'Dog', 'columnfamily1:size' => 'medium', 'columnfamily2:description' => 'lives on earth'},
+                {'id' => 'fish-key', 'columnfamily1:name' => 'Fish', 'columnfamily1:size' => 'varies but usually small', 'columnfamily2:description' => 'must stay in water'}]
     assert_equal expected, @big_db.get_consecutive_rows(TABLE_NAME, nil, nil, ['columnfamily1:', 'columnfamily2:']), "The test data was not inserted properly"
 
     # actual test
     @big_db.delete(TABLE_NAME, 'dog-key')
 
-    expected = [{'attribute:id' => 'fish-key', 'columnfamily1:name' => 'Fish', 'columnfamily1:size' => 'varies but usually small', 'columnfamily2:description' => 'must stay in water'}]
+    expected = [{'id' => 'fish-key', 'columnfamily1:name' => 'Fish', 'columnfamily1:size' => 'varies but usually small', 'columnfamily2:description' => 'must stay in water'}]
     assert_equal expected, @big_db.get_consecutive_rows(TABLE_NAME, nil, nil, ['columnfamily1:', 'columnfamily2:']), "The deleted data was found by a scanner"
 
     assert_nil @big_db.get(TABLE_NAME, 'dog-key', 'columnfamily1:name'), "The deleted data was found by a get()"

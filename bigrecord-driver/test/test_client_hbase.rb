@@ -9,7 +9,7 @@ class TestHbaseClient < Test::Unit::TestCase #TestClient
         BigRecordDriver::DriverManager.restart(40005)
       end
       #TODO: don't use hard coded values for the config
-      @big_db = BigRecordDriver::Client.new(:quorum=> 'localhost', :zk_client_port => '60181',:drb_port => 40005)
+      @big_db = BigRecordDriver::Client.new(:quorum=> 'localhost', :zk_client_port => '2181',:drb_port => 40005)
     end
 
     @big_db.drop_table(TABLE_NAME) if @big_db.table_exists?(TABLE_NAME)

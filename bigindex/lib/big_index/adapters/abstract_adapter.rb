@@ -3,7 +3,7 @@ module BigIndex
 
     class AbstractAdapter
 
-      attr_reader :name, :options
+      attr_reader :name, :options, :connection
 
       def adapter_name
         'abstract'
@@ -27,6 +27,10 @@ module BigIndex
 
       def get_field_type(field_type)
         field_type
+      end
+
+      def execute(request)
+        raise NotImplementedError
       end
 
       def index_save(model)

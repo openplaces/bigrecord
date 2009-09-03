@@ -5,8 +5,6 @@ module BigIndex
 
       include ::Solr::AdapterMethods
 
-      attr_reader :connection
-
       # BigIndex Adapter API methods ====================================
 
       def adapter_name
@@ -99,6 +97,10 @@ module BigIndex
         else
           raise "Unknown field_type class: #{field_type.class}: #{field_type}"
         end
+      end
+
+      def execute(request)
+        @connection.solr_execute(request)
       end
 
       def index_save(model)

@@ -3,11 +3,20 @@ require File.expand_path(File.join(File.dirname(__FILE__), "index_shared_spec"))
 
 describe BigIndex::Resource do
 
+  before(:all) do
+    Animal.truncate
+    Book.truncate
+
+    Animal.drop_index
+    Book.drop_index
+  end
+
   describe "included in a model" do
 
     before(:each) do
       @model_class = Book
       Book.delete_all
+      Animal.delete_all
 
       Book.drop_index
       Animal.drop_index
@@ -58,8 +67,11 @@ describe BigIndex::Resource do
       Book.delete_all
       Animal.delete_all
 
-      Book.rebuild_index :silent => true, :drop => true
-      Animal.rebuild_index :silent => true, :drop => true
+      Book.drop_index
+      Animal.drop_index
+
+      # Book.rebuild_index :silent => true, :drop => true
+      # Animal.rebuild_index :silent => true, :drop => true
     end
 
     it "should insert new index data" do

@@ -505,6 +505,8 @@ module BigRecord
 #        add_deprecated_api_for_has_many(reflection.name)
       end
 
+      alias_method :has_many_bigrecords, :has_many_big_records
+
       # Adds the following methods for retrieval and query of a single associated object.
       # +association+ is replaced with the symbol passed as the first argument, so
       # <tt>has_one :manager</tt> would add among others <tt>manager.nil?</tt>.
@@ -573,6 +575,8 @@ module BigRecord
 #        deprecated_has_association_method(reflection.name)
 #        deprecated_association_comparison_method(reflection.name, reflection.class_name)
       end
+
+      alias_method :has_one_bigrecord, :has_one_big_record
 
       # Adds the following methods for retrieval and query for a single associated object that this object holds an id to.
       # +association+ is replaced with the symbol passed as the first argument, so
@@ -687,6 +691,8 @@ module BigRecord
           )
         end
       end
+
+      alias_method :belongs_to_bigrecord, :belongs_to_big_record
 
       def belongs_to_many(association_id, options = {})
         if options.include?(:class_name) && !options.include?(:foreign_key)
@@ -836,6 +842,8 @@ module BigRecord
 #        deprecated_remove_association_relation(reflection.name)
 #        deprecated_has_collection_method(reflection.name)
       end
+
+      alias_method :has_and_belongs_to_many_bigrecords, :has_and_belongs_to_many_big_records
 
       private
         def association_accessor_methods_big_record(reflection, association_proxy_class)

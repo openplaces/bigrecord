@@ -134,7 +134,7 @@ module BigIndex
         finder_options[:view] ||= :all
         finder_options[:bypass_index] = true
 
-        options[:batch_size] ||= 150
+        options[:batch_size] ||= 100
         options[:commit] = true unless options.has_key?(:commit)
         options[:optimize] = true unless options.has_key?(:optimize)
 
@@ -145,19 +145,40 @@ module BigIndex
         items_processed = 0
         loop = 0
 
-        # TODO: This scan method doesn't always exist (in the case of ActiveRecord).
-        # This will need to be removed.
-        self.scan(finder_options) do |r|
-          items_processed += 1
-          buffer << r
-          if buffer.size > options[:batch_size]
-            loop += 1
-            index_adapter.process_index_batch(buffer, loop, options)
-            buffer.clear
+        if self.respond_to?(:scan)
+          # TODO: This scan method doesn't always exist (in the case of ActiveRecord).
+          # This will need to be removed.
+          self.scan(finder_options) do |r|
+            items_processed += 1
+            buffer << r
+            if buffer.size > options[:batch_size]
+              loop += 1
+              index_adapter.process_index_batch(buffer, loop, options)
+              buffer.clear
+            end
           end
-        end
 
-        index_adapter.process_index_batch(buffer, loop, options) unless buffer.empty?
+          index_adapter.process_index_batch(buffer, loop, options) unless buffer.empty?
+        elsif self.respond_to?(:find)
+          ar_options = {:limit => finder_options[:batch_size], :bypass_index => true}
+
+          while
+            loop += 1
+
+            buffer = self.find(:all, ar_options)
+            break if buffer.empty?
+            items_processed += buffer.size
+
+            index_adapter.process_index_batch(buffer, loop, options)
+
+            break if buffer.size < finder_options[:batch_size]
+
+            buffer.clear
+            ar_options[:offset] = (loop * finder_options[:batch_size])+1
+          end
+        else
+          raise "Your model needs at least a scan() or find() method"
+        end
 
         if items_processed > 0
           logger.info "Index for #{self.index_type} has been rebuilt (#{items_processed} records)." unless options[:silent]

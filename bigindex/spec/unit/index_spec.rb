@@ -4,9 +4,6 @@ require File.expand_path(File.join(File.dirname(__FILE__), "index_shared_spec"))
 describe BigIndex::Resource do
 
   before(:all) do
-    Animal.truncate
-    Book.truncate
-
     Animal.drop_index
     Book.drop_index
   end

@@ -182,7 +182,9 @@ class HbaseServer < BigRecordServer
   end
 
   # Delete a whole row.
-  def delete(table_name, row, timestamp = nil)
+  def delete(table_name, row, timestamp)
+    raise ArgumentError, "requires timestamp argument (pass current time to remove everything)" unless timestamp
+
     safe_exec do
       table = connect_table(table_name)
       timestamp ? table.deleteAll(row.to_bytes, timestamp) : table.deleteAll(row.to_bytes)

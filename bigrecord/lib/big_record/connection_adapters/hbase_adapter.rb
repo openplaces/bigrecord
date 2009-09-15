@@ -188,6 +188,7 @@ module BigRecord
       end
 
       def delete(table_name, row, timestamp = nil)
+        timestamp ||= Time.now.to_bigrecord_timestamp
         result = nil
         log "DELETE FROM #{table_name} WHERE ROW=#{row};" do
           result = @connection.delete(table_name, row, timestamp)

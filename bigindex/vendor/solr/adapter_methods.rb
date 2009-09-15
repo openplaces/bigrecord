@@ -157,6 +157,8 @@ module Solr
         end
       end
 
+    public # Making these methods public for anyone who wants to query the indexer directly
+
       # Method used by mostly all the ClassMethods when doing a search
       def parse_query(model, query=nil, options={}, models=nil)
         configuration = model.index_configuration
@@ -232,6 +234,7 @@ module Solr
           :docs => [],
           :total => 0
         }
+        configuration[:format] = options[:format]
         configuration[:format] ||= :objects
 
         results.update(:facets => {'facet_fields' => []}) if options[:facets]
@@ -253,15 +256,15 @@ module Solr
           when :objects
               options.reject!{|k,v|![:view, :force_reload, :include_deleted, :timestamp].include?(k)}
               result = reorder(model.find_all_by_id(ids, options), ids)
-            when :ids
-              result = ids
-            else
-              result = solr_data.hits.collect do |d|
-                r = SolrResult.new(d, configuration[:primary_key_field], solr_data.total_hits, explain_data[d["id"]])
-                r.properties_blurb_from_yaml(solr_data.data['properties_blurb'][r.id]) if (solr_data.data['properties_blurb'] && solr_data.data['properties_blurb'][r.id])
-                r.blurb=(solr_data.data['blurbs'][r.id]) if solr_data.data['blurbs']
-                r
-              end
+          when :ids
+            result = ids
+          else
+            result = solr_data.hits.collect do |d|
+              r = SolrResult.new(d, configuration[:primary_key_field], solr_data.total_hits, explain_data[d["id"]])
+              r.properties_blurb_from_yaml(solr_data.data['properties_blurb'][r.id]) if (solr_data.data['properties_blurb'] && solr_data.data['properties_blurb'][r.id])
+              r.blurb=(solr_data.data['blurbs'][r.id]) if solr_data.data['blurbs']
+              r
+            end
           end
         else
           result = []

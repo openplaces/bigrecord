@@ -497,7 +497,6 @@ module BigRecord
         if options[:through]
           collection_reader_method(reflection, HasManyThroughAssociation)
         else
-          add_multiple_associated_save_callbacks(reflection.name)
           add_association_callbacks(reflection.name, reflection.options)
           collection_accessor_methods(reflection, HasManyAssociation)
         end
@@ -820,7 +819,6 @@ module BigRecord
       def has_and_belongs_to_many_big_records(association_id, options = {}, &extension)
         reflection = create_has_and_belongs_to_many_big_records_reflection(association_id, options, &extension)
 
-        add_multiple_associated_save_callbacks(reflection.name)
         collection_accessor_methods(reflection, HasAndBelongsToManyAssociation)
 
         # Don't use a before_destroy callback since users' before_destroy

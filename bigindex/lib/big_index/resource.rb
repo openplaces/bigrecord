@@ -235,6 +235,10 @@ module BigIndex
         end
       end
 
+      def required_index_fields
+        [index_configuration[:type_field], index_configuration[:primary_key_field], :id]
+      end
+
       ##
       #
       # Macro for defining a class attribute as an indexed field.

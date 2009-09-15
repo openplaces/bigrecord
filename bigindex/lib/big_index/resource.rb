@@ -160,12 +160,12 @@ module BigIndex
 
           index_adapter.process_index_batch(buffer, loop, options) unless buffer.empty?
         elsif self.respond_to?(:find)
-          ar_options = {:limit => finder_options[:batch_size], :bypass_index => true}
+          ar_options = {:limit => finder_options[:batch_size]}
 
           while
             loop += 1
 
-            buffer = self.find(:all, ar_options)
+            buffer = self.find_without_index(:all, ar_options)
             break if buffer.empty?
             items_processed += buffer.size
 

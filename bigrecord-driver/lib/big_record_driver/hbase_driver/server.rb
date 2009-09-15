@@ -61,6 +61,7 @@ class HbaseServer < BigRecordServer
       table = connect_table(table_name)
 
       # Retreive only the last version by default
+      options[:versions] ||= options[:num_versions]
       options[:versions] ||= 1
 
       # validate the arguments

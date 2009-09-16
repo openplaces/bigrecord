@@ -19,8 +19,7 @@ module BigRecord
         @type       = type.to_sym
         @collection = options[:collection]
         @name       = name.to_s
-        @name =~ /.*?:(.+)/
-        @alias      = options[:alias] || $1
+        @alias      = options[:alias] ? options[:alias].to_s : (self.class.extract_qualifier(@name) || (@name unless family?))
 
         if options[:default]
           @default = options[:default]
@@ -59,6 +58,14 @@ module BigRecord
 
       def family?
         name =~ /:\Z/
+      end
+
+      def family
+        self.class.extract_family(self.name)
+      end
+
+      def qualifier
+        self.class.extract_qualifier(self.name)
       end
 
       def collection?
@@ -197,6 +204,21 @@ module BigRecord
       end
 
       class << self
+
+        # Extract the family from a column name
+        def extract_family(column_name)
+          return nil unless column_name
+          column_name =~ /\A(.*?:).*\Z/
+          $1
+        end
+
+        # Extract the qualifier from a column name
+        def extract_qualifier(column_name)
+          return nil unless column_name
+          column_name =~ /\A.*?:(.*)\Z/
+          $1
+        end
+
         # Extract the collection from the hash, where the positions are the keys. Inspired
         # from ActiveRecord::NestedAttributes.
         #

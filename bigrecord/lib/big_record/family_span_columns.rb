@@ -17,10 +17,14 @@ module BigRecord
 
     module ClassMethods
 
-      def extract_family(column_name)
-        return nil unless column_name
-        column_name =~ /\A(.*?:).*\Z/
-        $1
+      # Returns the list of columns that are not spanned on a whole family
+      def simple_columns
+        columns.select{|c|!c.family?}
+      end
+
+      # Returns the list of columns that are spanned on a whole family
+      def family_columns
+        columns.select{|c|c.family?}
       end
 
       # Define aliases to the fully qualified attributes
@@ -62,7 +66,7 @@ module BigRecord
 
       column = self.columns_hash[name]
       unless column
-        family = self.class.extract_family(name)
+        family = BigRecord::ConnectionAdapters::Column.extract_family(name)
         column = self.columns_hash[family] if family
       end
       column

@@ -3,14 +3,17 @@ require 'set'
 require 'drb'
 
 unless defined?(BigRecordDriver)
- begin
-   require File.join(File.dirname(__FILE__), "..", "..", "..", "..", "bigrecord-driver", "lib", "big_record_driver")
- rescue
-   puts "Couldn't load bigrecord_server gem"
-   #require 'rubygems'
-   #gem 'bigrecord-driver'
-   #require 'big_record_driver'
- end
+  begin
+    # Bigrecord's source is currently included with Bigrecord-Driver, that's why this is happening...
+    require File.join(File.dirname(__FILE__), "..", "..", "..", "..", "bigrecord-driver", "lib", "big_record_driver")
+  rescue LoadError
+    begin
+      gem 'bigrecord-driver'
+      require 'bigrecord-driver'
+    rescue LoadError
+      puts "Couldn't load bigrecord-driver gem"
+    end
+  end
 end
 
 module BigRecord
@@ -19,14 +22,14 @@ module BigRecord
     def self.hbase_connection(config) # :nodoc:
       config = config.symbolize_keys
 
-      quorum         = config[:quorum]
-      zk_client_port = config[:zk_client_port]
-      drb_host       = config[:drb_host]
-      drb_port       = config[:drb_port]
+      zookeeper_host          = config[:zookeeper_host]
+      zookeeper_client_port   = config[:zookeeper_client_port]
+      drb_host                = config[:drb_host]
+      drb_port                = config[:drb_port]
 
       hbase = BigRecordDriver::Client.new(config)
 
-      ConnectionAdapters::HbaseAdapter.new(hbase, logger, [quorum, zk_client_port], config)
+      ConnectionAdapters::HbaseAdapter.new(hbase, logger, [zookeeper_host, zookeeper_client_port], config)
     end
   end
 

@@ -585,7 +585,7 @@ class BigRecordFixtures < YAML::Omap
 
         # generate a primary key if necessary
         if has_primary_key_column? && !row.include?(primary_key_name)
-          row[primary_key_name] = Fixtures.identify(label)
+          row[primary_key_name] = BigRecordFixtures.identify(label)
         end
 
         # If STI is used, find the correct subclass for association reflection
@@ -613,7 +613,7 @@ class BigRecordFixtures < YAML::Omap
                 end
               end
 
-              row[fk_name] = Fixtures.identify(value)
+              row[fk_name] = BigRecordFixtures.identify(value)
             end
           when :has_and_belongs_to_many
             if (targets = row.delete(association.name.to_s))
@@ -621,9 +621,9 @@ class BigRecordFixtures < YAML::Omap
               join_fixtures = habtm_fixtures[association]
 
               targets.each do |target|
-                join_fixtures["#{label}_#{target}"] = Fixture.new(
+                join_fixtures["#{label}_#{target}"] = BigRecordFixture.new(
                   { association.primary_key_name => row[primary_key_name],
-                    association.association_foreign_key => Fixtures.identify(target) }, nil)
+                    association.association_foreign_key => BigRecordFixtures.identify(target) }, nil)
               end
             end
           end
@@ -683,7 +683,7 @@ class BigRecordFixtures < YAML::Omap
         Dir.entries(@fixture_path).each do |file|
           path = File.join(@fixture_path, file)
           if File.file?(path) and file !~ @file_filter
-            self[file] = Fixture.new(path, @class_name)
+            self[file] = BigRecordFixture.new(path, @class_name)
           end
         end
       end
@@ -708,10 +708,10 @@ class BigRecordFixtures < YAML::Omap
         yaml_value.each do |fixture|
           fixture.each do |name, data|
             unless data
-              raise Fixture::FormatError, "Bad data for #{@class_name} fixture named #{name} (nil)"
+              raise BigRecordFixture::FormatError, "Bad data for #{@class_name} fixture named #{name} (nil)"
             end
 
-            self[name] = Fixture.new(data, @class_name)
+            self[name] = BigRecordFixture.new(data, @class_name)
           end
         end
       end
@@ -724,7 +724,7 @@ class BigRecordFixtures < YAML::Omap
       reader.each do |row|
         data = {}
         row.each_with_index { |cell, j| data[header[j].to_s.strip] = cell.to_s.strip }
-        self["#{Inflector::underscore(@class_name)}_#{i+=1}"]= Fixture.new(data, @class_name)
+        self["#{Inflector::underscore(@class_name)}_#{i+=1}"]= BigRecordFixture.new(data, @class_name)
       end
     end
 
@@ -743,7 +743,7 @@ class BigRecordFixtures < YAML::Omap
     def parse_yaml_string(fixture_content)
       YAML::load(erb_render(fixture_content))
     rescue => error
-      raise Fixture::FormatError, "a YAML error occurred parsing #{yaml_file_path}. Please note that YAML must be consistently indented using spaces. Tabs are not allowed. Please have a look at http://www.yaml.org/faq.html\nThe exact error was:\n  #{error.class}: #{error}"
+      raise BigRecordFixture::FormatError, "a YAML error occurred parsing #{yaml_file_path}. Please note that YAML must be consistently indented using spaces. Tabs are not allowed. Please have a look at http://www.yaml.org/faq.html\nThe exact error was:\n  #{error.class}: #{error}"
     end
 
     #FIXME: Turn ERB render back on, conditionnaly...
@@ -1004,9 +1004,9 @@ module BigRecord
 
     def instantiate_bigrecord_fixtures
       if pre_loaded_fixtures
-        raise RuntimeError, 'Load fixtures before instantiating them.' if Fixtures.all_loaded_fixtures.empty?
+        raise RuntimeError, 'Load fixtures before instantiating them.' if BigRecordFixtures.all_loaded_fixtures.empty?
         unless @@required_bigrecord_fixture_classes
-          self.class.require_fixture_classes Fixtures.all_loaded_fixtures.keys
+          self.class.require_fixture_classes BigRecordFixtures.all_loaded_fixtures.keys
           @@required_bigrecord_fixture_classes = true
         end
         BigRecordFixtures.instantiate_all_loaded_fixtures(self, load_instances?)

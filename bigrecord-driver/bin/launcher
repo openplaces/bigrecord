@@ -111,7 +111,7 @@ status() {
 }
 
 start_debug() {
-  jruby $DRIVER
+  jruby $DRIVER $PORT
 }
 
 print_usage() {

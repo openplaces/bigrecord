@@ -20,8 +20,8 @@ class HbaseServer < BigRecordServer
 
   # Establish the connection with HBase with the given configuration parameters.
   def configure(config = {})
-    config[:quorum]        ||= 'localhost'
-    config[:zk_client_port]  ||= '2181'
+    config[:zookeeper_quorum]        ||= 'localhost'
+    config[:zookeeper_client_port]  ||= '2181'
 
     @config = config
 
@@ -337,8 +337,8 @@ private
   def init_connection
     safe_exec do
       @conf = HBaseConfiguration.new
-      @conf.set('hbase.zookeeper.quorum', "#{@config[:quorum]}")
-      @conf.set('hbase.zookeeper.property.clientPort', "#{@config[:zk_client_port]}")
+      @conf.set('hbase.zookeeper.quorum', "#{@config[:zookeeper_quorum]}")
+      @conf.set('hbase.zookeeper.property.clientPort', "#{@config[:zookeeper_client_port]}")
       @admin = HBaseAdmin.new(@conf)
       @tables = {}
     end

@@ -254,8 +254,13 @@ module Solr
         if ids.size > 0
           case configuration[:format]
           when :objects
-              options.reject!{|k,v|![:view, :force_reload, :include_deleted, :timestamp].include?(k)}
-              result = reorder(model.find_all_by_id(ids, options), ids)
+            options.reject!{|k,v|![:view, :force_reload, :include_deleted, :timestamp].include?(k)}
+            options.merge({:bypass_index => true})
+            result =  begin
+                        reorder(model.find(ids, options), ids)
+                      rescue
+                        []
+                      end
           when :ids
             result = ids
           else

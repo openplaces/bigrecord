@@ -4,10 +4,6 @@ require File.expand_path(File.join(File.dirname(__FILE__), "index_shared_spec"))
 describe BigIndex::Resource, "inheritance on" do
 
   describe "base class" do
-    before(:all) do
-      Book.truncate
-    end
-
     before(:each) do
       @model_class = Book
       Book.delete_all

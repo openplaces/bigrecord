@@ -4,14 +4,11 @@
 # - type
 # - description
 
-class Animal < BigRecord::Base
+class Animal < ActiveRecord::Base
   include BigIndex::Resource
 
-  column :name,         :string
-  column :type,         :integer
-  column :description,  :string
-
   index :name
+  index :type,          :integer
   index :description
 
 end

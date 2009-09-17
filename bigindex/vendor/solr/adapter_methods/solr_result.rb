@@ -124,7 +124,7 @@ module Solr
 
       def logger
         begin
-          BigRecord::Base.logger || ActiveRecord::Base.logger
+          self.type.constantize.logger
         rescue
           nil
         end

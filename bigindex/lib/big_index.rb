@@ -2,17 +2,12 @@ require 'pathname'
 require 'rubygems'
 require 'set'
 
-begin
-  require "solr" # http://github.com/greglu/solr-ruby/
-rescue LoadError
-  raise "Bigindex requires the solr-ruby libraries. Please install them with: gem install greglu-solr-ruby"
-end
-
 dir = Pathname(__FILE__).dirname.expand_path + 'big_index'
 vendor_dir = Pathname(__FILE__).dirname.parent.expand_path + 'vendor'
 
-# Adding more methods to the Solr library
-require (vendor_dir + 'solr').to_s
+
+# Autoload the Solr library when requested
+autoload :Solr, (vendor_dir + 'solr').to_s
 
 require dir + 'support'
 require dir + 'adapters'

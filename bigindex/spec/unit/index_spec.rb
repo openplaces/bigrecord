@@ -127,7 +127,7 @@ describe BigIndex::Resource do
         results = Book.find(:all, :conditions => term, :format => :ids)
         results.size.should == 1
 
-        results.should ==  [book.id]
+        results.map(&:to_s).should == [book.id.to_s]
       end
     end
 

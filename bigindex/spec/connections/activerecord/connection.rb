@@ -1,3 +1,11 @@
+# Require ActiveRecord
+begin
+  gem 'activerecord'
+  require 'activerecord'
+rescue LoadError
+  raise "Bigindex specs require the activerecord gem to be installed, or use rake spec:* to run the specs against another source"
+end
+
 # Load the configuration
 ActiveRecord::Base.configurations = YAML::load(File.open(File.join(File.dirname(__FILE__), "activerecord.yml")))
 
@@ -8,7 +16,4 @@ ActiveRecord::Base.logger = Logger.new(File.join(File.dirname(__FILE__), "..", "
 ActiveRecord::Base.logger.info "Connecting to MySQL data store (#{ActiveRecord::Base.configurations.inspect})"
 ActiveRecord::Base.establish_connection 'mysql'
 
-# Load the various helpers for this spec suite
-Dir.glob( File.join(SPEC_ROOT, "lib", "activerecord", "*.rb") ).each do |model|
-  require model
-end
+@model_path = File.join(SPEC_ROOT, "lib", "activerecord", "*.rb")

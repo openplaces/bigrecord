@@ -5,8 +5,6 @@ module BigRecord
 
     attr_accessor :modified_attributes
 
-    class_inheritable_accessor :default_family, :instance_write => false
-    self.default_family = "attribute"
 
     def self.inherited(child) #:nodoc:
       @@subclasses[self] ||= []
@@ -401,6 +399,14 @@ module BigRecord
         @table_name = name.to_s
       end
 
+      def default_family
+        (superclass == BigRecord::Base) ? (@default_family ||= "attribute") : superclass.default_family
+      end
+
+      def set_default_family(name)
+        @default_family = name.to_s
+      end
+
       def base_class
         (superclass == BigRecord::Base) ? self : superclass.base_class
       end
@@ -453,10 +459,6 @@ module BigRecord
 
       def default_views
         {:all=>ConnectionAdapters::View.new('all', nil, self), :default=>ConnectionAdapters::View.new('default', nil, self)}
-      end
-
-      def set_default_family(name)
-        self.default_family = name.to_s
       end
 
       def find_all_by_id(ids, options={})

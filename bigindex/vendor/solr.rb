@@ -11,9 +11,9 @@
 # limitations under the License.
 
 begin
-  require "solr" # http://github.com/greglu/solr-ruby/
+  require "solr"
 rescue LoadError
-  raise "Bigindex requires the solr-ruby libraries. Please install them with: gem install solr-ruby"
+  raise "Using Bigindex with Solr requires the solr-ruby libraries. Please install them with: gem install solr-ruby"
 end
 
 require File.dirname(__FILE__) + '/solr/base'

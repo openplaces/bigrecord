@@ -22,12 +22,12 @@ begin
   require File.join(SPEC_ROOT.parent, "..", "bigrecord", "lib", "big_record")
 rescue LoadError
   # If it wasn't found, try requiring via gem.
-  begin
-    gem 'big_record'
-    require 'big_record'
-  rescue
-    # do nothing
-  end
+  # begin
+  #   gem 'big_record'
+  #   require 'big_record'
+  # rescue
+  #   # do nothing
+  # end
 end
 
 # Now we can require BigIndex

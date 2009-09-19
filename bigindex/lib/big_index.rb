@@ -7,7 +7,8 @@ vendor_dir = Pathname(__FILE__).dirname.parent.expand_path + 'vendor'
 
 
 # Autoload the Solr library when requested
-autoload :Solr, (vendor_dir + 'solr').to_s
+# autoload :Solr, (vendor_dir + 'solr').to_s
+require (vendor_dir + 'solr').to_s
 
 require dir + 'support'
 require dir + 'adapters'

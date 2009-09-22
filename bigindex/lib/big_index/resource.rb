@@ -445,7 +445,7 @@ module BigIndex
       end
 
       def index_save
-        unless index_disabled || index_configuration[:auto_save] == false
+        unless self.class.index_disabled || index_configuration[:auto_save] == false
           index_adapter.index_save(self)
         end
       end

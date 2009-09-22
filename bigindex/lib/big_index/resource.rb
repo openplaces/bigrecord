@@ -313,7 +313,7 @@ module BigIndex
       # Indexed find method called by <tt>find_with_index</tt> and dispatches
       # the actual search to the adapter.
       #
-      def find_every_by_index(options)
+      def find_every_by_index(options={})
         # Construct the query. First add the type information.
         query =""
 

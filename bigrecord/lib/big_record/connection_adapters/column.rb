@@ -297,6 +297,18 @@ module BigRecord
           parse_collection(value).collect{|v| value_to_decimal(v)}
         end
 
+        def hash_to_date_collection(value)
+          parse_collection(value).collect{|v| string_to_date(v.to_s)}
+        end
+
+        def hash_to_time_collection(value)
+          parse_collection(value).collect{|v| string_to_time(v.to_s)}
+        end
+
+        def hash_to_dummy_time_collection(value)
+          parse_collection(value).collect{|v| string_to_dummy_time(v.to_s)}
+        end
+
 #        def hash_to_time_collection(hash)
 #          return []
 #          return hash unless hash.is_a?(Hash)

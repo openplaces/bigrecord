@@ -1,0 +1,27 @@
+= Bigrecord Specs
+
+== Data store information
+
+The default settings for the Bigrecord specs can be found at spec/connections/bigrecord.yml with each environment broken down by the data store type (Hbase and Cassandra at the time of writing). These are the minimal settings required to connect to each data store, and should be modified freely to reflect your own system configurations.
+
+== Data store migration
+
+There are also migrations to create the necessary tables for the specs to run. To ensure migrations are functioning properly before actually running the migrations, you can run: spec spec/unit/migration_spec.rb. Alternatively, you can manually create the tables according to the migration files under: spec/lib/migrations
+
+== Running the specs
+
+After setting it up, you can run the Bigrecord specs with
+  rake spec
+
+or alternatively, with either:
+
+  rake spec:hbase
+  rake spec:cassandra
+
+if you want to run the spec suite specifically against a specific data store.
+
+== Running specific specs
+
+To run a specific spec, you can run the following command from the bigrecord root folder:
+
+  spec -O spec/spec.opts spec/<spec_file>_spec.rb

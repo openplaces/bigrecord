@@ -13,11 +13,13 @@ Modify your Ruby class/model similarly to the following:
     include BigIndex::Resource                    # 1. Include the BigIndex::Resource module into your model.
 
     column :name, :string
+    column :description, :text
 
-    index :name => :string                        # 2. Define each attribute you want to index along with its type.
+    index :name,  :string                         # 2. Define each attribute you want to index along with its type.
+    index :description                            # Defaults to type :text
   end
 
-BigIndex will then override the default Model.find() method to pass through the indexer first. Model.find() will also accept the option {:bypass_index => true}, which bypasses the indexed #find method and dispatches it to the original Model.find() method.
+BigIndex will then override the default Model.find() method to pass through the indexer first. Model.find() will also accept the option {:bypass_index => true}, which bypasses the indexed #find method and dispatches it to the original Model.find() method, e.g. Model.find(:all, :bypass_index => true). Alternatively, you can use Model.find_without_index(:all) for the same functionality.
 
 
 = Links

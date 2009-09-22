@@ -116,6 +116,14 @@ module BigIndex
         name
       end
 
+      def index_disabled= bool
+        @index_disabled = bool
+      end
+
+      def index_disabled
+        @index_disabled ||= false
+      end
+
       ##
       #
       # Dispatches a command to the current adapter to rebuild the index.
@@ -433,12 +441,11 @@ module BigIndex
       end
 
       def index_id
-        classname = index_type
-        "#{classname}:#{record_id}"
+        "#{index_type}:#{record_id}"
       end
 
       def index_save
-        unless index_configuration[:auto_save] == false
+        unless index_disabled || index_configuration[:auto_save] == false
           index_adapter.index_save(self)
         end
       end

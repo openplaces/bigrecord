@@ -160,6 +160,10 @@ module BigIndex
         end
       end
 
+      def optimize_index
+        solr_optimize
+      end
+
       # End of BigIndex Adapter API ====================================
 
     private

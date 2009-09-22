@@ -53,6 +53,10 @@ module BigIndex
         raise NotImplementedError
       end
 
+      def optimize_index
+        raise NotImplementedError
+      end
+
     private
 
       def initialize(name, options)

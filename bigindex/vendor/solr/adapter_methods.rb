@@ -5,7 +5,7 @@ module Solr
 
   module AdapterMethods
 
-    private
+    public
 
       def solr_add(add_xml)
         @connection.solr_execute(Solr::Request::AddDocument.new(add_xml))
@@ -30,7 +30,7 @@ module Solr
       #   0 0 * * * /your_rails_dir/script/runner -e production "BigIndex::Repository.adapters[:default].solr_optimize"
       #
       def solr_optimize
-        solr_execute(Solr::Request::Optimize.new)
+        @connection.solr_execute(Solr::Request::Optimize.new)
       end
 
       def all_classes_for_solr(model)

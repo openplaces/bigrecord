@@ -10,7 +10,8 @@ There are also migrations to create the necessary tables for the specs to run. T
 
 == Running the specs
 
-After setting it up, you can run the Bigrecord specs with
+After setting it up, you can run the Bigrecord specs with:
+
   rake spec
 
 or alternatively, with either:
@@ -18,7 +19,7 @@ or alternatively, with either:
   rake spec:hbase
   rake spec:cassandra
 
-if you want to run the spec suite specifically against a specific data store.
+if you want to run the spec suite against a specific data store.
 
 == Running specific specs
 

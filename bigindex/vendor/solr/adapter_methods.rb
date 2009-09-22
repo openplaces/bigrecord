@@ -19,6 +19,20 @@ module Solr
         @connection.solr_execute(Solr::Request::Commit.new)
       end
 
+      # Optimizes the Solr index. Solr says:
+      #
+      # Optimizations can take nearly ten minutes to run.
+      # We are presuming optimizations should be run once following large
+      # batch-like updates to the collection and/or once a day.
+      #
+      # One of the solutions for this would be to create a cron job that
+      # runs every day at midnight and optmizes the index:
+      #   0 0 * * * /your_rails_dir/script/runner -e production "BigIndex::Repository.adapters[:default].solr_optimize"
+      #
+      def solr_optimize
+        solr_execute(Solr::Request::Optimize.new)
+      end
+
       def all_classes_for_solr(model)
         all_classes = []
         current_class = model.class

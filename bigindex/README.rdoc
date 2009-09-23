@@ -4,6 +4,10 @@ A Rails plugin that drops into models and provides indexing functionality. Uses 
 
 This should be used in conjunction with BigRecord in order to provide a more complete ORM.
 
+== Supported search servers
+
+* Solr
+* Sphinx (planned)
 
 == Getting Started
 
@@ -21,9 +25,12 @@ Modify your Ruby class/model similarly to the following:
 
 BigIndex will then override the default Model.find() method to pass through the indexer first. Model.find() will also accept the option {:bypass_index => true}, which bypasses the indexed #find method and dispatches it to the original Model.find() method, e.g. Model.find(:all, :bypass_index => true). Alternatively, you can use Model.find_without_index(:all) for the same functionality.
 
+== License
+
+Big Record is released under the MIT license.
 
 = Links
 
 * Contact Us
   * Website - http://www.bigrecord.org
-  * IRC Channel - <tt>##bigrecord</tt> on irc.freenode.net
+  * IRC Channel - <tt>#bigrecord</tt> on irc.freenode.net

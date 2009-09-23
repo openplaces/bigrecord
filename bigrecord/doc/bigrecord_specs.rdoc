@@ -8,6 +8,8 @@ The default settings for the Bigrecord specs can be found at spec/connections/bi
 
 There are also migrations to create the necessary tables for the specs to run. To ensure migrations are functioning properly before actually running the migrations, you can run: spec spec/unit/migration_spec.rb. Alternatively, you can manually create the tables according to the migration files under: spec/lib/migrations
 
+Migrations have their own log file for debugging purposes. It's created under: bigrecord/migrate.log
+
 == Running the specs
 
 After setting it up, you can run the Bigrecord specs with:
@@ -26,3 +28,9 @@ if you want to run the spec suite against a specific data store.
 To run a specific spec, you can run the following command from the bigrecord root folder:
 
   spec -O spec/spec.opts spec/<spec_file>_spec.rb
+
+== Debugging
+
+If any problems or failures arise during the unit tests, please refer to the log files before submitting it as an issue. Often, it's a simple matter of forgetting to turn on BigrecordDriver, the tables weren't created, or configurations weren't set properly.
+
+The log file for specs is created under: <bigrecord root>/spec/debug.log

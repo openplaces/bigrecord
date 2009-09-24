@@ -12,7 +12,6 @@ namespace :bigrecord do
 
   desc "Migrate the Bigrecord database through scripts in db/bigrecord_migrate. Target specific version with VERSION=x. Turn off output with VERBOSE=false."
   task :migrate => :environment do
-    BigRecord::Migrator.verbose = ENV["VERBOSE"] ? ENV["VERBOSE"] == "true" : true
     BigRecord::Migrator.migrate("db/bigrecord_migrate/", ENV["VERSION"] ? ENV["VERSION"].to_i : nil)
   end
 

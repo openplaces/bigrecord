@@ -10,6 +10,7 @@ class HbaseServer < BigRecordServer
   include_class "org.apache.hadoop.hbase.client.HTable"
   include_class "org.apache.hadoop.hbase.client.HBaseAdmin"
   include_class "org.apache.hadoop.hbase.io.BatchUpdate"
+  include_class "org.apache.hadoop.hbase.io.hfile.Compression"
   include_class "org.apache.hadoop.hbase.HBaseConfiguration"
   include_class "org.apache.hadoop.hbase.HConstants"
   include_class "org.apache.hadoop.hbase.HStoreKey"
@@ -182,9 +183,7 @@ class HbaseServer < BigRecordServer
   end
 
   # Delete a whole row.
-  def delete(table_name, row, timestamp)
-    raise ArgumentError, "requires timestamp argument (pass current time to remove everything)" unless timestamp
-
+  def delete(table_name, row, timestamp = nil)
     safe_exec do
       table = connect_table(table_name)
       timestamp ? table.deleteAll(row.to_bytes, timestamp) : table.deleteAll(row.to_bytes)
@@ -350,13 +349,13 @@ private
 
     if column_descriptor.compression
       compression =
-      case column_descriptor.compression
-        when :none;   HColumnDescriptor.CompressionType.NONE
-        when :block;  HColumnDescriptor.CompressionType.BLOCK
-        when :record; HColumnDescriptor.CompressionType.RECORD
-        else
-          raise ArgumentError, "Invalid compression type: #{column_descriptor.compression} for the column_family #{column_descriptor.name}"
-      end
+        case column_descriptor.compression.to_s
+          when 'none';   Compression::Algorithm::NONE.getName()
+          when 'gz';     Compression::Algorithm::GZ.getName()
+          when 'lzo';    Compression::Algorithm::LZO.getName()
+          else
+            raise ArgumentError, "Invalid compression type: #{column_descriptor.compression} for the column_family #{column_descriptor.name}"
+        end
     end
 
     n_versions    = column_descriptor.versions

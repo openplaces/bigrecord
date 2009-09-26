@@ -211,6 +211,15 @@ describe BigIndex::Resource do
       results.should respond_to(:results)
     end
 
+    it "should skip fields that have a Proc condition set and evaluates to true" do
+      skip_condition = Book.index_field(:skipped_field)[:skip]
+      skip_condition.should be_a_kind_of(Proc)
+
+      skip_condition.call("anything").should be_true
+
+      # TODO: Spec skipped fields beyond this point without being specific to the indexer.
+    end
+
   end
 
 end

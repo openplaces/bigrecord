@@ -59,6 +59,8 @@ module Solr
 
         # iterate through the fields and add them to the document,
         configuration[:fields].each do |field|
+          next if (field[:skip] && field[:skip].call(model))
+
           field_name = field.field_name
           field_type = get_field_type(field.field_type) if field.field_type
           field_boost= field[:boost] if field[:boost]

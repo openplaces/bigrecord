@@ -16,7 +16,9 @@ class Book < BigRecord::Base
   end
   index :description
   index :current_time
-
+  index :skipped_field, :skip => Proc.new{|book| true} do |book|
+    book.title
+  end
 
   def current_time
     Time.now.to_s

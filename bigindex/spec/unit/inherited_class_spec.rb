@@ -13,9 +13,9 @@ describe BigIndex::Resource, "inheritance on" do
     it_should_behave_like "a model with BigIndex::Resource"
 
     it "should contain its own index fields" do
-      Book.index_configuration[:fields].size.should == 6
+      Book.index_configuration[:fields].size.should == 7
 
-      [:title, :title_partial_match, :author, :author_partial_match, :description, :current_time].each do |field|
+      [:title, :title_partial_match, :author, :author_partial_match, :description, :current_time, :skipped_field].each do |field|
         Book.index_configuration[:fields].map(&:field_name).should include(field)
       end
     end
@@ -31,9 +31,9 @@ describe BigIndex::Resource, "inheritance on" do
     it_should_behave_like "a model with BigIndex::Resource"
 
     it "should contain its own index fields and the ones from its superclass" do
-      Novel.index_configuration[:fields].size.should == 7
+      Novel.index_configuration[:fields].size.should == 8
 
-      [:title, :title_partial_match, :author, :author_partial_match, :description, :current_time, :publisher].each do |field|
+      [:title, :title_partial_match, :author, :author_partial_match, :description, :current_time, :skipped_field, :publisher].each do |field|
         Novel.index_configuration[:fields].map(&:field_name).should include(field)
       end
     end

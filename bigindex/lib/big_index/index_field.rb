@@ -1,6 +1,9 @@
+require File.join(File.dirname(__FILE__), 'support')
+
 module BigIndex
 
   class IndexField
+    include Assertions
 
     attr_reader :field, :field_name, :field_type, :options, :block
 
@@ -11,12 +14,14 @@ module BigIndex
       @block = block
 
       @field_name = params.shift
+      assert_kind_of 'field_name', @field_name, Symbol, String
 
-      unless params.empty?
+      unless params.empty? || ![Symbol, String].include?(params.first.class)
         @field_type = params.shift
       end
 
       @options = params.shift || {}
+      assert_kind_of 'options', @options, Hash
 
       # Setting the default values
       @options[:finder_name] ||= field_name

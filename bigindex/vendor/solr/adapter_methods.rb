@@ -96,6 +96,8 @@ module Solr
           end
         end
 
+        model.dynamic_fields(doc) if model.respond_to?(:dynamic_fields)
+
         add_includes(doc, model) if configuration[:include]
         return doc
       end

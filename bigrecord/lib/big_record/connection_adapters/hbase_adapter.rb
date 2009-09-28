@@ -11,7 +11,7 @@ unless defined?(BigRecordDriver)
       gem 'bigrecord-driver'
       require 'bigrecord-driver'
     rescue LoadError
-      puts "Couldn't load bigrecord-driver gem"
+      puts "bigrecord-driver not available. Install it with: sudo gem install openplaces-bigrecord-driver -s http://gems.github.com"
     end
   end
 end

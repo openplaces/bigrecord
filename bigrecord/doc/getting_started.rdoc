@@ -2,10 +2,12 @@
 
 == Requirements
 
-* Database set up (please refer to the database's own documentation) with the required information known such as host, port, username, password, etc.
-* Big Record Driver (if your database requires it for connecting)
-  * JRuby 1.1.6+ is needed to run Big Record Driver.
+* Database set up (please refer to the database's own documentation) with the required information known such as host, port, username, password, etc. in order for Bigrecord to connect to it.
+* Bigrecord Driver (if your database requires it for connecting)
+  * JRuby 1.1.6+ is needed to run Bigrecord Driver.
 
 == Installation
 
-You have two options:
+1. (optional) Install the Bigrecord Driver gem and its dependencies. Please see the Bigrecord Driver documentation for more detailed instructions. (http://github.com/openplaces/bigrecord/tree/master/bigrecord-driver/)
+
+2.

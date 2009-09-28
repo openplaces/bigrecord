@@ -4,9 +4,9 @@ begin
 rescue LoadError
   # If it wasn't found, try requiring it via gem.
   begin
-    gem 'big_record'
-    require 'big_record'
-  rescue
+    gem 'bigrecord'
+    require 'bigrecord'
+  rescue LoadError
     raise "Bigindex specs require the big_record gem to be installed, or use rake spec:* to run the specs against another source"
   end
 end

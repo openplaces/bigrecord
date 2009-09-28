@@ -27,9 +27,13 @@ BigIndex will then override the default Model.find() method to pass through the 
 
 == License
 
-Big Record is released under the MIT license.
+Bigindex is released under the MIT license.
 
-= Links
+== Contributions
+
+Bigindex was derived from the work of Data Mapper and parts of acts_as_solr.
+
+== Links
 
 * Contact Us
   * Website - http://www.bigrecord.org

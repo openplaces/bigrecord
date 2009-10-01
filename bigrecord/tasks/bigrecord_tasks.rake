@@ -1,13 +1,3 @@
-namespace :db do
-
-  desc "Migrate the Bigrecord database through scripts in db/bigrecord_migrate. Target specific version with VERSION=x. Turn off output with VERBOSE=false."
-  task :migrate => :environment do
-    Rake::Task["bigrecord:migrate"].invoke
-  end
-
-end
-
-
 namespace :bigrecord do
 
   desc "Migrate the Bigrecord database through scripts in db/bigrecord_migrate. Target specific version with VERSION=x. Turn off output with VERBOSE=false."

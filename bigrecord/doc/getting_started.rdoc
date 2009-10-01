@@ -11,3 +11,50 @@
 1. (optional) Install the Bigrecord Driver gem and its dependencies. Please see the Bigrecord Driver documentation for more detailed instructions. (http://github.com/openplaces/bigrecord/tree/master/bigrecord-driver/)
 
 2.
+
+== Usage
+
+=== Generators
+
+Once Bigrecord is included in your Rails project, you can use the following generators:
+
+  script/generate bigrecord_model ModelName
+
+This will add a model in app/models and a migration file in db/bigrecord_migrate. Note: This generator does not accept attributes.
+
+  script/generate bigrecord_migration MigrationName
+
+Creates a Bigrecord specific migration and adds it into db/bigrecord_migrate
+
+=== Migration File
+
+Although column-oriented databases are generally schema-less, certain ones (like Hbase) require the creation of tables and column families ahead of time. The individual columns, however, are defined in the model itself and can be modified dynamically without the need for migrations.
+
+Unless you're familiar with column families, the majority of use cases work perfectly fine within one column family. When you generate a bigrecord_model, it will default to creating the :attribute column family.
+
+The following is a standard migration file that creates a table called "Books" with the default column family :attribute that has the following option of 100 versions and uses the 'lzo' compression scheme. Leave any options blank for the default value.
+
+  class CreateBooks < BigRecord::Migration
+    def self.up
+      create_table :books, :force => true do |t|
+        t.family :attribute, :versions => 100, :compression => 'lzo'
+      end
+    end
+
+    def self.down
+      drop_table :books
+    end
+  end
+
+=== Hbase column family options
+
+* versions: integer. By default, Hbase will store 3 versions of changes for any column family. Changing this value on the creation will change this behavior.
+* compression: 'none', 'gz', 'lzo'. Defaults to 'none'. Since Hbase 0.20, column families can be stored using compression. The compression scheme you define here must be installed on the Hbase servers!
+
+=== Migrating
+
+Run the following rake task to migrate your tables up to the latest version:
+
+  rake bigrecord:migrate
+
+===

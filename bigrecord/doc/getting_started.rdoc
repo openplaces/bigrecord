@@ -6,8 +6,142 @@
 * Bigrecord Driver (if your database requires it for connecting)
   * JRuby 1.1.6+ is needed to run Bigrecord Driver.
 
+== *NOTE* At the time of this writing, Hbase is the only supported database for Bigrecord, and the following instructions are for specific to Hbase.
+
 == Installation
 
-1. (optional) Install the Bigrecord Driver gem and its dependencies. Please see the Bigrecord Driver documentation for more detailed instructions. (http://github.com/openplaces/bigrecord/tree/master/bigrecord-driver/)
+1. Install the Bigrecord Driver gem and its dependencies. Please see the Bigrecord Driver documentation for more detailed instructions. (http://github.com/openplaces/bigrecord/tree/master/bigrecord-driver/)
 
-2.
+2. Add the following line into the Rails::Initializer.run do |config| block:
+
+  config.gem "bigrecord", :source => "http://gems.github.com"
+
+Or, run the following command to install it as a plugin:
+
+  script/plugin install git://github.com/openplaces/bigrecord.git
+
+3. Create or edit the config/bigrecord.yml[.sample] file in your Rails root to the information corresponding to your database install.
+
+== Usage
+
+=== Generators
+
+Once Bigrecord is working in your Rails project, you can use the following generators:
+
+  script/generate bigrecord_model ModelName
+
+This will add a model in app/models and a migration file in db/bigrecord_migrate. Note: This generator does not accept attributes.
+
+  script/generate bigrecord_migration MigrationName
+
+Creates a Bigrecord specific migration and adds it into db/bigrecord_migrate
+
+=== Migration File
+
+Although column-oriented databases are generally schema-less, certain ones (like Hbase) require the creation of tables and column families ahead of time. The individual columns, however, are defined in the model itself and can be modified dynamically without the need for migrations.
+
+Unless you're familiar with column families, the majority of use cases work perfectly fine within one column family. When you generate a bigrecord_model, it will default to creating the :attribute column family.
+
+The following is a standard migration file that creates a table called "Books" with the default column family :attribute that has the following option of 100 versions and uses the 'lzo' compression scheme. Leave any options blank for the default value.
+
+  class CreateBooks < BigRecord::Migration
+    def self.up
+      create_table :books, :force => true do |t|
+        t.family :attribute, :versions => 100, :compression => 'lzo'
+      end
+    end
+
+    def self.down
+      drop_table :books
+    end
+  end
+
+=== Hbase column family options (Hbase specific)
+
+* versions: integer. By default, Hbase will store 3 versions of changes for any column family. Changing this value on the creation will change this behavior.
+* compression: 'none', 'gz', 'lzo'. Defaults to 'none'. Since Hbase 0.20, column families can be stored using compression. The compression scheme you define here must be installed on the Hbase servers!
+
+=== Migrating
+
+Run the following rake task to migrate your tables and column families up to the latest version:
+
+  rake bigrecord:migrate
+
+=== Column and Attribute Definition
+
+Now that you have your tables and column families all set up, you can begin adding columns to your model. The following is an example of a model named book.rb
+
+  class Book < BigRecord::Base
+    column 'attribute:title',   :string
+    column :author,             :string
+    column :description,        :string
+    column :links,              :string,  :collection => true
+  end
+
+This simple model defines 4 columns of type string. An important thing to notice here is that the first column 'attribute:title' had the column family prepended to it. This is identical to just passing the symbol :title to the column method, and the default behaviour is to prepend the column family (attribute) automatically if one is not defined. Furthermore, in Hbase, there's the option of storing collections for a given column. This will return an array for the links attribute on a Book record.
+
+=== Associations
+
+There are also associations available in Bigrecord, as well as the ability to associate to Activerecord models. The following are a few models demonstrating this:
+
+animal.rb
+  class Animal < BigRecord::Base
+    # Typical attributes
+    column :name,         :string
+    column :type,         :integer
+    column :description,  :string
+
+    # Association attributes
+    column :zoo_id,       :string
+    column :trainer_id,   :integer
+
+    # Associations
+    belongs_to_big_record :zoo, :foreign_key => :zoo_id
+    belongs_to :trainer,        :foreign_key => :trainer_id
+  end
+
+In this example, an Animal is related to Zoo and Trainer. Both Animal and Zoo are Bigrecord models, and Trainer is an Activerecord model. Notice here that we need to define both the association field for storing the information and the association itself. It's also important to remember that Bigrecord models have their IDs stored as string, and Activerecord models use integers.
+
+Once the association columns are defined, you define the associations themselves with either belongs_to_bigrecord or belongs_to_many and defining the :foreign_key (this is required for all associations).
+
+=== Specifying return columns
+
+There are two ways to define specific columns to be returned with your models: 1) at the model level and 2) during the query.
+
+1. At the model level, a collection of columns are called named views, and are defined like the following:
+
+  class Book < BigRecord::Base
+    column :title,   :string
+    column :author,             :string
+    column :description,        :string
+    column :links,              :string,  :collection => true
+
+    view :front_page, :title, :author
+    view :summary_page, :title, :author, :description
+
+    # Override default if you don't want all columns returend
+    view :default, :title, :author, :description
+  end
+
+Now, whenever you work with a Book record, it will only returned the columns you specify according to the view option you pass. i.e.
+
+  >> Book.find(:first, :view => :front_page)
+  => #<Book id: "2e13f182-1085-495e-9841-fe5c84ae9992", attribute:title: "Hello Thar", attribute:author: "Greg">
+
+  >> Book.find(:first, :view => :summary_page)
+  => #<Book id: "2e13f182-1085-495e-9841-fe5c84ae9992", attribute:description: "Masterpiece!", attribute:title: "Hello Thar", attribute:author: "Greg">
+
+  >> Book.find(:first, :view => :default)
+  => #<Book id: "2e13f182-1085-495e-9841-fe5c84ae9992", attribute:description: "Masterpiece!", attribute:title: "Hello Thar", attribute:links: ["link1", "link2", "link3", "link4"], attribute:author: "Greg">
+
+Note: A Bigrecord model will return all the columns within the default column family (when :view option is left blank, for example). You can override the :default name view to change this behaviour.
+
+
+2. If you don't want to define named views ahead of time, you can just pass an array of columns to the :columns option and it will return only those attributes:
+
+  >> Book.find(:first, :columns => [:author, :description])
+  => #<Book id: "2e13f182-1085-495e-9841-fe5c84ae9992", attribute:description: "Masterpiece!", attribute:author: "Greg">
+
+As you may have noticed, this functionality is synonymous with the :select option in Activerecord.
+
+=== At this point, usage patterns for a Bigrecord model are similar to that of an Activerecord model, and much of that documentation applies as well. Please refer to those and see if they work!

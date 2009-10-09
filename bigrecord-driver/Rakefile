@@ -13,8 +13,9 @@ begin
     gemspec.email = "bigrecord@openplaces.org"
     gemspec.homepage = "http://www.bigrecord.org"
     gemspec.summary = "BigRecord drivers implemented as JRuby DRb servers."
-    gemspec.executables = ['hbase-driver', 'cassandra-driver']
+    gemspec.executables = ['hbase-driver', 'cassandra-driver', 'launcher']
     gemspec.default_executable = 'hbase-driver'
+    gemspec.files = FileList["{bin,conf,lib,test,vendor}/**/*"].to_a
   end
 rescue LoadError
   puts "Jeweler not available. Install it with: sudo gem install technicalpickles-jeweler -s http://gems.github.com"

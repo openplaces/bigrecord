@@ -9,12 +9,40 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["openplaces.org"]
-  s.date = %q{2009-09-28}
+  s.date = %q{2009-10-09}
   s.default_executable = %q{hbase-driver}
   s.email = %q{bigrecord@openplaces.org}
-  s.executables = ["hbase-driver", "cassandra-driver"]
+  s.executables = ["hbase-driver", "cassandra-driver", "launcher"]
   s.extra_rdoc_files = [
     "README"
+  ]
+  s.files = [
+    "bin/cassandra-driver",
+     "bin/hbase-driver",
+     "bin/launcher",
+     "conf/log4j.properties",
+     "lib/big_record_driver.rb",
+     "lib/big_record_driver/bigrecord_server.rb",
+     "lib/big_record_driver/cassandra_driver/server.rb",
+     "lib/big_record_driver/client.rb",
+     "lib/big_record_driver/column_descriptor.rb",
+     "lib/big_record_driver/driver_manager.rb",
+     "lib/big_record_driver/exceptions.rb",
+     "lib/big_record_driver/hbase_driver/server.rb",
+     "lib/bigrecord_driver.rb",
+     "test/abstract_test_client.rb",
+     "test/test_client_cassandra.rb",
+     "test/test_client_hbase.rb",
+     "test/test_driver_manager.rb",
+     "vendor/java/cassandra/cassandra-0.3.0-dev.jar",
+     "vendor/java/cassandra/libthrift.jar",
+     "vendor/java/cassandra/log4j-1.2.15.jar",
+     "vendor/java/hbase/commons-logging-1.0.4.jar",
+     "vendor/java/hbase/commons-logging-api-1.0.4.jar",
+     "vendor/java/hbase/hadoop-0.20.0-core.jar",
+     "vendor/java/hbase/hbase-0.20.0.jar",
+     "vendor/java/hbase/log4j-1.2.13.jar",
+     "vendor/java/hbase/zookeeper-r785019-hbase-1329.jar"
   ]
   s.homepage = %q{http://www.bigrecord.org}
   s.rdoc_options = ["--charset=UTF-8"]

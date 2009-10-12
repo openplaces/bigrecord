@@ -9,8 +9,9 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["openplaces.org"]
-  s.date = %q{2009-10-09}
+  s.date = %q{2009-10-12}
   s.default_executable = %q{hbase-driver}
+  s.description = %q{Bigrecord drivers that use JRuby DRb servers to connect with databases through their native Java APIs. Currently supported databases are HBase and Cassandra.}
   s.email = %q{bigrecord@openplaces.org}
   s.executables = ["hbase-driver", "cassandra-driver", "launcher"]
   s.extra_rdoc_files = [
@@ -48,7 +49,7 @@ Gem::Specification.new do |s|
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
   s.rubygems_version = %q{1.3.5}
-  s.summary = %q{BigRecord drivers implemented as JRuby DRb servers.}
+  s.summary = %q{Bigrecord drivers implemented as JRuby DRb servers}
 
   if s.respond_to? :specification_version then
     current_version = Gem::Specification::CURRENT_SPECIFICATION_VERSION

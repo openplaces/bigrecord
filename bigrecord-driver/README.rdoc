@@ -1,0 +1,52 @@
+= Big Record Driver
+
+Bigrecord drivers that use JRuby DRb servers to connect with databases through their native Java APIs. Currently supported databases are HBase and Cassandra.
+
+== Requirements
+
+* JRuby 1.3.0+
+
+== Installation
+
+(1) Install the latest Java Runtime for your operating system. There are many resources online for this.
+
+(2) Go to: http://jruby.org/getting-started and follow the instructions for installing the latest JRuby.
+
+(3) Add the following environmental variable to your shell rc file (~/.bashrc or ~/.zshrc)
+
+	export JRUBY_HOME=/path/to/jruby
+
+and then add $JRUBY_HOME/bin to your system PATH.
+
+(4) Check that JRuby is installed correctly by typing in the following commands, and verifying you get similar output:
+
+	> echo $JRUBY_HOME
+	/path/to/jruby
+	> jruby --version
+	jruby 1.3.1 [...]
+
+(5) Install the Bigrecord Driver gem from gemcutter.org
+
+	> (sudo) gem install bigrecord-driver -s http://gemcutter.org/
+
+== Usage
+
+(1) Once you have everything installed, you can start up a Bigrecord Driver DRb server with:
+
+	hbase-driver start -p [port]
+	
+	Remember this port, because it will be used in the bigrecord.yml configuration file.
+
+== Debugging
+
+* If any errors are encountered during the usage of Bigrecord Driver, you can check the /tmp/hbase-driver/log/[port].log files for any errors that might've occurred. 
+
+== License
+
+Big Record is released under the MIT license.
+
+== Links
+
+* Contact Us
+  * Website - http://www.bigrecord.org
+  * IRC Channel - <tt>#bigrecord</tt> on irc.freenode.net

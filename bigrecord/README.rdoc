@@ -1,0 +1,44 @@
+= Big Record
+
+A Ruby Object/Data Mapper for distributed column-oriented data stores (inspired by BigTable) such as HBase. Intended to work as a drop-in for Rails applications. More information soon...
+
+== Features
+* Dynamic schemas (due to the schema-less design of BigTable).
+* Support for column-oriented data stores.
+* Similar usage to Active Record.
+* Embedded records that store within a single table row.
+* Automatic versioning.
+* Scalability (depending on the data store used).
+
+== Why would I use it?
+
+BigTable, and by extension, Big Record isn't right for everyone. A great introductory article discussing this topic can be found at http://blog.rapleaf.com/dev/?p=26 explaining why you would or wouldn't use BigTable. The rule of thumb, however, is that if your data model is simple or can fit into a standard RDBMS, then you probably don't need it.
+
+Beyond this though, there are two basic motivations that almost immediately demand a BigTable model database:
+1. Your data is highly dynamic in nature and would not fit in a schema bound model, or you cannot define a schema ahead of time.
+2. You know that your database will grow to tens or hundreds of gigabytes, and can't afford big iron servers. Instead, you'd like to scale horizontally across many commodity servers.
+
+== Requirements
+
+* Big Record: Ruby Object/Data Mapper. Inspired and architected similarly to Active Record.
+* Big Record Driver: JRuby application that bridges Ruby and Java (through JRuby's Drb protocol) to interact with Java-based data stores and their native APIs. Required for HBase and Cassandra. This application can be run from a separate server than your Rails application.
+  * JRuby 1.1.6+ is needed to run Big Record Driver.
+* Any other requirements needed to run Hadoop, HBase or your data store of choice.
+
+== Optional Requirements
+
+* Big Index (highly recommended): Due to the nature of Big Table data stores, some limitations occur while using Big Record standalone when compared to Active Record. Some major limitations include the inability to query for data other than with the row ID, indexing, searching, and dynamic finders (find_by_attribute_name). Since these data access patterns are vital for most Rails applications to function, Big Index was created to address these issues, and bring the feature set more up to par with Active Record. Please refer to the <tt>Big Index</tt> package for more information and its requirements.
+
+== Getting Started
+
+Check out the doc/getting_started.rdoc file for more information.
+
+== License
+
+Big Record is released under the MIT license.
+
+== Links
+
+* Contact Us
+  * Website - http://www.bigrecord.org
+  * IRC Channel - <tt>#bigrecord</tt> on irc.freenode.net

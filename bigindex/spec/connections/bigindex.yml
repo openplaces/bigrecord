@@ -1,7 +1,0 @@
-default:
-  adapter: solr
-  solr_url: http://localhost:8981/solr
-#  shards:
-#    - http://localhost2:8981/solr
-#    - http://localhost3:8981/solr
-#    - http://localhost4:8981/solr

@@ -1,7 +1,0 @@
-mysql:
-  adapter: mysql
-  database: bigindex_specs
-  username: root
-  password:
-  host: localhost
-  socket: /tmp/mysql.sock

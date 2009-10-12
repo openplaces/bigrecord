@@ -18,6 +18,10 @@
 
   config.gem "bigrecord", :source => "http://gemcutter.org"
 
+and run the following command to install all the gems listed for your Rails app:
+
+  [sudo] rake gems:install
+
 (3) Bootstrap Bigrecord into your project:
 
   script/generate bigrecord

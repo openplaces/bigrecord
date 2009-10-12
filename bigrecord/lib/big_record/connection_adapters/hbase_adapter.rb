@@ -4,14 +4,14 @@ require 'drb'
 
 unless defined?(BigRecordDriver)
   begin
-    # Bigrecord's source is currently included with Bigrecord-Driver, that's why this is happening...
+    # Bigrecord's source is included with Bigrecord-Driver, that's we check for this first
     require File.join(File.dirname(__FILE__), "..", "..", "..", "..", "bigrecord-driver", "lib", "big_record_driver")
   rescue LoadError
     begin
       gem 'bigrecord-driver'
-      require 'bigrecord-driver'
-    rescue LoadError
-      puts "bigrecord-driver not available. Install it with: sudo gem install openplaces-bigrecord-driver -s http://gems.github.com"
+      require 'bigrecord_driver'
+    rescue Gem::LoadError
+      puts "bigrecord-driver not available. Install it with: sudo gem install bigrecord-driver -s http://gemcutter.org"
     end
   end
 end

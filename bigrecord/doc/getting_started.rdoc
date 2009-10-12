@@ -10,17 +10,17 @@
 
 == Installation
 
-1. Install the Bigrecord Driver gem and its dependencies. Please see the Bigrecord Driver documentation for more detailed instructions. (http://github.com/openplaces/bigrecord/tree/master/bigrecord-driver/)
+(1) Install the Bigrecord Driver gem and its dependencies. Please see the Bigrecord Driver documentation for more detailed instructions. (http://github.com/openplaces/bigrecord/blob/master/bigrecord-driver/README.rdoc)
 
-2. Add the following line into the Rails::Initializer.run do |config| block:
+(2) Add the following line into the Rails::Initializer.run do |config| block:
 
-  config.gem "bigrecord", :source => "http://gems.github.com"
+  config.gem "bigrecord", :source => "http://gemcutter.org"
 
 Or, run the following command to install it as a plugin:
 
   script/plugin install git://github.com/openplaces/bigrecord.git
 
-3. Create or edit the config/bigrecord.yml[.sample] file in your Rails root to the information corresponding to your database install.
+(3) Create or edit the config/bigrecord.yml[.sample] file in your Rails root to the information corresponding to your database install.
 
 == Usage
 
@@ -56,7 +56,7 @@ The following is a standard migration file that creates a table called "Books" w
     end
   end
 
-=== Hbase column family options (Hbase specific)
+=== HBase column family options (HBase specific)
 
 * versions: integer. By default, Hbase will store 3 versions of changes for any column family. Changing this value on the creation will change this behavior.
 * compression: 'none', 'gz', 'lzo'. Defaults to 'none'. Since Hbase 0.20, column families can be stored using compression. The compression scheme you define here must be installed on the Hbase servers!
@@ -108,7 +108,7 @@ Once the association columns are defined, you define the associations themselves
 
 There are two ways to define specific columns to be returned with your models: 1) at the model level and 2) during the query.
 
-1. At the model level, a collection of columns are called named views, and are defined like the following:
+(1) At the model level, a collection of columns are called named views, and are defined like the following:
 
   class Book < BigRecord::Base
     column :title,   :string
@@ -137,7 +137,7 @@ Now, whenever you work with a Book record, it will only returned the columns you
 Note: A Bigrecord model will return all the columns within the default column family (when :view option is left blank, for example). You can override the :default name view to change this behaviour.
 
 
-2. If you don't want to define named views ahead of time, you can just pass an array of columns to the :columns option and it will return only those attributes:
+(2) If you don't want to define named views ahead of time, you can just pass an array of columns to the :columns option and it will return only those attributes:
 
   >> Book.find(:first, :columns => [:author, :description])
   => #<Book id: "2e13f182-1085-495e-9841-fe5c84ae9992", attribute:description: "Masterpiece!", attribute:author: "Greg">

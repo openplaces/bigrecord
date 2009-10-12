@@ -35,7 +35,7 @@ and then add $JRUBY_HOME/bin to your system PATH.
 
 	hbase-driver start -p [port]
 	
-	Remember this port, because it will be used in the bigrecord.yml configuration file.
+Remember this port, because it will be used in the bigrecord.yml configuration file.
 
 == Debugging
 

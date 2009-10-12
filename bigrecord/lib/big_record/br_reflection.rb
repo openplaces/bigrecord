@@ -5,8 +5,8 @@ module BigRecord
 
     end
 
-    # Reflection allows you to interrogate Active Record classes and objects about their associations and aggregations.
-    # This information can, for example, be used in a form builder that took an Active Record object and created input
+    # Reflection allows you to interrogate Big Record classes and objects about their associations and aggregations.
+    # This information can, for example, be used in a form builder that took an Big Record object and created input
     # fields for all of the attributes depending on their type and displayed the associations to other objects.
     #
     # You can find the interface for the AggregateReflection and AssociationReflection classes in the abstract MacroReflection class.
@@ -34,7 +34,7 @@ module BigRecord
       end
     end
 
-    # Holds all the meta-data about an aggregation as it was specified in the Active Record class.
+    # Holds all the meta-data about an aggregation as it was specified in the Big Record class.
     class BrAggregateReflection < MacroReflectionAbstract #:nodoc:
       def klass
         @klass ||= Object.const_get(options[:class_name] || class_name)
@@ -46,7 +46,7 @@ module BigRecord
         end
     end
 
-    # Holds all the meta-data about an association as it was specified in the Active Record class.
+    # Holds all the meta-data about an association as it was specified in the Big Record class.
     class BrAssociationReflection < MacroReflectionAbstract #:nodoc:
       def klass
         @klass ||= big_record.send(:compute_type, class_name)

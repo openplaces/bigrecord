@@ -38,28 +38,30 @@ module ActionController
 
   # TODO: Remove this monkey patch once we migrate to rails 2.3. This patch
   # add support for the :as option in map.resources.
-  module Resources
-    class Resource
+  unless Rails::VERSION::MAJOR == 2 && Rails::VERSION::MINOR == 3
+    module Resources
+      class Resource
 
-      attr_reader :path_segment
+        attr_reader :path_segment
 
-      def initialize(entities, options)
-        @plural   ||= entities
-        @singular ||= options[:singular] || plural.to_s.singularize
-        @path_segment = options.delete(:as) || @plural
+        def initialize(entities, options)
+          @plural   ||= entities
+          @singular ||= options[:singular] || plural.to_s.singularize
+          @path_segment = options.delete(:as) || @plural
 
-        @options = options
+          @options = options
 
-        arrange_actions
-        add_default_actions
-        set_prefixes
+          arrange_actions
+          add_default_actions
+          set_prefixes
+        end
+
+        def path
+          @path ||= "#{path_prefix}/#{path_segment}"
+        end
+
       end
-
-      def path
-        @path ||= "#{path_prefix}/#{path_segment}"
-      end
-
     end
   end
-
+  
 end

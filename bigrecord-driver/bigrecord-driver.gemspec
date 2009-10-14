@@ -5,20 +5,24 @@
 
 Gem::Specification.new do |s|
   s.name = %q{bigrecord-driver}
-  s.version = "0.0.3"
+  s.version = "0.0.4"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["openplaces.org"]
-  s.date = %q{2009-10-12}
+  s.date = %q{2009-10-14}
   s.default_executable = %q{hbase-driver}
   s.description = %q{Bigrecord drivers that use JRuby DRb servers to connect with databases through their native Java APIs. Currently supported databases are HBase and Cassandra.}
   s.email = %q{bigrecord@openplaces.org}
   s.executables = ["hbase-driver", "cassandra-driver", "launcher"]
   s.extra_rdoc_files = [
-    "README"
+    "MIT-LICENSE",
+     "README.rdoc"
   ]
   s.files = [
-    "bin/cassandra-driver",
+    "MIT-LICENSE",
+     "README.rdoc",
+     "VERSION",
+     "bin/cassandra-driver",
      "bin/hbase-driver",
      "bin/launcher",
      "conf/log4j.properties",
@@ -40,10 +44,10 @@ Gem::Specification.new do |s|
      "vendor/java/cassandra/log4j-1.2.15.jar",
      "vendor/java/hbase/commons-logging-1.0.4.jar",
      "vendor/java/hbase/commons-logging-api-1.0.4.jar",
-     "vendor/java/hbase/hadoop-0.20.0-core.jar",
-     "vendor/java/hbase/hbase-0.20.0.jar",
+     "vendor/java/hbase/hadoop-0.20.1-core.jar",
+     "vendor/java/hbase/hbase-0.20.1.jar",
      "vendor/java/hbase/log4j-1.2.13.jar",
-     "vendor/java/hbase/zookeeper-r785019-hbase-1329.jar"
+     "vendor/java/hbase/zookeeper-3.2.1.jar"
   ]
   s.homepage = %q{http://www.bigrecord.org}
   s.rdoc_options = ["--charset=UTF-8"]

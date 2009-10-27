@@ -21,56 +21,42 @@
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #++
 
-$:.unshift(File.dirname(__FILE__)) unless
-  $:.include?(File.dirname(__FILE__)) || $:.include?(File.expand_path(File.dirname(__FILE__)))
+dir = File.expand_path(File.join(File.dirname(__FILE__), "big_record"))
 
-unless defined?(ActiveSupport)
-  begin
-    $:.unshift(File.dirname(__FILE__) + "/../../activesupport/lib")
-    require 'active_support'
-  rescue LoadError
-    require 'rubygems'
-    gem 'activesupport'
-    require 'active_support'
-  end
+begin
+  require 'active_support'
+rescue LoadError
+  raise LoadError, "Bigrecord depends on ActiveSupport. Install it with: gem install activesupport"
 end
 
-unless defined?(ActiveRecord)
-  begin
-    $:.unshift(File.dirname(__FILE__) + "/../../activerecord/lib")
-    require 'active_record'
-  rescue LoadError
-    require 'rubygems'
-    gem 'activerecord'
-    require 'active_record'
-  end
+begin
+  require 'active_record'
+rescue LoadError
+  puts "[Bigrecord] ActiveRecord could not be loaded. Bigrecord associations with AR models disabled."
 end
 
-# FIXME: this shouldn't be required
-# require 'active_record/fixtures'
-
-require 'big_record/routing_ext'
-require 'big_record/abstract_base'
-require 'big_record/base'
-require 'big_record/embedded'
-require 'big_record/validations'
-require 'big_record/callbacks'
-require 'big_record/ar_reflection'
-require 'big_record/br_reflection'
-require 'big_record/ar_associations'
-require 'big_record/br_associations'
-require 'big_record/timestamp'
-require 'big_record/attribute_methods'
-require 'big_record/embedded_associations/association_proxy'
-require 'big_record/dynamic_schema'
-require 'big_record/deletion'
-require 'big_record/family_span_columns'
-require 'big_record/migration'
-require 'big_record/connection_adapters'
-require 'big_record/fixtures'
+require dir + '/routing_ext'
+require dir + '/abstract_base'
+require dir + '/base'
+require dir + '/embedded'
+require dir + '/validations'
+require dir + '/callbacks'
+require dir + '/ar_reflection'
+require dir + '/br_reflection'
+require dir + '/ar_associations'
+require dir + '/br_associations'
+require dir + '/timestamp'
+require dir + '/attribute_methods'
+require dir + '/embedded_associations/association_proxy'
+require dir + '/dynamic_schema'
+require dir + '/deletion'
+require dir + '/family_span_columns'
+require dir + '/migration'
+require dir + '/connection_adapters'
+require dir + '/fixtures'
 
 # Add support for collections to tag builders
-require 'big_record/action_view_extensions'
+require dir + '/action_view_extensions'
 
 BigRecord::Base.class_eval do
   include BigRecord::Validations
@@ -99,12 +85,14 @@ BigRecord::Embedded.class_eval do
 end
 
 # Mixin the BigRecord associations with ActiveRecord
-ActiveRecord::Base.class_eval do
-  include BigRecord::BrAssociations
-  include BigRecord::BrReflection
+if defined?(ActiveRecord)
+  ActiveRecord::Base.class_eval do
+    include BigRecord::BrAssociations
+    include BigRecord::BrReflection
+  end
 end
 
-# Patch to call the validation of the embedded objects to HbaseRecord::Base instances.
+# Patch to call the validation of the embedded objects to BigRecord::Base instances.
 BigRecord::Base.class_eval do
   validate :validate_embeddeds
 

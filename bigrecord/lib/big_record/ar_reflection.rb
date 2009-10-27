@@ -4,7 +4,7 @@ module BigRecord
       base.extend(ClassMethods)
     end
 
-    # Reflection allows you to interrogate Active Record classes and objects about their associations and aggregations.
+    # Reflection allows you to interrogate Big Record classes and objects about their associations and aggregations.
     # This information can, for example, be used in a form builder that took an Active Record object and created input
     # fields for all of the attributes depending on their type and displayed the associations to other objects.
     #

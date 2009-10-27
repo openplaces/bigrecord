@@ -9,7 +9,7 @@ namespace :spec do
   def run_spec(name, adapter, files, rcov)
     Spec::Rake::SpecTask.new(name) do |t|
       t.spec_opts << File.open("spec/spec.opts").readlines.map{|x| x.chomp}
-      t.spec_files = Pathname.glob(files.to_s).map { |f| f.to_s }
+      t.spec_files = Dir[files.to_s].map { |f| f.to_s }
       connection_path = "spec/connections/#{adapter}"
       t.libs << "spec" << connection_path
     end

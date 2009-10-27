@@ -1,6 +1,6 @@
 = Bigrecord Suite
 
-A Ruby Object/Data Mapper for distributed column-oriented data stores (inspired by BigTable) such as HBase. Intended to work as a drop-in for Rails applications. More information soon...
+A Ruby Object/Data Mapper for distributed column-oriented data stores (inspired by BigTable) such as HBase. Intended to work as a drop-in for Rails applications.
 
 == Features
 * Dynamic schemas (due to the schema-less design of BigTable).
@@ -10,7 +10,7 @@ A Ruby Object/Data Mapper for distributed column-oriented data stores (inspired 
 * Automatic versioning.
 * Scalability (depending on the data store used).
 
-== Why would I use it?
+== Motivations
 
 BigTable, and by extension, Bigrecord isn't right for everyone. A great introductory article discussing this topic can be found at http://blog.rapleaf.com/dev/?p=26 explaining why you would or wouldn't use BigTable. The rule of thumb, however, is that if your data model is simple or can fit into a standard RDBMS, then you probably don't need it.
 

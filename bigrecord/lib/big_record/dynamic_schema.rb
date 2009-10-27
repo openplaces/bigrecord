@@ -1,4 +1,3 @@
-# Replace the anonymous classes
 module BigRecord
   module DynamicSchema
 
@@ -9,12 +8,10 @@ module BigRecord
       base.alias_method_chain :attributes_from_column_definition, :dynamic_schema
       base.alias_method_chain :inspect, :dynamic_schema
       base.alias_method_chain :define_read_methods, :dynamic_schema
-
     end
 
     # Stub of the callback for setting the dynamic columns. Override this to add dynamic columns
     def initialize_columns(options={})
-
     end
 
     # Create and add a dynamic column to this record
@@ -23,10 +20,10 @@ module BigRecord
     end
 
     # Add an existing dynamic column to this record
-    def add_dynamic_column(c)
-      columns_hash[c.name] = c
+    def add_dynamic_column(col)
+      columns_hash[c.name] = col
       @columns_name= nil; @columns= nil #reset
-      c
+      col
     end
 
     def columns_hash

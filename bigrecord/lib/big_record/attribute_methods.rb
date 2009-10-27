@@ -19,7 +19,7 @@ module BigRecord
       # the attr argument.
       #
       # For example:
-      #   class Person < ActiveRecord::Base
+      #   class Person < BigRecord::Base
       #     attribute_method_suffix '_changed?'
       #
       #     private

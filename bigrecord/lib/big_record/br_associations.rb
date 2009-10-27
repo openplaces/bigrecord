@@ -1,9 +1,11 @@
-require 'big_record/br_associations/association_proxy'
-require 'big_record/br_associations/association_collection'
-require 'big_record/br_associations/belongs_to_association'
-require 'big_record/br_associations/belongs_to_many_association'
-require 'big_record/br_associations/has_one_association'
-require 'big_record/br_associations/has_and_belongs_to_many_association'
+dir = File.expand_path(File.join(File.dirname(__FILE__), "br_associations"))
+
+require dir + '/association_proxy'
+require dir + '/association_collection'
+require dir + '/belongs_to_association'
+require dir + '/belongs_to_many_association'
+require dir + '/has_one_association'
+require dir + '/has_and_belongs_to_many_association'
 
 module BigRecord
   module BrAssociations # :nodoc:

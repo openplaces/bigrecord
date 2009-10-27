@@ -1,4 +1,3 @@
-## The sub-classes of this class must implement the abstract method 'column_names' of this class.
 module BigRecord
   class BigRecordError < StandardError #:nodoc:
   end

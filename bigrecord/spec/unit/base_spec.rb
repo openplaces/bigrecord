@@ -40,6 +40,12 @@ describe BigRecord::Base do
       end
     end
 
+    it "#columns_to_find should return full column names, even when alias names are passed to it" do
+      options = {:columns => [:name, :type, 'attribute:description']}
+
+      # Check that it resolves the alias to full column names
+      Animal.columns_to_find(options).should == ['attribute:name', 'attribute:type', 'attribute:description']
+    end
   end
 
   describe 'column views' do

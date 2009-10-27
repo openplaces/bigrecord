@@ -470,6 +470,39 @@ module BigRecord
         end
       end
 
+      # return the list of columns to get from hbase
+      def columns_to_find(options={})
+        c =
+          if options[:columns]
+            column_list = []
+            options[:columns].each do |column_name|
+              # If the column name provided is a full name, i.e. includes column family and qualifier,
+              # then add it to the list.
+              if column_name.to_s =~ /:/
+                column_list << column_name
+
+              # Otherwise, it's probably an alias and we need to check that.
+              else
+                columns.select{|column| column_list << column.name if column.alias == column_name.to_s}
+              end
+            end
+            column_list
+          elsif options[:view]
+            raise ArgumentError, "Unknown view: #{options[:view]}" unless views_hash[options[:view]]
+            if options[:view] == :all
+              ["#{default_family}:"]
+            else
+              views_hash[options[:view]].column_names
+            end
+          elsif views_hash[:default]
+            views_hash[:default].column_names
+          else
+            ["#{default_family}:"]
+          end
+        c += [options[:include]] if options[:include]
+        c.flatten.reject{|x| x == "id"}
+      end
+
     protected
       def invalidate_views
         @views = nil
@@ -564,27 +597,6 @@ module BigRecord
         else
           raise RecordNotFound, "Couldn't find #{name} with ID=#{id}"
         end
-      end
-
-      # return the list of columns to get from hbase
-      def columns_to_find(options={})
-        c =
-        if options[:columns]
-          options[:columns]
-        elsif options[:view]
-          raise ArgumentError, "Unknown view: #{options[:view]}" unless views_hash[options[:view]]
-          if options[:view] == :all
-            ["#{default_family}:"]
-          else
-            views_hash[options[:view]].column_names
-          end
-        elsif views_hash[:default]
-          views_hash[:default].column_names
-        else
-          ["#{default_family}:"]
-        end
-        c += [options[:include]] if options[:include]
-        c.flatten.reject{|x| x == "id"}
       end
 
       # Add the missing cells to the raw record and set them to nil. We know that it's

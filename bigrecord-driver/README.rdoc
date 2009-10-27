@@ -4,6 +4,7 @@ Bigrecord drivers that use JRuby DRb servers to connect with databases through t
 
 == Requirements
 
+* HBase 0.20.1
 * JRuby 1.3.0+
 
 == Installation

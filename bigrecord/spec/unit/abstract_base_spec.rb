@@ -5,62 +5,6 @@ describe "BigRecord::AbstractBase", :shared => true do
     Book.should respond_to(:primary_key)
   end
 
-  describe '#columns' do
-
-    before(:all) do
-      # Grab the columns from a simple BigRecord model
-      @columns = Book.columns
-    end
-
-    it 'should return a hash of Column objects describing the columns in the model' do
-      # Verify that each entry is a Column object
-      @columns.each do |column|
-        column.should be_a_kind_of(BigRecord::ConnectionAdapters::Column)
-      end
-
-      # Map the names of each of the columns
-      column_names = @columns.map{ |column| column.name }
-
-      # Verify that each attribute we defined in the Book model is present
-      expected_names = %w( attribute:title attribute:author attribute:description family2: log:change )
-      (column_names & expected_names).sort.should == expected_names.sort
-    end
-
-    it 'should save a default alias name for each column (e.g. attribute:name become alias name automatically)' do
-      lookup = {  'attribute:id' => 'id',
-                  'attribute:title' => 'title',
-                  'attribute:author' => 'author',
-                  'attribute:description' => 'description'}
-
-      # Go through each column and if an attribute name is found that matches the lookup table above,
-      # verify that the alias name it creates is the one we expect.
-      @columns.each do |column|
-        if lookup.has_key?(column.name)
-          column.alias.should == lookup[column.name]
-        end
-      end
-    end
-
-  end
-
-  describe 'column families' do
-
-    it 'should respond to #default_family with a default value, or with the value defined in the model' do
-      Book.should respond_to(:default_family)
-      Book.default_family.should == "attribute"
-
-      Zoo.should respond_to(:default_family)
-      Zoo.default_family.should == "attr"
-    end
-
-    it 'should automatically append the #default_family to columns without one defined' do
-      Zoo.columns.map{|column| column.name}.should include("attr:description")
-      Zoo.new.should respond_to(:description)
-      Zoo.new.should respond_to(:description=)
-    end
-
-  end
-
   describe '.attributes' do
 
     before(:each) do

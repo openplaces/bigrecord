@@ -1,15 +1,15 @@
 module BigRecord
-  # Active Record automatically timestamps create and update if the table has fields
+  # Big Record automatically timestamps create and update if the table has fields
   # created_at/created_on or updated_at/updated_on.
   #
   # Timestamping can be turned off by setting
-  #   <tt>ActiveRecord::Base.record_timestamps = false</tt>
+  #   <tt>BigRecord::Base.record_timestamps = false</tt>
   #
   # Keep in mind that, via inheritance, you can turn off timestamps on a per
   # model basis by setting <tt>record_timestamps</tt> to false in the desired
   # models.
   #
-  #   class Feed < ActiveRecord::Base
+  #   class Feed < BigRecord::Base
   #     self.record_timestamps = false
   #     # ...
   #   end

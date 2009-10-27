@@ -1,4 +1,3 @@
-## The sub-classes of this class must implement the abstract method 'column_names' of this class.
 module BigRecord
 
   class Base < AbstractBase
@@ -411,14 +410,14 @@ module BigRecord
         (superclass == BigRecord::Base) ? self : superclass.base_class
       end
 
-      def view(name, columns)
+      def view(name, *columns)
         name = name.to_sym
         @views_hash ||= default_views
 
         # The other variables that are cached and depend on @views_hash need to be reloaded
         invalidate_views
 
-        @views_hash[name] = ConnectionAdapters::View.new(name, columns, self)
+        @views_hash[name] = ConnectionAdapters::View.new(name, columns.flatten, self)
       end
 
       def views

@@ -4,12 +4,11 @@ require 'rubygems'
 require 'rake'
 require 'rake/rdoctask'
 require 'rake/gempackagetask'
-require 'pathname'
 require 'spec/rake/spectask'
 
 
 DATA_STORES = ["hbase", "cassandra"]
-ROOT = Pathname(__FILE__).dirname.expand_path
+ROOT = File.expand_path(File.join(File.dirname(__FILE__))) + '/'
 
 require ROOT + 'tasks/gem'
 require ROOT + 'tasks/rdoc'

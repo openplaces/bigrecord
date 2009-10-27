@@ -3,7 +3,7 @@ module BigRecord
   # record method to retrieve the record which did not validate.
   #   begin
   #     complex_operation_that_calls_save!_internally
-  #   rescue ActiveRecord::RecordInvalid => invalid
+  #   rescue BigRecord::RecordInvalid => invalid
   #     puts invalid.record.errors
   #   end
   class RecordInvalid < BigRecordError #:nodoc:

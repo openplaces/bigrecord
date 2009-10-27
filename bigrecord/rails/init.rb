@@ -7,9 +7,9 @@ BigRecord::Embedded.logger = ActiveRecord::Base.logger
 # Load in the config from the RAILS_ROOT/config folder
 begin
   BigRecord::Base.configurations = YAML::load(File.open("#{RAILS_ROOT}/config/bigrecord.yml"))
+
+  # Try establishing the connection
+  BigRecord::Base.establish_connection
 rescue
   puts "[Bigrecord] Couldn't load the config/bigrecord.yml config file. Please bootstrap it into your application with: script/generate bigrecord"
 end
-
-# Try establishing the connection
-BigRecord::Base.establish_connection

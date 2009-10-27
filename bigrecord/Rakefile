@@ -8,7 +8,7 @@ require 'spec/rake/spectask'
 
 
 DATA_STORES = ["hbase", "cassandra"]
-ROOT = File.expand_path(File.join(File.dirname(__FILE__))) + '/'
+ROOT = File.expand_path(File.dirname(__FILE__)) + '/'
 
 require ROOT + 'tasks/gem'
 require ROOT + 'tasks/rdoc'

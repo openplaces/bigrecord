@@ -5,15 +5,15 @@
 
 Gem::Specification.new do |s|
   s.name = %q{bigrecord}
-  s.version = "0.0.5"
+  s.version = "0.0.6"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["openplaces.org"]
-  s.date = %q{2009-10-12}
+  s.date = %q{2009-10-27}
   s.description = %q{BigRecord is built from ActiveRecord, and intended to seamlessly integrate into your Ruby on Rails applications.}
   s.email = %q{bigrecord@openplaces.org}
   s.extra_rdoc_files = [
-    "MIT-LICENSE",
+    "LICENSE",
      "README.rdoc",
      "doc/bigrecord_specs.rdoc",
      "doc/getting_started.rdoc"
@@ -135,14 +135,20 @@ Gem::Specification.new do |s|
       s.add_development_dependency(%q<rspec>, [">= 0"])
       s.add_runtime_dependency(%q<uuidtools>, [">= 2.0.0"])
       s.add_runtime_dependency(%q<bigrecord-driver>, [">= 0"])
+      s.add_runtime_dependency(%q<activesupport>, [">= 0"])
+      s.add_runtime_dependency(%q<activerecord>, [">= 0"])
     else
       s.add_dependency(%q<rspec>, [">= 0"])
       s.add_dependency(%q<uuidtools>, [">= 2.0.0"])
       s.add_dependency(%q<bigrecord-driver>, [">= 0"])
+      s.add_dependency(%q<activesupport>, [">= 0"])
+      s.add_dependency(%q<activerecord>, [">= 0"])
     end
   else
     s.add_dependency(%q<rspec>, [">= 0"])
     s.add_dependency(%q<uuidtools>, [">= 2.0.0"])
     s.add_dependency(%q<bigrecord-driver>, [">= 0"])
+    s.add_dependency(%q<activesupport>, [">= 0"])
+    s.add_dependency(%q<activerecord>, [">= 0"])
   end
 end

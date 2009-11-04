@@ -8,3 +8,4 @@ require dir + '/abstract/connection_specification'
 
 require dir + '/abstract_adapter'
 require dir + '/hbase_adapter'
+require dir + '/hbase_rest_adapter'

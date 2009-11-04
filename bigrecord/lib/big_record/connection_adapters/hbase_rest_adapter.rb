@@ -1,4 +1,3 @@
-require 'rubygems'
 require 'set'
 require 'hbase'
 
@@ -12,12 +11,12 @@ module BigRecord
 
       hbase = HBase::Client.new(api_address)
 
-      ConnectionAdapters::HbaseAdapter.new(hbase, logger, [], config)
+      ConnectionAdapters::HbaseRestAdapter.new(hbase, logger, [], config)
     end
   end
 
   module ConnectionAdapters
-    class HbaseAdapter < AbstractAdapter
+    class HbaseRestAdapter < AbstractAdapter
       @@emulate_booleans = true
       cattr_accessor :emulate_booleans
 
@@ -31,11 +30,7 @@ module BigRecord
       # data types
       TYPE_NULL     = 0x00;
       TYPE_STRING   = 0x01; # utf-8 strings
-#      TYPE_INTEGER  = 0x02; # delegate to YAML
-#      TYPE_FLOAT    = 0x03; # fixed 1 byte
       TYPE_BOOLEAN  = 0x04; # delegate to YAML
-#      TYPE_MAP      = 0x05; # delegate to YAML
-#      TYPE_DATETIME = 0x06; # delegate to YAML
       TYPE_BINARY   = 0x07; # byte[] => no conversion
 
       # string charset
@@ -43,8 +38,6 @@ module BigRecord
 
       # utility constants
       NULL = "\000"
-#      TRUE = "\001"
-#      FALSE = "\000"
 
       def initialize(connection, logger, connection_options, config)
         super(connection, logger)
@@ -80,10 +73,21 @@ module BigRecord
 
       # DATABASE STATEMENTS ======================================
 
+      def columns_to_hbase_format(data = {})
+        # Convert it to the hbase-ruby format
+        # TODO: Add this function to hbase-ruby instead.
+        data.map{|col, content| {:name => col.to_s, :value => content}}
+      end
+
       def update_raw(table_name, row, values, timestamp)
         result = nil
+        
+        columns = columns_to_hbase_format(values)
+        timestamp = Time.now.to_bigrecord_timestamp
+        
         log "UPDATE #{table_name} SET #{values.inspect if values} WHERE ROW=#{row};" do
-          @connection.create_row(table_name, row, timestamp, values)
+          @logger.debug("COLUMNS #{columns.class} " + columns.inspect)
+          @connection.create_row(table_name, row, timestamp, columns)
         end
         result
       end
@@ -98,8 +102,11 @@ module BigRecord
 
       def get_raw(table_name, row, column, options={})
         result = nil
+        timestamp = options[:timestamp] || nil
         log "SELECT (#{column}) FROM #{table_name} WHERE ROW=#{row};" do
-          result = @connection.show_row(table_name, row, nil, column, options)
+          columns = @connection.show_row(table_name, row, timestamp, column, options).columns
+          
+          result = (columns.size == 1) ? columns.first.value : columns.map(&:value)
         end
         result
       end
@@ -115,10 +122,16 @@ module BigRecord
         result
       end
 
-      def get_columns_raw(table_name, row, columns, options={})
+      def get_columns_raw(table_name, row, columns = nil, options={})
         result = {}
+        
+        timestamp = options[:timestamp] || nil
+        
         log "SELECT (#{columns.join(", ")}) FROM #{table_name} WHERE ROW=#{row};" do
-          result = @connection.get_columns(table_name, row, columns, options)
+          row = @connection.show_row(table_name, row, timestamp, columns, options)
+          result.merge!({'id' => row.name})
+          columns = row.columns
+          columns.each{ |col| result.merge!({col.name => col.value}) }
         end
         result
       end
@@ -142,7 +155,9 @@ module BigRecord
       def get_consecutive_rows_raw(table_name, start_row, limit, columns, stop_row = nil)
         result = nil
         log "SCAN (#{columns.join(", ")}) FROM #{table_name} WHERE START_ROW=#{start_row} AND STOP_ROW=#{stop_row} LIMIT=#{limit};" do
-          result = @connection.get_consecutive_rows(table_name, start_row, limit, columns, stop_row)
+          scanner = @connection.open_scanner(table_name, columns, start_row, stop_row)
+          result = @connection.get_rows(scanner, limit)
+          @connection.close_scanner(scanner)
         end
         result
       end

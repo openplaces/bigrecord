@@ -51,7 +51,7 @@ module BigRecord
       end
 
       def adapter_name #:nodoc:
-        'HBase-rest'
+        'HBase-Rest'
       end
 
       def supports_migrations? #:nodoc:
@@ -76,7 +76,7 @@ module BigRecord
       def columns_to_hbase_format(data = {})
         # Convert it to the hbase-ruby format
         # TODO: Add this function to hbase-ruby instead.
-        data.map{|col, content| {:name => col.to_s, :value => content}}
+        data.map{|col, content| {:name => col.to_s, :value => content}}.compact
       end
 
       def update_raw(table_name, row, values, timestamp)
@@ -231,7 +231,7 @@ module BigRecord
 
         result = nil
         log "CREATE TABLE #{table_name} (#{table_definition.column_families_list});" do
-          result = @connection.create_table(table_name, table_definition.to_adapter_format)
+          result = @connection.create_table(table_name, *table_definition.to_adapter_format)
         end
         result
       end
@@ -245,35 +245,16 @@ module BigRecord
       end
 
       def add_column_family(table_name, column_name, options = {})
-        column = BigRecordDriver::ColumnDescriptor.new(column_name.to_s, options)
-
-        result = nil
-        log "ADD COLUMN TABLE #{table_name} COLUMN #{column_name} (#{options.inspect});" do
-          result = @connection.add_column(table_name, column)
-        end
-        result
       end
 
       alias :add_family :add_column_family
 
       def remove_column_family(table_name, column_name)
-        result = nil
-        log "REMOVE COLUMN TABLE #{table_name} COLUMN #{column_name};" do
-          result = @connection.remove_column(table_name, column_name)
-        end
-        result
       end
 
       alias :remove_family :remove_column_family
 
       def modify_column_family(table_name, column_name, options = {})
-        column = BigRecordDriver::ColumnDescriptor.new(column_name.to_s, options)
-
-        result = nil
-        log "MODIFY COLUMN TABLE #{table_name} COLUMN #{column_name} (#{options.inspect});" do
-          result = @connection.modify_column(table_name, column)
-        end
-        result
       end
 
       alias :modify_family :modify_column_family
@@ -323,6 +304,7 @@ module BigRecord
       end
 
       private
+
         def connect
         end
 
@@ -384,6 +366,23 @@ module BigRecord
 
     class TableDefinition
 
+      ##
+      # Given an column descriptor's options hash from Bigrecord, translate it into
+      # the format for this adapter's ColumnDescriptor.
+      #
+      def self.translate_to_adapter_format(options)
+        # Translating to the hbase-ruby column descriptor
+        # TODO: Refactor this
+        hbase_params = {}
+
+        hbase_params[:name] = options[:name].to_s if options[:name]
+        hbase_params[:compression] = options[:compression] if options[:compression]
+        hbase_params[:max_versions] = options[:versions] if options[:versions]
+        hbase_params[:bloomfilter] = options[:bloom_filter] if options[:bloom_filter]
+
+        hbase_params
+      end
+
       def initialize
         @column_families = []
       end
@@ -394,7 +393,9 @@ module BigRecord
       end
 
       def column_family(name, options = {})
-        column = self[name] || BigRecordDriver::ColumnDescriptor.new(name.to_s, options)
+        hbase_params = self.class.translate_to_adapter_format(options.merge({:name => name}))
+
+        column = self[name] || hbase_params
 
         @column_families << column unless @column_families.include? column
         self
@@ -407,7 +408,7 @@ module BigRecord
       end
 
       def column_families_list
-        @column_families.map(&:name).join(", ")
+        @column_families.map{|x| x[:name]}.join(", ")
       end
 
     end

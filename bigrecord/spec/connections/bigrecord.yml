@@ -1,9 +1,6 @@
 hbase:
-  adapter: hbase
-  zookeeper_quorum: localhost
-  zookeeper_client_port: 21811
-  drb_host: localhost
-  drb_port: 50001
+  adapter: hbase_rest
+  api_address: http://localhost:8080
 
 cassandra:
   adapter: cassandra

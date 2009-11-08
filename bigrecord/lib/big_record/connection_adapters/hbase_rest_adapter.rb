@@ -84,7 +84,7 @@ module BigRecord
         
         columns = columns_to_hbase_format(values)
         timestamp = Time.now.to_bigrecord_timestamp
-        
+
         log "UPDATE #{table_name} SET #{values.inspect if values} WHERE ROW=#{row};" do
           @logger.debug("COLUMNS #{columns.class} " + columns.inspect)
           @connection.create_row(table_name, row, timestamp, columns)
@@ -155,7 +155,8 @@ module BigRecord
       def get_consecutive_rows_raw(table_name, start_row, limit, columns, stop_row = nil)
         result = nil
         log "SCAN (#{columns.join(", ")}) FROM #{table_name} WHERE START_ROW=#{start_row} AND STOP_ROW=#{stop_row} LIMIT=#{limit};" do
-          scanner = @connection.open_scanner(table_name, columns, start_row, stop_row)
+          options = {:start_row => start_row, :end_row => stop_row, :columns => columns}
+          scanner = @connection.open_scanner(table_name, options)
           result = @connection.get_rows(scanner, limit)
           @connection.close_scanner(scanner)
         end
@@ -389,7 +390,7 @@ module BigRecord
 
       # Returns a column family for the column with name +name+.
       def [](name)
-        @column_families.find {|column| column.name.to_s == name.to_s}
+        @column_families.find {|column| column[:name].to_s == name.to_s}
       end
 
       def column_family(name, options = {})

@@ -138,15 +138,21 @@ module BigRecord
 
       def get_columns(table_name, row, columns, options={})
         row_cols = get_columns_raw(table_name, row, columns, options)
-        result = {}
         return nil unless row_cols
 
-        row_cols.each do |key, col|
-          result[key] =
-          if key == 'id'
-            col
-          else
-            deserialize(col)
+        result = {}
+        row_cols.each do |col|
+          key = col.name
+          value = col.value
+          begin
+            result[key] =
+            if key == 'id'
+              value
+            else
+              deserialize(value)
+            end
+          rescue Exception => e
+            puts "Could not load column value #{key} for row=#{row.name}"
           end
         end
         result
@@ -165,18 +171,21 @@ module BigRecord
 
       def get_consecutive_rows(table_name, start_row, limit, columns, stop_row = nil)
         rows = get_consecutive_rows_raw(table_name, start_row, limit, columns, stop_row)
-        result = rows.collect do |row_cols|
+
+        result = rows.collect do |row|
           cols = {}
-          row_cols.each do |key, col|
+          row.columns.each do |col|
+            key = col.name
+            value = col.value
             begin
               cols[key] =
               if key == 'id'
-                col
+                value
               else
-                deserialize(col)
+                deserialize(value)
               end
             rescue Exception => e
-              puts "Could not load column value #{key} for row=#{row_cols['id']}"
+              puts "Could not load column value #{key} for row=#{row.name}"
             end
           end
           cols

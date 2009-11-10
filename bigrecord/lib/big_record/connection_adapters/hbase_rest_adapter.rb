@@ -81,12 +81,11 @@ module BigRecord
 
       def update_raw(table_name, row, values, timestamp)
         result = nil
-        
+
         columns = columns_to_hbase_format(values)
         timestamp = Time.now.to_bigrecord_timestamp
 
         log "UPDATE #{table_name} SET #{values.inspect if values} WHERE ROW=#{row};" do
-          @logger.debug("COLUMNS #{columns.class} " + columns.inspect)
           @connection.create_row(table_name, row, timestamp, columns)
         end
         result
@@ -105,7 +104,7 @@ module BigRecord
         timestamp = options[:timestamp] || nil
         log "SELECT (#{column}) FROM #{table_name} WHERE ROW=#{row};" do
           columns = @connection.show_row(table_name, row, timestamp, column, options).columns
-          
+
           result = (columns.size == 1) ? columns.first.value : columns.map(&:value)
         end
         result
@@ -124,9 +123,9 @@ module BigRecord
 
       def get_columns_raw(table_name, row, columns = nil, options={})
         result = {}
-        
+
         timestamp = options[:timestamp] || nil
-        
+
         log "SELECT (#{columns.join(", ")}) FROM #{table_name} WHERE ROW=#{row};" do
           row = @connection.show_row(table_name, row, timestamp, columns, options)
           result.merge!({'id' => row.name})

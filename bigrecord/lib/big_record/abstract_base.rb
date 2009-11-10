@@ -139,6 +139,8 @@ module BigRecord
     # attributes but not yet saved (pass a hash with key names matching the associated table column names).
     # In both instances, valid attribute keys are determined by the column names of the associated table --
     # hence you can't have attributes that aren't part of the table columns.
+    #
+    # @param [Hash] Optional hash argument consisting of keys that match the names of the columns, and their values.
     def initialize(attrs = nil)
       preinitialize(attrs)
       @attributes = attributes_from_column_definition
@@ -194,11 +196,14 @@ module BigRecord
 
     # Default to_s method that just returns invokes the {#id} method
     #
-    # @return [String] The row identifier/id of the record.
+    # @return [String] The row identifier/id of the record
     def to_s
       id
     end
 
+    # Get the attributes hash of the object.
+    #
+    # @return [Hash] a duplicated attributes hash
     def attributes()
       @attributes.dup
     end

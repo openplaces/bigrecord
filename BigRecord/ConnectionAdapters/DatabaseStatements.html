@@ -1,0 +1,278 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="../../style.css" type="text/css" charset="utf-8" />
+<link rel="stylesheet" href="../../custom.css" type="text/css" charset="utf-8" />
+<link rel="stylesheet" href="../../syntax_highlight.css" type="text/css" charset="utf-8" />
+
+    <script src="../../jquery.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../app.js" type="text/javascript" charset="utf-8"></script>
+    <title>Module: BigRecord::ConnectionAdapters::DatabaseStatements</title>
+  </head>
+  <body>
+    <div id="content">
+      <div class="section module BigRecord_ConnectionAdapters_DatabaseStatements">
+  <h1 class="title">Module: BigRecord::ConnectionAdapters::DatabaseStatements</h1>
+  <div class="section constants">
+  
+</div>  <div class="section visibilitygroup public">
+    <h1>Public Visibility</h1>
+      <div class="section methodsummary instance public">
+    <h1>Public Instance Method Summary</h1>
+<table class="summary">
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#insert_fixture-instance_method" title="#insert_fixture">#insert_fixture</a></span><span class='args'>(fixture, table_name)</span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        <p>
+# Returns an array of record hashes with the column names as keys and
+</p>
+<pre class="code">
+     <span class='comment val'># column values as values.</span>
+</pre>
+
+        
+      </td>
+    </tr>
+  
+</table>
+
+  </div>
+<div class="section methoddetails instance public">
+  <h1>Public Instance Method Details</h1>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>insert_fixture</h3>
+</div><div id="insert_fixture-instance_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>insert_fixture</span><span class='args'>(fixture, table_name)</span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section docstring">
+  <p>
+# Returns an array of record hashes with the column names as keys and
+</p>
+<pre class="code">
+     <span class='comment val'># column values as values.</span>
+     <span class='def def kw'>def</span> <span class='select_all identifier id'>select_all</span><span class='lparen token'>(</span><span class='sql identifier id'>sql</span><span class='comma token'>,</span> <span class='name identifier id'>name</span> <span class='assign token'>=</span> <span class='nil nil kw'>nil</span><span class='rparen token'>)</span>
+       <span class='select identifier id'>select</span><span class='lparen token'>(</span><span class='sql identifier id'>sql</span><span class='comma token'>,</span> <span class='name identifier id'>name</span><span class='rparen token'>)</span>
+     <span class='end end kw'>end</span>
+
+     <span class='comment val'># Returns a record hash with the column names as keys and column values</span>
+     <span class='comment val'># as values.</span>
+     <span class='def def kw'>def</span> <span class='select_one identifier id'>select_one</span><span class='lparen token'>(</span><span class='sql identifier id'>sql</span><span class='comma token'>,</span> <span class='name identifier id'>name</span> <span class='assign token'>=</span> <span class='nil nil kw'>nil</span><span class='rparen token'>)</span>
+       <span class='result identifier id'>result</span> <span class='assign token'>=</span> <span class='select_all identifier id'>select_all</span><span class='lparen token'>(</span><span class='sql identifier id'>sql</span><span class='comma token'>,</span> <span class='name identifier id'>name</span><span class='rparen token'>)</span>
+       <span class='result identifier id'>result</span><span class='dot token'>.</span><span class='first identifier id'>first</span> <span class='if if_mod kw'>if</span> <span class='result identifier id'>result</span>
+     <span class='end end kw'>end</span>
+
+     <span class='comment val'># Returns a single value from a record</span>
+     <span class='def def kw'>def</span> <span class='select_value identifier id'>select_value</span><span class='lparen token'>(</span><span class='sql identifier id'>sql</span><span class='comma token'>,</span> <span class='name identifier id'>name</span> <span class='assign token'>=</span> <span class='nil nil kw'>nil</span><span class='rparen token'>)</span>
+       <span class='if if kw'>if</span> <span class='result identifier id'>result</span> <span class='assign token'>=</span> <span class='select_one identifier id'>select_one</span><span class='lparen token'>(</span><span class='sql identifier id'>sql</span><span class='comma token'>,</span> <span class='name identifier id'>name</span><span class='rparen token'>)</span>
+         <span class='result identifier id'>result</span><span class='dot token'>.</span><span class='values identifier id'>values</span><span class='dot token'>.</span><span class='first identifier id'>first</span>
+       <span class='end end kw'>end</span>
+     <span class='end end kw'>end</span>
+
+     <span class='comment val'># Returns an array of the values of the first column in a select:</span>
+     <span class='comment val'>#   select_values(&quot;SELECT id FROM companies LIMIT 3&quot;) =&gt; [1,2,3]</span>
+     <span class='def def kw'>def</span> <span class='select_values identifier id'>select_values</span><span class='lparen token'>(</span><span class='sql identifier id'>sql</span><span class='comma token'>,</span> <span class='name identifier id'>name</span> <span class='assign token'>=</span> <span class='nil nil kw'>nil</span><span class='rparen token'>)</span>
+       <span class='result identifier id'>result</span> <span class='assign token'>=</span> <span class='select_rows identifier id'>select_rows</span><span class='lparen token'>(</span><span class='sql identifier id'>sql</span><span class='comma token'>,</span> <span class='name identifier id'>name</span><span class='rparen token'>)</span>
+       <span class='result identifier id'>result</span><span class='dot token'>.</span><span class='map identifier id'>map</span> <span class='lbrace token'>{</span> <span class='bitor op'>|</span><span class='v identifier id'>v</span><span class='bitor op'>|</span> <span class='v identifier id'>v</span><span class='lbrack token'>[</span><span class='integer val'>0</span><span class='rbrack token'>]</span> <span class='rbrace token'>}</span>
+     <span class='end end kw'>end</span>
+
+     <span class='comment val'># Returns an array of arrays containing the field values.</span>
+     <span class='comment val'># Order is the same as that returned by #columns.</span>
+     <span class='def def kw'>def</span> <span class='select_rows identifier id'>select_rows</span><span class='lparen token'>(</span><span class='sql identifier id'>sql</span><span class='comma token'>,</span> <span class='name identifier id'>name</span> <span class='assign token'>=</span> <span class='nil nil kw'>nil</span><span class='rparen token'>)</span>
+       <span class='raise identifier id'>raise</span> <span class='NotImplementedError constant id'>NotImplementedError</span><span class='comma token'>,</span> <span class='string val'>&quot;select_rows is an abstract method&quot;</span>
+     <span class='end end kw'>end</span>
+
+     <span class='comment val'># Executes the SQL statement in the context of this connection.</span>
+     <span class='def def kw'>def</span> <span class='execute identifier id'>execute</span><span class='lparen token'>(</span><span class='sql identifier id'>sql</span><span class='comma token'>,</span> <span class='name identifier id'>name</span> <span class='assign token'>=</span> <span class='nil nil kw'>nil</span><span class='rparen token'>)</span>
+       <span class='raise identifier id'>raise</span> <span class='NotImplementedError constant id'>NotImplementedError</span><span class='comma token'>,</span> <span class='string val'>&quot;execute is an abstract method&quot;</span>
+     <span class='end end kw'>end</span>
+
+     <span class='comment val'># Returns the last auto-generated ID from the affected table.</span>
+     <span class='def def kw'>def</span> <span class='insert identifier id'>insert</span><span class='lparen token'>(</span><span class='sql identifier id'>sql</span><span class='comma token'>,</span> <span class='name identifier id'>name</span> <span class='assign token'>=</span> <span class='nil nil kw'>nil</span><span class='comma token'>,</span> <span class='pk identifier id'>pk</span> <span class='assign token'>=</span> <span class='nil nil kw'>nil</span><span class='comma token'>,</span> <span class='id_value identifier id'>id_value</span> <span class='assign token'>=</span> <span class='nil nil kw'>nil</span><span class='comma token'>,</span> <span class='sequence_name identifier id'>sequence_name</span> <span class='assign token'>=</span> <span class='nil nil kw'>nil</span><span class='rparen token'>)</span>
+       <span class='insert_sql identifier id'>insert_sql</span><span class='lparen token'>(</span><span class='sql identifier id'>sql</span><span class='comma token'>,</span> <span class='name identifier id'>name</span><span class='comma token'>,</span> <span class='pk identifier id'>pk</span><span class='comma token'>,</span> <span class='id_value identifier id'>id_value</span><span class='comma token'>,</span> <span class='sequence_name identifier id'>sequence_name</span><span class='rparen token'>)</span>
+     <span class='end end kw'>end</span>
+
+     <span class='comment val'># Executes the update statement and returns the number of rows affected.</span>
+     <span class='def def kw'>def</span> <span class='update identifier id'>update</span><span class='lparen token'>(</span><span class='sql identifier id'>sql</span><span class='comma token'>,</span> <span class='name identifier id'>name</span> <span class='assign token'>=</span> <span class='nil nil kw'>nil</span><span class='rparen token'>)</span>
+       <span class='update_sql identifier id'>update_sql</span><span class='lparen token'>(</span><span class='sql identifier id'>sql</span><span class='comma token'>,</span> <span class='name identifier id'>name</span><span class='rparen token'>)</span>
+     <span class='end end kw'>end</span>
+
+     <span class='comment val'># Executes the delete statement and returns the number of rows affected.</span>
+     <span class='def def kw'>def</span> <span class='delete identifier id'>delete</span><span class='lparen token'>(</span><span class='sql identifier id'>sql</span><span class='comma token'>,</span> <span class='name identifier id'>name</span> <span class='assign token'>=</span> <span class='nil nil kw'>nil</span><span class='rparen token'>)</span>
+       <span class='delete_sql identifier id'>delete_sql</span><span class='lparen token'>(</span><span class='sql identifier id'>sql</span><span class='comma token'>,</span> <span class='name identifier id'>name</span><span class='rparen token'>)</span>
+     <span class='end end kw'>end</span>
+
+     <span class='comment val'># Wrap a block in a transaction.  Returns result of block.</span>
+     <span class='def def kw'>def</span> <span class='transaction identifier id'>transaction</span><span class='lparen token'>(</span><span class='start_db_transaction identifier id'>start_db_transaction</span> <span class='assign token'>=</span> <span class='true true kw'>true</span><span class='rparen token'>)</span>
+       <span class='transaction_open identifier id'>transaction_open</span> <span class='assign token'>=</span> <span class='false false kw'>false</span>
+       <span class='begin begin kw'>begin</span>
+         <span class='if if kw'>if</span> <span class='block_given? fid id'>block_given?</span>
+           <span class='if if kw'>if</span> <span class='start_db_transaction identifier id'>start_db_transaction</span>
+             <span class='begin_db_transaction identifier id'>begin_db_transaction</span>
+             <span class='transaction_open identifier id'>transaction_open</span> <span class='assign token'>=</span> <span class='true true kw'>true</span>
+           <span class='end end kw'>end</span>
+           <span class='yield yield kw'>yield</span>
+         <span class='end end kw'>end</span>
+       <span class='rescue rescue kw'>rescue</span> <span class='Exception constant id'>Exception</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='database_transaction_rollback identifier id'>database_transaction_rollback</span>
+         <span class='if if kw'>if</span> <span class='transaction_open identifier id'>transaction_open</span>
+           <span class='transaction_open identifier id'>transaction_open</span> <span class='assign token'>=</span> <span class='false false kw'>false</span>
+           <span class='rollback_db_transaction identifier id'>rollback_db_transaction</span>
+         <span class='end end kw'>end</span>
+         <span class='raise identifier id'>raise</span> <span class='unless unless_mod kw'>unless</span> <span class='database_transaction_rollback identifier id'>database_transaction_rollback</span><span class='dot token'>.</span><span class='is_a? fid id'>is_a?</span> <span class='ActiveRecord constant id'>ActiveRecord</span><span class='colon2 op'>::</span><span class='Rollback constant id'>Rollback</span>
+       <span class='end end kw'>end</span>
+     <span class='ensure ensure kw'>ensure</span>
+       <span class='if if kw'>if</span> <span class='transaction_open identifier id'>transaction_open</span>
+         <span class='begin begin kw'>begin</span>
+           <span class='commit_db_transaction identifier id'>commit_db_transaction</span>
+         <span class='rescue rescue kw'>rescue</span> <span class='Exception constant id'>Exception</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='database_transaction_rollback identifier id'>database_transaction_rollback</span>
+           <span class='rollback_db_transaction identifier id'>rollback_db_transaction</span>
+           <span class='raise identifier id'>raise</span>
+         <span class='end end kw'>end</span>
+       <span class='end end kw'>end</span>
+     <span class='end end kw'>end</span>
+
+     <span class='comment val'># Begins the transaction (and turns off auto-committing).</span>
+     <span class='def def kw'>def</span> <span class='begin_db_transaction identifier id'>begin_db_transaction</span><span class='lparen token'>(</span><span class='rparen token'>)</span>    <span class='end end kw'>end</span>
+
+     <span class='comment val'># Commits the transaction (and turns on auto-committing).</span>
+     <span class='def def kw'>def</span> <span class='commit_db_transaction identifier id'>commit_db_transaction</span><span class='lparen token'>(</span><span class='rparen token'>)</span>   <span class='end end kw'>end</span>
+
+     <span class='comment val'># Rolls back the transaction (and turns on auto-committing). Must be</span>
+     <span class='comment val'># done if the transaction block raises an exception or returns false.</span>
+     <span class='def def kw'>def</span> <span class='rollback_db_transaction identifier id'>rollback_db_transaction</span><span class='lparen token'>(</span><span class='rparen token'>)</span> <span class='end end kw'>end</span>
+
+     <span class='comment val'># Alias for #add_limit_offset!.</span>
+     <span class='def def kw'>def</span> <span class='add_limit! fid id'>add_limit!</span><span class='lparen token'>(</span><span class='sql identifier id'>sql</span><span class='comma token'>,</span> <span class='options identifier id'>options</span><span class='rparen token'>)</span>
+       <span class='add_limit_offset! fid id'>add_limit_offset!</span><span class='lparen token'>(</span><span class='sql identifier id'>sql</span><span class='comma token'>,</span> <span class='options identifier id'>options</span><span class='rparen token'>)</span> <span class='if if_mod kw'>if</span> <span class='options identifier id'>options</span>
+     <span class='end end kw'>end</span>
+
+     <span class='comment val'># Appends &lt;tt&gt;LIMIT&lt;/tt&gt; and &lt;tt&gt;OFFSET&lt;/tt&gt; options to an SQL statement.</span>
+     <span class='comment val'># This method *modifies* the &lt;tt&gt;sql&lt;/tt&gt; parameter.</span>
+     <span class='comment val'># ===== Examples</span>
+     <span class='comment val'>#  add_limit_offset!('SELECT * FROM suppliers', {:limit =&gt; 10, :offset =&gt; 50})</span>
+     <span class='comment val'># generates</span>
+     <span class='comment val'>#  SELECT * FROM suppliers LIMIT 10 OFFSET 50</span>
+     <span class='def def kw'>def</span> <span class='add_limit_offset! fid id'>add_limit_offset!</span><span class='lparen token'>(</span><span class='sql identifier id'>sql</span><span class='comma token'>,</span> <span class='options identifier id'>options</span><span class='rparen token'>)</span>
+       <span class='if if kw'>if</span> <span class='limit identifier id'>limit</span> <span class='assign token'>=</span> <span class='options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:limit</span><span class='rbrack token'>]</span>
+         <span class='sql identifier id'>sql</span> <span class='lshft op'>&lt;&lt;</span> <span class='dstring node'>&quot; LIMIT #{limit}&quot;</span>
+         <span class='if if kw'>if</span> <span class='offset identifier id'>offset</span> <span class='assign token'>=</span> <span class='options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:offset</span><span class='rbrack token'>]</span>
+           <span class='sql identifier id'>sql</span> <span class='lshft op'>&lt;&lt;</span> <span class='dstring node'>&quot; OFFSET #{offset}&quot;</span>
+         <span class='end end kw'>end</span>
+       <span class='end end kw'>end</span>
+     <span class='end end kw'>end</span>
+
+     <span class='comment val'># Appends a locking clause to an SQL statement.</span>
+     <span class='comment val'># This method *modifies* the &lt;tt&gt;sql&lt;/tt&gt; parameter.</span>
+     <span class='comment val'>#   # SELECT * FROM suppliers FOR UPDATE</span>
+     <span class='comment val'>#   add_lock! 'SELECT * FROM suppliers', :lock =&gt; true</span>
+     <span class='comment val'>#   add_lock! 'SELECT * FROM suppliers', :lock =&gt; ' FOR UPDATE'</span>
+     <span class='def def kw'>def</span> <span class='add_lock! fid id'>add_lock!</span><span class='lparen token'>(</span><span class='sql identifier id'>sql</span><span class='comma token'>,</span> <span class='options identifier id'>options</span><span class='rparen token'>)</span>
+       <span class='case case kw'>case</span> <span class='lock identifier id'>lock</span> <span class='assign token'>=</span> <span class='options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:lock</span><span class='rbrack token'>]</span>
+         <span class='when when kw'>when</span> <span class='true true kw'>true</span><span class='semicolon token'>;</span>   <span class='sql identifier id'>sql</span> <span class='lshft op'>&lt;&lt;</span> <span class='string val'>' FOR UPDATE'</span>
+         <span class='when when kw'>when</span> <span class='String constant id'>String</span><span class='semicolon token'>;</span> <span class='sql identifier id'>sql</span> <span class='lshft op'>&lt;&lt;</span> <span class='dstring node'>&quot; #{lock}&quot;</span>
+       <span class='end end kw'>end</span>
+     <span class='end end kw'>end</span>
+
+     <span class='def def kw'>def</span> <span class='default_sequence_name identifier id'>default_sequence_name</span><span class='lparen token'>(</span><span class='table identifier id'>table</span><span class='comma token'>,</span> <span class='column identifier id'>column</span><span class='rparen token'>)</span>
+       <span class='nil nil kw'>nil</span>
+     <span class='end end kw'>end</span>
+
+     <span class='comment val'># Set the sequence to the max value of the table's column.</span>
+     <span class='def def kw'>def</span> <span class='reset_sequence! fid id'>reset_sequence!</span><span class='lparen token'>(</span><span class='table identifier id'>table</span><span class='comma token'>,</span> <span class='column identifier id'>column</span><span class='comma token'>,</span> <span class='sequence identifier id'>sequence</span> <span class='assign token'>=</span> <span class='nil nil kw'>nil</span><span class='rparen token'>)</span>
+       <span class='comment val'># Do nothing by default.  Implement for PostgreSQL, Oracle, ...</span>
+     <span class='end end kw'>end</span>
+</pre>
+<p>
+Inserts the given fixture into the table. Overridden in adapters that
+require something beyond a simple insert (eg. Oracle).
+</p>
+
+</div><div class="section tags">
+  <h2>Meta Tags</h2>
+  <div class="raise">
+  <h3>Raises:</h3>
+  <dl>
+  
+    <dt>
+      
+        <span class='type'>[<tt>ArgumentError</tt>]</span>
+      
+      
+      
+    </dt>
+    <dd>
+      <span class='desc'></span>
+    </dd>
+  
+  </dl>
+</div>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+139
+140
+141
+142
+143
+144
+145</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/abstract/database_statements.rb', line 139</span>
+
+<span class='def def kw'>def</span> <span class='insert_fixture identifier id'>insert_fixture</span><span class='lparen token'>(</span><span class='fixture identifier id'>fixture</span><span class='comma token'>,</span> <span class='table_name identifier id'>table_name</span><span class='rparen token'>)</span>
+<span class='comment val'>#        execute &quot;INSERT INTO #{quote_table_name(table_name)} (#{fixture.key_list}) VALUES (#{fixture.value_list})&quot;, 'Fixture Insert'</span>
+  <span class='attributes identifier id'>attributes</span> <span class='assign token'>=</span> <span class='fixture identifier id'>fixture</span><span class='dot token'>.</span><span class='to_hash identifier id'>to_hash</span><span class='dot token'>.</span><span class='dup identifier id'>dup</span>
+  <span class='id identifier id'>id</span> <span class='assign token'>=</span> <span class='attributes identifier id'>attributes</span><span class='dot token'>.</span><span class='delete identifier id'>delete</span><span class='lparen token'>(</span><span class='string val'>&quot;id&quot;</span><span class='rparen token'>)</span>
+  <span class='raise identifier id'>raise</span> <span class='ArgumentError constant id'>ArgumentError</span><span class='comma token'>,</span> <span class='string val'>&quot;the id is missing&quot;</span> <span class='unless unless_mod kw'>unless</span> <span class='id identifier id'>id</span>
+  <span class='update identifier id'>update</span><span class='lparen token'>(</span><span class='table_name identifier id'>table_name</span><span class='comma token'>,</span> <span class='id identifier id'>id</span><span class='comma token'>,</span> <span class='attributes identifier id'>attributes</span><span class='comma token'>,</span> <span class='Time constant id'>Time</span><span class='dot token'>.</span><span class='now identifier id'>now</span><span class='dot token'>.</span><span class='to_bigrecord_timestamp identifier id'>to_bigrecord_timestamp</span><span class='rparen token'>)</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+</div>
+  </div>
+
+</div>
+    </div>
+    <div id="yard_info">
+  Generated on Tuesday, November 10 2009 at 06:18:40 PM by 
+  <abbr class="yard" title="Yay! A Ruby Documentation Tool"><a href="http://yard.soen.ca">YARD</a></abbr> 
+  0.2.3.5 (ruby-1.8.7).
+</div>
+
+  </body>
+</html>

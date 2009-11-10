@@ -1,0 +1,217 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="../../style.css" type="text/css" charset="utf-8" />
+<link rel="stylesheet" href="../../custom.css" type="text/css" charset="utf-8" />
+<link rel="stylesheet" href="../../syntax_highlight.css" type="text/css" charset="utf-8" />
+
+    <script src="../../jquery.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../app.js" type="text/javascript" charset="utf-8"></script>
+    <title>Module: BigRecord::AttributeMethods::ClassMethods</title>
+  </head>
+  <body>
+    <div id="content">
+      <div class="section module BigRecord_AttributeMethods_ClassMethods">
+  <h1 class="title">Module: BigRecord::AttributeMethods::ClassMethods</h1>
+  <div class="section docstring">
+  <p>
+Declare and check for suffixed attribute methods.
+</p>
+
+</div><div class="section constants">
+  
+</div>  <div class="section visibilitygroup public">
+    <h1>Public Visibility</h1>
+      <div class="section methodsummary instance public">
+    <h1>Public Instance Method Summary</h1>
+<table class="summary">
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#attribute_method_suffix-instance_method" title="#attribute_method_suffix">#attribute_method_suffix</a></span><span class='args'>(*suffixes)</span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        <p>
+Declare a method available for all attributes with the given suffix.
+</p>
+
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#match_attribute_method%3F-instance_method" title="#match_attribute_method?">#match_attribute_method?</a></span><span class='args'>(method_name)</span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        <p>
+Returns MatchData if method_name is an attribute method.
+</p>
+
+        
+      </td>
+    </tr>
+  
+</table>
+
+  </div>
+<div class="section methoddetails instance public">
+  <h1>Public Instance Method Details</h1>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>attribute_method_suffix</h3>
+</div><div id="attribute_method_suffix-instance_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>attribute_method_suffix</span><span class='args'>(*suffixes)</span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section docstring">
+  <p>
+Declare a method available for all attributes with the given suffix. Uses
+method_missing and respond_to? to rewrite the method
+</p>
+<pre class="code">
+  <span class='comment val'>#{attr}#{suffix}(*args, &amp;block)</span>
+</pre>
+<p>
+to
+</p>
+<pre class="code">
+  <span class='attribute identifier id'>attribute</span><span class='comment val'>#{suffix}(#{attr}, *args, &amp;block)</span>
+</pre>
+<p>
+An attribute#{suffix} instance method must exist and accept at least the
+attr argument.
+</p>
+<p>
+For example:
+</p>
+<pre class="code">
+  <span class='class class kw'>class</span> <span class='Person constant id'>Person</span> <span class='lt op'>&lt;</span> <span class='BigRecord constant id'>BigRecord</span><span class='colon2 op'>::</span><span class='Base constant id'>Base</span>
+    <span class='attribute_method_suffix identifier id'>attribute_method_suffix</span> <span class='string val'>'_changed?'</span>
+
+    <span class='private identifier id'>private</span>
+      <span class='def def kw'>def</span> <span class='attribute_changed? fid id'>attribute_changed?</span><span class='lparen token'>(</span><span class='attr identifier id'>attr</span><span class='rparen token'>)</span>
+        <span class='dot3 op'>...</span>
+      <span class='end end kw'>end</span>
+  <span class='end end kw'>end</span>
+
+  <span class='person identifier id'>person</span> <span class='assign token'>=</span> <span class='Person constant id'>Person</span><span class='dot token'>.</span><span class='find identifier id'>find</span><span class='lparen token'>(</span><span class='integer val'>1</span><span class='rparen token'>)</span>
+  <span class='person identifier id'>person</span><span class='dot token'>.</span><span class='name_changed? fid id'>name_changed?</span>    <span class='comment val'># =&gt; false</span>
+  <span class='person identifier id'>person</span><span class='dot token'>.</span><span class='name identifier id'>name</span> <span class='assign token'>=</span> <span class='string val'>'Hubert'</span>
+  <span class='person identifier id'>person</span><span class='dot token'>.</span><span class='name_changed? fid id'>name_changed?</span>    <span class='comment val'># =&gt; true</span>
+</pre>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+35
+36
+37
+38</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/attribute_methods.rb', line 35</span>
+
+<span class='def def kw'>def</span> <span class='attribute_method_suffix identifier id'>attribute_method_suffix</span><span class='lparen token'>(</span><span class='mult op'>*</span><span class='suffixes identifier id'>suffixes</span><span class='rparen token'>)</span>
+  <span class='attribute_method_suffixes identifier id'>attribute_method_suffixes</span><span class='dot token'>.</span><span class='concat identifier id'>concat</span> <span class='suffixes identifier id'>suffixes</span>
+  <span class='rebuild_attribute_method_regexp identifier id'>rebuild_attribute_method_regexp</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>match_attribute_method?</h3>
+</div><div id="match_attribute_method?-instance_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>match_attribute_method?</span><span class='args'>(method_name)</span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section docstring">
+  <p>
+Returns MatchData if method_name is an attribute method.
+</p>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+41
+42
+43
+44</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/attribute_methods.rb', line 41</span>
+
+<span class='def def kw'>def</span> <span class='match_attribute_method? fid id'>match_attribute_method?</span><span class='lparen token'>(</span><span class='method_name identifier id'>method_name</span><span class='rparen token'>)</span>
+  <span class='rebuild_attribute_method_regexp identifier id'>rebuild_attribute_method_regexp</span> <span class='unless unless_mod kw'>unless</span> <span class='defined? defined kw'>defined?</span><span class='lparen token'>(</span><span class='@@attribute_method_regexp ivar id'>@@attribute_method_regexp</span><span class='rparen token'>)</span> <span class='andop op'>&amp;&amp;</span> <span class='@@attribute_method_regexp ivar id'>@@attribute_method_regexp</span>
+  <span class='@@attribute_method_regexp ivar id'>@@attribute_method_regexp</span><span class='dot token'>.</span><span class='match identifier id'>match</span><span class='lparen token'>(</span><span class='method_name identifier id'>method_name</span><span class='rparen token'>)</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+</div>
+  </div>
+
+</div>
+    </div>
+    <div id="yard_info">
+  Generated on Tuesday, November 10 2009 at 06:18:42 PM by 
+  <abbr class="yard" title="Yay! A Ruby Documentation Tool"><a href="http://yard.soen.ca">YARD</a></abbr> 
+  0.2.3.5 (ruby-1.8.7).
+</div>
+
+  </body>
+</html>

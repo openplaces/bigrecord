@@ -1,0 +1,468 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="../../style.css" type="text/css" charset="utf-8" />
+<link rel="stylesheet" href="../../custom.css" type="text/css" charset="utf-8" />
+<link rel="stylesheet" href="../../syntax_highlight.css" type="text/css" charset="utf-8" />
+
+    <script src="../../jquery.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../app.js" type="text/javascript" charset="utf-8"></script>
+    <title>Module: BigRecord::TestFixtures::ClassMethods</title>
+  </head>
+  <body>
+    <div id="content">
+      <div class="section module BigRecord_TestFixtures_ClassMethods">
+  <h1 class="title">Module: BigRecord::TestFixtures::ClassMethods</h1>
+  <div class="section constants">
+  
+</div>  <div class="section visibilitygroup public">
+    <h1>Public Visibility</h1>
+      <div class="section methodsummary instance public">
+    <h1>Public Instance Method Summary</h1>
+<table class="summary">
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#bigrecord_fixtures-instance_method" title="#bigrecord_fixtures">#bigrecord_fixtures</a></span><span class='args'>(*bigrecord_table_names)</span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#bigrecord_set_fixture_class-instance_method" title="#bigrecord_set_fixture_class">#bigrecord_set_fixture_class</a></span><span class='args'>(class_names = {})</span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#require_bigrecord_fixture_classes-instance_method" title="#require_bigrecord_fixture_classes">#require_bigrecord_fixture_classes</a></span><span class='args'>(table_names = nil)</span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#setup_bigrecord_fixture_accessors-instance_method" title="#setup_bigrecord_fixture_accessors">#setup_bigrecord_fixture_accessors</a></span><span class='args'>(table_names = nil)</span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#uses_transaction-instance_method" title="#uses_transaction">#uses_transaction</a></span><span class='args'>(*methods)</span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#uses_transaction%3F-instance_method" title="#uses_transaction?">#uses_transaction?</a></span><span class='args'>(method)</span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        
+        
+      </td>
+    </tr>
+  
+</table>
+
+  </div>
+<div class="section methoddetails instance public">
+  <h1>Public Instance Method Details</h1>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>bigrecord_fixtures</h3>
+</div><div id="bigrecord_fixtures-instance_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>bigrecord_fixtures</span><span class='args'>(*bigrecord_table_names)</span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+867
+868
+869
+870
+871
+872
+873
+874
+875
+876
+877
+878</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/fixtures.rb', line 867</span>
+
+<span class='def def kw'>def</span> <span class='bigrecord_fixtures identifier id'>bigrecord_fixtures</span><span class='lparen token'>(</span><span class='mult op'>*</span><span class='bigrecord_table_names identifier id'>bigrecord_table_names</span><span class='rparen token'>)</span>
+  <span class='if if kw'>if</span> <span class='bigrecord_table_names identifier id'>bigrecord_table_names</span><span class='dot token'>.</span><span class='first identifier id'>first</span> <span class='eq op'>==</span> <span class='symbol val'>:all</span>
+    <span class='bigrecord_table_names identifier id'>bigrecord_table_names</span> <span class='assign token'>=</span> <span class='Dir constant id'>Dir</span><span class='lbrack token'>[</span><span class='dstring node'>&quot;#{fixture_path}/*.yml&quot;</span><span class='rbrack token'>]</span> <span class='plus op'>+</span> <span class='Dir constant id'>Dir</span><span class='lbrack token'>[</span><span class='dstring node'>&quot;#{fixture_path}/*.csv&quot;</span><span class='rbrack token'>]</span>
+    <span class='bigrecord_table_names identifier id'>bigrecord_table_names</span><span class='dot token'>.</span><span class='map! fid id'>map!</span> <span class='lbrace token'>{</span> <span class='bitor op'>|</span><span class='f identifier id'>f</span><span class='bitor op'>|</span> <span class='File constant id'>File</span><span class='dot token'>.</span><span class='basename identifier id'>basename</span><span class='lparen token'>(</span><span class='f identifier id'>f</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='split identifier id'>split</span><span class='lparen token'>(</span><span class='string val'>'.'</span><span class='rparen token'>)</span><span class='lbrack token'>[</span><span class='integer val'>0</span><span class='dot2 op'>..</span><span class='integer val'>-2</span><span class='rbrack token'>]</span><span class='dot token'>.</span><span class='join identifier id'>join</span><span class='lparen token'>(</span><span class='string val'>'.'</span><span class='rparen token'>)</span> <span class='rbrace token'>}</span>
+  <span class='else else kw'>else</span>
+    <span class='bigrecord_table_names identifier id'>bigrecord_table_names</span> <span class='assign token'>=</span> <span class='bigrecord_table_names identifier id'>bigrecord_table_names</span><span class='dot token'>.</span><span class='flatten identifier id'>flatten</span><span class='dot token'>.</span><span class='map identifier id'>map</span> <span class='lbrace token'>{</span> <span class='bitor op'>|</span><span class='n identifier id'>n</span><span class='bitor op'>|</span> <span class='n identifier id'>n</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span> <span class='rbrace token'>}</span>
+  <span class='end end kw'>end</span>
+
+  <span class='self self kw'>self</span><span class='dot token'>.</span><span class='bigrecord_fixture_table_names identifier id'>bigrecord_fixture_table_names</span> <span class='opasgn op'>|=</span> <span class='bigrecord_table_names identifier id'>bigrecord_table_names</span>
+  <span class='require_bigrecord_fixture_classes identifier id'>require_bigrecord_fixture_classes</span><span class='lparen token'>(</span><span class='bigrecord_table_names identifier id'>bigrecord_table_names</span><span class='rparen token'>)</span>
+  <span class='setup_bigrecord_fixture_accessors identifier id'>setup_bigrecord_fixture_accessors</span><span class='lparen token'>(</span><span class='bigrecord_table_names identifier id'>bigrecord_table_names</span><span class='rparen token'>)</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>bigrecord_set_fixture_class</h3>
+</div><div id="bigrecord_set_fixture_class-instance_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>bigrecord_set_fixture_class</span><span class='args'>(class_names = {})</span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+863
+864
+865</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/fixtures.rb', line 863</span>
+
+<span class='def def kw'>def</span> <span class='bigrecord_set_fixture_class identifier id'>bigrecord_set_fixture_class</span><span class='lparen token'>(</span><span class='class_names identifier id'>class_names</span> <span class='assign token'>=</span> <span class='lbrace token'>{</span><span class='rbrace token'>}</span><span class='rparen token'>)</span>
+  <span class='self self kw'>self</span><span class='dot token'>.</span><span class='bigrecord_fixture_class_names identifier id'>bigrecord_fixture_class_names</span> <span class='assign token'>=</span> <span class='self self kw'>self</span><span class='dot token'>.</span><span class='bigrecord_fixture_class_names identifier id'>bigrecord_fixture_class_names</span><span class='dot token'>.</span><span class='merge identifier id'>merge</span><span class='lparen token'>(</span><span class='class_names identifier id'>class_names</span><span class='rparen token'>)</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>require_bigrecord_fixture_classes</h3>
+</div><div id="require_bigrecord_fixture_classes-instance_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>require_bigrecord_fixture_classes</span><span class='args'>(table_names = nil)</span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+880
+881
+882
+883
+884
+885
+886
+887
+888
+889
+890</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/fixtures.rb', line 880</span>
+
+<span class='def def kw'>def</span> <span class='require_bigrecord_fixture_classes identifier id'>require_bigrecord_fixture_classes</span><span class='lparen token'>(</span><span class='table_names identifier id'>table_names</span> <span class='assign token'>=</span> <span class='nil nil kw'>nil</span><span class='rparen token'>)</span>
+  <span class='lparen token'>(</span><span class='table_names identifier id'>table_names</span> <span class='orop op'>||</span> <span class='fixture_table_names identifier id'>fixture_table_names</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='each identifier id'>each</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='table_name identifier id'>table_name</span><span class='bitor op'>|</span>
+    <span class='file_name identifier id'>file_name</span> <span class='assign token'>=</span> <span class='table_name identifier id'>table_name</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span>
+    <span class='file_name identifier id'>file_name</span> <span class='assign token'>=</span> <span class='file_name identifier id'>file_name</span><span class='dot token'>.</span><span class='singularize identifier id'>singularize</span> <span class='if if_mod kw'>if</span> <span class='ActiveRecord constant id'>ActiveRecord</span><span class='colon2 op'>::</span><span class='Base constant id'>Base</span><span class='dot token'>.</span><span class='pluralize_table_names identifier id'>pluralize_table_names</span>
+    <span class='begin begin kw'>begin</span>
+      <span class='require_dependency identifier id'>require_dependency</span> <span class='file_name identifier id'>file_name</span>
+    <span class='rescue rescue kw'>rescue</span> <span class='LoadError constant id'>LoadError</span>
+      <span class='comment val'># Let's hope the developer has included it himself</span>
+    <span class='end end kw'>end</span>
+  <span class='end end kw'>end</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>setup_bigrecord_fixture_accessors</h3>
+</div><div id="setup_bigrecord_fixture_accessors-instance_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>setup_bigrecord_fixture_accessors</span><span class='args'>(table_names = nil)</span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+892
+893
+894
+895
+896
+897
+898
+899
+900
+901
+902
+903
+904
+905
+906
+907
+908
+909
+910
+911
+912
+913</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/fixtures.rb', line 892</span>
+
+<span class='def def kw'>def</span> <span class='setup_bigrecord_fixture_accessors identifier id'>setup_bigrecord_fixture_accessors</span><span class='lparen token'>(</span><span class='table_names identifier id'>table_names</span> <span class='assign token'>=</span> <span class='nil nil kw'>nil</span><span class='rparen token'>)</span>
+  <span class='lparen token'>(</span><span class='table_names identifier id'>table_names</span> <span class='orop op'>||</span> <span class='fixture_table_names identifier id'>fixture_table_names</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='each identifier id'>each</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='table_name identifier id'>table_name</span><span class='bitor op'>|</span>
+    <span class='table_name identifier id'>table_name</span> <span class='assign token'>=</span> <span class='table_name identifier id'>table_name</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span><span class='dot token'>.</span><span class='tr identifier id'>tr</span><span class='lparen token'>(</span><span class='string val'>'.'</span><span class='comma token'>,</span> <span class='string val'>'_'</span><span class='rparen token'>)</span>
+
+    <span class='define_method identifier id'>define_method</span><span class='lparen token'>(</span><span class='table_name identifier id'>table_name</span><span class='rparen token'>)</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='mult op'>*</span><span class='fixtures identifier id'>fixtures</span><span class='bitor op'>|</span>
+      <span class='force_reload identifier id'>force_reload</span> <span class='assign token'>=</span> <span class='fixtures identifier id'>fixtures</span><span class='dot token'>.</span><span class='pop identifier id'>pop</span> <span class='if if_mod kw'>if</span> <span class='fixtures identifier id'>fixtures</span><span class='dot token'>.</span><span class='last identifier id'>last</span> <span class='eq op'>==</span> <span class='true true kw'>true</span> <span class='orop op'>||</span> <span class='fixtures identifier id'>fixtures</span><span class='dot token'>.</span><span class='last identifier id'>last</span> <span class='eq op'>==</span> <span class='symbol val'>:reload</span>
+      <span class='@bigrecord_fixture_cache ivar id'>@bigrecord_fixture_cache</span><span class='lbrack token'>[</span><span class='table_name identifier id'>table_name</span><span class='rbrack token'>]</span> <span class='opasgn op'>||=</span> <span class='lbrace token'>{</span><span class='rbrace token'>}</span>
+
+      <span class='instances identifier id'>instances</span> <span class='assign token'>=</span> <span class='fixtures identifier id'>fixtures</span><span class='dot token'>.</span><span class='map identifier id'>map</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='fixture identifier id'>fixture</span><span class='bitor op'>|</span>
+        <span class='@bigrecord_fixture_cache ivar id'>@bigrecord_fixture_cache</span><span class='lbrack token'>[</span><span class='table_name identifier id'>table_name</span><span class='rbrack token'>]</span><span class='dot token'>.</span><span class='delete identifier id'>delete</span><span class='lparen token'>(</span><span class='fixture identifier id'>fixture</span><span class='rparen token'>)</span> <span class='if if_mod kw'>if</span> <span class='force_reload identifier id'>force_reload</span>
+
+        <span class='if if kw'>if</span> <span class='@loaded_bigrecord_fixtures ivar id'>@loaded_bigrecord_fixtures</span><span class='lbrack token'>[</span><span class='table_name identifier id'>table_name</span><span class='rbrack token'>]</span><span class='lbrack token'>[</span><span class='fixture identifier id'>fixture</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span><span class='rbrack token'>]</span>
+          <span class='@bigrecord_fixture_cache ivar id'>@bigrecord_fixture_cache</span><span class='lbrack token'>[</span><span class='table_name identifier id'>table_name</span><span class='rbrack token'>]</span><span class='lbrack token'>[</span><span class='fixture identifier id'>fixture</span><span class='rbrack token'>]</span> <span class='opasgn op'>||=</span> <span class='@loaded_bigrecord_fixtures ivar id'>@loaded_bigrecord_fixtures</span><span class='lbrack token'>[</span><span class='table_name identifier id'>table_name</span><span class='rbrack token'>]</span><span class='lbrack token'>[</span><span class='fixture identifier id'>fixture</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span><span class='rbrack token'>]</span><span class='dot token'>.</span><span class='find identifier id'>find</span>
+        <span class='else else kw'>else</span>
+          <span class='raise identifier id'>raise</span> <span class='StandardError constant id'>StandardError</span><span class='comma token'>,</span> <span class='dstring node'>&quot;No fixture with name '#{fixture}' found for table '#{table_name}'&quot;</span>
+        <span class='end end kw'>end</span>
+      <span class='end end kw'>end</span>
+
+      <span class='instances identifier id'>instances</span><span class='dot token'>.</span><span class='size identifier id'>size</span> <span class='eq op'>==</span> <span class='integer val'>1</span> <span class='question op'>?</span> <span class='instances identifier id'>instances</span><span class='dot token'>.</span><span class='first identifier id'>first</span> <span class='colon op'>:</span> <span class='instances identifier id'>instances</span>
+    <span class='end end kw'>end</span>
+  <span class='end end kw'>end</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>uses_transaction</h3>
+</div><div id="uses_transaction-instance_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>uses_transaction</span><span class='args'>(*methods)</span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+915
+916
+917
+918</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/fixtures.rb', line 915</span>
+
+<span class='def def kw'>def</span> <span class='uses_transaction identifier id'>uses_transaction</span><span class='lparen token'>(</span><span class='mult op'>*</span><span class='methods identifier id'>methods</span><span class='rparen token'>)</span>
+  <span class='@bigrecord_uses_transaction ivar id'>@bigrecord_uses_transaction</span> <span class='assign token'>=</span> <span class='lbrack token'>[</span><span class='rbrack token'>]</span> <span class='unless unless_mod kw'>unless</span> <span class='defined? defined kw'>defined?</span><span class='lparen token'>(</span><span class='@bigrecord_uses_transaction ivar id'>@bigrecord_uses_transaction</span><span class='rparen token'>)</span>
+  <span class='@bigrecord_uses_transaction ivar id'>@bigrecord_uses_transaction</span><span class='dot token'>.</span><span class='concat identifier id'>concat</span> <span class='methods identifier id'>methods</span><span class='dot token'>.</span><span class='map identifier id'>map</span><span class='lparen token'>(</span><span class='bitand op'>&amp;</span><span class='symbol val'>:to_s</span><span class='rparen token'>)</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>uses_transaction?</h3>
+</div><div id="uses_transaction?-instance_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>uses_transaction?</span><span class='args'>(method)</span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+920
+921
+922
+923</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/fixtures.rb', line 920</span>
+
+<span class='def def kw'>def</span> <span class='uses_transaction? fid id'>uses_transaction?</span><span class='lparen token'>(</span><span class='method identifier id'>method</span><span class='rparen token'>)</span>
+  <span class='@uses_transaction ivar id'>@uses_transaction</span> <span class='assign token'>=</span> <span class='lbrack token'>[</span><span class='rbrack token'>]</span> <span class='unless unless_mod kw'>unless</span> <span class='defined? defined kw'>defined?</span><span class='lparen token'>(</span><span class='@uses_transaction ivar id'>@uses_transaction</span><span class='rparen token'>)</span>
+  <span class='@uses_transaction ivar id'>@uses_transaction</span><span class='dot token'>.</span><span class='include? fid id'>include?</span><span class='lparen token'>(</span><span class='method identifier id'>method</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span><span class='rparen token'>)</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+</div>
+  </div>
+
+</div>
+    </div>
+    <div id="yard_info">
+  Generated on Tuesday, November 10 2009 at 06:18:33 PM by 
+  <abbr class="yard" title="Yay! A Ruby Documentation Tool"><a href="http://yard.soen.ca">YARD</a></abbr> 
+  0.2.3.5 (ruby-1.8.7).
+</div>
+
+  </body>
+</html>

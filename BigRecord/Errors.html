@@ -1,0 +1,1133 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="../style.css" type="text/css" charset="utf-8" />
+<link rel="stylesheet" href="../custom.css" type="text/css" charset="utf-8" />
+<link rel="stylesheet" href="../syntax_highlight.css" type="text/css" charset="utf-8" />
+
+    <script src="../jquery.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../app.js" type="text/javascript" charset="utf-8"></script>
+    <title>Class: BigRecord::Errors</title>
+  </head>
+  <body>
+    <div id="content">
+      <div class="section class BigRecord_Errors">
+  <h1 class="title">Class: BigRecord::Errors</h1>
+  <div class="section mixins">
+  <h1>Included Modules</h1>
+  <p>Enumerable</p>
+</div>
+<div class="section docstring">
+  <p>
+Active Record validation is reported to and from this object, which is used
+by Base#save to determine whether the object in a valid state to be saved.
+See usage example in Validations.
+</p>
+
+</div><div class="section constants">
+  
+</div><div class="section constructor">
+<h1>Constructor Summary</h1>
+  <div id="initialize-instance_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>initialize</span><span class='args'>(base)</span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+22
+23
+24</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/validations.rb', line 22</span>
+
+<span class='def def kw'>def</span> <span class='initialize identifier id'>initialize</span><span class='lparen token'>(</span><span class='base identifier id'>base</span><span class='rparen token'>)</span> <span class='comment val'># :nodoc:</span>
+  <span class='@base ivar id'>@base</span><span class='comma token'>,</span> <span class='@errors ivar id'>@errors</span> <span class='assign token'>=</span> <span class='base identifier id'>base</span><span class='comma token'>,</span> <span class='lbrace token'>{</span><span class='rbrace token'>}</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+</div>  <div class="section visibilitygroup public">
+    <h1>Public Visibility</h1>
+      <div class="section methodsummary instance public">
+    <h1>Public Instance Method Summary</h1>
+<table class="summary">
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#add-instance_method" title="#add">#add</a></span><span class='args'>(attribute, msg = @@default_error_messages[:invalid])</span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        <p>
+Adds an error message (<tt>msg</tt>) to the <tt>attribute</tt>, which will
+be returned on a call to <tt>on(attribute)</tt> for the same attribute and
+ensure that this error object returns false when asked if <tt>empty?</tt>.
+</p>
+
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#add_on_blank-instance_method" title="#add_on_blank">#add_on_blank</a></span><span class='args'>(attributes, msg = @@default_error_messages[:blank])</span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        <p>
+Will add an error message to each of the attributes in <tt>attributes</tt>
+that is blank (using Object#blank?).
+</p>
+
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#add_on_empty-instance_method" title="#add_on_empty">#add_on_empty</a></span><span class='args'>(attributes, msg = @@default_error_messages[:empty])</span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        <p>
+Will add an error message to each of the attributes in <tt>attributes</tt>
+that is empty.
+</p>
+
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#add_to_base-instance_method" title="#add_to_base">#add_to_base</a></span><span class='args'>(msg)</span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        <p>
+Adds an error to the base object instead of any particular attribute.
+</p>
+
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#clear-instance_method" title="#clear">#clear</a></span><span class='args'></span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        <p>
+Removes all the errors that have been added.
+</p>
+
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#each-instance_method" title="#each">#each</a></span><span class='args'></span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        <p>
+Yields each attribute and associated message per error added.
+</p>
+
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#each_full-instance_method" title="#each_full">#each_full</a></span><span class='args'></span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        <p>
+Yields each full error message added.
+</p>
+
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#empty%3F-instance_method" title="#empty?">#empty?</a></span><span class='args'></span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        <p>
+Returns true if no errors have been added.
+</p>
+
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#full_messages-instance_method" title="#full_messages">#full_messages</a></span><span class='args'></span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        <p>
+Returns all the full error messages in an array.
+</p>
+
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#invalid%3F-instance_method" title="#invalid?">#invalid?</a></span><span class='args'>(attribute)</span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        <p>
+Returns true if the specified <tt>attribute</tt> has errors associated with
+it.
+</p>
+
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#on-instance_method" title="#on">#on</a></span><span class='args'>(attribute)</span>
+            <span class='block'></span>
+          </span>
+        
+        
+          <span class='alias'>#[]</span>
+        
+      </th>
+      <td class="docstring">
+        <ul>
+<li>Returns nil, if no errors are associated with the specified
+<tt>attribute</tt>.
+
+</li>
+</ul>
+
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#on_base-instance_method" title="#on_base">#on_base</a></span><span class='args'></span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        <p>
+Returns errors assigned to base object through add_to_base according to the
+normal rules of on(attribute).
+</p>
+
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#size-instance_method" title="#size">#size</a></span><span class='args'></span>
+            <span class='block'></span>
+          </span>
+        
+        
+          <span class='alias'>#length</span>
+        
+          <span class='alias'>#count</span>
+        
+      </th>
+      <td class="docstring">
+        <p>
+Returns the total number of errors added.
+</p>
+
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#to_xml-instance_method" title="#to_xml">#to_xml</a></span><span class='args'>(options = {})</span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        <p>
+Return an XML representation of this error object.
+</p>
+
+        
+      </td>
+    </tr>
+  
+</table>
+
+  </div>
+<div class="section methoddetails instance public">
+  <h1>Public Instance Method Details</h1>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>add</h3>
+</div><div id="add-instance_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>add</span><span class='args'>(attribute, msg = @@default_error_messages[:invalid])</span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section docstring">
+  <p>
+Adds an error message (<tt>msg</tt>) to the <tt>attribute</tt>, which will
+be returned on a call to <tt>on(attribute)</tt> for the same attribute and
+ensure that this error object returns false when asked if <tt>empty?</tt>.
+More than one error can be added to the same <tt>attribute</tt> in which
+case an array will be returned on a call to <tt>on(attribute)</tt>. If no
+<tt>msg</tt> is supplied, &quot;invalid&quot; is assumed.
+</p>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+57
+58
+59
+60</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/validations.rb', line 57</span>
+
+<span class='def def kw'>def</span> <span class='add identifier id'>add</span><span class='lparen token'>(</span><span class='attribute identifier id'>attribute</span><span class='comma token'>,</span> <span class='msg identifier id'>msg</span> <span class='assign token'>=</span> <span class='@@default_error_messages ivar id'>@@default_error_messages</span><span class='lbrack token'>[</span><span class='symbol val'>:invalid</span><span class='rbrack token'>]</span><span class='rparen token'>)</span>
+  <span class='@errors ivar id'>@errors</span><span class='lbrack token'>[</span><span class='attribute identifier id'>attribute</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span><span class='rbrack token'>]</span> <span class='assign token'>=</span> <span class='lbrack token'>[</span><span class='rbrack token'>]</span> <span class='if if_mod kw'>if</span> <span class='@errors ivar id'>@errors</span><span class='lbrack token'>[</span><span class='attribute identifier id'>attribute</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span><span class='rbrack token'>]</span><span class='dot token'>.</span><span class='nil? fid id'>nil?</span>
+  <span class='@errors ivar id'>@errors</span><span class='lbrack token'>[</span><span class='attribute identifier id'>attribute</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span><span class='rbrack token'>]</span> <span class='lshft op'>&lt;&lt;</span> <span class='msg identifier id'>msg</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>add_on_blank</h3>
+</div><div id="add_on_blank-instance_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>add_on_blank</span><span class='args'>(attributes, msg = @@default_error_messages[:blank])</span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section docstring">
+  <p>
+Will add an error message to each of the attributes in <tt>attributes</tt>
+that is blank (using Object#blank?).
+</p>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+72
+73
+74
+75
+76
+77</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/validations.rb', line 72</span>
+
+<span class='def def kw'>def</span> <span class='add_on_blank identifier id'>add_on_blank</span><span class='lparen token'>(</span><span class='attributes identifier id'>attributes</span><span class='comma token'>,</span> <span class='msg identifier id'>msg</span> <span class='assign token'>=</span> <span class='@@default_error_messages ivar id'>@@default_error_messages</span><span class='lbrack token'>[</span><span class='symbol val'>:blank</span><span class='rbrack token'>]</span><span class='rparen token'>)</span>
+  <span class='for for kw'>for</span> <span class='attr identifier id'>attr</span> <span class='in in kw'>in</span> <span class='lbrack token'>[</span><span class='attributes identifier id'>attributes</span><span class='rbrack token'>]</span><span class='dot token'>.</span><span class='flatten identifier id'>flatten</span>
+    <span class='value identifier id'>value</span> <span class='assign token'>=</span> <span class='@base ivar id'>@base</span><span class='dot token'>.</span><span class='respond_to? fid id'>respond_to?</span><span class='lparen token'>(</span><span class='attr identifier id'>attr</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span><span class='rparen token'>)</span> <span class='question op'>?</span> <span class='@base ivar id'>@base</span><span class='dot token'>.</span><span class='send identifier id'>send</span><span class='lparen token'>(</span><span class='attr identifier id'>attr</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span><span class='rparen token'>)</span> <span class='colon op'>:</span> <span class='@base ivar id'>@base</span><span class='lbrack token'>[</span><span class='attr identifier id'>attr</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span><span class='rbrack token'>]</span>
+    <span class='add identifier id'>add</span><span class='lparen token'>(</span><span class='attr identifier id'>attr</span><span class='comma token'>,</span> <span class='msg identifier id'>msg</span><span class='rparen token'>)</span> <span class='if if_mod kw'>if</span> <span class='value identifier id'>value</span><span class='dot token'>.</span><span class='blank? fid id'>blank?</span>
+  <span class='end end kw'>end</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>add_on_empty</h3>
+</div><div id="add_on_empty-instance_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>add_on_empty</span><span class='args'>(attributes, msg = @@default_error_messages[:empty])</span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section docstring">
+  <p>
+Will add an error message to each of the attributes in <tt>attributes</tt>
+that is empty.
+</p>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+63
+64
+65
+66
+67
+68
+69</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/validations.rb', line 63</span>
+
+<span class='def def kw'>def</span> <span class='add_on_empty identifier id'>add_on_empty</span><span class='lparen token'>(</span><span class='attributes identifier id'>attributes</span><span class='comma token'>,</span> <span class='msg identifier id'>msg</span> <span class='assign token'>=</span> <span class='@@default_error_messages ivar id'>@@default_error_messages</span><span class='lbrack token'>[</span><span class='symbol val'>:empty</span><span class='rbrack token'>]</span><span class='rparen token'>)</span>
+  <span class='for for kw'>for</span> <span class='attr identifier id'>attr</span> <span class='in in kw'>in</span> <span class='lbrack token'>[</span><span class='attributes identifier id'>attributes</span><span class='rbrack token'>]</span><span class='dot token'>.</span><span class='flatten identifier id'>flatten</span>
+    <span class='value identifier id'>value</span> <span class='assign token'>=</span> <span class='@base ivar id'>@base</span><span class='dot token'>.</span><span class='respond_to? fid id'>respond_to?</span><span class='lparen token'>(</span><span class='attr identifier id'>attr</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span><span class='rparen token'>)</span> <span class='question op'>?</span> <span class='@base ivar id'>@base</span><span class='dot token'>.</span><span class='send identifier id'>send</span><span class='lparen token'>(</span><span class='attr identifier id'>attr</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span><span class='rparen token'>)</span> <span class='colon op'>:</span> <span class='@base ivar id'>@base</span><span class='lbrack token'>[</span><span class='attr identifier id'>attr</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span><span class='rbrack token'>]</span>
+    <span class='is_empty identifier id'>is_empty</span> <span class='assign token'>=</span> <span class='value identifier id'>value</span><span class='dot token'>.</span><span class='respond_to? fid id'>respond_to?</span><span class='lparen token'>(</span><span class='string val'>&quot;empty?&quot;</span><span class='rparen token'>)</span> <span class='question op'>?</span> <span class='value identifier id'>value</span><span class='dot token'>.</span><span class='empty? fid id'>empty?</span> <span class='colon op'>:</span> <span class='false false kw'>false</span>
+    <span class='add identifier id'>add</span><span class='lparen token'>(</span><span class='attr identifier id'>attr</span><span class='comma token'>,</span> <span class='msg identifier id'>msg</span><span class='rparen token'>)</span> <span class='unless unless_mod kw'>unless</span> <span class='notop op'>!</span><span class='value identifier id'>value</span><span class='dot token'>.</span><span class='nil? fid id'>nil?</span> <span class='andop op'>&amp;&amp;</span> <span class='notop op'>!</span><span class='is_empty identifier id'>is_empty</span>
+  <span class='end end kw'>end</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>add_to_base</h3>
+</div><div id="add_to_base-instance_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>add_to_base</span><span class='args'>(msg)</span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section docstring">
+  <p>
+Adds an error to the base object instead of any particular attribute. This
+is used to report errors that don&#8217;t tie to any specific attribute,
+but rather to the object as a whole. These error messages don&#8217;t get
+prepended with any field name when iterating with each_full, so they should
+be complete sentences.
+</p>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+49
+50
+51</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/validations.rb', line 49</span>
+
+<span class='def def kw'>def</span> <span class='add_to_base identifier id'>add_to_base</span><span class='lparen token'>(</span><span class='msg identifier id'>msg</span><span class='rparen token'>)</span>
+  <span class='add identifier id'>add</span><span class='lparen token'>(</span><span class='symbol val'>:base</span><span class='comma token'>,</span> <span class='msg identifier id'>msg</span><span class='rparen token'>)</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>clear</h3>
+</div><div id="clear-instance_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>clear</span><span class='args'></span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section docstring">
+  <p>
+Removes all the errors that have been added.
+</p>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+135
+136
+137</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/validations.rb', line 135</span>
+
+<span class='def def kw'>def</span> <span class='clear identifier id'>clear</span>
+  <span class='@errors ivar id'>@errors</span> <span class='assign token'>=</span> <span class='lbrace token'>{</span><span class='rbrace token'>}</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>each</h3>
+</div><div id="each-instance_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>each</span><span class='args'></span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section docstring">
+  <p>
+Yields each attribute and associated message per error added.
+</p>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+101
+102
+103</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/validations.rb', line 101</span>
+
+<span class='def def kw'>def</span> <span class='each identifier id'>each</span>
+  <span class='@errors ivar id'>@errors</span><span class='dot token'>.</span><span class='each_key identifier id'>each_key</span> <span class='lbrace token'>{</span> <span class='bitor op'>|</span><span class='attr identifier id'>attr</span><span class='bitor op'>|</span> <span class='@errors ivar id'>@errors</span><span class='lbrack token'>[</span><span class='attr identifier id'>attr</span><span class='rbrack token'>]</span><span class='dot token'>.</span><span class='each identifier id'>each</span> <span class='lbrace token'>{</span> <span class='bitor op'>|</span><span class='msg identifier id'>msg</span><span class='bitor op'>|</span> <span class='yield yield kw'>yield</span> <span class='attr identifier id'>attr</span><span class='comma token'>,</span> <span class='msg identifier id'>msg</span> <span class='rbrace token'>}</span> <span class='rbrace token'>}</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>each_full</h3>
+</div><div id="each_full-instance_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>each_full</span><span class='args'></span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section docstring">
+  <p>
+Yields each full error message added. So
+Person.errors.add(&quot;first_name&quot;, &quot;can&#8217;t be empty&quot;)
+will be returned through iteration as &quot;First name can&#8217;t be
+empty&quot;.
+</p>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+107
+108
+109</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/validations.rb', line 107</span>
+
+<span class='def def kw'>def</span> <span class='each_full identifier id'>each_full</span>
+  <span class='full_messages identifier id'>full_messages</span><span class='dot token'>.</span><span class='each identifier id'>each</span> <span class='lbrace token'>{</span> <span class='bitor op'>|</span><span class='msg identifier id'>msg</span><span class='bitor op'>|</span> <span class='yield yield kw'>yield</span> <span class='msg identifier id'>msg</span> <span class='rbrace token'>}</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>empty?</h3>
+</div><div id="empty?-instance_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>empty?</span><span class='args'></span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section docstring">
+  <p>
+Returns true if no errors have been added.
+</p>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+130
+131
+132</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/validations.rb', line 130</span>
+
+<span class='def def kw'>def</span> <span class='empty? fid id'>empty?</span>
+  <span class='@errors ivar id'>@errors</span><span class='dot token'>.</span><span class='empty? fid id'>empty?</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>full_messages</h3>
+</div><div id="full_messages-instance_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>full_messages</span><span class='args'></span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section docstring">
+  <p>
+Returns all the full error messages in an array.
+</p>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/validations.rb', line 112</span>
+
+<span class='def def kw'>def</span> <span class='full_messages identifier id'>full_messages</span>
+  <span class='full_messages identifier id'>full_messages</span> <span class='assign token'>=</span> <span class='lbrack token'>[</span><span class='rbrack token'>]</span>
+
+  <span class='@errors ivar id'>@errors</span><span class='dot token'>.</span><span class='each_key identifier id'>each_key</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='attr identifier id'>attr</span><span class='bitor op'>|</span>
+    <span class='@errors ivar id'>@errors</span><span class='lbrack token'>[</span><span class='attr identifier id'>attr</span><span class='rbrack token'>]</span><span class='dot token'>.</span><span class='each identifier id'>each</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='msg identifier id'>msg</span><span class='bitor op'>|</span>
+      <span class='next next kw'>next</span> <span class='if if_mod kw'>if</span> <span class='msg identifier id'>msg</span><span class='dot token'>.</span><span class='nil? fid id'>nil?</span>
+
+      <span class='if if kw'>if</span> <span class='attr identifier id'>attr</span> <span class='eq op'>==</span> <span class='string val'>&quot;base&quot;</span>
+        <span class='full_messages identifier id'>full_messages</span> <span class='lshft op'>&lt;&lt;</span> <span class='msg identifier id'>msg</span>
+      <span class='else else kw'>else</span>
+        <span class='full_messages identifier id'>full_messages</span> <span class='lshft op'>&lt;&lt;</span> <span class='@base ivar id'>@base</span><span class='dot token'>.</span><span class='human_attribute_name identifier id'>human_attribute_name</span><span class='lparen token'>(</span><span class='attr identifier id'>attr</span><span class='rparen token'>)</span> <span class='plus op'>+</span> <span class='string val'>&quot; &quot;</span> <span class='plus op'>+</span> <span class='msg identifier id'>msg</span>
+      <span class='end end kw'>end</span>
+    <span class='end end kw'>end</span>
+  <span class='end end kw'>end</span>
+  <span class='full_messages identifier id'>full_messages</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>invalid?</h3>
+</div><div id="invalid?-instance_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>invalid?</span><span class='args'>(attribute)</span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section docstring">
+  <p>
+Returns true if the specified <tt>attribute</tt> has errors associated with
+it.
+</p>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+80
+81
+82</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/validations.rb', line 80</span>
+
+<span class='def def kw'>def</span> <span class='invalid? fid id'>invalid?</span><span class='lparen token'>(</span><span class='attribute identifier id'>attribute</span><span class='rparen token'>)</span>
+  <span class='notop op'>!</span><span class='@errors ivar id'>@errors</span><span class='lbrack token'>[</span><span class='attribute identifier id'>attribute</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span><span class='rbrack token'>]</span><span class='dot token'>.</span><span class='nil? fid id'>nil?</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>on</h3>
+</div><div id="on-instance_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>on</span><span class='args'>(attribute)</span>
+      <span class='block'></span>
+    </tt>
+  </div>
+<p class="aliases">
+  <span class="aka">Also known as:</span>
+  
+    <tt id="[]-instance_method">[]</tt>
+  
+</p>
+</div><div class="section docstring">
+  <ul>
+<li>Returns nil, if no errors are associated with the specified
+<tt>attribute</tt>.
+
+</li>
+<li>Returns the error message, if one error is associated with the specified
+<tt>attribute</tt>.
+
+</li>
+<li>Returns an array of error messages, if more than one error is associated
+with the specified <tt>attribute</tt>.
+
+</li>
+</ul>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+87
+88
+89
+90
+91</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/validations.rb', line 87</span>
+
+<span class='def def kw'>def</span> <span class='on identifier id'>on</span><span class='lparen token'>(</span><span class='attribute identifier id'>attribute</span><span class='rparen token'>)</span>
+  <span class='errors identifier id'>errors</span> <span class='assign token'>=</span> <span class='@errors ivar id'>@errors</span><span class='lbrack token'>[</span><span class='attribute identifier id'>attribute</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span><span class='rbrack token'>]</span>
+  <span class='return return kw'>return</span> <span class='nil nil kw'>nil</span> <span class='if if_mod kw'>if</span> <span class='errors identifier id'>errors</span><span class='dot token'>.</span><span class='nil? fid id'>nil?</span>
+  <span class='errors identifier id'>errors</span><span class='dot token'>.</span><span class='size identifier id'>size</span> <span class='eq op'>==</span> <span class='integer val'>1</span> <span class='question op'>?</span> <span class='errors identifier id'>errors</span><span class='dot token'>.</span><span class='first identifier id'>first</span> <span class='colon op'>:</span> <span class='errors identifier id'>errors</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>on_base</h3>
+</div><div id="on_base-instance_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>on_base</span><span class='args'></span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section docstring">
+  <p>
+Returns errors assigned to base object through add_to_base according to the
+normal rules of on(attribute).
+</p>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+96
+97
+98</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/validations.rb', line 96</span>
+
+<span class='def def kw'>def</span> <span class='on_base identifier id'>on_base</span>
+  <span class='on identifier id'>on</span><span class='lparen token'>(</span><span class='symbol val'>:base</span><span class='rparen token'>)</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>size</h3>
+</div><div id="size-instance_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>size</span><span class='args'></span>
+      <span class='block'></span>
+    </tt>
+  </div>
+<p class="aliases">
+  <span class="aka">Also known as:</span>
+  
+    <tt id="length-instance_method">length</tt>
+  
+    <tt id="count-instance_method">count</tt>
+  
+</p>
+</div><div class="section docstring">
+  <p>
+Returns the total number of errors added. Two errors added to the same
+attribute will be counted as such with this as well.
+</p>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+141
+142
+143</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/validations.rb', line 141</span>
+
+<span class='def def kw'>def</span> <span class='size identifier id'>size</span>
+  <span class='@errors ivar id'>@errors</span><span class='dot token'>.</span><span class='values identifier id'>values</span><span class='dot token'>.</span><span class='inject identifier id'>inject</span><span class='lparen token'>(</span><span class='integer val'>0</span><span class='rparen token'>)</span> <span class='lbrace token'>{</span> <span class='bitor op'>|</span><span class='error_count identifier id'>error_count</span><span class='comma token'>,</span> <span class='attribute identifier id'>attribute</span><span class='bitor op'>|</span> <span class='error_count identifier id'>error_count</span> <span class='plus op'>+</span> <span class='attribute identifier id'>attribute</span><span class='dot token'>.</span><span class='size identifier id'>size</span> <span class='rbrace token'>}</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>to_xml</h3>
+</div><div id="to_xml-instance_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>to_xml</span><span class='args'>(options = {})</span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section docstring">
+  <p>
+Return an XML representation of this error object.
+</p>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/validations.rb', line 149</span>
+
+<span class='def def kw'>def</span> <span class='to_xml identifier id'>to_xml</span><span class='lparen token'>(</span><span class='options identifier id'>options</span><span class='assign token'>=</span><span class='lbrace token'>{</span><span class='rbrace token'>}</span><span class='rparen token'>)</span>
+  <span class='options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:root</span><span class='rbrack token'>]</span> <span class='opasgn op'>||=</span> <span class='string val'>&quot;errors&quot;</span>
+  <span class='options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:indent</span><span class='rbrack token'>]</span> <span class='opasgn op'>||=</span> <span class='integer val'>2</span>
+  <span class='options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:builder</span><span class='rbrack token'>]</span> <span class='opasgn op'>||=</span> <span class='Builder constant id'>Builder</span><span class='colon2 op'>::</span><span class='XmlMarkup constant id'>XmlMarkup</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='symbol val'>:indent</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:indent</span><span class='rbrack token'>]</span><span class='rparen token'>)</span>
+
+  <span class='options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:builder</span><span class='rbrack token'>]</span><span class='dot token'>.</span><span class='instruct! fid id'>instruct!</span> <span class='unless unless_mod kw'>unless</span> <span class='options identifier id'>options</span><span class='dot token'>.</span><span class='delete identifier id'>delete</span><span class='lparen token'>(</span><span class='symbol val'>:skip_instruct</span><span class='rparen token'>)</span>
+  <span class='options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:builder</span><span class='rbrack token'>]</span><span class='dot token'>.</span><span class='errors identifier id'>errors</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='e identifier id'>e</span><span class='bitor op'>|</span>
+    <span class='full_messages identifier id'>full_messages</span><span class='dot token'>.</span><span class='each identifier id'>each</span> <span class='lbrace token'>{</span> <span class='bitor op'>|</span><span class='msg identifier id'>msg</span><span class='bitor op'>|</span> <span class='e identifier id'>e</span><span class='dot token'>.</span><span class='error identifier id'>error</span><span class='lparen token'>(</span><span class='msg identifier id'>msg</span><span class='rparen token'>)</span> <span class='rbrace token'>}</span>
+  <span class='end end kw'>end</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+</div>
+  </div>
+
+</div>
+    </div>
+    <div id="yard_info">
+  Generated on Tuesday, November 10 2009 at 06:18:48 PM by 
+  <abbr class="yard" title="Yay! A Ruby Documentation Tool"><a href="http://yard.soen.ca">YARD</a></abbr> 
+  0.2.3.5 (ruby-1.8.7).
+</div>
+
+  </body>
+</html>

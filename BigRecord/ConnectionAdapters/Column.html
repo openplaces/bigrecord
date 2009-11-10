@@ -1,0 +1,2895 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="../../style.css" type="text/css" charset="utf-8" />
+<link rel="stylesheet" href="../../custom.css" type="text/css" charset="utf-8" />
+<link rel="stylesheet" href="../../syntax_highlight.css" type="text/css" charset="utf-8" />
+
+    <script src="../../jquery.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../app.js" type="text/javascript" charset="utf-8"></script>
+    <title>Class: BigRecord::ConnectionAdapters::Column</title>
+  </head>
+  <body>
+    <div id="content">
+      <div class="section class BigRecord_ConnectionAdapters_Column">
+  <h1 class="title">Class: BigRecord::ConnectionAdapters::Column</h1>
+  <div class="section attributes">
+  <h1>Attributes</h1>
+
+  
+    <div class="instance">
+      <h2>Instance Attributes</h2>
+      <table>
+      
+        
+        <tr class="">
+          <th class='signature'>
+            <span class='name'>alias</span>
+          </td>
+          <td class="readwrite">
+            [<span id='alias-instance_method'>R</span>] 
+          </td>
+          <td class="visibility">
+            public
+          </td>
+          <td class="docstring">
+            <p>
+Returns the value of attribute <tt>alias</tt>.
+</p>
+
+            
+          </td>
+        </tr>
+        
+      
+        
+        <tr class="">
+          <th class='signature'>
+            <span class='name'>collection</span>
+          </td>
+          <td class="readwrite">
+            [<span id='collection-instance_method'>R</span>] 
+          </td>
+          <td class="visibility">
+            public
+          </td>
+          <td class="docstring">
+            <p>
+Returns the value of attribute <tt>collection</tt>.
+</p>
+
+            
+          </td>
+        </tr>
+        
+      
+        
+        <tr class="">
+          <th class='signature'>
+            <span class='name'>default</span>
+          </td>
+          <td class="readwrite">
+            [R] 
+          </td>
+          <td class="visibility">
+            public
+          </td>
+          <td class="docstring">
+            <p>
+Returns the value of attribute <tt>default</tt>.
+</p>
+
+            
+          </td>
+        </tr>
+        
+      
+        
+        <tr class="">
+          <th class='signature'>
+            <span class='name'>name</span>
+          </td>
+          <td class="readwrite">
+            [<span id='name-instance_method'>R</span>] 
+          </td>
+          <td class="visibility">
+            public
+          </td>
+          <td class="docstring">
+            <p>
+Returns the value of attribute <tt>name</tt>.
+</p>
+
+            
+          </td>
+        </tr>
+        
+      
+        
+        <tr class="">
+          <th class='signature'>
+            <span class='name'>primary</span>
+          </td>
+          <td class="readwrite">
+            [<span id='primary-instance_method'>R</span><span id='primary=-instance_method'>W</span>] 
+          </td>
+          <td class="visibility">
+            public
+          </td>
+          <td class="docstring">
+            <p>
+Sets the attribute <tt>primary</tt>.
+</p>
+
+            
+          </td>
+        </tr>
+        
+      
+        
+        <tr class="">
+          <th class='signature'>
+            <span class='name'>type</span>
+          </td>
+          <td class="readwrite">
+            [<span id='type-instance_method'>R</span>] 
+          </td>
+          <td class="visibility">
+            public
+          </td>
+          <td class="docstring">
+            <p>
+Returns the value of attribute <tt>type</tt>.
+</p>
+
+            
+          </td>
+        </tr>
+        
+      
+      </table>
+    </div>
+  
+</div>
+<div class="section constants">
+  <div class="thisclass">
+  <h1>Constants</h1>
+  <dl>
+    
+      <dt id="COLLECTION_SEPARATOR-constant">COLLECTION_SEPARATOR</dt>
+      <dd>&quot;::&quot;</dd>
+    
+  </dl>
+</div>
+
+</div><div class="section constructor">
+<h1>Constructor Summary</h1>
+  <div id="initialize-instance_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>initialize</span><span class='args'>(name, type, options = {})</span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/column.rb', line 18</span>
+
+<span class='def def kw'>def</span> <span class='initialize identifier id'>initialize</span><span class='lparen token'>(</span><span class='name identifier id'>name</span><span class='comma token'>,</span> <span class='type identifier id'>type</span><span class='comma token'>,</span> <span class='options identifier id'>options</span><span class='assign token'>=</span><span class='lbrace token'>{</span><span class='rbrace token'>}</span><span class='rparen token'>)</span>
+  <span class='@type ivar id'>@type</span>       <span class='assign token'>=</span> <span class='type identifier id'>type</span><span class='dot token'>.</span><span class='to_sym identifier id'>to_sym</span>
+  <span class='@collection ivar id'>@collection</span> <span class='assign token'>=</span> <span class='options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:collection</span><span class='rbrack token'>]</span>
+  <span class='@name ivar id'>@name</span>       <span class='assign token'>=</span> <span class='name identifier id'>name</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span>
+  <span class='@alias ivar id'>@alias</span>      <span class='assign token'>=</span> <span class='options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:alias</span><span class='rbrack token'>]</span> <span class='question op'>?</span> <span class='options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:alias</span><span class='rbrack token'>]</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span> <span class='colon op'>:</span> <span class='lparen token'>(</span><span class='self self kw'>self</span><span class='dot token'>.</span><span class='class identifier id'>class</span><span class='dot token'>.</span><span class='extract_qualifier identifier id'>extract_qualifier</span><span class='lparen token'>(</span><span class='@name ivar id'>@name</span><span class='rparen token'>)</span> <span class='orop op'>||</span> <span class='lparen token'>(</span><span class='@name ivar id'>@name</span> <span class='unless unless_mod kw'>unless</span> <span class='family? fid id'>family?</span><span class='rparen token'>)</span><span class='rparen token'>)</span>
+
+  <span class='if if kw'>if</span> <span class='options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:default</span><span class='rbrack token'>]</span>
+    <span class='@default ivar id'>@default</span> <span class='assign token'>=</span> <span class='options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:default</span><span class='rbrack token'>]</span>
+  <span class='elsif elsif kw'>elsif</span> <span class='@collection ivar id'>@collection</span>
+    <span class='@default ivar id'>@default</span> <span class='assign token'>=</span> <span class='lbrack token'>[</span><span class='rbrack token'>]</span>
+  <span class='else else kw'>else</span>
+    <span class='@default ivar id'>@default</span> <span class='assign token'>=</span> <span class='lparen token'>(</span><span class='@type ivar id'>@type</span> <span class='eq op'>==</span> <span class='symbol val'>:boolean</span><span class='rparen token'>)</span> <span class='question op'>?</span> <span class='false false kw'>false</span> <span class='colon op'>:</span> <span class='nil nil kw'>nil</span>
+  <span class='end end kw'>end</span>
+  <span class='comment val'># cache whether or not we'll need to dup the default columns to avoid clients to share</span>
+  <span class='comment val'># the same reference to the default value</span>
+  <span class='@must_dup_default ivar id'>@must_dup_default</span> <span class='assign token'>=</span> <span class='lparen token'>(</span><span class='notop op'>!</span><span class='@default ivar id'>@default</span><span class='dot token'>.</span><span class='nil? fid id'>nil?</span> <span class='and and kw'>and</span> <span class='lparen token'>(</span><span class='collection identifier id'>collection</span> <span class='or or kw'>or</span> <span class='lparen token'>(</span><span class='notop op'>!</span><span class='number? fid id'>number?</span> <span class='and and kw'>and</span> <span class='@type ivar id'>@type</span> <span class='neq op'>!=</span> <span class='symbol val'>:boolean</span><span class='rparen token'>)</span><span class='rparen token'>)</span><span class='rparen token'>)</span>
+
+  <span class='@primary ivar id'>@primary</span>          <span class='assign token'>=</span> <span class='nil nil kw'>nil</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+</div>  <div class="section visibilitygroup public">
+    <h1>Public Visibility</h1>
+      <div class="section methodsummary class public">
+    <h1>Public Class Method Summary</h1>
+<table class="summary">
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#binary_to_string-class_method" title="binary_to_string">binary_to_string</a></span><span class='args'>(value)</span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        <p>
+Used to convert from BLOBs to Strings.
+</p>
+
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#blank_or_invalid_record%3F-class_method" title="blank_or_invalid_record?">blank_or_invalid_record?</a></span><span class='args'>(record_attributes)</span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        <p>
+Check if the given record is empty.
+</p>
+
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#extract_callstack_for_multiparameter_attributes-class_method" title="extract_callstack_for_multiparameter_attributes">extract_callstack_for_multiparameter_attributes</a></span><span class='args'>(pairs)</span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#extract_family-class_method" title="extract_family">extract_family</a></span><span class='args'>(column_name)</span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        <p>
+Extract the family from a column name.
+</p>
+
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#extract_qualifier-class_method" title="extract_qualifier">extract_qualifier</a></span><span class='args'>(column_name)</span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        <p>
+Extract the qualifier from a column name.
+</p>
+
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#hash_to_boolean_collection-class_method" title="hash_to_boolean_collection">hash_to_boolean_collection</a></span><span class='args'>(value)</span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        <p>
+def hash_to_time_collection(hash)
+</p>
+<pre class="code">
+         <span class='return return kw'>return</span> <span class='lbrack token'>[</span><span class='rbrack token'>]</span>
+         <span class='return return kw'>return</span> <span class='hash identifier id'>hash</span> <span class='unless unless_mod kw'>unless</span> <span class='hash identifier id'>hash</span><span class='dot token'>.</span>
+</pre>
+
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#hash_to_collection-class_method" title="hash_to_collection">hash_to_collection</a></span><span class='args'>(hash)</span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        <p>
+Extract the collection from the hash, where the positions are the keys.
+</p>
+
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#hash_to_date_collection-class_method" title="hash_to_date_collection">hash_to_date_collection</a></span><span class='args'>(value)</span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#hash_to_decimal_collection-class_method" title="hash_to_decimal_collection">hash_to_decimal_collection</a></span><span class='args'>(value)</span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#hash_to_dummy_time_collection-class_method" title="hash_to_dummy_time_collection">hash_to_dummy_time_collection</a></span><span class='args'>(value)</span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#hash_to_float_collection-class_method" title="hash_to_float_collection">hash_to_float_collection</a></span><span class='args'>(value)</span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#hash_to_integer_collection-class_method" title="hash_to_integer_collection">hash_to_integer_collection</a></span><span class='args'>(value)</span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#hash_to_string_collection-class_method" title="hash_to_string_collection">hash_to_string_collection</a></span><span class='args'>(value)</span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        <p>
+strings are a special case.
+</p>
+
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#hash_to_time_collection-class_method" title="hash_to_time_collection">hash_to_time_collection</a></span><span class='args'>(value)</span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#parse_collection-class_method" title="parse_collection">parse_collection</a></span><span class='args'>(value)</span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#string_to_binary-class_method" title="string_to_binary">string_to_binary</a></span><span class='args'>(value)</span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        <p>
+Used to convert from Strings to BLOBs.
+</p>
+
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#string_to_date-class_method" title="string_to_date">string_to_date</a></span><span class='args'>(string)</span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#string_to_dummy_time-class_method" title="string_to_dummy_time">string_to_dummy_time</a></span><span class='args'>(string)</span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#string_to_time-class_method" title="string_to_time">string_to_time</a></span><span class='args'>(string)</span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#value_to_boolean-class_method" title="value_to_boolean">value_to_boolean</a></span><span class='args'>(value)</span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        <p>
+convert something to a boolean.
+</p>
+
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#value_to_decimal-class_method" title="value_to_decimal">value_to_decimal</a></span><span class='args'>(value)</span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        <p>
+convert something to a BigDecimal.
+</p>
+
+        
+      </td>
+    </tr>
+  
+</table>
+
+  </div>
+  <div class="section methodsummary instance public">
+    <h1>Public Instance Method Summary</h1>
+<table class="summary">
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#collection%3F-instance_method" title="#collection?">#collection?</a></span><span class='args'></span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#default-instance_method" title="#default">#default</a></span><span class='args'></span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        <p>
+Returns the value of attribute <tt>default</tt>.
+</p>
+
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#family-instance_method" title="#family">#family</a></span><span class='args'></span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#family%3F-instance_method" title="#family?">#family?</a></span><span class='args'></span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#hash_collection_to_embedded_collection-instance_method" title="#hash_collection_to_embedded_collection">#hash_collection_to_embedded_collection</a></span><span class='args'>(hash_collection)</span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#hash_to_embedded-instance_method" title="#hash_to_embedded">#hash_to_embedded</a></span><span class='args'>(value)</span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#hash_to_embedded_collection-instance_method" title="#hash_to_embedded_collection">#hash_to_embedded_collection</a></span><span class='args'>(hash)</span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#human_name-instance_method" title="#human_name">#human_name</a></span><span class='args'></span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        <p>
+Returns the human name of the column name.
+</p>
+
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#klass-instance_method" title="#klass">#klass</a></span><span class='args'></span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        <p>
+Returns the Ruby class that corresponds to the abstract data type.
+</p>
+
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#number%3F-instance_method" title="#number?">#number?</a></span><span class='args'></span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#preinitialize-instance_method" title="#preinitialize">#preinitialize</a></span><span class='args'>(value)</span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        <p>
+callback may be implemented by subclasses if value needs to be
+&#8216;massaged&#8217; before instantiation.
+</p>
+
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#primitive%3F-instance_method" title="#primitive?">#primitive?</a></span><span class='args'></span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#qualifier-instance_method" title="#qualifier">#qualifier</a></span><span class='args'></span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#text%3F-instance_method" title="#text?">#text?</a></span><span class='args'></span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#type_cast-instance_method" title="#type_cast">#type_cast</a></span><span class='args'>(value)</span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        <p>
+Casts value (which is a String) to an appropriate instance.
+</p>
+
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#type_cast_code-instance_method" title="#type_cast_code">#type_cast_code</a></span><span class='args'>(var_name)</span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        
+        
+      </td>
+    </tr>
+  
+</table>
+
+  </div>
+<div class="section methoddetails class public">
+  <h1>Public Class Method Details</h1>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>binary_to_string</h3>
+</div><div id="binary_to_string-class_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>binary_to_string</span><span class='args'>(value)</span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section docstring">
+  <p>
+Used to convert from BLOBs to Strings
+</p>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+352
+353
+354</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/column.rb', line 352</span>
+
+<span class='def def kw'>def</span> <span class='binary_to_string identifier id'>binary_to_string</span><span class='lparen token'>(</span><span class='value identifier id'>value</span><span class='rparen token'>)</span>
+  <span class='value identifier id'>value</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>blank_or_invalid_record?</h3>
+</div><div id="blank_or_invalid_record?-class_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>blank_or_invalid_record?</span><span class='args'>(record_attributes)</span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section docstring">
+  <p>
+Check if the given record is empty. It&#8217;s recursive since it can be an
+Embedded
+</p>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+250
+251
+252
+253
+254
+255</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/column.rb', line 250</span>
+
+<span class='def def kw'>def</span> <span class='blank_or_invalid_record? fid id'>blank_or_invalid_record?</span><span class='lparen token'>(</span><span class='record_attributes identifier id'>record_attributes</span><span class='rparen token'>)</span>
+  <span class='return return kw'>return</span> <span class='true true kw'>true</span> <span class='if if_mod kw'>if</span> <span class='record_attributes identifier id'>record_attributes</span><span class='dot token'>.</span><span class='blank? fid id'>blank?</span> <span class='or or kw'>or</span> <span class='notop op'>!</span><span class='record_attributes identifier id'>record_attributes</span><span class='dot token'>.</span><span class='is_a? fid id'>is_a?</span><span class='lparen token'>(</span><span class='Hash constant id'>Hash</span><span class='rparen token'>)</span>
+  <span class='record_attributes identifier id'>record_attributes</span><span class='dot token'>.</span><span class='all? fid id'>all?</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='k identifier id'>k</span><span class='comma token'>,</span> <span class='v identifier id'>v</span><span class='bitor op'>|</span>
+    <span class='v identifier id'>v</span><span class='dot token'>.</span><span class='is_a? fid id'>is_a?</span><span class='lparen token'>(</span><span class='Hash constant id'>Hash</span><span class='rparen token'>)</span> <span class='question op'>?</span> <span class='lparen token'>(</span><span class='v identifier id'>v</span><span class='dot token'>.</span><span class='empty? fid id'>empty?</span> <span class='or or kw'>or</span> <span class='blank_or_invalid_record? fid id'>blank_or_invalid_record?</span><span class='lparen token'>(</span><span class='v identifier id'>v</span><span class='rparen token'>)</span><span class='rparen token'>)</span> <span class='colon op'>:</span> <span class='v identifier id'>v</span><span class='dot token'>.</span><span class='blank? fid id'>blank?</span>
+  <span class='end end kw'>end</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>extract_callstack_for_multiparameter_attributes</h3>
+</div><div id="extract_callstack_for_multiparameter_attributes-class_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>extract_callstack_for_multiparameter_attributes</span><span class='args'>(pairs)</span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/column.rb', line 257</span>
+
+<span class='def def kw'>def</span> <span class='extract_callstack_for_multiparameter_attributes identifier id'>extract_callstack_for_multiparameter_attributes</span><span class='lparen token'>(</span><span class='pairs identifier id'>pairs</span><span class='rparen token'>)</span>
+  <span class='attributes identifier id'>attributes</span> <span class='assign token'>=</span> <span class='lbrace token'>{</span> <span class='rbrace token'>}</span>
+
+  <span class='for for kw'>for</span> <span class='pair identifier id'>pair</span> <span class='in in kw'>in</span> <span class='pairs identifier id'>pairs</span>
+    <span class='multiparameter_name identifier id'>multiparameter_name</span><span class='comma token'>,</span> <span class='value identifier id'>value</span> <span class='assign token'>=</span> <span class='pair identifier id'>pair</span>
+    <span class='attribute_name identifier id'>attribute_name</span> <span class='assign token'>=</span> <span class='multiparameter_name identifier id'>multiparameter_name</span><span class='dot token'>.</span><span class='split identifier id'>split</span><span class='lparen token'>(</span><span class='string val'>&quot;(&quot;</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='first identifier id'>first</span>
+    <span class='attributes identifier id'>attributes</span><span class='lbrack token'>[</span><span class='attribute_name identifier id'>attribute_name</span><span class='rbrack token'>]</span> <span class='assign token'>=</span> <span class='lbrack token'>[</span><span class='rbrack token'>]</span> <span class='unless unless_mod kw'>unless</span> <span class='attributes identifier id'>attributes</span><span class='dot token'>.</span><span class='include? fid id'>include?</span><span class='lparen token'>(</span><span class='attribute_name identifier id'>attribute_name</span><span class='rparen token'>)</span>
+
+    <span class='unless unless kw'>unless</span> <span class='value identifier id'>value</span><span class='dot token'>.</span><span class='empty? fid id'>empty?</span>
+      <span class='attributes identifier id'>attributes</span><span class='lbrack token'>[</span><span class='attribute_name identifier id'>attribute_name</span><span class='rbrack token'>]</span> <span class='lshft op'>&lt;&lt;</span>
+        <span class='lbrack token'>[</span> <span class='find_parameter_position identifier id'>find_parameter_position</span><span class='lparen token'>(</span><span class='multiparameter_name identifier id'>multiparameter_name</span><span class='rparen token'>)</span><span class='comma token'>,</span> <span class='type_cast_attribute_value identifier id'>type_cast_attribute_value</span><span class='lparen token'>(</span><span class='multiparameter_name identifier id'>multiparameter_name</span><span class='comma token'>,</span> <span class='value identifier id'>value</span><span class='rparen token'>)</span> <span class='rbrack token'>]</span>
+    <span class='end end kw'>end</span>
+  <span class='end end kw'>end</span>
+
+  <span class='attributes identifier id'>attributes</span><span class='dot token'>.</span><span class='each identifier id'>each</span> <span class='lbrace token'>{</span> <span class='bitor op'>|</span><span class='name identifier id'>name</span><span class='comma token'>,</span> <span class='values identifier id'>values</span><span class='bitor op'>|</span> <span class='attributes identifier id'>attributes</span><span class='lbrack token'>[</span><span class='name identifier id'>name</span><span class='rbrack token'>]</span> <span class='assign token'>=</span> <span class='values identifier id'>values</span><span class='dot token'>.</span><span class='sort_by identifier id'>sort_by</span><span class='lbrace token'>{</span> <span class='bitor op'>|</span><span class='v identifier id'>v</span><span class='bitor op'>|</span> <span class='v identifier id'>v</span><span class='dot token'>.</span><span class='first identifier id'>first</span> <span class='rbrace token'>}</span><span class='dot token'>.</span><span class='collect identifier id'>collect</span> <span class='lbrace token'>{</span> <span class='bitor op'>|</span><span class='v identifier id'>v</span><span class='bitor op'>|</span> <span class='v identifier id'>v</span><span class='dot token'>.</span><span class='last identifier id'>last</span> <span class='rbrace token'>}</span> <span class='rbrace token'>}</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>extract_family</h3>
+</div><div id="extract_family-class_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>extract_family</span><span class='args'>(column_name)</span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section docstring">
+  <p>
+Extract the family from a column name
+</p>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+209
+210
+211
+212
+213</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/column.rb', line 209</span>
+
+<span class='def def kw'>def</span> <span class='extract_family identifier id'>extract_family</span><span class='lparen token'>(</span><span class='column_name identifier id'>column_name</span><span class='rparen token'>)</span>
+  <span class='return return kw'>return</span> <span class='nil nil kw'>nil</span> <span class='unless unless_mod kw'>unless</span> <span class='column_name identifier id'>column_name</span>
+  <span class='column_name identifier id'>column_name</span> <span class='match op'>=~</span> <span class='regexp val'>/\A(.*?:).*\Z/</span>
+  <span class='$1 nth_ref id'>$1</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>extract_qualifier</h3>
+</div><div id="extract_qualifier-class_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>extract_qualifier</span><span class='args'>(column_name)</span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section docstring">
+  <p>
+Extract the qualifier from a column name
+</p>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+216
+217
+218
+219
+220</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/column.rb', line 216</span>
+
+<span class='def def kw'>def</span> <span class='extract_qualifier identifier id'>extract_qualifier</span><span class='lparen token'>(</span><span class='column_name identifier id'>column_name</span><span class='rparen token'>)</span>
+  <span class='return return kw'>return</span> <span class='nil nil kw'>nil</span> <span class='unless unless_mod kw'>unless</span> <span class='column_name identifier id'>column_name</span>
+  <span class='column_name identifier id'>column_name</span> <span class='match op'>=~</span> <span class='regexp val'>/\A.*?:(.*)\Z/</span>
+  <span class='$1 nth_ref id'>$1</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>hash_to_boolean_collection</h3>
+</div><div id="hash_to_boolean_collection-class_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>hash_to_boolean_collection</span><span class='args'>(value)</span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section docstring">
+  <p>
+def hash_to_time_collection(hash)
+</p>
+<pre class="code">
+         <span class='return return kw'>return</span> <span class='lbrack token'>[</span><span class='rbrack token'>]</span>
+         <span class='return return kw'>return</span> <span class='hash identifier id'>hash</span> <span class='unless unless_mod kw'>unless</span> <span class='hash identifier id'>hash</span><span class='dot token'>.</span><span class='is_a? fid id'>is_a?</span><span class='lparen token'>(</span><span class='Hash constant id'>Hash</span><span class='rparen token'>)</span>
+         <span class='hash_to_collection identifier id'>hash_to_collection</span><span class='lparen token'>(</span><span class='hash identifier id'>hash</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='collect identifier id'>collect</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='attributes identifier id'>attributes</span><span class='bitor op'>|</span>
+           <span class='cleaned_attributes identifier id'>cleaned_attributes</span> <span class='assign token'>=</span> <span class='lbrace token'>{</span><span class='rbrace token'>}</span>
+           <span class='debugger identifier id'>debugger</span>
+           <span class='attributes identifier id'>attributes</span><span class='dot token'>.</span><span class='each identifier id'>each</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='k identifier id'>k</span><span class='comma token'>,</span> <span class='v identifier id'>v</span><span class='bitor op'>|</span>
+             <span class='k identifier id'>k</span> <span class='match op'>=~</span> <span class='regexp val'>/reflect_value(.*)/</span>
+             <span class='cleaned_attributes identifier id'>cleaned_attributes</span><span class='lbrack token'>[</span><span class='$1 nth_ref id'>$1</span><span class='rbrack token'>]</span> <span class='assign token'>=</span> <span class='v identifier id'>v</span>
+           <span class='end end kw'>end</span>
+           <span class='string_to_time identifier id'>string_to_time</span><span class='lparen token'>(</span><span class='cleaned_attributes identifier id'>cleaned_attributes</span><span class='rparen token'>)</span>
+         <span class='end end kw'>end</span>
+       <span class='end end kw'>end</span>
+
+       <span class='def def kw'>def</span> <span class='hash_to_dummy_time_collection identifier id'>hash_to_dummy_time_collection</span><span class='lparen token'>(</span><span class='hash identifier id'>hash</span><span class='rparen token'>)</span>
+         <span class='return return kw'>return</span> <span class='lbrack token'>[</span><span class='rbrack token'>]</span>
+         <span class='return return kw'>return</span> <span class='hash identifier id'>hash</span> <span class='unless unless_mod kw'>unless</span> <span class='hash identifier id'>hash</span><span class='dot token'>.</span><span class='is_a? fid id'>is_a?</span><span class='lparen token'>(</span><span class='Array constant id'>Array</span><span class='rparen token'>)</span>
+         <span class='hash identifier id'>hash</span><span class='dot token'>.</span><span class='split identifier id'>split</span><span class='lparen token'>(</span><span class='COLLECTION_SEPARATOR constant id'>COLLECTION_SEPARATOR</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='collect identifier id'>collect</span><span class='lbrace token'>{</span><span class='bitor op'>|</span><span class='v identifier id'>v</span><span class='bitor op'>|</span><span class='string_to_dummy_time identifier id'>string_to_dummy_time</span><span class='lparen token'>(</span><span class='v identifier id'>v</span><span class='rparen token'>)</span><span class='rbrace token'>}</span>
+       <span class='end end kw'>end</span>
+
+       <span class='def def kw'>def</span> <span class='hash_to_date_collection identifier id'>hash_to_date_collection</span><span class='lparen token'>(</span><span class='hash identifier id'>hash</span><span class='rparen token'>)</span>
+         <span class='return return kw'>return</span> <span class='lbrack token'>[</span><span class='rbrack token'>]</span>
+         <span class='return return kw'>return</span> <span class='hash identifier id'>hash</span> <span class='unless unless_mod kw'>unless</span> <span class='hash identifier id'>hash</span><span class='dot token'>.</span><span class='is_a? fid id'>is_a?</span><span class='lparen token'>(</span><span class='Array constant id'>Array</span><span class='rparen token'>)</span>
+         <span class='hash_to_collection identifier id'>hash_to_collection</span><span class='lparen token'>(</span><span class='hash identifier id'>hash</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='collect identifier id'>collect</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='attributes identifier id'>attributes</span><span class='bitor op'>|</span>
+           <span class='debugger identifier id'>debugger</span>
+           <span class='callstack identifier id'>callstack</span> <span class='assign token'>=</span> <span class='extract_callstack_for_multiparameter_attributes identifier id'>extract_callstack_for_multiparameter_attributes</span><span class='lparen token'>(</span><span class='attributes identifier id'>attributes</span><span class='dot token'>.</span><span class='to_a identifier id'>to_a</span><span class='rparen token'>)</span>
+
+         <span class='end end kw'>end</span>
+       <span class='end end kw'>end</span>
+</pre>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+342
+343
+344</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/column.rb', line 342</span>
+
+<span class='def def kw'>def</span> <span class='hash_to_boolean_collection identifier id'>hash_to_boolean_collection</span><span class='lparen token'>(</span><span class='value identifier id'>value</span><span class='rparen token'>)</span>
+  <span class='parse_collection identifier id'>parse_collection</span><span class='lparen token'>(</span><span class='value identifier id'>value</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='collect identifier id'>collect</span><span class='lbrace token'>{</span><span class='bitor op'>|</span><span class='v identifier id'>v</span><span class='bitor op'>|</span> <span class='value_to_boolean identifier id'>value_to_boolean</span><span class='lparen token'>(</span><span class='v identifier id'>v</span><span class='rparen token'>)</span><span class='rbrace token'>}</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>hash_to_collection</h3>
+</div><div id="hash_to_collection-class_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>hash_to_collection</span><span class='args'>(hash)</span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section docstring">
+  <p>
+Extract the collection from the hash, where the positions are the keys.
+Inspired from ActiveRecord::NestedAttributes.
+</p>
+<pre class="code">
+  <span class='params identifier id'>params</span> <span class='assign token'>=</span> <span class='lbrace token'>{</span> <span class='string val'>'member'</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='lbrace token'>{</span>
+    <span class='string val'>'name'</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>'joe'</span><span class='comma token'>,</span> <span class='string val'>'posts_attributes'</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='lbrace token'>{</span>
+      <span class='string val'>'1'</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='lbrace token'>{</span> <span class='string val'>'title'</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>'Kari, the awesome Ruby documentation browser!'</span> <span class='rbrace token'>}</span><span class='comma token'>,</span>
+      <span class='string val'>'2'</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='lbrace token'>{</span> <span class='string val'>'title'</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>'The egalitarian assumption of the modern citizen'</span> <span class='rbrace token'>}</span><span class='comma token'>,</span>
+      <span class='string val'>'new_67890'</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='lbrace token'>{</span> <span class='string val'>'title'</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>''</span> <span class='rbrace token'>}</span> <span class='comment val'># This one matches the :reject_if proc and will not be instantiated.</span>
+    <span class='rbrace token'>}</span>
+  <span class='rbrace token'>}</span><span class='rbrace token'>}</span>
+</pre>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/column.rb', line 232</span>
+
+<span class='def def kw'>def</span> <span class='hash_to_collection identifier id'>hash_to_collection</span><span class='lparen token'>(</span><span class='hash identifier id'>hash</span><span class='rparen token'>)</span>
+  <span class='return return kw'>return</span> <span class='hash identifier id'>hash</span> <span class='unless unless_mod kw'>unless</span> <span class='hash identifier id'>hash</span><span class='dot token'>.</span><span class='is_a? fid id'>is_a?</span><span class='lparen token'>(</span><span class='Hash constant id'>Hash</span><span class='rparen token'>)</span>
+
+  <span class='comment val'># Make sure any new records sorted by their id before they're build.</span>
+  <span class='sorted_by_id identifier id'>sorted_by_id</span> <span class='assign token'>=</span> <span class='hash identifier id'>hash</span><span class='dot token'>.</span><span class='sort_by identifier id'>sort_by</span> <span class='lbrace token'>{</span> <span class='bitor op'>|</span><span class='id identifier id'>id</span><span class='comma token'>,</span> <span class='_ identifier id'>_</span><span class='bitor op'>|</span> <span class='id identifier id'>id</span><span class='dot token'>.</span><span class='is_a? fid id'>is_a?</span><span class='lparen token'>(</span><span class='String constant id'>String</span><span class='rparen token'>)</span> <span class='question op'>?</span> <span class='id identifier id'>id</span><span class='dot token'>.</span><span class='sub identifier id'>sub</span><span class='lparen token'>(</span><span class='regexp val'>/^new_/</span><span class='comma token'>,</span> <span class='string val'>''</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='to_i identifier id'>to_i</span> <span class='colon op'>:</span> <span class='id identifier id'>id</span> <span class='rbrace token'>}</span>
+
+  <span class='array identifier id'>array</span> <span class='assign token'>=</span> <span class='lbrack token'>[</span><span class='rbrack token'>]</span>
+  <span class='sorted_by_id identifier id'>sorted_by_id</span><span class='dot token'>.</span><span class='each identifier id'>each</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='id identifier id'>id</span><span class='comma token'>,</span> <span class='record_attributes identifier id'>record_attributes</span><span class='bitor op'>|</span>
+    <span class='comment val'># remove blank records</span>
+    <span class='next next kw'>next</span> <span class='if if_mod kw'>if</span> <span class='blank_or_invalid_record? fid id'>blank_or_invalid_record?</span><span class='lparen token'>(</span><span class='record_attributes identifier id'>record_attributes</span><span class='rparen token'>)</span>
+
+    <span class='array identifier id'>array</span> <span class='lshft op'>&lt;&lt;</span> <span class='record_attributes identifier id'>record_attributes</span>
+  <span class='end end kw'>end</span>
+  <span class='array identifier id'>array</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>hash_to_date_collection</h3>
+</div><div id="hash_to_date_collection-class_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>hash_to_date_collection</span><span class='args'>(value)</span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+300
+301
+302</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/column.rb', line 300</span>
+
+<span class='def def kw'>def</span> <span class='hash_to_date_collection identifier id'>hash_to_date_collection</span><span class='lparen token'>(</span><span class='value identifier id'>value</span><span class='rparen token'>)</span>
+  <span class='parse_collection identifier id'>parse_collection</span><span class='lparen token'>(</span><span class='value identifier id'>value</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='collect identifier id'>collect</span><span class='lbrace token'>{</span><span class='bitor op'>|</span><span class='v identifier id'>v</span><span class='bitor op'>|</span> <span class='string_to_date identifier id'>string_to_date</span><span class='lparen token'>(</span><span class='v identifier id'>v</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span><span class='rparen token'>)</span><span class='rbrace token'>}</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>hash_to_decimal_collection</h3>
+</div><div id="hash_to_decimal_collection-class_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>hash_to_decimal_collection</span><span class='args'>(value)</span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+296
+297
+298</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/column.rb', line 296</span>
+
+<span class='def def kw'>def</span> <span class='hash_to_decimal_collection identifier id'>hash_to_decimal_collection</span><span class='lparen token'>(</span><span class='value identifier id'>value</span><span class='rparen token'>)</span>
+  <span class='parse_collection identifier id'>parse_collection</span><span class='lparen token'>(</span><span class='value identifier id'>value</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='collect identifier id'>collect</span><span class='lbrace token'>{</span><span class='bitor op'>|</span><span class='v identifier id'>v</span><span class='bitor op'>|</span> <span class='value_to_decimal identifier id'>value_to_decimal</span><span class='lparen token'>(</span><span class='v identifier id'>v</span><span class='rparen token'>)</span><span class='rbrace token'>}</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>hash_to_dummy_time_collection</h3>
+</div><div id="hash_to_dummy_time_collection-class_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>hash_to_dummy_time_collection</span><span class='args'>(value)</span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+308
+309
+310</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/column.rb', line 308</span>
+
+<span class='def def kw'>def</span> <span class='hash_to_dummy_time_collection identifier id'>hash_to_dummy_time_collection</span><span class='lparen token'>(</span><span class='value identifier id'>value</span><span class='rparen token'>)</span>
+  <span class='parse_collection identifier id'>parse_collection</span><span class='lparen token'>(</span><span class='value identifier id'>value</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='collect identifier id'>collect</span><span class='lbrace token'>{</span><span class='bitor op'>|</span><span class='v identifier id'>v</span><span class='bitor op'>|</span> <span class='string_to_dummy_time identifier id'>string_to_dummy_time</span><span class='lparen token'>(</span><span class='v identifier id'>v</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span><span class='rparen token'>)</span><span class='rbrace token'>}</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>hash_to_float_collection</h3>
+</div><div id="hash_to_float_collection-class_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>hash_to_float_collection</span><span class='args'>(value)</span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+292
+293
+294</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/column.rb', line 292</span>
+
+<span class='def def kw'>def</span> <span class='hash_to_float_collection identifier id'>hash_to_float_collection</span><span class='lparen token'>(</span><span class='value identifier id'>value</span><span class='rparen token'>)</span>
+  <span class='parse_collection identifier id'>parse_collection</span><span class='lparen token'>(</span><span class='value identifier id'>value</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='collect identifier id'>collect</span><span class='lparen token'>(</span><span class='bitand op'>&amp;</span><span class='symbol val'>:to_f</span><span class='rparen token'>)</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>hash_to_integer_collection</h3>
+</div><div id="hash_to_integer_collection-class_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>hash_to_integer_collection</span><span class='args'>(value)</span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+288
+289
+290</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/column.rb', line 288</span>
+
+<span class='def def kw'>def</span> <span class='hash_to_integer_collection identifier id'>hash_to_integer_collection</span><span class='lparen token'>(</span><span class='value identifier id'>value</span><span class='rparen token'>)</span>
+  <span class='parse_collection identifier id'>parse_collection</span><span class='lparen token'>(</span><span class='value identifier id'>value</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='collect identifier id'>collect</span><span class='lparen token'>(</span><span class='bitand op'>&amp;</span><span class='symbol val'>:to_i</span><span class='rparen token'>)</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>hash_to_string_collection</h3>
+</div><div id="hash_to_string_collection-class_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>hash_to_string_collection</span><span class='args'>(value)</span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section docstring">
+  <p>
+strings are a special case&#8230;
+</p>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+284
+285
+286</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/column.rb', line 284</span>
+
+<span class='def def kw'>def</span> <span class='hash_to_string_collection identifier id'>hash_to_string_collection</span><span class='lparen token'>(</span><span class='value identifier id'>value</span><span class='rparen token'>)</span>
+  <span class='parse_collection identifier id'>parse_collection</span><span class='lparen token'>(</span><span class='value identifier id'>value</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='collect identifier id'>collect</span><span class='lparen token'>(</span><span class='bitand op'>&amp;</span><span class='symbol val'>:to_s</span><span class='rparen token'>)</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>hash_to_time_collection</h3>
+</div><div id="hash_to_time_collection-class_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>hash_to_time_collection</span><span class='args'>(value)</span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+304
+305
+306</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/column.rb', line 304</span>
+
+<span class='def def kw'>def</span> <span class='hash_to_time_collection identifier id'>hash_to_time_collection</span><span class='lparen token'>(</span><span class='value identifier id'>value</span><span class='rparen token'>)</span>
+  <span class='parse_collection identifier id'>parse_collection</span><span class='lparen token'>(</span><span class='value identifier id'>value</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='collect identifier id'>collect</span><span class='lbrace token'>{</span><span class='bitor op'>|</span><span class='v identifier id'>v</span><span class='bitor op'>|</span> <span class='string_to_time identifier id'>string_to_time</span><span class='lparen token'>(</span><span class='v identifier id'>v</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span><span class='rparen token'>)</span><span class='rbrace token'>}</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>parse_collection</h3>
+</div><div id="parse_collection-class_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>parse_collection</span><span class='args'>(value)</span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+274
+275
+276
+277
+278
+279
+280
+281</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/column.rb', line 274</span>
+
+<span class='def def kw'>def</span> <span class='parse_collection identifier id'>parse_collection</span><span class='lparen token'>(</span><span class='value identifier id'>value</span><span class='rparen token'>)</span>
+  <span class='case case kw'>case</span> <span class='value identifier id'>value</span>
+    <span class='when when kw'>when</span> <span class='String constant id'>String</span> <span class='then then kw'>then</span> <span class='value identifier id'>value</span><span class='dot token'>.</span><span class='split identifier id'>split</span><span class='lparen token'>(</span><span class='COLLECTION_SEPARATOR constant id'>COLLECTION_SEPARATOR</span><span class='rparen token'>)</span>
+    <span class='when when kw'>when</span> <span class='Hash constant id'>Hash</span> <span class='then then kw'>then</span> <span class='value identifier id'>value</span><span class='dot token'>.</span><span class='values identifier id'>values</span><span class='dot token'>.</span><span class='first identifier id'>first</span><span class='dot token'>.</span><span class='scan identifier id'>scan</span><span class='lparen token'>(</span><span class='regexp val'>/\[(.*?)\]/</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='flatten identifier id'>flatten</span>
+    <span class='when when kw'>when</span> <span class='NilClass constant id'>NilClass</span> <span class='then then kw'>then</span> <span class='lbrack token'>[</span><span class='rbrack token'>]</span>
+    <span class='else else kw'>else</span> <span class='value identifier id'>value</span>
+  <span class='end end kw'>end</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>string_to_binary</h3>
+</div><div id="string_to_binary-class_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>string_to_binary</span><span class='args'>(value)</span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section docstring">
+  <p>
+Used to convert from Strings to BLOBs
+</p>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+347
+348
+349</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/column.rb', line 347</span>
+
+<span class='def def kw'>def</span> <span class='string_to_binary identifier id'>string_to_binary</span><span class='lparen token'>(</span><span class='value identifier id'>value</span><span class='rparen token'>)</span>
+  <span class='value identifier id'>value</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>string_to_date</h3>
+</div><div id="string_to_date-class_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>string_to_date</span><span class='args'>(string)</span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+356
+357
+358
+359
+360
+361</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/column.rb', line 356</span>
+
+<span class='def def kw'>def</span> <span class='string_to_date identifier id'>string_to_date</span><span class='lparen token'>(</span><span class='string identifier id'>string</span><span class='rparen token'>)</span>
+  <span class='return return kw'>return</span> <span class='string identifier id'>string</span> <span class='unless unless_mod kw'>unless</span> <span class='string identifier id'>string</span><span class='dot token'>.</span><span class='is_a? fid id'>is_a?</span><span class='lparen token'>(</span><span class='String constant id'>String</span><span class='rparen token'>)</span>
+  <span class='return return kw'>return</span> <span class='nil nil kw'>nil</span> <span class='if if_mod kw'>if</span> <span class='string identifier id'>string</span><span class='dot token'>.</span><span class='empty? fid id'>empty?</span>
+
+  <span class='fast_string_to_date identifier id'>fast_string_to_date</span><span class='lparen token'>(</span><span class='string identifier id'>string</span><span class='rparen token'>)</span> <span class='orop op'>||</span> <span class='fallback_string_to_date identifier id'>fallback_string_to_date</span><span class='lparen token'>(</span><span class='string identifier id'>string</span><span class='rparen token'>)</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>string_to_dummy_time</h3>
+</div><div id="string_to_dummy_time-class_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>string_to_dummy_time</span><span class='args'>(string)</span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+370
+371
+372
+373
+374
+375</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/column.rb', line 370</span>
+
+<span class='def def kw'>def</span> <span class='string_to_dummy_time identifier id'>string_to_dummy_time</span><span class='lparen token'>(</span><span class='string identifier id'>string</span><span class='rparen token'>)</span>
+  <span class='return return kw'>return</span> <span class='string identifier id'>string</span> <span class='unless unless_mod kw'>unless</span> <span class='string identifier id'>string</span><span class='dot token'>.</span><span class='is_a? fid id'>is_a?</span><span class='lparen token'>(</span><span class='String constant id'>String</span><span class='rparen token'>)</span>
+  <span class='return return kw'>return</span> <span class='nil nil kw'>nil</span> <span class='if if_mod kw'>if</span> <span class='string identifier id'>string</span><span class='dot token'>.</span><span class='empty? fid id'>empty?</span>
+
+  <span class='string_to_time identifier id'>string_to_time</span> <span class='dstring node'>&quot;2000-01-01 #{string}&quot;</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>string_to_time</h3>
+</div><div id="string_to_time-class_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>string_to_time</span><span class='args'>(string)</span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+363
+364
+365
+366
+367
+368</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/column.rb', line 363</span>
+
+<span class='def def kw'>def</span> <span class='string_to_time identifier id'>string_to_time</span><span class='lparen token'>(</span><span class='string identifier id'>string</span><span class='rparen token'>)</span>
+  <span class='return return kw'>return</span> <span class='string identifier id'>string</span> <span class='unless unless_mod kw'>unless</span> <span class='string identifier id'>string</span><span class='dot token'>.</span><span class='is_a? fid id'>is_a?</span><span class='lparen token'>(</span><span class='String constant id'>String</span><span class='rparen token'>)</span>
+  <span class='return return kw'>return</span> <span class='nil nil kw'>nil</span> <span class='if if_mod kw'>if</span> <span class='string identifier id'>string</span><span class='dot token'>.</span><span class='empty? fid id'>empty?</span>
+
+  <span class='fast_string_to_time identifier id'>fast_string_to_time</span><span class='lparen token'>(</span><span class='string identifier id'>string</span><span class='rparen token'>)</span> <span class='orop op'>||</span> <span class='fallback_string_to_time identifier id'>fallback_string_to_time</span><span class='lparen token'>(</span><span class='string identifier id'>string</span><span class='rparen token'>)</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>value_to_boolean</h3>
+</div><div id="value_to_boolean-class_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>value_to_boolean</span><span class='args'>(value)</span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section docstring">
+  <p>
+convert something to a boolean
+</p>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+378
+379
+380
+381
+382
+383
+384</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/column.rb', line 378</span>
+
+<span class='def def kw'>def</span> <span class='value_to_boolean identifier id'>value_to_boolean</span><span class='lparen token'>(</span><span class='value identifier id'>value</span><span class='rparen token'>)</span>
+  <span class='if if kw'>if</span> <span class='value identifier id'>value</span> <span class='eq op'>==</span> <span class='true true kw'>true</span> <span class='orop op'>||</span> <span class='value identifier id'>value</span> <span class='eq op'>==</span> <span class='false false kw'>false</span>
+    <span class='value identifier id'>value</span>
+  <span class='else else kw'>else</span>
+    <span class='dstring node'>%w(true t 1)</span><span class='dot token'>.</span><span class='include? fid id'>include?</span><span class='lparen token'>(</span><span class='value identifier id'>value</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span><span class='dot token'>.</span><span class='downcase identifier id'>downcase</span><span class='rparen token'>)</span>
+  <span class='end end kw'>end</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>value_to_decimal</h3>
+</div><div id="value_to_decimal-class_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>value_to_decimal</span><span class='args'>(value)</span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section docstring">
+  <p>
+convert something to a BigDecimal
+</p>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+387
+388
+389
+390
+391
+392
+393
+394
+395</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/column.rb', line 387</span>
+
+<span class='def def kw'>def</span> <span class='value_to_decimal identifier id'>value_to_decimal</span><span class='lparen token'>(</span><span class='value identifier id'>value</span><span class='rparen token'>)</span>
+  <span class='if if kw'>if</span> <span class='value identifier id'>value</span><span class='dot token'>.</span><span class='is_a? fid id'>is_a?</span><span class='lparen token'>(</span><span class='BigDecimal constant id'>BigDecimal</span><span class='rparen token'>)</span>
+    <span class='value identifier id'>value</span>
+  <span class='elsif elsif kw'>elsif</span> <span class='value identifier id'>value</span><span class='dot token'>.</span><span class='respond_to? fid id'>respond_to?</span><span class='lparen token'>(</span><span class='symbol val'>:to_d</span><span class='rparen token'>)</span>
+    <span class='value identifier id'>value</span><span class='dot token'>.</span><span class='to_d identifier id'>to_d</span>
+  <span class='else else kw'>else</span>
+    <span class='value identifier id'>value</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span><span class='dot token'>.</span><span class='to_d identifier id'>to_d</span>
+  <span class='end end kw'>end</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+</div><div class="section methoddetails instance public">
+  <h1>Public Instance Method Details</h1>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>collection?</h3>
+</div><div id="collection?-instance_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>collection?</span><span class='args'></span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+71
+72
+73</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/column.rb', line 71</span>
+
+<span class='def def kw'>def</span> <span class='collection? fid id'>collection?</span>
+  <span class='@collection ivar id'>@collection</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>default</h3>
+</div><div id="default-instance_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>default</span><span class='args'></span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section docstring">
+  <p>
+Returns the value of attribute <tt>default</tt>
+</p>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+13
+14
+15</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/column.rb', line 13</span>
+
+<span class='def def kw'>def</span> <span class='default identifier id'>default</span>
+  <span class='@must_dup_default ivar id'>@must_dup_default</span> <span class='question op'>?</span> <span class='@default ivar id'>@default</span><span class='dot token'>.</span><span class='dup identifier id'>dup</span> <span class='colon op'>:</span> <span class='@default ivar id'>@default</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>family</h3>
+</div><div id="family-instance_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>family</span><span class='args'></span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+63
+64
+65</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/column.rb', line 63</span>
+
+<span class='def def kw'>def</span> <span class='family identifier id'>family</span>
+  <span class='self self kw'>self</span><span class='dot token'>.</span><span class='class identifier id'>class</span><span class='dot token'>.</span><span class='extract_family identifier id'>extract_family</span><span class='lparen token'>(</span><span class='self self kw'>self</span><span class='dot token'>.</span><span class='name identifier id'>name</span><span class='rparen token'>)</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>family?</h3>
+</div><div id="family?-instance_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>family?</span><span class='args'></span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+59
+60
+61</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/column.rb', line 59</span>
+
+<span class='def def kw'>def</span> <span class='family? fid id'>family?</span>
+  <span class='name identifier id'>name</span> <span class='match op'>=~</span> <span class='regexp val'>/:\Z/</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>hash_collection_to_embedded_collection</h3>
+</div><div id="hash_collection_to_embedded_collection-instance_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>hash_collection_to_embedded_collection</span><span class='args'>(hash_collection)</span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+191
+192
+193
+194
+195
+196
+197</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/column.rb', line 191</span>
+
+<span class='def def kw'>def</span> <span class='hash_collection_to_embedded_collection identifier id'>hash_collection_to_embedded_collection</span><span class='lparen token'>(</span><span class='hash_collection identifier id'>hash_collection</span><span class='rparen token'>)</span>
+  <span class='return return kw'>return</span> <span class='hash_collection identifier id'>hash_collection</span> <span class='unless unless_mod kw'>unless</span> <span class='hash_collection identifier id'>hash_collection</span><span class='dot token'>.</span><span class='is_a? fid id'>is_a?</span><span class='lparen token'>(</span><span class='Array constant id'>Array</span><span class='rparen token'>)</span>
+  <span class='hash_collection identifier id'>hash_collection</span><span class='dot token'>.</span><span class='each_with_index identifier id'>each_with_index</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='hash identifier id'>hash</span><span class='comma token'>,</span> <span class='i identifier id'>i</span><span class='bitor op'>|</span>
+    <span class='hash_collection identifier id'>hash_collection</span><span class='lbrack token'>[</span><span class='i identifier id'>i</span><span class='rbrack token'>]</span> <span class='assign token'>=</span> <span class='hash_to_embedded identifier id'>hash_to_embedded</span><span class='lparen token'>(</span><span class='hash identifier id'>hash</span><span class='rparen token'>)</span> <span class='if if_mod kw'>if</span> <span class='hash identifier id'>hash</span><span class='dot token'>.</span><span class='is_a? fid id'>is_a?</span><span class='lparen token'>(</span><span class='Hash constant id'>Hash</span><span class='rparen token'>)</span>
+  <span class='end end kw'>end</span>
+  <span class='hash_collection identifier id'>hash_collection</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>hash_to_embedded</h3>
+</div><div id="hash_to_embedded-instance_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>hash_to_embedded</span><span class='args'>(value)</span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+199
+200
+201
+202
+203
+204</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/column.rb', line 199</span>
+
+<span class='def def kw'>def</span> <span class='hash_to_embedded identifier id'>hash_to_embedded</span><span class='lparen token'>(</span><span class='value identifier id'>value</span><span class='rparen token'>)</span>
+  <span class='case case kw'>case</span> <span class='value identifier id'>value</span>
+    <span class='when when kw'>when</span> <span class='BigRecord constant id'>BigRecord</span><span class='colon2 op'>::</span><span class='Embedded constant id'>Embedded</span> <span class='then then kw'>then</span> <span class='value identifier id'>value</span>
+    <span class='when when kw'>when</span> <span class='Hash constant id'>Hash</span> <span class='then then kw'>then</span> <span class='self self kw'>self</span><span class='dot token'>.</span><span class='klass identifier id'>klass</span><span class='dot token'>.</span><span class='instantiate identifier id'>instantiate</span><span class='lparen token'>(</span><span class='value identifier id'>value</span><span class='rparen token'>)</span>
+  <span class='end end kw'>end</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>hash_to_embedded_collection</h3>
+</div><div id="hash_to_embedded_collection-instance_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>hash_to_embedded_collection</span><span class='args'>(hash)</span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+186
+187
+188
+189</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/column.rb', line 186</span>
+
+<span class='def def kw'>def</span> <span class='hash_to_embedded_collection identifier id'>hash_to_embedded_collection</span><span class='lparen token'>(</span><span class='hash identifier id'>hash</span><span class='rparen token'>)</span>
+  <span class='hash_collection identifier id'>hash_collection</span> <span class='assign token'>=</span> <span class='hash identifier id'>hash</span><span class='dot token'>.</span><span class='is_a? fid id'>is_a?</span><span class='lparen token'>(</span><span class='Hash constant id'>Hash</span><span class='rparen token'>)</span> <span class='question op'>?</span> <span class='self self kw'>self</span><span class='dot token'>.</span><span class='class identifier id'>class</span><span class='dot token'>.</span><span class='hash_to_collection identifier id'>hash_to_collection</span><span class='lparen token'>(</span><span class='hash identifier id'>hash</span><span class='rparen token'>)</span> <span class='colon op'>:</span> <span class='hash identifier id'>hash</span>
+  <span class='hash_collection_to_embedded_collection identifier id'>hash_collection_to_embedded_collection</span><span class='lparen token'>(</span><span class='hash_collection identifier id'>hash_collection</span><span class='rparen token'>)</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>human_name</h3>
+</div><div id="human_name-instance_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>human_name</span><span class='args'></span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section docstring">
+  <p>
+Returns the human name of the column name.
+</p>
+<h5>Examples</h5>
+<pre class="code">
+ <span class='Column constant id'>Column</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='string val'>'sales_stage'</span><span class='comma token'>,</span> <span class='dot3 op'>...</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='human_name identifier id'>human_name</span> <span class='comment val'>#=&gt; 'Sales stage'</span>
+</pre>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+182
+183
+184</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/column.rb', line 182</span>
+
+<span class='def def kw'>def</span> <span class='human_name identifier id'>human_name</span>
+  <span class='Base constant id'>Base</span><span class='dot token'>.</span><span class='human_attribute_name identifier id'>human_attribute_name</span><span class='lparen token'>(</span><span class='@name ivar id'>@name</span><span class='rparen token'>)</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>klass</h3>
+</div><div id="klass-instance_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>klass</span><span class='args'></span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section docstring">
+  <p>
+Returns the Ruby class that corresponds to the abstract data type.
+</p>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/column.rb', line 76</span>
+
+<span class='def def kw'>def</span> <span class='klass identifier id'>klass</span>
+  <span class='@klass ivar id'>@klass</span> <span class='opasgn op'>||=</span>
+  <span class='case case kw'>case</span> <span class='type identifier id'>type</span>
+    <span class='when when kw'>when</span> <span class='symbol val'>:integer</span>       <span class='then then kw'>then</span> <span class='Fixnum constant id'>Fixnum</span>
+    <span class='when when kw'>when</span> <span class='symbol val'>:float</span>         <span class='then then kw'>then</span> <span class='Float constant id'>Float</span>
+    <span class='when when kw'>when</span> <span class='symbol val'>:decimal</span>       <span class='then then kw'>then</span> <span class='BigDecimal constant id'>BigDecimal</span>
+    <span class='when when kw'>when</span> <span class='symbol val'>:datetime</span>      <span class='then then kw'>then</span> <span class='Time constant id'>Time</span>
+    <span class='when when kw'>when</span> <span class='symbol val'>:date</span>          <span class='then then kw'>then</span> <span class='Date constant id'>Date</span>
+    <span class='when when kw'>when</span> <span class='symbol val'>:timestamp</span>     <span class='then then kw'>then</span> <span class='Time constant id'>Time</span>
+    <span class='when when kw'>when</span> <span class='symbol val'>:time</span>          <span class='then then kw'>then</span> <span class='Time constant id'>Time</span>
+    <span class='when when kw'>when</span> <span class='symbol val'>:text</span><span class='comma token'>,</span> <span class='symbol val'>:string</span> <span class='then then kw'>then</span> <span class='String constant id'>String</span>
+    <span class='when when kw'>when</span> <span class='symbol val'>:binary</span>        <span class='then then kw'>then</span> <span class='String constant id'>String</span>
+    <span class='when when kw'>when</span> <span class='symbol val'>:boolean</span>       <span class='then then kw'>then</span> <span class='Object constant id'>Object</span>
+    <span class='when when kw'>when</span> <span class='symbol val'>:map</span>           <span class='then then kw'>then</span> <span class='Hash constant id'>Hash</span>
+    <span class='when when kw'>when</span> <span class='symbol val'>:object</span>        <span class='then then kw'>then</span> <span class='Object constant id'>Object</span>
+    <span class='else else kw'>else</span> <span class='type identifier id'>type</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span><span class='dot token'>.</span><span class='constantize identifier id'>constantize</span>
+  <span class='end end kw'>end</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>number?</h3>
+</div><div id="number?-instance_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>number?</span><span class='args'></span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+51
+52
+53</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/column.rb', line 51</span>
+
+<span class='def def kw'>def</span> <span class='number? fid id'>number?</span>
+  <span class='lbrack token'>[</span><span class='symbol val'>:float</span><span class='comma token'>,</span> <span class='symbol val'>:integer</span><span class='comma token'>,</span> <span class='symbol val'>:decimal</span><span class='rbrack token'>]</span><span class='dot token'>.</span><span class='include? fid id'>include?</span> <span class='type identifier id'>type</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>preinitialize</h3>
+</div><div id="preinitialize-instance_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>preinitialize</span><span class='args'>(value)</span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section docstring">
+  <p>
+callback may be implemented by subclasses if value needs to be
+&#8216;massaged&#8217; before instantiation.
+</p>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+39
+40
+41</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/column.rb', line 39</span>
+
+<span class='def def kw'>def</span> <span class='preinitialize identifier id'>preinitialize</span><span class='lparen token'>(</span><span class='value identifier id'>value</span><span class='rparen token'>)</span>
+  <span class='comment val'># do something to a column value's attributes before it is instantiated.</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>primitive?</h3>
+</div><div id="primitive?-instance_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>primitive?</span><span class='args'></span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+55
+56
+57</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/column.rb', line 55</span>
+
+<span class='def def kw'>def</span> <span class='primitive? fid id'>primitive?</span>
+  <span class='@primitive ivar id'>@primitive</span> <span class='opasgn op'>||=</span> <span class='lparen token'>(</span><span class='lbrack token'>[</span><span class='symbol val'>:integer</span><span class='comma token'>,</span> <span class='symbol val'>:float</span><span class='comma token'>,</span> <span class='symbol val'>:decimal</span><span class='comma token'>,</span> <span class='symbol val'>:datetime</span><span class='comma token'>,</span> <span class='symbol val'>:date</span><span class='comma token'>,</span> <span class='symbol val'>:timestamp</span><span class='comma token'>,</span> <span class='symbol val'>:time</span><span class='comma token'>,</span> <span class='symbol val'>:text</span><span class='comma token'>,</span> <span class='symbol val'>:string</span><span class='comma token'>,</span> <span class='symbol val'>:binary</span><span class='comma token'>,</span> <span class='symbol val'>:boolean</span><span class='comma token'>,</span> <span class='symbol val'>:map</span><span class='comma token'>,</span> <span class='symbol val'>:object</span><span class='rbrack token'>]</span><span class='dot token'>.</span><span class='include? fid id'>include?</span> <span class='type identifier id'>type</span><span class='rparen token'>)</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>qualifier</h3>
+</div><div id="qualifier-instance_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>qualifier</span><span class='args'></span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+67
+68
+69</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/column.rb', line 67</span>
+
+<span class='def def kw'>def</span> <span class='qualifier identifier id'>qualifier</span>
+  <span class='self self kw'>self</span><span class='dot token'>.</span><span class='class identifier id'>class</span><span class='dot token'>.</span><span class='extract_qualifier identifier id'>extract_qualifier</span><span class='lparen token'>(</span><span class='self self kw'>self</span><span class='dot token'>.</span><span class='name identifier id'>name</span><span class='rparen token'>)</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>text?</h3>
+</div><div id="text?-instance_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>text?</span><span class='args'></span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+47
+48
+49</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/column.rb', line 47</span>
+
+<span class='def def kw'>def</span> <span class='text? fid id'>text?</span>
+  <span class='lbrack token'>[</span><span class='symbol val'>:string</span><span class='comma token'>,</span> <span class='symbol val'>:text</span><span class='rbrack token'>]</span><span class='dot token'>.</span><span class='include? fid id'>include?</span> <span class='type identifier id'>type</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>type_cast</h3>
+</div><div id="type_cast-instance_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>type_cast</span><span class='args'>(value)</span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section docstring">
+  <p>
+Casts value (which is a String) to an appropriate instance.
+</p>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/column.rb', line 96</span>
+
+<span class='def def kw'>def</span> <span class='type_cast identifier id'>type_cast</span><span class='lparen token'>(</span><span class='value identifier id'>value</span><span class='rparen token'>)</span>
+  <span class='comment val'># FIXME: this should be recursive but it doesn't work with type_cast_code()... why does</span>
+  <span class='comment val'># ActiveRecord use type_cast_code ???</span>
+  <span class='if if kw'>if</span> <span class='collection? fid id'>collection?</span>
+    <span class='return return kw'>return</span> <span class='lbrack token'>[</span><span class='rbrack token'>]</span> <span class='if if_mod kw'>if</span> <span class='value identifier id'>value</span><span class='dot token'>.</span><span class='nil? fid id'>nil?</span>
+    <span class='case case kw'>case</span> <span class='type identifier id'>type</span>
+      <span class='when when kw'>when</span> <span class='symbol val'>:string</span>    <span class='then then kw'>then</span> <span class='self self kw'>self</span><span class='dot token'>.</span><span class='class identifier id'>class</span><span class='dot token'>.</span><span class='hash_to_string_collection identifier id'>hash_to_string_collection</span><span class='lparen token'>(</span><span class='value identifier id'>value</span><span class='rparen token'>)</span>
+      <span class='when when kw'>when</span> <span class='symbol val'>:text</span>      <span class='then then kw'>then</span> <span class='self self kw'>self</span><span class='dot token'>.</span><span class='class identifier id'>class</span><span class='dot token'>.</span><span class='hash_to_string_collection identifier id'>hash_to_string_collection</span><span class='lparen token'>(</span><span class='value identifier id'>value</span><span class='rparen token'>)</span>
+      <span class='when when kw'>when</span> <span class='symbol val'>:integer</span>   <span class='then then kw'>then</span> <span class='self self kw'>self</span><span class='dot token'>.</span><span class='class identifier id'>class</span><span class='dot token'>.</span><span class='hash_to_integer_collection identifier id'>hash_to_integer_collection</span><span class='lparen token'>(</span><span class='value identifier id'>value</span><span class='rparen token'>)</span>
+      <span class='when when kw'>when</span> <span class='symbol val'>:float</span>     <span class='then then kw'>then</span> <span class='self self kw'>self</span><span class='dot token'>.</span><span class='class identifier id'>class</span><span class='dot token'>.</span><span class='hash_to_float_collection identifier id'>hash_to_float_collection</span><span class='lparen token'>(</span><span class='value identifier id'>value</span><span class='rparen token'>)</span>
+      <span class='when when kw'>when</span> <span class='symbol val'>:decimal</span>   <span class='then then kw'>then</span> <span class='self self kw'>self</span><span class='dot token'>.</span><span class='class identifier id'>class</span><span class='dot token'>.</span><span class='hash_to_decimal_collection identifier id'>hash_to_decimal_collection</span><span class='lparen token'>(</span><span class='value identifier id'>value</span><span class='rparen token'>)</span>
+      <span class='when when kw'>when</span> <span class='symbol val'>:datetime</span>  <span class='then then kw'>then</span> <span class='self self kw'>self</span><span class='dot token'>.</span><span class='class identifier id'>class</span><span class='dot token'>.</span><span class='hash_to_time_collection identifier id'>hash_to_time_collection</span><span class='lparen token'>(</span><span class='value identifier id'>value</span><span class='rparen token'>)</span>
+      <span class='when when kw'>when</span> <span class='symbol val'>:timestamp</span> <span class='then then kw'>then</span> <span class='self self kw'>self</span><span class='dot token'>.</span><span class='class identifier id'>class</span><span class='dot token'>.</span><span class='hash_to_time_collection identifier id'>hash_to_time_collection</span><span class='lparen token'>(</span><span class='value identifier id'>value</span><span class='rparen token'>)</span>
+      <span class='when when kw'>when</span> <span class='symbol val'>:time</span>      <span class='then then kw'>then</span> <span class='self self kw'>self</span><span class='dot token'>.</span><span class='class identifier id'>class</span><span class='dot token'>.</span><span class='hash_to_dummy_time_collection identifier id'>hash_to_dummy_time_collection</span><span class='lparen token'>(</span><span class='value identifier id'>value</span><span class='rparen token'>)</span>
+      <span class='when when kw'>when</span> <span class='symbol val'>:date</span>      <span class='then then kw'>then</span> <span class='self self kw'>self</span><span class='dot token'>.</span><span class='class identifier id'>class</span><span class='dot token'>.</span><span class='hash_to_date_collection identifier id'>hash_to_date_collection</span><span class='lparen token'>(</span><span class='value identifier id'>value</span><span class='rparen token'>)</span>
+      <span class='when when kw'>when</span> <span class='symbol val'>:binary</span>    <span class='then then kw'>then</span> <span class='self self kw'>self</span><span class='dot token'>.</span><span class='class identifier id'>class</span><span class='dot token'>.</span><span class='hash_to_string_collection identifier id'>hash_to_string_collection</span><span class='lparen token'>(</span><span class='value identifier id'>value</span><span class='rparen token'>)</span>
+      <span class='when when kw'>when</span> <span class='symbol val'>:boolean</span>   <span class='then then kw'>then</span> <span class='self self kw'>self</span><span class='dot token'>.</span><span class='class identifier id'>class</span><span class='dot token'>.</span><span class='hash_to_boolean_collection identifier id'>hash_to_boolean_collection</span><span class='lparen token'>(</span><span class='value identifier id'>value</span><span class='rparen token'>)</span>
+      <span class='when when kw'>when</span> <span class='symbol val'>:map</span>       <span class='then then kw'>then</span> <span class='value identifier id'>value</span>
+      <span class='when when kw'>when</span> <span class='symbol val'>:object</span>    <span class='then then kw'>then</span> <span class='value identifier id'>value</span>
+      <span class='else else kw'>else</span> <span class='hash_to_embedded_collection identifier id'>hash_to_embedded_collection</span><span class='lparen token'>(</span><span class='value identifier id'>value</span><span class='rparen token'>)</span>
+    <span class='end end kw'>end</span>
+  <span class='else else kw'>else</span>
+    <span class='casted_value identifier id'>casted_value</span> <span class='assign token'>=</span>
+    <span class='case case kw'>case</span> <span class='type identifier id'>type</span>
+      <span class='when when kw'>when</span> <span class='symbol val'>:string</span>    <span class='then then kw'>then</span> <span class='value identifier id'>value</span>
+      <span class='when when kw'>when</span> <span class='symbol val'>:text</span>      <span class='then then kw'>then</span> <span class='value identifier id'>value</span>
+      <span class='when when kw'>when</span> <span class='symbol val'>:integer</span>   <span class='then then kw'>then</span> <span class='value identifier id'>value</span><span class='dot token'>.</span><span class='to_i identifier id'>to_i</span> <span class='rescue rescue kw'>rescue</span> <span class='value identifier id'>value</span> <span class='question op'>?</span> <span class='integer val'>1</span> <span class='colon op'>:</span> <span class='integer val'>0</span>
+      <span class='when when kw'>when</span> <span class='symbol val'>:float</span>     <span class='then then kw'>then</span> <span class='value identifier id'>value</span><span class='dot token'>.</span><span class='to_f identifier id'>to_f</span> <span class='rescue rescue kw'>rescue</span> <span class='value identifier id'>value</span> <span class='question op'>?</span> <span class='float val'>1.0</span> <span class='colon op'>:</span> <span class='integer val'>0</span><span class='integer val'>.0</span>
+      <span class='when when kw'>when</span> <span class='symbol val'>:decimal</span>   <span class='then then kw'>then</span> <span class='self self kw'>self</span><span class='dot token'>.</span><span class='class identifier id'>class</span><span class='dot token'>.</span><span class='value_to_decimal identifier id'>value_to_decimal</span><span class='lparen token'>(</span><span class='value identifier id'>value</span><span class='rparen token'>)</span>
+      <span class='when when kw'>when</span> <span class='symbol val'>:datetime</span>  <span class='then then kw'>then</span> <span class='self self kw'>self</span><span class='dot token'>.</span><span class='class identifier id'>class</span><span class='dot token'>.</span><span class='string_to_time identifier id'>string_to_time</span><span class='lparen token'>(</span><span class='value identifier id'>value</span><span class='rparen token'>)</span>
+      <span class='when when kw'>when</span> <span class='symbol val'>:timestamp</span> <span class='then then kw'>then</span> <span class='self self kw'>self</span><span class='dot token'>.</span><span class='class identifier id'>class</span><span class='dot token'>.</span><span class='string_to_time identifier id'>string_to_time</span><span class='lparen token'>(</span><span class='value identifier id'>value</span><span class='rparen token'>)</span>
+      <span class='when when kw'>when</span> <span class='symbol val'>:time</span>      <span class='then then kw'>then</span> <span class='self self kw'>self</span><span class='dot token'>.</span><span class='class identifier id'>class</span><span class='dot token'>.</span><span class='string_to_dummy_time identifier id'>string_to_dummy_time</span><span class='lparen token'>(</span><span class='value identifier id'>value</span><span class='rparen token'>)</span>
+      <span class='when when kw'>when</span> <span class='symbol val'>:date</span>      <span class='then then kw'>then</span> <span class='self self kw'>self</span><span class='dot token'>.</span><span class='class identifier id'>class</span><span class='dot token'>.</span><span class='string_to_date identifier id'>string_to_date</span><span class='lparen token'>(</span><span class='value identifier id'>value</span><span class='rparen token'>)</span>
+      <span class='when when kw'>when</span> <span class='symbol val'>:binary</span>    <span class='then then kw'>then</span> <span class='self self kw'>self</span><span class='dot token'>.</span><span class='class identifier id'>class</span><span class='dot token'>.</span><span class='binary_to_string identifier id'>binary_to_string</span><span class='lparen token'>(</span><span class='value identifier id'>value</span><span class='rparen token'>)</span>
+      <span class='when when kw'>when</span> <span class='symbol val'>:boolean</span>   <span class='then then kw'>then</span> <span class='self self kw'>self</span><span class='dot token'>.</span><span class='class identifier id'>class</span><span class='dot token'>.</span><span class='value_to_boolean identifier id'>value_to_boolean</span><span class='lparen token'>(</span><span class='value identifier id'>value</span><span class='rparen token'>)</span>
+      <span class='when when kw'>when</span> <span class='symbol val'>:map</span>       <span class='then then kw'>then</span> <span class='value identifier id'>value</span>
+      <span class='when when kw'>when</span> <span class='symbol val'>:object</span>    <span class='then then kw'>then</span> <span class='value identifier id'>value</span>
+      <span class='else else kw'>else</span> <span class='hash_to_embedded identifier id'>hash_to_embedded</span><span class='lparen token'>(</span><span class='value identifier id'>value</span><span class='rparen token'>)</span>
+    <span class='end end kw'>end</span>
+    <span class='comment val'># Make sure that the returned value matches the current schema.</span>
+    <span class='casted_value identifier id'>casted_value</span><span class='dot token'>.</span><span class='is_a? fid id'>is_a?</span><span class='lparen token'>(</span><span class='klass identifier id'>klass</span><span class='rparen token'>)</span> <span class='question op'>?</span> <span class='casted_value identifier id'>casted_value</span> <span class='colon op'>:</span> <span class='nil nil kw'>nil</span>
+  <span class='end end kw'>end</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>type_cast_code</h3>
+</div><div id="type_cast_code-instance_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>type_cast_code</span><span class='args'>(var_name)</span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/column.rb', line 140</span>
+
+<span class='def def kw'>def</span> <span class='type_cast_code identifier id'>type_cast_code</span><span class='lparen token'>(</span><span class='var_name identifier id'>var_name</span><span class='rparen token'>)</span>
+  <span class='if if kw'>if</span> <span class='collection? fid id'>collection?</span>
+    <span class='case case kw'>case</span> <span class='type identifier id'>type</span>
+      <span class='when when kw'>when</span> <span class='symbol val'>:string</span>    <span class='then then kw'>then</span> <span class='dstring node'>&quot;#{self.class.name}.hash_to_string_collection(#{var_name})&quot;</span>
+      <span class='when when kw'>when</span> <span class='symbol val'>:text</span>      <span class='then then kw'>then</span> <span class='dstring node'>&quot;#{self.class.name}.hash_to_string_collection(#{var_name})&quot;</span>
+      <span class='when when kw'>when</span> <span class='symbol val'>:integer</span>   <span class='then then kw'>then</span> <span class='dstring node'>&quot;#{self.class.name}.hash_to_integer_collection(#{var_name})&quot;</span>
+      <span class='when when kw'>when</span> <span class='symbol val'>:float</span>     <span class='then then kw'>then</span> <span class='dstring node'>&quot;#{self.class.name}.hash_to_float_collection(#{var_name})&quot;</span>
+      <span class='when when kw'>when</span> <span class='symbol val'>:decimal</span>   <span class='then then kw'>then</span> <span class='dstring node'>&quot;#{self.class.name}.hash_to_decimal_collection(#{var_name})&quot;</span>
+      <span class='when when kw'>when</span> <span class='symbol val'>:datetime</span>  <span class='then then kw'>then</span> <span class='dstring node'>&quot;#{self.class.name}.hash_to_time_collection(#{var_name})&quot;</span>
+      <span class='when when kw'>when</span> <span class='symbol val'>:timestamp</span> <span class='then then kw'>then</span> <span class='dstring node'>&quot;#{self.class.name}.hash_to_time_collection(#{var_name})&quot;</span>
+      <span class='when when kw'>when</span> <span class='symbol val'>:time</span>      <span class='then then kw'>then</span> <span class='dstring node'>&quot;#{self.class.name}.hash_to_dummy_time_collection(#{var_name})&quot;</span>
+      <span class='when when kw'>when</span> <span class='symbol val'>:date</span>      <span class='then then kw'>then</span> <span class='dstring node'>&quot;#{self.class.name}.hash_to_date_collection(#{var_name})&quot;</span>
+      <span class='when when kw'>when</span> <span class='symbol val'>:binary</span>    <span class='then then kw'>then</span> <span class='dstring node'>&quot;#{self.class.name}.hash_to_string_collection(#{var_name})&quot;</span>
+      <span class='when when kw'>when</span> <span class='symbol val'>:boolean</span>   <span class='then then kw'>then</span> <span class='dstring node'>&quot;#{self.class.name}.hash_to_boolean_collection(#{var_name})&quot;</span>
+      <span class='when when kw'>when</span> <span class='symbol val'>:map</span>       <span class='then then kw'>then</span> <span class='nil nil kw'>nil</span>
+      <span class='when when kw'>when</span> <span class='symbol val'>:object</span>    <span class='then then kw'>then</span> <span class='nil nil kw'>nil</span>
+      <span class='else else kw'>else</span> <span class='nil nil kw'>nil</span>
+    <span class='end end kw'>end</span>
+  <span class='else else kw'>else</span>
+    <span class='case case kw'>case</span> <span class='type identifier id'>type</span>
+      <span class='when when kw'>when</span> <span class='symbol val'>:string</span>    <span class='then then kw'>then</span> <span class='nil nil kw'>nil</span>
+      <span class='when when kw'>when</span> <span class='symbol val'>:text</span>      <span class='then then kw'>then</span> <span class='nil nil kw'>nil</span>
+      <span class='when when kw'>when</span> <span class='symbol val'>:integer</span>   <span class='then then kw'>then</span> <span class='dstring node'>&quot;(#{var_name}.to_i rescue #{var_name} ? 1 : 0)&quot;</span>
+      <span class='when when kw'>when</span> <span class='symbol val'>:float</span>     <span class='then then kw'>then</span> <span class='dstring node'>&quot;#{var_name}.to_f&quot;</span>
+      <span class='when when kw'>when</span> <span class='symbol val'>:decimal</span>   <span class='then then kw'>then</span> <span class='dstring node'>&quot;#{self.class.name}.value_to_decimal(#{var_name})&quot;</span>
+      <span class='when when kw'>when</span> <span class='symbol val'>:datetime</span>  <span class='then then kw'>then</span> <span class='dstring node'>&quot;#{self.class.name}.string_to_time(#{var_name})&quot;</span>
+      <span class='when when kw'>when</span> <span class='symbol val'>:timestamp</span> <span class='then then kw'>then</span> <span class='dstring node'>&quot;#{self.class.name}.string_to_time(#{var_name})&quot;</span>
+      <span class='when when kw'>when</span> <span class='symbol val'>:time</span>      <span class='then then kw'>then</span> <span class='dstring node'>&quot;#{self.class.name}.value_to_dummy_time(#{var_name})&quot;</span>
+      <span class='when when kw'>when</span> <span class='symbol val'>:date</span>      <span class='then then kw'>then</span> <span class='dstring node'>&quot;#{self.class.name}.string_to_date(#{var_name})&quot;</span>
+      <span class='when when kw'>when</span> <span class='symbol val'>:binary</span>    <span class='then then kw'>then</span> <span class='dstring node'>&quot;#{self.class.name}.binary_to_string(#{var_name})&quot;</span>
+      <span class='when when kw'>when</span> <span class='symbol val'>:boolean</span>   <span class='then then kw'>then</span> <span class='dstring node'>&quot;#{self.class.name}.value_to_boolean(#{var_name})&quot;</span>
+      <span class='when when kw'>when</span> <span class='symbol val'>:map</span>       <span class='then then kw'>then</span> <span class='nil nil kw'>nil</span>
+      <span class='when when kw'>when</span> <span class='symbol val'>:object</span>    <span class='then then kw'>then</span> <span class='nil nil kw'>nil</span>
+      <span class='else else kw'>else</span> <span class='nil nil kw'>nil</span>
+    <span class='end end kw'>end</span>
+  <span class='end end kw'>end</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+</div>
+  </div>
+
+</div>
+    </div>
+    <div id="yard_info">
+  Generated on Tuesday, November 10 2009 at 06:18:32 PM by 
+  <abbr class="yard" title="Yay! A Ruby Documentation Tool"><a href="http://yard.soen.ca">YARD</a></abbr> 
+  0.2.3.5 (ruby-1.8.7).
+</div>
+
+  </body>
+</html>

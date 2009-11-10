@@ -1,0 +1,1827 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="../../style.css" type="text/css" charset="utf-8" />
+<link rel="stylesheet" href="../../custom.css" type="text/css" charset="utf-8" />
+<link rel="stylesheet" href="../../syntax_highlight.css" type="text/css" charset="utf-8" />
+
+    <script src="../../jquery.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../app.js" type="text/javascript" charset="utf-8"></script>
+    <title>Module: BigRecord::BrAssociations::ClassMethods</title>
+  </head>
+  <body>
+    <div id="content">
+      <div class="section module BigRecord_BrAssociations_ClassMethods">
+  <h1 class="title">Module: BigRecord::BrAssociations::ClassMethods</h1>
+  <div class="section docstring">
+  <p>
+Associations are a set of macro-like class methods for tying objects
+together through foreign keys. They express relationships like
+&quot;Project has one Project Manager&quot; or &quot;Project belongs to a
+Portfolio&quot;. Each macro adds a number of methods to the class which are
+specialized according to the collection or association symbol and the
+options hash. It works much the same way as Ruby&#8217;s own attr* methods.
+Example:
+</p>
+<pre class="code">
+  <span class='class class kw'>class</span> <span class='Project constant id'>Project</span> <span class='lt op'>&lt;</span> <span class='BigRecord constant id'>BigRecord</span><span class='colon2 op'>::</span><span class='Base constant id'>Base</span>
+    <span class='belongs_to identifier id'>belongs_to</span>              <span class='symbol val'>:portfolio</span>
+    <span class='has_one identifier id'>has_one</span>                 <span class='symbol val'>:project_manager</span>
+    <span class='has_many identifier id'>has_many</span>                <span class='symbol val'>:milestones</span>
+    <span class='has_and_belongs_to_many identifier id'>has_and_belongs_to_many</span> <span class='symbol val'>:categories</span>
+  <span class='end end kw'>end</span>
+</pre>
+<p>
+The project class now has the following methods (and more) to ease the
+traversal and manipulation of its relationships:
+</p>
+<ul>
+<li><tt>Project#portfolio, Project#portfolio=(portfolio),
+Project#portfolio.nil?</tt>
+
+</li>
+<li><tt>Project#project_manager, Project#project_manager=(project_manager),
+Project#project_manager.nil?,</tt>
+
+</li>
+<li><tt>Project#milestones.empty?, Project#milestones.size, Project#milestones,
+Project#milestones&lt;&lt;(milestone),</tt>
+<tt>Project#milestones.delete(milestone),
+Project#milestones.find(milestone_id), Project#milestones.find(:all,
+options),</tt> <tt>Project#milestones.build, Project#milestones.create</tt>
+
+</li>
+<li><tt>Project#categories.empty?, Project#categories.size, Project#categories,
+Project#categories&lt;&lt;(category1),</tt>
+<tt>Project#categories.delete(category1)</tt>
+
+</li>
+</ul>
+<h2>Example</h2>
+<p>
+link:files/examples/associations.png
+</p>
+<h2>Is it belongs_to or has_one?</h2>
+<p>
+Both express a 1-1 relationship, the difference is mostly where to place
+the foreign key, which goes on the table for the class saying belongs_to.
+Example:
+</p>
+<pre class="code">
+  <span class='class class kw'>class</span> <span class='User constant id'>User</span> <span class='lt op'>&lt;</span> <span class='BigRecord constant id'>BigRecord</span><span class='colon2 op'>::</span><span class='Base constant id'>Base</span>
+    <span class='comment val'># I reference an account.</span>
+    <span class='belongs_to identifier id'>belongs_to</span> <span class='symbol val'>:account</span>
+  <span class='end end kw'>end</span>
+
+  <span class='class class kw'>class</span> <span class='Account constant id'>Account</span> <span class='lt op'>&lt;</span> <span class='BigRecord constant id'>BigRecord</span><span class='colon2 op'>::</span><span class='Base constant id'>Base</span>
+    <span class='comment val'># One user references me.</span>
+    <span class='has_one identifier id'>has_one</span> <span class='symbol val'>:user</span>
+  <span class='end end kw'>end</span>
+</pre>
+<p>
+The tables for these classes could look something like:
+</p>
+<pre class="code">
+  <span class='CREATE constant id'>CREATE</span> <span class='TABLE constant id'>TABLE</span> <span class='users identifier id'>users</span> <span class='lparen token'>(</span>
+    <span class='id identifier id'>id</span> <span class='int identifier id'>int</span><span class='lparen token'>(</span><span class='integer val'>11</span><span class='rparen token'>)</span> <span class='NOT constant id'>NOT</span> <span class='NULL constant id'>NULL</span> <span class='auto_increment identifier id'>auto_increment</span><span class='comma token'>,</span>
+    <span class='account_id identifier id'>account_id</span> <span class='int identifier id'>int</span><span class='lparen token'>(</span><span class='integer val'>11</span><span class='rparen token'>)</span> <span class='default identifier id'>default</span> <span class='NULL constant id'>NULL</span><span class='comma token'>,</span>
+    <span class='name identifier id'>name</span> <span class='varchar identifier id'>varchar</span> <span class='default identifier id'>default</span> <span class='NULL constant id'>NULL</span><span class='comma token'>,</span>
+    <span class='PRIMARY constant id'>PRIMARY</span> <span class='KEY constant id'>KEY</span>  <span class='lparen token'>(</span><span class='id identifier id'>id</span><span class='rparen token'>)</span>
+  <span class='rparen token'>)</span>
+
+  <span class='CREATE constant id'>CREATE</span> <span class='TABLE constant id'>TABLE</span> <span class='accounts identifier id'>accounts</span> <span class='lparen token'>(</span>
+    <span class='id identifier id'>id</span> <span class='int identifier id'>int</span><span class='lparen token'>(</span><span class='integer val'>11</span><span class='rparen token'>)</span> <span class='NOT constant id'>NOT</span> <span class='NULL constant id'>NULL</span> <span class='auto_increment identifier id'>auto_increment</span><span class='comma token'>,</span>
+    <span class='name identifier id'>name</span> <span class='varchar identifier id'>varchar</span> <span class='default identifier id'>default</span> <span class='NULL constant id'>NULL</span><span class='comma token'>,</span>
+    <span class='PRIMARY constant id'>PRIMARY</span> <span class='KEY constant id'>KEY</span>  <span class='lparen token'>(</span><span class='id identifier id'>id</span><span class='rparen token'>)</span>
+  <span class='rparen token'>)</span>
+</pre>
+<h2>Unsaved objects and associations</h2>
+<p>
+You can manipulate objects and associations before they are saved to the
+database, but there is some special behaviour you should be aware of,
+mostly involving the saving of associated objects.
+</p>
+<h3>One-to-one associations</h3>
+<ul>
+<li>Assigning an object to a has_one association automatically saves that
+object and the object being replaced (if there is one), in order to update
+their primary keys - except if the parent object is unsaved (new_record? ==
+true).
+
+</li>
+<li>If either of these saves fail (due to one of the objects being invalid) the
+assignment statement returns false and the assignment is cancelled.
+
+</li>
+<li>If you wish to assign an object to a has_one association without saving it,
+use the #association.build method (documented below).
+
+</li>
+<li>Assigning an object to a belongs_to association does not save the object,
+since the foreign key field belongs on the parent. It does not save the
+parent either.
+
+</li>
+</ul>
+<h3>Collections</h3>
+<ul>
+<li>Adding an object to a collection (has_many or has_and_belongs_to_many)
+automatically saves that object, except if the parent object (the owner of
+the collection) is not yet stored in the database.
+
+</li>
+<li>If saving any of the objects being added to a collection (via #push or
+similar) fails, then #push returns false.
+
+</li>
+<li>You can add an object to a collection without automatically saving it by
+using the #collection.build method (documented below).
+
+</li>
+<li>All unsaved (new_record? == true) members of the collection are
+automatically saved when the parent is saved.
+
+</li>
+</ul>
+<h3>Association callbacks</h3>
+<p>
+Similiar to the normal callbacks that hook into the lifecycle of an Active
+Record object, you can also define callbacks that get trigged when you add
+an object to or removing an object from a association collection. Example:
+</p>
+<pre class="code">
+  <span class='class class kw'>class</span> <span class='Project constant id'>Project</span>
+    <span class='has_and_belongs_to_many identifier id'>has_and_belongs_to_many</span> <span class='symbol val'>:developers</span><span class='comma token'>,</span> <span class='symbol val'>:after_add</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='symbol val'>:evaluate_velocity</span>
+
+    <span class='def def kw'>def</span> <span class='evaluate_velocity identifier id'>evaluate_velocity</span><span class='lparen token'>(</span><span class='developer identifier id'>developer</span><span class='rparen token'>)</span>
+      <span class='dot3 op'>...</span>
+    <span class='end end kw'>end</span>
+  <span class='end end kw'>end</span>
+</pre>
+<p>
+It&#8217;s possible to stack callbacks by passing them as an array.
+Example:
+</p>
+<pre class="code">
+  <span class='class class kw'>class</span> <span class='Project constant id'>Project</span>
+    <span class='has_and_belongs_to_many identifier id'>has_and_belongs_to_many</span> <span class='symbol val'>:developers</span><span class='comma token'>,</span> <span class='symbol val'>:after_add</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='lbrack token'>[</span><span class='symbol val'>:evaluate_velocity</span><span class='comma token'>,</span> <span class='Proc constant id'>Proc</span><span class='dot token'>.</span><span class='new identifier id'>new</span> <span class='lbrace token'>{</span> <span class='bitor op'>|</span><span class='p identifier id'>p</span><span class='comma token'>,</span> <span class='d identifier id'>d</span><span class='bitor op'>|</span> <span class='p identifier id'>p</span><span class='dot token'>.</span><span class='shipping_date identifier id'>shipping_date</span> <span class='assign token'>=</span> <span class='Time constant id'>Time</span><span class='dot token'>.</span><span class='now identifier id'>now</span><span class='rbrace token'>}</span><span class='rbrack token'>]</span>
+  <span class='end end kw'>end</span>
+</pre>
+<p>
+Possible callbacks are: before_add, after_add, before_remove and
+after_remove.
+</p>
+<p>
+Should any of the before_add callbacks throw an exception, the object does
+not get added to the collection. Same with the before_remove callbacks, if
+an exception is thrown the object doesn&#8217;t get removed.
+</p>
+<h3>Association extensions</h3>
+<p>
+The proxy objects that controls the access to associations can be extended
+through anonymous modules. This is especially beneficial for adding new
+finders, creators, and other factory-type methods that are only used as
+part of this association. Example:
+</p>
+<pre class="code">
+  <span class='class class kw'>class</span> <span class='Account constant id'>Account</span> <span class='lt op'>&lt;</span> <span class='BigRecord constant id'>BigRecord</span><span class='colon2 op'>::</span><span class='Base constant id'>Base</span>
+    <span class='has_many identifier id'>has_many</span> <span class='symbol val'>:people</span> <span class='do do kw'>do</span>
+      <span class='def def kw'>def</span> <span class='find_or_create_by_name identifier id'>find_or_create_by_name</span><span class='lparen token'>(</span><span class='name identifier id'>name</span><span class='rparen token'>)</span>
+        <span class='first_name identifier id'>first_name</span><span class='comma token'>,</span> <span class='last_name identifier id'>last_name</span> <span class='assign token'>=</span> <span class='name identifier id'>name</span><span class='dot token'>.</span><span class='split identifier id'>split</span><span class='lparen token'>(</span><span class='string val'>&quot; &quot;</span><span class='comma token'>,</span> <span class='integer val'>2</span><span class='rparen token'>)</span>
+        <span class='find_or_create_by_first_name_and_last_name identifier id'>find_or_create_by_first_name_and_last_name</span><span class='lparen token'>(</span><span class='first_name identifier id'>first_name</span><span class='comma token'>,</span> <span class='last_name identifier id'>last_name</span><span class='rparen token'>)</span>
+      <span class='end end kw'>end</span>
+    <span class='end end kw'>end</span>
+  <span class='end end kw'>end</span>
+
+  <span class='person identifier id'>person</span> <span class='assign token'>=</span> <span class='Account constant id'>Account</span><span class='dot token'>.</span><span class='find identifier id'>find</span><span class='lparen token'>(</span><span class='symbol val'>:first</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='people identifier id'>people</span><span class='dot token'>.</span><span class='find_or_create_by_name identifier id'>find_or_create_by_name</span><span class='lparen token'>(</span><span class='string val'>&quot;David Heinemeier Hansson&quot;</span><span class='rparen token'>)</span>
+  <span class='person identifier id'>person</span><span class='dot token'>.</span><span class='first_name identifier id'>first_name</span> <span class='comment val'># =&gt; &quot;David&quot;</span>
+  <span class='person identifier id'>person</span><span class='dot token'>.</span><span class='last_name identifier id'>last_name</span>  <span class='comment val'># =&gt; &quot;Heinemeier Hansson&quot;</span>
+</pre>
+<p>
+If you need to share the same extensions between many associations, you can
+use a named extension module. Example:
+</p>
+<pre class="code">
+  <span class='module module kw'>module</span> <span class='FindOrCreateByNameExtension constant id'>FindOrCreateByNameExtension</span>
+    <span class='def def kw'>def</span> <span class='find_or_create_by_name identifier id'>find_or_create_by_name</span><span class='lparen token'>(</span><span class='name identifier id'>name</span><span class='rparen token'>)</span>
+      <span class='first_name identifier id'>first_name</span><span class='comma token'>,</span> <span class='last_name identifier id'>last_name</span> <span class='assign token'>=</span> <span class='name identifier id'>name</span><span class='dot token'>.</span><span class='split identifier id'>split</span><span class='lparen token'>(</span><span class='string val'>&quot; &quot;</span><span class='comma token'>,</span> <span class='integer val'>2</span><span class='rparen token'>)</span>
+      <span class='find_or_create_by_first_name_and_last_name identifier id'>find_or_create_by_first_name_and_last_name</span><span class='lparen token'>(</span><span class='first_name identifier id'>first_name</span><span class='comma token'>,</span> <span class='last_name identifier id'>last_name</span><span class='rparen token'>)</span>
+    <span class='end end kw'>end</span>
+  <span class='end end kw'>end</span>
+
+  <span class='class class kw'>class</span> <span class='Account constant id'>Account</span> <span class='lt op'>&lt;</span> <span class='BigRecord constant id'>BigRecord</span><span class='colon2 op'>::</span><span class='Base constant id'>Base</span>
+    <span class='has_many identifier id'>has_many</span> <span class='symbol val'>:people</span><span class='comma token'>,</span> <span class='symbol val'>:extend</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='FindOrCreateByNameExtension constant id'>FindOrCreateByNameExtension</span>
+  <span class='end end kw'>end</span>
+
+  <span class='class class kw'>class</span> <span class='Company constant id'>Company</span> <span class='lt op'>&lt;</span> <span class='BigRecord constant id'>BigRecord</span><span class='colon2 op'>::</span><span class='Base constant id'>Base</span>
+    <span class='has_many identifier id'>has_many</span> <span class='symbol val'>:people</span><span class='comma token'>,</span> <span class='symbol val'>:extend</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='FindOrCreateByNameExtension constant id'>FindOrCreateByNameExtension</span>
+  <span class='end end kw'>end</span>
+</pre>
+<p>
+If you need to use multiple named extension modules, you can specify an
+array of modules with the :extend option. In the case of name conflicts
+between methods in the modules, methods in modules later in the array
+supercede those earlier in the array. Example:
+</p>
+<pre class="code">
+  <span class='class class kw'>class</span> <span class='Account constant id'>Account</span> <span class='lt op'>&lt;</span> <span class='BigRecord constant id'>BigRecord</span><span class='colon2 op'>::</span><span class='Base constant id'>Base</span>
+    <span class='has_many identifier id'>has_many</span> <span class='symbol val'>:people</span><span class='comma token'>,</span> <span class='symbol val'>:extend</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='lbrack token'>[</span><span class='FindOrCreateByNameExtension constant id'>FindOrCreateByNameExtension</span><span class='comma token'>,</span> <span class='FindRecentExtension constant id'>FindRecentExtension</span><span class='rbrack token'>]</span>
+  <span class='end end kw'>end</span>
+</pre>
+<p>
+Some extensions can only be made to work with knowledge of the association
+proxy&#8217;s internals. Extensions can access relevant state using
+accessors on the association proxy:
+</p>
+<ul>
+<li><tt>proxy_owner</tt> - Returns the object the association is part of.
+
+</li>
+<li><tt>proxy_reflection</tt> - Returns the reflection object that describes
+the association.
+
+</li>
+<li><tt>proxy_target</tt> - Returns the associated object for belongs_to and
+has_one, or the collection of associated objects for has_many and
+has_and_belongs_to_many.
+
+</li>
+</ul>
+<h3>Association Join Models</h3>
+<p>
+Has Many associations can be configured with the :through option to use an
+explicit join model to retrieve the data. This operates similarly to a
+<tt>has_and_belongs_to_many</tt> association. The advantage is that
+you&#8217;re able to add validations, callbacks, and extra attributes on
+the join model. Consider the following schema:
+</p>
+<pre class="code">
+  <span class='class class kw'>class</span> <span class='Author constant id'>Author</span> <span class='lt op'>&lt;</span> <span class='BigRecord constant id'>BigRecord</span><span class='colon2 op'>::</span><span class='Base constant id'>Base</span>
+    <span class='has_many identifier id'>has_many</span> <span class='symbol val'>:authorships</span>
+    <span class='has_many identifier id'>has_many</span> <span class='symbol val'>:books</span><span class='comma token'>,</span> <span class='symbol val'>:through</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='symbol val'>:authorships</span>
+  <span class='end end kw'>end</span>
+
+  <span class='class class kw'>class</span> <span class='Authorship constant id'>Authorship</span> <span class='lt op'>&lt;</span> <span class='BigRecord constant id'>BigRecord</span><span class='colon2 op'>::</span><span class='Base constant id'>Base</span>
+    <span class='belongs_to identifier id'>belongs_to</span> <span class='symbol val'>:author</span>
+    <span class='belongs_to identifier id'>belongs_to</span> <span class='symbol val'>:book</span>
+  <span class='end end kw'>end</span>
+
+  <span class='@author ivar id'>@author</span> <span class='assign token'>=</span> <span class='Author constant id'>Author</span><span class='dot token'>.</span><span class='find identifier id'>find</span> <span class='symbol val'>:first</span>
+  <span class='@author ivar id'>@author</span><span class='dot token'>.</span><span class='authorships identifier id'>authorships</span><span class='dot token'>.</span><span class='collect identifier id'>collect</span> <span class='lbrace token'>{</span> <span class='bitor op'>|</span><span class='a identifier id'>a</span><span class='bitor op'>|</span> <span class='a identifier id'>a</span><span class='dot token'>.</span><span class='book identifier id'>book</span> <span class='rbrace token'>}</span> <span class='comment val'># selects all books that the author's authorships belong to.</span>
+  <span class='@author ivar id'>@author</span><span class='dot token'>.</span><span class='books identifier id'>books</span>                              <span class='comment val'># selects all books by using the Authorship join model</span>
+</pre>
+<p>
+You can also go through a has_many association on the join model:
+</p>
+<pre class="code">
+  <span class='class class kw'>class</span> <span class='Firm constant id'>Firm</span> <span class='lt op'>&lt;</span> <span class='BigRecord constant id'>BigRecord</span><span class='colon2 op'>::</span><span class='Base constant id'>Base</span>
+    <span class='has_many identifier id'>has_many</span>   <span class='symbol val'>:clients</span>
+    <span class='has_many identifier id'>has_many</span>   <span class='symbol val'>:invoices</span><span class='comma token'>,</span> <span class='symbol val'>:through</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='symbol val'>:clients</span>
+  <span class='end end kw'>end</span>
+
+  <span class='class class kw'>class</span> <span class='Client constant id'>Client</span> <span class='lt op'>&lt;</span> <span class='BigRecord constant id'>BigRecord</span><span class='colon2 op'>::</span><span class='Base constant id'>Base</span>
+    <span class='belongs_to identifier id'>belongs_to</span> <span class='symbol val'>:firm</span>
+    <span class='has_many identifier id'>has_many</span>   <span class='symbol val'>:invoices</span>
+  <span class='end end kw'>end</span>
+
+  <span class='class class kw'>class</span> <span class='Invoice constant id'>Invoice</span> <span class='lt op'>&lt;</span> <span class='BigRecord constant id'>BigRecord</span><span class='colon2 op'>::</span><span class='Base constant id'>Base</span>
+    <span class='belongs_to identifier id'>belongs_to</span> <span class='symbol val'>:client</span>
+  <span class='end end kw'>end</span>
+
+  <span class='@firm ivar id'>@firm</span> <span class='assign token'>=</span> <span class='Firm constant id'>Firm</span><span class='dot token'>.</span><span class='find identifier id'>find</span> <span class='symbol val'>:first</span>
+  <span class='@firm ivar id'>@firm</span><span class='dot token'>.</span><span class='clients identifier id'>clients</span><span class='dot token'>.</span><span class='collect identifier id'>collect</span> <span class='lbrace token'>{</span> <span class='bitor op'>|</span><span class='c identifier id'>c</span><span class='bitor op'>|</span> <span class='c identifier id'>c</span><span class='dot token'>.</span><span class='invoices identifier id'>invoices</span> <span class='rbrace token'>}</span><span class='dot token'>.</span><span class='flatten identifier id'>flatten</span> <span class='comment val'># select all invoices for all clients of the firm</span>
+  <span class='@firm ivar id'>@firm</span><span class='dot token'>.</span><span class='invoices identifier id'>invoices</span>                                   <span class='comment val'># selects all invoices by going through the Client join model.</span>
+</pre>
+<h3>Polymorphic Associations</h3>
+<p>
+Polymorphic associations on models are not restricted on what types of
+models they can be associated with. Rather, they specify an interface that
+a has_many association must adhere to.
+</p>
+<pre class="code">
+  <span class='class class kw'>class</span> <span class='Asset constant id'>Asset</span> <span class='lt op'>&lt;</span> <span class='BigRecord constant id'>BigRecord</span><span class='colon2 op'>::</span><span class='Base constant id'>Base</span>
+    <span class='belongs_to identifier id'>belongs_to</span> <span class='symbol val'>:attachable</span><span class='comma token'>,</span> <span class='symbol val'>:polymorphic</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='true true kw'>true</span>
+  <span class='end end kw'>end</span>
+
+  <span class='class class kw'>class</span> <span class='Post constant id'>Post</span> <span class='lt op'>&lt;</span> <span class='BigRecord constant id'>BigRecord</span><span class='colon2 op'>::</span><span class='Base constant id'>Base</span>
+    <span class='has_many identifier id'>has_many</span> <span class='symbol val'>:assets</span><span class='comma token'>,</span> <span class='symbol val'>:as</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='symbol val'>:attachable</span>         <span class='comment val'># The &lt;tt&gt;:as&lt;/tt&gt; option specifies the polymorphic interface to use.</span>
+  <span class='end end kw'>end</span>
+
+  <span class='@asset ivar id'>@asset</span><span class='dot token'>.</span><span class='attachable identifier id'>attachable</span> <span class='assign token'>=</span> <span class='@post ivar id'>@post</span>
+</pre>
+<p>
+This works by using a type column in addition to a foreign key to specify
+the associated record. In the Asset example, you&#8217;d need an
+attachable_id integer column and an attachable_type string column.
+</p>
+<p>
+Using polymorphic associations in combination with single table inheritance
+(STI) is a little tricky. In order for the associations to work as
+expected, ensure that you store the base model for the STI models in the
+type column of the polymorphic association. To continue with the asset
+example above, suppose there are guest posts and member posts that use the
+posts table for STI. So there will be an additional &#8216;type&#8217;
+column in the posts table.
+</p>
+<pre class="code">
+  <span class='class class kw'>class</span> <span class='Asset constant id'>Asset</span> <span class='lt op'>&lt;</span> <span class='BigRecord constant id'>BigRecord</span><span class='colon2 op'>::</span><span class='Base constant id'>Base</span>
+    <span class='belongs_to identifier id'>belongs_to</span> <span class='symbol val'>:attachable</span><span class='comma token'>,</span> <span class='symbol val'>:polymorphic</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='true true kw'>true</span>
+
+    <span class='def def kw'>def</span> <span class='attachable_type= identifier id'>attachable_type=</span><span class='lparen token'>(</span><span class='sType identifier id'>sType</span><span class='rparen token'>)</span>
+       <span class='super super kw'>super</span><span class='lparen token'>(</span><span class='sType identifier id'>sType</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span><span class='dot token'>.</span><span class='classify identifier id'>classify</span><span class='dot token'>.</span><span class='constantize identifier id'>constantize</span><span class='dot token'>.</span><span class='base_class identifier id'>base_class</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span><span class='rparen token'>)</span>
+    <span class='end end kw'>end</span>
+  <span class='end end kw'>end</span>
+
+  <span class='class class kw'>class</span> <span class='Post constant id'>Post</span> <span class='lt op'>&lt;</span> <span class='BigRecord constant id'>BigRecord</span><span class='colon2 op'>::</span><span class='Base constant id'>Base</span>
+    <span class='comment val'># because we store &quot;Post&quot; in attachable_type now :dependent =&gt; :destroy will work</span>
+    <span class='has_many identifier id'>has_many</span> <span class='symbol val'>:assets</span><span class='comma token'>,</span> <span class='symbol val'>:as</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='symbol val'>:attachable</span><span class='comma token'>,</span> <span class='symbol val'>:dependent</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='symbol val'>:destroy</span>
+  <span class='end end kw'>end</span>
+
+  <span class='class class kw'>class</span> <span class='GuestPost constant id'>GuestPost</span> <span class='lt op'>&lt;</span> <span class='BigRecord constant id'>BigRecord</span><span class='colon2 op'>::</span><span class='Base constant id'>Base</span>
+  <span class='end end kw'>end</span>
+
+  <span class='class class kw'>class</span> <span class='MemberPost constant id'>MemberPost</span> <span class='lt op'>&lt;</span> <span class='BigRecord constant id'>BigRecord</span><span class='colon2 op'>::</span><span class='Base constant id'>Base</span>
+  <span class='end end kw'>end</span>
+</pre>
+<h2>Caching</h2>
+<p>
+All of the methods are built on a simple caching principle that will keep
+the result of the last query around unless specifically instructed not to.
+The cache is even shared across methods to make it even cheaper to use the
+macro-added methods without worrying too much about performance at the
+first go. Example:
+</p>
+<pre class="code">
+  <span class='project identifier id'>project</span><span class='dot token'>.</span><span class='milestones identifier id'>milestones</span>             <span class='comment val'># fetches milestones from the database</span>
+  <span class='project identifier id'>project</span><span class='dot token'>.</span><span class='milestones identifier id'>milestones</span><span class='dot token'>.</span><span class='size identifier id'>size</span>        <span class='comment val'># uses the milestone cache</span>
+  <span class='project identifier id'>project</span><span class='dot token'>.</span><span class='milestones identifier id'>milestones</span><span class='dot token'>.</span><span class='empty? fid id'>empty?</span>      <span class='comment val'># uses the milestone cache</span>
+  <span class='project identifier id'>project</span><span class='dot token'>.</span><span class='milestones identifier id'>milestones</span><span class='lparen token'>(</span><span class='true true kw'>true</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='size identifier id'>size</span>  <span class='comment val'># fetches milestones from the database</span>
+  <span class='project identifier id'>project</span><span class='dot token'>.</span><span class='milestones identifier id'>milestones</span>             <span class='comment val'># uses the milestone cache</span>
+</pre>
+<h2>Eager loading of associations</h2>
+<p>
+Eager loading is a way to find objects of a certain class and a number of
+named associations along with it in a single SQL call. This is one of the
+easiest ways of to prevent the dreaded 1<tt>N problem in which fetching 100
+posts that each needs to display their author triggers 101 database
+queries. Through the use of eager loading, the 101 queries can be reduced
+to 1. Example:
+</p>
+<pre class="code">
+  <span class='class class kw'>class</span> <span class='Post constant id'>Post</span> <span class='lt op'>&lt;</span> <span class='BigRecord constant id'>BigRecord</span><span class='colon2 op'>::</span><span class='Base constant id'>Base</span>
+    <span class='belongs_to identifier id'>belongs_to</span> <span class='symbol val'>:author</span>
+    <span class='has_many identifier id'>has_many</span>   <span class='symbol val'>:comments</span>
+  <span class='end end kw'>end</span>
+</pre>
+<p>
+Consider the following loop using the class above:
+</p>
+<pre class="code">
+  <span class='for for kw'>for</span> <span class='post identifier id'>post</span> <span class='in in kw'>in</span> <span class='Post constant id'>Post</span><span class='dot token'>.</span><span class='find identifier id'>find</span><span class='lparen token'>(</span><span class='symbol val'>:all</span><span class='rparen token'>)</span>
+    <span class='puts identifier id'>puts</span> <span class='string val'>&quot;Post:            &quot;</span> <span class='lt op'>&lt;</span><span class='regexp val'>/tt&gt; post.title
+    puts &quot;Written by:      &quot; + post.author.name
+    puts &quot;Last comment on: &quot; + post.comments.first.created_on
+  end
+</span></pre>
+<p>
+To iterate over these one hundred posts, we&#8217;ll generate 201 database
+queries. Let&#8217;s first just optimize it for retrieving the author:
+</p>
+<pre class="code">
+  <span class='for for kw'>for</span> <span class='post identifier id'>post</span> <span class='in in kw'>in</span> <span class='Post constant id'>Post</span><span class='dot token'>.</span><span class='find identifier id'>find</span><span class='lparen token'>(</span><span class='symbol val'>:all</span><span class='comma token'>,</span> <span class='symbol val'>:include</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='symbol val'>:author</span><span class='rparen token'>)</span>
+</pre>
+<p>
+This references the name of the belongs_to association that also used the
+:author symbol, so the find will now weave in a join something like this:
+LEFT OUTER JOIN authors ON authors.id = posts.author_id. Doing so will cut
+down the number of queries from 201 to 101.
+</p>
+<p>
+We can improve upon the situation further by referencing both associations
+in the finder with:
+</p>
+<pre class="code">
+  <span class='for for kw'>for</span> <span class='post identifier id'>post</span> <span class='in in kw'>in</span> <span class='Post constant id'>Post</span><span class='dot token'>.</span><span class='find identifier id'>find</span><span class='lparen token'>(</span><span class='symbol val'>:all</span><span class='comma token'>,</span> <span class='symbol val'>:include</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='lbrack token'>[</span> <span class='symbol val'>:author</span><span class='comma token'>,</span> <span class='symbol val'>:comments</span> <span class='rbrack token'>]</span><span class='rparen token'>)</span>
+</pre>
+<p>
+That&#8217;ll add another join along the lines of: LEFT OUTER JOIN comments
+ON comments.post_id = posts.id. And we&#8217;ll be down to 1 query. But
+that shouldn&#8217;t fool you to think that you can pull out huge amounts
+of data with no performance penalty just because you&#8217;ve reduced the
+number of queries. The database still needs to send all the data to Active
+Record and it still needs to be processed. So it&#8217;s no catch-all for
+performance problems, but it&#8217;s a great way to cut down on the number
+of queries in a situation as the one described above.
+</p>
+<p>
+Since the eager loading pulls from multiple tables, you&#8217;ll have to
+disambiguate any column references in both conditions and orders. So :order
+=&gt; &quot;posts.id DESC&quot; will work while :order =&gt; &quot;id
+DESC&quot; will not. Because eager loading generates the SELECT statement
+too, the :select option is ignored.
+</p>
+<p>
+You can use eager loading on multiple associations from the same table, but
+you cannot use those associations in orders and conditions as there is
+currently not any way to disambiguate them. Eager loading will not pull
+additional attributes on join tables, so &quot;rich associations&quot; with
+has_and_belongs_to_many are not a good fit for eager loading.
+</p>
+<p>
+When eager loaded, conditions are interpolated in the context of the model
+class, not the model instance. Conditions are lazily interpolated before
+the actual model exists.
+</p>
+<h2>Table Aliasing</h2>
+<p>
+BigRecord uses table aliasing in the case that a table is referenced
+multiple times in a join. If a table is referenced only once, the standard
+table name is used. The second time, the table is aliased as
+#{reflection_name}_#{parent_table_name}. Indexes are appended for any more
+successive uses of the table name.
+</p>
+<pre class="code">
+  <span class='Post constant id'>Post</span><span class='dot token'>.</span><span class='find identifier id'>find</span> <span class='symbol val'>:all</span><span class='comma token'>,</span> <span class='symbol val'>:include</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='symbol val'>:comments</span>
+  <span class='comment val'># =&gt; SELECT ... FROM posts LEFT OUTER JOIN comments ON ...</span>
+  <span class='Post constant id'>Post</span><span class='dot token'>.</span><span class='find identifier id'>find</span> <span class='symbol val'>:all</span><span class='comma token'>,</span> <span class='symbol val'>:include</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='symbol val'>:special_comments</span> <span class='comment val'># STI</span>
+  <span class='comment val'># =&gt; SELECT ... FROM posts LEFT OUTER JOIN comments ON ... AND comments.type = 'SpecialComment'</span>
+  <span class='Post constant id'>Post</span><span class='dot token'>.</span><span class='find identifier id'>find</span> <span class='symbol val'>:all</span><span class='comma token'>,</span> <span class='symbol val'>:include</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='lbrack token'>[</span><span class='symbol val'>:comments</span><span class='comma token'>,</span> <span class='symbol val'>:special_comments</span><span class='rbrack token'>]</span> <span class='comment val'># special_comments is the reflection name, posts is the parent table name</span>
+  <span class='comment val'># =&gt; SELECT ... FROM posts LEFT OUTER JOIN comments ON ... LEFT OUTER JOIN comments special_comments_posts</span>
+</pre>
+<p>
+Acts as tree example:
+</p>
+<pre class="code">
+  <span class='TreeMixin constant id'>TreeMixin</span><span class='dot token'>.</span><span class='find identifier id'>find</span> <span class='symbol val'>:all</span><span class='comma token'>,</span> <span class='symbol val'>:include</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='symbol val'>:children</span>
+  <span class='comment val'># =&gt; SELECT ... FROM mixins LEFT OUTER JOIN mixins childrens_mixins ...</span>
+  <span class='TreeMixin constant id'>TreeMixin</span><span class='dot token'>.</span><span class='find identifier id'>find</span> <span class='symbol val'>:all</span><span class='comma token'>,</span> <span class='symbol val'>:include</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='lbrace token'>{</span><span class='symbol val'>:children</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='symbol val'>:parent</span><span class='rbrace token'>}</span> <span class='comment val'># using cascading eager includes</span>
+  <span class='comment val'># =&gt; SELECT ... FROM mixins LEFT OUTER JOIN mixins childrens_mixins ...</span>
+                              <span class='LEFT constant id'>LEFT</span> <span class='OUTER constant id'>OUTER</span> <span class='JOIN constant id'>JOIN</span> <span class='parents_mixins identifier id'>parents_mixins</span> <span class='dot3 op'>...</span>
+  <span class='TreeMixin constant id'>TreeMixin</span><span class='dot token'>.</span><span class='find identifier id'>find</span> <span class='symbol val'>:all</span><span class='comma token'>,</span> <span class='symbol val'>:include</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='lbrace token'>{</span><span class='symbol val'>:children</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='lbrace token'>{</span><span class='symbol val'>:parent</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='symbol val'>:children</span><span class='rbrace token'>}</span><span class='rbrace token'>}</span>
+  <span class='comment val'># =&gt; SELECT ... FROM mixins LEFT OUTER JOIN mixins childrens_mixins ...</span>
+                              <span class='LEFT constant id'>LEFT</span> <span class='OUTER constant id'>OUTER</span> <span class='JOIN constant id'>JOIN</span> <span class='parents_mixins identifier id'>parents_mixins</span> <span class='dot3 op'>...</span>
+</pre>
+<p>
+LEFT OUTER JOIN mixins childrens_mixins_2
+</p>
+<p>
+Has and Belongs to Many join tables use the same idea, but add a _join
+suffix:
+</p>
+<pre class="code">
+  <span class='Post constant id'>Post</span><span class='dot token'>.</span><span class='find identifier id'>find</span> <span class='symbol val'>:all</span><span class='comma token'>,</span> <span class='symbol val'>:include</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='symbol val'>:categories</span>
+  <span class='comment val'># =&gt; SELECT ... FROM posts LEFT OUTER JOIN categories_posts ... LEFT OUTER JOIN categories ...</span>
+  <span class='Post constant id'>Post</span><span class='dot token'>.</span><span class='find identifier id'>find</span> <span class='symbol val'>:all</span><span class='comma token'>,</span> <span class='symbol val'>:include</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='lbrace token'>{</span><span class='symbol val'>:categories</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='symbol val'>:posts</span><span class='rbrace token'>}</span>
+  <span class='comment val'># =&gt; SELECT ... FROM posts LEFT OUTER JOIN categories_posts ... LEFT OUTER JOIN categories ...</span>
+                             <span class='LEFT constant id'>LEFT</span> <span class='OUTER constant id'>OUTER</span> <span class='JOIN constant id'>JOIN</span> <span class='categories_posts identifier id'>categories_posts</span> <span class='posts_categories_join identifier id'>posts_categories_join</span> <span class='LEFT constant id'>LEFT</span> <span class='OUTER constant id'>OUTER</span> <span class='JOIN constant id'>JOIN</span> <span class='posts identifier id'>posts</span> <span class='posts_categories identifier id'>posts_categories</span>
+  <span class='Post constant id'>Post</span><span class='dot token'>.</span><span class='find identifier id'>find</span> <span class='symbol val'>:all</span><span class='comma token'>,</span> <span class='symbol val'>:include</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='lbrace token'>{</span><span class='symbol val'>:categories</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='lbrace token'>{</span><span class='symbol val'>:posts</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='symbol val'>:categories</span><span class='rbrace token'>}</span><span class='rbrace token'>}</span>
+  <span class='comment val'># =&gt; SELECT ... FROM posts LEFT OUTER JOIN categories_posts ... LEFT OUTER JOIN categories ...</span>
+                             <span class='LEFT constant id'>LEFT</span> <span class='OUTER constant id'>OUTER</span> <span class='JOIN constant id'>JOIN</span> <span class='categories_posts identifier id'>categories_posts</span> <span class='posts_categories_join identifier id'>posts_categories_join</span> <span class='LEFT constant id'>LEFT</span> <span class='OUTER constant id'>OUTER</span> <span class='JOIN constant id'>JOIN</span> <span class='posts identifier id'>posts</span> <span class='posts_categories identifier id'>posts_categories</span>
+                             <span class='LEFT constant id'>LEFT</span> <span class='OUTER constant id'>OUTER</span> <span class='JOIN constant id'>JOIN</span> <span class='categories_posts identifier id'>categories_posts</span> <span class='categories_posts_join identifier id'>categories_posts_join</span> <span class='LEFT constant id'>LEFT</span> <span class='OUTER constant id'>OUTER</span> <span class='JOIN constant id'>JOIN</span> <span class='categories identifier id'>categories</span> <span class='categories_posts identifier id'>categories_posts</span>
+</pre>
+<p>
+If you wish to specify your own custom joins using a :joins option, those
+table names will take precedence over the eager associations..
+</p>
+<pre class="code">
+  <span class='Post constant id'>Post</span><span class='dot token'>.</span><span class='find identifier id'>find</span> <span class='symbol val'>:all</span><span class='comma token'>,</span> <span class='symbol val'>:include</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='symbol val'>:comments</span><span class='comma token'>,</span> <span class='symbol val'>:joins</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>&quot;inner join comments ...&quot;</span>
+  <span class='comment val'># =&gt; SELECT ... FROM posts LEFT OUTER JOIN comments_posts ON ... INNER JOIN comments ...</span>
+  <span class='Post constant id'>Post</span><span class='dot token'>.</span><span class='find identifier id'>find</span> <span class='symbol val'>:all</span><span class='comma token'>,</span> <span class='symbol val'>:include</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='lbrack token'>[</span><span class='symbol val'>:comments</span><span class='comma token'>,</span> <span class='symbol val'>:special_comments</span><span class='rbrack token'>]</span><span class='comma token'>,</span> <span class='symbol val'>:joins</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>&quot;inner join comments ...&quot;</span>
+  <span class='comment val'># =&gt; SELECT ... FROM posts LEFT OUTER JOIN comments comments_posts ON ...</span>
+                             <span class='LEFT constant id'>LEFT</span> <span class='OUTER constant id'>OUTER</span> <span class='JOIN constant id'>JOIN</span> <span class='comments identifier id'>comments</span> <span class='special_comments_posts identifier id'>special_comments_posts</span> <span class='dot3 op'>...</span>
+                             <span class='INNER constant id'>INNER</span> <span class='JOIN constant id'>JOIN</span> <span class='comments identifier id'>comments</span> <span class='dot3 op'>...</span>
+</pre>
+<p>
+Table aliases are automatically truncated according to the maximum length
+of table identifiers according to the specific database.
+</p>
+<h2>Modules</h2>
+<p>
+By default, associations will look for objects within the current module
+scope. Consider:
+</p>
+<pre class="code">
+  <span class='module module kw'>module</span> <span class='MyApplication constant id'>MyApplication</span>
+    <span class='module module kw'>module</span> <span class='Business constant id'>Business</span>
+      <span class='class class kw'>class</span> <span class='Firm constant id'>Firm</span> <span class='lt op'>&lt;</span> <span class='BigRecord constant id'>BigRecord</span><span class='colon2 op'>::</span><span class='Base constant id'>Base</span>
+         <span class='has_many identifier id'>has_many</span> <span class='symbol val'>:clients</span>
+       <span class='end end kw'>end</span>
+
+      <span class='class class kw'>class</span> <span class='Company constant id'>Company</span> <span class='lt op'>&lt;</span> <span class='BigRecord constant id'>BigRecord</span><span class='colon2 op'>::</span><span class='Base constant id'>Base</span><span class='semicolon token'>;</span> <span class='end end kw'>end</span>
+    <span class='end end kw'>end</span>
+  <span class='end end kw'>end</span>
+</pre>
+<p>
+When Firm#clients is called, it&#8217;ll in turn call
+<tt>MyApplication::Business::Company.find(firm.id)</tt>. If you want to
+associate with a class in another module scope this can be done by
+specifying the complete class name, such as:
+</p>
+<pre class="code">
+  <span class='module module kw'>module</span> <span class='MyApplication constant id'>MyApplication</span>
+    <span class='module module kw'>module</span> <span class='Business constant id'>Business</span>
+      <span class='class class kw'>class</span> <span class='Firm constant id'>Firm</span> <span class='lt op'>&lt;</span> <span class='BigRecord constant id'>BigRecord</span><span class='colon2 op'>::</span><span class='Base constant id'>Base</span><span class='semicolon token'>;</span> <span class='end end kw'>end</span>
+    <span class='end end kw'>end</span>
+
+    <span class='module module kw'>module</span> <span class='Billing constant id'>Billing</span>
+      <span class='class class kw'>class</span> <span class='Account constant id'>Account</span> <span class='lt op'>&lt;</span> <span class='BigRecord constant id'>BigRecord</span><span class='colon2 op'>::</span><span class='Base constant id'>Base</span>
+        <span class='belongs_to identifier id'>belongs_to</span> <span class='symbol val'>:firm</span><span class='comma token'>,</span> <span class='symbol val'>:class_name</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>&quot;MyApplication::Business::Firm&quot;</span>
+      <span class='end end kw'>end</span>
+    <span class='end end kw'>end</span>
+  <span class='end end kw'>end</span>
+</pre>
+<h2>Type safety with BigRecord::AssociationTypeMismatch</h2>
+<p>
+If you attempt to assign an object to an association that doesn&#8217;t
+match the inferred or specified <tt>:class_name</tt>, you&#8217;ll get a
+BigRecord::AssociationTypeMismatch.
+</p>
+<h2>Options</h2>
+<p>
+All of the association macros can be specialized through options which
+makes more complex cases than the simple and guessable ones possible.
+</p>
+
+</div><div class="section constants">
+  
+</div>  <div class="section visibilitygroup public">
+    <h1>Public Visibility</h1>
+      <div class="section methodsummary instance public">
+    <h1>Public Instance Method Summary</h1>
+<table class="summary">
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#belongs_to_big_record-instance_method" title="#belongs_to_big_record">#belongs_to_big_record</a></span><span class='args'>(association_id, options = {})</span>
+            <span class='block'></span>
+          </span>
+        
+        
+          <span class='alias'>#belongs_to_bigrecord</span>
+        
+      </th>
+      <td class="docstring">
+        <p>
+Adds the following methods for retrieval and query for a single associated
+object that this object holds an id to.
+</p>
+
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#belongs_to_many-instance_method" title="#belongs_to_many">#belongs_to_many</a></span><span class='args'>(association_id, options = {})</span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#has_and_belongs_to_many_big_records-instance_method" title="#has_and_belongs_to_many_big_records">#has_and_belongs_to_many_big_records</a></span><span class='args'>(association_id, options = {}, &amp;extension)</span>
+            <span class='block'></span>
+          </span>
+        
+        
+          <span class='alias'>#has_and_belongs_to_many_bigrecords</span>
+        
+      </th>
+      <td class="docstring">
+        <p>
+Associates two classes via an intermediate join table.
+</p>
+
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#has_many_big_records-instance_method" title="#has_many_big_records">#has_many_big_records</a></span><span class='args'>(association_id, options = {}, &amp;extension)</span>
+            <span class='block'></span>
+          </span>
+        
+        
+          <span class='alias'>#has_many_bigrecords</span>
+        
+      </th>
+      <td class="docstring">
+        <p>
+Adds the following methods for retrieval and query of collections of
+associated objects.
+</p>
+
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#has_one_big_record-instance_method" title="#has_one_big_record">#has_one_big_record</a></span><span class='args'>(association_id, options = {})</span>
+            <span class='block'></span>
+          </span>
+        
+        
+          <span class='alias'>#has_one_bigrecord</span>
+        
+      </th>
+      <td class="docstring">
+        <p>
+Adds the following methods for retrieval and query of a single associated
+object.
+</p>
+
+        
+      </td>
+    </tr>
+  
+</table>
+
+  </div>
+<div class="section methoddetails instance public">
+  <h1>Public Instance Method Details</h1>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>belongs_to_big_record</h3>
+</div><div id="belongs_to_big_record-instance_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>belongs_to_big_record</span><span class='args'>(association_id, options = {})</span>
+      <span class='block'></span>
+    </tt>
+  </div>
+<p class="aliases">
+  <span class="aka">Also known as:</span>
+  
+    <tt id="belongs_to_bigrecord-instance_method">belongs_to_bigrecord</tt>
+  
+</p>
+</div><div class="section docstring">
+  <p>
+Adds the following methods for retrieval and query for a single associated
+object that this object holds an id to. <tt>association</tt> is replaced
+with the symbol passed as the first argument, so <tt>belongs_to
+:author</tt> would add among others <tt>author.nil?</tt>.
+</p>
+<ul>
+<li><tt>association(force_reload = false)</tt> - returns the associated object.
+Nil is returned if none is found.
+
+</li>
+<li><tt>association=(associate)</tt> - assigns the associate object, extracts
+the primary key, and sets it as the foreign key.
+
+</li>
+<li><tt>association.nil?</tt> - returns true if there is no associated object.
+
+</li>
+<li><tt>build_association(attributes = {})</tt> - returns a new object of the
+associated type that has been instantiated with <tt>attributes</tt> and
+linked to this object through a foreign key but has not yet been saved.
+
+</li>
+<li><tt>create_association(attributes = {})</tt> - returns a new object of the
+associated type that has been instantiated with <tt>attributes</tt> and
+linked to this object through a foreign key and that has already been saved
+(if it passed the validation).
+
+</li>
+</ul>
+<p>
+Example: A Post class declares <tt>belongs_to :author</tt>, which will add:
+</p>
+<ul>
+<li><tt>Post#author</tt> (similar to <tt>Author.find(author_id)</tt>)
+
+</li>
+<li><tt>Post#author=(author)</tt> (similar to <tt>post.author_id =
+author.id</tt>)
+
+</li>
+<li><tt>Post#author?</tt> (similar to <tt>post.author == some_author</tt>)
+
+</li>
+<li><tt>Post#author.nil?</tt>
+
+</li>
+<li><tt>Post#build_author</tt> (similar to <tt>post.author = Author.new</tt>)
+
+</li>
+<li><tt>Post#create_author</tt> (similar to <tt>post.author = Author.new;
+post.author.save; post.author</tt>)
+
+</li>
+</ul>
+<p>
+The declaration can also include an options hash to specialize the behavior
+of the association.
+</p>
+<p>
+Options are:
+</p>
+<ul>
+<li><tt>:class_name</tt> - specify the class name of the association. Use it
+only if that name can&#8217;t be inferred from the association name. So
+<tt>has_one :author</tt> will by default be linked to the <tt>Author</tt>
+class, but if the real class name is <tt>Person</tt>, you&#8217;ll have to
+specify it with this option.
+
+</li>
+<li><tt>:conditions</tt> - specify the conditions that the associated object
+must meet in order to be included as a &quot;WHERE&quot; sql fragment, such
+as &quot;authorized = 1&quot;.
+
+</li>
+<li><tt>:order</tt> - specify the order from which the associated object will
+be picked at the top. Specified as an &quot;ORDER BY&quot; sql fragment,
+such as &quot;last_name, first_name DESC&quot;
+
+</li>
+<li><tt>:foreign_key</tt> - specify the foreign key used for the association.
+By default this is guessed to be the name of the associated class in
+lower-case and &quot;_id&quot; suffixed. So a <tt>Person</tt> class that
+makes a belongs_to association to a <tt>Boss</tt> class will use
+&quot;boss_id&quot; as the default foreign_key.
+
+</li>
+<li><tt>:counter_cache</tt> - caches the number of belonging objects on the
+associate class through use of increment_counter and decrement_counter. The
+counter cache is incremented when an object of this class is created and
+decremented when it&#8217;s destroyed. This requires that a column named
+&quot;#{table_name}_count&quot; (such as comments_count for a belonging
+Comment class) is used on the associate class (such as a Post class). You
+can also specify a custom counter cache column by given that name instead
+of a true/false value to this option (e.g., <tt>:counter_cache =&gt;
+:my_custom_counter</tt>.)
+
+</li>
+<li><tt>:include</tt> - specify second-order associations that should be eager
+loaded when this object is loaded.
+
+</li>
+<li><tt>:polymorphic</tt> - specify this association is a polymorphic
+association by passing true.
+
+</li>
+</ul>
+<p>
+Option examples:
+</p>
+<pre class="code">
+  <span class='belongs_to identifier id'>belongs_to</span> <span class='symbol val'>:firm</span><span class='comma token'>,</span> <span class='symbol val'>:foreign_key</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>&quot;client_of&quot;</span>
+  <span class='belongs_to identifier id'>belongs_to</span> <span class='symbol val'>:author</span><span class='comma token'>,</span> <span class='symbol val'>:class_name</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>&quot;Person&quot;</span><span class='comma token'>,</span> <span class='symbol val'>:foreign_key</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>&quot;author_id&quot;</span>
+  <span class='belongs_to identifier id'>belongs_to</span> <span class='symbol val'>:valid_coupon</span><span class='comma token'>,</span> <span class='symbol val'>:class_name</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>&quot;Coupon&quot;</span><span class='comma token'>,</span> <span class='symbol val'>:foreign_key</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>&quot;coupon_id&quot;</span><span class='comma token'>,</span>
+             <span class='symbol val'>:conditions</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>'discounts &gt; #{payments_count}'</span>
+  <span class='belongs_to identifier id'>belongs_to</span> <span class='symbol val'>:attachable</span><span class='comma token'>,</span> <span class='symbol val'>:polymorphic</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='true true kw'>true</span>
+</pre>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+628
+629
+630
+631
+632
+633
+634
+635
+636
+637
+638
+639
+640
+641
+642
+643
+644
+645
+646
+647
+648
+649
+650
+651
+652
+653
+654
+655
+656
+657
+658
+659
+660
+661
+662
+663
+664
+665
+666
+667
+668
+669
+670
+671
+672</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/br_associations.rb', line 628</span>
+
+<span class='def def kw'>def</span> <span class='belongs_to_big_record identifier id'>belongs_to_big_record</span><span class='lparen token'>(</span><span class='association_id identifier id'>association_id</span><span class='comma token'>,</span> <span class='options identifier id'>options</span> <span class='assign token'>=</span> <span class='lbrace token'>{</span><span class='rbrace token'>}</span><span class='rparen token'>)</span>
+  <span class='if if kw'>if</span> <span class='options identifier id'>options</span><span class='dot token'>.</span><span class='include? fid id'>include?</span><span class='lparen token'>(</span><span class='symbol val'>:class_name</span><span class='rparen token'>)</span> <span class='andop op'>&amp;&amp;</span> <span class='notop op'>!</span><span class='options identifier id'>options</span><span class='dot token'>.</span><span class='include? fid id'>include?</span><span class='lparen token'>(</span><span class='symbol val'>:foreign_key</span><span class='rparen token'>)</span>
+    <span class='colon3 op'>::</span><span class='ActiveSupport constant id'>ActiveSupport</span><span class='colon2 op'>::</span><span class='Deprecation constant id'>Deprecation</span><span class='dot token'>.</span><span class='warn identifier id'>warn</span><span class='lparen token'>(</span>
+    <span class='string val'>&quot;The inferred foreign_key name will change in Rails 2.0 to use the association name instead of its class name when they differ.  When using :class_name in belongs_to, use the :foreign_key option to explicitly set the key name to avoid problems in the transition.&quot;</span><span class='comma token'>,</span>
+    <span class='caller identifier id'>caller</span><span class='rparen token'>)</span>
+  <span class='end end kw'>end</span>
+
+  <span class='reflection identifier id'>reflection</span> <span class='assign token'>=</span> <span class='create_belongs_to_big_record_reflection identifier id'>create_belongs_to_big_record_reflection</span><span class='lparen token'>(</span><span class='association_id identifier id'>association_id</span><span class='comma token'>,</span> <span class='options identifier id'>options</span><span class='rparen token'>)</span>
+
+  <span class='if if kw'>if</span> <span class='reflection identifier id'>reflection</span><span class='dot token'>.</span><span class='options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:polymorphic</span><span class='rbrack token'>]</span>
+    <span class='association_accessor_methods_big_record identifier id'>association_accessor_methods_big_record</span><span class='lparen token'>(</span><span class='reflection identifier id'>reflection</span><span class='comma token'>,</span> <span class='BelongsToPolymorphicAssociation constant id'>BelongsToPolymorphicAssociation</span><span class='rparen token'>)</span>
+
+    <span class='module_eval identifier id'>module_eval</span> <span class='do do kw'>do</span>
+      <span class='before_save identifier id'>before_save</span> <span class='string val'>&quot;association = instance_variable_get(\&quot;@\#{reflection.name}\&quot;)\nif association &amp;&amp; association.target\nif association.new_record?\nassociation.save(true)\nend\n\nif association.updated?\nself[\&quot;\#{reflection.primary_key_name}\&quot;] = association.id\nself[\&quot;\#{reflection.options[:foreign_type]}\&quot;] = association.class.base_class.name.to_s\nend\nend\n&quot;</span>
+    <span class='end end kw'>end</span>
+  <span class='else else kw'>else</span>
+    <span class='association_accessor_methods_big_record identifier id'>association_accessor_methods_big_record</span><span class='lparen token'>(</span><span class='reflection identifier id'>reflection</span><span class='comma token'>,</span> <span class='BelongsToAssociation constant id'>BelongsToAssociation</span><span class='rparen token'>)</span>
+    <span class='association_constructor_method_big_record identifier id'>association_constructor_method_big_record</span><span class='lparen token'>(</span><span class='symbol val'>:build</span><span class='comma token'>,</span>  <span class='reflection identifier id'>reflection</span><span class='comma token'>,</span> <span class='BelongsToAssociation constant id'>BelongsToAssociation</span><span class='rparen token'>)</span>
+    <span class='association_constructor_method_big_record identifier id'>association_constructor_method_big_record</span><span class='lparen token'>(</span><span class='symbol val'>:create</span><span class='comma token'>,</span> <span class='reflection identifier id'>reflection</span><span class='comma token'>,</span> <span class='BelongsToAssociation constant id'>BelongsToAssociation</span><span class='rparen token'>)</span>
+
+    <span class='module_eval identifier id'>module_eval</span> <span class='do do kw'>do</span>
+      <span class='before_save identifier id'>before_save</span> <span class='string val'>&quot;association = instance_variable_get(\&quot;@\#{reflection.name}\&quot;)\nif !association.nil?\nif association.new_record?\nassociation.save(true)\nend\n\nif association.updated?\nself[\&quot;\#{reflection.primary_key_name}\&quot;] = association.id\nend\nend\n&quot;</span>
+    <span class='end end kw'>end</span>
+
+    <span class='comment val'># deprecated api</span>
+<span class='comment val'>#          deprecated_has_association_method(reflection.name)</span>
+<span class='comment val'>#          deprecated_association_comparison_method(reflection.name, reflection.class_name)</span>
+  <span class='end end kw'>end</span>
+
+  <span class='if if kw'>if</span> <span class='options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:counter_cache</span><span class='rbrack token'>]</span>
+    <span class='cache_column identifier id'>cache_column</span> <span class='assign token'>=</span> <span class='options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:counter_cache</span><span class='rbrack token'>]</span> <span class='eq op'>==</span> <span class='true true kw'>true</span> <span class='question op'>?</span>
+      <span class='dstring node'>&quot;#{self.to_s.underscore.pluralize}_count&quot;</span> <span class='colon op'>:</span>
+      <span class='options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:counter_cache</span><span class='rbrack token'>]</span>
+
+    <span class='module_eval identifier id'>module_eval</span><span class='lparen token'>(</span>
+      <span class='dstring node'>&quot;after_create '#{reflection.name}.class.increment_counter(\&quot;#{cache_column}\&quot;, #{reflection.primary_key_name})&quot;</span> <span class='plus op'>+</span>
+      <span class='dstring node'>&quot; unless #{reflection.name}.nil?'&quot;</span>
+    <span class='rparen token'>)</span>
+
+    <span class='module_eval identifier id'>module_eval</span><span class='lparen token'>(</span>
+      <span class='dstring node'>&quot;before_destroy '#{reflection.name}.class.decrement_counter(\&quot;#{cache_column}\&quot;, #{reflection.primary_key_name})&quot;</span> <span class='plus op'>+</span>
+      <span class='dstring node'>&quot; unless #{reflection.name}.nil?'&quot;</span>
+    <span class='rparen token'>)</span>
+  <span class='end end kw'>end</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>belongs_to_many</h3>
+</div><div id="belongs_to_many-instance_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>belongs_to_many</span><span class='args'>(association_id, options = {})</span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+701
+702
+703
+704
+705
+706
+707
+708
+709
+710
+711
+712
+713
+714
+715
+716
+717
+718</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/br_associations.rb', line 701</span>
+
+<span class='def def kw'>def</span> <span class='belongs_to_many identifier id'>belongs_to_many</span><span class='lparen token'>(</span><span class='association_id identifier id'>association_id</span><span class='comma token'>,</span> <span class='options identifier id'>options</span> <span class='assign token'>=</span> <span class='lbrace token'>{</span><span class='rbrace token'>}</span><span class='rparen token'>)</span>
+  <span class='if if kw'>if</span> <span class='options identifier id'>options</span><span class='dot token'>.</span><span class='include? fid id'>include?</span><span class='lparen token'>(</span><span class='symbol val'>:class_name</span><span class='rparen token'>)</span> <span class='andop op'>&amp;&amp;</span> <span class='notop op'>!</span><span class='options identifier id'>options</span><span class='dot token'>.</span><span class='include? fid id'>include?</span><span class='lparen token'>(</span><span class='symbol val'>:foreign_key</span><span class='rparen token'>)</span>
+    <span class='colon3 op'>::</span><span class='ActiveSupport constant id'>ActiveSupport</span><span class='colon2 op'>::</span><span class='Deprecation constant id'>Deprecation</span><span class='dot token'>.</span><span class='warn identifier id'>warn</span><span class='lparen token'>(</span>
+    <span class='string val'>&quot;The inferred foreign_key name will change in Rails 2.0 to use the association name instead of its class name when they differ.  When using :class_name in belongs_to, use the :foreign_key option to explicitly set the key name to avoid problems in the transition.&quot;</span><span class='comma token'>,</span>
+    <span class='caller identifier id'>caller</span><span class='rparen token'>)</span>
+  <span class='end end kw'>end</span>
+
+  <span class='reflection identifier id'>reflection</span> <span class='assign token'>=</span> <span class='create_belongs_to_many_reflection identifier id'>create_belongs_to_many_reflection</span><span class='lparen token'>(</span><span class='association_id identifier id'>association_id</span><span class='comma token'>,</span> <span class='options identifier id'>options</span><span class='rparen token'>)</span>
+
+  <span class='association_accessor_methods_big_record identifier id'>association_accessor_methods_big_record</span><span class='lparen token'>(</span><span class='reflection identifier id'>reflection</span><span class='comma token'>,</span> <span class='BelongsToManyAssociation constant id'>BelongsToManyAssociation</span><span class='rparen token'>)</span>
+  <span class='association_constructor_method_big_record identifier id'>association_constructor_method_big_record</span><span class='lparen token'>(</span><span class='symbol val'>:build</span><span class='comma token'>,</span>  <span class='reflection identifier id'>reflection</span><span class='comma token'>,</span> <span class='BelongsToManyAssociation constant id'>BelongsToManyAssociation</span><span class='rparen token'>)</span>
+  <span class='association_constructor_method_big_record identifier id'>association_constructor_method_big_record</span><span class='lparen token'>(</span><span class='symbol val'>:create</span><span class='comma token'>,</span> <span class='reflection identifier id'>reflection</span><span class='comma token'>,</span> <span class='BelongsToManyAssociation constant id'>BelongsToManyAssociation</span><span class='rparen token'>)</span>
+
+  <span class='module_eval identifier id'>module_eval</span> <span class='do do kw'>do</span>
+    <span class='before_save identifier id'>before_save</span> <span class='string val'>&quot;association = instance_variable_get(\&quot;@\#{reflection.name}\&quot;)\nif !association.nil?\nassociation.each do |r|\nr.save(true) if r.new_record?\nend\n\nif association.updated?\nself[\&quot;\#{reflection.primary_key_name}\&quot;] = association.collect{|r| r.id}\nend\nend\n&quot;</span>
+  <span class='end end kw'>end</span>
+
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>has_and_belongs_to_many_big_records</h3>
+</div><div id="has_and_belongs_to_many_big_records-instance_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>has_and_belongs_to_many_big_records</span><span class='args'>(association_id, options = {}, &amp;extension)</span>
+      <span class='block'></span>
+    </tt>
+  </div>
+<p class="aliases">
+  <span class="aka">Also known as:</span>
+  
+    <tt id="has_and_belongs_to_many_bigrecords-instance_method">has_and_belongs_to_many_bigrecords</tt>
+  
+</p>
+</div><div class="section docstring">
+  <p>
+Associates two classes via an intermediate join table. Unless the join
+table is explicitly specified as an option, it is guessed using the lexical
+order of the class names. So a join between Developer and Project will give
+the default join table name of &quot;developers_projects&quot; because
+&quot;D&quot; outranks &quot;P&quot;. Note that this precedence is
+calculated using the <tt>&lt;</tt> operator for <tt>String</tt>. This means
+that if the strings are of different lengths, and the strings are equal
+when compared up to the shortest length, then the longer string is
+considered of higher lexical precedence than the shorter one. For example,
+one would expect the tables <tt>paper_boxes</tt> and <tt>papers</tt> to
+generate a join table name of <tt>papers_paper_boxes</tt> because of the
+length of the name <tt>paper_boxes</tt>, but it in fact generates a join
+table name of <tt>paper_boxes_papers</tt>. Be aware of this caveat, and use
+the custom <tt>join_table</tt> option if you need to.
+</p>
+<p>
+Deprecated: Any additional fields added to the join table will be placed as
+attributes when pulling records out through has_and_belongs_to_many
+associations. Records returned from join tables with additional attributes
+will be marked as ReadOnly (because we can&#8217;t save changes to the
+additional attrbutes). It&#8217;s strongly recommended that you upgrade any
+associations with attributes to a real join model (see introduction).
+</p>
+<p>
+Adds the following methods for retrieval and query. <tt>collection</tt> is
+replaced with the symbol passed as the first argument, so
+<tt>has_and_belongs_to_many :categories</tt> would add among others
+<tt>categories.empty?</tt>.
+</p>
+<ul>
+<li><tt>collection(force_reload = false)</tt> - returns an array of all the
+associated objects. An empty array is returned if none is found.
+
+</li>
+<li><tt>collection&lt;&lt;(object, &#8230;)</tt> - adds one or more objects to
+the collection by creating associations in the join table (collection.push
+and collection.concat are aliases to this method).
+
+</li>
+<li><tt>collection.push_with_attributes(object, join_attributes)</tt> - adds
+one to the collection by creating an association in the join table that
+also holds the attributes from <tt>join_attributes</tt> (should be a hash
+with the column names as keys). This can be used to have additional
+attributes on the join, which will be injected into the associated objects
+when they are retrieved through the collection.
+(collection.concat_with_attributes is an alias to this method). This method
+is now deprecated.
+
+</li>
+<li><tt>collection.delete(object, &#8230;)</tt> - removes one or more objects
+from the collection by removing their associations from the join table.
+This does not destroy the objects.
+
+</li>
+<li><tt>collection=objects</tt> - replaces the collections content by deleting
+and adding objects as appropriate.
+
+</li>
+<li><tt>collection_singular_ids</tt> - returns an array of the associated
+objects ids
+
+</li>
+<li><tt>collection_singular_ids=ids</tt> - replace the collection by the
+objects identified by the primary keys in <tt>ids</tt>
+
+</li>
+<li><tt>collection.clear</tt> - removes every object from the collection. This
+does not destroy the objects.
+
+</li>
+<li><tt>collection.empty?</tt> - returns true if there are no associated
+objects.
+
+</li>
+<li><tt>collection.size</tt> - returns the number of associated objects.
+
+</li>
+<li><tt>collection.find(id)</tt> - finds an associated object responding to the
+<tt>id</tt> and that meets the condition that it has to be associated with
+this object.
+
+</li>
+<li><tt>collection.build(attributes = {})</tt> - returns a new object of the
+collection type that has been instantiated with <tt>attributes</tt> and
+linked to this object through the join table but has not yet been saved.
+
+</li>
+<li><tt>collection.create(attributes = {})</tt> - returns a new object of the
+collection type that has been instantiated with <tt>attributes</tt> and
+linked to this object through the join table and that has already been
+saved (if it passed the validation).
+
+</li>
+</ul>
+<p>
+Example: An Developer class declares <tt>has_and_belongs_to_many
+:projects</tt>, which will add:
+</p>
+<ul>
+<li><tt>Developer#projects</tt>
+
+</li>
+<li><tt>Developer#projects&lt;&lt;</tt>
+
+</li>
+<li><tt>Developer#projects.delete</tt>
+
+</li>
+<li><tt>Developer#projects=</tt>
+
+</li>
+<li><tt>Developer#project_ids</tt>
+
+</li>
+<li><tt>Developer#project_ids=</tt>
+
+</li>
+<li><tt>Developer#projects.clear</tt>
+
+</li>
+<li><tt>Developer#projects.empty?</tt>
+
+</li>
+<li><tt>Developer#projects.size</tt>
+
+</li>
+<li><tt>Developer#projects.find(id)</tt>
+
+</li>
+<li><tt>Developer#projects.build</tt> (similar to
+<tt>Project.new(&quot;project_id&quot; =&gt; id)</tt>)
+
+</li>
+<li><tt>Developer#projects.create</tt> (similar to <tt>c =
+Project.new(&quot;project_id&quot; =&gt; id); c.save; c</tt>)
+
+</li>
+</ul>
+<p>
+The declaration may include an options hash to specialize the behavior of
+the association.
+</p>
+<p>
+Options are:
+</p>
+<ul>
+<li><tt>:class_name</tt> - specify the class name of the association. Use it
+only if that name can&#8217;t be inferred from the association name. So
+<tt>has_and_belongs_to_many :projects</tt> will by default be linked to the
+<tt>Project</tt> class, but if the real class name is
+<tt>SuperProject</tt>, you&#8217;ll have to specify it with this option.
+
+</li>
+<li><tt>:join_table</tt> - specify the name of the join table if the default
+based on lexical order isn&#8217;t what you want. WARNING: If you&#8217;re
+overwriting the table name of either class, the table_name method MUST be
+declared underneath any has_and_belongs_to_many declaration in order to
+work.
+
+</li>
+<li><tt>:foreign_key</tt> - specify the foreign key used for the association.
+By default this is guessed to be the name of this class in lower-case and
+&quot;_id&quot; suffixed. So a <tt>Person</tt> class that makes a
+has_and_belongs_to_many association will use &quot;person_id&quot; as the
+default foreign_key.
+
+</li>
+<li><tt>:association_foreign_key</tt> - specify the association foreign key
+used for the association. By default this is guessed to be the name of the
+associated class in lower-case and &quot;_id&quot; suffixed. So if the
+associated class is <tt>Project</tt>, the has_and_belongs_to_many
+association will use &quot;project_id&quot; as the default association
+foreign_key.
+
+</li>
+<li><tt>:conditions</tt> - specify the conditions that the associated object
+must meet in order to be included as a &quot;WHERE&quot; sql fragment, such
+as &quot;authorized = 1&quot;.
+
+</li>
+<li><tt>:order</tt> - specify the order in which the associated objects are
+returned as a &quot;ORDER BY&quot; sql fragment, such as &quot;last_name,
+first_name DESC&quot;
+
+</li>
+<li><tt>:uniq</tt> - if set to true, duplicate associated objects will be
+ignored by accessors and query methods
+
+</li>
+<li><tt>:finder_sql</tt> - overwrite the default generated SQL used to fetch
+the association with a manual one
+
+</li>
+<li><tt>:delete_sql</tt> - overwrite the default generated SQL used to remove
+links between the associated classes with a manual one
+
+</li>
+<li><tt>:insert_sql</tt> - overwrite the default generated SQL used to add
+links between the associated classes with a manual one
+
+</li>
+<li><tt>:extend</tt> - anonymous module for extending the proxy, see
+&quot;Association extensions&quot;.
+
+</li>
+<li><tt>:include</tt> - specify second-order associations that should be eager
+loaded when the collection is loaded.
+
+</li>
+<li><tt>:group</tt>: An attribute name by which the result should be grouped.
+Uses the GROUP BY SQL-clause.
+
+</li>
+<li><tt>:limit</tt>: An integer determining the limit on the number of rows
+that should be returned.
+
+</li>
+<li><tt>:offset</tt>: An integer determining the offset from where the rows
+should be fetched. So at 5, it would skip the first 4 rows.
+
+</li>
+<li><tt>:select</tt>: By default, this is * as in SELECT * FROM, but can be
+changed if you for example want to do a join, but not include the joined
+columns.
+
+</li>
+</ul>
+<p>
+Option examples:
+</p>
+<pre class="code">
+  <span class='has_and_belongs_to_many identifier id'>has_and_belongs_to_many</span> <span class='symbol val'>:projects</span>
+  <span class='has_and_belongs_to_many identifier id'>has_and_belongs_to_many</span> <span class='symbol val'>:projects</span><span class='comma token'>,</span> <span class='symbol val'>:include</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='lbrack token'>[</span> <span class='symbol val'>:milestones</span><span class='comma token'>,</span> <span class='symbol val'>:manager</span> <span class='rbrack token'>]</span>
+  <span class='has_and_belongs_to_many identifier id'>has_and_belongs_to_many</span> <span class='symbol val'>:nations</span><span class='comma token'>,</span> <span class='symbol val'>:class_name</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>&quot;Country&quot;</span>
+  <span class='has_and_belongs_to_many identifier id'>has_and_belongs_to_many</span> <span class='symbol val'>:categories</span><span class='comma token'>,</span> <span class='symbol val'>:join_table</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>&quot;prods_cats&quot;</span>
+  <span class='has_and_belongs_to_many identifier id'>has_and_belongs_to_many</span> <span class='symbol val'>:active_projects</span><span class='comma token'>,</span> <span class='symbol val'>:join_table</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>'developers_projects'</span><span class='comma token'>,</span> <span class='symbol val'>:delete_sql</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span>
+  <span class='string val'>'DELETE FROM developers_projects WHERE active=1 AND developer_id = #{id} AND project_id = #{record.id}'</span>
+</pre>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+825
+826
+827
+828
+829
+830
+831
+832
+833
+834
+835
+836
+837
+838
+839
+840
+841
+842</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/br_associations.rb', line 825</span>
+
+<span class='def def kw'>def</span> <span class='has_and_belongs_to_many_big_records identifier id'>has_and_belongs_to_many_big_records</span><span class='lparen token'>(</span><span class='association_id identifier id'>association_id</span><span class='comma token'>,</span> <span class='options identifier id'>options</span> <span class='assign token'>=</span> <span class='lbrace token'>{</span><span class='rbrace token'>}</span><span class='comma token'>,</span> <span class='bitand op'>&amp;</span><span class='extension identifier id'>extension</span><span class='rparen token'>)</span>
+  <span class='reflection identifier id'>reflection</span> <span class='assign token'>=</span> <span class='create_has_and_belongs_to_many_big_records_reflection identifier id'>create_has_and_belongs_to_many_big_records_reflection</span><span class='lparen token'>(</span><span class='association_id identifier id'>association_id</span><span class='comma token'>,</span> <span class='options identifier id'>options</span><span class='comma token'>,</span> <span class='bitand op'>&amp;</span><span class='extension identifier id'>extension</span><span class='rparen token'>)</span>
+
+  <span class='collection_accessor_methods identifier id'>collection_accessor_methods</span><span class='lparen token'>(</span><span class='reflection identifier id'>reflection</span><span class='comma token'>,</span> <span class='HasAndBelongsToManyAssociation constant id'>HasAndBelongsToManyAssociation</span><span class='rparen token'>)</span>
+
+  <span class='comment val'># Don't use a before_destroy callback since users' before_destroy</span>
+  <span class='comment val'># callbacks will be executed after the association is wiped out.</span>
+  <span class='old_method identifier id'>old_method</span> <span class='assign token'>=</span> <span class='dstring node'>&quot;destroy_without_habtm_shim_for_#{reflection.name}&quot;</span>
+  <span class='class_eval identifier id'>class_eval</span> <span class='string val'>&quot;alias_method :\#{old_method}, :destroy_without_callbacks\ndef destroy_without_callbacks\n\#{reflection.name}.clear\n\#{old_method}\nend\n&quot;</span>
+
+  <span class='add_association_callbacks identifier id'>add_association_callbacks</span><span class='lparen token'>(</span><span class='reflection identifier id'>reflection</span><span class='dot token'>.</span><span class='name identifier id'>name</span><span class='comma token'>,</span> <span class='options identifier id'>options</span><span class='rparen token'>)</span>
+
+  <span class='comment val'># deprecated api</span>
+<span class='comment val'>#        deprecated_collection_count_method(reflection.name)</span>
+<span class='comment val'>#        deprecated_add_association_relation(reflection.name)</span>
+<span class='comment val'>#        deprecated_remove_association_relation(reflection.name)</span>
+<span class='comment val'>#        deprecated_has_collection_method(reflection.name)</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>has_many_big_records</h3>
+</div><div id="has_many_big_records-instance_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>has_many_big_records</span><span class='args'>(association_id, options = {}, &amp;extension)</span>
+      <span class='block'></span>
+    </tt>
+  </div>
+<p class="aliases">
+  <span class="aka">Also known as:</span>
+  
+    <tt id="has_many_bigrecords-instance_method">has_many_bigrecords</tt>
+  
+</p>
+</div><div class="section docstring">
+  <p>
+Adds the following methods for retrieval and query of collections of
+associated objects. <tt>collection</tt> is replaced with the symbol passed
+as the first argument, so <tt>has_many :clients</tt> would add among others
+<tt>clients.empty?</tt>.
+</p>
+<ul>
+<li><tt>collection(force_reload = false)</tt> - returns an array of all the
+associated objects. An empty array is returned if none are found.
+
+</li>
+<li><tt>collection&lt;&lt;(object, &#8230;)</tt> - adds one or more objects to
+the collection by setting their foreign keys to the collection&#8217;s
+primary key.
+
+</li>
+<li><tt>collection.delete(object, &#8230;)</tt> - removes one or more objects
+from the collection by setting their foreign keys to NULL. This will also
+destroy the objects if they&#8217;re declared as belongs_to and dependent
+on this model.
+
+</li>
+<li><tt>collection=objects</tt> - replaces the collections content by deleting
+and adding objects as appropriate.
+
+</li>
+<li><tt>collection_singular_ids</tt> - returns an array of the associated
+objects ids
+
+</li>
+<li><tt>collection_singular_ids=ids</tt> - replace the collection by the
+objects identified by the primary keys in <tt>ids</tt>
+
+</li>
+<li><tt>collection.clear</tt> - removes every object from the collection. This
+destroys the associated objects if they are <tt>:dependent</tt>, deletes
+them directly from the database if they are <tt>:dependent =&gt;
+:delete_all</tt>, and sets their foreign keys to NULL otherwise.
+
+</li>
+<li><tt>collection.empty?</tt> - returns true if there are no associated
+objects.
+
+</li>
+<li><tt>collection.size</tt> - returns the number of associated objects.
+
+</li>
+<li><tt>collection.find</tt> - finds an associated object according to the same
+rules as Base.find.
+
+</li>
+<li><tt>collection.build(attributes = {})</tt> - returns a new object of the
+collection type that has been instantiated with <tt>attributes</tt> and
+linked to this object through a foreign key but has not yet been saved.
+*Note:* This only works if an associated object already exists, not if
+it&#8217;s nil!
+
+</li>
+<li><tt>collection.create(attributes = {})</tt> - returns a new object of the
+collection type that has been instantiated with <tt>attributes</tt> and
+linked to this object through a foreign key and that has already been saved
+(if it passed the validation). *Note:* This only works if an associated
+object already exists, not if it&#8217;s nil!
+
+</li>
+</ul>
+<p>
+Example: A Firm class declares <tt>has_many :clients</tt>, which will add:
+</p>
+<ul>
+<li><tt>Firm#clients</tt> (similar to <tt>Clients.find :all, :conditions =&gt;
+&quot;firm_id = #{id}&quot;</tt>)
+
+</li>
+<li><tt>Firm#clients&lt;&lt;</tt>
+
+</li>
+<li><tt>Firm#clients.delete</tt>
+
+</li>
+<li><tt>Firm#clients=</tt>
+
+</li>
+<li><tt>Firm#client_ids</tt>
+
+</li>
+<li><tt>Firm#client_ids=</tt>
+
+</li>
+<li><tt>Firm#clients.clear</tt>
+
+</li>
+<li><tt>Firm#clients.empty?</tt> (similar to <tt>firm.clients.size == 0</tt>)
+
+</li>
+<li><tt>Firm#clients.size</tt> (similar to <tt>Client.count &quot;firm_id =
+#{id}&quot;</tt>)
+
+</li>
+<li><tt>Firm#clients.find</tt> (similar to <tt>Client.find(id, :conditions
+=&gt; &quot;firm_id = #{id}&quot;)</tt>)
+
+</li>
+<li><tt>Firm#clients.build</tt> (similar to <tt>Client.new(&quot;firm_id&quot;
+=&gt; id)</tt>)
+
+</li>
+<li><tt>Firm#clients.create</tt> (similar to <tt>c =
+Client.new(&quot;firm_id&quot; =&gt; id); c.save; c</tt>)
+
+</li>
+</ul>
+<p>
+The declaration can also include an options hash to specialize the behavior
+of the association.
+</p>
+<p>
+Options are:
+</p>
+<ul>
+<li><tt>:class_name</tt> - specify the class name of the association. Use it
+only if that name can&#8217;t be inferred from the association name. So
+<tt>has_many :products</tt> will by default be linked to the
+<tt>Product</tt> class, but if the real class name is
+<tt>SpecialProduct</tt>, you&#8217;ll have to specify it with this option.
+
+</li>
+<li><tt>:conditions</tt> - specify the conditions that the associated objects
+must meet in order to be included as a &quot;WHERE&quot; sql fragment, such
+as &quot;price &gt; 5 AND name LIKE &#8216;B%&#8217;&quot;.
+
+</li>
+<li><tt>:order</tt> - specify the order in which the associated objects are
+returned as a &quot;ORDER BY&quot; sql fragment, such as &quot;last_name,
+first_name DESC&quot;
+
+</li>
+<li><tt>:group</tt> - specify the attribute by which the associated objects are
+returned as a &quot;GROUP BY&quot; sql fragment, such as
+&quot;category&quot;
+
+</li>
+<li><tt>:foreign_key</tt> - specify the foreign key used for the association.
+By default this is guessed to be the name of this class in lower-case and
+&quot;_id&quot; suffixed. So a <tt>Person</tt> class that makes a has_many
+association will use &quot;person_id&quot; as the default foreign_key.
+
+</li>
+<li><tt>:dependent</tt> - if set to :destroy all the associated objects are
+destroyed alongside this object by calling their destroy method. If set to
+:delete_all all associated objects are deleted <b>without</b> calling their
+destroy method. If set to :nullify all associated objects&#8217; foreign
+keys are set to NULL <b>without</b> calling their save callbacks. NOTE:
+:dependent =&gt; true is deprecated and has been replaced with :dependent
+=&gt; :destroy. May not be set if :exclusively_dependent is also set.
+
+</li>
+<li><tt>:exclusively_dependent</tt> - Deprecated; equivalent to :dependent
+=&gt; :delete_all. If set to true all the associated object are deleted in
+one SQL statement without having their before_destroy callback run. This
+should only be used on associations that depend solely on this class and
+don&#8217;t need to do any clean-up in before_destroy. The upside is that
+it&#8217;s much faster, especially if there&#8217;s a counter_cache
+involved. May not be set if :dependent is also set.
+
+</li>
+<li><tt>:finder_sql</tt> - specify a complete SQL statement to fetch the
+association. This is a good way to go for complex associations that depend
+on multiple tables. Note: When this option is used,
+<tt>find_in_collection</tt> is <em>not</em> added.
+
+</li>
+<li><tt>:counter_sql</tt> - specify a complete SQL statement to fetch the size
+of the association. If <tt>:finder_sql</tt> is specified but <tt>:counter_sql</tt>,
+<tt>:counter_sql</tt> will be generated by replacing SELECT &#8230; FROM with
+SELECT COUNT(*) FROM.
+
+</li>
+<li><tt>:extend</tt> - specify a named module for extending the proxy, see
+&quot;Association extensions&quot;.
+
+</li>
+<li><tt>:include</tt> - specify second-order associations that should be eager
+loaded when the collection is loaded.
+
+</li>
+<li><tt>:group</tt>: An attribute name by which the result should be grouped.
+Uses the GROUP BY SQL-clause.
+
+</li>
+<li><tt>:limit</tt>: An integer determining the limit on the number of rows
+that should be returned.
+
+</li>
+<li><tt>:offset</tt>: An integer determining the offset from where the rows
+should be fetched. So at 5, it would skip the first 4 rows.
+
+</li>
+<li><tt>:select</tt>: By default, this is * as in SELECT * FROM, but can be
+changed if you for example want to do a join, but not include the joined
+columns.
+
+</li>
+<li><tt>:as</tt>: Specifies a polymorphic interface (See #belongs_to).
+
+</li>
+<li><tt>:through</tt>: Specifies a Join Model to perform the query through.
+Options for <tt>:class_name</tt> and <tt>:foreign_key</tt> are ignored, as
+the association uses the source reflection. You can only use a
+<tt>:through</tt> query through a <tt>belongs_to</tt> or <tt>has_many</tt>
+association.
+
+</li>
+<li><tt>:source</tt>: Specifies the source association name used by
+<tt>has_many :through</tt> queries. Only use it if the name cannot be
+inferred from the association. <tt>has_many :subscribers, :through =&gt;
+:subscriptions</tt> will look for either <tt>:subscribers</tt> or <tt>:subscriber</tt> on
+<tt>Subscription</tt>, unless a <tt>:source</tt> is given.
+
+</li>
+<li><tt>:source_type</tt>: Specifies type of the source association used by
+<tt>has_many :through</tt> queries where the source association is a
+polymorphic belongs_to.
+
+</li>
+<li><tt>:uniq</tt> - if set to true, duplicates will be omitted from the
+collection. Useful in conjunction with :through.
+
+</li>
+</ul>
+<p>
+Option examples:
+</p>
+<pre class="code">
+  <span class='has_many identifier id'>has_many</span> <span class='symbol val'>:comments</span><span class='comma token'>,</span> <span class='symbol val'>:order</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>&quot;posted_on&quot;</span>
+  <span class='has_many identifier id'>has_many</span> <span class='symbol val'>:comments</span><span class='comma token'>,</span> <span class='symbol val'>:include</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='symbol val'>:author</span>
+  <span class='has_many identifier id'>has_many</span> <span class='symbol val'>:people</span><span class='comma token'>,</span> <span class='symbol val'>:class_name</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>&quot;Person&quot;</span><span class='comma token'>,</span> <span class='symbol val'>:conditions</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>&quot;deleted = 0&quot;</span><span class='comma token'>,</span> <span class='symbol val'>:order</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>&quot;name&quot;</span>
+  <span class='has_many identifier id'>has_many</span> <span class='symbol val'>:tracks</span><span class='comma token'>,</span> <span class='symbol val'>:order</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>&quot;position&quot;</span><span class='comma token'>,</span> <span class='symbol val'>:dependent</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='symbol val'>:destroy</span>
+  <span class='has_many identifier id'>has_many</span> <span class='symbol val'>:comments</span><span class='comma token'>,</span> <span class='symbol val'>:dependent</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='symbol val'>:nullify</span>
+  <span class='has_many identifier id'>has_many</span> <span class='symbol val'>:tags</span><span class='comma token'>,</span> <span class='symbol val'>:as</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='symbol val'>:taggable</span>
+  <span class='has_many identifier id'>has_many</span> <span class='symbol val'>:subscribers</span><span class='comma token'>,</span> <span class='symbol val'>:through</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='symbol val'>:subscriptions</span><span class='comma token'>,</span> <span class='symbol val'>:source</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='symbol val'>:user</span>
+  <span class='has_many identifier id'>has_many</span> <span class='symbol val'>:subscribers</span><span class='comma token'>,</span> <span class='symbol val'>:class_name</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>&quot;Person&quot;</span><span class='comma token'>,</span> <span class='symbol val'>:finder_sql</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span>
+      <span class='string val'>'SELECT DISTINCT people.* '</span> <span class='lt op'>&lt;</span><span class='tt identifier id'>tt</span><span class='gt op'>&gt;</span>
+      <span class='string val'>'FROM people p, post_subscriptions ps '</span> <span class='lt op'>&lt;</span><span class='dregexp node'>/tt&gt;
+      'WHERE ps.post_id = #{id} AND ps.person_id = p.id ' +
+      'ORDER BY p.first_name'
+</span></pre>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+494
+495
+496
+497
+498
+499
+500
+501
+502
+503
+504
+505
+506
+507</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/br_associations.rb', line 494</span>
+
+<span class='def def kw'>def</span> <span class='has_many_big_records identifier id'>has_many_big_records</span><span class='lparen token'>(</span><span class='association_id identifier id'>association_id</span><span class='comma token'>,</span> <span class='options identifier id'>options</span> <span class='assign token'>=</span> <span class='lbrace token'>{</span><span class='rbrace token'>}</span><span class='comma token'>,</span> <span class='bitand op'>&amp;</span><span class='extension identifier id'>extension</span><span class='rparen token'>)</span>
+  <span class='reflection identifier id'>reflection</span> <span class='assign token'>=</span> <span class='create_has_many_big_records_reflection identifier id'>create_has_many_big_records_reflection</span><span class='lparen token'>(</span><span class='association_id identifier id'>association_id</span><span class='comma token'>,</span> <span class='options identifier id'>options</span><span class='comma token'>,</span> <span class='bitand op'>&amp;</span><span class='extension identifier id'>extension</span><span class='rparen token'>)</span>
+
+  <span class='configure_dependency_for_has_many identifier id'>configure_dependency_for_has_many</span><span class='lparen token'>(</span><span class='reflection identifier id'>reflection</span><span class='rparen token'>)</span>
+
+  <span class='if if kw'>if</span> <span class='options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:through</span><span class='rbrack token'>]</span>
+    <span class='collection_reader_method identifier id'>collection_reader_method</span><span class='lparen token'>(</span><span class='reflection identifier id'>reflection</span><span class='comma token'>,</span> <span class='HasManyThroughAssociation constant id'>HasManyThroughAssociation</span><span class='rparen token'>)</span>
+  <span class='else else kw'>else</span>
+    <span class='add_association_callbacks identifier id'>add_association_callbacks</span><span class='lparen token'>(</span><span class='reflection identifier id'>reflection</span><span class='dot token'>.</span><span class='name identifier id'>name</span><span class='comma token'>,</span> <span class='reflection identifier id'>reflection</span><span class='dot token'>.</span><span class='options identifier id'>options</span><span class='rparen token'>)</span>
+    <span class='collection_accessor_methods identifier id'>collection_accessor_methods</span><span class='lparen token'>(</span><span class='reflection identifier id'>reflection</span><span class='comma token'>,</span> <span class='HasManyAssociation constant id'>HasManyAssociation</span><span class='rparen token'>)</span>
+  <span class='end end kw'>end</span>
+
+<span class='comment val'>#        add_deprecated_api_for_has_many(reflection.name)</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>has_one_big_record</h3>
+</div><div id="has_one_big_record-instance_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>has_one_big_record</span><span class='args'>(association_id, options = {})</span>
+      <span class='block'></span>
+    </tt>
+  </div>
+<p class="aliases">
+  <span class="aka">Also known as:</span>
+  
+    <tt id="has_one_bigrecord-instance_method">has_one_bigrecord</tt>
+  
+</p>
+</div><div class="section docstring">
+  <p>
+Adds the following methods for retrieval and query of a single associated
+object. <tt>association</tt> is replaced with the symbol passed as the
+first argument, so <tt>has_one :manager</tt> would add among others
+<tt>manager.nil?</tt>.
+</p>
+<ul>
+<li><tt>association(force_reload = false)</tt> - returns the associated object.
+Nil is returned if none is found.
+
+</li>
+<li><tt>association=(associate)</tt> - assigns the associate object, extracts
+the primary key, sets it as the foreign key, and saves the associate
+object.
+
+</li>
+<li><tt>association.nil?</tt> - returns true if there is no associated object.
+
+</li>
+<li><tt>build_association(attributes = {})</tt> - returns a new object of the
+associated type that has been instantiated with <tt>attributes</tt> and
+linked to this object through a foreign key but has not yet been saved.
+Note: This ONLY works if an association already exists. It will NOT work if
+the association is nil.
+
+</li>
+<li><tt>create_association(attributes = {})</tt> - returns a new object of the
+associated type that has been instantiated with <tt>attributes</tt> and
+linked to this object through a foreign key and that has already been saved
+(if it passed the validation).
+
+</li>
+</ul>
+<p>
+Example: An Account class declares <tt>has_one :beneficiary</tt>, which
+will add:
+</p>
+<ul>
+<li><tt>Account#beneficiary</tt> (similar to <tt>Beneficiary.find(:first,
+:conditions =&gt; &quot;account_id = #{id}&quot;)</tt>)
+
+</li>
+<li><tt>Account#beneficiary=(beneficiary)</tt> (similar to
+<tt>beneficiary.account_id = account.id; beneficiary.save</tt>)
+
+</li>
+<li><tt>Account#beneficiary.nil?</tt>
+
+</li>
+<li><tt>Account#build_beneficiary</tt> (similar to
+<tt>Beneficiary.new(&quot;account_id&quot; =&gt; id)</tt>)
+
+</li>
+<li><tt>Account#create_beneficiary</tt> (similar to <tt>b =
+Beneficiary.new(&quot;account_id&quot; =&gt; id); b.save; b</tt>)
+
+</li>
+</ul>
+<p>
+The declaration can also include an options hash to specialize the behavior
+of the association.
+</p>
+<p>
+Options are:
+</p>
+<ul>
+<li><tt>:class_name</tt> - specify the class name of the association. Use it
+only if that name can&#8217;t be inferred from the association name. So
+<tt>has_one :manager</tt> will by default be linked to the <tt>Manager</tt>
+class, but if the real class name is <tt>Person</tt>, you&#8217;ll have to
+specify it with this option.
+
+</li>
+<li><tt>:conditions</tt> - specify the conditions that the associated object
+must meet in order to be included as a &quot;WHERE&quot; sql fragment, such
+as &quot;rank = 5&quot;.
+
+</li>
+<li><tt>:order</tt> - specify the order from which the associated object will
+be picked at the top. Specified as
+
+<pre class="code">
+ <span class='an identifier id'>an</span> <span class='string val'>&quot;ORDER BY&quot;</span> <span class='sql identifier id'>sql</span> <span class='fragment identifier id'>fragment</span><span class='comma token'>,</span> <span class='such identifier id'>such</span> <span class='as identifier id'>as</span> <span class='string val'>&quot;last_name, first_name DESC&quot;</span>
+</pre>
+</li>
+<li><tt>:dependent</tt> - if set to :destroy (or true) the associated object is
+destroyed when this object is. If set to :delete the associated object is
+deleted <b>without</b> calling its destroy method. If set to :nullify the
+associated object&#8217;s foreign key is set to NULL. Also, association is
+assigned.
+
+</li>
+<li><tt>:foreign_key</tt> - specify the foreign key used for the association.
+By default this is guessed to be the name of this class in lower-case and
+&quot;_id&quot; suffixed. So a <tt>Person</tt> class that makes a has_one
+association will use &quot;person_id&quot; as the default foreign_key.
+
+</li>
+<li><tt>:include</tt> - specify second-order associations that should be eager
+loaded when this object is loaded.
+
+</li>
+<li><tt>:as</tt>: Specifies a polymorphic interface (See #belongs_to).
+
+</li>
+</ul>
+<p>
+Option examples:
+</p>
+<pre class="code">
+  <span class='has_one identifier id'>has_one</span> <span class='symbol val'>:credit_card</span><span class='comma token'>,</span> <span class='symbol val'>:dependent</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='symbol val'>:destroy</span>  <span class='comment val'># destroys the associated credit card</span>
+  <span class='has_one identifier id'>has_one</span> <span class='symbol val'>:credit_card</span><span class='comma token'>,</span> <span class='symbol val'>:dependent</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='symbol val'>:nullify</span>  <span class='comment val'># updates the associated records foriegn key value to null rather than destroying it</span>
+  <span class='has_one identifier id'>has_one</span> <span class='symbol val'>:last_comment</span><span class='comma token'>,</span> <span class='symbol val'>:class_name</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>&quot;Comment&quot;</span><span class='comma token'>,</span> <span class='symbol val'>:order</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>&quot;posted_on&quot;</span>
+  <span class='has_one identifier id'>has_one</span> <span class='symbol val'>:project_manager</span><span class='comma token'>,</span> <span class='symbol val'>:class_name</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>&quot;Person&quot;</span><span class='comma token'>,</span> <span class='symbol val'>:conditions</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>&quot;role = 'project_manager'&quot;</span>
+  <span class='has_one identifier id'>has_one</span> <span class='symbol val'>:attachment</span><span class='comma token'>,</span> <span class='symbol val'>:as</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='symbol val'>:attachable</span>
+</pre>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+556
+557
+558
+559
+560
+561
+562
+563
+564
+565
+566
+567
+568
+569
+570
+571
+572</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/br_associations.rb', line 556</span>
+
+<span class='def def kw'>def</span> <span class='has_one_big_record identifier id'>has_one_big_record</span><span class='lparen token'>(</span><span class='association_id identifier id'>association_id</span><span class='comma token'>,</span> <span class='options identifier id'>options</span> <span class='assign token'>=</span> <span class='lbrace token'>{</span><span class='rbrace token'>}</span><span class='rparen token'>)</span>
+  <span class='reflection identifier id'>reflection</span> <span class='assign token'>=</span> <span class='create_has_one_big_record_reflection identifier id'>create_has_one_big_record_reflection</span><span class='lparen token'>(</span><span class='association_id identifier id'>association_id</span><span class='comma token'>,</span> <span class='options identifier id'>options</span><span class='rparen token'>)</span>
+
+  <span class='module_eval identifier id'>module_eval</span> <span class='do do kw'>do</span>
+    <span class='after_save identifier id'>after_save</span> <span class='string val'>&quot;association = instance_variable_get(\&quot;@\#{reflection.name}\&quot;)\nif !association.nil? &amp;&amp; (new_record? || association.new_record? || association[\&quot;\#{reflection.primary_key_name}\&quot;] != id)\nassociation[\&quot;\#{reflection.primary_key_name}\&quot;] = id\nassociation.save(true)\nend\n&quot;</span>
+  <span class='end end kw'>end</span>
+
+  <span class='association_accessor_methods_big_record identifier id'>association_accessor_methods_big_record</span><span class='lparen token'>(</span><span class='reflection identifier id'>reflection</span><span class='comma token'>,</span> <span class='HasOneAssociation constant id'>HasOneAssociation</span><span class='rparen token'>)</span>
+  <span class='association_constructor_method_big_record identifier id'>association_constructor_method_big_record</span><span class='lparen token'>(</span><span class='symbol val'>:build</span><span class='comma token'>,</span>  <span class='reflection identifier id'>reflection</span><span class='comma token'>,</span> <span class='HasOneAssociation constant id'>HasOneAssociation</span><span class='rparen token'>)</span>
+  <span class='association_constructor_method_big_record identifier id'>association_constructor_method_big_record</span><span class='lparen token'>(</span><span class='symbol val'>:create</span><span class='comma token'>,</span> <span class='reflection identifier id'>reflection</span><span class='comma token'>,</span> <span class='HasOneAssociation constant id'>HasOneAssociation</span><span class='rparen token'>)</span>
+
+  <span class='configure_dependency_for_has_one identifier id'>configure_dependency_for_has_one</span><span class='lparen token'>(</span><span class='reflection identifier id'>reflection</span><span class='rparen token'>)</span>
+
+  <span class='comment val'># deprecated api</span>
+<span class='comment val'>#        deprecated_has_association_method(reflection.name)</span>
+<span class='comment val'>#        deprecated_association_comparison_method(reflection.name, reflection.class_name)</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+</div>
+  </div>
+
+</div>
+    </div>
+    <div id="yard_info">
+  Generated on Tuesday, November 10 2009 at 06:18:44 PM by 
+  <abbr class="yard" title="Yay! A Ruby Documentation Tool"><a href="http://yard.soen.ca">YARD</a></abbr> 
+  0.2.3.5 (ruby-1.8.7).
+</div>
+
+  </body>
+</html>

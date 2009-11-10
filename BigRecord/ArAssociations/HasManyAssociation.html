@@ -1,0 +1,469 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="../../style.css" type="text/css" charset="utf-8" />
+<link rel="stylesheet" href="../../custom.css" type="text/css" charset="utf-8" />
+<link rel="stylesheet" href="../../syntax_highlight.css" type="text/css" charset="utf-8" />
+
+    <script src="../../jquery.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../app.js" type="text/javascript" charset="utf-8"></script>
+    <title>Class: BigRecord::ArAssociations::HasManyAssociation</title>
+  </head>
+  <body>
+    <div id="content">
+      <div class="section class BigRecord_ArAssociations_HasManyAssociation">
+  <h1 class="title">Class: BigRecord::ArAssociations::HasManyAssociation</h1>
+  <div class="section inheritance">
+  <ul>
+  <li><a href="AssociationProxy.html" title="BigRecord::ArAssociations::AssociationProxy">BigRecord::ArAssociations::AssociationProxy</a></li><ul><li><a href="AssociationCollection.html" title="BigRecord::ArAssociations::AssociationCollection">BigRecord::ArAssociations::AssociationCollection</a></li><ul><li>BigRecord::ArAssociations::HasManyAssociation</li>
+  </ul></ul></ul>
+</div><div class="section constants">
+  
+</div><div class="section constructor">
+<h1>Constructor Summary</h1>
+  <div id="initialize-instance_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>initialize</span><span class='args'>(owner, reflection)</span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+4
+5
+6
+7</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/ar_associations/has_many_association.rb', line 4</span>
+
+<span class='def def kw'>def</span> <span class='initialize identifier id'>initialize</span><span class='lparen token'>(</span><span class='owner identifier id'>owner</span><span class='comma token'>,</span> <span class='reflection identifier id'>reflection</span><span class='rparen token'>)</span>
+  <span class='super super kw'>super</span>
+  <span class='construct_sql identifier id'>construct_sql</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+</div><div class="section methodmissing">
+  <h1>Dynamic Method Handling</h1>
+
+  <p class="note">
+    This class handles dynamic methods through the <tt>method_missing</tt> method
+    
+  </p>
+
+  <div id="method_missing-instance_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>protected</span>
+      <span class='return_types'></span>
+      <span class='name'>method_missing</span><span class='args'>(method, *args, &amp;block)</span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/ar_associations/has_many_association.rb', line 77</span>
+
+<span class='def def kw'>def</span> <span class='method_missing identifier id'>method_missing</span><span class='lparen token'>(</span><span class='method identifier id'>method</span><span class='comma token'>,</span> <span class='mult op'>*</span><span class='args identifier id'>args</span><span class='comma token'>,</span> <span class='bitand op'>&amp;</span><span class='block identifier id'>block</span><span class='rparen token'>)</span>
+  <span class='if if kw'>if</span> <span class='@target ivar id'>@target</span><span class='dot token'>.</span><span class='respond_to? fid id'>respond_to?</span><span class='lparen token'>(</span><span class='method identifier id'>method</span><span class='rparen token'>)</span> <span class='orop op'>||</span> <span class='lparen token'>(</span><span class='notop op'>!</span><span class='@reflection ivar id'>@reflection</span><span class='dot token'>.</span><span class='klass identifier id'>klass</span><span class='dot token'>.</span><span class='respond_to? fid id'>respond_to?</span><span class='lparen token'>(</span><span class='method identifier id'>method</span><span class='rparen token'>)</span> <span class='andop op'>&amp;&amp;</span> <span class='Class constant id'>Class</span><span class='dot token'>.</span><span class='respond_to? fid id'>respond_to?</span><span class='lparen token'>(</span><span class='method identifier id'>method</span><span class='rparen token'>)</span><span class='rparen token'>)</span>
+    <span class='super super kw'>super</span>
+  <span class='else else kw'>else</span>
+    <span class='create_scoping identifier id'>create_scoping</span> <span class='assign token'>=</span> <span class='lbrace token'>{</span><span class='rbrace token'>}</span>
+    <span class='set_belongs_to_association_for identifier id'>set_belongs_to_association_for</span><span class='lparen token'>(</span><span class='create_scoping identifier id'>create_scoping</span><span class='rparen token'>)</span>
+
+    <span class='@reflection ivar id'>@reflection</span><span class='dot token'>.</span><span class='klass identifier id'>klass</span><span class='dot token'>.</span><span class='with_scope identifier id'>with_scope</span><span class='lparen token'>(</span>
+      <span class='symbol val'>:create</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='create_scoping identifier id'>create_scoping</span><span class='comma token'>,</span>
+      <span class='symbol val'>:find</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='lbrace token'>{</span>
+        <span class='symbol val'>:conditions</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='@finder_sql ivar id'>@finder_sql</span><span class='comma token'>,</span>
+        <span class='symbol val'>:joins</span>      <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='@join_sql ivar id'>@join_sql</span><span class='comma token'>,</span>
+        <span class='symbol val'>:readonly</span>   <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='false false kw'>false</span>
+      <span class='rbrace token'>}</span>
+    <span class='rparen token'>)</span> <span class='do do kw'>do</span>
+      <span class='@reflection ivar id'>@reflection</span><span class='dot token'>.</span><span class='klass identifier id'>klass</span><span class='dot token'>.</span><span class='send identifier id'>send</span><span class='lparen token'>(</span><span class='method identifier id'>method</span><span class='comma token'>,</span> <span class='mult op'>*</span><span class='args identifier id'>args</span><span class='comma token'>,</span> <span class='bitand op'>&amp;</span><span class='block identifier id'>block</span><span class='rparen token'>)</span>
+    <span class='end end kw'>end</span>
+  <span class='end end kw'>end</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+</div>  <div class="section visibilitygroup public">
+    <h1>Public Visibility</h1>
+      <div class="section methodsummary instance public">
+    <h1>Public Instance Method Summary</h1>
+<table class="summary">
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#build-instance_method" title="#build">#build</a></span><span class='args'>(attributes = {})</span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#count-instance_method" title="#count">#count</a></span><span class='args'>(*args)</span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        <p>
+Count the number of associated records.
+</p>
+
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#find-instance_method" title="#find">#find</a></span><span class='args'>(*args)</span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        
+        
+      </td>
+    </tr>
+  
+</table>
+<div class="inherited">
+  
+  <div>
+    <h1>Public Instance Methods Inherited from <a href="AssociationCollection.html" title="BigRecord::ArAssociations::AssociationCollection">BigRecord::ArAssociations::AssociationCollection</a></h1>
+    <p><span class='name'><a href="AssociationCollection.html#%3C%3C-instance_method" title="&lt;&lt;">&lt;&lt;</a></span>, <span class='name'><a href="AssociationCollection.html#clear-instance_method" title="clear">clear</a></span>, <span class='name'><a href="AssociationCollection.html#create-instance_method" title="create">create</a></span>, <span class='name'><a href="AssociationCollection.html#delete-instance_method" title="delete">delete</a></span>, <span class='name'><a href="AssociationCollection.html#destroy_all-instance_method" title="destroy_all">destroy_all</a></span>, <span class='name'><a href="AssociationCollection.html#empty%3F-instance_method" title="empty?">empty?</a></span>, <span class='name'><a href="AssociationCollection.html#length-instance_method" title="length">length</a></span>, <span class='name'><a href="AssociationCollection.html#replace-instance_method" title="replace">replace</a></span>, <span class='name'><a href="AssociationCollection.html#reset-instance_method" title="reset">reset</a></span>, <span class='name'><a href="AssociationCollection.html#size-instance_method" title="size">size</a></span>, <span class='name'><a href="AssociationCollection.html#sum-instance_method" title="sum">sum</a></span>, <span class='name'><a href="AssociationCollection.html#to_ary-instance_method" title="to_ary">to_ary</a></span>, <span class='name'><a href="AssociationCollection.html#uniq-instance_method" title="uniq">uniq</a></span></p>
+  </div>
+  
+  <div>
+    <h1>Public Instance Methods Inherited from <a href="AssociationProxy.html" title="BigRecord::ArAssociations::AssociationProxy">BigRecord::ArAssociations::AssociationProxy</a></h1>
+    <p><span class='name'><a href="AssociationProxy.html#%3D%3D%3D-instance_method" title="===">===</a></span>, <span class='name'><a href="AssociationProxy.html#aliased_table_name-instance_method" title="aliased_table_name">aliased_table_name</a></span>, <span class='name'><a href="AssociationProxy.html#conditions-instance_method" title="conditions">conditions</a></span>, <span class='name'><a href="AssociationProxy.html#loaded-instance_method" title="loaded">loaded</a></span>, <span class='name'><a href="AssociationProxy.html#loaded%3F-instance_method" title="loaded?">loaded?</a></span>, <span class='name'><a href="AssociationProxy.html#proxy_owner-instance_method" title="proxy_owner">proxy_owner</a></span>, <span class='name'><a href="AssociationProxy.html#proxy_reflection-instance_method" title="proxy_reflection">proxy_reflection</a></span>, <span class='name'><a href="AssociationProxy.html#proxy_target-instance_method" title="proxy_target">proxy_target</a></span>, <span class='name'><a href="AssociationProxy.html#reload-instance_method" title="reload">reload</a></span>, <span class='name'><a href="AssociationProxy.html#respond_to%3F-instance_method" title="respond_to?">respond_to?</a></span>, <span class='name'><a href="AssociationProxy.html#target-instance_method" title="target">target</a></span>, <span class='name'><a href="AssociationProxy.html#target%3D-instance_method" title="target=">target=</a></span></p>
+  </div>
+  
+</div>
+<div class="clear"></div>
+  </div>
+<div class="section methoddetails instance public">
+  <h1>Public Instance Method Details</h1>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>build</h3>
+</div><div id="build-instance_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>build</span><span class='args'>(attributes = {})</span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/ar_associations/has_many_association.rb', line 9</span>
+
+<span class='def def kw'>def</span> <span class='build identifier id'>build</span><span class='lparen token'>(</span><span class='attributes identifier id'>attributes</span> <span class='assign token'>=</span> <span class='lbrace token'>{</span><span class='rbrace token'>}</span><span class='rparen token'>)</span>
+  <span class='if if kw'>if</span> <span class='attributes identifier id'>attributes</span><span class='dot token'>.</span><span class='is_a? fid id'>is_a?</span><span class='lparen token'>(</span><span class='Array constant id'>Array</span><span class='rparen token'>)</span>
+    <span class='attributes identifier id'>attributes</span><span class='dot token'>.</span><span class='collect identifier id'>collect</span> <span class='lbrace token'>{</span> <span class='bitor op'>|</span><span class='attr identifier id'>attr</span><span class='bitor op'>|</span> <span class='build identifier id'>build</span><span class='lparen token'>(</span><span class='attr identifier id'>attr</span><span class='rparen token'>)</span> <span class='rbrace token'>}</span>
+  <span class='else else kw'>else</span>
+    <span class='record identifier id'>record</span> <span class='assign token'>=</span> <span class='@reflection ivar id'>@reflection</span><span class='dot token'>.</span><span class='klass identifier id'>klass</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='attributes identifier id'>attributes</span><span class='rparen token'>)</span>
+    <span class='set_belongs_to_association_for identifier id'>set_belongs_to_association_for</span><span class='lparen token'>(</span><span class='record identifier id'>record</span><span class='rparen token'>)</span>
+
+    <span class='@target ivar id'>@target</span> <span class='opasgn op'>||=</span> <span class='lbrack token'>[</span><span class='rbrack token'>]</span> <span class='unless unless_mod kw'>unless</span> <span class='loaded? fid id'>loaded?</span>
+    <span class='@target ivar id'>@target</span> <span class='lshft op'>&lt;&lt;</span> <span class='record identifier id'>record</span>
+
+    <span class='record identifier id'>record</span>
+  <span class='end end kw'>end</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>count</h3>
+</div><div id="count-instance_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>count</span><span class='args'>(*args)</span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section docstring">
+  <p>
+Count the number of associated records. All arguments are optional.
+</p>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/ar_associations/has_many_association.rb', line 24</span>
+
+<span class='def def kw'>def</span> <span class='count identifier id'>count</span><span class='lparen token'>(</span><span class='mult op'>*</span><span class='args identifier id'>args</span><span class='rparen token'>)</span>
+  <span class='if if kw'>if</span> <span class='@reflection ivar id'>@reflection</span><span class='dot token'>.</span><span class='options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:counter_sql</span><span class='rbrack token'>]</span>
+    <span class='@reflection ivar id'>@reflection</span><span class='dot token'>.</span><span class='klass identifier id'>klass</span><span class='dot token'>.</span><span class='count_by_sql identifier id'>count_by_sql</span><span class='lparen token'>(</span><span class='@counter_sql ivar id'>@counter_sql</span><span class='rparen token'>)</span>
+  <span class='elsif elsif kw'>elsif</span> <span class='@reflection ivar id'>@reflection</span><span class='dot token'>.</span><span class='options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:finder_sql</span><span class='rbrack token'>]</span>
+    <span class='@reflection ivar id'>@reflection</span><span class='dot token'>.</span><span class='klass identifier id'>klass</span><span class='dot token'>.</span><span class='count_by_sql identifier id'>count_by_sql</span><span class='lparen token'>(</span><span class='@finder_sql ivar id'>@finder_sql</span><span class='rparen token'>)</span>
+  <span class='else else kw'>else</span>
+    <span class='column_name identifier id'>column_name</span><span class='comma token'>,</span> <span class='options identifier id'>options</span> <span class='assign token'>=</span> <span class='@reflection ivar id'>@reflection</span><span class='dot token'>.</span><span class='klass identifier id'>klass</span><span class='dot token'>.</span><span class='send identifier id'>send</span><span class='lparen token'>(</span><span class='symbol val'>:construct_count_options_from_legacy_args</span><span class='comma token'>,</span> <span class='mult op'>*</span><span class='args identifier id'>args</span><span class='rparen token'>)</span>
+    <span class='options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:conditions</span><span class='rbrack token'>]</span> <span class='assign token'>=</span> <span class='options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:conditions</span><span class='rbrack token'>]</span><span class='dot token'>.</span><span class='nil? fid id'>nil?</span> <span class='integer val'>?
+</span>      <span class='@finder_sql ivar id'>@finder_sql</span> <span class='colon op'>:</span>
+      <span class='@finder_sql ivar id'>@finder_sql</span> <span class='plus op'>+</span> <span class='dstring node'>&quot; AND (#{sanitize_sql(options[:conditions])})&quot;</span>
+    <span class='options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:include</span><span class='rbrack token'>]</span> <span class='assign token'>=</span> <span class='@reflection ivar id'>@reflection</span><span class='dot token'>.</span><span class='options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:include</span><span class='rbrack token'>]</span>
+
+    <span class='@reflection ivar id'>@reflection</span><span class='dot token'>.</span><span class='klass identifier id'>klass</span><span class='dot token'>.</span><span class='count identifier id'>count</span><span class='lparen token'>(</span><span class='column_name identifier id'>column_name</span><span class='comma token'>,</span> <span class='options identifier id'>options</span><span class='rparen token'>)</span>
+  <span class='end end kw'>end</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>find</h3>
+</div><div id="find-instance_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>find</span><span class='args'>(*args)</span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/ar_associations/has_many_association.rb', line 40</span>
+
+<span class='def def kw'>def</span> <span class='find identifier id'>find</span><span class='lparen token'>(</span><span class='mult op'>*</span><span class='args identifier id'>args</span><span class='rparen token'>)</span>
+  <span class='options identifier id'>options</span> <span class='assign token'>=</span> <span class='Base constant id'>Base</span><span class='dot token'>.</span><span class='send identifier id'>send</span><span class='lparen token'>(</span><span class='symbol val'>:extract_options_from_args!</span><span class='comma token'>,</span> <span class='args identifier id'>args</span><span class='rparen token'>)</span>
+
+  <span class='comment val'># If using a custom finder_sql, scan the entire collection.</span>
+  <span class='if if kw'>if</span> <span class='@reflection ivar id'>@reflection</span><span class='dot token'>.</span><span class='options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:finder_sql</span><span class='rbrack token'>]</span>
+    <span class='expects_array identifier id'>expects_array</span> <span class='assign token'>=</span> <span class='args identifier id'>args</span><span class='dot token'>.</span><span class='first identifier id'>first</span><span class='dot token'>.</span><span class='kind_of? fid id'>kind_of?</span><span class='lparen token'>(</span><span class='Array constant id'>Array</span><span class='rparen token'>)</span>
+    <span class='ids identifier id'>ids</span> <span class='assign token'>=</span> <span class='args identifier id'>args</span><span class='dot token'>.</span><span class='flatten identifier id'>flatten</span><span class='dot token'>.</span><span class='compact identifier id'>compact</span><span class='dot token'>.</span><span class='uniq identifier id'>uniq</span>
+
+    <span class='if if kw'>if</span> <span class='ids identifier id'>ids</span><span class='dot token'>.</span><span class='size identifier id'>size</span> <span class='eq op'>==</span> <span class='integer val'>1</span>
+      <span class='id identifier id'>id</span> <span class='assign token'>=</span> <span class='ids identifier id'>ids</span><span class='dot token'>.</span><span class='first identifier id'>first</span>
+      <span class='record identifier id'>record</span> <span class='assign token'>=</span> <span class='load_target identifier id'>load_target</span><span class='dot token'>.</span><span class='detect identifier id'>detect</span> <span class='lbrace token'>{</span> <span class='bitor op'>|</span><span class='record identifier id'>record</span><span class='bitor op'>|</span> <span class='id identifier id'>id</span> <span class='eq op'>==</span> <span class='record identifier id'>record</span><span class='dot token'>.</span><span class='id identifier id'>id</span> <span class='rbrace token'>}</span>
+      <span class='expects_array identifier id'>expects_array</span> <span class='integer val'>? </span><span class='lbrack token'>[</span> <span class='record identifier id'>record</span> <span class='rbrack token'>]</span> <span class='colon op'>:</span> <span class='record identifier id'>record</span>
+    <span class='else else kw'>else</span>
+      <span class='load_target identifier id'>load_target</span><span class='dot token'>.</span><span class='select identifier id'>select</span> <span class='lbrace token'>{</span> <span class='bitor op'>|</span><span class='record identifier id'>record</span><span class='bitor op'>|</span> <span class='ids identifier id'>ids</span><span class='dot token'>.</span><span class='include? fid id'>include?</span><span class='lparen token'>(</span><span class='record identifier id'>record</span><span class='dot token'>.</span><span class='id identifier id'>id</span><span class='rparen token'>)</span> <span class='rbrace token'>}</span>
+    <span class='end end kw'>end</span>
+  <span class='else else kw'>else</span>
+    <span class='conditions identifier id'>conditions</span> <span class='assign token'>=</span> <span class='dstring node'>&quot;#{@finder_sql}&quot;</span>
+    <span class='if if kw'>if</span> <span class='sanitized_conditions identifier id'>sanitized_conditions</span> <span class='assign token'>=</span> <span class='sanitize_sql identifier id'>sanitize_sql</span><span class='lparen token'>(</span><span class='options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:conditions</span><span class='rbrack token'>]</span><span class='rparen token'>)</span>
+      <span class='conditions identifier id'>conditions</span> <span class='lshft op'>&lt;&lt;</span> <span class='dstring node'>&quot; AND (#{sanitized_conditions})&quot;</span>
+    <span class='end end kw'>end</span>
+    <span class='options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:conditions</span><span class='rbrack token'>]</span> <span class='assign token'>=</span> <span class='conditions identifier id'>conditions</span>
+
+    <span class='if if kw'>if</span> <span class='options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:order</span><span class='rbrack token'>]</span> <span class='andop op'>&amp;&amp;</span> <span class='@reflection ivar id'>@reflection</span><span class='dot token'>.</span><span class='options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:order</span><span class='rbrack token'>]</span>
+      <span class='options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:order</span><span class='rbrack token'>]</span> <span class='assign token'>=</span> <span class='dstring node'>&quot;#{options[:order]}, #{@reflection.options[:order]}&quot;</span>
+    <span class='elsif elsif kw'>elsif</span> <span class='@reflection ivar id'>@reflection</span><span class='dot token'>.</span><span class='options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:order</span><span class='rbrack token'>]</span>
+      <span class='options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:order</span><span class='rbrack token'>]</span> <span class='assign token'>=</span> <span class='@reflection ivar id'>@reflection</span><span class='dot token'>.</span><span class='options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:order</span><span class='rbrack token'>]</span>
+    <span class='end end kw'>end</span>
+
+    <span class='merge_options_from_reflection! fid id'>merge_options_from_reflection!</span><span class='lparen token'>(</span><span class='options identifier id'>options</span><span class='rparen token'>)</span>
+
+    <span class='comment val'># Pass through args exactly as we received them.</span>
+    <span class='args identifier id'>args</span> <span class='lshft op'>&lt;&lt;</span> <span class='options identifier id'>options</span>
+    <span class='@reflection ivar id'>@reflection</span><span class='dot token'>.</span><span class='klass identifier id'>klass</span><span class='dot token'>.</span><span class='find identifier id'>find</span><span class='lparen token'>(</span><span class='mult op'>*</span><span class='args identifier id'>args</span><span class='rparen token'>)</span>
+  <span class='end end kw'>end</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+</div>
+  </div>
+
+</div>
+    </div>
+    <div id="yard_info">
+  Generated on Tuesday, November 10 2009 at 06:18:39 PM by 
+  <abbr class="yard" title="Yay! A Ruby Documentation Tool"><a href="http://yard.soen.ca">YARD</a></abbr> 
+  0.2.3.5 (ruby-1.8.7).
+</div>
+
+  </body>
+</html>

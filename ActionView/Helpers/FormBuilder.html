@@ -1,0 +1,154 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="../../style.css" type="text/css" charset="utf-8" />
+<link rel="stylesheet" href="../../custom.css" type="text/css" charset="utf-8" />
+<link rel="stylesheet" href="../../syntax_highlight.css" type="text/css" charset="utf-8" />
+
+    <script src="../../jquery.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../app.js" type="text/javascript" charset="utf-8"></script>
+    <title>Class: ActionView::Helpers::FormBuilder</title>
+  </head>
+  <body>
+    <div id="content">
+      <div class="section class ActionView_Helpers_FormBuilder">
+  <h1 class="title">Class: ActionView::Helpers::FormBuilder</h1>
+  <div class="section constants">
+  
+</div>  <div class="section visibilitygroup public">
+    <h1>Public Visibility</h1>
+      <div class="section methodsummary instance public">
+    <h1>Public Instance Method Summary</h1>
+<table class="summary">
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#fields_for-instance_method" title="#fields_for">#fields_for</a></span><span class='args'>(record_or_name_or_array, *args, &amp;block)</span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        <p>
+Override to allow the use of an index.
+</p>
+
+        
+      </td>
+    </tr>
+  
+</table>
+
+  </div>
+<div class="section methoddetails instance public">
+  <h1>Public Instance Method Details</h1>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>fields_for</h3>
+</div><div id="fields_for-instance_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>fields_for</span><span class='args'>(record_or_name_or_array, *args, &amp;block)</span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section docstring">
+  <p>
+Override to allow the use of an index
+</p>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/action_view_extensions.rb', line 238</span>
+
+<span class='def def kw'>def</span> <span class='fields_for identifier id'>fields_for</span><span class='lparen token'>(</span><span class='record_or_name_or_array identifier id'>record_or_name_or_array</span><span class='comma token'>,</span> <span class='mult op'>*</span><span class='args identifier id'>args</span><span class='comma token'>,</span> <span class='bitand op'>&amp;</span><span class='block identifier id'>block</span><span class='rparen token'>)</span>
+  <span class='if if kw'>if</span> <span class='options identifier id'>options</span><span class='dot token'>.</span><span class='has_key? fid id'>has_key?</span><span class='lparen token'>(</span><span class='symbol val'>:index</span><span class='rparen token'>)</span>
+    <span class='index identifier id'>index</span> <span class='assign token'>=</span> <span class='dstring node'>&quot;[#{options[:index]}]&quot;</span>
+  <span class='elsif elsif kw'>elsif</span> <span class='defined? defined kw'>defined?</span><span class='lparen token'>(</span><span class='@auto_index ivar id'>@auto_index</span><span class='rparen token'>)</span>
+    <span class='self self kw'>self</span><span class='dot token'>.</span><span class='object_name identifier id'>object_name</span> <span class='assign token'>=</span> <span class='@object_name ivar id'>@object_name</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span><span class='dot token'>.</span><span class='sub identifier id'>sub</span><span class='lparen token'>(</span><span class='regexp val'>/\[\]$/</span><span class='comma token'>,</span><span class='string val'>&quot;&quot;</span><span class='rparen token'>)</span>
+    <span class='index identifier id'>index</span> <span class='assign token'>=</span> <span class='dstring node'>&quot;[#{@auto_index}]&quot;</span>
+  <span class='else else kw'>else</span>
+    <span class='index identifier id'>index</span> <span class='assign token'>=</span> <span class='string val'>&quot;&quot;</span>
+  <span class='end end kw'>end</span>
+
+  <span class='case case kw'>case</span> <span class='record_or_name_or_array identifier id'>record_or_name_or_array</span>
+  <span class='when when kw'>when</span> <span class='String constant id'>String</span><span class='comma token'>,</span> <span class='Symbol constant id'>Symbol</span>
+    <span class='name identifier id'>name</span> <span class='assign token'>=</span> <span class='dstring node'>&quot;#{object_name}#{index}[#{record_or_name_or_array}]&quot;</span>
+  <span class='when when kw'>when</span> <span class='Array constant id'>Array</span>
+    <span class='object identifier id'>object</span> <span class='assign token'>=</span> <span class='record_or_name_or_array identifier id'>record_or_name_or_array</span><span class='dot token'>.</span><span class='last identifier id'>last</span>
+    <span class='name identifier id'>name</span> <span class='assign token'>=</span> <span class='dstring node'>&quot;#{object_name}#{index}[#{ActionController::RecordIdentifier.singular_class_name(object)}]&quot;</span>
+    <span class='args identifier id'>args</span><span class='dot token'>.</span><span class='unshift identifier id'>unshift</span><span class='lparen token'>(</span><span class='object identifier id'>object</span><span class='rparen token'>)</span>
+  <span class='else else kw'>else</span>
+    <span class='object identifier id'>object</span> <span class='assign token'>=</span> <span class='record_or_name_or_array identifier id'>record_or_name_or_array</span>
+    <span class='name identifier id'>name</span> <span class='assign token'>=</span> <span class='dstring node'>&quot;#{object_name}#{index}[#{ActionController::RecordIdentifier.singular_class_name(object)}]&quot;</span>
+    <span class='args identifier id'>args</span><span class='dot token'>.</span><span class='unshift identifier id'>unshift</span><span class='lparen token'>(</span><span class='object identifier id'>object</span><span class='rparen token'>)</span>
+  <span class='end end kw'>end</span>
+
+  <span class='@template ivar id'>@template</span><span class='dot token'>.</span><span class='fields_for identifier id'>fields_for</span><span class='lparen token'>(</span><span class='name identifier id'>name</span><span class='comma token'>,</span> <span class='mult op'>*</span><span class='args identifier id'>args</span><span class='comma token'>,</span> <span class='bitand op'>&amp;</span><span class='block identifier id'>block</span><span class='rparen token'>)</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+</div>
+  </div>
+
+</div>
+    </div>
+    <div id="yard_info">
+  Generated on Tuesday, November 10 2009 at 06:18:33 PM by 
+  <abbr class="yard" title="Yay! A Ruby Documentation Tool"><a href="http://yard.soen.ca">YARD</a></abbr> 
+  0.2.3.5 (ruby-1.8.7).
+</div>
+
+  </body>
+</html>

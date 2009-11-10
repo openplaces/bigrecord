@@ -1,0 +1,816 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="../style.css" type="text/css" charset="utf-8" />
+<link rel="stylesheet" href="../custom.css" type="text/css" charset="utf-8" />
+<link rel="stylesheet" href="../syntax_highlight.css" type="text/css" charset="utf-8" />
+
+    <script src="../jquery.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../app.js" type="text/javascript" charset="utf-8"></script>
+    <title>Module: BigRecord::DynamicSchema</title>
+  </head>
+  <body>
+    <div id="content">
+      <div class="section module BigRecord_DynamicSchema">
+  <h1 class="title">Module: BigRecord::DynamicSchema</h1>
+  <div class="section constants">
+  
+</div>  <div class="section visibilitygroup public">
+    <h1>Public Visibility</h1>
+      <div class="section methodsummary class public">
+    <h1>Public Class Method Summary</h1>
+<table class="summary">
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#included-class_method" title="included">included</a></span><span class='args'>(base)</span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        
+        
+      </td>
+    </tr>
+  
+</table>
+
+  </div>
+  <div class="section methodsummary instance public">
+    <h1>Public Instance Method Summary</h1>
+<table class="summary">
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#add_dynamic_column-instance_method" title="#add_dynamic_column">#add_dynamic_column</a></span><span class='args'>(col)</span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        <p>
+Add an existing dynamic column to this record.
+</p>
+
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#attributes_from_column_definition_with_dynamic_schema-instance_method" title="#attributes_from_column_definition_with_dynamic_schema">#attributes_from_column_definition_with_dynamic_schema</a></span><span class='args'></span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        <p>
+Initializes the attributes array with keys matching the columns from the
+linked table and the values matching the corresponding default value of
+that column, so that a new instance, or one populated from a passed-in
+Hash, still has all the attributes that instances loaded from the database
+would.
+</p>
+
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#column_for_attribute_with_dynamic_schema-instance_method" title="#column_for_attribute_with_dynamic_schema">#column_for_attribute_with_dynamic_schema</a></span><span class='args'>(name)</span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        <p>
+Returns the column object for the named attribute.
+</p>
+
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#column_names-instance_method" title="#column_names">#column_names</a></span><span class='args'></span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#columns-instance_method" title="#columns">#columns</a></span><span class='args'></span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#columns_hash-instance_method" title="#columns_hash">#columns_hash</a></span><span class='args'></span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#define_read_methods_with_dynamic_schema-instance_method" title="#define_read_methods_with_dynamic_schema">#define_read_methods_with_dynamic_schema</a></span><span class='args'></span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        <p>
+Called on first read access to any given column and generates reader
+methods for all columns in the columns_hash if ActiveRecord::Base.
+</p>
+
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#dynamic_column-instance_method" title="#dynamic_column">#dynamic_column</a></span><span class='args'>(name, type, options = {})</span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        <p>
+Create and add a dynamic column to this record.
+</p>
+
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#initialize_columns-instance_method" title="#initialize_columns">#initialize_columns</a></span><span class='args'>(options = {})</span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        <p>
+Stub of the callback for setting the dynamic columns.
+</p>
+
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#inspect_with_dynamic_schema-instance_method" title="#inspect_with_dynamic_schema">#inspect_with_dynamic_schema</a></span><span class='args'></span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        <p>
+Returns the contents of the record as a nicely formatted string.
+</p>
+
+        
+      </td>
+    </tr>
+  
+</table>
+
+  </div>
+<div class="section methoddetails class public">
+  <h1>Public Class Method Details</h1>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>included</h3>
+</div><div id="included-class_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>included</span><span class='args'>(base)</span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+4
+5
+6
+7
+8
+9
+10
+11</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/dynamic_schema.rb', line 4</span>
+
+<span class='def def kw'>def</span> <span class='self self kw'>self</span><span class='dot token'>.</span><span class='included identifier id'>included</span><span class='lparen token'>(</span><span class='base identifier id'>base</span><span class='rparen token'>)</span> <span class='comment val'>#:nodoc:</span>
+  <span class='super super kw'>super</span>
+
+  <span class='base identifier id'>base</span><span class='dot token'>.</span><span class='alias_method_chain identifier id'>alias_method_chain</span> <span class='symbol val'>:column_for_attribute</span><span class='comma token'>,</span> <span class='symbol val'>:dynamic_schema</span>
+  <span class='base identifier id'>base</span><span class='dot token'>.</span><span class='alias_method_chain identifier id'>alias_method_chain</span> <span class='symbol val'>:attributes_from_column_definition</span><span class='comma token'>,</span> <span class='symbol val'>:dynamic_schema</span>
+  <span class='base identifier id'>base</span><span class='dot token'>.</span><span class='alias_method_chain identifier id'>alias_method_chain</span> <span class='symbol val'>:inspect</span><span class='comma token'>,</span> <span class='symbol val'>:dynamic_schema</span>
+  <span class='base identifier id'>base</span><span class='dot token'>.</span><span class='alias_method_chain identifier id'>alias_method_chain</span> <span class='symbol val'>:define_read_methods</span><span class='comma token'>,</span> <span class='symbol val'>:dynamic_schema</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+</div><div class="section methoddetails instance public">
+  <h1>Public Instance Method Details</h1>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>add_dynamic_column</h3>
+</div><div id="add_dynamic_column-instance_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>add_dynamic_column</span><span class='args'>(col)</span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section docstring">
+  <p>
+Add an existing dynamic column to this record
+</p>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+23
+24
+25
+26
+27</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/dynamic_schema.rb', line 23</span>
+
+<span class='def def kw'>def</span> <span class='add_dynamic_column identifier id'>add_dynamic_column</span><span class='lparen token'>(</span><span class='col identifier id'>col</span><span class='rparen token'>)</span>
+  <span class='columns_hash identifier id'>columns_hash</span><span class='lbrack token'>[</span><span class='c identifier id'>c</span><span class='dot token'>.</span><span class='name identifier id'>name</span><span class='rbrack token'>]</span> <span class='assign token'>=</span> <span class='col identifier id'>col</span>
+  <span class='@columns_name ivar id'>@columns_name</span><span class='assign token'>=</span> <span class='nil nil kw'>nil</span><span class='semicolon token'>;</span> <span class='@columns ivar id'>@columns</span><span class='assign token'>=</span> <span class='nil nil kw'>nil</span> <span class='comment val'>#reset</span>
+  <span class='col identifier id'>col</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>attributes_from_column_definition_with_dynamic_schema</h3>
+</div><div id="attributes_from_column_definition_with_dynamic_schema-instance_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>attributes_from_column_definition_with_dynamic_schema</span><span class='args'></span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section docstring">
+  <p>
+Initializes the attributes array with keys matching the columns from the
+linked table and the values matching the corresponding default value of
+that column, so that a new instance, or one populated from a passed-in
+Hash, still has all the attributes that instances loaded from the database
+would.
+</p>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+54
+55
+56
+57
+58
+59
+60
+61</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/dynamic_schema.rb', line 54</span>
+
+<span class='def def kw'>def</span> <span class='attributes_from_column_definition_with_dynamic_schema identifier id'>attributes_from_column_definition_with_dynamic_schema</span>
+  <span class='self self kw'>self</span><span class='dot token'>.</span><span class='columns identifier id'>columns</span><span class='dot token'>.</span><span class='inject identifier id'>inject</span><span class='lparen token'>(</span><span class='lbrace token'>{</span><span class='rbrace token'>}</span><span class='rparen token'>)</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='attributes identifier id'>attributes</span><span class='comma token'>,</span> <span class='column identifier id'>column</span><span class='bitor op'>|</span>
+    <span class='unless unless kw'>unless</span> <span class='column identifier id'>column</span><span class='dot token'>.</span><span class='name identifier id'>name</span> <span class='eq op'>==</span> <span class='self self kw'>self</span><span class='dot token'>.</span><span class='class identifier id'>class</span><span class='dot token'>.</span><span class='primary_key identifier id'>primary_key</span>
+      <span class='attributes identifier id'>attributes</span><span class='lbrack token'>[</span><span class='column identifier id'>column</span><span class='dot token'>.</span><span class='name identifier id'>name</span><span class='rbrack token'>]</span> <span class='assign token'>=</span> <span class='column identifier id'>column</span><span class='dot token'>.</span><span class='default identifier id'>default</span>
+    <span class='end end kw'>end</span>
+    <span class='attributes identifier id'>attributes</span>
+  <span class='end end kw'>end</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>column_for_attribute_with_dynamic_schema</h3>
+</div><div id="column_for_attribute_with_dynamic_schema-instance_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>column_for_attribute_with_dynamic_schema</span><span class='args'>(name)</span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section docstring">
+  <p>
+Returns the column object for the named attribute.
+</p>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+46
+47
+48</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/dynamic_schema.rb', line 46</span>
+
+<span class='def def kw'>def</span> <span class='column_for_attribute_with_dynamic_schema identifier id'>column_for_attribute_with_dynamic_schema</span><span class='lparen token'>(</span><span class='name identifier id'>name</span><span class='rparen token'>)</span>
+  <span class='self self kw'>self</span><span class='dot token'>.</span><span class='columns_hash identifier id'>columns_hash</span><span class='lbrack token'>[</span><span class='name identifier id'>name</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span><span class='rbrack token'>]</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>column_names</h3>
+</div><div id="column_names-instance_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>column_names</span><span class='args'></span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+41
+42
+43</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/dynamic_schema.rb', line 41</span>
+
+<span class='def def kw'>def</span> <span class='column_names identifier id'>column_names</span>
+  <span class='@column_names ivar id'>@column_names</span> <span class='opasgn op'>||=</span> <span class='columns_hash identifier id'>columns_hash</span><span class='dot token'>.</span><span class='keys identifier id'>keys</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>columns</h3>
+</div><div id="columns-instance_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>columns</span><span class='args'></span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+37
+38
+39</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/dynamic_schema.rb', line 37</span>
+
+<span class='def def kw'>def</span> <span class='columns identifier id'>columns</span>
+  <span class='@columns ivar id'>@columns</span> <span class='opasgn op'>||=</span> <span class='columns_hash identifier id'>columns_hash</span><span class='dot token'>.</span><span class='values identifier id'>values</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>columns_hash</h3>
+</div><div id="columns_hash-instance_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>columns_hash</span><span class='args'></span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+29
+30
+31
+32
+33
+34
+35</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/dynamic_schema.rb', line 29</span>
+
+<span class='def def kw'>def</span> <span class='columns_hash identifier id'>columns_hash</span>
+  <span class='unless unless kw'>unless</span> <span class='@columns_hash ivar id'>@columns_hash</span>
+    <span class='@columns_hash ivar id'>@columns_hash</span> <span class='assign token'>=</span> <span class='self self kw'>self</span><span class='dot token'>.</span><span class='class identifier id'>class</span><span class='dot token'>.</span><span class='columns_hash identifier id'>columns_hash</span><span class='dot token'>.</span><span class='dup identifier id'>dup</span>
+    <span class='initialize_columns identifier id'>initialize_columns</span>
+  <span class='end end kw'>end</span>
+  <span class='@columns_hash ivar id'>@columns_hash</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>define_read_methods_with_dynamic_schema</h3>
+</div><div id="define_read_methods_with_dynamic_schema-instance_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>define_read_methods_with_dynamic_schema</span><span class='args'></span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section docstring">
+  <p>
+Called on first read access to any given column and generates reader
+methods for all columns in the columns_hash if
+ActiveRecord::Base.generate_read_methods is set to true.
+</p>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/dynamic_schema.rb', line 76</span>
+
+<span class='def def kw'>def</span> <span class='define_read_methods_with_dynamic_schema identifier id'>define_read_methods_with_dynamic_schema</span>
+  <span class='columns_hash identifier id'>columns_hash</span><span class='dot token'>.</span><span class='each identifier id'>each</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='name identifier id'>name</span><span class='comma token'>,</span> <span class='column identifier id'>column</span><span class='bitor op'>|</span>
+    <span class='unless unless kw'>unless</span> <span class='respond_to_without_attributes? fid id'>respond_to_without_attributes?</span><span class='lparen token'>(</span><span class='name identifier id'>name</span><span class='rparen token'>)</span>
+      <span class='define_read_method identifier id'>define_read_method</span><span class='lparen token'>(</span><span class='name identifier id'>name</span><span class='dot token'>.</span><span class='to_sym identifier id'>to_sym</span><span class='comma token'>,</span> <span class='name identifier id'>name</span><span class='comma token'>,</span> <span class='column identifier id'>column</span><span class='rparen token'>)</span>
+    <span class='end end kw'>end</span>
+
+    <span class='unless unless kw'>unless</span> <span class='respond_to_without_attributes? fid id'>respond_to_without_attributes?</span><span class='lparen token'>(</span><span class='dstring node'>&quot;#{name}?&quot;</span><span class='rparen token'>)</span>
+      <span class='define_question_method identifier id'>define_question_method</span><span class='lparen token'>(</span><span class='name identifier id'>name</span><span class='rparen token'>)</span>
+    <span class='end end kw'>end</span>
+  <span class='end end kw'>end</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>dynamic_column</h3>
+</div><div id="dynamic_column-instance_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>dynamic_column</span><span class='args'>(name, type, options = {})</span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section docstring">
+  <p>
+Create and add a dynamic column to this record
+</p>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+18
+19
+20</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/dynamic_schema.rb', line 18</span>
+
+<span class='def def kw'>def</span> <span class='dynamic_column identifier id'>dynamic_column</span><span class='lparen token'>(</span><span class='name identifier id'>name</span><span class='comma token'>,</span> <span class='type identifier id'>type</span><span class='comma token'>,</span> <span class='options identifier id'>options</span><span class='assign token'>=</span><span class='lbrace token'>{</span><span class='rbrace token'>}</span><span class='rparen token'>)</span>
+  <span class='add_dynamic_column identifier id'>add_dynamic_column</span> <span class='ConnectionAdapters constant id'>ConnectionAdapters</span><span class='colon2 op'>::</span><span class='Column constant id'>Column</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='name identifier id'>name</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span><span class='comma token'>,</span> <span class='type identifier id'>type</span><span class='comma token'>,</span> <span class='options identifier id'>options</span><span class='rparen token'>)</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>initialize_columns</h3>
+</div><div id="initialize_columns-instance_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>initialize_columns</span><span class='args'>(options = {})</span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section docstring">
+  <p>
+Stub of the callback for setting the dynamic columns. Override this to add
+dynamic columns
+</p>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+14
+15</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/dynamic_schema.rb', line 14</span>
+
+<span class='def def kw'>def</span> <span class='initialize_columns identifier id'>initialize_columns</span><span class='lparen token'>(</span><span class='options identifier id'>options</span><span class='assign token'>=</span><span class='lbrace token'>{</span><span class='rbrace token'>}</span><span class='rparen token'>)</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>inspect_with_dynamic_schema</h3>
+</div><div id="inspect_with_dynamic_schema-instance_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>inspect_with_dynamic_schema</span><span class='args'></span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section docstring">
+  <p>
+Returns the contents of the record as a nicely formatted string.
+</p>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+64
+65
+66
+67
+68
+69
+70
+71</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/dynamic_schema.rb', line 64</span>
+
+<span class='def def kw'>def</span> <span class='inspect_with_dynamic_schema identifier id'>inspect_with_dynamic_schema</span>
+  <span class='attributes_as_nice_string identifier id'>attributes_as_nice_string</span> <span class='assign token'>=</span> <span class='self self kw'>self</span><span class='dot token'>.</span><span class='column_names identifier id'>column_names</span><span class='dot token'>.</span><span class='collect identifier id'>collect</span> <span class='lbrace token'>{</span> <span class='bitor op'>|</span><span class='name identifier id'>name</span><span class='bitor op'>|</span>
+    <span class='if if kw'>if</span> <span class='has_attribute? fid id'>has_attribute?</span><span class='lparen token'>(</span><span class='name identifier id'>name</span><span class='rparen token'>)</span> <span class='orop op'>||</span> <span class='new_record? fid id'>new_record?</span>
+      <span class='dstring node'>&quot;#{name}: #{attribute_for_inspect(name)}&quot;</span>
+    <span class='end end kw'>end</span>
+  <span class='rbrace token'>}</span><span class='dot token'>.</span><span class='compact identifier id'>compact</span><span class='dot token'>.</span><span class='join identifier id'>join</span><span class='lparen token'>(</span><span class='string val'>&quot;, &quot;</span><span class='rparen token'>)</span>
+  <span class='dstring node'>&quot;#&lt;#{self.class} #{attributes_as_nice_string}&gt;&quot;</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+</div>
+  </div>
+
+</div>
+    </div>
+    <div id="yard_info">
+  Generated on Tuesday, November 10 2009 at 06:18:40 PM by 
+  <abbr class="yard" title="Yay! A Ruby Documentation Tool"><a href="http://yard.soen.ca">YARD</a></abbr> 
+  0.2.3.5 (ruby-1.8.7).
+</div>
+
+  </body>
+</html>

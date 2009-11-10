@@ -1,0 +1,1046 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="../../style.css" type="text/css" charset="utf-8" />
+<link rel="stylesheet" href="../../custom.css" type="text/css" charset="utf-8" />
+<link rel="stylesheet" href="../../syntax_highlight.css" type="text/css" charset="utf-8" />
+
+    <script src="../../jquery.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../app.js" type="text/javascript" charset="utf-8"></script>
+    <title>Module: BigRecord::BrAssociations::CachedItemProxy</title>
+  </head>
+  <body>
+    <div id="content">
+      <div class="section module BigRecord_BrAssociations_CachedItemProxy">
+  <h1 class="title">Module: BigRecord::BrAssociations::CachedItemProxy</h1>
+  <div class="section attributes">
+  <h1>Attributes</h1>
+
+  
+    <div class="instance">
+      <h2>Instance Attributes</h2>
+      <table>
+      
+        
+        <tr class="">
+          <th class='signature'>
+            <span class='name'>reflection</span>
+          </td>
+          <td class="readwrite">
+            [<span id='reflection-instance_method'>R</span>] 
+          </td>
+          <td class="visibility">
+            public
+          </td>
+          <td class="docstring">
+            <p>
+Returns the value of attribute <tt>reflection</tt>.
+</p>
+
+            
+          </td>
+        </tr>
+        
+      
+      </table>
+    </div>
+  
+</div>
+<div class="section constants">
+  <div class="thisclass">
+  <h1>Constants</h1>
+  <dl>
+    
+      <dt id="CACHE_ATTRIBUTE-constant">CACHE_ATTRIBUTE</dt>
+      <dd>&quot;attribute:associations_cache&quot;</dd>
+    
+  </dl>
+</div>
+
+</div>  <div class="section visibilitygroup public">
+    <h1>Public Visibility</h1>
+      <div class="section methodsummary instance public">
+    <h1>Public Instance Method Summary</h1>
+<table class="summary">
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#%3D%3D%3D-instance_method" title="#===">#===</a></span><span class='args'>(other)</span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        <p>
+Explicitly proxy === because the instance method removal above
+doesn&#8217;t catch it.
+</p>
+
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#aliased_table_name-instance_method" title="#aliased_table_name">#aliased_table_name</a></span><span class='args'></span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#find_target-instance_method" title="#find_target">#find_target</a></span><span class='args'></span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#load_target-instance_method" title="#load_target">#load_target</a></span><span class='args'></span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        <p>
+def method_missing(method_id, *args, &amp;block)
+</p>
+<pre class="code">
+         <span class='if if kw'>if</span> <span class='notop op'>!</span><span class='loaded? fid id'>loaded?</span> <span class='and and kw'>and</span> <span class='@reflection ivar id'>@reflection</span><span class='dot token'>.</span>
+</pre>
+
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#loaded-instance_method" title="#loaded">#loaded</a></span><span class='args'></span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#loaded%3F-instance_method" title="#loaded?">#loaded?</a></span><span class='args'></span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#proxy_cache-instance_method" title="#proxy_cache">#proxy_cache</a></span><span class='args'></span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        <p>
+delegate :to_param, :to =&gt; :proxy_target
+</p>
+<pre class="code">
+     <span class='instance_methods identifier id'>instance_methods</span><span class='dot token'>.</span>
+</pre>
+
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#proxy_owner-instance_method" title="#proxy_owner">#proxy_owner</a></span><span class='args'></span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#proxy_reflection-instance_method" title="#proxy_reflection">#proxy_reflection</a></span><span class='args'></span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#proxy_target-instance_method" title="#proxy_target">#proxy_target</a></span><span class='args'></span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#reload-instance_method" title="#reload">#reload</a></span><span class='args'></span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#reset-instance_method" title="#reset">#reset</a></span><span class='args'></span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#respond_to%3F-instance_method" title="#respond_to?">#respond_to?</a></span><span class='args'>(symbol, include_priv = false)</span>
+            <span class='block'></span>
+          </span>
+        
+        
+          <span class='alias'>#proxy_respond_to?</span>
+        
+      </th>
+      <td class="docstring">
+        
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#target-instance_method" title="#target">#target</a></span><span class='args'></span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#target%3D-instance_method" title="#target=">#target=</a></span><span class='args'>(target)</span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        
+        
+      </td>
+    </tr>
+  
+</table>
+
+  </div>
+<div class="section methoddetails instance public">
+  <h1>Public Instance Method Details</h1>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>===</h3>
+</div><div id="===-instance_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>===</span><span class='args'>(other)</span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section docstring">
+  <p>
+Explicitly proxy === because the instance method removal above
+doesn&#8217;t catch it.
+</p>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+36
+37
+38
+39</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/br_associations/cached_item_proxy.rb', line 36</span>
+
+<span class='def def kw'>def</span> <span class='eqq op'>===</span><span class='lparen token'>(</span><span class='other identifier id'>other</span><span class='rparen token'>)</span>
+  <span class='load_target identifier id'>load_target</span>
+  <span class='other identifier id'>other</span> <span class='eqq op'>===</span> <span class='@target ivar id'>@target</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>aliased_table_name</h3>
+</div><div id="aliased_table_name-instance_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>aliased_table_name</span><span class='args'></span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+41
+42
+43</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/br_associations/cached_item_proxy.rb', line 41</span>
+
+<span class='def def kw'>def</span> <span class='aliased_table_name identifier id'>aliased_table_name</span>
+  <span class='@reflection ivar id'>@reflection</span><span class='dot token'>.</span><span class='klass identifier id'>klass</span><span class='dot token'>.</span><span class='table_name identifier id'>table_name</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>find_target</h3>
+</div><div id="find_target-instance_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>find_target</span><span class='args'></span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+176
+177
+178</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/br_associations/cached_item_proxy.rb', line 176</span>
+
+<span class='def def kw'>def</span> <span class='find_target identifier id'>find_target</span>
+  <span class='@reflection ivar id'>@reflection</span><span class='dot token'>.</span><span class='klass identifier id'>klass</span><span class='dot token'>.</span><span class='find identifier id'>find</span><span class='lparen token'>(</span><span class='self self kw'>self</span><span class='dot token'>.</span><span class='id identifier id'>id</span><span class='rparen token'>)</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>load_target</h3>
+</div><div id="load_target-instance_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>load_target</span><span class='args'></span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section docstring">
+  <p>
+def method_missing(method_id, *args, &amp;block)
+</p>
+<pre class="code">
+         <span class='if if kw'>if</span> <span class='notop op'>!</span><span class='loaded? fid id'>loaded?</span> <span class='and and kw'>and</span> <span class='@reflection ivar id'>@reflection</span><span class='dot token'>.</span><span class='options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:cache</span><span class='rbrack token'>]</span><span class='dot token'>.</span><span class='include? fid id'>include?</span><span class='lparen token'>(</span><span class='method_id identifier id'>method_id</span><span class='rparen token'>)</span>
+           <span class='comment val'># FIXME: shouldn't be hard coded</span>
+           <span class='column identifier id'>column</span> <span class='assign token'>=</span> <span class='@owner ivar id'>@owner</span><span class='dot token'>.</span><span class='column_for_attribute identifier id'>column_for_attribute</span><span class='lparen token'>(</span><span class='dstring node'>&quot;attribute:#{method_id}&quot;</span><span class='rparen token'>)</span>
+           <span class='if if kw'>if</span> <span class='column identifier id'>column</span>
+             <span class='if if kw'>if</span> <span class='proxy_cache identifier id'>proxy_cache</span><span class='dot token'>.</span><span class='has_key? fid id'>has_key?</span><span class='lparen token'>(</span><span class='method_id identifier id'>method_id</span><span class='rparen token'>)</span>
+               <span class='column identifier id'>column</span><span class='dot token'>.</span><span class='type_cast identifier id'>type_cast</span><span class='lparen token'>(</span><span class='proxy_cache identifier id'>proxy_cache</span><span class='lbrack token'>[</span><span class='method_id identifier id'>method_id</span><span class='rbrack token'>]</span><span class='rparen token'>)</span>
+             <span class='elsif elsif kw'>elsif</span> <span class='load_target identifier id'>load_target</span>
+               <span class='proxy_cache identifier id'>proxy_cache</span><span class='lbrack token'>[</span><span class='method_id identifier id'>method_id</span><span class='rbrack token'>]</span> <span class='assign token'>=</span> <span class='@target ivar id'>@target</span><span class='dot token'>.</span><span class='send identifier id'>send</span><span class='lparen token'>(</span><span class='method_id identifier id'>method_id</span><span class='comma token'>,</span> <span class='mult op'>*</span><span class='args identifier id'>args</span><span class='comma token'>,</span> <span class='bitand op'>&amp;</span><span class='block identifier id'>block</span><span class='rparen token'>)</span>
+             <span class='end end kw'>end</span>
+           <span class='else else kw'>else</span>
+             <span class='@target ivar id'>@target</span><span class='dot token'>.</span><span class='send identifier id'>send</span><span class='lparen token'>(</span><span class='method_id identifier id'>method_id</span><span class='comma token'>,</span> <span class='mult op'>*</span><span class='args identifier id'>args</span><span class='comma token'>,</span> <span class='bitand op'>&amp;</span><span class='block identifier id'>block</span><span class='rparen token'>)</span>
+           <span class='end end kw'>end</span>
+         <span class='elsif elsif kw'>elsif</span> <span class='load_target identifier id'>load_target</span>
+           <span class='value identifier id'>value</span> <span class='assign token'>=</span> <span class='@target ivar id'>@target</span><span class='dot token'>.</span><span class='send identifier id'>send</span><span class='lparen token'>(</span><span class='method_id identifier id'>method_id</span><span class='comma token'>,</span> <span class='mult op'>*</span><span class='args identifier id'>args</span><span class='comma token'>,</span> <span class='bitand op'>&amp;</span><span class='block identifier id'>block</span><span class='rparen token'>)</span>
+           <span class='proxy_cache identifier id'>proxy_cache</span><span class='lbrack token'>[</span><span class='method_id identifier id'>method_id</span><span class='rbrack token'>]</span> <span class='assign token'>=</span> <span class='value identifier id'>value</span> <span class='if if_mod kw'>if</span> <span class='@reflection ivar id'>@reflection</span><span class='dot token'>.</span><span class='options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:cache</span><span class='rbrack token'>]</span><span class='dot token'>.</span><span class='include? fid id'>include?</span><span class='lparen token'>(</span><span class='method_id identifier id'>method_id</span><span class='rparen token'>)</span>
+           <span class='value identifier id'>value</span>
+         <span class='end end kw'>end</span>
+       <span class='end end kw'>end</span>
+</pre>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/br_associations/cached_item_proxy.rb', line 163</span>
+
+<span class='def def kw'>def</span> <span class='load_target identifier id'>load_target</span>
+  <span class='return return kw'>return</span> <span class='nil nil kw'>nil</span> <span class='unless unless_mod kw'>unless</span> <span class='defined? defined kw'>defined?</span><span class='lparen token'>(</span><span class='@loaded ivar id'>@loaded</span><span class='rparen token'>)</span>
+
+  <span class='if if kw'>if</span> <span class='notop op'>!</span><span class='loaded? fid id'>loaded?</span> <span class='and and kw'>and</span> <span class='lparen token'>(</span><span class='notop op'>!</span><span class='@owner ivar id'>@owner</span><span class='dot token'>.</span><span class='new_record? fid id'>new_record?</span> <span class='orop op'>||</span> <span class='foreign_key_present identifier id'>foreign_key_present</span><span class='rparen token'>)</span>
+    <span class='@target ivar id'>@target</span> <span class='assign token'>=</span> <span class='find_target identifier id'>find_target</span>
+  <span class='end end kw'>end</span>
+
+  <span class='@loaded ivar id'>@loaded</span> <span class='assign token'>=</span> <span class='true true kw'>true</span>
+  <span class='@target ivar id'>@target</span>
+<span class='rescue rescue kw'>rescue</span> <span class='BigRecord constant id'>BigRecord</span><span class='colon2 op'>::</span><span class='RecordNotFound constant id'>RecordNotFound</span>
+  <span class='reset identifier id'>reset</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>loaded</h3>
+</div><div id="loaded-instance_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>loaded</span><span class='args'></span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+59
+60
+61</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/br_associations/cached_item_proxy.rb', line 59</span>
+
+<span class='def def kw'>def</span> <span class='loaded identifier id'>loaded</span>
+  <span class='@loaded ivar id'>@loaded</span> <span class='assign token'>=</span> <span class='true true kw'>true</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>loaded?</h3>
+</div><div id="loaded?-instance_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>loaded?</span><span class='args'></span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+55
+56
+57</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/br_associations/cached_item_proxy.rb', line 55</span>
+
+<span class='def def kw'>def</span> <span class='loaded? fid id'>loaded?</span>
+  <span class='@loaded ivar id'>@loaded</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>proxy_cache</h3>
+</div><div id="proxy_cache-instance_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>proxy_cache</span><span class='args'></span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section docstring">
+  <p>
+delegate :to_param, :to =&gt; :proxy_target
+</p>
+<pre class="code">
+     <span class='instance_methods identifier id'>instance_methods</span><span class='dot token'>.</span><span class='each identifier id'>each</span> <span class='lbrace token'>{</span> <span class='bitor op'>|</span><span class='m identifier id'>m</span><span class='bitor op'>|</span> <span class='undef_method identifier id'>undef_method</span> <span class='m identifier id'>m</span> <span class='unless unless_mod kw'>unless</span> <span class='m identifier id'>m</span> <span class='match op'>=~</span> <span class='regexp val'>/(^__|^nil\?$|^send$|proxy_)/</span> <span class='rbrace token'>}</span>
+</pre>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+13
+14
+15
+16</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/br_associations/cached_item_proxy.rb', line 13</span>
+
+<span class='def def kw'>def</span> <span class='proxy_cache identifier id'>proxy_cache</span>
+  <span class='@owner ivar id'>@owner</span><span class='lbrack token'>[</span><span class='CACHE_ATTRIBUTE constant id'>CACHE_ATTRIBUTE</span><span class='rbrack token'>]</span> <span class='opasgn op'>||=</span> <span class='lbrace token'>{</span><span class='rbrace token'>}</span>
+  <span class='@owner ivar id'>@owner</span><span class='lbrack token'>[</span><span class='CACHE_ATTRIBUTE constant id'>CACHE_ATTRIBUTE</span><span class='rbrack token'>]</span><span class='lbrack token'>[</span><span class='dstring node'>&quot;#{@reflection.klass.name}:#{id}&quot;</span><span class='rbrack token'>]</span> <span class='opasgn op'>||=</span> <span class='lbrace token'>{</span><span class='rbrace token'>}</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>proxy_owner</h3>
+</div><div id="proxy_owner-instance_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>proxy_owner</span><span class='args'></span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+18
+19
+20</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/br_associations/cached_item_proxy.rb', line 18</span>
+
+<span class='def def kw'>def</span> <span class='proxy_owner identifier id'>proxy_owner</span>
+  <span class='@owner ivar id'>@owner</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>proxy_reflection</h3>
+</div><div id="proxy_reflection-instance_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>proxy_reflection</span><span class='args'></span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+22
+23
+24</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/br_associations/cached_item_proxy.rb', line 22</span>
+
+<span class='def def kw'>def</span> <span class='proxy_reflection identifier id'>proxy_reflection</span>
+  <span class='@reflection ivar id'>@reflection</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>proxy_target</h3>
+</div><div id="proxy_target-instance_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>proxy_target</span><span class='args'></span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+26
+27
+28</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/br_associations/cached_item_proxy.rb', line 26</span>
+
+<span class='def def kw'>def</span> <span class='proxy_target identifier id'>proxy_target</span>
+  <span class='@target ivar id'>@target</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>reload</h3>
+</div><div id="reload-instance_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>reload</span><span class='args'></span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+50
+51
+52
+53</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/br_associations/cached_item_proxy.rb', line 50</span>
+
+<span class='def def kw'>def</span> <span class='reload identifier id'>reload</span>
+  <span class='reset identifier id'>reset</span>
+  <span class='load_target identifier id'>load_target</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>reset</h3>
+</div><div id="reset-instance_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>reset</span><span class='args'></span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+45
+46
+47
+48</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/br_associations/cached_item_proxy.rb', line 45</span>
+
+<span class='def def kw'>def</span> <span class='reset identifier id'>reset</span>
+  <span class='@loaded ivar id'>@loaded</span> <span class='assign token'>=</span> <span class='false false kw'>false</span>
+  <span class='@target ivar id'>@target</span> <span class='assign token'>=</span> <span class='nil nil kw'>nil</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>respond_to?</h3>
+</div><div id="respond_to?-instance_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>respond_to?</span><span class='args'>(symbol, include_priv = false)</span>
+      <span class='block'></span>
+    </tt>
+  </div>
+<p class="aliases">
+  <span class="aka">Also known as:</span>
+  
+    <tt id="proxy_respond_to?-instance_method">proxy_respond_to?</tt>
+  
+</p>
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+30
+31
+32</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/br_associations/cached_item_proxy.rb', line 30</span>
+
+<span class='def def kw'>def</span> <span class='respond_to? fid id'>respond_to?</span><span class='lparen token'>(</span><span class='symbol identifier id'>symbol</span><span class='comma token'>,</span> <span class='include_priv identifier id'>include_priv</span> <span class='assign token'>=</span> <span class='false false kw'>false</span><span class='rparen token'>)</span>
+  <span class='proxy_respond_to? fid id'>proxy_respond_to?</span><span class='lparen token'>(</span><span class='symbol identifier id'>symbol</span><span class='comma token'>,</span> <span class='include_priv identifier id'>include_priv</span><span class='rparen token'>)</span> <span class='orop op'>||</span> <span class='lparen token'>(</span><span class='load_target identifier id'>load_target</span> <span class='andop op'>&amp;&amp;</span> <span class='@target ivar id'>@target</span><span class='dot token'>.</span><span class='respond_to? fid id'>respond_to?</span><span class='lparen token'>(</span><span class='symbol identifier id'>symbol</span><span class='comma token'>,</span> <span class='include_priv identifier id'>include_priv</span><span class='rparen token'>)</span><span class='rparen token'>)</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>target</h3>
+</div><div id="target-instance_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>target</span><span class='args'></span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+63
+64
+65</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/br_associations/cached_item_proxy.rb', line 63</span>
+
+<span class='def def kw'>def</span> <span class='target identifier id'>target</span>
+  <span class='@target ivar id'>@target</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>target=</h3>
+</div><div id="target=-instance_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>target=</span><span class='args'>(target)</span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+67
+68
+69
+70</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/br_associations/cached_item_proxy.rb', line 67</span>
+
+<span class='def def kw'>def</span> <span class='target= identifier id'>target=</span><span class='lparen token'>(</span><span class='target identifier id'>target</span><span class='rparen token'>)</span>
+  <span class='@target ivar id'>@target</span> <span class='assign token'>=</span> <span class='target identifier id'>target</span>
+  <span class='loaded identifier id'>loaded</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+</div>
+  </div>
+
+</div>
+    </div>
+    <div id="yard_info">
+  Generated on Tuesday, November 10 2009 at 06:18:48 PM by 
+  <abbr class="yard" title="Yay! A Ruby Documentation Tool"><a href="http://yard.soen.ca">YARD</a></abbr> 
+  0.2.3.5 (ruby-1.8.7).
+</div>
+
+  </body>
+</html>

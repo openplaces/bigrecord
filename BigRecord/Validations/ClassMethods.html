@@ -1,0 +1,2091 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="../../style.css" type="text/css" charset="utf-8" />
+<link rel="stylesheet" href="../../custom.css" type="text/css" charset="utf-8" />
+<link rel="stylesheet" href="../../syntax_highlight.css" type="text/css" charset="utf-8" />
+
+    <script src="../../jquery.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../app.js" type="text/javascript" charset="utf-8"></script>
+    <title>Module: BigRecord::Validations::ClassMethods</title>
+  </head>
+  <body>
+    <div id="content">
+      <div class="section module BigRecord_Validations_ClassMethods">
+  <h1 class="title">Module: BigRecord::Validations::ClassMethods</h1>
+  <div class="section docstring">
+  <p>
+All of the following validations are defined in the class scope of the
+model that you&#8217;re interested in validating. They offer a more
+declarative way of specifying when the model is valid and when it is not.
+It is recommended to use these over the low-level calls to validate and
+validate_on_create when possible.
+</p>
+
+</div><div class="section constants">
+  <div class="thisclass">
+  <h1>Constants</h1>
+  <dl>
+    
+      <dt id="ALL_RANGE_OPTIONS-constant">ALL_RANGE_OPTIONS</dt>
+      <dd>[ :is, :within, :in, :minimum, :maximum ].freeze</dd>
+    
+      <dt id="DEFAULT_VALIDATION_OPTIONS-constant">DEFAULT_VALIDATION_OPTIONS</dt>
+      <dd>{
+  :on =&gt; :save,
+  :allow_nil =&gt; false,
+  :message =&gt; nil
+}.freeze</dd>
+    
+  </dl>
+</div>
+
+</div>  <div class="section visibilitygroup public">
+    <h1>Public Visibility</h1>
+      <div class="section methodsummary instance public">
+    <h1>Public Instance Method Summary</h1>
+<table class="summary">
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#condition_block%3F-instance_method" title="#condition_block?">#condition_block?</a></span><span class='args'>(condition)</span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#create%21-instance_method" title="#create!">#create!</a></span><span class='args'>(attributes = nil)</span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        <p>
+Creates an object just like Base.
+</p>
+
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#evaluate_condition-instance_method" title="#evaluate_condition">#evaluate_condition</a></span><span class='args'>(condition, record)</span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        <p>
+Determine from the given condition (whether a block, procedure, method or
+string) whether or not to validate the record.
+</p>
+
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#validate-instance_method" title="#validate">#validate</a></span><span class='args'>(*methods, &amp;block)</span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#validate_on_create-instance_method" title="#validate_on_create">#validate_on_create</a></span><span class='args'>(*methods, &amp;block)</span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#validate_on_update-instance_method" title="#validate_on_update">#validate_on_update</a></span><span class='args'>(*methods, &amp;block)</span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#validates_acceptance_of-instance_method" title="#validates_acceptance_of">#validates_acceptance_of</a></span><span class='args'>(*attr_names)</span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        <p>
+Encapsulates the pattern of wanting to validate the acceptance of a terms
+of service check box (or similar agreement).
+</p>
+
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#validates_associated-instance_method" title="#validates_associated">#validates_associated</a></span><span class='args'>(*attr_names)</span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        <p>
+Validates whether the associated object or objects are all valid
+themselves.
+</p>
+
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#validates_confirmation_of-instance_method" title="#validates_confirmation_of">#validates_confirmation_of</a></span><span class='args'>(*attr_names)</span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        <p>
+Encapsulates the pattern of wanting to validate a password or email address
+field with a confirmation.
+</p>
+
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#validates_each-instance_method" title="#validates_each">#validates_each</a></span><span class='args'>(*attrs)</span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        <p>
+Validates each attribute against a block.
+</p>
+
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#validates_exclusion_of-instance_method" title="#validates_exclusion_of">#validates_exclusion_of</a></span><span class='args'>(*attr_names)</span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        <p>
+Validates that the value of the specified attribute is not in a particular
+enumerable object.
+</p>
+
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#validates_format_of-instance_method" title="#validates_format_of">#validates_format_of</a></span><span class='args'>(*attr_names)</span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        <p>
+Validates whether the value of the specified attribute is of the correct
+form by matching it against the regular expression provided.
+</p>
+
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#validates_inclusion_of-instance_method" title="#validates_inclusion_of">#validates_inclusion_of</a></span><span class='args'>(*attr_names)</span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        <p>
+Validates whether the value of the specified attribute is available in a
+particular enumerable object.
+</p>
+
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#validates_length_of-instance_method" title="#validates_length_of">#validates_length_of</a></span><span class='args'>(*attrs)</span>
+            <span class='block'></span>
+          </span>
+        
+        
+          <span class='alias'>#validates_size_of</span>
+        
+      </th>
+      <td class="docstring">
+        <p>
+Validates that the specified attribute matches the length restrictions
+supplied.
+</p>
+
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#validates_numericality_of-instance_method" title="#validates_numericality_of">#validates_numericality_of</a></span><span class='args'>(*attr_names)</span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        <p>
+Validates whether the value of the specified attribute is numeric by trying
+to convert it to a float with Kernel.
+</p>
+
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#validates_presence_of-instance_method" title="#validates_presence_of">#validates_presence_of</a></span><span class='args'>(*attr_names)</span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        <p>
+Validates that the specified attributes are not blank (as defined by
+Object#blank?).
+</p>
+
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#validates_uniqueness_of-instance_method" title="#validates_uniqueness_of">#validates_uniqueness_of</a></span><span class='args'>(*attr_names)</span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        <p>
+Validates whether the value of the specified attributes are unique across
+the system.
+</p>
+
+        
+      </td>
+    </tr>
+  
+</table>
+
+  </div>
+<div class="section methoddetails instance public">
+  <h1>Public Instance Method Details</h1>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>condition_block?</h3>
+</div><div id="condition_block?-instance_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>condition_block?</span><span class='args'>(condition)</span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+241
+242
+243</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/validations.rb', line 241</span>
+
+<span class='def def kw'>def</span> <span class='condition_block? fid id'>condition_block?</span><span class='lparen token'>(</span><span class='condition identifier id'>condition</span><span class='rparen token'>)</span>
+  <span class='condition identifier id'>condition</span><span class='dot token'>.</span><span class='respond_to? fid id'>respond_to?</span><span class='lparen token'>(</span><span class='string val'>&quot;call&quot;</span><span class='rparen token'>)</span> <span class='andop op'>&amp;&amp;</span> <span class='lparen token'>(</span><span class='condition identifier id'>condition</span><span class='dot token'>.</span><span class='arity identifier id'>arity</span> <span class='eq op'>==</span> <span class='integer val'>1</span> <span class='orop op'>||</span> <span class='condition identifier id'>condition</span><span class='dot token'>.</span><span class='arity identifier id'>arity</span> <span class='eq op'>==</span> <span class='integer val'>-1</span><span class='rparen token'>)</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>create!</h3>
+</div><div id="create!-instance_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>create!</span><span class='args'>(attributes = nil)</span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section docstring">
+  <p>
+Creates an object just like Base.create but calls save! instead of save so
+an exception is raised if the record is invalid.
+</p>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+706
+707
+708
+709
+710
+711
+712
+713
+714
+715
+716
+717</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/validations.rb', line 706</span>
+
+<span class='def def kw'>def</span> <span class='create! fid id'>create!</span><span class='lparen token'>(</span><span class='attributes identifier id'>attributes</span> <span class='assign token'>=</span> <span class='nil nil kw'>nil</span><span class='rparen token'>)</span>
+  <span class='if if kw'>if</span> <span class='attributes identifier id'>attributes</span><span class='dot token'>.</span><span class='is_a? fid id'>is_a?</span><span class='lparen token'>(</span><span class='Array constant id'>Array</span><span class='rparen token'>)</span>
+    <span class='attributes identifier id'>attributes</span><span class='dot token'>.</span><span class='collect identifier id'>collect</span> <span class='lbrace token'>{</span> <span class='bitor op'>|</span><span class='attr identifier id'>attr</span><span class='bitor op'>|</span> <span class='create! fid id'>create!</span><span class='lparen token'>(</span><span class='attr identifier id'>attr</span><span class='rparen token'>)</span> <span class='rbrace token'>}</span>
+  <span class='else else kw'>else</span>
+    <span class='attributes identifier id'>attributes</span> <span class='opasgn op'>||=</span> <span class='lbrace token'>{</span><span class='rbrace token'>}</span>
+    <span class='attributes identifier id'>attributes</span><span class='dot token'>.</span><span class='reverse_merge! fid id'>reverse_merge!</span><span class='lparen token'>(</span><span class='scope identifier id'>scope</span><span class='lparen token'>(</span><span class='symbol val'>:create</span><span class='rparen token'>)</span><span class='rparen token'>)</span> <span class='if if_mod kw'>if</span> <span class='scoped? fid id'>scoped?</span><span class='lparen token'>(</span><span class='symbol val'>:create</span><span class='rparen token'>)</span>
+
+    <span class='object identifier id'>object</span> <span class='assign token'>=</span> <span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='attributes identifier id'>attributes</span><span class='rparen token'>)</span>
+    <span class='object identifier id'>object</span><span class='dot token'>.</span><span class='save! fid id'>save!</span>
+    <span class='object identifier id'>object</span>
+  <span class='end end kw'>end</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>evaluate_condition</h3>
+</div><div id="evaluate_condition-instance_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>evaluate_condition</span><span class='args'>(condition, record)</span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section docstring">
+  <p>
+Determine from the given condition (whether a block, procedure, method or
+string) whether or not to validate the record. See #validates_each.
+</p>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/validations.rb', line 247</span>
+
+<span class='def def kw'>def</span> <span class='evaluate_condition identifier id'>evaluate_condition</span><span class='lparen token'>(</span><span class='condition identifier id'>condition</span><span class='comma token'>,</span> <span class='record identifier id'>record</span><span class='rparen token'>)</span>
+  <span class='case case kw'>case</span> <span class='condition identifier id'>condition</span>
+    <span class='when when kw'>when</span> <span class='Symbol constant id'>Symbol</span><span class='colon op'>:</span> <span class='record identifier id'>record</span><span class='dot token'>.</span><span class='send identifier id'>send</span><span class='lparen token'>(</span><span class='condition identifier id'>condition</span><span class='rparen token'>)</span>
+    <span class='when when kw'>when</span> <span class='String constant id'>String</span><span class='colon op'>:</span> <span class='eval identifier id'>eval</span><span class='lparen token'>(</span><span class='condition identifier id'>condition</span><span class='comma token'>,</span> <span class='binding identifier id'>binding</span><span class='rparen token'>)</span>
+    <span class='else else kw'>else</span>
+      <span class='if if kw'>if</span> <span class='condition_block? fid id'>condition_block?</span><span class='lparen token'>(</span><span class='condition identifier id'>condition</span><span class='rparen token'>)</span>
+        <span class='condition identifier id'>condition</span><span class='dot token'>.</span><span class='call identifier id'>call</span><span class='lparen token'>(</span><span class='record identifier id'>record</span><span class='rparen token'>)</span>
+      <span class='else else kw'>else</span>
+        <span class='raise identifier id'>raise</span><span class='lparen token'>(</span>
+          <span class='BigRecordError constant id'>BigRecordError</span><span class='comma token'>,</span>
+          <span class='string val'>&quot;Validations need to be either a symbol, string (to be eval'ed), proc/method, or &quot;</span> <span class='plus op'>+</span>
+          <span class='string val'>&quot;class implementing a static validation method&quot;</span>
+        <span class='rparen token'>)</span>
+      <span class='end end kw'>end</span>
+    <span class='end end kw'>end</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>validate</h3>
+</div><div id="validate-instance_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>validate</span><span class='args'>(*methods, &amp;block)</span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+226
+227
+228
+229</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/validations.rb', line 226</span>
+
+<span class='def def kw'>def</span> <span class='validate identifier id'>validate</span><span class='lparen token'>(</span><span class='mult op'>*</span><span class='methods identifier id'>methods</span><span class='comma token'>,</span> <span class='bitand op'>&amp;</span><span class='block identifier id'>block</span><span class='rparen token'>)</span>
+  <span class='methods identifier id'>methods</span> <span class='lshft op'>&lt;&lt;</span> <span class='block identifier id'>block</span> <span class='if if_mod kw'>if</span> <span class='block_given? fid id'>block_given?</span>
+  <span class='write_inheritable_set identifier id'>write_inheritable_set</span><span class='lparen token'>(</span><span class='symbol val'>:validate</span><span class='comma token'>,</span> <span class='methods identifier id'>methods</span><span class='rparen token'>)</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>validate_on_create</h3>
+</div><div id="validate_on_create-instance_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>validate_on_create</span><span class='args'>(*methods, &amp;block)</span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+231
+232
+233
+234</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/validations.rb', line 231</span>
+
+<span class='def def kw'>def</span> <span class='validate_on_create identifier id'>validate_on_create</span><span class='lparen token'>(</span><span class='mult op'>*</span><span class='methods identifier id'>methods</span><span class='comma token'>,</span> <span class='bitand op'>&amp;</span><span class='block identifier id'>block</span><span class='rparen token'>)</span>
+  <span class='methods identifier id'>methods</span> <span class='lshft op'>&lt;&lt;</span> <span class='block identifier id'>block</span> <span class='if if_mod kw'>if</span> <span class='block_given? fid id'>block_given?</span>
+  <span class='write_inheritable_set identifier id'>write_inheritable_set</span><span class='lparen token'>(</span><span class='symbol val'>:validate_on_create</span><span class='comma token'>,</span> <span class='methods identifier id'>methods</span><span class='rparen token'>)</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>validate_on_update</h3>
+</div><div id="validate_on_update-instance_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>validate_on_update</span><span class='args'>(*methods, &amp;block)</span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+236
+237
+238
+239</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/validations.rb', line 236</span>
+
+<span class='def def kw'>def</span> <span class='validate_on_update identifier id'>validate_on_update</span><span class='lparen token'>(</span><span class='mult op'>*</span><span class='methods identifier id'>methods</span><span class='comma token'>,</span> <span class='bitand op'>&amp;</span><span class='block identifier id'>block</span><span class='rparen token'>)</span>
+  <span class='methods identifier id'>methods</span> <span class='lshft op'>&lt;&lt;</span> <span class='block identifier id'>block</span> <span class='if if_mod kw'>if</span> <span class='block_given? fid id'>block_given?</span>
+  <span class='write_inheritable_set identifier id'>write_inheritable_set</span><span class='lparen token'>(</span><span class='symbol val'>:validate_on_update</span><span class='comma token'>,</span> <span class='methods identifier id'>methods</span><span class='rparen token'>)</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>validates_acceptance_of</h3>
+</div><div id="validates_acceptance_of-instance_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>validates_acceptance_of</span><span class='args'>(*attr_names)</span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section docstring">
+  <p>
+Encapsulates the pattern of wanting to validate the acceptance of a terms
+of service check box (or similar agreement). Example:
+</p>
+<pre class="code">
+  <span class='class class kw'>class</span> <span class='Person constant id'>Person</span> <span class='lt op'>&lt;</span> <span class='ActiveRecord constant id'>ActiveRecord</span><span class='colon2 op'>::</span><span class='Base constant id'>Base</span>
+    <span class='validates_acceptance_of identifier id'>validates_acceptance_of</span> <span class='symbol val'>:terms_of_service</span>
+    <span class='validates_acceptance_of identifier id'>validates_acceptance_of</span> <span class='symbol val'>:eula</span><span class='comma token'>,</span> <span class='symbol val'>:message</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>&quot;must be abided&quot;</span>
+  <span class='end end kw'>end</span>
+</pre>
+<p>
+The terms_of_service attribute is entirely virtual. No database column is
+needed. This check is performed only if terms_of_service is not nil and by
+default on save.
+</p>
+<p>
+Configuration options:
+</p>
+<ul>
+<li><tt>message</tt> - A custom error message (default is: &quot;must be
+accepted&quot;)
+
+</li>
+<li><tt>on</tt> - Specifies when this validation is active (default is :save,
+other options :create, :update)
+
+</li>
+<li><tt>accept</tt> - Specifies value that is considered accepted. The default
+value is a string &quot;1&quot;, which
+
+</li>
+</ul>
+<p>
+makes it easy to relate to an HTML checkbox.
+</p>
+<ul>
+<li><tt>if</tt> - Specifies a method, proc or string to call to determine if
+the validation should
+
+</li>
+</ul>
+<p>
+occur (e.g. :if =&gt; :allow_validation, or :if =&gt; Proc.new { |user|
+user.signup_step &gt; 2 }). The method, proc or string should return or
+evaluate to a true or false value.
+</p>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+346
+347
+348
+349
+350
+351
+352
+353
+354
+355</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/validations.rb', line 346</span>
+
+<span class='def def kw'>def</span> <span class='validates_acceptance_of identifier id'>validates_acceptance_of</span><span class='lparen token'>(</span><span class='mult op'>*</span><span class='attr_names identifier id'>attr_names</span><span class='rparen token'>)</span>
+  <span class='configuration identifier id'>configuration</span> <span class='assign token'>=</span> <span class='lbrace token'>{</span> <span class='symbol val'>:message</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='BigRecord constant id'>BigRecord</span><span class='colon2 op'>::</span><span class='Errors constant id'>Errors</span><span class='dot token'>.</span><span class='default_error_messages identifier id'>default_error_messages</span><span class='lbrack token'>[</span><span class='symbol val'>:accepted</span><span class='rbrack token'>]</span><span class='comma token'>,</span> <span class='symbol val'>:on</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='symbol val'>:save</span><span class='comma token'>,</span> <span class='symbol val'>:allow_nil</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='true true kw'>true</span><span class='comma token'>,</span> <span class='symbol val'>:accept</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>&quot;1&quot;</span> <span class='rbrace token'>}</span>
+  <span class='configuration identifier id'>configuration</span><span class='dot token'>.</span><span class='update identifier id'>update</span><span class='lparen token'>(</span><span class='attr_names identifier id'>attr_names</span><span class='dot token'>.</span><span class='pop identifier id'>pop</span><span class='rparen token'>)</span> <span class='if if_mod kw'>if</span> <span class='attr_names identifier id'>attr_names</span><span class='dot token'>.</span><span class='last identifier id'>last</span><span class='dot token'>.</span><span class='is_a? fid id'>is_a?</span><span class='lparen token'>(</span><span class='Hash constant id'>Hash</span><span class='rparen token'>)</span>
+
+  <span class='attr_accessor identifier id'>attr_accessor</span> <span class='mult op'>*</span><span class='attr_names identifier id'>attr_names</span>
+
+  <span class='validates_each identifier id'>validates_each</span><span class='lparen token'>(</span><span class='attr_names identifier id'>attr_names</span><span class='comma token'>,</span><span class='configuration identifier id'>configuration</span><span class='rparen token'>)</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='record identifier id'>record</span><span class='comma token'>,</span> <span class='attr_name identifier id'>attr_name</span><span class='comma token'>,</span> <span class='value identifier id'>value</span><span class='bitor op'>|</span>
+    <span class='record identifier id'>record</span><span class='dot token'>.</span><span class='errors identifier id'>errors</span><span class='dot token'>.</span><span class='add identifier id'>add</span><span class='lparen token'>(</span><span class='attr_name identifier id'>attr_name</span><span class='comma token'>,</span> <span class='configuration identifier id'>configuration</span><span class='lbrack token'>[</span><span class='symbol val'>:message</span><span class='rbrack token'>]</span><span class='rparen token'>)</span> <span class='unless unless_mod kw'>unless</span> <span class='value identifier id'>value</span> <span class='eq op'>==</span> <span class='configuration identifier id'>configuration</span><span class='lbrack token'>[</span><span class='symbol val'>:accept</span><span class='rbrack token'>]</span>
+  <span class='end end kw'>end</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>validates_associated</h3>
+</div><div id="validates_associated-instance_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>validates_associated</span><span class='args'>(*attr_names)</span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section docstring">
+  <p>
+Validates whether the associated object or objects are all valid
+themselves. Works with any kind of association.
+</p>
+<pre class="code">
+  <span class='class class kw'>class</span> <span class='Book constant id'>Book</span> <span class='lt op'>&lt;</span> <span class='ActiveRecord constant id'>ActiveRecord</span><span class='colon2 op'>::</span><span class='Base constant id'>Base</span>
+    <span class='has_many identifier id'>has_many</span> <span class='symbol val'>:pages</span>
+    <span class='belongs_to identifier id'>belongs_to</span> <span class='symbol val'>:library</span>
+
+    <span class='validates_associated identifier id'>validates_associated</span> <span class='symbol val'>:pages</span><span class='comma token'>,</span> <span class='symbol val'>:library</span>
+  <span class='end end kw'>end</span>
+</pre>
+<p>
+Warning: If, after the above definition, you then wrote:
+</p>
+<pre class="code">
+  <span class='class class kw'>class</span> <span class='Page constant id'>Page</span> <span class='lt op'>&lt;</span> <span class='ActiveRecord constant id'>ActiveRecord</span><span class='colon2 op'>::</span><span class='Base constant id'>Base</span>
+    <span class='belongs_to identifier id'>belongs_to</span> <span class='symbol val'>:book</span>
+
+    <span class='validates_associated identifier id'>validates_associated</span> <span class='symbol val'>:book</span>
+  <span class='end end kw'>end</span>
+</pre>
+<p>
+&#8230;this would specify a circular dependency and cause infinite
+recursion.
+</p>
+<p>
+NOTE: This validation will not fail if the association hasn&#8217;t been
+assigned. If you want to ensure that the association is both present and
+guaranteed to be valid, you also need to use validates_presence_of.
+</p>
+<p>
+Configuration options:
+</p>
+<ul>
+<li><tt>on</tt> Specifies when this validation is active (default is :save,
+other options :create, :update)
+
+</li>
+<li><tt>if</tt> - Specifies a method, proc or string to call to determine if
+the validation should
+
+</li>
+</ul>
+<p>
+occur (e.g. :if =&gt; :allow_validation, or :if =&gt; Proc.new { |user|
+user.signup_step &gt; 2 }). The method, proc or string should return or
+evaluate to a true or false value.
+</p>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+656
+657
+658
+659
+660
+661
+662
+663
+664</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/validations.rb', line 656</span>
+
+<span class='def def kw'>def</span> <span class='validates_associated identifier id'>validates_associated</span><span class='lparen token'>(</span><span class='mult op'>*</span><span class='attr_names identifier id'>attr_names</span><span class='rparen token'>)</span>
+  <span class='configuration identifier id'>configuration</span> <span class='assign token'>=</span> <span class='lbrace token'>{</span> <span class='symbol val'>:message</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='BigRecord constant id'>BigRecord</span><span class='colon2 op'>::</span><span class='Errors constant id'>Errors</span><span class='dot token'>.</span><span class='default_error_messages identifier id'>default_error_messages</span><span class='lbrack token'>[</span><span class='symbol val'>:invalid</span><span class='rbrack token'>]</span><span class='comma token'>,</span> <span class='symbol val'>:on</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='symbol val'>:save</span> <span class='rbrace token'>}</span>
+  <span class='configuration identifier id'>configuration</span><span class='dot token'>.</span><span class='update identifier id'>update</span><span class='lparen token'>(</span><span class='attr_names identifier id'>attr_names</span><span class='dot token'>.</span><span class='pop identifier id'>pop</span><span class='rparen token'>)</span> <span class='if if_mod kw'>if</span> <span class='attr_names identifier id'>attr_names</span><span class='dot token'>.</span><span class='last identifier id'>last</span><span class='dot token'>.</span><span class='is_a? fid id'>is_a?</span><span class='lparen token'>(</span><span class='Hash constant id'>Hash</span><span class='rparen token'>)</span>
+
+  <span class='validates_each identifier id'>validates_each</span><span class='lparen token'>(</span><span class='attr_names identifier id'>attr_names</span><span class='comma token'>,</span> <span class='configuration identifier id'>configuration</span><span class='rparen token'>)</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='record identifier id'>record</span><span class='comma token'>,</span> <span class='attr_name identifier id'>attr_name</span><span class='comma token'>,</span> <span class='value identifier id'>value</span><span class='bitor op'>|</span>
+    <span class='record identifier id'>record</span><span class='dot token'>.</span><span class='errors identifier id'>errors</span><span class='dot token'>.</span><span class='add identifier id'>add</span><span class='lparen token'>(</span><span class='attr_name identifier id'>attr_name</span><span class='comma token'>,</span> <span class='configuration identifier id'>configuration</span><span class='lbrack token'>[</span><span class='symbol val'>:message</span><span class='rbrack token'>]</span><span class='rparen token'>)</span> <span class='unless unless_mod kw'>unless</span>
+      <span class='lparen token'>(</span><span class='value identifier id'>value</span><span class='dot token'>.</span><span class='is_a? fid id'>is_a?</span><span class='lparen token'>(</span><span class='Array constant id'>Array</span><span class='rparen token'>)</span> <span class='question op'>?</span> <span class='value identifier id'>value</span> <span class='colon op'>:</span> <span class='lbrack token'>[</span><span class='value identifier id'>value</span><span class='rbrack token'>]</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='all? fid id'>all?</span> <span class='lbrace token'>{</span> <span class='bitor op'>|</span><span class='r identifier id'>r</span><span class='bitor op'>|</span> <span class='r identifier id'>r</span><span class='dot token'>.</span><span class='nil? fid id'>nil?</span> <span class='or or kw'>or</span> <span class='r identifier id'>r</span><span class='dot token'>.</span><span class='valid? fid id'>valid?</span> <span class='rbrace token'>}</span>
+  <span class='end end kw'>end</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>validates_confirmation_of</h3>
+</div><div id="validates_confirmation_of-instance_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>validates_confirmation_of</span><span class='args'>(*attr_names)</span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section docstring">
+  <p>
+Encapsulates the pattern of wanting to validate a password or email address
+field with a confirmation. Example:
+</p>
+<pre class="code">
+  <span class='Model constant id'>Model</span><span class='colon op'>:</span>
+    <span class='class class kw'>class</span> <span class='Person constant id'>Person</span> <span class='lt op'>&lt;</span> <span class='ActiveRecord constant id'>ActiveRecord</span><span class='colon2 op'>::</span><span class='Base constant id'>Base</span>
+      <span class='validates_confirmation_of identifier id'>validates_confirmation_of</span> <span class='symbol val'>:user_name</span><span class='comma token'>,</span> <span class='symbol val'>:password</span>
+      <span class='validates_confirmation_of identifier id'>validates_confirmation_of</span> <span class='symbol val'>:email_address</span><span class='comma token'>,</span> <span class='symbol val'>:message</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>&quot;should match confirmation&quot;</span>
+    <span class='end end kw'>end</span>
+
+  <span class='View constant id'>View</span><span class='colon op'>:</span>
+    <span class='lt op'>&lt;</span><span class='string val'>%= password_field &quot;person&quot;, &quot;password&quot; %&gt;
+    &lt;%=</span> <span class='password_field identifier id'>password_field</span> <span class='string val'>&quot;person&quot;</span><span class='comma token'>,</span> <span class='string val'>&quot;password_confirmation&quot;</span> <span class='mod op'>%</span><span class='gt op'>&gt;</span>
+</pre>
+<p>
+The person has to already have a password attribute (a column in the people
+table), but the password_confirmation is virtual. It exists only as an
+in-memory variable for validating the password. This check is performed
+only if password_confirmation is not nil and by default on save.
+</p>
+<p>
+Configuration options:
+</p>
+<ul>
+<li><tt>message</tt> - A custom error message (default is: &quot;doesn&#8217;t
+match confirmation&quot;)
+
+</li>
+<li><tt>on</tt> - Specifies when this validation is active (default is :save,
+other options :create, :update)
+
+</li>
+<li><tt>if</tt> - Specifies a method, proc or string to call to determine if
+the validation should
+
+</li>
+</ul>
+<p>
+occur (e.g. :if =&gt; :allow_validation, or :if =&gt; Proc.new { |user|
+user.signup_step &gt; 2 }). The method, proc or string should return or
+evaluate to a true or false value.
+</p>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/validations.rb', line 317</span>
+
+<span class='def def kw'>def</span> <span class='validates_confirmation_of identifier id'>validates_confirmation_of</span><span class='lparen token'>(</span><span class='mult op'>*</span><span class='attr_names identifier id'>attr_names</span><span class='rparen token'>)</span>
+  <span class='configuration identifier id'>configuration</span> <span class='assign token'>=</span> <span class='lbrace token'>{</span> <span class='symbol val'>:message</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='BigRecord constant id'>BigRecord</span><span class='colon2 op'>::</span><span class='Errors constant id'>Errors</span><span class='dot token'>.</span><span class='default_error_messages identifier id'>default_error_messages</span><span class='lbrack token'>[</span><span class='symbol val'>:confirmation</span><span class='rbrack token'>]</span><span class='comma token'>,</span> <span class='symbol val'>:on</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='symbol val'>:save</span> <span class='rbrace token'>}</span>
+  <span class='configuration identifier id'>configuration</span><span class='dot token'>.</span><span class='update identifier id'>update</span><span class='lparen token'>(</span><span class='attr_names identifier id'>attr_names</span><span class='dot token'>.</span><span class='pop identifier id'>pop</span><span class='rparen token'>)</span> <span class='if if_mod kw'>if</span> <span class='attr_names identifier id'>attr_names</span><span class='dot token'>.</span><span class='last identifier id'>last</span><span class='dot token'>.</span><span class='is_a? fid id'>is_a?</span><span class='lparen token'>(</span><span class='Hash constant id'>Hash</span><span class='rparen token'>)</span>
+
+  <span class='attr_accessor identifier id'>attr_accessor</span> <span class='mult op'>*</span><span class='lparen token'>(</span><span class='attr_names identifier id'>attr_names</span><span class='dot token'>.</span><span class='map identifier id'>map</span> <span class='lbrace token'>{</span> <span class='bitor op'>|</span><span class='n identifier id'>n</span><span class='bitor op'>|</span> <span class='dstring node'>&quot;#{n}_confirmation&quot;</span> <span class='rbrace token'>}</span><span class='rparen token'>)</span>
+
+  <span class='validates_each identifier id'>validates_each</span><span class='lparen token'>(</span><span class='attr_names identifier id'>attr_names</span><span class='comma token'>,</span> <span class='configuration identifier id'>configuration</span><span class='rparen token'>)</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='record identifier id'>record</span><span class='comma token'>,</span> <span class='attr_name identifier id'>attr_name</span><span class='comma token'>,</span> <span class='value identifier id'>value</span><span class='bitor op'>|</span>
+    <span class='record identifier id'>record</span><span class='dot token'>.</span><span class='errors identifier id'>errors</span><span class='dot token'>.</span><span class='add identifier id'>add</span><span class='lparen token'>(</span><span class='attr_name identifier id'>attr_name</span><span class='comma token'>,</span> <span class='configuration identifier id'>configuration</span><span class='lbrack token'>[</span><span class='symbol val'>:message</span><span class='rbrack token'>]</span><span class='rparen token'>)</span> <span class='unless unless_mod kw'>unless</span> <span class='record identifier id'>record</span><span class='dot token'>.</span><span class='send identifier id'>send</span><span class='lparen token'>(</span><span class='dstring node'>&quot;#{attr_name}_confirmation&quot;</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='nil? fid id'>nil?</span> <span class='or or kw'>or</span> <span class='value identifier id'>value</span> <span class='eq op'>==</span> <span class='record identifier id'>record</span><span class='dot token'>.</span><span class='send identifier id'>send</span><span class='lparen token'>(</span><span class='dstring node'>&quot;#{attr_name}_confirmation&quot;</span><span class='rparen token'>)</span>
+  <span class='end end kw'>end</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>validates_each</h3>
+</div><div id="validates_each-instance_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>validates_each</span><span class='args'>(*attrs)</span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section docstring">
+  <p>
+Validates each attribute against a block.
+</p>
+<pre class="code">
+  <span class='class class kw'>class</span> <span class='Person constant id'>Person</span> <span class='lt op'>&lt;</span> <span class='ActiveRecord constant id'>ActiveRecord</span><span class='colon2 op'>::</span><span class='Base constant id'>Base</span>
+    <span class='validates_each identifier id'>validates_each</span> <span class='symbol val'>:first_name</span><span class='comma token'>,</span> <span class='symbol val'>:last_name</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='record identifier id'>record</span><span class='comma token'>,</span> <span class='attr identifier id'>attr</span><span class='comma token'>,</span> <span class='value identifier id'>value</span><span class='bitor op'>|</span>
+      <span class='record identifier id'>record</span><span class='dot token'>.</span><span class='errors identifier id'>errors</span><span class='dot token'>.</span><span class='add identifier id'>add</span> <span class='attr identifier id'>attr</span><span class='comma token'>,</span> <span class='string val'>'starts with z.'</span> <span class='if if_mod kw'>if</span> <span class='value identifier id'>value</span><span class='lbrack token'>[</span><span class='integer val'>0</span><span class='rbrack token'>]</span> <span class='eq op'>==</span> <span class='integer val'>?z</span>
+    <span class='end end kw'>end</span>
+  <span class='end end kw'>end</span>
+</pre>
+<p>
+Options:
+</p>
+<ul>
+<li><tt>on</tt> - Specifies when this validation is active (default is :save,
+other options :create, :update)
+
+</li>
+<li><tt>allow_nil</tt> - Skip validation if attribute is nil.
+
+</li>
+<li><tt>if</tt> - Specifies a method, proc or string to call to determine if
+the validation should
+
+</li>
+</ul>
+<p>
+occur (e.g. :if =&gt; :allow_validation, or :if =&gt; Proc.new { |user|
+user.signup_step &gt; 2 }). The method, proc or string should return or
+evaluate to a true or false value.
+</p>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/validations.rb', line 278</span>
+
+<span class='def def kw'>def</span> <span class='validates_each identifier id'>validates_each</span><span class='lparen token'>(</span><span class='mult op'>*</span><span class='attrs identifier id'>attrs</span><span class='rparen token'>)</span>
+  <span class='options identifier id'>options</span> <span class='assign token'>=</span> <span class='attrs identifier id'>attrs</span><span class='dot token'>.</span><span class='last identifier id'>last</span><span class='dot token'>.</span><span class='is_a? fid id'>is_a?</span><span class='lparen token'>(</span><span class='Hash constant id'>Hash</span><span class='rparen token'>)</span> <span class='question op'>?</span> <span class='attrs identifier id'>attrs</span><span class='dot token'>.</span><span class='pop identifier id'>pop</span><span class='dot token'>.</span><span class='symbolize_keys identifier id'>symbolize_keys</span> <span class='colon op'>:</span> <span class='lbrace token'>{</span><span class='rbrace token'>}</span>
+  <span class='attrs identifier id'>attrs</span>   <span class='assign token'>=</span> <span class='attrs identifier id'>attrs</span><span class='dot token'>.</span><span class='flatten identifier id'>flatten</span>
+
+  <span class='comment val'># Declare the validation.</span>
+  <span class='send identifier id'>send</span><span class='lparen token'>(</span><span class='validation_method identifier id'>validation_method</span><span class='lparen token'>(</span><span class='options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:on</span><span class='rbrack token'>]</span> <span class='orop op'>||</span> <span class='symbol val'>:save</span><span class='rparen token'>)</span><span class='rparen token'>)</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='record identifier id'>record</span><span class='bitor op'>|</span>
+    <span class='comment val'># Don't validate when there is an :if condition and that condition is false</span>
+    <span class='unless unless kw'>unless</span> <span class='options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:if</span><span class='rbrack token'>]</span> <span class='andop op'>&amp;&amp;</span> <span class='notop op'>!</span><span class='evaluate_condition identifier id'>evaluate_condition</span><span class='lparen token'>(</span><span class='options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:if</span><span class='rbrack token'>]</span><span class='comma token'>,</span> <span class='record identifier id'>record</span><span class='rparen token'>)</span>
+      <span class='attrs identifier id'>attrs</span><span class='dot token'>.</span><span class='each identifier id'>each</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='attr identifier id'>attr</span><span class='bitor op'>|</span>
+        <span class='value identifier id'>value</span> <span class='assign token'>=</span> <span class='record identifier id'>record</span><span class='dot token'>.</span><span class='send identifier id'>send</span><span class='lparen token'>(</span><span class='attr identifier id'>attr</span><span class='rparen token'>)</span>
+        <span class='next next kw'>next</span> <span class='if if_mod kw'>if</span> <span class='value identifier id'>value</span><span class='dot token'>.</span><span class='nil? fid id'>nil?</span> <span class='andop op'>&amp;&amp;</span> <span class='options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:allow_nil</span><span class='rbrack token'>]</span>
+        <span class='yield yield kw'>yield</span> <span class='record identifier id'>record</span><span class='comma token'>,</span> <span class='attr identifier id'>attr</span><span class='comma token'>,</span> <span class='value identifier id'>value</span>
+      <span class='end end kw'>end</span>
+    <span class='end end kw'>end</span>
+  <span class='end end kw'>end</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>validates_exclusion_of</h3>
+</div><div id="validates_exclusion_of-instance_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>validates_exclusion_of</span><span class='args'>(*attr_names)</span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section docstring">
+  <p>
+Validates that the value of the specified attribute is not in a particular
+enumerable object.
+</p>
+<pre class="code">
+  <span class='class class kw'>class</span> <span class='Person constant id'>Person</span> <span class='lt op'>&lt;</span> <span class='ActiveRecord constant id'>ActiveRecord</span><span class='colon2 op'>::</span><span class='Base constant id'>Base</span>
+    <span class='validates_exclusion_of identifier id'>validates_exclusion_of</span> <span class='symbol val'>:username</span><span class='comma token'>,</span> <span class='symbol val'>:in</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='dstring node'>%w( admin superuser )</span><span class='comma token'>,</span> <span class='symbol val'>:message</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>&quot;You don't belong here&quot;</span>
+    <span class='validates_exclusion_of identifier id'>validates_exclusion_of</span> <span class='symbol val'>:age</span><span class='comma token'>,</span> <span class='symbol val'>:in</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='float val'>30</span><span class='dot2 op'>..</span><span class='integer val'>60</span><span class='comma token'>,</span> <span class='symbol val'>:message</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>&quot;This site is only for under 30 and over 60&quot;</span>
+  <span class='end end kw'>end</span>
+</pre>
+<p>
+Configuration options:
+</p>
+<ul>
+<li><tt>in</tt> - An enumerable object of items that the value shouldn&#8217;t
+be part of
+
+</li>
+<li><tt>message</tt> - Specifies a customer error message (default is: &quot;is
+reserved&quot;)
+
+</li>
+<li><tt>allow_nil</tt> - If set to true, skips this validation if the attribute
+is null (default is: false)
+
+</li>
+<li><tt>if</tt> - Specifies a method, proc or string to call to determine if
+the validation should
+
+</li>
+</ul>
+<p>
+occur (e.g. :if =&gt; :allow_validation, or :if =&gt; Proc.new { |user|
+user.signup_step &gt; 2 }). The method, proc or string should return or
+evaluate to a true or false value.
+</p>
+
+</div><div class="section tags">
+  <h2>Meta Tags</h2>
+  <div class="raise">
+  <h3>Raises:</h3>
+  <dl>
+  
+    <dt>
+      
+        <span class='type'>[<tt>ArgumentError</tt>]</span>
+      
+      
+      
+    </dt>
+    <dd>
+      <span class='desc'></span>
+    </dd>
+  
+  </dl>
+</div>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+616
+617
+618
+619
+620
+621
+622
+623
+624
+625
+626
+627</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/validations.rb', line 616</span>
+
+<span class='def def kw'>def</span> <span class='validates_exclusion_of identifier id'>validates_exclusion_of</span><span class='lparen token'>(</span><span class='mult op'>*</span><span class='attr_names identifier id'>attr_names</span><span class='rparen token'>)</span>
+  <span class='configuration identifier id'>configuration</span> <span class='assign token'>=</span> <span class='lbrace token'>{</span> <span class='symbol val'>:message</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='BigRecord constant id'>BigRecord</span><span class='colon2 op'>::</span><span class='Errors constant id'>Errors</span><span class='dot token'>.</span><span class='default_error_messages identifier id'>default_error_messages</span><span class='lbrack token'>[</span><span class='symbol val'>:exclusion</span><span class='rbrack token'>]</span><span class='comma token'>,</span> <span class='symbol val'>:on</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='symbol val'>:save</span> <span class='rbrace token'>}</span>
+  <span class='configuration identifier id'>configuration</span><span class='dot token'>.</span><span class='update identifier id'>update</span><span class='lparen token'>(</span><span class='attr_names identifier id'>attr_names</span><span class='dot token'>.</span><span class='pop identifier id'>pop</span><span class='rparen token'>)</span> <span class='if if_mod kw'>if</span> <span class='attr_names identifier id'>attr_names</span><span class='dot token'>.</span><span class='last identifier id'>last</span><span class='dot token'>.</span><span class='is_a? fid id'>is_a?</span><span class='lparen token'>(</span><span class='Hash constant id'>Hash</span><span class='rparen token'>)</span>
+
+  <span class='enum identifier id'>enum</span> <span class='assign token'>=</span> <span class='configuration identifier id'>configuration</span><span class='lbrack token'>[</span><span class='symbol val'>:in</span><span class='rbrack token'>]</span> <span class='orop op'>||</span> <span class='configuration identifier id'>configuration</span><span class='lbrack token'>[</span><span class='symbol val'>:within</span><span class='rbrack token'>]</span>
+
+  <span class='raise identifier id'>raise</span><span class='lparen token'>(</span><span class='ArgumentError constant id'>ArgumentError</span><span class='comma token'>,</span> <span class='string val'>&quot;An object with the method include? is required must be supplied as the :in option of the configuration hash&quot;</span><span class='rparen token'>)</span> <span class='unless unless_mod kw'>unless</span> <span class='enum identifier id'>enum</span><span class='dot token'>.</span><span class='respond_to? fid id'>respond_to?</span><span class='lparen token'>(</span><span class='string val'>&quot;include?&quot;</span><span class='rparen token'>)</span>
+
+  <span class='validates_each identifier id'>validates_each</span><span class='lparen token'>(</span><span class='attr_names identifier id'>attr_names</span><span class='comma token'>,</span> <span class='configuration identifier id'>configuration</span><span class='rparen token'>)</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='record identifier id'>record</span><span class='comma token'>,</span> <span class='attr_name identifier id'>attr_name</span><span class='comma token'>,</span> <span class='value identifier id'>value</span><span class='bitor op'>|</span>
+    <span class='record identifier id'>record</span><span class='dot token'>.</span><span class='errors identifier id'>errors</span><span class='dot token'>.</span><span class='add identifier id'>add</span><span class='lparen token'>(</span><span class='attr_name identifier id'>attr_name</span><span class='comma token'>,</span> <span class='configuration identifier id'>configuration</span><span class='lbrack token'>[</span><span class='symbol val'>:message</span><span class='rbrack token'>]</span><span class='rparen token'>)</span> <span class='if if_mod kw'>if</span> <span class='enum identifier id'>enum</span><span class='dot token'>.</span><span class='include? fid id'>include?</span><span class='lparen token'>(</span><span class='value identifier id'>value</span><span class='rparen token'>)</span>
+  <span class='end end kw'>end</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>validates_format_of</h3>
+</div><div id="validates_format_of-instance_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>validates_format_of</span><span class='args'>(*attr_names)</span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section docstring">
+  <p>
+Validates whether the value of the specified attribute is of the correct
+form by matching it against the regular expression provided.
+</p>
+<pre class="code">
+  <span class='class class kw'>class</span> <span class='Person constant id'>Person</span> <span class='lt op'>&lt;</span> <span class='ActiveRecord constant id'>ActiveRecord</span><span class='colon2 op'>::</span><span class='Base constant id'>Base</span>
+    <span class='validates_format_of identifier id'>validates_format_of</span> <span class='symbol val'>:email</span><span class='comma token'>,</span> <span class='symbol val'>:with</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='regexp val'>/\A([^@\s]&lt;tt&gt;)@((?:[-a-z0-9]&lt;/</span><span class='tt identifier id'>tt</span><span class='gt op'>&gt;</span>\<span class='dot token'>.</span><span class='rparen token'>)</span><span class='plus op'>+</span><span class='lbrack token'>[</span><span class='a identifier id'>a</span><span class='minus op'>-</span><span class='z identifier id'>z</span><span class='rbrack token'>]</span><span class='lbrace token'>{</span><span class='integer val'>2</span><span class='comma token'>,</span><span class='rbrace token'>}</span><span class='rparen token'>)</span>\<span class='Z constant id'>Z</span><span class='div op'>/</span><span class='i identifier id'>i</span><span class='comma token'>,</span> <span class='symbol val'>:on</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='symbol val'>:create</span>
+  <span class='end end kw'>end</span>
+</pre>
+<p>
+Note: use \A and \Z to match the start and end of the string, ^ and $ match
+the start/end of a line.
+</p>
+<p>
+A regular expression must be provided or else an exception will be raised.
+</p>
+<p>
+Configuration options:
+</p>
+<ul>
+<li><tt>message</tt> - A custom error message (default is: &quot;is
+invalid&quot;)
+
+</li>
+<li><tt>with</tt> - The regular expression used to validate the format with
+(note: must be supplied!)
+
+</li>
+<li><tt>on</tt> Specifies when this validation is active (default is :save,
+other options :create, :update)
+
+</li>
+<li><tt>if</tt> - Specifies a method, proc or string to call to determine if
+the validation should
+
+</li>
+</ul>
+<p>
+occur (e.g. :if =&gt; :allow_validation, or :if =&gt; Proc.new { |user|
+user.signup_step &gt; 2 }). The method, proc or string should return or
+evaluate to a true or false value.
+</p>
+
+</div><div class="section tags">
+  <h2>Meta Tags</h2>
+  <div class="raise">
+  <h3>Raises:</h3>
+  <dl>
+  
+    <dt>
+      
+        <span class='type'>[<tt>ArgumentError</tt>]</span>
+      
+      
+      
+    </dt>
+    <dd>
+      <span class='desc'></span>
+    </dd>
+  
+  </dl>
+</div>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+564
+565
+566
+567
+568
+569
+570
+571
+572
+573</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/validations.rb', line 564</span>
+
+<span class='def def kw'>def</span> <span class='validates_format_of identifier id'>validates_format_of</span><span class='lparen token'>(</span><span class='mult op'>*</span><span class='attr_names identifier id'>attr_names</span><span class='rparen token'>)</span>
+  <span class='configuration identifier id'>configuration</span> <span class='assign token'>=</span> <span class='lbrace token'>{</span> <span class='symbol val'>:message</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='BigRecord constant id'>BigRecord</span><span class='colon2 op'>::</span><span class='Errors constant id'>Errors</span><span class='dot token'>.</span><span class='default_error_messages identifier id'>default_error_messages</span><span class='lbrack token'>[</span><span class='symbol val'>:invalid</span><span class='rbrack token'>]</span><span class='comma token'>,</span> <span class='symbol val'>:on</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='symbol val'>:save</span><span class='comma token'>,</span> <span class='symbol val'>:with</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='nil nil kw'>nil</span> <span class='rbrace token'>}</span>
+  <span class='configuration identifier id'>configuration</span><span class='dot token'>.</span><span class='update identifier id'>update</span><span class='lparen token'>(</span><span class='attr_names identifier id'>attr_names</span><span class='dot token'>.</span><span class='pop identifier id'>pop</span><span class='rparen token'>)</span> <span class='if if_mod kw'>if</span> <span class='attr_names identifier id'>attr_names</span><span class='dot token'>.</span><span class='last identifier id'>last</span><span class='dot token'>.</span><span class='is_a? fid id'>is_a?</span><span class='lparen token'>(</span><span class='Hash constant id'>Hash</span><span class='rparen token'>)</span>
+
+  <span class='raise identifier id'>raise</span><span class='lparen token'>(</span><span class='ArgumentError constant id'>ArgumentError</span><span class='comma token'>,</span> <span class='string val'>&quot;A regular expression must be supplied as the :with option of the configuration hash&quot;</span><span class='rparen token'>)</span> <span class='unless unless_mod kw'>unless</span> <span class='configuration identifier id'>configuration</span><span class='lbrack token'>[</span><span class='symbol val'>:with</span><span class='rbrack token'>]</span><span class='dot token'>.</span><span class='is_a? fid id'>is_a?</span><span class='lparen token'>(</span><span class='Regexp constant id'>Regexp</span><span class='rparen token'>)</span>
+
+  <span class='validates_each identifier id'>validates_each</span><span class='lparen token'>(</span><span class='attr_names identifier id'>attr_names</span><span class='comma token'>,</span> <span class='configuration identifier id'>configuration</span><span class='rparen token'>)</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='record identifier id'>record</span><span class='comma token'>,</span> <span class='attr_name identifier id'>attr_name</span><span class='comma token'>,</span> <span class='value identifier id'>value</span><span class='bitor op'>|</span>
+    <span class='record identifier id'>record</span><span class='dot token'>.</span><span class='errors identifier id'>errors</span><span class='dot token'>.</span><span class='add identifier id'>add</span><span class='lparen token'>(</span><span class='attr_name identifier id'>attr_name</span><span class='comma token'>,</span> <span class='configuration identifier id'>configuration</span><span class='lbrack token'>[</span><span class='symbol val'>:message</span><span class='rbrack token'>]</span><span class='rparen token'>)</span> <span class='unless unless_mod kw'>unless</span> <span class='value identifier id'>value</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span> <span class='match op'>=~</span> <span class='configuration identifier id'>configuration</span><span class='lbrack token'>[</span><span class='symbol val'>:with</span><span class='rbrack token'>]</span>
+  <span class='end end kw'>end</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>validates_inclusion_of</h3>
+</div><div id="validates_inclusion_of-instance_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>validates_inclusion_of</span><span class='args'>(*attr_names)</span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section docstring">
+  <p>
+Validates whether the value of the specified attribute is available in a
+particular enumerable object.
+</p>
+<pre class="code">
+  <span class='class class kw'>class</span> <span class='Person constant id'>Person</span> <span class='lt op'>&lt;</span> <span class='ActiveRecord constant id'>ActiveRecord</span><span class='colon2 op'>::</span><span class='Base constant id'>Base</span>
+    <span class='validates_inclusion_of identifier id'>validates_inclusion_of</span> <span class='symbol val'>:gender</span><span class='comma token'>,</span> <span class='symbol val'>:in</span><span class='assign token'>=</span><span class='gt op'>&gt;</span><span class='dstring node'>%w( m f )</span><span class='comma token'>,</span> <span class='symbol val'>:message=</span><span class='gt op'>&gt;</span><span class='string val'>&quot;woah! what are you then!??!!&quot;</span>
+    <span class='validates_inclusion_of identifier id'>validates_inclusion_of</span> <span class='symbol val'>:age</span><span class='comma token'>,</span> <span class='symbol val'>:in</span><span class='assign token'>=</span><span class='gt op'>&gt;</span><span class='integer val'>0</span><span class='dot2 op'>..</span><span class='integer val'>99</span>
+  <span class='end end kw'>end</span>
+</pre>
+<p>
+Configuration options:
+</p>
+<ul>
+<li><tt>in</tt> - An enumerable object of available items
+
+</li>
+<li><tt>message</tt> - Specifies a customer error message (default is: &quot;is
+not included in the list&quot;)
+
+</li>
+<li><tt>allow_nil</tt> - If set to true, skips this validation if the attribute
+is null (default is: false)
+
+</li>
+<li><tt>if</tt> - Specifies a method, proc or string to call to determine if
+the validation should
+
+</li>
+</ul>
+<p>
+occur (e.g. :if =&gt; :allow_validation, or :if =&gt; Proc.new { |user|
+user.signup_step &gt; 2 }). The method, proc or string should return or
+evaluate to a true or false value.
+</p>
+
+</div><div class="section tags">
+  <h2>Meta Tags</h2>
+  <div class="raise">
+  <h3>Raises:</h3>
+  <dl>
+  
+    <dt>
+      
+        <span class='type'>[<tt>ArgumentError</tt>]</span>
+      
+      
+      
+    </dt>
+    <dd>
+      <span class='desc'></span>
+    </dd>
+  
+  </dl>
+</div>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+589
+590
+591
+592
+593
+594
+595
+596
+597
+598
+599
+600</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/validations.rb', line 589</span>
+
+<span class='def def kw'>def</span> <span class='validates_inclusion_of identifier id'>validates_inclusion_of</span><span class='lparen token'>(</span><span class='mult op'>*</span><span class='attr_names identifier id'>attr_names</span><span class='rparen token'>)</span>
+  <span class='configuration identifier id'>configuration</span> <span class='assign token'>=</span> <span class='lbrace token'>{</span> <span class='symbol val'>:message</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='BigRecord constant id'>BigRecord</span><span class='colon2 op'>::</span><span class='Errors constant id'>Errors</span><span class='dot token'>.</span><span class='default_error_messages identifier id'>default_error_messages</span><span class='lbrack token'>[</span><span class='symbol val'>:inclusion</span><span class='rbrack token'>]</span><span class='comma token'>,</span> <span class='symbol val'>:on</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='symbol val'>:save</span> <span class='rbrace token'>}</span>
+  <span class='configuration identifier id'>configuration</span><span class='dot token'>.</span><span class='update identifier id'>update</span><span class='lparen token'>(</span><span class='attr_names identifier id'>attr_names</span><span class='dot token'>.</span><span class='pop identifier id'>pop</span><span class='rparen token'>)</span> <span class='if if_mod kw'>if</span> <span class='attr_names identifier id'>attr_names</span><span class='dot token'>.</span><span class='last identifier id'>last</span><span class='dot token'>.</span><span class='is_a? fid id'>is_a?</span><span class='lparen token'>(</span><span class='Hash constant id'>Hash</span><span class='rparen token'>)</span>
+
+  <span class='enum identifier id'>enum</span> <span class='assign token'>=</span> <span class='configuration identifier id'>configuration</span><span class='lbrack token'>[</span><span class='symbol val'>:in</span><span class='rbrack token'>]</span> <span class='orop op'>||</span> <span class='configuration identifier id'>configuration</span><span class='lbrack token'>[</span><span class='symbol val'>:within</span><span class='rbrack token'>]</span>
+
+  <span class='raise identifier id'>raise</span><span class='lparen token'>(</span><span class='ArgumentError constant id'>ArgumentError</span><span class='comma token'>,</span> <span class='string val'>&quot;An object with the method include? is required must be supplied as the :in option of the configuration hash&quot;</span><span class='rparen token'>)</span> <span class='unless unless_mod kw'>unless</span> <span class='enum identifier id'>enum</span><span class='dot token'>.</span><span class='respond_to? fid id'>respond_to?</span><span class='lparen token'>(</span><span class='string val'>&quot;include?&quot;</span><span class='rparen token'>)</span>
+
+  <span class='validates_each identifier id'>validates_each</span><span class='lparen token'>(</span><span class='attr_names identifier id'>attr_names</span><span class='comma token'>,</span> <span class='configuration identifier id'>configuration</span><span class='rparen token'>)</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='record identifier id'>record</span><span class='comma token'>,</span> <span class='attr_name identifier id'>attr_name</span><span class='comma token'>,</span> <span class='value identifier id'>value</span><span class='bitor op'>|</span>
+    <span class='record identifier id'>record</span><span class='dot token'>.</span><span class='errors identifier id'>errors</span><span class='dot token'>.</span><span class='add identifier id'>add</span><span class='lparen token'>(</span><span class='attr_name identifier id'>attr_name</span><span class='comma token'>,</span> <span class='configuration identifier id'>configuration</span><span class='lbrack token'>[</span><span class='symbol val'>:message</span><span class='rbrack token'>]</span><span class='rparen token'>)</span> <span class='unless unless_mod kw'>unless</span> <span class='enum identifier id'>enum</span><span class='dot token'>.</span><span class='include? fid id'>include?</span><span class='lparen token'>(</span><span class='value identifier id'>value</span><span class='rparen token'>)</span>
+  <span class='end end kw'>end</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>validates_length_of</h3>
+</div><div id="validates_length_of-instance_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>validates_length_of</span><span class='args'>(*attrs)</span>
+      <span class='block'></span>
+    </tt>
+  </div>
+<p class="aliases">
+  <span class="aka">Also known as:</span>
+  
+    <tt id="validates_size_of-instance_method">validates_size_of</tt>
+  
+</p>
+</div><div class="section docstring">
+  <p>
+Validates that the specified attribute matches the length restrictions
+supplied. Only one option can be used at a time:
+</p>
+<pre class="code">
+  <span class='class class kw'>class</span> <span class='Person constant id'>Person</span> <span class='lt op'>&lt;</span> <span class='ActiveRecord constant id'>ActiveRecord</span><span class='colon2 op'>::</span><span class='Base constant id'>Base</span>
+    <span class='validates_length_of identifier id'>validates_length_of</span> <span class='symbol val'>:first_name</span><span class='comma token'>,</span> <span class='symbol val'>:maximum=</span><span class='gt op'>&gt;</span><span class='integer val'>30</span>
+    <span class='validates_length_of identifier id'>validates_length_of</span> <span class='symbol val'>:last_name</span><span class='comma token'>,</span> <span class='symbol val'>:maximum=</span><span class='gt op'>&gt;</span><span class='integer val'>30</span><span class='comma token'>,</span> <span class='symbol val'>:message=</span><span class='gt op'>&gt;</span><span class='string val'>&quot;less than %d if you don't mind&quot;</span>
+    <span class='validates_length_of identifier id'>validates_length_of</span> <span class='symbol val'>:fax</span><span class='comma token'>,</span> <span class='symbol val'>:in</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='float val'>7</span><span class='dot2 op'>..</span><span class='integer val'>32</span><span class='comma token'>,</span> <span class='symbol val'>:allow_nil</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='true true kw'>true</span>
+    <span class='validates_length_of identifier id'>validates_length_of</span> <span class='symbol val'>:user_name</span><span class='comma token'>,</span> <span class='symbol val'>:within</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='float val'>6</span><span class='dot2 op'>..</span><span class='integer val'>20</span><span class='comma token'>,</span> <span class='symbol val'>:too_long</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>&quot;pick a shorter name&quot;</span><span class='comma token'>,</span> <span class='symbol val'>:too_short</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>&quot;pick a longer name&quot;</span>
+    <span class='validates_length_of identifier id'>validates_length_of</span> <span class='symbol val'>:fav_bra_size</span><span class='comma token'>,</span> <span class='symbol val'>:minimum=</span><span class='gt op'>&gt;</span><span class='integer val'>1</span><span class='comma token'>,</span> <span class='symbol val'>:too_short=</span><span class='gt op'>&gt;</span><span class='string val'>&quot;please enter at least %d character&quot;</span>
+    <span class='validates_length_of identifier id'>validates_length_of</span> <span class='symbol val'>:smurf_leader</span><span class='comma token'>,</span> <span class='symbol val'>:is=</span><span class='gt op'>&gt;</span><span class='integer val'>4</span><span class='comma token'>,</span> <span class='symbol val'>:message=</span><span class='gt op'>&gt;</span><span class='string val'>&quot;papa is spelled with %d characters... don't play me.&quot;</span>
+  <span class='end end kw'>end</span>
+</pre>
+<p>
+Configuration options:
+</p>
+<ul>
+<li><tt>minimum</tt> - The minimum size of the attribute
+
+</li>
+<li><tt>maximum</tt> - The maximum size of the attribute
+
+</li>
+<li><tt>is</tt> - The exact size of the attribute
+
+</li>
+<li><tt>within</tt> - A range specifying the minimum and maximum size of the
+attribute
+
+</li>
+<li><tt>in</tt> - A synonym(or alias) for :within
+
+</li>
+<li><tt>allow_nil</tt> - Attribute may be nil; skip validation.
+
+</li>
+<li><tt>too_long</tt> - The error message if the attribute goes over the
+maximum (default is: &quot;is too long (maximum is %d characters)&quot;)
+
+</li>
+<li><tt>too_short</tt> - The error message if the attribute goes under the
+minimum (default is: &quot;is too short (min is %d characters)&quot;)
+
+</li>
+<li><tt>wrong_length</tt> - The error message if using the :is method and the
+attribute is the wrong size (default is: &quot;is the wrong length (should
+be %d characters)&quot;)
+
+</li>
+<li><tt>message</tt> - The error message to use for a :minimum, :maximum, or
+:is violation. An alias of the appropriate too_long/too_short/wrong_length
+message
+
+</li>
+<li><tt>on</tt> - Specifies when this validation is active (default is :save,
+other options :create, :update)
+
+</li>
+<li><tt>if</tt> - Specifies a method, proc or string to call to determine if
+the validation should
+
+</li>
+</ul>
+<p>
+occur (e.g. :if =&gt; :allow_validation, or :if =&gt; Proc.new { |user|
+user.signup_step &gt; 2 }). The method, proc or string should return or
+evaluate to a true or false value.
+</p>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+429
+430
+431
+432
+433
+434
+435
+436
+437
+438
+439
+440
+441
+442
+443
+444
+445
+446
+447
+448
+449
+450
+451
+452
+453
+454
+455
+456
+457
+458
+459
+460
+461
+462
+463
+464
+465
+466
+467
+468
+469
+470
+471
+472
+473
+474
+475
+476
+477
+478
+479
+480
+481
+482
+483
+484</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/validations.rb', line 429</span>
+
+<span class='def def kw'>def</span> <span class='validates_length_of identifier id'>validates_length_of</span><span class='lparen token'>(</span><span class='mult op'>*</span><span class='attrs identifier id'>attrs</span><span class='rparen token'>)</span>
+  <span class='comment val'># Merge given options with defaults.</span>
+  <span class='options identifier id'>options</span> <span class='assign token'>=</span> <span class='lbrace token'>{</span>
+    <span class='symbol val'>:too_long</span>     <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='BigRecord constant id'>BigRecord</span><span class='colon2 op'>::</span><span class='Errors constant id'>Errors</span><span class='dot token'>.</span><span class='default_error_messages identifier id'>default_error_messages</span><span class='lbrack token'>[</span><span class='symbol val'>:too_long</span><span class='rbrack token'>]</span><span class='comma token'>,</span>
+    <span class='symbol val'>:too_short</span>    <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='BigRecord constant id'>BigRecord</span><span class='colon2 op'>::</span><span class='Errors constant id'>Errors</span><span class='dot token'>.</span><span class='default_error_messages identifier id'>default_error_messages</span><span class='lbrack token'>[</span><span class='symbol val'>:too_short</span><span class='rbrack token'>]</span><span class='comma token'>,</span>
+    <span class='symbol val'>:wrong_length</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='BigRecord constant id'>BigRecord</span><span class='colon2 op'>::</span><span class='Errors constant id'>Errors</span><span class='dot token'>.</span><span class='default_error_messages identifier id'>default_error_messages</span><span class='lbrack token'>[</span><span class='symbol val'>:wrong_length</span><span class='rbrack token'>]</span>
+  <span class='rbrace token'>}</span><span class='dot token'>.</span><span class='merge identifier id'>merge</span><span class='lparen token'>(</span><span class='DEFAULT_VALIDATION_OPTIONS constant id'>DEFAULT_VALIDATION_OPTIONS</span><span class='rparen token'>)</span>
+  <span class='options identifier id'>options</span><span class='dot token'>.</span><span class='update identifier id'>update</span><span class='lparen token'>(</span><span class='attrs identifier id'>attrs</span><span class='dot token'>.</span><span class='pop identifier id'>pop</span><span class='dot token'>.</span><span class='symbolize_keys identifier id'>symbolize_keys</span><span class='rparen token'>)</span> <span class='if if_mod kw'>if</span> <span class='attrs identifier id'>attrs</span><span class='dot token'>.</span><span class='last identifier id'>last</span><span class='dot token'>.</span><span class='is_a? fid id'>is_a?</span><span class='lparen token'>(</span><span class='Hash constant id'>Hash</span><span class='rparen token'>)</span>
+
+  <span class='comment val'># Ensure that one and only one range option is specified.</span>
+  <span class='range_options identifier id'>range_options</span> <span class='assign token'>=</span> <span class='ALL_RANGE_OPTIONS constant id'>ALL_RANGE_OPTIONS</span> <span class='bitand op'>&amp;</span> <span class='options identifier id'>options</span><span class='dot token'>.</span><span class='keys identifier id'>keys</span>
+  <span class='case case kw'>case</span> <span class='range_options identifier id'>range_options</span><span class='dot token'>.</span><span class='size identifier id'>size</span>
+    <span class='when when kw'>when</span> <span class='integer val'>0</span>
+      <span class='raise identifier id'>raise</span> <span class='ArgumentError constant id'>ArgumentError</span><span class='comma token'>,</span> <span class='string val'>'Range unspecified.  Specify the :within, :maximum, :minimum, or :is option.'</span>
+    <span class='when when kw'>when</span> <span class='integer val'>1</span>
+      <span class='comment val'># Valid number of options; do nothing.</span>
+    <span class='else else kw'>else</span>
+      <span class='raise identifier id'>raise</span> <span class='ArgumentError constant id'>ArgumentError</span><span class='comma token'>,</span> <span class='string val'>'Too many range options specified.  Choose only one.'</span>
+  <span class='end end kw'>end</span>
+
+  <span class='comment val'># Get range option and value.</span>
+  <span class='option identifier id'>option</span> <span class='assign token'>=</span> <span class='range_options identifier id'>range_options</span><span class='dot token'>.</span><span class='first identifier id'>first</span>
+  <span class='option_value identifier id'>option_value</span> <span class='assign token'>=</span> <span class='options identifier id'>options</span><span class='lbrack token'>[</span><span class='range_options identifier id'>range_options</span><span class='dot token'>.</span><span class='first identifier id'>first</span><span class='rbrack token'>]</span>
+
+  <span class='case case kw'>case</span> <span class='option identifier id'>option</span>
+    <span class='when when kw'>when</span> <span class='symbol val'>:within</span><span class='comma token'>,</span> <span class='symbol val'>:in</span>
+      <span class='raise identifier id'>raise</span> <span class='ArgumentError constant id'>ArgumentError</span><span class='comma token'>,</span> <span class='dstring node'>&quot;:#{option} must be a Range&quot;</span> <span class='unless unless_mod kw'>unless</span> <span class='option_value identifier id'>option_value</span><span class='dot token'>.</span><span class='is_a? fid id'>is_a?</span><span class='lparen token'>(</span><span class='Range constant id'>Range</span><span class='rparen token'>)</span>
+
+      <span class='too_short identifier id'>too_short</span> <span class='assign token'>=</span> <span class='options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:too_short</span><span class='rbrack token'>]</span> <span class='mod op'>%</span> <span class='option_value identifier id'>option_value</span><span class='dot token'>.</span><span class='begin identifier id'>begin</span>
+      <span class='too_long identifier id'>too_long</span>  <span class='assign token'>=</span> <span class='options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:too_long</span><span class='rbrack token'>]</span>  <span class='mod op'>%</span> <span class='option_value identifier id'>option_value</span><span class='dot token'>.</span><span class='end identifier id'>end</span>
+
+      <span class='validates_each identifier id'>validates_each</span><span class='lparen token'>(</span><span class='attrs identifier id'>attrs</span><span class='comma token'>,</span> <span class='options identifier id'>options</span><span class='rparen token'>)</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='record identifier id'>record</span><span class='comma token'>,</span> <span class='attr identifier id'>attr</span><span class='comma token'>,</span> <span class='value identifier id'>value</span><span class='bitor op'>|</span>
+        <span class='if if kw'>if</span> <span class='value identifier id'>value</span><span class='dot token'>.</span><span class='nil? fid id'>nil?</span> <span class='or or kw'>or</span> <span class='value identifier id'>value</span><span class='dot token'>.</span><span class='split identifier id'>split</span><span class='lparen token'>(</span><span class='regexp val'>//</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='size identifier id'>size</span> <span class='lt op'>&lt;</span> <span class='option_value identifier id'>option_value</span><span class='dot token'>.</span><span class='begin identifier id'>begin</span>
+          <span class='record identifier id'>record</span><span class='dot token'>.</span><span class='errors identifier id'>errors</span><span class='dot token'>.</span><span class='add identifier id'>add</span><span class='lparen token'>(</span><span class='attr identifier id'>attr</span><span class='comma token'>,</span> <span class='too_short identifier id'>too_short</span><span class='rparen token'>)</span>
+        <span class='elsif elsif kw'>elsif</span> <span class='value identifier id'>value</span><span class='dot token'>.</span><span class='split identifier id'>split</span><span class='lparen token'>(</span><span class='regexp val'>//</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='size identifier id'>size</span> <span class='gt op'>&gt;</span> <span class='option_value identifier id'>option_value</span><span class='dot token'>.</span><span class='end identifier id'>end</span>
+          <span class='record identifier id'>record</span><span class='dot token'>.</span><span class='errors identifier id'>errors</span><span class='dot token'>.</span><span class='add identifier id'>add</span><span class='lparen token'>(</span><span class='attr identifier id'>attr</span><span class='comma token'>,</span> <span class='too_long identifier id'>too_long</span><span class='rparen token'>)</span>
+        <span class='end end kw'>end</span>
+      <span class='end end kw'>end</span>
+    <span class='when when kw'>when</span> <span class='symbol val'>:is</span><span class='comma token'>,</span> <span class='symbol val'>:minimum</span><span class='comma token'>,</span> <span class='symbol val'>:maximum</span>
+      <span class='raise identifier id'>raise</span> <span class='ArgumentError constant id'>ArgumentError</span><span class='comma token'>,</span> <span class='dstring node'>&quot;:#{option} must be a nonnegative Integer&quot;</span> <span class='unless unless_mod kw'>unless</span> <span class='option_value identifier id'>option_value</span><span class='dot token'>.</span><span class='is_a? fid id'>is_a?</span><span class='lparen token'>(</span><span class='Integer constant id'>Integer</span><span class='rparen token'>)</span> <span class='and and kw'>and</span> <span class='option_value identifier id'>option_value</span> <span class='geq op'>&gt;=</span> <span class='integer val'>0</span>
+
+      <span class='comment val'># Declare different validations per option.</span>
+      <span class='validity_checks identifier id'>validity_checks</span> <span class='assign token'>=</span> <span class='lbrace token'>{</span> <span class='symbol val'>:is</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>&quot;==&quot;</span><span class='comma token'>,</span> <span class='symbol val'>:minimum</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>&quot;&gt;=&quot;</span><span class='comma token'>,</span> <span class='symbol val'>:maximum</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>&quot;&lt;=&quot;</span> <span class='rbrace token'>}</span>
+      <span class='message_options identifier id'>message_options</span> <span class='assign token'>=</span> <span class='lbrace token'>{</span> <span class='symbol val'>:is</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='symbol val'>:wrong_length</span><span class='comma token'>,</span> <span class='symbol val'>:minimum</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='symbol val'>:too_short</span><span class='comma token'>,</span> <span class='symbol val'>:maximum</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='symbol val'>:too_long</span> <span class='rbrace token'>}</span>
+
+      <span class='message identifier id'>message</span> <span class='assign token'>=</span> <span class='lparen token'>(</span><span class='options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:message</span><span class='rbrack token'>]</span> <span class='orop op'>||</span> <span class='options identifier id'>options</span><span class='lbrack token'>[</span><span class='message_options identifier id'>message_options</span><span class='lbrack token'>[</span><span class='option identifier id'>option</span><span class='rbrack token'>]</span><span class='rbrack token'>]</span><span class='rparen token'>)</span> <span class='mod op'>%</span> <span class='option_value identifier id'>option_value</span>
+
+      <span class='validates_each identifier id'>validates_each</span><span class='lparen token'>(</span><span class='attrs identifier id'>attrs</span><span class='comma token'>,</span> <span class='options identifier id'>options</span><span class='rparen token'>)</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='record identifier id'>record</span><span class='comma token'>,</span> <span class='attr identifier id'>attr</span><span class='comma token'>,</span> <span class='value identifier id'>value</span><span class='bitor op'>|</span>
+        <span class='if if kw'>if</span> <span class='value identifier id'>value</span><span class='dot token'>.</span><span class='kind_of? fid id'>kind_of?</span><span class='lparen token'>(</span><span class='String constant id'>String</span><span class='rparen token'>)</span>
+          <span class='record identifier id'>record</span><span class='dot token'>.</span><span class='errors identifier id'>errors</span><span class='dot token'>.</span><span class='add identifier id'>add</span><span class='lparen token'>(</span><span class='attr identifier id'>attr</span><span class='comma token'>,</span> <span class='message identifier id'>message</span><span class='rparen token'>)</span> <span class='unless unless_mod kw'>unless</span> <span class='notop op'>!</span><span class='value identifier id'>value</span><span class='dot token'>.</span><span class='nil? fid id'>nil?</span> <span class='and and kw'>and</span> <span class='value identifier id'>value</span><span class='dot token'>.</span><span class='split identifier id'>split</span><span class='lparen token'>(</span><span class='regexp val'>//</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='size identifier id'>size</span><span class='dot token'>.</span><span class='send identifier id'>send</span><span class='lparen token'>(</span><span class='validity_checks identifier id'>validity_checks</span><span class='lbrack token'>[</span><span class='option identifier id'>option</span><span class='rbrack token'>]</span><span class='comma token'>,</span> <span class='option_value identifier id'>option_value</span><span class='rparen token'>)</span>
+        <span class='else else kw'>else</span>
+          <span class='record identifier id'>record</span><span class='dot token'>.</span><span class='errors identifier id'>errors</span><span class='dot token'>.</span><span class='add identifier id'>add</span><span class='lparen token'>(</span><span class='attr identifier id'>attr</span><span class='comma token'>,</span> <span class='message identifier id'>message</span><span class='rparen token'>)</span> <span class='unless unless_mod kw'>unless</span> <span class='notop op'>!</span><span class='value identifier id'>value</span><span class='dot token'>.</span><span class='nil? fid id'>nil?</span> <span class='and and kw'>and</span> <span class='value identifier id'>value</span><span class='dot token'>.</span><span class='size identifier id'>size</span><span class='dot token'>.</span><span class='send identifier id'>send</span><span class='lparen token'>(</span><span class='validity_checks identifier id'>validity_checks</span><span class='lbrack token'>[</span><span class='option identifier id'>option</span><span class='rbrack token'>]</span><span class='comma token'>,</span> <span class='option_value identifier id'>option_value</span><span class='rparen token'>)</span>
+        <span class='end end kw'>end</span>
+      <span class='end end kw'>end</span>
+  <span class='end end kw'>end</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>validates_numericality_of</h3>
+</div><div id="validates_numericality_of-instance_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>validates_numericality_of</span><span class='args'>(*attr_names)</span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section docstring">
+  <p>
+Validates whether the value of the specified attribute is numeric by trying
+to convert it to a float with Kernel.Float (if <tt>integer</tt> is false)
+or applying it to the regular expression <tt>/\A[<tt>\-]?\d</tt>\Z/</tt> (if
+<tt>integer</tt> is set to true).
+</p>
+<pre class="code">
+  <span class='class class kw'>class</span> <span class='Person constant id'>Person</span> <span class='lt op'>&lt;</span> <span class='ActiveRecord constant id'>ActiveRecord</span><span class='colon2 op'>::</span><span class='Base constant id'>Base</span>
+    <span class='validates_numericality_of identifier id'>validates_numericality_of</span> <span class='symbol val'>:value</span><span class='comma token'>,</span> <span class='symbol val'>:on</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='symbol val'>:create</span>
+  <span class='end end kw'>end</span>
+</pre>
+<p>
+Configuration options:
+</p>
+<ul>
+<li><tt>message</tt> - A custom error message (default is: &quot;is not a
+number&quot;)
+
+</li>
+<li><tt>on</tt> Specifies when this validation is active (default is :save,
+other options :create, :update)
+
+</li>
+<li><tt>only_integer</tt> Specifies whether the value has to be an integer,
+e.g. an integral value (default is false)
+
+</li>
+<li><tt>allow_nil</tt> Skip validation if attribute is nil (default is false).
+Notice that for fixnum and float columns empty strings are converted to nil
+
+</li>
+<li><tt>if</tt> - Specifies a method, proc or string to call to determine if
+the validation should
+
+</li>
+</ul>
+<p>
+occur (e.g. :if =&gt; :allow_validation, or :if =&gt; Proc.new { |user|
+user.signup_step &gt; 2 }). The method, proc or string should return or
+evaluate to a true or false value.
+</p>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+682
+683
+684
+685
+686
+687
+688
+689
+690
+691
+692
+693
+694
+695
+696
+697
+698
+699
+700
+701</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/validations.rb', line 682</span>
+
+<span class='def def kw'>def</span> <span class='validates_numericality_of identifier id'>validates_numericality_of</span><span class='lparen token'>(</span><span class='mult op'>*</span><span class='attr_names identifier id'>attr_names</span><span class='rparen token'>)</span>
+  <span class='configuration identifier id'>configuration</span> <span class='assign token'>=</span> <span class='lbrace token'>{</span> <span class='symbol val'>:message</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='BigRecord constant id'>BigRecord</span><span class='colon2 op'>::</span><span class='Errors constant id'>Errors</span><span class='dot token'>.</span><span class='default_error_messages identifier id'>default_error_messages</span><span class='lbrack token'>[</span><span class='symbol val'>:not_a_number</span><span class='rbrack token'>]</span><span class='comma token'>,</span> <span class='symbol val'>:on</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='symbol val'>:save</span><span class='comma token'>,</span>
+                     <span class='symbol val'>:only_integer</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='false false kw'>false</span><span class='comma token'>,</span> <span class='symbol val'>:allow_nil</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='false false kw'>false</span> <span class='rbrace token'>}</span>
+  <span class='configuration identifier id'>configuration</span><span class='dot token'>.</span><span class='update identifier id'>update</span><span class='lparen token'>(</span><span class='attr_names identifier id'>attr_names</span><span class='dot token'>.</span><span class='pop identifier id'>pop</span><span class='rparen token'>)</span> <span class='if if_mod kw'>if</span> <span class='attr_names identifier id'>attr_names</span><span class='dot token'>.</span><span class='last identifier id'>last</span><span class='dot token'>.</span><span class='is_a? fid id'>is_a?</span><span class='lparen token'>(</span><span class='Hash constant id'>Hash</span><span class='rparen token'>)</span>
+
+  <span class='if if kw'>if</span> <span class='configuration identifier id'>configuration</span><span class='lbrack token'>[</span><span class='symbol val'>:only_integer</span><span class='rbrack token'>]</span>
+    <span class='validates_each identifier id'>validates_each</span><span class='lparen token'>(</span><span class='attr_names identifier id'>attr_names</span><span class='comma token'>,</span><span class='configuration identifier id'>configuration</span><span class='rparen token'>)</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='record identifier id'>record</span><span class='comma token'>,</span> <span class='attr_name identifier id'>attr_name</span><span class='comma token'>,</span><span class='value identifier id'>value</span><span class='bitor op'>|</span>
+      <span class='record identifier id'>record</span><span class='dot token'>.</span><span class='errors identifier id'>errors</span><span class='dot token'>.</span><span class='add identifier id'>add</span><span class='lparen token'>(</span><span class='attr_name identifier id'>attr_name</span><span class='comma token'>,</span> <span class='configuration identifier id'>configuration</span><span class='lbrack token'>[</span><span class='symbol val'>:message</span><span class='rbrack token'>]</span><span class='rparen token'>)</span> <span class='unless unless_mod kw'>unless</span> <span class='record identifier id'>record</span><span class='dot token'>.</span><span class='send identifier id'>send</span><span class='lparen token'>(</span><span class='dstring node'>&quot;#{attr_name}_before_type_cast&quot;</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span> <span class='match op'>=~</span> <span class='regexp val'>/\A[+-]?\d+\Z/</span>
+    <span class='end end kw'>end</span>
+  <span class='else else kw'>else</span>
+    <span class='validates_each identifier id'>validates_each</span><span class='lparen token'>(</span><span class='attr_names identifier id'>attr_names</span><span class='comma token'>,</span><span class='configuration identifier id'>configuration</span><span class='rparen token'>)</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='record identifier id'>record</span><span class='comma token'>,</span> <span class='attr_name identifier id'>attr_name</span><span class='comma token'>,</span><span class='value identifier id'>value</span><span class='bitor op'>|</span>
+     <span class='next next kw'>next</span> <span class='if if_mod kw'>if</span> <span class='configuration identifier id'>configuration</span><span class='lbrack token'>[</span><span class='symbol val'>:allow_nil</span><span class='rbrack token'>]</span> <span class='and and kw'>and</span> <span class='record identifier id'>record</span><span class='dot token'>.</span><span class='send identifier id'>send</span><span class='lparen token'>(</span><span class='dstring node'>&quot;#{attr_name}_before_type_cast&quot;</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='nil? fid id'>nil?</span>
+      <span class='begin begin kw'>begin</span>
+        <span class='Kernel constant id'>Kernel</span><span class='dot token'>.</span><span class='Float constant id'>Float</span><span class='lparen token'>(</span><span class='record identifier id'>record</span><span class='dot token'>.</span><span class='send identifier id'>send</span><span class='lparen token'>(</span><span class='dstring node'>&quot;#{attr_name}_before_type_cast&quot;</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span><span class='rparen token'>)</span>
+      <span class='rescue rescue kw'>rescue</span> <span class='ArgumentError constant id'>ArgumentError</span><span class='comma token'>,</span> <span class='TypeError constant id'>TypeError</span>
+        <span class='record identifier id'>record</span><span class='dot token'>.</span><span class='errors identifier id'>errors</span><span class='dot token'>.</span><span class='add identifier id'>add</span><span class='lparen token'>(</span><span class='attr_name identifier id'>attr_name</span><span class='comma token'>,</span> <span class='configuration identifier id'>configuration</span><span class='lbrack token'>[</span><span class='symbol val'>:message</span><span class='rbrack token'>]</span><span class='rparen token'>)</span>
+      <span class='end end kw'>end</span>
+    <span class='end end kw'>end</span>
+  <span class='end end kw'>end</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>validates_presence_of</h3>
+</div><div id="validates_presence_of-instance_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>validates_presence_of</span><span class='args'>(*attr_names)</span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section docstring">
+  <p>
+Validates that the specified attributes are not blank (as defined by
+Object#blank?). Happens by default on save. Example:
+</p>
+<pre class="code">
+  <span class='class class kw'>class</span> <span class='Person constant id'>Person</span> <span class='lt op'>&lt;</span> <span class='ActiveRecord constant id'>ActiveRecord</span><span class='colon2 op'>::</span><span class='Base constant id'>Base</span>
+    <span class='validates_presence_of identifier id'>validates_presence_of</span> <span class='symbol val'>:first_name</span>
+  <span class='end end kw'>end</span>
+</pre>
+<p>
+The first_name attribute must be in the object and it cannot be blank.
+</p>
+<p>
+If you want to validate the presence of a boolean field (where the real
+values are true and false), you will want to use validates_inclusion_of
+:field_name, :in =&gt; [true, false] This is due to the way Object#blank?
+handles boolean values. false.blank? # =&gt; true
+</p>
+<p>
+Configuration options:
+</p>
+<ul>
+<li><tt>message</tt> - A custom error message (default is: &quot;can&#8217;t be
+blank&quot;)
+
+</li>
+<li><tt>on</tt> - Specifies when this validation is active (default is :save,
+other options :create, :update)
+
+</li>
+<li><tt>if</tt> - Specifies a method, proc or string to call to determine if
+the validation should
+
+</li>
+</ul>
+<p>
+occur (e.g. :if =&gt; :allow_validation, or :if =&gt; Proc.new { |user|
+user.signup_step &gt; 2 }). The method, proc or string should return or
+evaluate to a true or false value.
+</p>
+<h3>Warning</h3>
+<p>
+Validate the presence of the foreign key, not the instance variable itself.
+Do this:
+</p>
+<pre class="code">
+ <span class='validate_presence_of identifier id'>validate_presence_of</span> <span class='symbol val'>:invoice_id</span>
+</pre>
+<p>
+Not this:
+</p>
+<pre class="code">
+ <span class='validate_presence_of identifier id'>validate_presence_of</span> <span class='symbol val'>:invoice</span>
+</pre>
+<p>
+If you validate the presence of the associated object, you will get
+failures on saves when both the parent object and the child object are new.
+</p>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+387
+388
+389
+390
+391
+392
+393
+394
+395
+396
+397
+398
+399
+400</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/validations.rb', line 387</span>
+
+<span class='def def kw'>def</span> <span class='validates_presence_of identifier id'>validates_presence_of</span><span class='lparen token'>(</span><span class='mult op'>*</span><span class='attr_names identifier id'>attr_names</span><span class='rparen token'>)</span>
+  <span class='configuration identifier id'>configuration</span> <span class='assign token'>=</span> <span class='lbrace token'>{</span> <span class='symbol val'>:message</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='BigRecord constant id'>BigRecord</span><span class='colon2 op'>::</span><span class='Errors constant id'>Errors</span><span class='dot token'>.</span><span class='default_error_messages identifier id'>default_error_messages</span><span class='lbrack token'>[</span><span class='symbol val'>:blank</span><span class='rbrack token'>]</span><span class='comma token'>,</span> <span class='symbol val'>:on</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='symbol val'>:save</span> <span class='rbrace token'>}</span>
+  <span class='configuration identifier id'>configuration</span><span class='dot token'>.</span><span class='update identifier id'>update</span><span class='lparen token'>(</span><span class='attr_names identifier id'>attr_names</span><span class='dot token'>.</span><span class='pop identifier id'>pop</span><span class='rparen token'>)</span> <span class='if if_mod kw'>if</span> <span class='attr_names identifier id'>attr_names</span><span class='dot token'>.</span><span class='last identifier id'>last</span><span class='dot token'>.</span><span class='is_a? fid id'>is_a?</span><span class='lparen token'>(</span><span class='Hash constant id'>Hash</span><span class='rparen token'>)</span>
+
+  <span class='comment val'># can't use validates_each here, because it cannot cope with nonexistent attributes,</span>
+  <span class='comment val'># while errors.add_on_empty can</span>
+  <span class='attr_names identifier id'>attr_names</span><span class='dot token'>.</span><span class='each identifier id'>each</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='attr_name identifier id'>attr_name</span><span class='bitor op'>|</span>
+    <span class='send identifier id'>send</span><span class='lparen token'>(</span><span class='validation_method identifier id'>validation_method</span><span class='lparen token'>(</span><span class='configuration identifier id'>configuration</span><span class='lbrack token'>[</span><span class='symbol val'>:on</span><span class='rbrack token'>]</span><span class='rparen token'>)</span><span class='rparen token'>)</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='record identifier id'>record</span><span class='bitor op'>|</span>
+      <span class='unless unless kw'>unless</span> <span class='configuration identifier id'>configuration</span><span class='lbrack token'>[</span><span class='symbol val'>:if</span><span class='rbrack token'>]</span> <span class='and and kw'>and</span> <span class='not not kw'>not</span> <span class='evaluate_condition identifier id'>evaluate_condition</span><span class='lparen token'>(</span><span class='configuration identifier id'>configuration</span><span class='lbrack token'>[</span><span class='symbol val'>:if</span><span class='rbrack token'>]</span><span class='comma token'>,</span> <span class='record identifier id'>record</span><span class='rparen token'>)</span>
+        <span class='record identifier id'>record</span><span class='dot token'>.</span><span class='errors identifier id'>errors</span><span class='dot token'>.</span><span class='add_on_blank identifier id'>add_on_blank</span><span class='lparen token'>(</span><span class='attr_name identifier id'>attr_name</span><span class='comma token'>,</span><span class='configuration identifier id'>configuration</span><span class='lbrack token'>[</span><span class='symbol val'>:message</span><span class='rbrack token'>]</span><span class='rparen token'>)</span>
+      <span class='end end kw'>end</span>
+    <span class='end end kw'>end</span>
+  <span class='end end kw'>end</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>validates_uniqueness_of</h3>
+</div><div id="validates_uniqueness_of-instance_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>validates_uniqueness_of</span><span class='args'>(*attr_names)</span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section docstring">
+  <p>
+Validates whether the value of the specified attributes are unique across
+the system. Useful for making sure that only one user can be named
+&quot;davidhh&quot;.
+</p>
+<pre class="code">
+  <span class='class class kw'>class</span> <span class='Person constant id'>Person</span> <span class='lt op'>&lt;</span> <span class='ActiveRecord constant id'>ActiveRecord</span><span class='colon2 op'>::</span><span class='Base constant id'>Base</span>
+    <span class='validates_uniqueness_of identifier id'>validates_uniqueness_of</span> <span class='symbol val'>:user_name</span><span class='comma token'>,</span> <span class='symbol val'>:scope</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='symbol val'>:account_id</span>
+  <span class='end end kw'>end</span>
+</pre>
+<p>
+It can also validate whether the value of the specified attributes are
+unique based on multiple scope parameters. For example, making sure that a
+teacher can only be on the schedule once per semester for a particular
+class.
+</p>
+<pre class="code">
+  <span class='class class kw'>class</span> <span class='TeacherSchedule constant id'>TeacherSchedule</span> <span class='lt op'>&lt;</span> <span class='ActiveRecord constant id'>ActiveRecord</span><span class='colon2 op'>::</span><span class='Base constant id'>Base</span>
+    <span class='validates_uniqueness_of identifier id'>validates_uniqueness_of</span> <span class='symbol val'>:teacher_id</span><span class='comma token'>,</span> <span class='symbol val'>:scope</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='lbrack token'>[</span><span class='symbol val'>:semester_id</span><span class='comma token'>,</span> <span class='symbol val'>:class_id</span><span class='rbrack token'>]</span>
+  <span class='end end kw'>end</span>
+</pre>
+<p>
+When the record is created, a check is performed to make sure that no
+record exists in the database with the given value for the specified
+attribute (that maps to a column). When the record is updated, the same
+check is made but disregarding the record itself.
+</p>
+<p>
+Configuration options:
+</p>
+<ul>
+<li><tt>message</tt> - Specifies a custom error message (default is: &quot;has
+already been taken&quot;)
+
+</li>
+<li><tt>scope</tt> - One or more columns by which to limit the scope of the
+uniquness constraint.
+
+</li>
+<li><tt>case_sensitive</tt> - Looks for an exact match. Ignored by non-text
+columns (true by default).
+
+</li>
+<li><tt>allow_nil</tt> - If set to true, skips this validation if the attribute
+is null (default is: false)
+
+</li>
+<li><tt>if</tt> - Specifies a method, proc or string to call to determine if
+the validation should
+
+</li>
+</ul>
+<p>
+occur (e.g. :if =&gt; :allow_validation, or :if =&gt; Proc.new { |user|
+user.signup_step &gt; 2 }). The method, proc or string should return or
+evaluate to a true or false value.
+</p>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+515
+516
+517
+518
+519
+520
+521
+522
+523
+524
+525
+526
+527
+528
+529
+530
+531
+532
+533
+534
+535
+536
+537
+538
+539
+540
+541
+542</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/validations.rb', line 515</span>
+
+<span class='def def kw'>def</span> <span class='validates_uniqueness_of identifier id'>validates_uniqueness_of</span><span class='lparen token'>(</span><span class='mult op'>*</span><span class='attr_names identifier id'>attr_names</span><span class='rparen token'>)</span>
+  <span class='configuration identifier id'>configuration</span> <span class='assign token'>=</span> <span class='lbrace token'>{</span> <span class='symbol val'>:message</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='BigRecord constant id'>BigRecord</span><span class='colon2 op'>::</span><span class='Errors constant id'>Errors</span><span class='dot token'>.</span><span class='default_error_messages identifier id'>default_error_messages</span><span class='lbrack token'>[</span><span class='symbol val'>:taken</span><span class='rbrack token'>]</span><span class='comma token'>,</span> <span class='symbol val'>:case_sensitive</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='true true kw'>true</span> <span class='rbrace token'>}</span>
+  <span class='configuration identifier id'>configuration</span><span class='dot token'>.</span><span class='update identifier id'>update</span><span class='lparen token'>(</span><span class='attr_names identifier id'>attr_names</span><span class='dot token'>.</span><span class='pop identifier id'>pop</span><span class='rparen token'>)</span> <span class='if if_mod kw'>if</span> <span class='attr_names identifier id'>attr_names</span><span class='dot token'>.</span><span class='last identifier id'>last</span><span class='dot token'>.</span><span class='is_a? fid id'>is_a?</span><span class='lparen token'>(</span><span class='Hash constant id'>Hash</span><span class='rparen token'>)</span>
+
+  <span class='validates_each identifier id'>validates_each</span><span class='lparen token'>(</span><span class='attr_names identifier id'>attr_names</span><span class='comma token'>,</span><span class='configuration identifier id'>configuration</span><span class='rparen token'>)</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='record identifier id'>record</span><span class='comma token'>,</span> <span class='attr_name identifier id'>attr_name</span><span class='comma token'>,</span> <span class='value identifier id'>value</span><span class='bitor op'>|</span>
+    <span class='if if kw'>if</span> <span class='value identifier id'>value</span><span class='dot token'>.</span><span class='nil? fid id'>nil?</span> <span class='orop op'>||</span> <span class='lparen token'>(</span><span class='configuration identifier id'>configuration</span><span class='lbrack token'>[</span><span class='symbol val'>:case_sensitive</span><span class='rbrack token'>]</span> <span class='orop op'>||</span> <span class='notop op'>!</span><span class='columns_hash identifier id'>columns_hash</span><span class='lbrack token'>[</span><span class='attr_name identifier id'>attr_name</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span><span class='rbrack token'>]</span><span class='dot token'>.</span><span class='text? fid id'>text?</span><span class='rparen token'>)</span>
+      <span class='condition_sql identifier id'>condition_sql</span> <span class='assign token'>=</span> <span class='dstring node'>&quot;#{record.class.table_name}.#{attr_name} #{attribute_condition(value)}&quot;</span>
+      <span class='condition_params identifier id'>condition_params</span> <span class='assign token'>=</span> <span class='lbrack token'>[</span><span class='value identifier id'>value</span><span class='rbrack token'>]</span>
+    <span class='else else kw'>else</span>
+      <span class='condition_sql identifier id'>condition_sql</span> <span class='assign token'>=</span> <span class='dstring node'>&quot;LOWER(#{record.class.table_name}.#{attr_name}) #{attribute_condition(value)}&quot;</span>
+      <span class='condition_params identifier id'>condition_params</span> <span class='assign token'>=</span> <span class='lbrack token'>[</span><span class='value identifier id'>value</span><span class='dot token'>.</span><span class='downcase identifier id'>downcase</span><span class='rbrack token'>]</span>
+    <span class='end end kw'>end</span>
+    <span class='if if kw'>if</span> <span class='scope identifier id'>scope</span> <span class='assign token'>=</span> <span class='configuration identifier id'>configuration</span><span class='lbrack token'>[</span><span class='symbol val'>:scope</span><span class='rbrack token'>]</span>
+      <span class='Array constant id'>Array</span><span class='lparen token'>(</span><span class='scope identifier id'>scope</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='map identifier id'>map</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='scope_item identifier id'>scope_item</span><span class='bitor op'>|</span>
+        <span class='scope_value identifier id'>scope_value</span> <span class='assign token'>=</span> <span class='record identifier id'>record</span><span class='dot token'>.</span><span class='send identifier id'>send</span><span class='lparen token'>(</span><span class='scope_item identifier id'>scope_item</span><span class='rparen token'>)</span>
+        <span class='condition_sql identifier id'>condition_sql</span> <span class='lshft op'>&lt;&lt;</span> <span class='dstring node'>&quot; AND #{record.class.table_name}.#{scope_item} #{attribute_condition(scope_value)}&quot;</span>
+        <span class='condition_params identifier id'>condition_params</span> <span class='lshft op'>&lt;&lt;</span> <span class='scope_value identifier id'>scope_value</span>
+      <span class='end end kw'>end</span>
+    <span class='end end kw'>end</span>
+    <span class='unless unless kw'>unless</span> <span class='record identifier id'>record</span><span class='dot token'>.</span><span class='new_record? fid id'>new_record?</span>
+      <span class='condition_sql identifier id'>condition_sql</span> <span class='lshft op'>&lt;&lt;</span> <span class='dstring node'>&quot; AND #{record.class.table_name}.#{record.class.primary_key} &lt;&gt; ?&quot;</span>
+      <span class='condition_params identifier id'>condition_params</span> <span class='lshft op'>&lt;&lt;</span> <span class='record identifier id'>record</span><span class='dot token'>.</span><span class='send identifier id'>send</span><span class='lparen token'>(</span><span class='symbol val'>:id</span><span class='rparen token'>)</span>
+    <span class='end end kw'>end</span>
+    <span class='if if kw'>if</span> <span class='record identifier id'>record</span><span class='dot token'>.</span><span class='class identifier id'>class</span><span class='dot token'>.</span><span class='find identifier id'>find</span><span class='lparen token'>(</span><span class='symbol val'>:first</span><span class='comma token'>,</span> <span class='symbol val'>:conditions</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='lbrack token'>[</span><span class='condition_sql identifier id'>condition_sql</span><span class='comma token'>,</span> <span class='mult op'>*</span><span class='condition_params identifier id'>condition_params</span><span class='rbrack token'>]</span><span class='rparen token'>)</span>
+      <span class='record identifier id'>record</span><span class='dot token'>.</span><span class='errors identifier id'>errors</span><span class='dot token'>.</span><span class='add identifier id'>add</span><span class='lparen token'>(</span><span class='attr_name identifier id'>attr_name</span><span class='comma token'>,</span> <span class='configuration identifier id'>configuration</span><span class='lbrack token'>[</span><span class='symbol val'>:message</span><span class='rbrack token'>]</span><span class='rparen token'>)</span>
+    <span class='end end kw'>end</span>
+  <span class='end end kw'>end</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+</div>
+  </div>
+
+</div>
+    </div>
+    <div id="yard_info">
+  Generated on Tuesday, November 10 2009 at 06:18:43 PM by 
+  <abbr class="yard" title="Yay! A Ruby Documentation Tool"><a href="http://yard.soen.ca">YARD</a></abbr> 
+  0.2.3.5 (ruby-1.8.7).
+</div>
+
+  </body>
+</html>

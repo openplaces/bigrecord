@@ -1,0 +1,278 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="style.css" type="text/css" charset="utf-8" />
+<link rel="stylesheet" href="custom.css" type="text/css" charset="utf-8" />
+<link rel="stylesheet" href="syntax_highlight.css" type="text/css" charset="utf-8" />
+
+    <title>getting_started.rdoc</title>
+  </head>
+  <body>
+    <div id="content">
+      <div class="section docstring readme">
+        <h1>Getting Started</h1>
+<h2>Requirements</h2>
+<ul>
+<li>Database set up (please refer to the database&#8217;s own documentation)
+with the required information known such as host, port, username, password,
+etc. in order for Bigrecord to connect to it.
+
+</li>
+<li>Bigrecord Driver (if your database requires it for connecting)
+
+<ul>
+<li>JRuby 1.1.6+ is needed to run Bigrecord Driver.
+
+</li>
+</ul>
+</li>
+</ul>
+<h2><b>NOTE</b> At the time of this writing, Hbase is the only supported database for Bigrecord, and the following instructions are for specific to Hbase.</h2>
+<h2>Installation</h2>
+<p>
+(1) Install the Bigrecord Driver gem and its dependencies, then start up a
+DRb server. Please see the Bigrecord Driver documentation for more detailed
+instructions.
+(http://github.com/openplaces/bigrecord/blob/master/bigrecord-driver/README.rdoc)
+</p>
+<h3>Method 1 (recommended): Install as a gem</h3>
+<p>
+(2) Add the following line into the Rails::Initializer.run do |config|
+block:
+</p>
+<pre class="code">
+  <span class='config identifier id'>config</span><span class='dot token'>.</span><span class='gem identifier id'>gem</span> <span class='string val'>&quot;bigrecord&quot;</span><span class='comma token'>,</span> <span class='symbol val'>:source</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>&quot;http://gemcutter.org&quot;</span>
+</pre>
+<p>
+and run the following command to install all the gems listed for your Rails
+app:
+</p>
+<pre class="code">
+  <span class='lbrack token'>[</span><span class='sudo identifier id'>sudo</span><span class='rbrack token'>]</span> <span class='rake identifier id'>rake</span> <span class='gems identifier id'>gems</span><span class='symbol val'>:install</span>
+</pre>
+<p>
+(3) Bootstrap Bigrecord into your project:
+</p>
+<pre class="code">
+  <span class='script identifier id'>script</span><span class='div op'>/</span><span class='generate identifier id'>generate</span> <span class='bigrecord identifier id'>bigrecord</span>
+</pre>
+<p>
+(4) Edit the config/bigrecord.yml[.sample] file in your Rails root to the
+information corresponding to your database install and Bigrecord Driver DRb
+server.
+</p>
+<h3>Method 2: Install as a plugin</h3>
+<p>
+(2) Run the following command to install it as a plugin:
+</p>
+<pre class="code">
+  <span class='script identifier id'>script</span><span class='div op'>/</span><span class='plugin identifier id'>plugin</span> <span class='install identifier id'>install</span> <span class='git identifier id'>git</span><span class='symbol val'>:/</span><span class='regexp val'>/github.com/o</span><span class='penplaces identifier id'>penplaces</span><span class='div op'>/</span><span class='bigrecord identifier id'>bigrecord</span><span class='dot token'>.</span><span class='git identifier id'>git</span>
+</pre>
+<p>
+(3) Edit the config/bigrecord.yml[.sample] file in your Rails root to the
+information corresponding to your database install and Bigrecord Driver DRb
+server.
+</p>
+<h2>Usage</h2>
+<h3>Generators</h3>
+<p>
+Once Bigrecord is working in your Rails project, you can use the following
+generators:
+</p>
+<pre class="code">
+  <span class='script identifier id'>script</span><span class='div op'>/</span><span class='generate identifier id'>generate</span> <span class='bigrecord_model identifier id'>bigrecord_model</span> <span class='ModelName constant id'>ModelName</span>
+</pre>
+<p>
+This will add a model in app/models and a migration file in
+db/bigrecord_migrate. Note: This generator does not accept attributes.
+</p>
+<pre class="code">
+  <span class='script identifier id'>script</span><span class='div op'>/</span><span class='generate identifier id'>generate</span> <span class='bigrecord_migration identifier id'>bigrecord_migration</span> <span class='MigrationName constant id'>MigrationName</span>
+</pre>
+<p>
+Creates a Bigrecord specific migration and adds it into
+db/bigrecord_migrate
+</p>
+<h3>Migration File</h3>
+<p>
+Although column-oriented databases are generally schema-less, certain ones
+(like Hbase) require the creation of tables and column families ahead of
+time. The individual columns, however, are defined in the model itself and
+can be modified dynamically without the need for migrations.
+</p>
+<p>
+Unless you&#8217;re familiar with column families, the majority of use
+cases work perfectly fine within one column family. When you generate a
+bigrecord_model, it will default to creating the :attribute column family.
+</p>
+<p>
+The following is a standard migration file that creates a table called
+&quot;Books&quot; with the default column family :attribute that has the
+following option of 100 versions and uses the &#8216;lzo&#8217; compression
+scheme. Leave any options blank for the default value.
+</p>
+<pre class="code">
+  <span class='class class kw'>class</span> <span class='CreateBooks constant id'>CreateBooks</span> <span class='lt op'>&lt;</span> <span class='BigRecord constant id'>BigRecord</span><span class='colon2 op'>::</span><span class='Migration constant id'>Migration</span>
+    <span class='def def kw'>def</span> <span class='self self kw'>self</span><span class='dot token'>.</span><span class='up identifier id'>up</span>
+      <span class='create_table identifier id'>create_table</span> <span class='symbol val'>:books</span><span class='comma token'>,</span> <span class='symbol val'>:force</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='true true kw'>true</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='t identifier id'>t</span><span class='bitor op'>|</span>
+        <span class='t identifier id'>t</span><span class='dot token'>.</span><span class='family identifier id'>family</span> <span class='symbol val'>:attribute</span><span class='comma token'>,</span> <span class='symbol val'>:versions</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='integer val'>100</span><span class='comma token'>,</span> <span class='symbol val'>:compression</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>'lzo'</span>
+      <span class='end end kw'>end</span>
+    <span class='end end kw'>end</span>
+
+    <span class='def def kw'>def</span> <span class='self self kw'>self</span><span class='dot token'>.</span><span class='down identifier id'>down</span>
+      <span class='drop_table identifier id'>drop_table</span> <span class='symbol val'>:books</span>
+    <span class='end end kw'>end</span>
+  <span class='end end kw'>end</span>
+</pre>
+<h3>HBase column family options (HBase specific)</h3>
+<ul>
+<li>versions: integer. By default, Hbase will store 3 versions of changes for
+any column family. Changing this value on the creation will change this
+behavior.
+
+</li>
+<li>compression: &#8216;none&#8217;, &#8216;gz&#8217;, &#8216;lzo&#8217;.
+Defaults to &#8216;none&#8217;. Since Hbase 0.20, column families can be
+stored using compression. The compression scheme you define here must be
+installed on the Hbase servers!
+
+</li>
+</ul>
+<h3>Migrating</h3>
+<p>
+Run the following rake task to migrate your tables and column families up
+to the latest version:
+</p>
+<pre class="code">
+  <span class='rake identifier id'>rake</span> <span class='bigrecord identifier id'>bigrecord</span><span class='symbol val'>:migrate</span>
+</pre>
+<h3>Column and Attribute Definition</h3>
+<p>
+Now that you have your tables and column families all set up, you can begin
+adding columns to your model. The following is an example of a model named
+book.rb
+</p>
+<pre class="code">
+  <span class='class class kw'>class</span> <span class='Book constant id'>Book</span> <span class='lt op'>&lt;</span> <span class='BigRecord constant id'>BigRecord</span><span class='colon2 op'>::</span><span class='Base constant id'>Base</span>
+    <span class='column identifier id'>column</span> <span class='string val'>'attribute:title'</span><span class='comma token'>,</span>   <span class='symbol val'>:string</span>
+    <span class='column identifier id'>column</span> <span class='symbol val'>:author</span><span class='comma token'>,</span>             <span class='symbol val'>:string</span>
+    <span class='column identifier id'>column</span> <span class='symbol val'>:description</span><span class='comma token'>,</span>        <span class='symbol val'>:string</span>
+    <span class='column identifier id'>column</span> <span class='symbol val'>:links</span><span class='comma token'>,</span>              <span class='symbol val'>:string</span><span class='comma token'>,</span>  <span class='symbol val'>:collection</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='true true kw'>true</span>
+  <span class='end end kw'>end</span>
+</pre>
+<p>
+This simple model defines 4 columns of type string. An important thing to
+notice here is that the first column &#8216;attribute:title&#8217; had the
+column family prepended to it. This is identical to just passing the symbol
+:title to the column method, and the default behaviour is to prepend the
+column family (attribute) automatically if one is not defined. Furthermore,
+in Hbase, there&#8217;s the option of storing collections for a given
+column. This will return an array for the links attribute on a Book record.
+</p>
+<h3>Associations</h3>
+<p>
+There are also associations available in Bigrecord, as well as the ability
+to associate to Activerecord models. The following are a few models
+demonstrating this:
+</p>
+<p>
+animal.rb
+</p>
+<pre class="code">
+  <span class='class class kw'>class</span> <span class='Animal constant id'>Animal</span> <span class='lt op'>&lt;</span> <span class='BigRecord constant id'>BigRecord</span><span class='colon2 op'>::</span><span class='Base constant id'>Base</span>
+    <span class='comment val'># Typical attributes</span>
+    <span class='column identifier id'>column</span> <span class='symbol val'>:name</span><span class='comma token'>,</span>         <span class='symbol val'>:string</span>
+    <span class='column identifier id'>column</span> <span class='symbol val'>:type</span><span class='comma token'>,</span>         <span class='symbol val'>:integer</span>
+    <span class='column identifier id'>column</span> <span class='symbol val'>:description</span><span class='comma token'>,</span>  <span class='symbol val'>:string</span>
+
+    <span class='comment val'># Association attributes</span>
+    <span class='column identifier id'>column</span> <span class='symbol val'>:zoo_id</span><span class='comma token'>,</span>       <span class='symbol val'>:string</span>
+    <span class='column identifier id'>column</span> <span class='symbol val'>:trainer_id</span><span class='comma token'>,</span>   <span class='symbol val'>:integer</span>
+
+    <span class='comment val'># Associations</span>
+    <span class='belongs_to_big_record identifier id'>belongs_to_big_record</span> <span class='symbol val'>:zoo</span><span class='comma token'>,</span> <span class='symbol val'>:foreign_key</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='symbol val'>:zoo_id</span>
+    <span class='belongs_to identifier id'>belongs_to</span> <span class='symbol val'>:trainer</span><span class='comma token'>,</span>        <span class='symbol val'>:foreign_key</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='symbol val'>:trainer_id</span>
+  <span class='end end kw'>end</span>
+</pre>
+<p>
+In this example, an Animal is related to Zoo and Trainer. Both Animal and
+Zoo are Bigrecord models, and Trainer is an Activerecord model. Notice here
+that we need to define both the association field for storing the
+information and the association itself. It&#8217;s also important to
+remember that Bigrecord models have their IDs stored as string, and
+Activerecord models use integers.
+</p>
+<p>
+Once the association columns are defined, you define the associations
+themselves with either belongs_to_bigrecord or belongs_to_many and defining
+the :foreign_key (this is required for all associations).
+</p>
+<h3>Specifying return columns</h3>
+<p>
+There are two ways to define specific columns to be returned with your
+models: 1) at the model level and 2) during the query.
+</p>
+<p>
+(1) At the model level, a collection of columns are called named views, and
+are defined like the following:
+</p>
+<pre class="code">
+  <span class='class class kw'>class</span> <span class='Book constant id'>Book</span> <span class='lt op'>&lt;</span> <span class='BigRecord constant id'>BigRecord</span><span class='colon2 op'>::</span><span class='Base constant id'>Base</span>
+    <span class='column identifier id'>column</span> <span class='symbol val'>:title</span><span class='comma token'>,</span>   <span class='symbol val'>:string</span>
+    <span class='column identifier id'>column</span> <span class='symbol val'>:author</span><span class='comma token'>,</span>             <span class='symbol val'>:string</span>
+    <span class='column identifier id'>column</span> <span class='symbol val'>:description</span><span class='comma token'>,</span>        <span class='symbol val'>:string</span>
+    <span class='column identifier id'>column</span> <span class='symbol val'>:links</span><span class='comma token'>,</span>              <span class='symbol val'>:string</span><span class='comma token'>,</span>  <span class='symbol val'>:collection</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='true true kw'>true</span>
+
+    <span class='view identifier id'>view</span> <span class='symbol val'>:front_page</span><span class='comma token'>,</span> <span class='symbol val'>:title</span><span class='comma token'>,</span> <span class='symbol val'>:author</span>
+    <span class='view identifier id'>view</span> <span class='symbol val'>:summary_page</span><span class='comma token'>,</span> <span class='symbol val'>:title</span><span class='comma token'>,</span> <span class='symbol val'>:author</span><span class='comma token'>,</span> <span class='symbol val'>:description</span>
+
+    <span class='comment val'># Override default if you don't want all columns returend</span>
+    <span class='view identifier id'>view</span> <span class='symbol val'>:default</span><span class='comma token'>,</span> <span class='symbol val'>:title</span><span class='comma token'>,</span> <span class='symbol val'>:author</span><span class='comma token'>,</span> <span class='symbol val'>:description</span>
+  <span class='end end kw'>end</span>
+</pre>
+<p>
+Now, whenever you work with a Book record, it will only returned the
+columns you specify according to the view option you pass. i.e.
+</p>
+<pre class="code">
+  <span class='rshft op'>&gt;&gt;</span> <span class='Book constant id'>Book</span><span class='dot token'>.</span><span class='find identifier id'>find</span><span class='lparen token'>(</span><span class='symbol val'>:first</span><span class='comma token'>,</span> <span class='symbol val'>:view</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='symbol val'>:front_page</span><span class='rparen token'>)</span>
+  <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='comment val'>#&lt;Book id: &quot;2e13f182-1085-495e-9841-fe5c84ae9992&quot;, attribute:title: &quot;Hello Thar&quot;, attribute:author: &quot;Greg&quot;&gt;</span>
+
+  <span class='rshft op'>&gt;&gt;</span> <span class='Book constant id'>Book</span><span class='dot token'>.</span><span class='find identifier id'>find</span><span class='lparen token'>(</span><span class='symbol val'>:first</span><span class='comma token'>,</span> <span class='symbol val'>:view</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='symbol val'>:summary_page</span><span class='rparen token'>)</span>
+  <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='comment val'>#&lt;Book id: &quot;2e13f182-1085-495e-9841-fe5c84ae9992&quot;, attribute:description: &quot;Masterpiece!&quot;, attribute:title: &quot;Hello Thar&quot;, attribute:author: &quot;Greg&quot;&gt;</span>
+
+  <span class='rshft op'>&gt;&gt;</span> <span class='Book constant id'>Book</span><span class='dot token'>.</span><span class='find identifier id'>find</span><span class='lparen token'>(</span><span class='symbol val'>:first</span><span class='comma token'>,</span> <span class='symbol val'>:view</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='symbol val'>:default</span><span class='rparen token'>)</span>
+  <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='comment val'>#&lt;Book id: &quot;2e13f182-1085-495e-9841-fe5c84ae9992&quot;, attribute:description: &quot;Masterpiece!&quot;, attribute:title: &quot;Hello Thar&quot;, attribute:links: [&quot;link1&quot;, &quot;link2&quot;, &quot;link3&quot;, &quot;link4&quot;], attribute:author: &quot;Greg&quot;&gt;</span>
+</pre>
+<p>
+Note: A Bigrecord model will return all the columns within the default
+column family (when :view option is left blank, for example). You can
+override the :default name view to change this behaviour.
+</p>
+<p>
+(2) If you don&#8217;t want to define named views ahead of time, you can
+just pass an array of columns to the :columns option and it will return
+only those attributes:
+</p>
+<pre class="code">
+  <span class='rshft op'>&gt;&gt;</span> <span class='Book constant id'>Book</span><span class='dot token'>.</span><span class='find identifier id'>find</span><span class='lparen token'>(</span><span class='symbol val'>:first</span><span class='comma token'>,</span> <span class='symbol val'>:columns</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='lbrack token'>[</span><span class='symbol val'>:author</span><span class='comma token'>,</span> <span class='symbol val'>:description</span><span class='rbrack token'>]</span><span class='rparen token'>)</span>
+  <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='comment val'>#&lt;Book id: &quot;2e13f182-1085-495e-9841-fe5c84ae9992&quot;, attribute:description: &quot;Masterpiece!&quot;, attribute:author: &quot;Greg&quot;&gt;</span>
+</pre>
+<p>
+As you may have noticed, this functionality is synonymous with the :select
+option in Activerecord.
+</p>
+<h3>At this point, usage patterns for a Bigrecord model are similar to that of an Activerecord model, and much of that documentation applies as well. Please refer to those and see if they work!</h3>
+
+      </div>
+    </div>
+    <div id="yard_info">
+  Generated on Tuesday, November 10 2009 at 06:18:30 PM by 
+  <abbr class="yard" title="Yay! A Ruby Documentation Tool"><a href="http://yard.soen.ca">YARD</a></abbr> 
+  0.2.3.5 (ruby-1.8.7).
+</div>
+
+  </body>
+</html>

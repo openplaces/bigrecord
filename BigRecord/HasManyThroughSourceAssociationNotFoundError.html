@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="../style.css" type="text/css" charset="utf-8" />
+<link rel="stylesheet" href="../custom.css" type="text/css" charset="utf-8" />
+<link rel="stylesheet" href="../syntax_highlight.css" type="text/css" charset="utf-8" />
+
+    <script src="../jquery.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../app.js" type="text/javascript" charset="utf-8"></script>
+    <title>Exception: BigRecord::HasManyThroughSourceAssociationNotFoundError</title>
+  </head>
+  <body>
+    <div id="content">
+      <div class="section class BigRecord_HasManyThroughSourceAssociationNotFoundError">
+  <h1 class="title">Exception: BigRecord::HasManyThroughSourceAssociationNotFoundError</h1>
+  <div class="section inheritance">
+  <ul>
+  <li>StandardError</li><ul><li><a href="BigRecordError.html" title="BigRecord::BigRecordError">BigRecord::BigRecordError</a></li><ul><li>BigRecord::HasManyThroughSourceAssociationNotFoundError</li>
+  </ul></ul></ul>
+</div><div class="section constants">
+  
+</div><div class="section constructor">
+<h1>Constructor Summary</h1>
+  <div id="initialize-instance_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>initialize</span><span class='args'>(reflection)</span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+30
+31
+32
+33
+34
+35</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/ar_associations.rb', line 30</span>
+
+<span class='def def kw'>def</span> <span class='initialize identifier id'>initialize</span><span class='lparen token'>(</span><span class='reflection identifier id'>reflection</span><span class='rparen token'>)</span>
+  <span class='through_reflection identifier id'>through_reflection</span>      <span class='assign token'>=</span> <span class='reflection identifier id'>reflection</span><span class='dot token'>.</span><span class='through_reflection identifier id'>through_reflection</span>
+  <span class='source_reflection_names identifier id'>source_reflection_names</span> <span class='assign token'>=</span> <span class='reflection identifier id'>reflection</span><span class='dot token'>.</span><span class='source_reflection_names identifier id'>source_reflection_names</span>
+  <span class='source_associations identifier id'>source_associations</span>     <span class='assign token'>=</span> <span class='reflection identifier id'>reflection</span><span class='dot token'>.</span><span class='through_reflection identifier id'>through_reflection</span><span class='dot token'>.</span><span class='klass identifier id'>klass</span><span class='dot token'>.</span><span class='reflect_on_all_associations identifier id'>reflect_on_all_associations</span><span class='dot token'>.</span><span class='collect identifier id'>collect</span> <span class='lbrace token'>{</span> <span class='bitor op'>|</span><span class='a identifier id'>a</span><span class='bitor op'>|</span> <span class='a identifier id'>a</span><span class='dot token'>.</span><span class='name identifier id'>name</span><span class='dot token'>.</span><span class='inspect identifier id'>inspect</span> <span class='rbrace token'>}</span>
+  <span class='super super kw'>super</span><span class='lparen token'>(</span><span class='dstring node'>&quot;Could not find the source association(s) #{source_reflection_names.collect(&amp;:inspect).to_sentence :connector =&gt; 'or'} in model #{through_reflection.klass}.  Try 'has_many #{reflection.name.inspect}, :through =&gt; #{through_reflection.name.inspect}, :source =&gt; &lt;name&gt;'.  Is it one of #{source_associations.to_sentence :connector =&gt; 'or'}?&quot;</span><span class='rparen token'>)</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+</div>
+</div>
+    </div>
+    <div id="yard_info">
+  Generated on Tuesday, November 10 2009 at 06:18:49 PM by 
+  <abbr class="yard" title="Yay! A Ruby Documentation Tool"><a href="http://yard.soen.ca">YARD</a></abbr> 
+  0.2.3.5 (ruby-1.8.7).
+</div>
+
+  </body>
+</html>

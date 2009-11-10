@@ -1,0 +1,465 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="../../style.css" type="text/css" charset="utf-8" />
+<link rel="stylesheet" href="../../custom.css" type="text/css" charset="utf-8" />
+<link rel="stylesheet" href="../../syntax_highlight.css" type="text/css" charset="utf-8" />
+
+    <script src="../../jquery.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../app.js" type="text/javascript" charset="utf-8"></script>
+    <title>Module: BigRecord::ConnectionAdapters::Quoting</title>
+  </head>
+  <body>
+    <div id="content">
+      <div class="section module BigRecord_ConnectionAdapters_Quoting">
+  <h1 class="title">Module: BigRecord::ConnectionAdapters::Quoting</h1>
+  <div class="section constants">
+  
+</div>  <div class="section visibilitygroup public">
+    <h1>Public Visibility</h1>
+      <div class="section methodsummary instance public">
+    <h1>Public Instance Method Summary</h1>
+<table class="summary">
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#quote-instance_method" title="#quote">#quote</a></span><span class='args'>(value, column = nil)</span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        <p>
+Quotes the column value to help prevent SQL injection attacks [http://en.
+</p>
+
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#quote_column_name-instance_method" title="#quote_column_name">#quote_column_name</a></span><span class='args'>(name)</span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        <p>
+Returns a quoted form of the column name.
+</p>
+
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#quote_string-instance_method" title="#quote_string">#quote_string</a></span><span class='args'>(s)</span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        <p>
+Quotes a string, escaping any &#8217; (single quote) and \ (backslash)
+characters.
+</p>
+
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#quoted_date-instance_method" title="#quoted_date">#quoted_date</a></span><span class='args'>(value)</span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#quoted_false-instance_method" title="#quoted_false">#quoted_false</a></span><span class='args'></span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#quoted_true-instance_method" title="#quoted_true">#quoted_true</a></span><span class='args'></span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        
+        
+      </td>
+    </tr>
+  
+</table>
+
+  </div>
+<div class="section methoddetails instance public">
+  <h1>Public Instance Method Details</h1>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>quote</h3>
+</div><div id="quote-instance_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>quote</span><span class='args'>(value, column = nil)</span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section docstring">
+  <p>
+Quotes the column value to help prevent SQL injection attacks
+[http://en.wikipedia.org/wiki/SQL_injection].
+</p>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/abstract/quoting.rb', line 6</span>
+
+<span class='def def kw'>def</span> <span class='quote identifier id'>quote</span><span class='lparen token'>(</span><span class='value identifier id'>value</span><span class='comma token'>,</span> <span class='column identifier id'>column</span> <span class='assign token'>=</span> <span class='nil nil kw'>nil</span><span class='rparen token'>)</span>
+  <span class='comment val'># records are quoted as their primary key</span>
+  <span class='return return kw'>return</span> <span class='value identifier id'>value</span><span class='dot token'>.</span><span class='quoted_id identifier id'>quoted_id</span> <span class='if if_mod kw'>if</span> <span class='value identifier id'>value</span><span class='dot token'>.</span><span class='respond_to? fid id'>respond_to?</span><span class='lparen token'>(</span><span class='symbol val'>:quoted_id</span><span class='rparen token'>)</span>
+
+  <span class='case case kw'>case</span> <span class='value identifier id'>value</span>
+    <span class='when when kw'>when</span> <span class='String constant id'>String</span><span class='comma token'>,</span> <span class='ActiveSupport constant id'>ActiveSupport</span><span class='colon2 op'>::</span><span class='Multibyte constant id'>Multibyte</span><span class='colon2 op'>::</span><span class='Chars constant id'>Chars</span>
+      <span class='value identifier id'>value</span> <span class='assign token'>=</span> <span class='value identifier id'>value</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span>
+      <span class='if if kw'>if</span> <span class='column identifier id'>column</span> <span class='andop op'>&amp;&amp;</span> <span class='column identifier id'>column</span><span class='dot token'>.</span><span class='type identifier id'>type</span> <span class='eq op'>==</span> <span class='symbol val'>:binary</span> <span class='andop op'>&amp;&amp;</span> <span class='column identifier id'>column</span><span class='dot token'>.</span><span class='class identifier id'>class</span><span class='dot token'>.</span><span class='respond_to? fid id'>respond_to?</span><span class='lparen token'>(</span><span class='symbol val'>:string_to_binary</span><span class='rparen token'>)</span>
+        <span class='dstring node'>&quot;'#{quote_string(column.class.string_to_binary(value))}'&quot;</span> <span class='comment val'># ' (for ruby-mode)</span>
+      <span class='elsif elsif kw'>elsif</span> <span class='column identifier id'>column</span> <span class='andop op'>&amp;&amp;</span> <span class='lbrack token'>[</span><span class='symbol val'>:integer</span><span class='comma token'>,</span> <span class='symbol val'>:float</span><span class='rbrack token'>]</span><span class='dot token'>.</span><span class='include? fid id'>include?</span><span class='lparen token'>(</span><span class='column identifier id'>column</span><span class='dot token'>.</span><span class='type identifier id'>type</span><span class='rparen token'>)</span>
+        <span class='value identifier id'>value</span> <span class='assign token'>=</span> <span class='column identifier id'>column</span><span class='dot token'>.</span><span class='type identifier id'>type</span> <span class='eq op'>==</span> <span class='symbol val'>:integer</span> <span class='question op'>?</span> <span class='value identifier id'>value</span><span class='dot token'>.</span><span class='to_i identifier id'>to_i</span> <span class='colon op'>:</span> <span class='value identifier id'>value</span><span class='dot token'>.</span><span class='to_f identifier id'>to_f</span>
+        <span class='value identifier id'>value</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span>
+      <span class='else else kw'>else</span>
+        <span class='dstring node'>&quot;'#{quote_string(value)}'&quot;</span> <span class='comment val'># ' (for ruby-mode)</span>
+      <span class='end end kw'>end</span>
+    <span class='when when kw'>when</span> <span class='NilClass constant id'>NilClass</span>                 <span class='then then kw'>then</span> <span class='string val'>&quot;NULL&quot;</span>
+    <span class='when when kw'>when</span> <span class='TrueClass constant id'>TrueClass</span>                <span class='then then kw'>then</span> <span class='lparen token'>(</span><span class='column identifier id'>column</span> <span class='andop op'>&amp;&amp;</span> <span class='column identifier id'>column</span><span class='dot token'>.</span><span class='type identifier id'>type</span> <span class='eq op'>==</span> <span class='symbol val'>:integer</span> <span class='question op'>?</span> <span class='string val'>'1'</span> <span class='colon op'>:</span> <span class='quoted_true identifier id'>quoted_true</span><span class='rparen token'>)</span>
+    <span class='when when kw'>when</span> <span class='FalseClass constant id'>FalseClass</span>               <span class='then then kw'>then</span> <span class='lparen token'>(</span><span class='column identifier id'>column</span> <span class='andop op'>&amp;&amp;</span> <span class='column identifier id'>column</span><span class='dot token'>.</span><span class='type identifier id'>type</span> <span class='eq op'>==</span> <span class='symbol val'>:integer</span> <span class='question op'>?</span> <span class='string val'>'0'</span> <span class='colon op'>:</span> <span class='quoted_false identifier id'>quoted_false</span><span class='rparen token'>)</span>
+    <span class='when when kw'>when</span> <span class='Float constant id'>Float</span><span class='comma token'>,</span> <span class='Fixnum constant id'>Fixnum</span><span class='comma token'>,</span> <span class='Bignum constant id'>Bignum</span>    <span class='then then kw'>then</span> <span class='value identifier id'>value</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span>
+    <span class='comment val'># BigDecimals need to be output in a non-normalized form and quoted.</span>
+    <span class='when when kw'>when</span> <span class='BigDecimal constant id'>BigDecimal</span>               <span class='then then kw'>then</span> <span class='value identifier id'>value</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span><span class='lparen token'>(</span><span class='string val'>'F'</span><span class='rparen token'>)</span>
+    <span class='when when kw'>when</span> <span class='Date constant id'>Date</span>                     <span class='then then kw'>then</span> <span class='dstring node'>&quot;'#{value.to_s}'&quot;</span>
+    <span class='when when kw'>when</span> <span class='Time constant id'>Time</span><span class='comma token'>,</span> <span class='DateTime constant id'>DateTime</span>           <span class='then then kw'>then</span> <span class='dstring node'>&quot;'#{quoted_date(value)}'&quot;</span>
+    <span class='else else kw'>else</span>                          <span class='dstring node'>&quot;'#{quote_string(value.to_yaml)}'&quot;</span>
+  <span class='end end kw'>end</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>quote_column_name</h3>
+</div><div id="quote_column_name-instance_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>quote_column_name</span><span class='args'>(name)</span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section docstring">
+  <p>
+Returns a quoted form of the column name. This is highly adapter specific.
+</p>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+41
+42
+43</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/abstract/quoting.rb', line 41</span>
+
+<span class='def def kw'>def</span> <span class='quote_column_name identifier id'>quote_column_name</span><span class='lparen token'>(</span><span class='name identifier id'>name</span><span class='rparen token'>)</span>
+  <span class='name identifier id'>name</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>quote_string</h3>
+</div><div id="quote_string-instance_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>quote_string</span><span class='args'>(s)</span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section docstring">
+  <p>
+Quotes a string, escaping any &#8217; (single quote) and \ (backslash)
+characters.
+</p>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+35
+36
+37</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/abstract/quoting.rb', line 35</span>
+
+<span class='def def kw'>def</span> <span class='quote_string identifier id'>quote_string</span><span class='lparen token'>(</span><span class='s identifier id'>s</span><span class='rparen token'>)</span>
+  <span class='s identifier id'>s</span><span class='dot token'>.</span><span class='gsub identifier id'>gsub</span><span class='lparen token'>(</span><span class='regexp val'>/\\/</span><span class='comma token'>,</span> <span class='string val'>'\&amp;\&amp;'</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='gsub identifier id'>gsub</span><span class='lparen token'>(</span><span class='regexp val'>/'/</span><span class='comma token'>,</span> <span class='string val'>&quot;''&quot;</span><span class='rparen token'>)</span> <span class='comment val'># ' (for ruby-mode)</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>quoted_date</h3>
+</div><div id="quoted_date-instance_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>quoted_date</span><span class='args'>(value)</span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+53
+54
+55</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/abstract/quoting.rb', line 53</span>
+
+<span class='def def kw'>def</span> <span class='quoted_date identifier id'>quoted_date</span><span class='lparen token'>(</span><span class='value identifier id'>value</span><span class='rparen token'>)</span>
+  <span class='value identifier id'>value</span><span class='dot token'>.</span><span class='strftime identifier id'>strftime</span><span class='lparen token'>(</span><span class='string val'>&quot;%Y-%m-%d %H:%M:%S&quot;</span><span class='rparen token'>)</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>quoted_false</h3>
+</div><div id="quoted_false-instance_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>quoted_false</span><span class='args'></span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+49
+50
+51</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/abstract/quoting.rb', line 49</span>
+
+<span class='def def kw'>def</span> <span class='quoted_false identifier id'>quoted_false</span>
+  <span class='string val'>&quot;'f'&quot;</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>quoted_true</h3>
+</div><div id="quoted_true-instance_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>quoted_true</span><span class='args'></span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+45
+46
+47</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/abstract/quoting.rb', line 45</span>
+
+<span class='def def kw'>def</span> <span class='quoted_true identifier id'>quoted_true</span>
+  <span class='string val'>&quot;'t'&quot;</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+</div>
+  </div>
+
+</div>
+    </div>
+    <div id="yard_info">
+  Generated on Tuesday, November 10 2009 at 06:18:42 PM by 
+  <abbr class="yard" title="Yay! A Ruby Documentation Tool"><a href="http://yard.soen.ca">YARD</a></abbr> 
+  0.2.3.5 (ruby-1.8.7).
+</div>
+
+  </body>
+</html>

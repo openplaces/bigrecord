@@ -1,0 +1,595 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="../../../../style.css" type="text/css" charset="utf-8" />
+<link rel="stylesheet" href="../../../../custom.css" type="text/css" charset="utf-8" />
+<link rel="stylesheet" href="../../../../syntax_highlight.css" type="text/css" charset="utf-8" />
+
+    <script src="../../../../jquery.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../../../app.js" type="text/javascript" charset="utf-8"></script>
+    <title>Class: BigRecord::ArAssociations::ClassMethods::JoinDependency::JoinAssociation</title>
+  </head>
+  <body>
+    <div id="content">
+      <div class="section class BigRecord_ArAssociations_ClassMethods_JoinDependency_JoinAssociation">
+  <h1 class="title">Class: BigRecord::ArAssociations::ClassMethods::JoinDependency::JoinAssociation</h1>
+  <div class="section inheritance">
+  <ul>
+  <li><a href="JoinBase.html" title="BigRecord::ArAssociations::ClassMethods::JoinDependency::JoinBase">BigRecord::ArAssociations::ClassMethods::JoinDependency::JoinBase</a></li><ul><li>BigRecord::ArAssociations::ClassMethods::JoinDependency::JoinAssociation</li>
+  </ul></ul>
+</div><div class="section attributes">
+  <h1>Attributes</h1>
+
+  
+    <div class="instance">
+      <h2>Instance Attributes</h2>
+      <table>
+      
+        
+        <tr class="">
+          <th class='signature'>
+            <span class='name'>aliased_join_table_name</span>
+          </td>
+          <td class="readwrite">
+            [<span id='aliased_join_table_name-instance_method'>R</span>] 
+          </td>
+          <td class="visibility">
+            public
+          </td>
+          <td class="docstring">
+            <p>
+Returns the value of attribute <tt>aliased_join_table_name</tt>.
+</p>
+
+            
+          </td>
+        </tr>
+        
+      
+        
+        <tr class="">
+          <th class='signature'>
+            <span class='name'>aliased_prefix</span>
+          </td>
+          <td class="readwrite">
+            [<span id='aliased_prefix-instance_method'>R</span>] 
+          </td>
+          <td class="visibility">
+            public
+          </td>
+          <td class="docstring">
+            <p>
+Returns the value of attribute <tt>aliased_prefix</tt>.
+</p>
+
+            
+          </td>
+        </tr>
+        
+      
+        
+        <tr class="">
+          <th class='signature'>
+            <span class='name'>aliased_table_name</span>
+          </td>
+          <td class="readwrite">
+            [<span id='aliased_table_name-instance_method'>R</span>] 
+          </td>
+          <td class="visibility">
+            public
+          </td>
+          <td class="docstring">
+            <p>
+Returns the value of attribute <tt>aliased_table_name</tt>.
+</p>
+
+            
+          </td>
+        </tr>
+        
+      
+        
+        <tr class="">
+          <th class='signature'>
+            <span class='name'>parent_table_name</span>
+          </td>
+          <td class="readwrite">
+            [<span id='parent_table_name-instance_method'>R</span>] 
+          </td>
+          <td class="visibility">
+            public
+          </td>
+          <td class="docstring">
+            <p>
+Returns the value of attribute <tt>parent_table_name</tt>.
+</p>
+
+            
+          </td>
+        </tr>
+        
+      
+        
+        <tr class="">
+          <th class='signature'>
+            <span class='name'>parent</span>
+          </td>
+          <td class="readwrite">
+            [<span id='parent-instance_method'>R</span>] 
+          </td>
+          <td class="visibility">
+            public
+          </td>
+          <td class="docstring">
+            <p>
+Returns the value of attribute <tt>parent</tt>.
+</p>
+
+            
+          </td>
+        </tr>
+        
+      
+        
+        <tr class="">
+          <th class='signature'>
+            <span class='name'>reflection</span>
+          </td>
+          <td class="readwrite">
+            [<span id='reflection-instance_method'>R</span>] 
+          </td>
+          <td class="visibility">
+            public
+          </td>
+          <td class="docstring">
+            <p>
+Returns the value of attribute <tt>reflection</tt>.
+</p>
+
+            
+          </td>
+        </tr>
+        
+      
+      </table>
+    </div>
+  
+</div>
+<div class="section constants">
+  
+</div><div class="section constructor">
+<h1>Constructor Summary</h1>
+  <div id="initialize-instance_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>initialize</span><span class='args'>(reflection, join_dependency, parent = nil)</span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+1434
+1435
+1436
+1437
+1438
+1439
+1440
+1441
+1442
+1443
+1444
+1445
+1446
+1447
+1448
+1449
+1450
+1451
+1452
+1453
+1454
+1455
+1456
+1457
+1458
+1459
+1460
+1461
+1462
+1463
+1464
+1465
+1466
+1467
+1468
+1469
+1470
+1471
+1472</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/ar_associations.rb', line 1434</span>
+
+<span class='def def kw'>def</span> <span class='initialize identifier id'>initialize</span><span class='lparen token'>(</span><span class='reflection identifier id'>reflection</span><span class='comma token'>,</span> <span class='join_dependency identifier id'>join_dependency</span><span class='comma token'>,</span> <span class='parent identifier id'>parent</span> <span class='assign token'>=</span> <span class='nil nil kw'>nil</span><span class='rparen token'>)</span>
+  <span class='reflection identifier id'>reflection</span><span class='dot token'>.</span><span class='check_validity! fid id'>check_validity!</span>
+  <span class='if if kw'>if</span> <span class='reflection identifier id'>reflection</span><span class='dot token'>.</span><span class='options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:polymorphic</span><span class='rbrack token'>]</span>
+    <span class='raise identifier id'>raise</span> <span class='EagerLoadPolymorphicError constant id'>EagerLoadPolymorphicError</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='reflection identifier id'>reflection</span><span class='rparen token'>)</span>
+  <span class='end end kw'>end</span>
+
+  <span class='super super kw'>super</span><span class='lparen token'>(</span><span class='reflection identifier id'>reflection</span><span class='dot token'>.</span><span class='klass identifier id'>klass</span><span class='rparen token'>)</span>
+  <span class='@parent ivar id'>@parent</span>             <span class='assign token'>=</span> <span class='parent identifier id'>parent</span>
+  <span class='@reflection ivar id'>@reflection</span>         <span class='assign token'>=</span> <span class='reflection identifier id'>reflection</span>
+  <span class='@aliased_prefix ivar id'>@aliased_prefix</span>     <span class='assign token'>=</span> <span class='dstring node'>&quot;t#{ join_dependency.joins.size }&quot;</span>
+  <span class='@aliased_table_name ivar id'>@aliased_table_name</span> <span class='assign token'>=</span> <span class='table_name identifier id'>table_name</span> <span class='comment val'>#.tr('.', '_') # start with the table name, sub out any .'s</span>
+  <span class='@parent_table_name ivar id'>@parent_table_name</span>  <span class='assign token'>=</span> <span class='parent identifier id'>parent</span><span class='dot token'>.</span><span class='active_record identifier id'>active_record</span><span class='dot token'>.</span><span class='table_name identifier id'>table_name</span>
+
+  <span class='if if kw'>if</span> <span class='notop op'>!</span><span class='parent identifier id'>parent</span><span class='dot token'>.</span><span class='table_joins identifier id'>table_joins</span><span class='dot token'>.</span><span class='blank? fid id'>blank?</span> <span class='andop op'>&amp;&amp;</span> <span class='parent identifier id'>parent</span><span class='dot token'>.</span><span class='table_joins identifier id'>table_joins</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span><span class='dot token'>.</span><span class='downcase identifier id'>downcase</span> <span class='match op'>=~</span> <span class='dregexp node'>%r{join(\s+\w+)?\s+#{aliased_table_name.downcase}\son}</span>
+    <span class='join_dependency identifier id'>join_dependency</span><span class='dot token'>.</span><span class='table_aliases identifier id'>table_aliases</span><span class='lbrack token'>[</span><span class='aliased_table_name identifier id'>aliased_table_name</span><span class='rbrack token'>]</span> <span class='opasgn op'>+=</span> <span class='integer val'>1</span>
+  <span class='end end kw'>end</span>
+
+  <span class='unless unless kw'>unless</span> <span class='join_dependency identifier id'>join_dependency</span><span class='dot token'>.</span><span class='table_aliases identifier id'>table_aliases</span><span class='lbrack token'>[</span><span class='aliased_table_name identifier id'>aliased_table_name</span><span class='rbrack token'>]</span><span class='dot token'>.</span><span class='zero? fid id'>zero?</span>
+    <span class='comment val'># if the table name has been used, then use an alias</span>
+    <span class='@aliased_table_name ivar id'>@aliased_table_name</span> <span class='assign token'>=</span> <span class='active_record identifier id'>active_record</span><span class='dot token'>.</span><span class='connection identifier id'>connection</span><span class='dot token'>.</span><span class='table_alias_for identifier id'>table_alias_for</span> <span class='dstring node'>&quot;#{pluralize(reflection.name)}_#{parent_table_name}&quot;</span>
+    <span class='table_index identifier id'>table_index</span> <span class='assign token'>=</span> <span class='join_dependency identifier id'>join_dependency</span><span class='dot token'>.</span><span class='table_aliases identifier id'>table_aliases</span><span class='lbrack token'>[</span><span class='aliased_table_name identifier id'>aliased_table_name</span><span class='rbrack token'>]</span>
+    <span class='join_dependency identifier id'>join_dependency</span><span class='dot token'>.</span><span class='table_aliases identifier id'>table_aliases</span><span class='lbrack token'>[</span><span class='aliased_table_name identifier id'>aliased_table_name</span><span class='rbrack token'>]</span> <span class='opasgn op'>+=</span> <span class='integer val'>1</span>
+    <span class='@aliased_table_name ivar id'>@aliased_table_name</span> <span class='assign token'>=</span> <span class='@aliased_table_name ivar id'>@aliased_table_name</span><span class='lbrack token'>[</span><span class='integer val'>0</span><span class='dot2 op'>..</span><span class='active_record identifier id'>active_record</span><span class='dot token'>.</span><span class='connection identifier id'>connection</span><span class='dot token'>.</span><span class='table_alias_length identifier id'>table_alias_length</span><span class='minus op'>-</span><span class='integer val'>3</span><span class='rbrack token'>]</span> <span class='plus op'>+</span> <span class='dstring node'>&quot;_#{table_index+1}&quot;</span> <span class='if if_mod kw'>if</span> <span class='table_index identifier id'>table_index</span> <span class='gt op'>&gt;</span> <span class='integer val'>0</span>
+  <span class='else else kw'>else</span>
+    <span class='join_dependency identifier id'>join_dependency</span><span class='dot token'>.</span><span class='table_aliases identifier id'>table_aliases</span><span class='lbrack token'>[</span><span class='aliased_table_name identifier id'>aliased_table_name</span><span class='rbrack token'>]</span> <span class='opasgn op'>+=</span> <span class='integer val'>1</span>
+  <span class='end end kw'>end</span>
+
+  <span class='if if kw'>if</span> <span class='reflection identifier id'>reflection</span><span class='dot token'>.</span><span class='macro identifier id'>macro</span> <span class='eq op'>==</span> <span class='symbol val'>:has_and_belongs_to_many</span> <span class='orop op'>||</span> <span class='lparen token'>(</span><span class='reflection identifier id'>reflection</span><span class='dot token'>.</span><span class='macro identifier id'>macro</span> <span class='eq op'>==</span> <span class='symbol val'>:has_many</span> <span class='andop op'>&amp;&amp;</span> <span class='reflection identifier id'>reflection</span><span class='dot token'>.</span><span class='options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:through</span><span class='rbrack token'>]</span><span class='rparen token'>)</span>
+    <span class='@aliased_join_table_name ivar id'>@aliased_join_table_name</span> <span class='assign token'>=</span> <span class='reflection identifier id'>reflection</span><span class='dot token'>.</span><span class='macro identifier id'>macro</span> <span class='eq op'>==</span> <span class='symbol val'>:has_and_belongs_to_many</span> <span class='question op'>?</span> <span class='reflection identifier id'>reflection</span><span class='dot token'>.</span><span class='options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:join_table</span><span class='rbrack token'>]</span> <span class='colon op'>:</span> <span class='reflection identifier id'>reflection</span><span class='dot token'>.</span><span class='through_reflection identifier id'>through_reflection</span><span class='dot token'>.</span><span class='klass identifier id'>klass</span><span class='dot token'>.</span><span class='table_name identifier id'>table_name</span>
+    <span class='unless unless kw'>unless</span> <span class='join_dependency identifier id'>join_dependency</span><span class='dot token'>.</span><span class='table_aliases identifier id'>table_aliases</span><span class='lbrack token'>[</span><span class='aliased_join_table_name identifier id'>aliased_join_table_name</span><span class='rbrack token'>]</span><span class='dot token'>.</span><span class='zero? fid id'>zero?</span>
+      <span class='@aliased_join_table_name ivar id'>@aliased_join_table_name</span> <span class='assign token'>=</span> <span class='active_record identifier id'>active_record</span><span class='dot token'>.</span><span class='connection identifier id'>connection</span><span class='dot token'>.</span><span class='table_alias_for identifier id'>table_alias_for</span> <span class='dstring node'>&quot;#{pluralize(reflection.name)}_#{parent_table_name}_join&quot;</span>
+      <span class='table_index identifier id'>table_index</span> <span class='assign token'>=</span> <span class='join_dependency identifier id'>join_dependency</span><span class='dot token'>.</span><span class='table_aliases identifier id'>table_aliases</span><span class='lbrack token'>[</span><span class='aliased_join_table_name identifier id'>aliased_join_table_name</span><span class='rbrack token'>]</span>
+      <span class='join_dependency identifier id'>join_dependency</span><span class='dot token'>.</span><span class='table_aliases identifier id'>table_aliases</span><span class='lbrack token'>[</span><span class='aliased_join_table_name identifier id'>aliased_join_table_name</span><span class='rbrack token'>]</span> <span class='opasgn op'>+=</span> <span class='integer val'>1</span>
+      <span class='@aliased_join_table_name ivar id'>@aliased_join_table_name</span> <span class='assign token'>=</span> <span class='@aliased_join_table_name ivar id'>@aliased_join_table_name</span><span class='lbrack token'>[</span><span class='integer val'>0</span><span class='dot2 op'>..</span><span class='active_record identifier id'>active_record</span><span class='dot token'>.</span><span class='connection identifier id'>connection</span><span class='dot token'>.</span><span class='table_alias_length identifier id'>table_alias_length</span><span class='minus op'>-</span><span class='integer val'>3</span><span class='rbrack token'>]</span> <span class='plus op'>+</span> <span class='dstring node'>&quot;_#{table_index+1}&quot;</span> <span class='if if_mod kw'>if</span> <span class='table_index identifier id'>table_index</span> <span class='gt op'>&gt;</span> <span class='integer val'>0</span>
+    <span class='else else kw'>else</span>
+      <span class='join_dependency identifier id'>join_dependency</span><span class='dot token'>.</span><span class='table_aliases identifier id'>table_aliases</span><span class='lbrack token'>[</span><span class='aliased_join_table_name identifier id'>aliased_join_table_name</span><span class='rbrack token'>]</span> <span class='opasgn op'>+=</span> <span class='integer val'>1</span>
+    <span class='end end kw'>end</span>
+  <span class='end end kw'>end</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+</div>  <div class="section visibilitygroup public">
+    <h1>Public Visibility</h1>
+      <div class="section methodsummary instance public">
+    <h1>Public Instance Method Summary</h1>
+<table class="summary">
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#association_join-instance_method" title="#association_join">#association_join</a></span><span class='args'></span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        
+        
+      </td>
+    </tr>
+  
+</table>
+<div class="inherited">
+  
+  <div>
+    <h1>Public Instance Methods Inherited from <a href="JoinBase.html" title="BigRecord::ArAssociations::ClassMethods::JoinDependency::JoinBase">BigRecord::ArAssociations::ClassMethods::JoinDependency::JoinBase</a></h1>
+    <p><span class='name'><a href="JoinBase.html#aliased_primary_key-instance_method" title="aliased_primary_key">aliased_primary_key</a></span>, <span class='name'><a href="JoinBase.html#column_names_with_alias-instance_method" title="column_names_with_alias">column_names_with_alias</a></span>, <span class='name'><a href="JoinBase.html#extract_record-instance_method" title="extract_record">extract_record</a></span>, <span class='name'><a href="JoinBase.html#instantiate-instance_method" title="instantiate">instantiate</a></span>, <span class='name'><a href="JoinBase.html#record_id-instance_method" title="record_id">record_id</a></span></p>
+  </div>
+  
+</div>
+<div class="clear"></div>
+  </div>
+<div class="section methoddetails instance public">
+  <h1>Public Instance Method Details</h1>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>association_join</h3>
+</div><div id="association_join-instance_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>association_join</span><span class='args'></span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+1474
+1475
+1476
+1477
+1478
+1479
+1480
+1481
+1482
+1483
+1484
+1485
+1486
+1487
+1488
+1489
+1490
+1491
+1492
+1493
+1494
+1495
+1496
+1497
+1498
+1499
+1500
+1501
+1502
+1503
+1504
+1505
+1506
+1507
+1508
+1509
+1510
+1511
+1512
+1513
+1514
+1515
+1516
+1517
+1518
+1519
+1520
+1521
+1522
+1523
+1524
+1525
+1526
+1527
+1528
+1529
+1530
+1531
+1532
+1533
+1534
+1535
+1536
+1537
+1538
+1539
+1540
+1541
+1542
+1543
+1544
+1545
+1546
+1547
+1548
+1549
+1550
+1551
+1552
+1553
+1554
+1555
+1556
+1557
+1558
+1559
+1560
+1561
+1562
+1563
+1564
+1565
+1566
+1567
+1568
+1569
+1570
+1571
+1572
+1573
+1574
+1575
+1576
+1577
+1578
+1579
+1580
+1581
+1582
+1583
+1584
+1585
+1586
+1587
+1588
+1589
+1590
+1591
+1592</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/ar_associations.rb', line 1474</span>
+
+<span class='def def kw'>def</span> <span class='association_join identifier id'>association_join</span>
+  <span class='join identifier id'>join</span> <span class='assign token'>=</span> <span class='case case kw'>case</span> <span class='reflection identifier id'>reflection</span><span class='dot token'>.</span><span class='macro identifier id'>macro</span>
+    <span class='when when kw'>when</span> <span class='symbol val'>:has_and_belongs_to_many</span>
+      <span class='string val'>&quot; LEFT OUTER JOIN %s ON %s.%s = %s.%s &quot;</span> <span class='mod op'>%</span> <span class='lbrack token'>[</span>
+         <span class='table_alias_for identifier id'>table_alias_for</span><span class='lparen token'>(</span><span class='options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:join_table</span><span class='rbrack token'>]</span><span class='comma token'>,</span> <span class='aliased_join_table_name identifier id'>aliased_join_table_name</span><span class='rparen token'>)</span><span class='comma token'>,</span>
+         <span class='aliased_join_table_name identifier id'>aliased_join_table_name</span><span class='comma token'>,</span>
+         <span class='options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:foreign_key</span><span class='rbrack token'>]</span> <span class='orop op'>||</span> <span class='reflection identifier id'>reflection</span><span class='dot token'>.</span><span class='active_record identifier id'>active_record</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span><span class='dot token'>.</span><span class='classify identifier id'>classify</span><span class='dot token'>.</span><span class='foreign_key identifier id'>foreign_key</span><span class='comma token'>,</span>
+         <span class='parent identifier id'>parent</span><span class='dot token'>.</span><span class='aliased_table_name identifier id'>aliased_table_name</span><span class='comma token'>,</span> <span class='reflection identifier id'>reflection</span><span class='dot token'>.</span><span class='active_record identifier id'>active_record</span><span class='dot token'>.</span><span class='primary_key identifier id'>primary_key</span><span class='rbrack token'>]</span> <span class='plus op'>+</span>
+      <span class='string val'>&quot; LEFT OUTER JOIN %s ON %s.%s = %s.%s &quot;</span> <span class='mod op'>%</span> <span class='lbrack token'>[</span>
+         <span class='table_name_and_alias identifier id'>table_name_and_alias</span><span class='comma token'>,</span> <span class='aliased_table_name identifier id'>aliased_table_name</span><span class='comma token'>,</span> <span class='klass identifier id'>klass</span><span class='dot token'>.</span><span class='primary_key identifier id'>primary_key</span><span class='comma token'>,</span>
+         <span class='aliased_join_table_name identifier id'>aliased_join_table_name</span><span class='comma token'>,</span> <span class='options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:association_foreign_key</span><span class='rbrack token'>]</span> <span class='orop op'>||</span> <span class='klass identifier id'>klass</span><span class='dot token'>.</span><span class='table_name identifier id'>table_name</span><span class='dot token'>.</span><span class='classify identifier id'>classify</span><span class='dot token'>.</span><span class='foreign_key identifier id'>foreign_key</span>
+         <span class='rbrack token'>]</span>
+    <span class='when when kw'>when</span> <span class='symbol val'>:has_many</span><span class='comma token'>,</span> <span class='symbol val'>:has_one</span>
+      <span class='case case kw'>case</span>
+        <span class='when when kw'>when</span> <span class='reflection identifier id'>reflection</span><span class='dot token'>.</span><span class='macro identifier id'>macro</span> <span class='eq op'>==</span> <span class='symbol val'>:has_many</span> <span class='andop op'>&amp;&amp;</span> <span class='reflection identifier id'>reflection</span><span class='dot token'>.</span><span class='options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:through</span><span class='rbrack token'>]</span>
+          <span class='through_conditions identifier id'>through_conditions</span> <span class='assign token'>=</span> <span class='through_reflection identifier id'>through_reflection</span><span class='dot token'>.</span><span class='options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:conditions</span><span class='rbrack token'>]</span> <span class='question op'>?</span> <span class='dstring node'>&quot;AND #{interpolate_sql(sanitize_sql(through_reflection.options[:conditions]))}&quot;</span> <span class='colon op'>:</span> <span class='string val'>''</span>
+
+          <span class='jt_foreign_key identifier id'>jt_foreign_key</span> <span class='assign token'>=</span> <span class='jt_as_extra identifier id'>jt_as_extra</span> <span class='assign token'>=</span> <span class='jt_source_extra identifier id'>jt_source_extra</span> <span class='assign token'>=</span> <span class='jt_sti_extra identifier id'>jt_sti_extra</span> <span class='assign token'>=</span> <span class='nil nil kw'>nil</span>
+          <span class='first_key identifier id'>first_key</span> <span class='assign token'>=</span> <span class='second_key identifier id'>second_key</span> <span class='assign token'>=</span> <span class='as_extra identifier id'>as_extra</span> <span class='assign token'>=</span> <span class='nil nil kw'>nil</span>
+
+          <span class='if if kw'>if</span> <span class='through_reflection identifier id'>through_reflection</span><span class='dot token'>.</span><span class='options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:as</span><span class='rbrack token'>]</span> <span class='comment val'># has_many :through against a polymorphic join</span>
+            <span class='jt_foreign_key identifier id'>jt_foreign_key</span> <span class='assign token'>=</span> <span class='through_reflection identifier id'>through_reflection</span><span class='dot token'>.</span><span class='options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:as</span><span class='rbrack token'>]</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span> <span class='plus op'>+</span> <span class='string val'>'_id'</span>
+            <span class='jt_as_extra identifier id'>jt_as_extra</span> <span class='assign token'>=</span> <span class='string val'>&quot; AND %s.%s = %s&quot;</span> <span class='mod op'>%</span> <span class='lbrack token'>[</span>
+                <span class='aliased_join_table_name identifier id'>aliased_join_table_name</span><span class='comma token'>,</span> <span class='reflection identifier id'>reflection</span><span class='dot token'>.</span><span class='active_record identifier id'>active_record</span><span class='dot token'>.</span><span class='connection identifier id'>connection</span><span class='dot token'>.</span><span class='quote_column_name identifier id'>quote_column_name</span><span class='lparen token'>(</span><span class='through_reflection identifier id'>through_reflection</span><span class='dot token'>.</span><span class='options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:as</span><span class='rbrack token'>]</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span> <span class='plus op'>+</span> <span class='string val'>'_type'</span><span class='rparen token'>)</span><span class='comma token'>,</span>
+                <span class='klass identifier id'>klass</span><span class='dot token'>.</span><span class='quote_value identifier id'>quote_value</span><span class='lparen token'>(</span><span class='parent identifier id'>parent</span><span class='dot token'>.</span><span class='active_record identifier id'>active_record</span><span class='dot token'>.</span><span class='base_class identifier id'>base_class</span><span class='dot token'>.</span><span class='name identifier id'>name</span><span class='rparen token'>)</span>
+            <span class='rbrack token'>]</span>
+          <span class='else else kw'>else</span>
+            <span class='jt_foreign_key identifier id'>jt_foreign_key</span> <span class='assign token'>=</span> <span class='through_reflection identifier id'>through_reflection</span><span class='dot token'>.</span><span class='primary_key_name identifier id'>primary_key_name</span>
+          <span class='end end kw'>end</span>
+
+          <span class='case case kw'>case</span> <span class='source_reflection identifier id'>source_reflection</span><span class='dot token'>.</span><span class='macro identifier id'>macro</span>
+          <span class='when when kw'>when</span> <span class='symbol val'>:has_many</span>
+            <span class='if if kw'>if</span> <span class='source_reflection identifier id'>source_reflection</span><span class='dot token'>.</span><span class='options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:as</span><span class='rbrack token'>]</span>
+              <span class='first_key identifier id'>first_key</span>   <span class='assign token'>=</span> <span class='dstring node'>&quot;#{source_reflection.options[:as]}_id&quot;</span>
+              <span class='second_key identifier id'>second_key</span>  <span class='assign token'>=</span> <span class='options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:foreign_key</span><span class='rbrack token'>]</span> <span class='orop op'>||</span> <span class='primary_key identifier id'>primary_key</span>
+              <span class='as_extra identifier id'>as_extra</span>    <span class='assign token'>=</span> <span class='string val'>&quot; AND %s.%s = %s&quot;</span> <span class='mod op'>%</span> <span class='lbrack token'>[</span>
+                <span class='aliased_table_name identifier id'>aliased_table_name</span><span class='comma token'>,</span> <span class='reflection identifier id'>reflection</span><span class='dot token'>.</span><span class='active_record identifier id'>active_record</span><span class='dot token'>.</span><span class='connection identifier id'>connection</span><span class='dot token'>.</span><span class='quote_column_name identifier id'>quote_column_name</span><span class='lparen token'>(</span><span class='dstring node'>&quot;#{source_reflection.options[:as]}_type&quot;</span><span class='rparen token'>)</span><span class='comma token'>,</span>
+                <span class='klass identifier id'>klass</span><span class='dot token'>.</span><span class='quote_value identifier id'>quote_value</span><span class='lparen token'>(</span><span class='source_reflection identifier id'>source_reflection</span><span class='dot token'>.</span><span class='active_record identifier id'>active_record</span><span class='dot token'>.</span><span class='base_class identifier id'>base_class</span><span class='dot token'>.</span><span class='name identifier id'>name</span><span class='rparen token'>)</span>
+              <span class='rbrack token'>]</span>
+            <span class='else else kw'>else</span>
+              <span class='first_key identifier id'>first_key</span>   <span class='assign token'>=</span> <span class='through_reflection identifier id'>through_reflection</span><span class='dot token'>.</span><span class='klass identifier id'>klass</span><span class='dot token'>.</span><span class='base_class identifier id'>base_class</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span><span class='dot token'>.</span><span class='classify identifier id'>classify</span><span class='dot token'>.</span><span class='foreign_key identifier id'>foreign_key</span>
+              <span class='second_key identifier id'>second_key</span>  <span class='assign token'>=</span> <span class='options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:foreign_key</span><span class='rbrack token'>]</span> <span class='orop op'>||</span> <span class='primary_key identifier id'>primary_key</span>
+            <span class='end end kw'>end</span>
+
+            <span class='unless unless kw'>unless</span> <span class='through_reflection identifier id'>through_reflection</span><span class='dot token'>.</span><span class='klass identifier id'>klass</span><span class='dot token'>.</span><span class='descends_from_active_record? fid id'>descends_from_active_record?</span>
+              <span class='jt_sti_extra identifier id'>jt_sti_extra</span> <span class='assign token'>=</span> <span class='string val'>&quot; AND %s.%s = %s&quot;</span> <span class='mod op'>%</span> <span class='lbrack token'>[</span>
+                <span class='aliased_join_table_name identifier id'>aliased_join_table_name</span><span class='comma token'>,</span>
+                <span class='reflection identifier id'>reflection</span><span class='dot token'>.</span><span class='active_record identifier id'>active_record</span><span class='dot token'>.</span><span class='connection identifier id'>connection</span><span class='dot token'>.</span><span class='quote_column_name identifier id'>quote_column_name</span><span class='lparen token'>(</span><span class='through_reflection identifier id'>through_reflection</span><span class='dot token'>.</span><span class='active_record identifier id'>active_record</span><span class='dot token'>.</span><span class='inheritance_column identifier id'>inheritance_column</span><span class='rparen token'>)</span><span class='comma token'>,</span>
+                <span class='through_reflection identifier id'>through_reflection</span><span class='dot token'>.</span><span class='klass identifier id'>klass</span><span class='dot token'>.</span><span class='quote_value identifier id'>quote_value</span><span class='lparen token'>(</span><span class='through_reflection identifier id'>through_reflection</span><span class='dot token'>.</span><span class='klass identifier id'>klass</span><span class='dot token'>.</span><span class='name identifier id'>name</span><span class='dot token'>.</span><span class='demodulize identifier id'>demodulize</span><span class='rparen token'>)</span><span class='rbrack token'>]</span>
+            <span class='end end kw'>end</span>
+          <span class='when when kw'>when</span> <span class='symbol val'>:belongs_to</span>
+            <span class='first_key identifier id'>first_key</span> <span class='assign token'>=</span> <span class='primary_key identifier id'>primary_key</span>
+            <span class='if if kw'>if</span> <span class='reflection identifier id'>reflection</span><span class='dot token'>.</span><span class='options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:source_type</span><span class='rbrack token'>]</span>
+              <span class='second_key identifier id'>second_key</span> <span class='assign token'>=</span> <span class='source_reflection identifier id'>source_reflection</span><span class='dot token'>.</span><span class='association_foreign_key identifier id'>association_foreign_key</span>
+              <span class='jt_source_extra identifier id'>jt_source_extra</span> <span class='assign token'>=</span> <span class='string val'>&quot; AND %s.%s = %s&quot;</span> <span class='mod op'>%</span> <span class='lbrack token'>[</span>
+                  <span class='aliased_join_table_name identifier id'>aliased_join_table_name</span><span class='comma token'>,</span> <span class='reflection identifier id'>reflection</span><span class='dot token'>.</span><span class='active_record identifier id'>active_record</span><span class='dot token'>.</span><span class='connection identifier id'>connection</span><span class='dot token'>.</span><span class='quote_column_name identifier id'>quote_column_name</span><span class='lparen token'>(</span><span class='reflection identifier id'>reflection</span><span class='dot token'>.</span><span class='source_reflection identifier id'>source_reflection</span><span class='dot token'>.</span><span class='options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:foreign_type</span><span class='rbrack token'>]</span><span class='rparen token'>)</span><span class='comma token'>,</span>
+                  <span class='klass identifier id'>klass</span><span class='dot token'>.</span><span class='quote_value identifier id'>quote_value</span><span class='lparen token'>(</span><span class='reflection identifier id'>reflection</span><span class='dot token'>.</span><span class='options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:source_type</span><span class='rbrack token'>]</span><span class='rparen token'>)</span>
+              <span class='rbrack token'>]</span>
+            <span class='else else kw'>else</span>
+              <span class='second_key identifier id'>second_key</span> <span class='assign token'>=</span> <span class='source_reflection identifier id'>source_reflection</span><span class='dot token'>.</span><span class='options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:foreign_key</span><span class='rbrack token'>]</span> <span class='orop op'>||</span> <span class='klass identifier id'>klass</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span><span class='dot token'>.</span><span class='classify identifier id'>classify</span><span class='dot token'>.</span><span class='foreign_key identifier id'>foreign_key</span>
+            <span class='end end kw'>end</span>
+          <span class='end end kw'>end</span>
+
+          <span class='string val'>&quot; LEFT OUTER JOIN %s ON (%s.%s = %s.%s%s%s%s) &quot;</span> <span class='mod op'>%</span> <span class='lbrack token'>[</span>
+            <span class='table_alias_for identifier id'>table_alias_for</span><span class='lparen token'>(</span><span class='through_reflection identifier id'>through_reflection</span><span class='dot token'>.</span><span class='klass identifier id'>klass</span><span class='dot token'>.</span><span class='table_name identifier id'>table_name</span><span class='comma token'>,</span> <span class='aliased_join_table_name identifier id'>aliased_join_table_name</span><span class='rparen token'>)</span><span class='comma token'>,</span>
+            <span class='parent identifier id'>parent</span><span class='dot token'>.</span><span class='aliased_table_name identifier id'>aliased_table_name</span><span class='comma token'>,</span> <span class='reflection identifier id'>reflection</span><span class='dot token'>.</span><span class='active_record identifier id'>active_record</span><span class='dot token'>.</span><span class='connection identifier id'>connection</span><span class='dot token'>.</span><span class='quote_column_name identifier id'>quote_column_name</span><span class='lparen token'>(</span><span class='parent identifier id'>parent</span><span class='dot token'>.</span><span class='primary_key identifier id'>primary_key</span><span class='rparen token'>)</span><span class='comma token'>,</span>
+            <span class='aliased_join_table_name identifier id'>aliased_join_table_name</span><span class='comma token'>,</span> <span class='reflection identifier id'>reflection</span><span class='dot token'>.</span><span class='active_record identifier id'>active_record</span><span class='dot token'>.</span><span class='connection identifier id'>connection</span><span class='dot token'>.</span><span class='quote_column_name identifier id'>quote_column_name</span><span class='lparen token'>(</span><span class='jt_foreign_key identifier id'>jt_foreign_key</span><span class='rparen token'>)</span><span class='comma token'>,</span>
+            <span class='jt_as_extra identifier id'>jt_as_extra</span><span class='comma token'>,</span> <span class='jt_source_extra identifier id'>jt_source_extra</span><span class='comma token'>,</span> <span class='jt_sti_extra identifier id'>jt_sti_extra</span>
+          <span class='rbrack token'>]</span> <span class='plus op'>+</span>
+          <span class='string val'>&quot; LEFT OUTER JOIN %s ON (%s.%s = %s.%s%s) &quot;</span> <span class='mod op'>%</span> <span class='lbrack token'>[</span>
+            <span class='table_name_and_alias identifier id'>table_name_and_alias</span><span class='comma token'>,</span>
+            <span class='aliased_table_name identifier id'>aliased_table_name</span><span class='comma token'>,</span> <span class='reflection identifier id'>reflection</span><span class='dot token'>.</span><span class='active_record identifier id'>active_record</span><span class='dot token'>.</span><span class='connection identifier id'>connection</span><span class='dot token'>.</span><span class='quote_column_name identifier id'>quote_column_name</span><span class='lparen token'>(</span><span class='first_key identifier id'>first_key</span><span class='rparen token'>)</span><span class='comma token'>,</span>
+            <span class='aliased_join_table_name identifier id'>aliased_join_table_name</span><span class='comma token'>,</span> <span class='reflection identifier id'>reflection</span><span class='dot token'>.</span><span class='active_record identifier id'>active_record</span><span class='dot token'>.</span><span class='connection identifier id'>connection</span><span class='dot token'>.</span><span class='quote_column_name identifier id'>quote_column_name</span><span class='lparen token'>(</span><span class='second_key identifier id'>second_key</span><span class='rparen token'>)</span><span class='comma token'>,</span>
+            <span class='as_extra identifier id'>as_extra</span>
+          <span class='rbrack token'>]</span>
+
+        <span class='when when kw'>when</span> <span class='reflection identifier id'>reflection</span><span class='dot token'>.</span><span class='macro identifier id'>macro</span> <span class='eq op'>==</span> <span class='symbol val'>:has_many</span> <span class='andop op'>&amp;&amp;</span> <span class='reflection identifier id'>reflection</span><span class='dot token'>.</span><span class='options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:as</span><span class='rbrack token'>]</span>
+          <span class='string val'>&quot; LEFT OUTER JOIN %s ON %s.%s = %s.%s AND %s.%s = %s&quot;</span> <span class='mod op'>%</span> <span class='lbrack token'>[</span>
+            <span class='table_name_and_alias identifier id'>table_name_and_alias</span><span class='comma token'>,</span>
+            <span class='aliased_table_name identifier id'>aliased_table_name</span><span class='comma token'>,</span> <span class='dstring node'>&quot;#{reflection.options[:as]}_id&quot;</span><span class='comma token'>,</span>
+            <span class='parent identifier id'>parent</span><span class='dot token'>.</span><span class='aliased_table_name identifier id'>aliased_table_name</span><span class='comma token'>,</span> <span class='parent identifier id'>parent</span><span class='dot token'>.</span><span class='primary_key identifier id'>primary_key</span><span class='comma token'>,</span>
+            <span class='aliased_table_name identifier id'>aliased_table_name</span><span class='comma token'>,</span> <span class='dstring node'>&quot;#{reflection.options[:as]}_type&quot;</span><span class='comma token'>,</span>
+            <span class='klass identifier id'>klass</span><span class='dot token'>.</span><span class='quote_value identifier id'>quote_value</span><span class='lparen token'>(</span><span class='parent identifier id'>parent</span><span class='dot token'>.</span><span class='active_record identifier id'>active_record</span><span class='dot token'>.</span><span class='base_class identifier id'>base_class</span><span class='dot token'>.</span><span class='name identifier id'>name</span><span class='rparen token'>)</span>
+          <span class='rbrack token'>]</span>
+        <span class='when when kw'>when</span> <span class='reflection identifier id'>reflection</span><span class='dot token'>.</span><span class='macro identifier id'>macro</span> <span class='eq op'>==</span> <span class='symbol val'>:has_one</span> <span class='andop op'>&amp;&amp;</span> <span class='reflection identifier id'>reflection</span><span class='dot token'>.</span><span class='options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:as</span><span class='rbrack token'>]</span>
+          <span class='string val'>&quot; LEFT OUTER JOIN %s ON %s.%s = %s.%s AND %s.%s = %s &quot;</span> <span class='mod op'>%</span> <span class='lbrack token'>[</span>
+            <span class='table_name_and_alias identifier id'>table_name_and_alias</span><span class='comma token'>,</span>
+            <span class='aliased_table_name identifier id'>aliased_table_name</span><span class='comma token'>,</span> <span class='dstring node'>&quot;#{reflection.options[:as]}_id&quot;</span><span class='comma token'>,</span>
+            <span class='parent identifier id'>parent</span><span class='dot token'>.</span><span class='aliased_table_name identifier id'>aliased_table_name</span><span class='comma token'>,</span> <span class='parent identifier id'>parent</span><span class='dot token'>.</span><span class='primary_key identifier id'>primary_key</span><span class='comma token'>,</span>
+            <span class='aliased_table_name identifier id'>aliased_table_name</span><span class='comma token'>,</span> <span class='dstring node'>&quot;#{reflection.options[:as]}_type&quot;</span><span class='comma token'>,</span>
+            <span class='klass identifier id'>klass</span><span class='dot token'>.</span><span class='quote_value identifier id'>quote_value</span><span class='lparen token'>(</span><span class='reflection identifier id'>reflection</span><span class='dot token'>.</span><span class='active_record identifier id'>active_record</span><span class='dot token'>.</span><span class='base_class identifier id'>base_class</span><span class='dot token'>.</span><span class='name identifier id'>name</span><span class='rparen token'>)</span>
+          <span class='rbrack token'>]</span>
+        <span class='else else kw'>else</span>
+          <span class='foreign_key identifier id'>foreign_key</span> <span class='assign token'>=</span> <span class='options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:foreign_key</span><span class='rbrack token'>]</span> <span class='orop op'>||</span> <span class='reflection identifier id'>reflection</span><span class='dot token'>.</span><span class='active_record identifier id'>active_record</span><span class='dot token'>.</span><span class='name identifier id'>name</span><span class='dot token'>.</span><span class='foreign_key identifier id'>foreign_key</span>
+          <span class='string val'>&quot; LEFT OUTER JOIN %s ON %s.%s = %s.%s &quot;</span> <span class='mod op'>%</span> <span class='lbrack token'>[</span>
+            <span class='table_name_and_alias identifier id'>table_name_and_alias</span><span class='comma token'>,</span>
+            <span class='aliased_table_name identifier id'>aliased_table_name</span><span class='comma token'>,</span> <span class='foreign_key identifier id'>foreign_key</span><span class='comma token'>,</span>
+            <span class='parent identifier id'>parent</span><span class='dot token'>.</span><span class='aliased_table_name identifier id'>aliased_table_name</span><span class='comma token'>,</span> <span class='parent identifier id'>parent</span><span class='dot token'>.</span><span class='primary_key identifier id'>primary_key</span>
+          <span class='rbrack token'>]</span>
+      <span class='end end kw'>end</span>
+    <span class='when when kw'>when</span> <span class='symbol val'>:belongs_to</span>
+      <span class='string val'>&quot; LEFT OUTER JOIN %s ON %s.%s = %s.%s &quot;</span> <span class='mod op'>%</span> <span class='lbrack token'>[</span>
+         <span class='table_name_and_alias identifier id'>table_name_and_alias</span><span class='comma token'>,</span> <span class='aliased_table_name identifier id'>aliased_table_name</span><span class='comma token'>,</span> <span class='reflection identifier id'>reflection</span><span class='dot token'>.</span><span class='klass identifier id'>klass</span><span class='dot token'>.</span><span class='primary_key identifier id'>primary_key</span><span class='comma token'>,</span>
+         <span class='parent identifier id'>parent</span><span class='dot token'>.</span><span class='aliased_table_name identifier id'>aliased_table_name</span><span class='comma token'>,</span> <span class='options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:foreign_key</span><span class='rbrack token'>]</span> <span class='orop op'>||</span> <span class='klass identifier id'>klass</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span><span class='dot token'>.</span><span class='foreign_key identifier id'>foreign_key</span>
+        <span class='rbrack token'>]</span>
+    <span class='else else kw'>else</span>
+      <span class='string val'>&quot;&quot;</span>
+  <span class='end end kw'>end</span> <span class='orop op'>||</span> <span class='string val'>''</span>
+  <span class='join identifier id'>join</span> <span class='lshft op'>&lt;&lt;</span> <span class='string val'>%(AND %s.%s = %s )</span> <span class='mod op'>%</span> <span class='lbrack token'>[</span>
+    <span class='aliased_table_name identifier id'>aliased_table_name</span><span class='comma token'>,</span>
+    <span class='reflection identifier id'>reflection</span><span class='dot token'>.</span><span class='active_record identifier id'>active_record</span><span class='dot token'>.</span><span class='connection identifier id'>connection</span><span class='dot token'>.</span><span class='quote_column_name identifier id'>quote_column_name</span><span class='lparen token'>(</span><span class='klass identifier id'>klass</span><span class='dot token'>.</span><span class='inheritance_column identifier id'>inheritance_column</span><span class='rparen token'>)</span><span class='comma token'>,</span>
+    <span class='klass identifier id'>klass</span><span class='dot token'>.</span><span class='quote_value identifier id'>quote_value</span><span class='lparen token'>(</span><span class='klass identifier id'>klass</span><span class='dot token'>.</span><span class='name identifier id'>name</span><span class='dot token'>.</span><span class='demodulize identifier id'>demodulize</span><span class='rparen token'>)</span><span class='rbrack token'>]</span> <span class='unless unless_mod kw'>unless</span> <span class='klass identifier id'>klass</span><span class='dot token'>.</span><span class='descends_from_active_record? fid id'>descends_from_active_record?</span>
+
+  <span class='lbrack token'>[</span><span class='through_reflection identifier id'>through_reflection</span><span class='comma token'>,</span> <span class='reflection identifier id'>reflection</span><span class='rbrack token'>]</span><span class='dot token'>.</span><span class='each identifier id'>each</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='ref identifier id'>ref</span><span class='bitor op'>|</span>
+    <span class='join identifier id'>join</span> <span class='lshft op'>&lt;&lt;</span> <span class='dstring node'>&quot;AND #{interpolate_sql(sanitize_sql(ref.options[:conditions]))} &quot;</span> <span class='if if_mod kw'>if</span> <span class='ref identifier id'>ref</span> <span class='andop op'>&amp;&amp;</span> <span class='ref identifier id'>ref</span><span class='dot token'>.</span><span class='options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:conditions</span><span class='rbrack token'>]</span>
+  <span class='end end kw'>end</span>
+
+  <span class='join identifier id'>join</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+</div>
+  </div>
+
+</div>
+    </div>
+    <div id="yard_info">
+  Generated on Tuesday, November 10 2009 at 06:18:45 PM by 
+  <abbr class="yard" title="Yay! A Ruby Documentation Tool"><a href="http://yard.soen.ca">YARD</a></abbr> 
+  0.2.3.5 (ruby-1.8.7).
+</div>
+
+  </body>
+</html>

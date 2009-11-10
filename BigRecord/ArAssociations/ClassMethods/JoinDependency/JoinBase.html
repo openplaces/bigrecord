@@ -1,0 +1,559 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="../../../../style.css" type="text/css" charset="utf-8" />
+<link rel="stylesheet" href="../../../../custom.css" type="text/css" charset="utf-8" />
+<link rel="stylesheet" href="../../../../syntax_highlight.css" type="text/css" charset="utf-8" />
+
+    <script src="../../../../jquery.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../../../app.js" type="text/javascript" charset="utf-8"></script>
+    <title>Class: BigRecord::ArAssociations::ClassMethods::JoinDependency::JoinBase</title>
+  </head>
+  <body>
+    <div id="content">
+      <div class="section class BigRecord_ArAssociations_ClassMethods_JoinDependency_JoinBase">
+  <h1 class="title">Class: BigRecord::ArAssociations::ClassMethods::JoinDependency::JoinBase</h1>
+  <div class="section attributes">
+  <h1>Attributes</h1>
+
+  
+    <div class="instance">
+      <h2>Instance Attributes</h2>
+      <table>
+      
+        
+        <tr class="">
+          <th class='signature'>
+            <span class='name'>active_record</span>
+          </td>
+          <td class="readwrite">
+            [<span id='active_record-instance_method'>R</span>] 
+          </td>
+          <td class="visibility">
+            public
+          </td>
+          <td class="docstring">
+            <p>
+Returns the value of attribute <tt>active_record</tt>.
+</p>
+
+            
+          </td>
+        </tr>
+        
+      
+        
+        <tr class="">
+          <th class='signature'>
+            <span class='name'>table_joins</span>
+          </td>
+          <td class="readwrite">
+            [<span id='table_joins-instance_method'>R</span>] 
+          </td>
+          <td class="visibility">
+            public
+          </td>
+          <td class="docstring">
+            <p>
+Returns the value of attribute <tt>table_joins</tt>.
+</p>
+
+            
+          </td>
+        </tr>
+        
+      
+      </table>
+    </div>
+  
+</div>
+<div class="section constants">
+  
+</div><div class="section constructor">
+<h1>Constructor Summary</h1>
+  <div id="initialize-instance_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>initialize</span><span class='args'>(active_record, joins = nil)</span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+1389
+1390
+1391
+1392
+1393</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/ar_associations.rb', line 1389</span>
+
+<span class='def def kw'>def</span> <span class='initialize identifier id'>initialize</span><span class='lparen token'>(</span><span class='active_record identifier id'>active_record</span><span class='comma token'>,</span> <span class='joins identifier id'>joins</span> <span class='assign token'>=</span> <span class='nil nil kw'>nil</span><span class='rparen token'>)</span>
+  <span class='@active_record ivar id'>@active_record</span> <span class='assign token'>=</span> <span class='active_record identifier id'>active_record</span>
+  <span class='@cached_record ivar id'>@cached_record</span> <span class='assign token'>=</span> <span class='lbrace token'>{</span><span class='rbrace token'>}</span>
+  <span class='@table_joins ivar id'>@table_joins</span>   <span class='assign token'>=</span> <span class='joins identifier id'>joins</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+</div>  <div class="section visibilitygroup public">
+    <h1>Public Visibility</h1>
+      <div class="section methodsummary instance public">
+    <h1>Public Instance Method Summary</h1>
+<table class="summary">
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#aliased_prefix-instance_method" title="#aliased_prefix">#aliased_prefix</a></span><span class='args'></span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#aliased_primary_key-instance_method" title="#aliased_primary_key">#aliased_primary_key</a></span><span class='args'></span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#aliased_table_name-instance_method" title="#aliased_table_name">#aliased_table_name</a></span><span class='args'></span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#column_names_with_alias-instance_method" title="#column_names_with_alias">#column_names_with_alias</a></span><span class='args'></span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#extract_record-instance_method" title="#extract_record">#extract_record</a></span><span class='args'>(row)</span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#instantiate-instance_method" title="#instantiate">#instantiate</a></span><span class='args'>(row)</span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#record_id-instance_method" title="#record_id">#record_id</a></span><span class='args'>(row)</span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        
+        
+      </td>
+    </tr>
+  
+</table>
+
+  </div>
+<div class="section methoddetails instance public">
+  <h1>Public Instance Method Details</h1>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>aliased_prefix</h3>
+</div><div id="aliased_prefix-instance_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>aliased_prefix</span><span class='args'></span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+1395
+1396
+1397</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/ar_associations.rb', line 1395</span>
+
+<span class='def def kw'>def</span> <span class='aliased_prefix identifier id'>aliased_prefix</span>
+  <span class='string val'>&quot;t0&quot;</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>aliased_primary_key</h3>
+</div><div id="aliased_primary_key-instance_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>aliased_primary_key</span><span class='args'></span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+1399
+1400
+1401</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/ar_associations.rb', line 1399</span>
+
+<span class='def def kw'>def</span> <span class='aliased_primary_key identifier id'>aliased_primary_key</span>
+  <span class='dstring node'>&quot;#{ aliased_prefix }_r0&quot;</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>aliased_table_name</h3>
+</div><div id="aliased_table_name-instance_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>aliased_table_name</span><span class='args'></span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+1403
+1404
+1405</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/ar_associations.rb', line 1403</span>
+
+<span class='def def kw'>def</span> <span class='aliased_table_name identifier id'>aliased_table_name</span>
+  <span class='active_record identifier id'>active_record</span><span class='dot token'>.</span><span class='table_name identifier id'>table_name</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>column_names_with_alias</h3>
+</div><div id="column_names_with_alias-instance_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>column_names_with_alias</span><span class='args'></span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+1407
+1408
+1409
+1410
+1411
+1412
+1413
+1414
+1415</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/ar_associations.rb', line 1407</span>
+
+<span class='def def kw'>def</span> <span class='column_names_with_alias identifier id'>column_names_with_alias</span>
+  <span class='unless unless kw'>unless</span> <span class='@column_names_with_alias ivar id'>@column_names_with_alias</span>
+    <span class='@column_names_with_alias ivar id'>@column_names_with_alias</span> <span class='assign token'>=</span> <span class='lbrack token'>[</span><span class='rbrack token'>]</span>
+    <span class='lparen token'>(</span><span class='lbrack token'>[</span><span class='primary_key identifier id'>primary_key</span><span class='rbrack token'>]</span> <span class='plus op'>+</span> <span class='lparen token'>(</span><span class='column_names identifier id'>column_names</span> <span class='minus op'>-</span> <span class='lbrack token'>[</span><span class='primary_key identifier id'>primary_key</span><span class='rbrack token'>]</span><span class='rparen token'>)</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='each_with_index identifier id'>each_with_index</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='column_name identifier id'>column_name</span><span class='comma token'>,</span> <span class='i identifier id'>i</span><span class='bitor op'>|</span>
+      <span class='@column_names_with_alias ivar id'>@column_names_with_alias</span> <span class='lshft op'>&lt;&lt;</span> <span class='lbrack token'>[</span><span class='column_name identifier id'>column_name</span><span class='comma token'>,</span> <span class='dstring node'>&quot;#{ aliased_prefix }_r#{ i }&quot;</span><span class='rbrack token'>]</span>
+    <span class='end end kw'>end</span>
+  <span class='end end kw'>end</span>
+  <span class='return return kw'>return</span> <span class='@column_names_with_alias ivar id'>@column_names_with_alias</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>extract_record</h3>
+</div><div id="extract_record-instance_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>extract_record</span><span class='args'>(row)</span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+1417
+1418
+1419</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/ar_associations.rb', line 1417</span>
+
+<span class='def def kw'>def</span> <span class='extract_record identifier id'>extract_record</span><span class='lparen token'>(</span><span class='row identifier id'>row</span><span class='rparen token'>)</span>
+  <span class='column_names_with_alias identifier id'>column_names_with_alias</span><span class='dot token'>.</span><span class='inject identifier id'>inject</span><span class='lparen token'>(</span><span class='lbrace token'>{</span><span class='rbrace token'>}</span><span class='rparen token'>)</span><span class='lbrace token'>{</span><span class='bitor op'>|</span><span class='record identifier id'>record</span><span class='comma token'>,</span> <span class='lparen token'>(</span><span class='cn identifier id'>cn</span><span class='comma token'>,</span> <span class='an identifier id'>an</span><span class='rparen token'>)</span><span class='bitor op'>|</span> <span class='record identifier id'>record</span><span class='lbrack token'>[</span><span class='cn identifier id'>cn</span><span class='rbrack token'>]</span> <span class='assign token'>=</span> <span class='row identifier id'>row</span><span class='lbrack token'>[</span><span class='an identifier id'>an</span><span class='rbrack token'>]</span><span class='semicolon token'>;</span> <span class='record identifier id'>record</span><span class='rbrace token'>}</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>instantiate</h3>
+</div><div id="instantiate-instance_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>instantiate</span><span class='args'>(row)</span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+1425
+1426
+1427</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/ar_associations.rb', line 1425</span>
+
+<span class='def def kw'>def</span> <span class='instantiate identifier id'>instantiate</span><span class='lparen token'>(</span><span class='row identifier id'>row</span><span class='rparen token'>)</span>
+  <span class='@cached_record ivar id'>@cached_record</span><span class='lbrack token'>[</span><span class='record_id identifier id'>record_id</span><span class='lparen token'>(</span><span class='row identifier id'>row</span><span class='rparen token'>)</span><span class='rbrack token'>]</span> <span class='opasgn op'>||=</span> <span class='active_record identifier id'>active_record</span><span class='dot token'>.</span><span class='instantiate identifier id'>instantiate</span><span class='lparen token'>(</span><span class='extract_record identifier id'>extract_record</span><span class='lparen token'>(</span><span class='row identifier id'>row</span><span class='rparen token'>)</span><span class='rparen token'>)</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>record_id</h3>
+</div><div id="record_id-instance_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>record_id</span><span class='args'>(row)</span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+1421
+1422
+1423</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/ar_associations.rb', line 1421</span>
+
+<span class='def def kw'>def</span> <span class='record_id identifier id'>record_id</span><span class='lparen token'>(</span><span class='row identifier id'>row</span><span class='rparen token'>)</span>
+  <span class='row identifier id'>row</span><span class='lbrack token'>[</span><span class='aliased_primary_key identifier id'>aliased_primary_key</span><span class='rbrack token'>]</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+</div>
+  </div>
+
+</div>
+    </div>
+    <div id="yard_info">
+  Generated on Tuesday, November 10 2009 at 06:18:42 PM by 
+  <abbr class="yard" title="Yay! A Ruby Documentation Tool"><a href="http://yard.soen.ca">YARD</a></abbr> 
+  0.2.3.5 (ruby-1.8.7).
+</div>
+
+  </body>
+</html>

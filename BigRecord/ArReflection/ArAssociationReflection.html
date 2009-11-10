@@ -1,0 +1,681 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="../../style.css" type="text/css" charset="utf-8" />
+<link rel="stylesheet" href="../../custom.css" type="text/css" charset="utf-8" />
+<link rel="stylesheet" href="../../syntax_highlight.css" type="text/css" charset="utf-8" />
+
+    <script src="../../jquery.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../app.js" type="text/javascript" charset="utf-8"></script>
+    <title>Class: BigRecord::ArReflection::ArAssociationReflection</title>
+  </head>
+  <body>
+    <div id="content">
+      <div class="section class BigRecord_ArReflection_ArAssociationReflection">
+  <h1 class="title">Class: BigRecord::ArReflection::ArAssociationReflection</h1>
+  <div class="section inheritance">
+  <ul>
+  <li><a href="MacroReflection.html" title="BigRecord::ArReflection::MacroReflection">BigRecord::ArReflection::MacroReflection</a></li><ul><li>BigRecord::ArReflection::ArAssociationReflection</li>
+  </ul></ul>
+</div><div class="section docstring">
+  <p>
+Holds all the meta-data about an association as it was specified in the
+Active Record class.
+</p>
+
+</div><div class="section constants">
+  
+</div><div class="section constructor">
+<h1>Constructor Summary</h1>
+  <p class="inherited_msg">
+    This class inherits a constructor from <a href="MacroReflection.html#initialize-instance_method" title="BigRecord::ArReflection::MacroReflection">BigRecord::ArReflection::MacroReflection</a>.
+  </p>
+</div>  <div class="section visibilitygroup public">
+    <h1>Public Visibility</h1>
+      <div class="section methodsummary instance public">
+    <h1>Public Instance Method Summary</h1>
+<table class="summary">
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#association_foreign_key-instance_method" title="#association_foreign_key">#association_foreign_key</a></span><span class='args'></span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#check_validity%21-instance_method" title="#check_validity!">#check_validity!</a></span><span class='args'></span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#counter_cache_column-instance_method" title="#counter_cache_column">#counter_cache_column</a></span><span class='args'></span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#klass-instance_method" title="#klass">#klass</a></span><span class='args'></span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#primary_key_name-instance_method" title="#primary_key_name">#primary_key_name</a></span><span class='args'></span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#source_reflection-instance_method" title="#source_reflection">#source_reflection</a></span><span class='args'></span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        <p>
+Gets the source of the through reflection.
+</p>
+
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#source_reflection_names-instance_method" title="#source_reflection_names">#source_reflection_names</a></span><span class='args'></span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        <p>
+Gets an array of possible :through source reflection names.
+</p>
+
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#table_name-instance_method" title="#table_name">#table_name</a></span><span class='args'></span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#through_reflection-instance_method" title="#through_reflection">#through_reflection</a></span><span class='args'></span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        
+        
+      </td>
+    </tr>
+  
+</table>
+<div class="inherited">
+  
+  <div>
+    <h1>Public Instance Methods Inherited from <a href="MacroReflection.html" title="BigRecord::ArReflection::MacroReflection">BigRecord::ArReflection::MacroReflection</a></h1>
+    <p><span class='name'><a href="MacroReflection.html#%3D%3D-instance_method" title="==">==</a></span>, <span class='name'><a href="MacroReflection.html#class_name-instance_method" title="class_name">class_name</a></span>, <span class='name'><a href="MacroReflection.html#macro-instance_method" title="macro">macro</a></span>, <span class='name'><a href="MacroReflection.html#name-instance_method" title="name">name</a></span>, <span class='name'><a href="MacroReflection.html#options-instance_method" title="options">options</a></span></p>
+  </div>
+  
+</div>
+<div class="clear"></div>
+  </div>
+<div class="section methoddetails instance public">
+  <h1>Public Instance Method Details</h1>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>association_foreign_key</h3>
+</div><div id="association_foreign_key-instance_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>association_foreign_key</span><span class='args'></span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+144
+145
+146</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/ar_reflection.rb', line 144</span>
+
+<span class='def def kw'>def</span> <span class='association_foreign_key identifier id'>association_foreign_key</span>
+  <span class='@association_foreign_key ivar id'>@association_foreign_key</span> <span class='opasgn op'>||=</span> <span class='@options ivar id'>@options</span><span class='lbrack token'>[</span><span class='symbol val'>:association_foreign_key</span><span class='rbrack token'>]</span> <span class='orop op'>||</span> <span class='class_name identifier id'>class_name</span><span class='dot token'>.</span><span class='foreign_key identifier id'>foreign_key</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>check_validity!</h3>
+</div><div id="check_validity!-instance_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>check_validity!</span><span class='args'></span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/ar_reflection.rb', line 180</span>
+
+<span class='def def kw'>def</span> <span class='check_validity! fid id'>check_validity!</span>
+  <span class='if if kw'>if</span> <span class='options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:through</span><span class='rbrack token'>]</span>
+    <span class='if if kw'>if</span> <span class='through_reflection identifier id'>through_reflection</span><span class='dot token'>.</span><span class='nil? fid id'>nil?</span>
+      <span class='raise identifier id'>raise</span> <span class='HasManyThroughAssociationNotFoundError constant id'>HasManyThroughAssociationNotFoundError</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='big_record identifier id'>big_record</span><span class='dot token'>.</span><span class='name identifier id'>name</span><span class='comma token'>,</span> <span class='self self kw'>self</span><span class='rparen token'>)</span>
+    <span class='end end kw'>end</span>
+
+    <span class='if if kw'>if</span> <span class='source_reflection identifier id'>source_reflection</span><span class='dot token'>.</span><span class='nil? fid id'>nil?</span>
+      <span class='raise identifier id'>raise</span> <span class='HasManyThroughSourceAssociationNotFoundError constant id'>HasManyThroughSourceAssociationNotFoundError</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='self self kw'>self</span><span class='rparen token'>)</span>
+    <span class='end end kw'>end</span>
+
+    <span class='if if kw'>if</span> <span class='options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:source_type</span><span class='rbrack token'>]</span> <span class='andop op'>&amp;&amp;</span> <span class='source_reflection identifier id'>source_reflection</span><span class='dot token'>.</span><span class='options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:polymorphic</span><span class='rbrack token'>]</span><span class='dot token'>.</span><span class='nil? fid id'>nil?</span>
+      <span class='raise identifier id'>raise</span> <span class='HasManyThroughAssociationPointlessSourceTypeError constant id'>HasManyThroughAssociationPointlessSourceTypeError</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='big_record identifier id'>big_record</span><span class='dot token'>.</span><span class='name identifier id'>name</span><span class='comma token'>,</span> <span class='self self kw'>self</span><span class='comma token'>,</span> <span class='source_reflection identifier id'>source_reflection</span><span class='rparen token'>)</span>
+    <span class='end end kw'>end</span>
+
+    <span class='if if kw'>if</span> <span class='source_reflection identifier id'>source_reflection</span><span class='dot token'>.</span><span class='options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:polymorphic</span><span class='rbrack token'>]</span> <span class='andop op'>&amp;&amp;</span> <span class='options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:source_type</span><span class='rbrack token'>]</span><span class='dot token'>.</span><span class='nil? fid id'>nil?</span>
+      <span class='raise identifier id'>raise</span> <span class='HasManyThroughAssociationPolymorphicError constant id'>HasManyThroughAssociationPolymorphicError</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='big_record identifier id'>big_record</span><span class='dot token'>.</span><span class='name identifier id'>name</span><span class='comma token'>,</span> <span class='self self kw'>self</span><span class='comma token'>,</span> <span class='source_reflection identifier id'>source_reflection</span><span class='rparen token'>)</span>
+    <span class='end end kw'>end</span>
+
+    <span class='unless unless kw'>unless</span> <span class='lbrack token'>[</span><span class='symbol val'>:belongs_to</span><span class='comma token'>,</span> <span class='symbol val'>:has_many</span><span class='rbrack token'>]</span><span class='dot token'>.</span><span class='include? fid id'>include?</span><span class='lparen token'>(</span><span class='source_reflection identifier id'>source_reflection</span><span class='dot token'>.</span><span class='macro identifier id'>macro</span><span class='rparen token'>)</span> <span class='andop op'>&amp;&amp;</span> <span class='source_reflection identifier id'>source_reflection</span><span class='dot token'>.</span><span class='options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:through</span><span class='rbrack token'>]</span><span class='dot token'>.</span><span class='nil? fid id'>nil?</span>
+      <span class='raise identifier id'>raise</span> <span class='HasManyThroughSourceAssociationMacroError constant id'>HasManyThroughSourceAssociationMacroError</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='self self kw'>self</span><span class='rparen token'>)</span>
+    <span class='end end kw'>end</span>
+  <span class='end end kw'>end</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>counter_cache_column</h3>
+</div><div id="counter_cache_column-instance_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>counter_cache_column</span><span class='args'></span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+148
+149
+150
+151
+152
+153
+154</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/ar_reflection.rb', line 148</span>
+
+<span class='def def kw'>def</span> <span class='counter_cache_column identifier id'>counter_cache_column</span>
+  <span class='if if kw'>if</span> <span class='options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:counter_cache</span><span class='rbrack token'>]</span> <span class='eq op'>==</span> <span class='true true kw'>true</span>
+    <span class='dstring node'>&quot;#{big_record.name.underscore.pluralize}_count&quot;</span>
+  <span class='elsif elsif kw'>elsif</span> <span class='options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:counter_cache</span><span class='rbrack token'>]</span>
+    <span class='options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:counter_cache</span><span class='rbrack token'>]</span>
+  <span class='end end kw'>end</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>klass</h3>
+</div><div id="klass-instance_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>klass</span><span class='args'></span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+124
+125
+126</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/ar_reflection.rb', line 124</span>
+
+<span class='def def kw'>def</span> <span class='klass identifier id'>klass</span>
+  <span class='@klass ivar id'>@klass</span> <span class='opasgn op'>||=</span> <span class='big_record identifier id'>big_record</span><span class='dot token'>.</span><span class='send identifier id'>send</span><span class='lparen token'>(</span><span class='symbol val'>:compute_type</span><span class='comma token'>,</span> <span class='class_name identifier id'>class_name</span><span class='rparen token'>)</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>primary_key_name</h3>
+</div><div id="primary_key_name-instance_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>primary_key_name</span><span class='args'></span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/ar_reflection.rb', line 132</span>
+
+<span class='def def kw'>def</span> <span class='primary_key_name identifier id'>primary_key_name</span>
+  <span class='return return kw'>return</span> <span class='@primary_key_name ivar id'>@primary_key_name</span> <span class='if if_mod kw'>if</span> <span class='@primary_key_name ivar id'>@primary_key_name</span>
+  <span class='case case kw'>case</span>
+    <span class='when when kw'>when</span> <span class='macro identifier id'>macro</span> <span class='eq op'>==</span> <span class='symbol val'>:belongs_to</span>
+      <span class='@primary_key_name ivar id'>@primary_key_name</span> <span class='assign token'>=</span> <span class='options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:foreign_key</span><span class='rbrack token'>]</span> <span class='orop op'>||</span> <span class='class_name identifier id'>class_name</span><span class='dot token'>.</span><span class='foreign_key identifier id'>foreign_key</span>
+    <span class='when when kw'>when</span> <span class='options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:as</span><span class='rbrack token'>]</span>
+      <span class='@primary_key_name ivar id'>@primary_key_name</span> <span class='assign token'>=</span> <span class='options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:foreign_key</span><span class='rbrack token'>]</span> <span class='orop op'>||</span> <span class='dstring node'>&quot;#{options[:as]}_id&quot;</span>
+    <span class='else else kw'>else</span>
+      <span class='@primary_key_name ivar id'>@primary_key_name</span> <span class='assign token'>=</span> <span class='options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:foreign_key</span><span class='rbrack token'>]</span> <span class='orop op'>||</span> <span class='big_record identifier id'>big_record</span><span class='dot token'>.</span><span class='name identifier id'>name</span><span class='dot token'>.</span><span class='foreign_key identifier id'>foreign_key</span>
+  <span class='end end kw'>end</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>source_reflection</h3>
+</div><div id="source_reflection-instance_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>source_reflection</span><span class='args'></span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section docstring">
+  <p>
+Gets the source of the through reflection. It checks both a singularized
+and pluralized form for :belongs_to or :has_many. (The :tags association on
+Tagging below)
+</p>
+<pre class="code">
+  <span class='class class kw'>class</span> <span class='Post constant id'>Post</span>
+    <span class='has_many identifier id'>has_many</span> <span class='symbol val'>:tags</span><span class='comma token'>,</span> <span class='symbol val'>:through</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='symbol val'>:taggings</span>
+  <span class='end end kw'>end</span>
+</pre>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+175
+176
+177
+178</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/ar_reflection.rb', line 175</span>
+
+<span class='def def kw'>def</span> <span class='source_reflection identifier id'>source_reflection</span>
+  <span class='return return kw'>return</span> <span class='nil nil kw'>nil</span> <span class='unless unless_mod kw'>unless</span> <span class='through_reflection identifier id'>through_reflection</span>
+  <span class='@source_reflection ivar id'>@source_reflection</span> <span class='opasgn op'>||=</span> <span class='source_reflection_names identifier id'>source_reflection_names</span><span class='dot token'>.</span><span class='collect identifier id'>collect</span> <span class='lbrace token'>{</span> <span class='bitor op'>|</span><span class='name identifier id'>name</span><span class='bitor op'>|</span> <span class='through_reflection identifier id'>through_reflection</span><span class='dot token'>.</span><span class='klass identifier id'>klass</span><span class='dot token'>.</span><span class='reflect_on_association identifier id'>reflect_on_association</span><span class='lparen token'>(</span><span class='name identifier id'>name</span><span class='rparen token'>)</span> <span class='rbrace token'>}</span><span class='dot token'>.</span><span class='compact identifier id'>compact</span><span class='dot token'>.</span><span class='first identifier id'>first</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>source_reflection_names</h3>
+</div><div id="source_reflection_names-instance_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>source_reflection_names</span><span class='args'></span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section docstring">
+  <p>
+Gets an array of possible :through source reflection names
+</p>
+<pre class="code">
+  <span class='lbrack token'>[</span><span class='singularized identifier id'>singularized</span><span class='comma token'>,</span> <span class='pluralized identifier id'>pluralized</span><span class='rbrack token'>]</span>
+</pre>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+164
+165
+166</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/ar_reflection.rb', line 164</span>
+
+<span class='def def kw'>def</span> <span class='source_reflection_names identifier id'>source_reflection_names</span>
+  <span class='@source_reflection_names ivar id'>@source_reflection_names</span> <span class='opasgn op'>||=</span> <span class='lparen token'>(</span><span class='options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:source</span><span class='rbrack token'>]</span> <span class='question op'>?</span> <span class='lbrack token'>[</span><span class='options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:source</span><span class='rbrack token'>]</span><span class='rbrack token'>]</span> <span class='colon op'>:</span> <span class='lbrack token'>[</span><span class='name identifier id'>name</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span><span class='dot token'>.</span><span class='singularize identifier id'>singularize</span><span class='comma token'>,</span> <span class='name identifier id'>name</span><span class='rbrack token'>]</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='collect identifier id'>collect</span> <span class='lbrace token'>{</span> <span class='bitor op'>|</span><span class='n identifier id'>n</span><span class='bitor op'>|</span> <span class='n identifier id'>n</span><span class='dot token'>.</span><span class='to_sym identifier id'>to_sym</span> <span class='rbrace token'>}</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>table_name</h3>
+</div><div id="table_name-instance_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>table_name</span><span class='args'></span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+128
+129
+130</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/ar_reflection.rb', line 128</span>
+
+<span class='def def kw'>def</span> <span class='table_name identifier id'>table_name</span>
+  <span class='@table_name ivar id'>@table_name</span> <span class='opasgn op'>||=</span> <span class='klass identifier id'>klass</span><span class='dot token'>.</span><span class='table_name identifier id'>table_name</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>through_reflection</h3>
+</div><div id="through_reflection-instance_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>through_reflection</span><span class='args'></span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+156
+157
+158</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/ar_reflection.rb', line 156</span>
+
+<span class='def def kw'>def</span> <span class='through_reflection identifier id'>through_reflection</span>
+  <span class='@through_reflection ivar id'>@through_reflection</span> <span class='opasgn op'>||=</span> <span class='options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:through</span><span class='rbrack token'>]</span> <span class='question op'>?</span> <span class='big_record identifier id'>big_record</span><span class='dot token'>.</span><span class='reflect_on_association identifier id'>reflect_on_association</span><span class='lparen token'>(</span><span class='options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:through</span><span class='rbrack token'>]</span><span class='rparen token'>)</span> <span class='colon op'>:</span> <span class='false false kw'>false</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+</div>
+  </div>
+
+</div>
+    </div>
+    <div id="yard_info">
+  Generated on Tuesday, November 10 2009 at 06:18:40 PM by 
+  <abbr class="yard" title="Yay! A Ruby Documentation Tool"><a href="http://yard.soen.ca">YARD</a></abbr> 
+  0.2.3.5 (ruby-1.8.7).
+</div>
+
+  </body>
+</html>

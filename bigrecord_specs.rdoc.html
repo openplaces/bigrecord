@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="style.css" type="text/css" charset="utf-8" />
+<link rel="stylesheet" href="custom.css" type="text/css" charset="utf-8" />
+<link rel="stylesheet" href="syntax_highlight.css" type="text/css" charset="utf-8" />
+
+    <title>bigrecord_specs.rdoc</title>
+  </head>
+  <body>
+    <div id="content">
+      <div class="section docstring readme">
+        <h1>Bigrecord Specs</h1>
+<h2>Data store information</h2>
+<p>
+The default settings for the Bigrecord specs can be found at
+spec/connections/bigrecord.yml with each environment broken down by the
+data store type (Hbase and Cassandra at the time of writing). These are the
+minimal settings required to connect to each data store, and should be
+modified freely to reflect your own system configurations.
+</p>
+<h2>Data store migration</h2>
+<p>
+There are also migrations to create the necessary tables for the specs to
+run. To ensure migrations are functioning properly before actually running
+the migrations, you can run: spec spec/unit/migration_spec.rb.
+Alternatively, you can manually create the tables according to the
+migration files under: spec/lib/migrations
+</p>
+<p>
+Migrations have their own log file for debugging purposes. It&#8217;s
+created under: bigrecord/migrate.log
+</p>
+<h2>Running the specs</h2>
+<p>
+After setting it up, you can run the Bigrecord specs with:
+</p>
+<pre class="code">
+  <span class='rake identifier id'>rake</span> <span class='spec identifier id'>spec</span>
+</pre>
+<p>
+or alternatively, with either:
+</p>
+<pre class="code">
+  <span class='rake identifier id'>rake</span> <span class='spec identifier id'>spec</span><span class='symbol val'>:hbase</span>
+  <span class='rake identifier id'>rake</span> <span class='spec identifier id'>spec</span><span class='symbol val'>:cassandra</span>
+</pre>
+<p>
+if you want to run the spec suite against a specific data store.
+</p>
+<h2>Running specific specs</h2>
+<p>
+To run a specific spec, you can run the following command from the
+bigrecord root folder:
+</p>
+<pre class="code">
+  <span class='spec identifier id'>spec</span> <span class='minus op'>-</span><span class='O constant id'>O</span> <span class='spec identifier id'>spec</span><span class='div op'>/</span><span class='spec identifier id'>spec</span><span class='dot token'>.</span><span class='opts identifier id'>opts</span> <span class='spec identifier id'>spec</span><span class='div op'>/</span><span class='lt op'>&lt;</span><span class='spec_file identifier id'>spec_file</span><span class='gt op'>&gt;</span><span class='_spec identifier id'>_spec</span><span class='dot token'>.</span><span class='rb identifier id'>rb</span>
+</pre>
+<h2>Debugging</h2>
+<p>
+If any problems or failures arise during the unit tests, please refer to
+the log files before submitting it as an issue. Often, it&#8217;s a simple
+matter of forgetting to turn on BigrecordDriver, the tables weren&#8217;t
+created, or configurations weren&#8217;t set properly.
+</p>
+<p>
+The log file for specs is created under: &lt;bigrecord
+root&gt;/spec/debug.log
+</p>
+
+      </div>
+    </div>
+    <div id="yard_info">
+  Generated on Tuesday, November 10 2009 at 06:18:30 PM by 
+  <abbr class="yard" title="Yay! A Ruby Documentation Tool"><a href="http://yard.soen.ca">YARD</a></abbr> 
+  0.2.3.5 (ruby-1.8.7).
+</div>
+
+  </body>
+</html>

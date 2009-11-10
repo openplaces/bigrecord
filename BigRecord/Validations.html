@@ -1,0 +1,571 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="../style.css" type="text/css" charset="utf-8" />
+<link rel="stylesheet" href="../custom.css" type="text/css" charset="utf-8" />
+<link rel="stylesheet" href="../syntax_highlight.css" type="text/css" charset="utf-8" />
+
+    <script src="../jquery.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../app.js" type="text/javascript" charset="utf-8"></script>
+    <title>Module: BigRecord::Validations</title>
+  </head>
+  <body>
+    <div id="content">
+      <div class="section module BigRecord_Validations">
+  <h1 class="title">Module: BigRecord::Validations</h1>
+  <div class="section docstring">
+  <p>
+Active Records implement validation by overwriting Base#validate (or the
+variations, <tt>validate_on_create</tt> and <tt>validate_on_update</tt>).
+Each of these methods can inspect the state of the object, which usually
+means ensuring that a number of attributes have a certain value (such as
+not empty, within a given range, matching a certain regular expression).
+</p>
+<p>
+Example:
+</p>
+<pre class="code">
+  <span class='class class kw'>class</span> <span class='Person constant id'>Person</span> <span class='lt op'>&lt;</span> <span class='ActiveRecord constant id'>ActiveRecord</span><span class='colon2 op'>::</span><span class='Base constant id'>Base</span>
+    <span class='protected identifier id'>protected</span>
+      <span class='def def kw'>def</span> <span class='validate identifier id'>validate</span>
+        <span class='errors identifier id'>errors</span><span class='dot token'>.</span><span class='add_on_empty identifier id'>add_on_empty</span> <span class='dstring node'>%w( first_name last_name )</span>
+        <span class='errors identifier id'>errors</span><span class='dot token'>.</span><span class='add identifier id'>add</span><span class='lparen token'>(</span><span class='string val'>&quot;phone_number&quot;</span><span class='comma token'>,</span> <span class='string val'>&quot;has invalid format&quot;</span><span class='rparen token'>)</span> <span class='unless unless_mod kw'>unless</span> <span class='phone_number identifier id'>phone_number</span> <span class='match op'>=~</span> <span class='regexp val'>/[0-9]*/</span>
+      <span class='end end kw'>end</span>
+
+      <span class='def def kw'>def</span> <span class='validate_on_create identifier id'>validate_on_create</span> <span class='comment val'># is only run the first time a new object is saved</span>
+        <span class='unless unless kw'>unless</span> <span class='valid_discount? fid id'>valid_discount?</span><span class='lparen token'>(</span><span class='membership_discount identifier id'>membership_discount</span><span class='rparen token'>)</span>
+          <span class='errors identifier id'>errors</span><span class='dot token'>.</span><span class='add identifier id'>add</span><span class='lparen token'>(</span><span class='string val'>&quot;membership_discount&quot;</span><span class='comma token'>,</span> <span class='string val'>&quot;has expired&quot;</span><span class='rparen token'>)</span>
+        <span class='end end kw'>end</span>
+      <span class='end end kw'>end</span>
+
+      <span class='def def kw'>def</span> <span class='validate_on_update identifier id'>validate_on_update</span>
+        <span class='errors identifier id'>errors</span><span class='dot token'>.</span><span class='add_to_base identifier id'>add_to_base</span><span class='lparen token'>(</span><span class='string val'>&quot;No changes have occurred&quot;</span><span class='rparen token'>)</span> <span class='if if_mod kw'>if</span> <span class='unchanged_attributes? fid id'>unchanged_attributes?</span>
+      <span class='end end kw'>end</span>
+  <span class='end end kw'>end</span>
+
+  <span class='person identifier id'>person</span> <span class='assign token'>=</span> <span class='Person constant id'>Person</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='string val'>&quot;first_name&quot;</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>&quot;David&quot;</span><span class='comma token'>,</span> <span class='string val'>&quot;phone_number&quot;</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>&quot;what?&quot;</span><span class='rparen token'>)</span>
+  <span class='person identifier id'>person</span><span class='dot token'>.</span><span class='save identifier id'>save</span>                         <span class='comment val'># =&gt; false (and doesn't do the save)</span>
+  <span class='person identifier id'>person</span><span class='dot token'>.</span><span class='errors identifier id'>errors</span><span class='dot token'>.</span><span class='empty? fid id'>empty?</span>                <span class='comment val'># =&gt; false</span>
+  <span class='person identifier id'>person</span><span class='dot token'>.</span><span class='errors identifier id'>errors</span><span class='dot token'>.</span><span class='count identifier id'>count</span>                 <span class='comment val'># =&gt; 2</span>
+  <span class='person identifier id'>person</span><span class='dot token'>.</span><span class='errors identifier id'>errors</span><span class='dot token'>.</span><span class='on identifier id'>on</span> <span class='string val'>&quot;last_name&quot;</span>        <span class='comment val'># =&gt; &quot;can't be empty&quot;</span>
+  <span class='person identifier id'>person</span><span class='dot token'>.</span><span class='errors identifier id'>errors</span><span class='dot token'>.</span><span class='on identifier id'>on</span> <span class='string val'>&quot;phone_number&quot;</span>     <span class='comment val'># =&gt; &quot;has invalid format&quot;</span>
+  <span class='person identifier id'>person</span><span class='dot token'>.</span><span class='errors identifier id'>errors</span><span class='dot token'>.</span><span class='each_full identifier id'>each_full</span> <span class='lbrace token'>{</span> <span class='bitor op'>|</span><span class='msg identifier id'>msg</span><span class='bitor op'>|</span> <span class='puts identifier id'>puts</span> <span class='msg identifier id'>msg</span> <span class='rbrace token'>}</span>
+                                      <span class='comment val'># =&gt; &quot;Last name can't be empty\n&quot; +</span>
+                                           <span class='string val'>&quot;Phone number has invalid format&quot;</span>
+
+  <span class='person identifier id'>person</span><span class='dot token'>.</span><span class='attributes identifier id'>attributes</span> <span class='assign token'>=</span> <span class='lbrace token'>{</span> <span class='string val'>&quot;last_name&quot;</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>&quot;Heinemeier&quot;</span><span class='comma token'>,</span> <span class='string val'>&quot;phone_number&quot;</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>&quot;555-555&quot;</span> <span class='rbrace token'>}</span>
+  <span class='person identifier id'>person</span><span class='dot token'>.</span><span class='save identifier id'>save</span> <span class='comment val'># =&gt; true (and person is now saved in the database)</span>
+</pre>
+<p>
+An <tt>Errors</tt> object is automatically created for every Active Record.
+</p>
+<p>
+Please do have a look at ActiveRecord::Validations::ClassMethods for a
+higher level of validations.
+</p>
+
+</div><div class="section constants">
+  <div class="thisclass">
+  <h1>Constants</h1>
+  <dl>
+    
+      <dt id="VALIDATIONS-constant">VALIDATIONS</dt>
+      <dd>%w( validate validate_on_create validate_on_update )</dd>
+    
+  </dl>
+</div>
+
+</div>  <div class="section visibilitygroup public">
+    <h1>Public Visibility</h1>
+      <div class="section methodsummary class public">
+    <h1>Public Class Method Summary</h1>
+<table class="summary">
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#included-class_method" title="included">included</a></span><span class='args'>(base)</span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        
+        
+      </td>
+    </tr>
+  
+</table>
+
+  </div>
+  <div class="section methodsummary instance public">
+    <h1>Public Instance Method Summary</h1>
+<table class="summary">
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#errors-instance_method" title="#errors">#errors</a></span><span class='args'></span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        <p>
+Returns the Errors object that holds all information about attribute error
+messages.
+</p>
+
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#save_with_validation-instance_method" title="#save_with_validation">#save_with_validation</a></span><span class='args'>(perform_validation = true)</span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        <p>
+The validation process on save can be skipped by passing false.
+</p>
+
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#save_with_validation%21-instance_method" title="#save_with_validation!">#save_with_validation!</a></span><span class='args'></span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        <p>
+Attempts to save the record just like Base#save but will raise a
+RecordInvalid exception instead of returning false if the record is not
+valid.
+</p>
+
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#update_attribute_with_validation_skipping-instance_method" title="#update_attribute_with_validation_skipping">#update_attribute_with_validation_skipping</a></span><span class='args'>(name, value)</span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        <p>
+Updates a single attribute and saves the record without going through the
+normal validation procedure.
+</p>
+
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#valid%3F-instance_method" title="#valid?">#valid?</a></span><span class='args'></span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        <p>
+Runs validate and validate_on_create or validate_on_update and returns true
+if no errors were added otherwise false.
+</p>
+
+        
+      </td>
+    </tr>
+  
+</table>
+
+  </div>
+<div class="section methoddetails class public">
+  <h1>Public Class Method Details</h1>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>included</h3>
+</div><div id="included-class_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>included</span><span class='args'>(base)</span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+205
+206
+207
+208
+209
+210
+211
+212</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/validations.rb', line 205</span>
+
+<span class='def def kw'>def</span> <span class='self self kw'>self</span><span class='dot token'>.</span><span class='included identifier id'>included</span><span class='lparen token'>(</span><span class='base identifier id'>base</span><span class='rparen token'>)</span> <span class='comment val'># :nodoc:</span>
+  <span class='base identifier id'>base</span><span class='dot token'>.</span><span class='extend identifier id'>extend</span> <span class='ClassMethods constant id'>ClassMethods</span>
+  <span class='base identifier id'>base</span><span class='dot token'>.</span><span class='class_eval identifier id'>class_eval</span> <span class='do do kw'>do</span>
+    <span class='alias_method_chain identifier id'>alias_method_chain</span> <span class='symbol val'>:save</span><span class='comma token'>,</span> <span class='symbol val'>:validation</span>
+    <span class='alias_method_chain identifier id'>alias_method_chain</span> <span class='symbol val'>:save!</span><span class='comma token'>,</span> <span class='symbol val'>:validation</span>
+    <span class='alias_method_chain identifier id'>alias_method_chain</span> <span class='symbol val'>:update_attribute</span><span class='comma token'>,</span> <span class='symbol val'>:validation_skipping</span>
+  <span class='end end kw'>end</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+</div><div class="section methoddetails instance public">
+  <h1>Public Instance Method Details</h1>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>errors</h3>
+</div><div id="errors-instance_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>errors</span><span class='args'></span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section docstring">
+  <p>
+Returns the Errors object that holds all information about attribute error
+messages.
+</p>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+782
+783
+784</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/validations.rb', line 782</span>
+
+<span class='def def kw'>def</span> <span class='errors identifier id'>errors</span>
+  <span class='@errors ivar id'>@errors</span> <span class='opasgn op'>||=</span> <span class='Errors constant id'>Errors</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='self self kw'>self</span><span class='rparen token'>)</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>save_with_validation</h3>
+</div><div id="save_with_validation-instance_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>save_with_validation</span><span class='args'>(perform_validation = true)</span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section docstring">
+  <p>
+The validation process on save can be skipped by passing false. The regular
+Base#save method is replaced with this when the validations module is mixed
+in, which it is by default.
+</p>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+737
+738
+739
+740
+741
+742
+743</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/validations.rb', line 737</span>
+
+<span class='def def kw'>def</span> <span class='save_with_validation identifier id'>save_with_validation</span><span class='lparen token'>(</span><span class='perform_validation identifier id'>perform_validation</span> <span class='assign token'>=</span> <span class='true true kw'>true</span><span class='rparen token'>)</span>
+  <span class='if if kw'>if</span> <span class='perform_validation identifier id'>perform_validation</span> <span class='andop op'>&amp;&amp;</span> <span class='valid? fid id'>valid?</span> <span class='orop op'>||</span> <span class='notop op'>!</span><span class='perform_validation identifier id'>perform_validation</span>
+    <span class='save_without_validation identifier id'>save_without_validation</span>
+  <span class='else else kw'>else</span>
+    <span class='false false kw'>false</span>
+  <span class='end end kw'>end</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>save_with_validation!</h3>
+</div><div id="save_with_validation!-instance_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>save_with_validation!</span><span class='args'></span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section docstring">
+  <p>
+Attempts to save the record just like Base#save but will raise a
+RecordInvalid exception instead of returning false if the record is not
+valid.
+</p>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+747
+748
+749
+750
+751
+752
+753</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/validations.rb', line 747</span>
+
+<span class='def def kw'>def</span> <span class='save_with_validation! fid id'>save_with_validation!</span>
+  <span class='if if kw'>if</span> <span class='valid? fid id'>valid?</span>
+    <span class='save_without_validation! fid id'>save_without_validation!</span>
+  <span class='else else kw'>else</span>
+    <span class='raise identifier id'>raise</span> <span class='RecordInvalid constant id'>RecordInvalid</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='self self kw'>self</span><span class='rparen token'>)</span>
+  <span class='end end kw'>end</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>update_attribute_with_validation_skipping</h3>
+</div><div id="update_attribute_with_validation_skipping-instance_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>update_attribute_with_validation_skipping</span><span class='args'>(name, value)</span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section docstring">
+  <p>
+Updates a single attribute and saves the record without going through the
+normal validation procedure. This is especially useful for boolean flags on
+existing records. The regular <tt>update_attribute</tt> method in Base is
+replaced with this when the validations module is mixed in, which it is by
+default.
+</p>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+758
+759
+760
+761</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/validations.rb', line 758</span>
+
+<span class='def def kw'>def</span> <span class='update_attribute_with_validation_skipping identifier id'>update_attribute_with_validation_skipping</span><span class='lparen token'>(</span><span class='name identifier id'>name</span><span class='comma token'>,</span> <span class='value identifier id'>value</span><span class='rparen token'>)</span>
+  <span class='send identifier id'>send</span><span class='lparen token'>(</span><span class='name identifier id'>name</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span> <span class='plus op'>+</span> <span class='string val'>'='</span><span class='comma token'>,</span> <span class='value identifier id'>value</span><span class='rparen token'>)</span>
+  <span class='save identifier id'>save</span><span class='lparen token'>(</span><span class='false false kw'>false</span><span class='rparen token'>)</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>valid?</h3>
+</div><div id="valid?-instance_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>valid?</span><span class='args'></span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section docstring">
+  <p>
+Runs validate and validate_on_create or validate_on_update and returns true
+if no errors were added otherwise false.
+</p>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+764
+765
+766
+767
+768
+769
+770
+771
+772
+773
+774
+775
+776
+777
+778
+779</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/validations.rb', line 764</span>
+
+<span class='def def kw'>def</span> <span class='valid? fid id'>valid?</span>
+  <span class='errors identifier id'>errors</span><span class='dot token'>.</span><span class='clear identifier id'>clear</span>
+
+  <span class='run_validations identifier id'>run_validations</span><span class='lparen token'>(</span><span class='symbol val'>:validate</span><span class='rparen token'>)</span>
+  <span class='validate identifier id'>validate</span>
+
+  <span class='if if kw'>if</span> <span class='new_record? fid id'>new_record?</span>
+    <span class='run_validations identifier id'>run_validations</span><span class='lparen token'>(</span><span class='symbol val'>:validate_on_create</span><span class='rparen token'>)</span>
+    <span class='validate_on_create identifier id'>validate_on_create</span>
+  <span class='else else kw'>else</span>
+    <span class='run_validations identifier id'>run_validations</span><span class='lparen token'>(</span><span class='symbol val'>:validate_on_update</span><span class='rparen token'>)</span>
+    <span class='validate_on_update identifier id'>validate_on_update</span>
+  <span class='end end kw'>end</span>
+
+  <span class='errors identifier id'>errors</span><span class='dot token'>.</span><span class='empty? fid id'>empty?</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+</div>
+  </div>
+
+</div>
+    </div>
+    <div id="yard_info">
+  Generated on Tuesday, November 10 2009 at 06:18:49 PM by 
+  <abbr class="yard" title="Yay! A Ruby Documentation Tool"><a href="http://yard.soen.ca">YARD</a></abbr> 
+  0.2.3.5 (ruby-1.8.7).
+</div>
+
+  </body>
+</html>

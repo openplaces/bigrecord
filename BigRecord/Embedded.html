@@ -1,0 +1,945 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="../style.css" type="text/css" charset="utf-8" />
+<link rel="stylesheet" href="../custom.css" type="text/css" charset="utf-8" />
+<link rel="stylesheet" href="../syntax_highlight.css" type="text/css" charset="utf-8" />
+
+    <script src="../jquery.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../app.js" type="text/javascript" charset="utf-8"></script>
+    <title>Class: BigRecord::Embedded</title>
+  </head>
+  <body>
+    <div id="content">
+      <div class="section class BigRecord_Embedded">
+  <h1 class="title">Class: BigRecord::Embedded</h1>
+  <div class="section inheritance">
+  <ul>
+  <li><a href="AbstractBase.html" title="BigRecord::AbstractBase">BigRecord::AbstractBase</a></li><ul><li>BigRecord::Embedded</li>
+  </ul></ul>
+</div><div class="section constants">
+  <div class="inherited">
+  
+  <div>
+    <h1>Constants Inherited from <a href="AbstractBase.html" title="BigRecord::AbstractBase">BigRecord::AbstractBase</a></h1>
+    <p><span class='name'><a href="AbstractBase.html#ID_FIELD_SEPARATOR-constant" title="ID_FIELD_SEPARATOR">ID_FIELD_SEPARATOR</a></span>, <span class='name'><a href="AbstractBase.html#ID_WHITE_SPACE_CHAR-constant" title="ID_WHITE_SPACE_CHAR">ID_WHITE_SPACE_CHAR</a></span></p>
+  </div>
+  
+</div>
+<div class="clear"></div>
+</div><div class="section constructor">
+<h1>Constructor Summary</h1>
+  <div id="initialize-instance_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>initialize</span><span class='args'>(attrs = nil)</span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+4
+5
+6
+7
+8</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/embedded.rb', line 4</span>
+
+<span class='def def kw'>def</span> <span class='initialize identifier id'>initialize</span><span class='lparen token'>(</span><span class='attrs identifier id'>attrs</span> <span class='assign token'>=</span> <span class='nil nil kw'>nil</span><span class='rparen token'>)</span>
+  <span class='super super kw'>super</span>
+  <span class='comment val'># Regenerate the id unless it's already there (i.e. we're instantiating an existing property)</span>
+  <span class='@attributes ivar id'>@attributes</span><span class='lbrack token'>[</span><span class='string val'>&quot;id&quot;</span><span class='rbrack token'>]</span> <span class='opasgn op'>||=</span> <span class='generate_id identifier id'>generate_id</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+</div><div class="section methodmissing">
+  <h1>Dynamic Method Handling</h1>
+
+  <p class="note">
+    This class handles dynamic methods through the <tt>method_missing</tt> method
+    
+      in the class <a href="AbstractBase.html" title="BigRecord::AbstractBase">BigRecord::AbstractBase</a>
+    
+  </p>
+
+  <div id="method_missing-instance_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>protected</span>
+      <span class='return_types'></span>
+      <span class='name'>method_missing</span><span class='args'>(method_id, *args, &amp;block)</span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section docstring">
+  <p>
+Allows access to the object attributes, which are held in the @attributes
+hash, as were they first-class methods. So a Person class with a name
+attribute can use Person#name and Person#name= and never directly use the
+attributes hash &#8212; except for multiple assigns with
+ActiveRecord#attributes=. A Milestone class can also ask
+Milestone#completed? to test that the completed attribute is not nil or 0.
+</p>
+<p>
+It&#8217;s also possible to instantiate related objects, so a Client class
+belonging to the clients table with a master_id foreign key can instantiate
+master through Client#master.
+</p>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+608
+609
+610
+611
+612
+613
+614
+615
+616
+617
+618
+619
+620
+621
+622
+623
+624
+625
+626
+627
+628</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/abstract_base.rb', line 608</span>
+
+<span class='def def kw'>def</span> <span class='method_missing identifier id'>method_missing</span><span class='lparen token'>(</span><span class='method_id identifier id'>method_id</span><span class='comma token'>,</span> <span class='mult op'>*</span><span class='args identifier id'>args</span><span class='comma token'>,</span> <span class='bitand op'>&amp;</span><span class='block identifier id'>block</span><span class='rparen token'>)</span>
+  <span class='method_name identifier id'>method_name</span> <span class='assign token'>=</span> <span class='method_id identifier id'>method_id</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span>
+  <span class='if if kw'>if</span> <span class='column_for_attribute identifier id'>column_for_attribute</span><span class='lparen token'>(</span><span class='method_name identifier id'>method_name</span><span class='rparen token'>)</span> <span class='or or kw'>or</span>
+      <span class='lparen token'>(</span><span class='lparen token'>(</span><span class='md identifier id'>md</span> <span class='assign token'>=</span> <span class='regexp val'>/\?$/</span><span class='dot token'>.</span><span class='match identifier id'>match</span><span class='lparen token'>(</span><span class='method_name identifier id'>method_name</span><span class='rparen token'>)</span><span class='rparen token'>)</span> <span class='and and kw'>and</span>
+      <span class='column_for_attribute identifier id'>column_for_attribute</span><span class='lparen token'>(</span><span class='query_method_name identifier id'>query_method_name</span> <span class='assign token'>=</span> <span class='md identifier id'>md</span><span class='dot token'>.</span><span class='pre_match identifier id'>pre_match</span><span class='rparen token'>)</span> <span class='and and kw'>and</span>
+      <span class='method_name identifier id'>method_name</span> <span class='assign token'>=</span> <span class='query_method_name identifier id'>query_method_name</span><span class='rparen token'>)</span>
+    <span class='define_read_methods identifier id'>define_read_methods</span> <span class='if if_mod kw'>if</span> <span class='self self kw'>self</span><span class='dot token'>.</span><span class='class identifier id'>class</span><span class='dot token'>.</span><span class='read_methods identifier id'>read_methods</span><span class='dot token'>.</span><span class='empty? fid id'>empty?</span> <span class='andop op'>&amp;&amp;</span> <span class='self self kw'>self</span><span class='dot token'>.</span><span class='class identifier id'>class</span><span class='dot token'>.</span><span class='generate_read_methods identifier id'>generate_read_methods</span>
+    <span class='md identifier id'>md</span> <span class='integer val'>? </span><span class='query_attribute identifier id'>query_attribute</span><span class='lparen token'>(</span><span class='method_name identifier id'>method_name</span><span class='rparen token'>)</span> <span class='colon op'>:</span> <span class='read_attribute identifier id'>read_attribute</span><span class='lparen token'>(</span><span class='method_name identifier id'>method_name</span><span class='rparen token'>)</span>
+  <span class='elsif elsif kw'>elsif</span> <span class='self self kw'>self</span><span class='dot token'>.</span><span class='class identifier id'>class</span><span class='dot token'>.</span><span class='primary_key identifier id'>primary_key</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span> <span class='eq op'>==</span> <span class='method_name identifier id'>method_name</span>
+    <span class='id identifier id'>id</span>
+  <span class='elsif elsif kw'>elsif</span> <span class='lparen token'>(</span><span class='md identifier id'>md</span> <span class='assign token'>=</span> <span class='self self kw'>self</span><span class='dot token'>.</span><span class='class identifier id'>class</span><span class='dot token'>.</span><span class='match_attribute_method? fid id'>match_attribute_method?</span><span class='lparen token'>(</span><span class='method_name identifier id'>method_name</span><span class='rparen token'>)</span><span class='rparen token'>)</span>
+    <span class='attribute_name identifier id'>attribute_name</span><span class='comma token'>,</span> <span class='method_type identifier id'>method_type</span> <span class='assign token'>=</span> <span class='md identifier id'>md</span><span class='dot token'>.</span><span class='pre_match identifier id'>pre_match</span><span class='comma token'>,</span> <span class='md identifier id'>md</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span>
+    <span class='if if kw'>if</span> <span class='column_for_attribute identifier id'>column_for_attribute</span><span class='lparen token'>(</span><span class='attribute_name identifier id'>attribute_name</span><span class='rparen token'>)</span>
+      <span class='__send__ identifier id'>__send__</span><span class='lparen token'>(</span><span class='dstring node'>&quot;attribute#{method_type}&quot;</span><span class='comma token'>,</span> <span class='attribute_name identifier id'>attribute_name</span><span class='comma token'>,</span> <span class='mult op'>*</span><span class='args identifier id'>args</span><span class='comma token'>,</span> <span class='bitand op'>&amp;</span><span class='block identifier id'>block</span><span class='rparen token'>)</span>
+    <span class='else else kw'>else</span>
+      <span class='super super kw'>super</span>
+    <span class='end end kw'>end</span>
+  <span class='else else kw'>else</span>
+    <span class='super super kw'>super</span>
+  <span class='end end kw'>end</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+</div>  <div class="section visibilitygroup public">
+    <h1>Public Visibility</h1>
+      <div class="section methodsummary class public">
+    <h1>Public Class Method Summary</h1>
+<table class="summary">
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#base_class-class_method" title="base_class">base_class</a></span><span class='args'></span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#connection-class_method" title="connection">connection</a></span><span class='args'></span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        <p>
+Borrow the default connection of BigRecord.
+</p>
+
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#default_columns-class_method" title="default_columns">default_columns</a></span><span class='args'></span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#hide_to_users-class_method" title="hide_to_users">hide_to_users</a></span><span class='args'></span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#inherited-class_method" title="inherited">inherited</a></span><span class='args'>(child)</span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#pretty_name-class_method" title="pretty_name">pretty_name</a></span><span class='args'></span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        <p>
+Class attribute that holds the name of the embedded type for dispaly.
+</p>
+
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#primary_key-class_method" title="primary_key">primary_key</a></span><span class='args'></span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#set_pretty_name-class_method" title="set_pretty_name">set_pretty_name</a></span><span class='args'>(new_name)</span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#show_to_users%3F-class_method" title="show_to_users?">show_to_users?</a></span><span class='args'></span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#store_primary_key%3F-class_method" title="store_primary_key?">store_primary_key?</a></span><span class='args'></span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        
+        
+      </td>
+    </tr>
+  
+</table>
+<div class="inherited">
+  
+  <div>
+    <h1>Public Class Methods Inherited from <a href="AbstractBase.html" title="BigRecord::AbstractBase">BigRecord::AbstractBase</a></h1>
+    <p><span class='name'><a href="AbstractBase.html#%3D%3D%3D-class_method" title="===">===</a></span>, <span class='name'><a href="AbstractBase.html#accessible_attributes-class_method" title="accessible_attributes">accessible_attributes</a></span>, <span class='name'><a href="AbstractBase.html#alias_attribute-class_method" title="alias_attribute">alias_attribute</a></span>, <span class='name'><a href="AbstractBase.html#attr_accessible-class_method" title="attr_accessible">attr_accessible</a></span>, <span class='name'><a href="AbstractBase.html#attr_create_accessible-class_method" title="attr_create_accessible">attr_create_accessible</a></span>, <span class='name'><a href="AbstractBase.html#attr_protected-class_method" title="attr_protected">attr_protected</a></span>, <span class='name'><a href="AbstractBase.html#attr_readonly-class_method" title="attr_readonly">attr_readonly</a></span>, <span class='name'><a href="AbstractBase.html#benchmark-class_method" title="benchmark">benchmark</a></span>, <span class='name'><a href="AbstractBase.html#column-class_method" title="column">column</a></span>, <span class='name'><a href="AbstractBase.html#column_methods_hash-class_method" title="column_methods_hash">column_methods_hash</a></span>, <span class='name'><a href="AbstractBase.html#column_names-class_method" title="column_names">column_names</a></span>, <span class='name'><a href="AbstractBase.html#columns-class_method" title="columns">columns</a></span>, <span class='name'><a href="AbstractBase.html#columns_hash-class_method" title="columns_hash">columns_hash</a></span>, <span class='name'><a href="AbstractBase.html#content_columns-class_method" title="content_columns">content_columns</a></span>, <span class='name'><a href="AbstractBase.html#create_accessible_attributes-class_method" title="create_accessible_attributes">create_accessible_attributes</a></span>, <span class='name'><a href="AbstractBase.html#create_column-class_method" title="create_column">create_column</a></span>, <span class='name'><a href="AbstractBase.html#human_attribute_name-class_method" title="human_attribute_name">human_attribute_name</a></span>, <span class='name'><a href="AbstractBase.html#instantiate-class_method" title="instantiate">instantiate</a></span>, <span class='name'><a href="AbstractBase.html#protected_attributes-class_method" title="protected_attributes">protected_attributes</a></span>, <span class='name'><a href="AbstractBase.html#quote_value-class_method" title="quote_value">quote_value</a></span>, <span class='name'><a href="AbstractBase.html#read_methods-class_method" title="read_methods">read_methods</a></span>, <span class='name'><a href="AbstractBase.html#readonly_attributes-class_method" title="readonly_attributes">readonly_attributes</a></span>, <span class='name'><a href="AbstractBase.html#reset_subclasses-class_method" title="reset_subclasses">reset_subclasses</a></span>, <span class='name'><a href="AbstractBase.html#silence-class_method" title="silence">silence</a></span>, <span class='name'><a href="AbstractBase.html#undecorated_table_name-class_method" title="undecorated_table_name">undecorated_table_name</a></span></p>
+  </div>
+  
+</div>
+<div class="clear"></div>
+  </div>
+  <div class="section methodsummary instance public">
+    <h1>Public Instance Method Summary</h1>
+<table class="summary">
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#connection-instance_method" title="#connection">#connection</a></span><span class='args'></span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#id-instance_method" title="#id">#id</a></span><span class='args'></span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        
+        
+      </td>
+    </tr>
+  
+</table>
+<div class="inherited">
+  
+  <div>
+    <h1>Public Instance Methods Inherited from <a href="AbstractBase.html" title="BigRecord::AbstractBase">BigRecord::AbstractBase</a></h1>
+    <p><span class='name'><a href="AbstractBase.html#%3D%3D-instance_method" title="==">==</a></span>, <span class='name'><a href="AbstractBase.html#%5B%5D-instance_method" title="[]">[]</a></span>, <span class='name'><a href="AbstractBase.html#%5B%5D%3D-instance_method" title="[]=">[]=</a></span>, <span class='name'><a href="AbstractBase.html#all_attributes_loaded%3D-instance_method" title="all_attributes_loaded=">all_attributes_loaded=</a></span>, <span class='name'><a href="AbstractBase.html#all_attributes_loaded%3F-instance_method" title="all_attributes_loaded?">all_attributes_loaded?</a></span>, <span class='name'><a href="AbstractBase.html#attribute_for_inspect-instance_method" title="attribute_for_inspect">attribute_for_inspect</a></span>, <span class='name'><a href="AbstractBase.html#attribute_names-instance_method" title="attribute_names">attribute_names</a></span>, <span class='name'><a href="AbstractBase.html#attribute_present%3F-instance_method" title="attribute_present?">attribute_present?</a></span>, <span class='name'><a href="AbstractBase.html#attributes-instance_method" title="attributes">attributes</a></span>, <span class='name'><a href="AbstractBase.html#attributes%3D-instance_method" title="attributes=">attributes=</a></span>, <span class='name'><a href="AbstractBase.html#column_for_attribute-instance_method" title="column_for_attribute">column_for_attribute</a></span>, <span class='name'><a href="AbstractBase.html#deserialize-instance_method" title="deserialize">deserialize</a></span>, <span class='name'><a href="AbstractBase.html#destroy-instance_method" title="destroy">destroy</a></span>, <span class='name'><a href="AbstractBase.html#eql%3F-instance_method" title="eql?">eql?</a></span>, <span class='name'><a href="AbstractBase.html#freeze-instance_method" title="freeze">freeze</a></span>, <span class='name'><a href="AbstractBase.html#frozen%3F-instance_method" title="frozen?">frozen?</a></span>, <span class='name'><a href="AbstractBase.html#has_attribute%3F-instance_method" title="has_attribute?">has_attribute?</a></span>, <span class='name'><a href="AbstractBase.html#hash-instance_method" title="hash">hash</a></span>, <span class='name'><a href="AbstractBase.html#human_attribute_name-instance_method" title="human_attribute_name">human_attribute_name</a></span>, <span class='name'><a href="AbstractBase.html#id%3D-instance_method" title="id=">id=</a></span>, <span class='name'><a href="AbstractBase.html#inspect-instance_method" title="inspect">inspect</a></span>, <span class='name'><a href="AbstractBase.html#new_record%3F-instance_method" title="new_record?">new_record?</a></span>, <span class='name'><a href="AbstractBase.html#preinitialize-instance_method" title="preinitialize">preinitialize</a></span>, <span class='name'><a href="AbstractBase.html#quoted_id-instance_method" title="quoted_id">quoted_id</a></span>, <span class='name'><a href="AbstractBase.html#readonly%21-instance_method" title="readonly!">readonly!</a></span>, <span class='name'><a href="AbstractBase.html#readonly%3F-instance_method" title="readonly?">readonly?</a></span>, <span class='name'><a href="AbstractBase.html#reload-instance_method" title="reload">reload</a></span>, <span class='name'><a href="AbstractBase.html#respond_to%3F-instance_method" title="respond_to?">respond_to?</a></span>, <span class='name'><a href="AbstractBase.html#safe_attributes%3D-instance_method" title="safe_attributes=">safe_attributes=</a></span>, <span class='name'><a href="AbstractBase.html#save-instance_method" title="save">save</a></span>, <span class='name'><a href="AbstractBase.html#save%21-instance_method" title="save!">save!</a></span>, <span class='name'><a href="AbstractBase.html#to_s-instance_method" title="to_s">to_s</a></span>, <span class='name'><a href="AbstractBase.html#update_attribute-instance_method" title="update_attribute">update_attribute</a></span>, <span class='name'><a href="AbstractBase.html#update_attributes-instance_method" title="update_attributes">update_attributes</a></span>, <span class='name'><a href="AbstractBase.html#update_attributes%21-instance_method" title="update_attributes!">update_attributes!</a></span></p>
+  </div>
+  
+</div>
+<div class="clear"></div><div class="included">
+  
+  <div>
+    <h1>Public Instance Methods Included from <a href="AbstractBase.html" title="BigRecord::AbstractBase">BigRecord::AbstractBase</a></h1>
+    <p><span class='name'><a href="AbstractBase.html#%3D%3D-instance_method" title="==">==</a></span>, <span class='name'><a href="AbstractBase.html#%5B%5D-instance_method" title="[]">[]</a></span>, <span class='name'><a href="AbstractBase.html#%5B%5D%3D-instance_method" title="[]=">[]=</a></span>, <span class='name'><a href="AbstractBase.html#all_attributes_loaded%3D-instance_method" title="all_attributes_loaded=">all_attributes_loaded=</a></span>, <span class='name'><a href="AbstractBase.html#all_attributes_loaded%3F-instance_method" title="all_attributes_loaded?">all_attributes_loaded?</a></span>, <span class='name'><a href="AbstractBase.html#attribute_for_inspect-instance_method" title="attribute_for_inspect">attribute_for_inspect</a></span>, <span class='name'><a href="AbstractBase.html#attribute_names-instance_method" title="attribute_names">attribute_names</a></span>, <span class='name'><a href="AbstractBase.html#attribute_present%3F-instance_method" title="attribute_present?">attribute_present?</a></span>, <span class='name'><a href="AbstractBase.html#attributes-instance_method" title="attributes">attributes</a></span>, <span class='name'><a href="AbstractBase.html#attributes%3D-instance_method" title="attributes=">attributes=</a></span>, <span class='name'><a href="AbstractBase.html#column_for_attribute-instance_method" title="column_for_attribute">column_for_attribute</a></span>, <span class='name'><a href="AbstractBase.html#deserialize-instance_method" title="deserialize">deserialize</a></span>, <span class='name'><a href="AbstractBase.html#destroy-instance_method" title="destroy">destroy</a></span>, <span class='name'><a href="AbstractBase.html#eql%3F-instance_method" title="eql?">eql?</a></span>, <span class='name'><a href="AbstractBase.html#freeze-instance_method" title="freeze">freeze</a></span>, <span class='name'><a href="AbstractBase.html#frozen%3F-instance_method" title="frozen?">frozen?</a></span>, <span class='name'><a href="AbstractBase.html#has_attribute%3F-instance_method" title="has_attribute?">has_attribute?</a></span>, <span class='name'><a href="AbstractBase.html#hash-instance_method" title="hash">hash</a></span>, <span class='name'><a href="AbstractBase.html#human_attribute_name-instance_method" title="human_attribute_name">human_attribute_name</a></span>, <span class='name'><a href="AbstractBase.html#id%3D-instance_method" title="id=">id=</a></span>, <span class='name'><a href="AbstractBase.html#inspect-instance_method" title="inspect">inspect</a></span>, <span class='name'><a href="AbstractBase.html#new_record%3F-instance_method" title="new_record?">new_record?</a></span>, <span class='name'><a href="AbstractBase.html#preinitialize-instance_method" title="preinitialize">preinitialize</a></span>, <span class='name'><a href="AbstractBase.html#quoted_id-instance_method" title="quoted_id">quoted_id</a></span>, <span class='name'><a href="AbstractBase.html#readonly%21-instance_method" title="readonly!">readonly!</a></span>, <span class='name'><a href="AbstractBase.html#readonly%3F-instance_method" title="readonly?">readonly?</a></span>, <span class='name'><a href="AbstractBase.html#reload-instance_method" title="reload">reload</a></span>, <span class='name'><a href="AbstractBase.html#respond_to%3F-instance_method" title="respond_to?">respond_to?</a></span>, <span class='name'><a href="AbstractBase.html#safe_attributes%3D-instance_method" title="safe_attributes=">safe_attributes=</a></span>, <span class='name'><a href="AbstractBase.html#save-instance_method" title="save">save</a></span>, <span class='name'><a href="AbstractBase.html#save%21-instance_method" title="save!">save!</a></span>, <span class='name'><a href="AbstractBase.html#to_s-instance_method" title="to_s">to_s</a></span>, <span class='name'><a href="AbstractBase.html#update_attribute-instance_method" title="update_attribute">update_attribute</a></span>, <span class='name'><a href="AbstractBase.html#update_attributes-instance_method" title="update_attributes">update_attributes</a></span>, <span class='name'><a href="AbstractBase.html#update_attributes%21-instance_method" title="update_attributes!">update_attributes!</a></span></p>
+  </div>
+  
+</div>
+<div class="clear"></div>
+  </div>
+<div class="section methoddetails class public">
+  <h1>Public Class Method Details</h1>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>base_class</h3>
+</div><div id="base_class-class_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>base_class</span><span class='args'></span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+38
+39
+40</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/embedded.rb', line 38</span>
+
+<span class='def def kw'>def</span> <span class='base_class identifier id'>base_class</span>
+  <span class='lparen token'>(</span><span class='superclass identifier id'>superclass</span> <span class='eq op'>==</span> <span class='BigRecord constant id'>BigRecord</span><span class='colon2 op'>::</span><span class='Embedded constant id'>Embedded</span><span class='rparen token'>)</span> <span class='question op'>?</span> <span class='self self kw'>self</span> <span class='colon op'>:</span> <span class='superclass identifier id'>superclass</span><span class='dot token'>.</span><span class='base_class identifier id'>base_class</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>connection</h3>
+</div><div id="connection-class_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>connection</span><span class='args'></span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section docstring">
+  <p>
+Borrow the default connection of BigRecord
+</p>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+34
+35
+36</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/embedded.rb', line 34</span>
+
+<span class='def def kw'>def</span> <span class='connection identifier id'>connection</span>
+  <span class='BigRecord constant id'>BigRecord</span><span class='colon2 op'>::</span><span class='Base constant id'>Base</span><span class='dot token'>.</span><span class='connection identifier id'>connection</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>default_columns</h3>
+</div><div id="default_columns-class_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>default_columns</span><span class='args'></span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+64
+65
+66</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/embedded.rb', line 64</span>
+
+<span class='def def kw'>def</span> <span class='default_columns identifier id'>default_columns</span>
+  <span class='lbrace token'>{</span><span class='primary_key identifier id'>primary_key</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='ConnectionAdapters constant id'>ConnectionAdapters</span><span class='colon2 op'>::</span><span class='Column constant id'>Column</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='primary_key identifier id'>primary_key</span><span class='comma token'>,</span> <span class='string val'>'string'</span><span class='rparen token'>)</span><span class='rbrace token'>}</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>hide_to_users</h3>
+</div><div id="hide_to_users-class_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>hide_to_users</span><span class='args'></span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+51
+52
+53</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/embedded.rb', line 51</span>
+
+<span class='def def kw'>def</span> <span class='hide_to_users identifier id'>hide_to_users</span>
+  <span class='@hide_to_user ivar id'>@hide_to_user</span> <span class='assign token'>=</span> <span class='true true kw'>true</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>inherited</h3>
+</div><div id="inherited-class_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>inherited</span><span class='args'>(child)</span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+59
+60
+61
+62</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/embedded.rb', line 59</span>
+
+<span class='def def kw'>def</span> <span class='inherited identifier id'>inherited</span><span class='lparen token'>(</span><span class='child identifier id'>child</span><span class='rparen token'>)</span> <span class='comment val'>#:nodoc:</span>
+  <span class='child identifier id'>child</span><span class='dot token'>.</span><span class='set_pretty_name identifier id'>set_pretty_name</span> <span class='child identifier id'>child</span><span class='dot token'>.</span><span class='name identifier id'>name</span><span class='dot token'>.</span><span class='split identifier id'>split</span><span class='lparen token'>(</span><span class='string val'>&quot;::&quot;</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='last identifier id'>last</span>
+  <span class='super super kw'>super</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>pretty_name</h3>
+</div><div id="pretty_name-class_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>pretty_name</span><span class='args'></span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section docstring">
+  <p>
+Class attribute that holds the name of the embedded type for dispaly
+</p>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+43
+44
+45</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/embedded.rb', line 43</span>
+
+<span class='def def kw'>def</span> <span class='pretty_name identifier id'>pretty_name</span>
+  <span class='@pretty_name ivar id'>@pretty_name</span> <span class='orop op'>||</span> <span class='self self kw'>self</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>primary_key</h3>
+</div><div id="primary_key-class_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>primary_key</span><span class='args'></span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+29
+30
+31</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/embedded.rb', line 29</span>
+
+<span class='def def kw'>def</span> <span class='primary_key identifier id'>primary_key</span>
+  <span class='string val'>&quot;id&quot;</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>set_pretty_name</h3>
+</div><div id="set_pretty_name-class_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>set_pretty_name</span><span class='args'>(new_name)</span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+47
+48
+49</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/embedded.rb', line 47</span>
+
+<span class='def def kw'>def</span> <span class='set_pretty_name identifier id'>set_pretty_name</span> <span class='new_name identifier id'>new_name</span>
+  <span class='@pretty_name ivar id'>@pretty_name</span> <span class='assign token'>=</span> <span class='new_name identifier id'>new_name</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>show_to_users?</h3>
+</div><div id="show_to_users?-class_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>show_to_users?</span><span class='args'></span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+55
+56
+57</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/embedded.rb', line 55</span>
+
+<span class='def def kw'>def</span> <span class='show_to_users? fid id'>show_to_users?</span>
+  <span class='notop op'>!</span><span class='@hide_to_user ivar id'>@hide_to_user</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>store_primary_key?</h3>
+</div><div id="store_primary_key?-class_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>store_primary_key?</span><span class='args'></span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+25
+26
+27</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/embedded.rb', line 25</span>
+
+<span class='def def kw'>def</span> <span class='store_primary_key? fid id'>store_primary_key?</span>
+  <span class='true true kw'>true</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+</div><div class="section methoddetails instance public">
+  <h1>Public Instance Method Details</h1>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>connection</h3>
+</div><div id="connection-instance_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>connection</span><span class='args'></span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+10
+11
+12</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/embedded.rb', line 10</span>
+
+<span class='def def kw'>def</span> <span class='connection identifier id'>connection</span>
+  <span class='self self kw'>self</span><span class='dot token'>.</span><span class='class identifier id'>class</span><span class='dot token'>.</span><span class='connection identifier id'>connection</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>id</h3>
+</div><div id="id-instance_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>id</span><span class='args'></span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+14
+15
+16</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/embedded.rb', line 14</span>
+
+<span class='def def kw'>def</span> <span class='id identifier id'>id</span>
+  <span class='super super kw'>super</span> <span class='orop op'>||</span> <span class='lparen token'>(</span><span class='self self kw'>self</span><span class='dot token'>.</span><span class='id identifier id'>id</span> <span class='assign token'>=</span> <span class='generate_id identifier id'>generate_id</span><span class='rparen token'>)</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+</div>
+  </div>
+
+</div>
+    </div>
+    <div id="yard_info">
+  Generated on Tuesday, November 10 2009 at 06:18:32 PM by 
+  <abbr class="yard" title="Yay! A Ruby Documentation Tool"><a href="http://yard.soen.ca">YARD</a></abbr> 
+  0.2.3.5 (ruby-1.8.7).
+</div>
+
+  </body>
+</html>

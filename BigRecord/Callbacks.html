@@ -1,0 +1,1692 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="../style.css" type="text/css" charset="utf-8" />
+<link rel="stylesheet" href="../custom.css" type="text/css" charset="utf-8" />
+<link rel="stylesheet" href="../syntax_highlight.css" type="text/css" charset="utf-8" />
+
+    <script src="../jquery.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../app.js" type="text/javascript" charset="utf-8"></script>
+    <title>Module: BigRecord::Callbacks</title>
+  </head>
+  <body>
+    <div id="content">
+      <div class="section module BigRecord_Callbacks">
+  <h1 class="title">Module: BigRecord::Callbacks</h1>
+  <div class="section docstring">
+  <p>
+Callbacks are hooks into the lifecycle of an Active Record object that
+allows you to trigger logic before or after an alteration of the object
+state. This can be used to make sure that associated and dependent objects
+are deleted when destroy is called (by overwriting before_destroy) or to
+massage attributes before they&#8217;re validated (by overwriting
+before_validation). As an example of the callbacks initiated, consider the
+Base#save call:
+</p>
+<ul>
+<li>(-) save
+
+</li>
+<li>(-) valid?
+
+</li>
+<li>(1) before_validation
+
+</li>
+<li>(2) before_validation_on_create
+
+</li>
+<li>(-) validate
+
+</li>
+<li>(-) validate_on_create
+
+</li>
+<li>(3) after_validation
+
+</li>
+<li>(4) after_validation_on_create
+
+</li>
+<li>(5) before_save
+
+</li>
+<li>(6) before_create
+
+</li>
+<li>(-) create
+
+</li>
+<li>(7) after_create
+
+</li>
+<li>(8) after_save
+
+</li>
+</ul>
+<p>
+That&#8217;s a total of eight callbacks, which gives you immense power to
+react and prepare for each state in the Active Record lifecycle.
+</p>
+<p>
+Examples:
+</p>
+<pre class="code">
+  <span class='class class kw'>class</span> <span class='CreditCard constant id'>CreditCard</span> <span class='lt op'>&lt;</span> <span class='ActiveRecord constant id'>ActiveRecord</span><span class='colon2 op'>::</span><span class='Base constant id'>Base</span>
+    <span class='comment val'># Strip everything but digits, so the user can specify &quot;555 234 34&quot; or</span>
+    <span class='comment val'># &quot;5552-3434&quot; or both will mean &quot;55523434&quot;</span>
+    <span class='def def kw'>def</span> <span class='before_validation_on_create identifier id'>before_validation_on_create</span>
+      <span class='self self kw'>self</span><span class='dot token'>.</span><span class='number identifier id'>number</span> <span class='assign token'>=</span> <span class='number identifier id'>number</span><span class='dot token'>.</span><span class='gsub identifier id'>gsub</span><span class='lparen token'>(</span><span class='regexp val'>/[^0-9]/</span><span class='comma token'>,</span> <span class='string val'>&quot;&quot;</span><span class='rparen token'>)</span> <span class='if if_mod kw'>if</span> <span class='attribute_present? fid id'>attribute_present?</span><span class='lparen token'>(</span><span class='string val'>&quot;number&quot;</span><span class='rparen token'>)</span>
+    <span class='end end kw'>end</span>
+  <span class='end end kw'>end</span>
+
+  <span class='class class kw'>class</span> <span class='Subscription constant id'>Subscription</span> <span class='lt op'>&lt;</span> <span class='ActiveRecord constant id'>ActiveRecord</span><span class='colon2 op'>::</span><span class='Base constant id'>Base</span>
+    <span class='before_create identifier id'>before_create</span> <span class='symbol val'>:record_signup</span>
+
+    <span class='private identifier id'>private</span>
+      <span class='def def kw'>def</span> <span class='record_signup identifier id'>record_signup</span>
+        <span class='self self kw'>self</span><span class='dot token'>.</span><span class='signed_up_on identifier id'>signed_up_on</span> <span class='assign token'>=</span> <span class='Date constant id'>Date</span><span class='dot token'>.</span><span class='today identifier id'>today</span>
+      <span class='end end kw'>end</span>
+  <span class='end end kw'>end</span>
+
+  <span class='class class kw'>class</span> <span class='Firm constant id'>Firm</span> <span class='lt op'>&lt;</span> <span class='ActiveRecord constant id'>ActiveRecord</span><span class='colon2 op'>::</span><span class='Base constant id'>Base</span>
+    <span class='comment val'># Destroys the associated clients and people when the firm is destroyed</span>
+    <span class='before_destroy identifier id'>before_destroy</span> <span class='lbrace token'>{</span> <span class='bitor op'>|</span><span class='record identifier id'>record</span><span class='bitor op'>|</span> <span class='Person constant id'>Person</span><span class='dot token'>.</span><span class='destroy_all identifier id'>destroy_all</span> <span class='dstring node'>&quot;firm_id = #{record.id}&quot;</span>   <span class='rbrace token'>}</span>
+    <span class='before_destroy identifier id'>before_destroy</span> <span class='lbrace token'>{</span> <span class='bitor op'>|</span><span class='record identifier id'>record</span><span class='bitor op'>|</span> <span class='Client constant id'>Client</span><span class='dot token'>.</span><span class='destroy_all identifier id'>destroy_all</span> <span class='dstring node'>&quot;client_of = #{record.id}&quot;</span> <span class='rbrace token'>}</span>
+  <span class='end end kw'>end</span>
+</pre>
+<h2>Inheritable callback queues</h2>
+<p>
+Besides the overwriteable callback methods, it&#8217;s also possible to
+register callbacks through the use of the callback macros. Their main
+advantage is that the macros add behavior into a callback queue that is
+kept intact down through an inheritance hierarchy. Example:
+</p>
+<pre class="code">
+  <span class='class class kw'>class</span> <span class='Topic constant id'>Topic</span> <span class='lt op'>&lt;</span> <span class='ActiveRecord constant id'>ActiveRecord</span><span class='colon2 op'>::</span><span class='Base constant id'>Base</span>
+    <span class='before_destroy identifier id'>before_destroy</span> <span class='symbol val'>:destroy_author</span>
+  <span class='end end kw'>end</span>
+
+  <span class='class class kw'>class</span> <span class='Reply constant id'>Reply</span> <span class='lt op'>&lt;</span> <span class='Topic constant id'>Topic</span>
+    <span class='before_destroy identifier id'>before_destroy</span> <span class='symbol val'>:destroy_readers</span>
+  <span class='end end kw'>end</span>
+</pre>
+<p>
+Now, when Topic#destroy is run only <tt>destroy_author</tt> is called. When
+Reply#destroy is run both <tt>destroy_author</tt> and
+<tt>destroy_readers</tt> is called. Contrast this to the situation where
+we&#8217;ve implemented the save behavior through overwriteable methods:
+</p>
+<pre class="code">
+  <span class='class class kw'>class</span> <span class='Topic constant id'>Topic</span> <span class='lt op'>&lt;</span> <span class='ActiveRecord constant id'>ActiveRecord</span><span class='colon2 op'>::</span><span class='Base constant id'>Base</span>
+    <span class='def def kw'>def</span> <span class='before_destroy identifier id'>before_destroy</span><span class='lparen token'>(</span><span class='rparen token'>)</span> <span class='destroy_author identifier id'>destroy_author</span> <span class='end end kw'>end</span>
+  <span class='end end kw'>end</span>
+
+  <span class='class class kw'>class</span> <span class='Reply constant id'>Reply</span> <span class='lt op'>&lt;</span> <span class='Topic constant id'>Topic</span>
+    <span class='def def kw'>def</span> <span class='before_destroy identifier id'>before_destroy</span><span class='lparen token'>(</span><span class='rparen token'>)</span> <span class='destroy_readers identifier id'>destroy_readers</span> <span class='end end kw'>end</span>
+  <span class='end end kw'>end</span>
+</pre>
+<p>
+In that case, Reply#destroy would only run <tt>destroy_readers</tt> and
+<em>not</em> <tt>destroy_author</tt>. So use the callback macros when you
+want to ensure that a certain callback is called for the entire hierarchy
+and the regular overwriteable methods when you want to leave it up to each
+descendent to decide whether they want to call <tt>super</tt> and trigger
+the inherited callbacks.
+</p>
+<p>
+*IMPORTANT:* In order for inheritance to work for the callback queues, you
+must specify the callbacks before specifying the associations. Otherwise,
+you might trigger the loading of a child before the parent has registered
+the callbacks and they won&#8217;t be inherited.
+</p>
+<h2>Types of callbacks</h2>
+<p>
+There are four types of callbacks accepted by the callback macros: Method
+references (symbol), callback objects, inline methods (using a proc), and
+inline eval methods (using a string). Method references and callback
+objects are the recommended approaches, inline methods using a proc are
+sometimes appropriate (such as for creating mix-ins), and inline eval
+methods are deprecated.
+</p>
+<p>
+The method reference callbacks work by specifying a protected or private
+method available in the object, like this:
+</p>
+<pre class="code">
+  <span class='class class kw'>class</span> <span class='Topic constant id'>Topic</span> <span class='lt op'>&lt;</span> <span class='ActiveRecord constant id'>ActiveRecord</span><span class='colon2 op'>::</span><span class='Base constant id'>Base</span>
+    <span class='before_destroy identifier id'>before_destroy</span> <span class='symbol val'>:delete_parents</span>
+
+    <span class='private identifier id'>private</span>
+      <span class='def def kw'>def</span> <span class='delete_parents identifier id'>delete_parents</span>
+        <span class='self self kw'>self</span><span class='dot token'>.</span><span class='class identifier id'>class</span><span class='dot token'>.</span><span class='delete_all identifier id'>delete_all</span> <span class='dstring node'>&quot;parent_id = #{id}&quot;</span>
+      <span class='end end kw'>end</span>
+  <span class='end end kw'>end</span>
+</pre>
+<p>
+The callback objects have methods named after the callback called with the
+record as the only parameter, such as:
+</p>
+<pre class="code">
+  <span class='class class kw'>class</span> <span class='BankAccount constant id'>BankAccount</span> <span class='lt op'>&lt;</span> <span class='ActiveRecord constant id'>ActiveRecord</span><span class='colon2 op'>::</span><span class='Base constant id'>Base</span>
+    <span class='before_save identifier id'>before_save</span>      <span class='EncryptionWrapper constant id'>EncryptionWrapper</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='string val'>&quot;credit_card_number&quot;</span><span class='rparen token'>)</span>
+    <span class='after_save identifier id'>after_save</span>       <span class='EncryptionWrapper constant id'>EncryptionWrapper</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='string val'>&quot;credit_card_number&quot;</span><span class='rparen token'>)</span>
+    <span class='after_initialize identifier id'>after_initialize</span> <span class='EncryptionWrapper constant id'>EncryptionWrapper</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='string val'>&quot;credit_card_number&quot;</span><span class='rparen token'>)</span>
+  <span class='end end kw'>end</span>
+
+  <span class='class class kw'>class</span> <span class='EncryptionWrapper constant id'>EncryptionWrapper</span>
+    <span class='def def kw'>def</span> <span class='initialize identifier id'>initialize</span><span class='lparen token'>(</span><span class='attribute identifier id'>attribute</span><span class='rparen token'>)</span>
+      <span class='@attribute ivar id'>@attribute</span> <span class='assign token'>=</span> <span class='attribute identifier id'>attribute</span>
+    <span class='end end kw'>end</span>
+
+    <span class='def def kw'>def</span> <span class='before_save identifier id'>before_save</span><span class='lparen token'>(</span><span class='record identifier id'>record</span><span class='rparen token'>)</span>
+      <span class='record identifier id'>record</span><span class='dot token'>.</span><span class='credit_card_number identifier id'>credit_card_number</span> <span class='assign token'>=</span> <span class='encrypt identifier id'>encrypt</span><span class='lparen token'>(</span><span class='record identifier id'>record</span><span class='dot token'>.</span><span class='credit_card_number identifier id'>credit_card_number</span><span class='rparen token'>)</span>
+    <span class='end end kw'>end</span>
+
+    <span class='def def kw'>def</span> <span class='after_save identifier id'>after_save</span><span class='lparen token'>(</span><span class='record identifier id'>record</span><span class='rparen token'>)</span>
+      <span class='record identifier id'>record</span><span class='dot token'>.</span><span class='credit_card_number identifier id'>credit_card_number</span> <span class='assign token'>=</span> <span class='decrypt identifier id'>decrypt</span><span class='lparen token'>(</span><span class='record identifier id'>record</span><span class='dot token'>.</span><span class='credit_card_number identifier id'>credit_card_number</span><span class='rparen token'>)</span>
+    <span class='end end kw'>end</span>
+
+    <span class='alias_method identifier id'>alias_method</span> <span class='symbol val'>:after_find</span><span class='comma token'>,</span> <span class='symbol val'>:after_save</span>
+
+    <span class='private identifier id'>private</span>
+      <span class='def def kw'>def</span> <span class='encrypt identifier id'>encrypt</span><span class='lparen token'>(</span><span class='value identifier id'>value</span><span class='rparen token'>)</span>
+        <span class='comment val'># Secrecy is committed</span>
+      <span class='end end kw'>end</span>
+
+      <span class='def def kw'>def</span> <span class='decrypt identifier id'>decrypt</span><span class='lparen token'>(</span><span class='value identifier id'>value</span><span class='rparen token'>)</span>
+        <span class='comment val'># Secrecy is unveiled</span>
+      <span class='end end kw'>end</span>
+  <span class='end end kw'>end</span>
+</pre>
+<p>
+So you specify the object you want messaged on a given callback. When that
+callback is triggered, the object has a method by the name of the callback
+messaged.
+</p>
+<p>
+The callback macros usually accept a symbol for the method they&#8217;re
+supposed to run, but you can also pass a &quot;method string&quot;, which
+will then be evaluated within the binding of the callback. Example:
+</p>
+<pre class="code">
+  <span class='class class kw'>class</span> <span class='Topic constant id'>Topic</span> <span class='lt op'>&lt;</span> <span class='ActiveRecord constant id'>ActiveRecord</span><span class='colon2 op'>::</span><span class='Base constant id'>Base</span>
+    <span class='before_destroy identifier id'>before_destroy</span> <span class='string val'>'self.class.delete_all &quot;parent_id = #{id}&quot;'</span>
+  <span class='end end kw'>end</span>
+</pre>
+<p>
+Notice that single plings (&#8217;) are used so the #{id} part isn&#8217;t
+evaluated until the callback is triggered. Also note that these inline
+callbacks can be stacked just like the regular ones:
+</p>
+<pre class="code">
+  <span class='class class kw'>class</span> <span class='Topic constant id'>Topic</span> <span class='lt op'>&lt;</span> <span class='ActiveRecord constant id'>ActiveRecord</span><span class='colon2 op'>::</span><span class='Base constant id'>Base</span>
+    <span class='before_destroy identifier id'>before_destroy</span> <span class='string val'>'self.class.delete_all &quot;parent_id = #{id}&quot;'</span><span class='comma token'>,</span>
+                   <span class='string val'>'puts &quot;Evaluated after parents are destroyed&quot;'</span>
+  <span class='end end kw'>end</span>
+</pre>
+<h2>The after_find and after_initialize exceptions</h2>
+<p>
+Because after_find and after_initialize are called for each object found
+and instantiated by a finder, such as Base.find(:all), we&#8217;ve had to
+implement a simple performance constraint (50% more speed on a simple test
+case). Unlike all the other callbacks, after_find and after_initialize will
+only be run if an explicit implementation is defined (<tt>def
+after_find</tt>). In that case, all of the callback types will be called.
+</p>
+<h2>before_validation* returning statements</h2>
+<p>
+If the returning value of a before_validation callback can be evaluated to
+false, the process will be aborted and Base#save will return false. If
+Base#save! is called it will raise a RecordNotSave error. Nothing will be
+appended to the errors object.
+</p>
+<h2>Cancelling callbacks</h2>
+<p>
+If a before_* callback returns false, all the later callbacks and the
+associated action are cancelled. If an after_* callback returns false, all
+the later callbacks are cancelled. Callbacks are generally run in the order
+they are defined, with the exception of callbacks defined as methods on the
+model, which are called last.
+</p>
+
+</div><div class="section constants">
+  <div class="thisclass">
+  <h1>Constants</h1>
+  <dl>
+    
+      <dt id="CALLBACKS-constant">CALLBACKS</dt>
+      <dd>%w(
+  after_find after_initialize before_save after_save before_create after_create before_update after_update before_validation
+  after_validation before_validation_on_create after_validation_on_create before_validation_on_update
+  after_validation_on_update before_destroy after_destroy
+)</dd>
+    
+  </dl>
+</div>
+
+</div>  <div class="section visibilitygroup public">
+    <h1>Public Visibility</h1>
+      <div class="section methodsummary class public">
+    <h1>Public Class Method Summary</h1>
+<table class="summary">
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#included-class_method" title="included">included</a></span><span class='args'>(base)</span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        
+        
+      </td>
+    </tr>
+  
+</table>
+
+  </div>
+  <div class="section methodsummary instance public">
+    <h1>Public Instance Method Summary</h1>
+<table class="summary">
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#after_create-instance_method" title="#after_create">#after_create</a></span><span class='args'></span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        <p>
+Is called <em>after</em> Base.
+</p>
+
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#after_destroy-instance_method" title="#after_destroy">#after_destroy</a></span><span class='args'></span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        <p>
+Is called <em>after</em> Base.
+</p>
+
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#after_save-instance_method" title="#after_save">#after_save</a></span><span class='args'></span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        <p>
+Is called <em>after</em> Base.
+</p>
+
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#after_update-instance_method" title="#after_update">#after_update</a></span><span class='args'></span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        <p>
+Is called <em>after</em> Base.
+</p>
+
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#after_validation-instance_method" title="#after_validation">#after_validation</a></span><span class='args'></span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        <p>
+Is called <em>after</em> Validations.
+</p>
+
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#after_validation_on_create-instance_method" title="#after_validation_on_create">#after_validation_on_create</a></span><span class='args'></span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        <p>
+Is called <em>after</em> Validations.
+</p>
+
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#after_validation_on_update-instance_method" title="#after_validation_on_update">#after_validation_on_update</a></span><span class='args'></span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        <p>
+Is called <em>after</em> Validations.
+</p>
+
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#before_create-instance_method" title="#before_create">#before_create</a></span><span class='args'></span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        <p>
+Is called <em>before</em> Base.
+</p>
+
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#before_destroy-instance_method" title="#before_destroy">#before_destroy</a></span><span class='args'></span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        <p>
+Is called <em>before</em> Base.
+</p>
+
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#before_save-instance_method" title="#before_save">#before_save</a></span><span class='args'></span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        <p>
+Is called <em>before</em> Base.
+</p>
+
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#before_update-instance_method" title="#before_update">#before_update</a></span><span class='args'></span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        <p>
+Is called <em>before</em> Base.
+</p>
+
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#before_validation-instance_method" title="#before_validation">#before_validation</a></span><span class='args'></span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        <p>
+Is called <em>before</em> Validations.
+</p>
+
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#before_validation_on_create-instance_method" title="#before_validation_on_create">#before_validation_on_create</a></span><span class='args'></span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        <p>
+Is called <em>before</em> Validations.
+</p>
+
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#before_validation_on_update-instance_method" title="#before_validation_on_update">#before_validation_on_update</a></span><span class='args'></span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        <p>
+Is called <em>before</em> Validations.
+</p>
+
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#create_or_update_with_callbacks-instance_method" title="#create_or_update_with_callbacks">#create_or_update_with_callbacks</a></span><span class='args'></span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#create_with_callbacks-instance_method" title="#create_with_callbacks">#create_with_callbacks</a></span><span class='args'></span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#destroy_with_callbacks-instance_method" title="#destroy_with_callbacks">#destroy_with_callbacks</a></span><span class='args'></span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#initialize_with_callbacks-instance_method" title="#initialize_with_callbacks">#initialize_with_callbacks</a></span><span class='args'>(attributes = nil)</span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        <p>
+Is called when the object was instantiated by one of the finders, like
+Base.
+</p>
+
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#update_with_callbacks-instance_method" title="#update_with_callbacks">#update_with_callbacks</a></span><span class='args'></span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#valid_with_callbacks%3F-instance_method" title="#valid_with_callbacks?">#valid_with_callbacks?</a></span><span class='args'></span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        
+        
+      </td>
+    </tr>
+  
+</table>
+
+  </div>
+<div class="section methoddetails class public">
+  <h1>Public Class Method Details</h1>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>included</h3>
+</div><div id="included-class_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>included</span><span class='args'>(base)</span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/callbacks.rb', line 179</span>
+
+<span class='def def kw'>def</span> <span class='self self kw'>self</span><span class='dot token'>.</span><span class='included identifier id'>included</span><span class='lparen token'>(</span><span class='base identifier id'>base</span><span class='rparen token'>)</span> <span class='comment val'>#:nodoc:</span>
+  <span class='base identifier id'>base</span><span class='dot token'>.</span><span class='extend identifier id'>extend</span><span class='lparen token'>(</span><span class='ClassMethods constant id'>ClassMethods</span><span class='rparen token'>)</span>
+  <span class='base identifier id'>base</span><span class='dot token'>.</span><span class='class_eval identifier id'>class_eval</span> <span class='do do kw'>do</span>
+    <span class='class class kw'>class</span> <span class='lshft op'>&lt;&lt;</span> <span class='self self kw'>self</span>
+      <span class='include identifier id'>include</span> <span class='Observable constant id'>Observable</span>
+      <span class='alias_method_chain identifier id'>alias_method_chain</span> <span class='symbol val'>:instantiate</span><span class='comma token'>,</span> <span class='symbol val'>:callbacks</span>
+    <span class='end end kw'>end</span>
+
+    <span class='lbrack token'>[</span><span class='symbol val'>:initialize</span><span class='comma token'>,</span> <span class='symbol val'>:create_or_update</span><span class='comma token'>,</span> <span class='symbol val'>:valid?</span><span class='comma token'>,</span> <span class='symbol val'>:create</span><span class='comma token'>,</span> <span class='symbol val'>:update</span><span class='comma token'>,</span> <span class='symbol val'>:destroy</span><span class='rbrack token'>]</span><span class='dot token'>.</span><span class='each identifier id'>each</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='method identifier id'>method</span><span class='bitor op'>|</span>
+      <span class='alias_method_chain identifier id'>alias_method_chain</span> <span class='method identifier id'>method</span><span class='comma token'>,</span> <span class='symbol val'>:callbacks</span>
+    <span class='end end kw'>end</span>
+  <span class='end end kw'>end</span>
+
+  <span class='CALLBACKS constant id'>CALLBACKS</span><span class='dot token'>.</span><span class='each identifier id'>each</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='method identifier id'>method</span><span class='bitor op'>|</span>
+    <span class='base identifier id'>base</span><span class='dot token'>.</span><span class='class_eval identifier id'>class_eval</span> <span class='string val'>&quot;def self.\#{method}(*callbacks, &amp;block)\ncallbacks &lt;&lt; block if block_given?\nwrite_inheritable_array(\#{method.to_sym.inspect}, callbacks)\nend\n&quot;</span>
+  <span class='end end kw'>end</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+</div><div class="section methoddetails instance public">
+  <h1>Public Instance Method Details</h1>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>after_create</h3>
+</div><div id="after_create-instance_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>after_create</span><span class='args'></span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section docstring">
+  <p>
+Is called <em>after</em> Base.save on new objects that haven&#8217;t been
+saved yet (no record exists).
+</p>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+252</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/callbacks.rb', line 252</span>
+
+<span class='def def kw'>def</span> <span class='after_create identifier id'>after_create</span><span class='lparen token'>(</span><span class='rparen token'>)</span> <span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>after_destroy</h3>
+</div><div id="after_destroy-instance_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>after_destroy</span><span class='args'></span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section docstring">
+  <p>
+Is called <em>after</em> Base.destroy (and all the attributes have been
+frozen).
+</p>
+<pre class="code">
+ <span class='class class kw'>class</span> <span class='Contact constant id'>Contact</span> <span class='lt op'>&lt;</span> <span class='ActiveRecord constant id'>ActiveRecord</span><span class='colon2 op'>::</span><span class='Base constant id'>Base</span>
+   <span class='after_destroy identifier id'>after_destroy</span> <span class='lbrace token'>{</span> <span class='bitor op'>|</span><span class='record identifier id'>record</span><span class='bitor op'>|</span> <span class='logger identifier id'>logger</span><span class='dot token'>.</span><span class='info identifier id'>info</span><span class='lparen token'>(</span> <span class='dstring node'>&quot;Contact #{record.id} was destroyed.&quot;</span> <span class='rparen token'>)</span> <span class='rbrace token'>}</span>
+ <span class='end end kw'>end</span>
+</pre>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+319</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/callbacks.rb', line 319</span>
+
+<span class='def def kw'>def</span> <span class='after_destroy identifier id'>after_destroy</span><span class='lparen token'>(</span><span class='rparen token'>)</span>  <span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>after_save</h3>
+</div><div id="after_save-instance_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>after_save</span><span class='args'></span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section docstring">
+  <p>
+Is called <em>after</em> Base.save (regardless of whether it&#8217;s a
+create or update save).
+</p>
+<pre class="code">
+ <span class='class class kw'>class</span> <span class='Contact constant id'>Contact</span> <span class='lt op'>&lt;</span> <span class='ActiveRecord constant id'>ActiveRecord</span><span class='colon2 op'>::</span><span class='Base constant id'>Base</span>
+   <span class='after_save identifier id'>after_save</span> <span class='lbrace token'>{</span> <span class='logger identifier id'>logger</span><span class='dot token'>.</span><span class='info identifier id'>info</span><span class='lparen token'>(</span> <span class='string val'>'New contact saved!'</span> <span class='rparen token'>)</span> <span class='rbrace token'>}</span>
+ <span class='end end kw'>end</span>
+</pre>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+240</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/callbacks.rb', line 240</span>
+
+<span class='def def kw'>def</span> <span class='after_save identifier id'>after_save</span><span class='lparen token'>(</span><span class='rparen token'>)</span>  <span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>after_update</h3>
+</div><div id="after_update-instance_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>after_update</span><span class='args'></span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section docstring">
+  <p>
+Is called <em>after</em> Base.save on existing objects that have a record.
+</p>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+264</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/callbacks.rb', line 264</span>
+
+<span class='def def kw'>def</span> <span class='after_update identifier id'>after_update</span><span class='lparen token'>(</span><span class='rparen token'>)</span> <span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>after_validation</h3>
+</div><div id="after_validation-instance_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>after_validation</span><span class='args'></span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section docstring">
+  <p>
+Is called <em>after</em> Validations.validate (which is part of the
+Base.save call).
+</p>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+277</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/callbacks.rb', line 277</span>
+
+<span class='def def kw'>def</span> <span class='after_validation identifier id'>after_validation</span><span class='lparen token'>(</span><span class='rparen token'>)</span> <span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>after_validation_on_create</h3>
+</div><div id="after_validation_on_create-instance_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>after_validation_on_create</span><span class='args'></span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section docstring">
+  <p>
+Is called <em>after</em> Validations.validate (which is part of the
+Base.save call) on new objects that haven&#8217;t been saved yet (no record
+exists).
+</p>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+285</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/callbacks.rb', line 285</span>
+
+<span class='def def kw'>def</span> <span class='after_validation_on_create identifier id'>after_validation_on_create</span><span class='lparen token'>(</span><span class='rparen token'>)</span>  <span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>after_validation_on_update</h3>
+</div><div id="after_validation_on_update-instance_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>after_validation_on_update</span><span class='args'></span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section docstring">
+  <p>
+Is called <em>after</em> Validations.validate (which is part of the
+Base.save call) on existing objects that have a record.
+</p>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+293</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/callbacks.rb', line 293</span>
+
+<span class='def def kw'>def</span> <span class='after_validation_on_update identifier id'>after_validation_on_update</span><span class='lparen token'>(</span><span class='rparen token'>)</span>  <span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>before_create</h3>
+</div><div id="before_create-instance_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>before_create</span><span class='args'></span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section docstring">
+  <p>
+Is called <em>before</em> Base.save on new objects that haven&#8217;t been
+saved yet (no record exists).
+</p>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+249</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/callbacks.rb', line 249</span>
+
+<span class='def def kw'>def</span> <span class='before_create identifier id'>before_create</span><span class='lparen token'>(</span><span class='rparen token'>)</span> <span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>before_destroy</h3>
+</div><div id="before_destroy-instance_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>before_destroy</span><span class='args'></span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section docstring">
+  <p>
+Is called <em>before</em> Base.destroy.
+</p>
+<p>
+Note: If you need to <em>destroy</em> or <em>nullify</em> associated
+records first, use the _:dependent_ option on your associations.
+</p>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+312</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/callbacks.rb', line 312</span>
+
+<span class='def def kw'>def</span> <span class='before_destroy identifier id'>before_destroy</span><span class='lparen token'>(</span><span class='rparen token'>)</span> <span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>before_save</h3>
+</div><div id="before_save-instance_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>before_save</span><span class='args'></span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section docstring">
+  <p>
+Is called <em>before</em> Base.save (regardless of whether it&#8217;s a
+create or update save).
+</p>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+233</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/callbacks.rb', line 233</span>
+
+<span class='def def kw'>def</span> <span class='before_save identifier id'>before_save</span><span class='lparen token'>(</span><span class='rparen token'>)</span> <span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>before_update</h3>
+</div><div id="before_update-instance_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>before_update</span><span class='args'></span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section docstring">
+  <p>
+Is called <em>before</em> Base.save on existing objects that have a record.
+</p>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+261</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/callbacks.rb', line 261</span>
+
+<span class='def def kw'>def</span> <span class='before_update identifier id'>before_update</span><span class='lparen token'>(</span><span class='rparen token'>)</span> <span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>before_validation</h3>
+</div><div id="before_validation-instance_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>before_validation</span><span class='args'></span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section docstring">
+  <p>
+Is called <em>before</em> Validations.validate (which is part of the
+Base.save call).
+</p>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+274</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/callbacks.rb', line 274</span>
+
+<span class='def def kw'>def</span> <span class='before_validation identifier id'>before_validation</span><span class='lparen token'>(</span><span class='rparen token'>)</span> <span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>before_validation_on_create</h3>
+</div><div id="before_validation_on_create-instance_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>before_validation_on_create</span><span class='args'></span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section docstring">
+  <p>
+Is called <em>before</em> Validations.validate (which is part of the
+Base.save call) on new objects that haven&#8217;t been saved yet (no record
+exists).
+</p>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+281</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/callbacks.rb', line 281</span>
+
+<span class='def def kw'>def</span> <span class='before_validation_on_create identifier id'>before_validation_on_create</span><span class='lparen token'>(</span><span class='rparen token'>)</span> <span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>before_validation_on_update</h3>
+</div><div id="before_validation_on_update-instance_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>before_validation_on_update</span><span class='args'></span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section docstring">
+  <p>
+Is called <em>before</em> Validations.validate (which is part of the
+Base.save call) on existing objects that have a record.
+</p>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+289</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/callbacks.rb', line 289</span>
+
+<span class='def def kw'>def</span> <span class='before_validation_on_update identifier id'>before_validation_on_update</span><span class='lparen token'>(</span><span class='rparen token'>)</span> <span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>create_or_update_with_callbacks</h3>
+</div><div id="create_or_update_with_callbacks-instance_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>create_or_update_with_callbacks</span><span class='args'></span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+241
+242
+243
+244
+245
+246</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/callbacks.rb', line 241</span>
+
+<span class='def def kw'>def</span> <span class='create_or_update_with_callbacks identifier id'>create_or_update_with_callbacks</span> 
+  <span class='return return kw'>return</span> <span class='false false kw'>false</span> <span class='if if_mod kw'>if</span> <span class='callback identifier id'>callback</span><span class='lparen token'>(</span><span class='symbol val'>:before_save</span><span class='rparen token'>)</span> <span class='eq op'>==</span> <span class='false false kw'>false</span>
+  <span class='result identifier id'>result</span> <span class='assign token'>=</span> <span class='create_or_update_without_callbacks identifier id'>create_or_update_without_callbacks</span>
+  <span class='callback identifier id'>callback</span><span class='lparen token'>(</span><span class='symbol val'>:after_save</span><span class='rparen token'>)</span>
+  <span class='result identifier id'>result</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>create_with_callbacks</h3>
+</div><div id="create_with_callbacks-instance_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>create_with_callbacks</span><span class='args'></span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+253
+254
+255
+256
+257
+258</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/callbacks.rb', line 253</span>
+
+<span class='def def kw'>def</span> <span class='create_with_callbacks identifier id'>create_with_callbacks</span> 
+  <span class='return return kw'>return</span> <span class='false false kw'>false</span> <span class='if if_mod kw'>if</span> <span class='callback identifier id'>callback</span><span class='lparen token'>(</span><span class='symbol val'>:before_create</span><span class='rparen token'>)</span> <span class='eq op'>==</span> <span class='false false kw'>false</span>
+  <span class='result identifier id'>result</span> <span class='assign token'>=</span> <span class='create_without_callbacks identifier id'>create_without_callbacks</span>
+  <span class='callback identifier id'>callback</span><span class='lparen token'>(</span><span class='symbol val'>:after_create</span><span class='rparen token'>)</span>
+  <span class='result identifier id'>result</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>destroy_with_callbacks</h3>
+</div><div id="destroy_with_callbacks-instance_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>destroy_with_callbacks</span><span class='args'></span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+320
+321
+322
+323
+324
+325</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/callbacks.rb', line 320</span>
+
+<span class='def def kw'>def</span> <span class='destroy_with_callbacks identifier id'>destroy_with_callbacks</span> 
+  <span class='return return kw'>return</span> <span class='false false kw'>false</span> <span class='if if_mod kw'>if</span> <span class='callback identifier id'>callback</span><span class='lparen token'>(</span><span class='symbol val'>:before_destroy</span><span class='rparen token'>)</span> <span class='eq op'>==</span> <span class='false false kw'>false</span>
+  <span class='result identifier id'>result</span> <span class='assign token'>=</span> <span class='destroy_without_callbacks identifier id'>destroy_without_callbacks</span>
+  <span class='callback identifier id'>callback</span><span class='lparen token'>(</span><span class='symbol val'>:after_destroy</span><span class='rparen token'>)</span>
+  <span class='result identifier id'>result</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>initialize_with_callbacks</h3>
+</div><div id="initialize_with_callbacks-instance_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>initialize_with_callbacks</span><span class='args'>(attributes = nil)</span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section docstring">
+  <p>
+Is called when the object was instantiated by one of the finders, like
+Base.find. def after_find() end Is called after the object has been
+instantiated by a call to Base.new. def after_initialize() end
+</p>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+225
+226
+227
+228
+229
+230</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/callbacks.rb', line 225</span>
+
+<span class='def def kw'>def</span> <span class='initialize_with_callbacks identifier id'>initialize_with_callbacks</span><span class='lparen token'>(</span><span class='attributes identifier id'>attributes</span> <span class='assign token'>=</span> <span class='nil nil kw'>nil</span><span class='rparen token'>)</span> <span class='comment val'>#:nodoc:</span>
+  <span class='initialize_without_callbacks identifier id'>initialize_without_callbacks</span><span class='lparen token'>(</span><span class='attributes identifier id'>attributes</span><span class='rparen token'>)</span>
+  <span class='result identifier id'>result</span> <span class='assign token'>=</span> <span class='yield yield kw'>yield</span> <span class='self self kw'>self</span> <span class='if if_mod kw'>if</span> <span class='block_given? fid id'>block_given?</span>
+  <span class='callback identifier id'>callback</span><span class='lparen token'>(</span><span class='symbol val'>:after_initialize</span><span class='rparen token'>)</span> <span class='if if_mod kw'>if</span> <span class='respond_to_without_attributes? fid id'>respond_to_without_attributes?</span><span class='lparen token'>(</span><span class='symbol val'>:after_initialize</span><span class='rparen token'>)</span>
+  <span class='result identifier id'>result</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>update_with_callbacks</h3>
+</div><div id="update_with_callbacks-instance_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>update_with_callbacks</span><span class='args'></span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+266
+267
+268
+269
+270
+271</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/callbacks.rb', line 266</span>
+
+<span class='def def kw'>def</span> <span class='update_with_callbacks identifier id'>update_with_callbacks</span> 
+  <span class='return return kw'>return</span> <span class='false false kw'>false</span> <span class='if if_mod kw'>if</span> <span class='callback identifier id'>callback</span><span class='lparen token'>(</span><span class='symbol val'>:before_update</span><span class='rparen token'>)</span> <span class='eq op'>==</span> <span class='false false kw'>false</span>
+  <span class='result identifier id'>result</span> <span class='assign token'>=</span> <span class='update_without_callbacks identifier id'>update_without_callbacks</span>
+  <span class='callback identifier id'>callback</span><span class='lparen token'>(</span><span class='symbol val'>:after_update</span><span class='rparen token'>)</span>
+  <span class='result identifier id'>result</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>valid_with_callbacks?</h3>
+</div><div id="valid_with_callbacks?-instance_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>valid_with_callbacks?</span><span class='args'></span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/callbacks.rb', line 295</span>
+
+<span class='def def kw'>def</span> <span class='valid_with_callbacks? fid id'>valid_with_callbacks?</span> 
+  <span class='return return kw'>return</span> <span class='false false kw'>false</span> <span class='if if_mod kw'>if</span> <span class='callback identifier id'>callback</span><span class='lparen token'>(</span><span class='symbol val'>:before_validation</span><span class='rparen token'>)</span> <span class='eq op'>==</span> <span class='false false kw'>false</span>
+  <span class='if if kw'>if</span> <span class='new_record? fid id'>new_record?</span> <span class='then then kw'>then</span> <span class='result identifier id'>result</span> <span class='assign token'>=</span> <span class='callback identifier id'>callback</span><span class='lparen token'>(</span><span class='symbol val'>:before_validation_on_create</span><span class='rparen token'>)</span> <span class='else else kw'>else</span> <span class='result identifier id'>result</span> <span class='assign token'>=</span> <span class='callback identifier id'>callback</span><span class='lparen token'>(</span><span class='symbol val'>:before_validation_on_update</span><span class='rparen token'>)</span> <span class='end end kw'>end</span>
+  <span class='return return kw'>return</span> <span class='false false kw'>false</span> <span class='if if_mod kw'>if</span> <span class='result identifier id'>result</span> <span class='eq op'>==</span> <span class='false false kw'>false</span>
+
+  <span class='result identifier id'>result</span> <span class='assign token'>=</span> <span class='valid_without_callbacks? fid id'>valid_without_callbacks?</span>
+
+  <span class='callback identifier id'>callback</span><span class='lparen token'>(</span><span class='symbol val'>:after_validation</span><span class='rparen token'>)</span>
+  <span class='if if kw'>if</span> <span class='new_record? fid id'>new_record?</span> <span class='then then kw'>then</span> <span class='callback identifier id'>callback</span><span class='lparen token'>(</span><span class='symbol val'>:after_validation_on_create</span><span class='rparen token'>)</span> <span class='else else kw'>else</span> <span class='callback identifier id'>callback</span><span class='lparen token'>(</span><span class='symbol val'>:after_validation_on_update</span><span class='rparen token'>)</span> <span class='end end kw'>end</span>
+
+  <span class='return return kw'>return</span> <span class='result identifier id'>result</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+</div>
+  </div>
+
+</div>
+    </div>
+    <div id="yard_info">
+  Generated on Tuesday, November 10 2009 at 06:18:42 PM by 
+  <abbr class="yard" title="Yay! A Ruby Documentation Tool"><a href="http://yard.soen.ca">YARD</a></abbr> 
+  0.2.3.5 (ruby-1.8.7).
+</div>
+
+  </body>
+</html>

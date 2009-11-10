@@ -1,0 +1,366 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="../style.css" type="text/css" charset="utf-8" />
+<link rel="stylesheet" href="../custom.css" type="text/css" charset="utf-8" />
+<link rel="stylesheet" href="../syntax_highlight.css" type="text/css" charset="utf-8" />
+
+    <script src="../jquery.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../app.js" type="text/javascript" charset="utf-8"></script>
+    <title>Module: BigRecord::FamilySpanColumns</title>
+  </head>
+  <body>
+    <div id="content">
+      <div class="section module BigRecord_FamilySpanColumns">
+  <h1 class="title">Module: BigRecord::FamilySpanColumns</h1>
+  <div class="section constants">
+  
+</div>  <div class="section visibilitygroup public">
+    <h1>Public Visibility</h1>
+      <div class="section methodsummary class public">
+    <h1>Public Class Method Summary</h1>
+<table class="summary">
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#included-class_method" title="included">included</a></span><span class='args'>(base)</span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        
+        
+      </td>
+    </tr>
+  
+</table>
+
+  </div>
+  <div class="section methodsummary instance public">
+    <h1>Public Instance Method Summary</h1>
+<table class="summary">
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#attributes_from_column_definition_with_family_span_columns-instance_method" title="#attributes_from_column_definition_with_family_span_columns">#attributes_from_column_definition_with_family_span_columns</a></span><span class='args'></span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        <p>
+Initializes the attributes array with keys matching the columns from the
+linked table and the values matching the corresponding default value of
+that column, so that a new instance, or one populated from a passed-in
+Hash, still has all the attributes that instances loaded from the database
+would.
+</p>
+
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#column_for_attribute_with_family_span_columns-instance_method" title="#column_for_attribute_with_family_span_columns">#column_for_attribute_with_family_span_columns</a></span><span class='args'>(name)</span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        <p>
+Returns the column object for the named attribute.
+</p>
+
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#simple_columns-instance_method" title="#simple_columns">#simple_columns</a></span><span class='args'></span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        <p>
+Returns the list of columns that are not spanned on a whole family.
+</p>
+
+        
+      </td>
+    </tr>
+  
+</table>
+
+  </div>
+<div class="section methoddetails class public">
+  <h1>Public Class Method Details</h1>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>included</h3>
+</div><div id="included-class_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>included</span><span class='args'>(base)</span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/family_span_columns.rb', line 5</span>
+
+<span class='def def kw'>def</span> <span class='self self kw'>self</span><span class='dot token'>.</span><span class='included identifier id'>included</span><span class='lparen token'>(</span><span class='base identifier id'>base</span><span class='rparen token'>)</span> <span class='comment val'>#:nodoc:</span>
+  <span class='super super kw'>super</span>
+  <span class='base identifier id'>base</span><span class='dot token'>.</span><span class='alias_method_chain identifier id'>alias_method_chain</span> <span class='symbol val'>:column_for_attribute</span><span class='comma token'>,</span> <span class='symbol val'>:family_span_columns</span>
+  <span class='base identifier id'>base</span><span class='dot token'>.</span><span class='alias_method_chain identifier id'>alias_method_chain</span> <span class='symbol val'>:attributes_from_column_definition</span><span class='comma token'>,</span> <span class='symbol val'>:family_span_columns</span>
+
+  <span class='base identifier id'>base</span><span class='dot token'>.</span><span class='extend identifier id'>extend</span><span class='lparen token'>(</span><span class='ClassMethods constant id'>ClassMethods</span><span class='rparen token'>)</span>
+  <span class='base identifier id'>base</span><span class='dot token'>.</span><span class='class_eval identifier id'>class_eval</span> <span class='do do kw'>do</span>
+    <span class='class class kw'>class</span> <span class='lshft op'>&lt;&lt;</span> <span class='self self kw'>self</span>
+      <span class='alias_method_chain identifier id'>alias_method_chain</span> <span class='symbol val'>:alias_attribute</span><span class='comma token'>,</span> <span class='symbol val'>:family_span_columns</span>
+    <span class='end end kw'>end</span>
+  <span class='end end kw'>end</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+</div><div class="section methoddetails instance public">
+  <h1>Public Instance Method Details</h1>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>attributes_from_column_definition_with_family_span_columns</h3>
+</div><div id="attributes_from_column_definition_with_family_span_columns-instance_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>attributes_from_column_definition_with_family_span_columns</span><span class='args'></span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section docstring">
+  <p>
+Initializes the attributes array with keys matching the columns from the
+linked table and the values matching the corresponding default value of
+that column, so that a new instance, or one populated from a passed-in
+Hash, still has all the attributes that instances loaded from the database
+would.
+</p>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+80
+81
+82
+83
+84
+85
+86
+87</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/family_span_columns.rb', line 80</span>
+
+<span class='def def kw'>def</span> <span class='attributes_from_column_definition_with_family_span_columns identifier id'>attributes_from_column_definition_with_family_span_columns</span>
+  <span class='self self kw'>self</span><span class='dot token'>.</span><span class='simple_columns identifier id'>simple_columns</span><span class='dot token'>.</span><span class='inject identifier id'>inject</span><span class='lparen token'>(</span><span class='lbrace token'>{</span><span class='rbrace token'>}</span><span class='rparen token'>)</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='attributes identifier id'>attributes</span><span class='comma token'>,</span> <span class='column identifier id'>column</span><span class='bitor op'>|</span>
+    <span class='unless unless kw'>unless</span> <span class='column identifier id'>column</span><span class='dot token'>.</span><span class='name identifier id'>name</span> <span class='eq op'>==</span> <span class='self self kw'>self</span><span class='dot token'>.</span><span class='class identifier id'>class</span><span class='dot token'>.</span><span class='primary_key identifier id'>primary_key</span> <span class='or or kw'>or</span> <span class='column identifier id'>column</span><span class='dot token'>.</span><span class='family? fid id'>family?</span>
+      <span class='attributes identifier id'>attributes</span><span class='lbrack token'>[</span><span class='column identifier id'>column</span><span class='dot token'>.</span><span class='name identifier id'>name</span><span class='rbrack token'>]</span> <span class='assign token'>=</span> <span class='column identifier id'>column</span><span class='dot token'>.</span><span class='default identifier id'>default</span>
+    <span class='end end kw'>end</span>
+    <span class='attributes identifier id'>attributes</span>
+  <span class='end end kw'>end</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>column_for_attribute_with_family_span_columns</h3>
+</div><div id="column_for_attribute_with_family_span_columns-instance_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>column_for_attribute_with_family_span_columns</span><span class='args'>(name)</span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section docstring">
+  <p>
+Returns the column object for the named attribute.
+</p>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/family_span_columns.rb', line 62</span>
+
+<span class='def def kw'>def</span> <span class='column_for_attribute_with_family_span_columns identifier id'>column_for_attribute_with_family_span_columns</span><span class='lparen token'>(</span><span class='name identifier id'>name</span><span class='rparen token'>)</span>
+  <span class='name identifier id'>name</span> <span class='assign token'>=</span> <span class='name identifier id'>name</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span>
+
+  <span class='comment val'># ignore methods '=' and '?' (e.g. 'normalized_srf_ief:231=')</span>
+  <span class='return return kw'>return</span> <span class='if if_mod kw'>if</span> <span class='name identifier id'>name</span> <span class='match op'>=~</span> <span class='regexp val'>/=|\?$/</span>
+
+  <span class='column identifier id'>column</span> <span class='assign token'>=</span> <span class='self self kw'>self</span><span class='dot token'>.</span><span class='columns_hash identifier id'>columns_hash</span><span class='lbrack token'>[</span><span class='name identifier id'>name</span><span class='rbrack token'>]</span>
+  <span class='unless unless kw'>unless</span> <span class='column identifier id'>column</span>
+    <span class='family identifier id'>family</span> <span class='assign token'>=</span> <span class='BigRecord constant id'>BigRecord</span><span class='colon2 op'>::</span><span class='ConnectionAdapters constant id'>ConnectionAdapters</span><span class='colon2 op'>::</span><span class='Column constant id'>Column</span><span class='dot token'>.</span><span class='extract_family identifier id'>extract_family</span><span class='lparen token'>(</span><span class='name identifier id'>name</span><span class='rparen token'>)</span>
+    <span class='column identifier id'>column</span> <span class='assign token'>=</span> <span class='self self kw'>self</span><span class='dot token'>.</span><span class='columns_hash identifier id'>columns_hash</span><span class='lbrack token'>[</span><span class='family identifier id'>family</span><span class='rbrack token'>]</span> <span class='if if_mod kw'>if</span> <span class='family identifier id'>family</span>
+  <span class='end end kw'>end</span>
+  <span class='column identifier id'>column</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>simple_columns</h3>
+</div><div id="simple_columns-instance_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>simple_columns</span><span class='args'></span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section docstring">
+  <p>
+Returns the list of columns that are not spanned on a whole family
+</p>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+57
+58
+59</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/family_span_columns.rb', line 57</span>
+
+<span class='def def kw'>def</span> <span class='simple_columns identifier id'>simple_columns</span>
+  <span class='columns identifier id'>columns</span><span class='dot token'>.</span><span class='select identifier id'>select</span><span class='lbrace token'>{</span><span class='bitor op'>|</span><span class='c identifier id'>c</span><span class='bitor op'>|</span><span class='notop op'>!</span><span class='c identifier id'>c</span><span class='dot token'>.</span><span class='family? fid id'>family?</span><span class='rbrace token'>}</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+</div>
+  </div>
+
+</div>
+    </div>
+    <div id="yard_info">
+  Generated on Tuesday, November 10 2009 at 06:18:48 PM by 
+  <abbr class="yard" title="Yay! A Ruby Documentation Tool"><a href="http://yard.soen.ca">YARD</a></abbr> 
+  0.2.3.5 (ruby-1.8.7).
+</div>
+
+  </body>
+</html>

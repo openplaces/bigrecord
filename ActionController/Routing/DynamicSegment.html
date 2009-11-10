@@ -1,0 +1,180 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="../../style.css" type="text/css" charset="utf-8" />
+<link rel="stylesheet" href="../../custom.css" type="text/css" charset="utf-8" />
+<link rel="stylesheet" href="../../syntax_highlight.css" type="text/css" charset="utf-8" />
+
+    <script src="../../jquery.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../app.js" type="text/javascript" charset="utf-8"></script>
+    <title>Class: ActionController::Routing::DynamicSegment</title>
+  </head>
+  <body>
+    <div id="content">
+      <div class="section class ActionController_Routing_DynamicSegment">
+  <h1 class="title">Class: ActionController::Routing::DynamicSegment</h1>
+  <div class="section constants">
+  
+</div>  <div class="section visibilitygroup public">
+    <h1>Public Visibility</h1>
+      <div class="section methodsummary instance public">
+    <h1>Public Instance Method Summary</h1>
+<table class="summary">
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#interpolation_chunk-instance_method" title="#interpolation_chunk">#interpolation_chunk</a></span><span class='args'>(value_code = &quot;#{local_name}&quot;)</span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#match_extraction-instance_method" title="#match_extraction">#match_extraction</a></span><span class='args'>(next_capture)</span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        
+        
+      </td>
+    </tr>
+  
+</table>
+
+  </div>
+<div class="section methoddetails instance public">
+  <h1>Public Instance Method Details</h1>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>interpolation_chunk</h3>
+</div><div id="interpolation_chunk-instance_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>interpolation_chunk</span><span class='args'>(value_code = &quot;#{local_name}&quot;)</span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+19
+20
+21</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/routing_ext.rb', line 19</span>
+
+<span class='def def kw'>def</span> <span class='interpolation_chunk identifier id'>interpolation_chunk</span><span class='lparen token'>(</span><span class='value_code identifier id'>value_code</span> <span class='assign token'>=</span> <span class='dstring node'>&quot;#{local_name}&quot;</span><span class='rparen token'>)</span>
+  <span class='dstring node'>&quot;\#{CGI.escape(#{value_code}.to_s)}&quot;</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>match_extraction</h3>
+</div><div id="match_extraction-instance_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>match_extraction</span><span class='args'>(next_capture)</span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/routing_ext.rb', line 23</span>
+
+<span class='def def kw'>def</span> <span class='match_extraction identifier id'>match_extraction</span><span class='lparen token'>(</span><span class='next_capture identifier id'>next_capture</span><span class='rparen token'>)</span>
+  <span class='comment val'># All non code-related keys (such as :id, :slug) are URI-unescaped as</span>
+  <span class='comment val'># path parameters.</span>
+  <span class='default_value identifier id'>default_value</span> <span class='assign token'>=</span> <span class='default identifier id'>default</span> <span class='integer val'>? </span><span class='default identifier id'>default</span><span class='dot token'>.</span><span class='inspect identifier id'>inspect</span> <span class='colon op'>:</span> <span class='nil nil kw'>nil</span>
+  <span class='dstring node'>%[
+    value = if (m = match[#{next_capture}])
+      CGI.unescape(m)
+    else
+      #{default_value}
+    end
+    params[:#{key}] = value if value
+  ]</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+</div>
+  </div>
+
+</div>
+    </div>
+    <div id="yard_info">
+  Generated on Tuesday, November 10 2009 at 06:18:38 PM by 
+  <abbr class="yard" title="Yay! A Ruby Documentation Tool"><a href="http://yard.soen.ca">YARD</a></abbr> 
+  0.2.3.5 (ruby-1.8.7).
+</div>
+
+  </body>
+</html>

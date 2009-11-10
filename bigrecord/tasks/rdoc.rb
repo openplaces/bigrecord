@@ -3,7 +3,7 @@ begin
 
   desc 'Generate documentation for BigRecord.'
   YARD::Rake::YardocTask.new do |t|
-    t.files = %w(- doc/*.rdoc)
+    t.files = %w(- guides/*.rdoc)
     t.options = ["--title", "BigRecord Documentation"]
   end
 

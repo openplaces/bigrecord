@@ -31,7 +31,7 @@ Beyond this though, there are two basic motivations that almost immediately dema
 
 == Getting Started
 
-Check out the doc/getting_started.rdoc file for more information.
+Check out the guides/getting_started.rdoc file for more information.
 
 == License
 

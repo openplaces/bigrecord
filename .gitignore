@@ -5,3 +5,4 @@
 .loadpath
 .project
 pkg
+.yardoc

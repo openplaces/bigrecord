@@ -40,7 +40,7 @@ require dir + '/abstract_base'
 require dir + '/base'
 require dir + '/embedded'
 require dir + '/validations'
-require dir + '/callbacks'
+#require dir + '/callbacks'
 require dir + '/ar_reflection'
 require dir + '/br_reflection'
 require dir + '/ar_associations'
@@ -60,7 +60,8 @@ require dir + '/action_view_extensions'
 
 BigRecord::Base.class_eval do
   include BigRecord::Validations
-  include BigRecord::Callbacks
+#  include BigRecord::Callbacks
+  include ActiveRecord::Callbacks
   include BigRecord::Timestamp
   include BigRecord::ArAssociations
   include BigRecord::BrAssociations
@@ -74,7 +75,8 @@ end
 
 BigRecord::Embedded.class_eval do
   include BigRecord::Validations
-  include BigRecord::Callbacks
+#  include BigRecord::Callbacks
+  include ActiveRecord::Callbacks
   include BigRecord::Timestamp
   include BigRecord::ArAssociations
   include BigRecord::BrAssociations

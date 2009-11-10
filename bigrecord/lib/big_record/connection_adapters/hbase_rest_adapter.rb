@@ -140,9 +140,7 @@ module BigRecord
         return nil unless row_cols
 
         result = {}
-        row_cols.each do |col|
-          key = col.name
-          value = col.value
+        row_cols.each do |key,value|
           begin
             result[key] =
             if key == 'id'

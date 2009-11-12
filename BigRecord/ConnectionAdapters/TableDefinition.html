@@ -39,12 +39,12 @@
           <pre class="lines">
 
 
-403
-404
-405</pre>
+393
+394
+395</pre>
         </td>
         <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/hbase_adapter.rb', line 403</span>
+          <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/hbase_rest_adapter.rb', line 393</span>
 
 <span class='def def kw'>def</span> <span class='initialize identifier id'>initialize</span>
   <span class='@column_families ivar id'>@column_families</span> <span class='assign token'>=</span> <span class='lbrack token'>[</span><span class='rbrack token'>]</span>
@@ -58,7 +58,34 @@
 </div>
 </div>  <div class="section visibilitygroup public">
     <h1>Public Visibility</h1>
-      <div class="section methodsummary instance public">
+      <div class="section methodsummary class public">
+    <h1>Public Class Method Summary</h1>
+<table class="summary">
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#translate_to_adapter_format-class_method" title="translate_to_adapter_format">translate_to_adapter_format</a></span><span class='args'>(options)</span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        <p>
+Given an column descriptor&#8217;s options hash from Bigrecord, translate
+it into the format for this adapter&#8217;s ColumnDescriptor.
+</p>
+
+        
+      </td>
+    </tr>
+  
+</table>
+
+  </div>
+  <div class="section methodsummary instance public">
     <h1>Public Instance Method Summary</h1>
 <table class="summary">
   
@@ -134,7 +161,76 @@ Returns a column family for the column with name <tt>name</tt>.
 </table>
 
   </div>
-<div class="section methoddetails instance public">
+<div class="section methoddetails class public">
+  <h1>Public Class Method Details</h1>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>translate_to_adapter_format</h3>
+</div><div id="translate_to_adapter_format-class_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>translate_to_adapter_format</span><span class='args'>(options)</span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section docstring">
+  <p>
+Given an column descriptor&#8217;s options hash from Bigrecord, translate
+it into the format for this adapter&#8217;s ColumnDescriptor.
+</p>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+380
+381
+382
+383
+384
+385
+386
+387
+388
+389
+390
+391</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/hbase_rest_adapter.rb', line 380</span>
+
+<span class='def def kw'>def</span> <span class='self self kw'>self</span><span class='dot token'>.</span><span class='translate_to_adapter_format identifier id'>translate_to_adapter_format</span><span class='lparen token'>(</span><span class='options identifier id'>options</span><span class='rparen token'>)</span>
+  <span class='comment val'># Translating to the hbase-ruby column descriptor</span>
+  <span class='comment val'># TODO: Refactor this</span>
+  <span class='hbase_params identifier id'>hbase_params</span> <span class='assign token'>=</span> <span class='lbrace token'>{</span><span class='rbrace token'>}</span>
+
+  <span class='hbase_params identifier id'>hbase_params</span><span class='lbrack token'>[</span><span class='symbol val'>:name</span><span class='rbrack token'>]</span> <span class='assign token'>=</span> <span class='options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:name</span><span class='rbrack token'>]</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span> <span class='if if_mod kw'>if</span> <span class='options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:name</span><span class='rbrack token'>]</span>
+  <span class='hbase_params identifier id'>hbase_params</span><span class='lbrack token'>[</span><span class='symbol val'>:compression</span><span class='rbrack token'>]</span> <span class='assign token'>=</span> <span class='options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:compression</span><span class='rbrack token'>]</span> <span class='if if_mod kw'>if</span> <span class='options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:compression</span><span class='rbrack token'>]</span>
+  <span class='hbase_params identifier id'>hbase_params</span><span class='lbrack token'>[</span><span class='symbol val'>:max_versions</span><span class='rbrack token'>]</span> <span class='assign token'>=</span> <span class='options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:versions</span><span class='rbrack token'>]</span> <span class='if if_mod kw'>if</span> <span class='options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:versions</span><span class='rbrack token'>]</span>
+  <span class='hbase_params identifier id'>hbase_params</span><span class='lbrack token'>[</span><span class='symbol val'>:bloomfilter</span><span class='rbrack token'>]</span> <span class='assign token'>=</span> <span class='options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:bloom_filter</span><span class='rbrack token'>]</span> <span class='if if_mod kw'>if</span> <span class='options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:bloom_filter</span><span class='rbrack token'>]</span>
+
+  <span class='hbase_params identifier id'>hbase_params</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+</div><div class="section methoddetails instance public">
   <h1>Public Instance Method Details</h1>
   
     <div class="method">
@@ -165,12 +261,12 @@ Returns a column family for the column with name <tt>name</tt>.
           <pre class="lines">
 
 
-408
-409
-410</pre>
+398
+399
+400</pre>
         </td>
         <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/hbase_adapter.rb', line 408</span>
+          <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/hbase_rest_adapter.rb', line 398</span>
 
 <span class='def def kw'>def</span> <span class='aref op'>[]</span><span class='lparen token'>(</span><span class='name identifier id'>name</span><span class='rparen token'>)</span>
   <span class='@column_families ivar id'>@column_families</span><span class='dot token'>.</span><span class='find identifier id'>find</span> <span class='lbrace token'>{</span><span class='bitor op'>|</span><span class='column identifier id'>column</span><span class='bitor op'>|</span> <span class='column identifier id'>column</span><span class='dot token'>.</span><span class='name identifier id'>name</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span> <span class='eq op'>==</span> <span class='name identifier id'>name</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span><span class='rbrace token'>}</span>
@@ -207,12 +303,12 @@ Returns a column family for the column with name <tt>name</tt>.
           <pre class="lines">
 
 
-425
-426
-427</pre>
+417
+418
+419</pre>
         </td>
         <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/hbase_adapter.rb', line 425</span>
+          <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/hbase_rest_adapter.rb', line 417</span>
 
 <span class='def def kw'>def</span> <span class='column_families_list identifier id'>column_families_list</span>
   <span class='@column_families ivar id'>@column_families</span><span class='dot token'>.</span><span class='map identifier id'>map</span><span class='lparen token'>(</span><span class='bitand op'>&amp;</span><span class='symbol val'>:name</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='join identifier id'>join</span><span class='lparen token'>(</span><span class='string val'>&quot;, &quot;</span><span class='rparen token'>)</span>
@@ -254,15 +350,15 @@ Returns a column family for the column with name <tt>name</tt>.
           <pre class="lines">
 
 
-412
-413
-414
-415
-416
-417</pre>
+402
+403
+404
+405
+406
+407</pre>
         </td>
         <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/hbase_adapter.rb', line 412</span>
+          <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/hbase_rest_adapter.rb', line 402</span>
 
 <span class='def def kw'>def</span> <span class='column_family identifier id'>column_family</span><span class='lparen token'>(</span><span class='name identifier id'>name</span><span class='comma token'>,</span> <span class='options identifier id'>options</span> <span class='assign token'>=</span> <span class='lbrace token'>{</span><span class='rbrace token'>}</span><span class='rparen token'>)</span>
   <span class='column identifier id'>column</span> <span class='assign token'>=</span> <span class='self self kw'>self</span><span class='lbrack token'>[</span><span class='name identifier id'>name</span><span class='rbrack token'>]</span> <span class='orop op'>||</span> <span class='BigRecordDriver constant id'>BigRecordDriver</span><span class='colon2 op'>::</span><span class='ColumnDescriptor constant id'>ColumnDescriptor</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='name identifier id'>name</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span><span class='comma token'>,</span> <span class='options identifier id'>options</span><span class='rparen token'>)</span>
@@ -302,12 +398,12 @@ Returns a column family for the column with name <tt>name</tt>.
           <pre class="lines">
 
 
-421
-422
-423</pre>
+413
+414
+415</pre>
         </td>
         <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/hbase_adapter.rb', line 421</span>
+          <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/hbase_rest_adapter.rb', line 413</span>
 
 <span class='def def kw'>def</span> <span class='to_adapter_format identifier id'>to_adapter_format</span>
   <span class='@column_families ivar id'>@column_families</span>
@@ -327,7 +423,7 @@ Returns a column family for the column with name <tt>name</tt>.
 </div>
     </div>
     <div id="yard_info">
-  Generated on Tuesday, November 10 2009 at 06:18:38 PM by 
+  Generated on Thursday, November 12 2009 at 05:28:11 PM by 
   <abbr class="yard" title="Yay! A Ruby Documentation Tool"><a href="http://yard.soen.ca">YARD</a></abbr> 
   0.2.3.5 (ruby-1.8.7).
 </div>

@@ -9,15 +9,15 @@
 
     <script src="../../jquery.js" type="text/javascript" charset="utf-8"></script>
     <script src="../../app.js" type="text/javascript" charset="utf-8"></script>
-    <title>Class: BigRecord::ConnectionAdapters::HbaseAdapter</title>
+    <title>Class: BigRecord::ConnectionAdapters::HbaseRestAdapter</title>
   </head>
   <body>
     <div id="content">
-      <div class="section class BigRecord_ConnectionAdapters_HbaseAdapter">
-  <h1 class="title">Class: BigRecord::ConnectionAdapters::HbaseAdapter</h1>
+      <div class="section class BigRecord_ConnectionAdapters_HbaseRestAdapter">
+  <h1 class="title">Class: BigRecord::ConnectionAdapters::HbaseRestAdapter</h1>
   <div class="section inheritance">
   <ul>
-  <li><a href="AbstractAdapter.html" title="BigRecord::ConnectionAdapters::AbstractAdapter">BigRecord::ConnectionAdapters::AbstractAdapter</a></li><ul><li>BigRecord::ConnectionAdapters::HbaseAdapter</li>
+  <li><a href="AbstractAdapter.html" title="BigRecord::ConnectionAdapters::AbstractAdapter">BigRecord::ConnectionAdapters::AbstractAdapter</a></li><ul><li>BigRecord::ConnectionAdapters::HbaseRestAdapter</li>
   </ul></ul>
 </div><div class="section constants">
   <div class="thisclass">
@@ -66,14 +66,6 @@
     </tt>
   </div>
 
-</div><div class="section docstring">
-  <p>
-TRUE = &quot;\001&quot;
-</p>
-<pre class="code">
-     <span class='FALSE constant id'>FALSE</span> <span class='assign token'>=</span> <span class='string val'>&quot;\000&quot;</span>
-</pre>
-
 </div><div class="section source">
   <span>[<a class="source_link" href="#">View source</a>]</span>
   <div class="source_code">
@@ -83,15 +75,15 @@ TRUE = &quot;\001&quot;
           <pre class="lines">
 
 
-66
-67
-68
-69
-70
-71</pre>
+42
+43
+44
+45
+46
+47</pre>
         </td>
         <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/hbase_adapter.rb', line 66</span>
+          <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/hbase_rest_adapter.rb', line 42</span>
 
 <span class='def def kw'>def</span> <span class='initialize identifier id'>initialize</span><span class='lparen token'>(</span><span class='connection identifier id'>connection</span><span class='comma token'>,</span> <span class='logger identifier id'>logger</span><span class='comma token'>,</span> <span class='connection_options identifier id'>connection_options</span><span class='comma token'>,</span> <span class='config identifier id'>config</span><span class='rparen token'>)</span>
   <span class='super super kw'>super</span><span class='lparen token'>(</span><span class='connection identifier id'>connection</span><span class='comma token'>,</span> <span class='logger identifier id'>logger</span><span class='rparen token'>)</span>
@@ -178,6 +170,25 @@ CONNECTION MANAGEMENT ====================================.
       <td class="docstring">
         <p>
 Serialize an object in a given type.
+</p>
+
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        
+          <span class='overload'>
+            <span class='name'><a href="#columns_to_hbase_format-instance_method" title="#columns_to_hbase_format">#columns_to_hbase_format</a></span><span class='args'>(data = {})</span>
+            <span class='block'></span>
+          </span>
+        
+        
+      </th>
+      <td class="docstring">
+        <p>
+DATABASE STATEMENTS ======================================.
 </p>
 
         
@@ -354,7 +365,7 @@ Deserialize the given string assumed to be in the type header format.
       <th class="signature">
         
           <span class='overload'>
-            <span class='name'><a href="#get_columns_raw-instance_method" title="#get_columns_raw">#get_columns_raw</a></span><span class='args'>(table_name, row, columns, options = {})</span>
+            <span class='name'><a href="#get_columns_raw-instance_method" title="#get_columns_raw">#get_columns_raw</a></span><span class='args'>(table_name, row, columns = nil, options = {})</span>
             <span class='block'></span>
           </span>
         
@@ -579,10 +590,7 @@ Serialize the given value.
         
       </th>
       <td class="docstring">
-        <p>
-DATABASE STATEMENTS ======================================.
-</p>
-
+        
         
       </td>
     </tr>
@@ -629,19 +637,15 @@ CONNECTION MANAGEMENT ====================================
           <pre class="lines">
 
 
-87
-88
-89
-90
-91</pre>
+63
+64
+65</pre>
         </td>
         <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/hbase_adapter.rb', line 87</span>
+          <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/hbase_rest_adapter.rb', line 63</span>
 
 <span class='def def kw'>def</span> <span class='active? fid id'>active?</span>
-  <span class='@connection ivar id'>@connection</span><span class='dot token'>.</span><span class='ping identifier id'>ping</span>
-<span class='rescue rescue kw'>rescue</span> <span class='BigRecordError constant id'>BigRecordError</span>
-  <span class='false false kw'>false</span>
+  <span class='true true kw'>true</span>
 <span class='end end kw'>end</span>
 </pre>
         </td>
@@ -675,15 +679,15 @@ CONNECTION MANAGEMENT ====================================
           <pre class="lines">
 
 
-77
-78
-79</pre>
+53
+54
+55</pre>
         </td>
         <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/hbase_adapter.rb', line 77</span>
+          <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/hbase_rest_adapter.rb', line 53</span>
 
 <span class='def def kw'>def</span> <span class='adapter_name identifier id'>adapter_name</span> 
-  <span class='string val'>'HBase'</span>
+  <span class='string val'>'HBase-Rest'</span>
 <span class='end end kw'>end</span>
 </pre>
         </td>
@@ -722,27 +726,13 @@ CONNECTION MANAGEMENT ====================================
           <pre class="lines">
 
 
-259
-260
-261
-262
-263
-264
-265
-266
-267</pre>
+254
+255</pre>
         </td>
         <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/hbase_adapter.rb', line 259</span>
+          <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/hbase_rest_adapter.rb', line 254</span>
 
 <span class='def def kw'>def</span> <span class='add_column_family identifier id'>add_column_family</span><span class='lparen token'>(</span><span class='table_name identifier id'>table_name</span><span class='comma token'>,</span> <span class='column_name identifier id'>column_name</span><span class='comma token'>,</span> <span class='options identifier id'>options</span> <span class='assign token'>=</span> <span class='lbrace token'>{</span><span class='rbrace token'>}</span><span class='rparen token'>)</span>
-  <span class='column identifier id'>column</span> <span class='assign token'>=</span> <span class='BigRecordDriver constant id'>BigRecordDriver</span><span class='colon2 op'>::</span><span class='ColumnDescriptor constant id'>ColumnDescriptor</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='column_name identifier id'>column_name</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span><span class='comma token'>,</span> <span class='options identifier id'>options</span><span class='rparen token'>)</span>
-
-  <span class='result identifier id'>result</span> <span class='assign token'>=</span> <span class='nil nil kw'>nil</span>
-  <span class='log identifier id'>log</span> <span class='dstring node'>&quot;ADD COLUMN TABLE #{table_name} COLUMN #{column_name} (#{options.inspect});&quot;</span> <span class='do do kw'>do</span>
-    <span class='result identifier id'>result</span> <span class='assign token'>=</span> <span class='@connection ivar id'>@connection</span><span class='dot token'>.</span><span class='add_column identifier id'>add_column</span><span class='lparen token'>(</span><span class='table_name identifier id'>table_name</span><span class='comma token'>,</span> <span class='column identifier id'>column</span><span class='rparen token'>)</span>
-  <span class='end end kw'>end</span>
-  <span class='result identifier id'>result</span>
 <span class='end end kw'>end</span>
 </pre>
         </td>
@@ -781,15 +771,66 @@ Serialize an object in a given type
           <pre class="lines">
 
 
-303
-304
-305</pre>
+279
+280
+281</pre>
         </td>
         <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/hbase_adapter.rb', line 303</span>
+          <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/hbase_rest_adapter.rb', line 279</span>
 
 <span class='def def kw'>def</span> <span class='build_serialized_value identifier id'>build_serialized_value</span><span class='lparen token'>(</span><span class='type identifier id'>type</span><span class='comma token'>,</span> <span class='value identifier id'>value</span><span class='rparen token'>)</span>
   <span class='type identifier id'>type</span><span class='dot token'>.</span><span class='chr identifier id'>chr</span> <span class='plus op'>+</span> <span class='value identifier id'>value</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>columns_to_hbase_format</h3>
+</div><div id="columns_to_hbase_format-instance_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>columns_to_hbase_format</span><span class='args'>(data = {})</span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section docstring">
+  <p>
+DATABASE STATEMENTS ======================================
+</p>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+76
+77
+78
+79
+80</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/hbase_rest_adapter.rb', line 76</span>
+
+<span class='def def kw'>def</span> <span class='columns_to_hbase_format identifier id'>columns_to_hbase_format</span><span class='lparen token'>(</span><span class='data identifier id'>data</span> <span class='assign token'>=</span> <span class='lbrace token'>{</span><span class='rbrace token'>}</span><span class='rparen token'>)</span>
+  <span class='comment val'># Convert it to the hbase-ruby format</span>
+  <span class='comment val'># TODO: Add this function to hbase-ruby instead.</span>
+  <span class='data identifier id'>data</span><span class='dot token'>.</span><span class='map identifier id'>map</span><span class='lbrace token'>{</span><span class='bitor op'>|</span><span class='col identifier id'>col</span><span class='comma token'>,</span> <span class='content identifier id'>content</span><span class='bitor op'>|</span> <span class='lbrace token'>{</span><span class='symbol val'>:name</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='col identifier id'>col</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span><span class='comma token'>,</span> <span class='symbol val'>:value</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='content identifier id'>content</span><span class='rbrace token'>}</span><span class='rbrace token'>}</span><span class='dot token'>.</span><span class='compact identifier id'>compact</span>
 <span class='end end kw'>end</span>
 </pre>
         </td>
@@ -823,12 +864,12 @@ Serialize an object in a given type
           <pre class="lines">
 
 
-73
-74
-75</pre>
+49
+50
+51</pre>
         </td>
         <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/hbase_adapter.rb', line 73</span>
+          <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/hbase_rest_adapter.rb', line 49</span>
 
 <span class='def def kw'>def</span> <span class='configuration identifier id'>configuration</span>
   <span class='@config ivar id'>@config</span><span class='dot token'>.</span><span class='clone identifier id'>clone</span>
@@ -887,6 +928,11 @@ Serialize an object in a given type
           <pre class="lines">
 
 
+230
+231
+232
+233
+234
 235
 236
 237
@@ -896,15 +942,10 @@ Serialize an object in a given type
 241
 242
 243
-244
-245
-246
-247
-248
-249</pre>
+244</pre>
         </td>
         <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/hbase_adapter.rb', line 235</span>
+          <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/hbase_rest_adapter.rb', line 230</span>
 
 <span class='def def kw'>def</span> <span class='create_table identifier id'>create_table</span><span class='lparen token'>(</span><span class='table_name identifier id'>table_name</span><span class='comma token'>,</span> <span class='options identifier id'>options</span> <span class='assign token'>=</span> <span class='lbrace token'>{</span><span class='rbrace token'>}</span><span class='rparen token'>)</span>
   <span class='table_definition identifier id'>table_definition</span> <span class='assign token'>=</span> <span class='TableDefinition constant id'>TableDefinition</span><span class='dot token'>.</span><span class='new identifier id'>new</span>
@@ -917,7 +958,7 @@ Serialize an object in a given type
 
   <span class='result identifier id'>result</span> <span class='assign token'>=</span> <span class='nil nil kw'>nil</span>
   <span class='log identifier id'>log</span> <span class='dstring node'>&quot;CREATE TABLE #{table_name} (#{table_definition.column_families_list});&quot;</span> <span class='do do kw'>do</span>
-    <span class='result identifier id'>result</span> <span class='assign token'>=</span> <span class='@connection ivar id'>@connection</span><span class='dot token'>.</span><span class='create_table identifier id'>create_table</span><span class='lparen token'>(</span><span class='table_name identifier id'>table_name</span><span class='comma token'>,</span> <span class='table_definition identifier id'>table_definition</span><span class='dot token'>.</span><span class='to_adapter_format identifier id'>to_adapter_format</span><span class='rparen token'>)</span>
+    <span class='result identifier id'>result</span> <span class='assign token'>=</span> <span class='@connection ivar id'>@connection</span><span class='dot token'>.</span><span class='create_table identifier id'>create_table</span><span class='lparen token'>(</span><span class='table_name identifier id'>table_name</span><span class='comma token'>,</span> <span class='mult op'>*</span><span class='table_definition identifier id'>table_definition</span><span class='dot token'>.</span><span class='to_adapter_format identifier id'>to_adapter_format</span><span class='rparen token'>)</span>
   <span class='end end kw'>end</span>
   <span class='result identifier id'>result</span>
 <span class='end end kw'>end</span>
@@ -963,13 +1004,13 @@ Serialize an object in a given type
 200</pre>
         </td>
         <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/hbase_adapter.rb', line 193</span>
+          <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/hbase_rest_adapter.rb', line 193</span>
 
 <span class='def def kw'>def</span> <span class='delete identifier id'>delete</span><span class='lparen token'>(</span><span class='table_name identifier id'>table_name</span><span class='comma token'>,</span> <span class='row identifier id'>row</span><span class='comma token'>,</span> <span class='timestamp identifier id'>timestamp</span> <span class='assign token'>=</span> <span class='nil nil kw'>nil</span><span class='rparen token'>)</span>
   <span class='timestamp identifier id'>timestamp</span> <span class='opasgn op'>||=</span> <span class='Time constant id'>Time</span><span class='dot token'>.</span><span class='now identifier id'>now</span><span class='dot token'>.</span><span class='to_bigrecord_timestamp identifier id'>to_bigrecord_timestamp</span>
   <span class='result identifier id'>result</span> <span class='assign token'>=</span> <span class='nil nil kw'>nil</span>
   <span class='log identifier id'>log</span> <span class='dstring node'>&quot;DELETE FROM #{table_name} WHERE ROW=#{row};&quot;</span> <span class='do do kw'>do</span>
-    <span class='result identifier id'>result</span> <span class='assign token'>=</span> <span class='@connection ivar id'>@connection</span><span class='dot token'>.</span><span class='delete identifier id'>delete</span><span class='lparen token'>(</span><span class='table_name identifier id'>table_name</span><span class='comma token'>,</span> <span class='row identifier id'>row</span><span class='comma token'>,</span> <span class='timestamp identifier id'>timestamp</span><span class='rparen token'>)</span>
+    <span class='result identifier id'>result</span> <span class='assign token'>=</span> <span class='@connection ivar id'>@connection</span><span class='dot token'>.</span><span class='delete_row identifier id'>delete_row</span><span class='lparen token'>(</span><span class='table_name identifier id'>table_name</span><span class='comma token'>,</span> <span class='row identifier id'>row</span><span class='comma token'>,</span> <span class='timestamp identifier id'>timestamp</span><span class='rparen token'>)</span>
   <span class='end end kw'>end</span>
   <span class='result identifier id'>result</span>
 <span class='end end kw'>end</span>
@@ -1011,21 +1052,21 @@ format and the type header format.
           <pre class="lines">
 
 
-309
-310
-311
-312
-313
-314
-315
-316
-317
-318
-319
-320</pre>
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296</pre>
         </td>
         <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/hbase_adapter.rb', line 309</span>
+          <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/hbase_rest_adapter.rb', line 285</span>
 
 <span class='def def kw'>def</span> <span class='deserialize identifier id'>deserialize</span><span class='lparen token'>(</span><span class='str identifier id'>str</span><span class='rparen token'>)</span>
   <span class='return return kw'>return</span> <span class='unless unless_mod kw'>unless</span> <span class='str identifier id'>str</span>
@@ -1076,22 +1117,22 @@ Deserialize the given string assumed to be in the type header format.
           <pre class="lines">
 
 
-323
-324
-325
-326
-327
-328
-329
-330
-331
-332
-333
-334
-335</pre>
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311</pre>
         </td>
         <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/hbase_adapter.rb', line 323</span>
+          <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/hbase_rest_adapter.rb', line 299</span>
 
 <span class='def def kw'>def</span> <span class='deserialize_with_header identifier id'>deserialize_with_header</span><span class='lparen token'>(</span><span class='data identifier id'>data</span><span class='rparen token'>)</span>
   <span class='return return kw'>return</span> <span class='unless unless_mod kw'>unless</span> <span class='data identifier id'>data</span> <span class='and and kw'>and</span> <span class='data identifier id'>data</span><span class='dot token'>.</span><span class='size identifier id'>size</span> <span class='geq op'>&gt;=</span> <span class='integer val'>2</span>
@@ -1138,15 +1179,13 @@ Deserialize the given string assumed to be in the type header format.
           <pre class="lines">
 
 
-98
-99
-100</pre>
+70
+71</pre>
         </td>
         <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/hbase_adapter.rb', line 98</span>
+          <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/hbase_rest_adapter.rb', line 70</span>
 
 <span class='def def kw'>def</span> <span class='disconnect! fid id'>disconnect!</span>
-  <span class='@connection ivar id'>@connection</span><span class='dot token'>.</span><span class='close identifier id'>close</span> <span class='rescue rescue kw'>rescue</span> <span class='nil nil kw'>nil</span>
 <span class='end end kw'>end</span>
 </pre>
         </td>
@@ -1180,21 +1219,21 @@ Deserialize the given string assumed to be in the type header format.
           <pre class="lines">
 
 
+246
+247
+248
+249
+250
 251
-252
-253
-254
-255
-256
-257</pre>
+252</pre>
         </td>
         <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/hbase_adapter.rb', line 251</span>
+          <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/hbase_rest_adapter.rb', line 246</span>
 
 <span class='def def kw'>def</span> <span class='drop_table identifier id'>drop_table</span><span class='lparen token'>(</span><span class='table_name identifier id'>table_name</span><span class='rparen token'>)</span>
   <span class='result identifier id'>result</span> <span class='assign token'>=</span> <span class='nil nil kw'>nil</span>
   <span class='log identifier id'>log</span> <span class='dstring node'>&quot;DROP TABLE #{table_name};&quot;</span> <span class='do do kw'>do</span>
-    <span class='result identifier id'>result</span> <span class='assign token'>=</span> <span class='@connection ivar id'>@connection</span><span class='dot token'>.</span><span class='drop_table identifier id'>drop_table</span><span class='lparen token'>(</span><span class='table_name identifier id'>table_name</span><span class='rparen token'>)</span>
+    <span class='result identifier id'>result</span> <span class='assign token'>=</span> <span class='@connection ivar id'>@connection</span><span class='dot token'>.</span><span class='destroy_table identifier id'>destroy_table</span><span class='lparen token'>(</span><span class='table_name identifier id'>table_name</span><span class='rparen token'>)</span>
   <span class='end end kw'>end</span>
   <span class='result identifier id'>result</span>
 <span class='end end kw'>end</span>
@@ -1230,19 +1269,19 @@ Deserialize the given string assumed to be in the type header format.
           <pre class="lines">
 
 
-129
-130
-131
-132
-133
-134
-135
-136
-137
-138</pre>
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122</pre>
         </td>
         <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/hbase_adapter.rb', line 129</span>
+          <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/hbase_rest_adapter.rb', line 113</span>
 
 <span class='def def kw'>def</span> <span class='get identifier id'>get</span><span class='lparen token'>(</span><span class='table_name identifier id'>table_name</span><span class='comma token'>,</span> <span class='row identifier id'>row</span><span class='comma token'>,</span> <span class='column identifier id'>column</span><span class='comma token'>,</span> <span class='options identifier id'>options</span><span class='assign token'>=</span><span class='lbrace token'>{</span><span class='rbrace token'>}</span><span class='rparen token'>)</span>
   <span class='serialized_result identifier id'>serialized_result</span> <span class='assign token'>=</span> <span class='get_raw identifier id'>get_raw</span><span class='lparen token'>(</span><span class='table_name identifier id'>table_name</span><span class='comma token'>,</span> <span class='row identifier id'>row</span><span class='comma token'>,</span> <span class='column identifier id'>column</span><span class='comma token'>,</span> <span class='options identifier id'>options</span><span class='rparen token'>)</span>
@@ -1286,14 +1325,14 @@ Deserialize the given string assumed to be in the type header format.
           <pre class="lines">
 
 
-223
-224
-225
-226
-227</pre>
+218
+219
+220
+221
+222</pre>
         </td>
         <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/hbase_adapter.rb', line 223</span>
+          <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/hbase_rest_adapter.rb', line 218</span>
 
 <span class='def def kw'>def</span> <span class='get_all_schema_versions identifier id'>get_all_schema_versions</span>
   <span class='sm_table identifier id'>sm_table</span> <span class='assign token'>=</span> <span class='BigRecord constant id'>BigRecord</span><span class='colon2 op'>::</span><span class='Migrator constant id'>Migrator</span><span class='dot token'>.</span><span class='schema_migrations_table_name identifier id'>schema_migrations_table_name</span>
@@ -1332,6 +1371,16 @@ Deserialize the given string assumed to be in the type header format.
           <pre class="lines">
 
 
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
 148
 149
 150
@@ -1340,28 +1389,26 @@ Deserialize the given string assumed to be in the type header format.
 153
 154
 155
-156
-157
-158
-159
-160
-161
-162</pre>
+156</pre>
         </td>
         <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/hbase_adapter.rb', line 148</span>
+          <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/hbase_rest_adapter.rb', line 138</span>
 
 <span class='def def kw'>def</span> <span class='get_columns identifier id'>get_columns</span><span class='lparen token'>(</span><span class='table_name identifier id'>table_name</span><span class='comma token'>,</span> <span class='row identifier id'>row</span><span class='comma token'>,</span> <span class='columns identifier id'>columns</span><span class='comma token'>,</span> <span class='options identifier id'>options</span><span class='assign token'>=</span><span class='lbrace token'>{</span><span class='rbrace token'>}</span><span class='rparen token'>)</span>
   <span class='row_cols identifier id'>row_cols</span> <span class='assign token'>=</span> <span class='get_columns_raw identifier id'>get_columns_raw</span><span class='lparen token'>(</span><span class='table_name identifier id'>table_name</span><span class='comma token'>,</span> <span class='row identifier id'>row</span><span class='comma token'>,</span> <span class='columns identifier id'>columns</span><span class='comma token'>,</span> <span class='options identifier id'>options</span><span class='rparen token'>)</span>
-  <span class='result identifier id'>result</span> <span class='assign token'>=</span> <span class='lbrace token'>{</span><span class='rbrace token'>}</span>
   <span class='return return kw'>return</span> <span class='nil nil kw'>nil</span> <span class='unless unless_mod kw'>unless</span> <span class='row_cols identifier id'>row_cols</span>
 
-  <span class='row_cols identifier id'>row_cols</span><span class='dot token'>.</span><span class='each identifier id'>each</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='key identifier id'>key</span><span class='comma token'>,</span> <span class='col identifier id'>col</span><span class='bitor op'>|</span>
-    <span class='result identifier id'>result</span><span class='lbrack token'>[</span><span class='key identifier id'>key</span><span class='rbrack token'>]</span> <span class='assign token'>=</span>
-    <span class='if if kw'>if</span> <span class='key identifier id'>key</span> <span class='eq op'>==</span> <span class='string val'>'id'</span>
-      <span class='col identifier id'>col</span>
-    <span class='else else kw'>else</span>
-      <span class='deserialize identifier id'>deserialize</span><span class='lparen token'>(</span><span class='col identifier id'>col</span><span class='rparen token'>)</span>
+  <span class='result identifier id'>result</span> <span class='assign token'>=</span> <span class='lbrace token'>{</span><span class='rbrace token'>}</span>
+  <span class='row_cols identifier id'>row_cols</span><span class='dot token'>.</span><span class='each identifier id'>each</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='key identifier id'>key</span><span class='comma token'>,</span><span class='value identifier id'>value</span><span class='bitor op'>|</span>
+    <span class='begin begin kw'>begin</span>
+      <span class='result identifier id'>result</span><span class='lbrack token'>[</span><span class='key identifier id'>key</span><span class='rbrack token'>]</span> <span class='assign token'>=</span>
+      <span class='if if kw'>if</span> <span class='key identifier id'>key</span> <span class='eq op'>==</span> <span class='string val'>'id'</span>
+        <span class='value identifier id'>value</span>
+      <span class='else else kw'>else</span>
+        <span class='deserialize identifier id'>deserialize</span><span class='lparen token'>(</span><span class='value identifier id'>value</span><span class='rparen token'>)</span>
+      <span class='end end kw'>end</span>
+    <span class='rescue rescue kw'>rescue</span> <span class='Exception constant id'>Exception</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='e identifier id'>e</span>
+      <span class='puts identifier id'>puts</span> <span class='dstring node'>&quot;Could not load column value #{key} for row=#{row.name}&quot;</span>
     <span class='end end kw'>end</span>
   <span class='end end kw'>end</span>
   <span class='result identifier id'>result</span>
@@ -1384,7 +1431,7 @@ Deserialize the given string assumed to be in the type header format.
     <tt class='def'>
       <span class='visibility'>public</span>
       <span class='return_types'></span>
-      <span class='name'>get_columns_raw</span><span class='args'>(table_name, row, columns, options = {})</span>
+      <span class='name'>get_columns_raw</span><span class='args'>(table_name, row, columns = nil, options = {})</span>
       <span class='block'></span>
     </tt>
   </div>
@@ -1398,21 +1445,33 @@ Deserialize the given string assumed to be in the type header format.
           <pre class="lines">
 
 
-140
-141
-142
-143
-144
-145
-146</pre>
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136</pre>
         </td>
         <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/hbase_adapter.rb', line 140</span>
+          <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/hbase_rest_adapter.rb', line 124</span>
 
-<span class='def def kw'>def</span> <span class='get_columns_raw identifier id'>get_columns_raw</span><span class='lparen token'>(</span><span class='table_name identifier id'>table_name</span><span class='comma token'>,</span> <span class='row identifier id'>row</span><span class='comma token'>,</span> <span class='columns identifier id'>columns</span><span class='comma token'>,</span> <span class='options identifier id'>options</span><span class='assign token'>=</span><span class='lbrace token'>{</span><span class='rbrace token'>}</span><span class='rparen token'>)</span>
+<span class='def def kw'>def</span> <span class='get_columns_raw identifier id'>get_columns_raw</span><span class='lparen token'>(</span><span class='table_name identifier id'>table_name</span><span class='comma token'>,</span> <span class='row identifier id'>row</span><span class='comma token'>,</span> <span class='columns identifier id'>columns</span> <span class='assign token'>=</span> <span class='nil nil kw'>nil</span><span class='comma token'>,</span> <span class='options identifier id'>options</span><span class='assign token'>=</span><span class='lbrace token'>{</span><span class='rbrace token'>}</span><span class='rparen token'>)</span>
   <span class='result identifier id'>result</span> <span class='assign token'>=</span> <span class='lbrace token'>{</span><span class='rbrace token'>}</span>
+
+  <span class='timestamp identifier id'>timestamp</span> <span class='assign token'>=</span> <span class='options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:timestamp</span><span class='rbrack token'>]</span> <span class='orop op'>||</span> <span class='nil nil kw'>nil</span>
+
   <span class='log identifier id'>log</span> <span class='dstring node'>&quot;SELECT (#{columns.join(&quot;, &quot;)}) FROM #{table_name} WHERE ROW=#{row};&quot;</span> <span class='do do kw'>do</span>
-    <span class='result identifier id'>result</span> <span class='assign token'>=</span> <span class='@connection ivar id'>@connection</span><span class='dot token'>.</span><span class='get_columns identifier id'>get_columns</span><span class='lparen token'>(</span><span class='table_name identifier id'>table_name</span><span class='comma token'>,</span> <span class='row identifier id'>row</span><span class='comma token'>,</span> <span class='columns identifier id'>columns</span><span class='comma token'>,</span> <span class='options identifier id'>options</span><span class='rparen token'>)</span>
+    <span class='row identifier id'>row</span> <span class='assign token'>=</span> <span class='@connection ivar id'>@connection</span><span class='dot token'>.</span><span class='show_row identifier id'>show_row</span><span class='lparen token'>(</span><span class='table_name identifier id'>table_name</span><span class='comma token'>,</span> <span class='row identifier id'>row</span><span class='comma token'>,</span> <span class='timestamp identifier id'>timestamp</span><span class='comma token'>,</span> <span class='columns identifier id'>columns</span><span class='comma token'>,</span> <span class='options identifier id'>options</span><span class='rparen token'>)</span>
+    <span class='result identifier id'>result</span><span class='dot token'>.</span><span class='merge! fid id'>merge!</span><span class='lparen token'>(</span><span class='lbrace token'>{</span><span class='string val'>'id'</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='row identifier id'>row</span><span class='dot token'>.</span><span class='name identifier id'>name</span><span class='rbrace token'>}</span><span class='rparen token'>)</span>
+    <span class='columns identifier id'>columns</span> <span class='assign token'>=</span> <span class='row identifier id'>row</span><span class='dot token'>.</span><span class='columns identifier id'>columns</span>
+    <span class='columns identifier id'>columns</span><span class='dot token'>.</span><span class='each identifier id'>each</span><span class='lbrace token'>{</span> <span class='bitor op'>|</span><span class='col identifier id'>col</span><span class='bitor op'>|</span> <span class='result identifier id'>result</span><span class='dot token'>.</span><span class='merge! fid id'>merge!</span><span class='lparen token'>(</span><span class='lbrace token'>{</span><span class='col identifier id'>col</span><span class='dot token'>.</span><span class='name identifier id'>name</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='col identifier id'>col</span><span class='dot token'>.</span><span class='value identifier id'>value</span><span class='rbrace token'>}</span><span class='rparen token'>)</span> <span class='rbrace token'>}</span>
   <span class='end end kw'>end</span>
   <span class='result identifier id'>result</span>
 <span class='end end kw'>end</span>
@@ -1448,6 +1507,9 @@ Deserialize the given string assumed to be in the type header format.
           <pre class="lines">
 
 
+169
+170
+171
 172
 173
 174
@@ -1470,22 +1532,25 @@ Deserialize the given string assumed to be in the type header format.
 191</pre>
         </td>
         <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/hbase_adapter.rb', line 172</span>
+          <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/hbase_rest_adapter.rb', line 169</span>
 
 <span class='def def kw'>def</span> <span class='get_consecutive_rows identifier id'>get_consecutive_rows</span><span class='lparen token'>(</span><span class='table_name identifier id'>table_name</span><span class='comma token'>,</span> <span class='start_row identifier id'>start_row</span><span class='comma token'>,</span> <span class='limit identifier id'>limit</span><span class='comma token'>,</span> <span class='columns identifier id'>columns</span><span class='comma token'>,</span> <span class='stop_row identifier id'>stop_row</span> <span class='assign token'>=</span> <span class='nil nil kw'>nil</span><span class='rparen token'>)</span>
   <span class='rows identifier id'>rows</span> <span class='assign token'>=</span> <span class='get_consecutive_rows_raw identifier id'>get_consecutive_rows_raw</span><span class='lparen token'>(</span><span class='table_name identifier id'>table_name</span><span class='comma token'>,</span> <span class='start_row identifier id'>start_row</span><span class='comma token'>,</span> <span class='limit identifier id'>limit</span><span class='comma token'>,</span> <span class='columns identifier id'>columns</span><span class='comma token'>,</span> <span class='stop_row identifier id'>stop_row</span><span class='rparen token'>)</span>
-  <span class='result identifier id'>result</span> <span class='assign token'>=</span> <span class='rows identifier id'>rows</span><span class='dot token'>.</span><span class='collect identifier id'>collect</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='row_cols identifier id'>row_cols</span><span class='bitor op'>|</span>
+
+  <span class='result identifier id'>result</span> <span class='assign token'>=</span> <span class='rows identifier id'>rows</span><span class='dot token'>.</span><span class='collect identifier id'>collect</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='row identifier id'>row</span><span class='bitor op'>|</span>
     <span class='cols identifier id'>cols</span> <span class='assign token'>=</span> <span class='lbrace token'>{</span><span class='rbrace token'>}</span>
-    <span class='row_cols identifier id'>row_cols</span><span class='dot token'>.</span><span class='each identifier id'>each</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='key identifier id'>key</span><span class='comma token'>,</span> <span class='col identifier id'>col</span><span class='bitor op'>|</span>
+    <span class='row identifier id'>row</span><span class='dot token'>.</span><span class='columns identifier id'>columns</span><span class='dot token'>.</span><span class='each identifier id'>each</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='col identifier id'>col</span><span class='bitor op'>|</span>
+      <span class='key identifier id'>key</span> <span class='assign token'>=</span> <span class='col identifier id'>col</span><span class='dot token'>.</span><span class='name identifier id'>name</span>
+      <span class='value identifier id'>value</span> <span class='assign token'>=</span> <span class='col identifier id'>col</span><span class='dot token'>.</span><span class='value identifier id'>value</span>
       <span class='begin begin kw'>begin</span>
         <span class='cols identifier id'>cols</span><span class='lbrack token'>[</span><span class='key identifier id'>key</span><span class='rbrack token'>]</span> <span class='assign token'>=</span>
         <span class='if if kw'>if</span> <span class='key identifier id'>key</span> <span class='eq op'>==</span> <span class='string val'>'id'</span>
-          <span class='col identifier id'>col</span>
+          <span class='value identifier id'>value</span>
         <span class='else else kw'>else</span>
-          <span class='deserialize identifier id'>deserialize</span><span class='lparen token'>(</span><span class='col identifier id'>col</span><span class='rparen token'>)</span>
+          <span class='deserialize identifier id'>deserialize</span><span class='lparen token'>(</span><span class='value identifier id'>value</span><span class='rparen token'>)</span>
         <span class='end end kw'>end</span>
       <span class='rescue rescue kw'>rescue</span> <span class='Exception constant id'>Exception</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='e identifier id'>e</span>
-        <span class='puts identifier id'>puts</span> <span class='dstring node'>&quot;Could not load column value #{key} for row=#{row_cols['id']}&quot;</span>
+        <span class='puts identifier id'>puts</span> <span class='dstring node'>&quot;Could not load column value #{key} for row=#{row.name}&quot;</span>
       <span class='end end kw'>end</span>
     <span class='end end kw'>end</span>
     <span class='cols identifier id'>cols</span>
@@ -1524,21 +1589,27 @@ Deserialize the given string assumed to be in the type header format.
           <pre class="lines">
 
 
+158
+159
+160
+161
+162
+163
 164
 165
 166
-167
-168
-169
-170</pre>
+167</pre>
         </td>
         <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/hbase_adapter.rb', line 164</span>
+          <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/hbase_rest_adapter.rb', line 158</span>
 
 <span class='def def kw'>def</span> <span class='get_consecutive_rows_raw identifier id'>get_consecutive_rows_raw</span><span class='lparen token'>(</span><span class='table_name identifier id'>table_name</span><span class='comma token'>,</span> <span class='start_row identifier id'>start_row</span><span class='comma token'>,</span> <span class='limit identifier id'>limit</span><span class='comma token'>,</span> <span class='columns identifier id'>columns</span><span class='comma token'>,</span> <span class='stop_row identifier id'>stop_row</span> <span class='assign token'>=</span> <span class='nil nil kw'>nil</span><span class='rparen token'>)</span>
   <span class='result identifier id'>result</span> <span class='assign token'>=</span> <span class='nil nil kw'>nil</span>
   <span class='log identifier id'>log</span> <span class='dstring node'>&quot;SCAN (#{columns.join(&quot;, &quot;)}) FROM #{table_name} WHERE START_ROW=#{start_row} AND STOP_ROW=#{stop_row} LIMIT=#{limit};&quot;</span> <span class='do do kw'>do</span>
-    <span class='result identifier id'>result</span> <span class='assign token'>=</span> <span class='@connection ivar id'>@connection</span><span class='dot token'>.</span><span class='get_consecutive_rows identifier id'>get_consecutive_rows</span><span class='lparen token'>(</span><span class='table_name identifier id'>table_name</span><span class='comma token'>,</span> <span class='start_row identifier id'>start_row</span><span class='comma token'>,</span> <span class='limit identifier id'>limit</span><span class='comma token'>,</span> <span class='columns identifier id'>columns</span><span class='comma token'>,</span> <span class='stop_row identifier id'>stop_row</span><span class='rparen token'>)</span>
+    <span class='options identifier id'>options</span> <span class='assign token'>=</span> <span class='lbrace token'>{</span><span class='symbol val'>:start_row</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='start_row identifier id'>start_row</span><span class='comma token'>,</span> <span class='symbol val'>:end_row</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='stop_row identifier id'>stop_row</span><span class='comma token'>,</span> <span class='symbol val'>:columns</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='columns identifier id'>columns</span><span class='rbrace token'>}</span>
+    <span class='scanner identifier id'>scanner</span> <span class='assign token'>=</span> <span class='@connection ivar id'>@connection</span><span class='dot token'>.</span><span class='open_scanner identifier id'>open_scanner</span><span class='lparen token'>(</span><span class='table_name identifier id'>table_name</span><span class='comma token'>,</span> <span class='options identifier id'>options</span><span class='rparen token'>)</span>
+    <span class='result identifier id'>result</span> <span class='assign token'>=</span> <span class='@connection ivar id'>@connection</span><span class='dot token'>.</span><span class='get_rows identifier id'>get_rows</span><span class='lparen token'>(</span><span class='scanner identifier id'>scanner</span><span class='comma token'>,</span> <span class='limit identifier id'>limit</span><span class='rparen token'>)</span>
+    <span class='@connection ivar id'>@connection</span><span class='dot token'>.</span><span class='close_scanner identifier id'>close_scanner</span><span class='lparen token'>(</span><span class='scanner identifier id'>scanner</span><span class='rparen token'>)</span>
   <span class='end end kw'>end</span>
   <span class='result identifier id'>result</span>
 <span class='end end kw'>end</span>
@@ -1574,21 +1645,27 @@ Deserialize the given string assumed to be in the type header format.
           <pre class="lines">
 
 
-121
-122
-123
-124
-125
-126
-127</pre>
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111</pre>
         </td>
         <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/hbase_adapter.rb', line 121</span>
+          <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/hbase_rest_adapter.rb', line 102</span>
 
 <span class='def def kw'>def</span> <span class='get_raw identifier id'>get_raw</span><span class='lparen token'>(</span><span class='table_name identifier id'>table_name</span><span class='comma token'>,</span> <span class='row identifier id'>row</span><span class='comma token'>,</span> <span class='column identifier id'>column</span><span class='comma token'>,</span> <span class='options identifier id'>options</span><span class='assign token'>=</span><span class='lbrace token'>{</span><span class='rbrace token'>}</span><span class='rparen token'>)</span>
   <span class='result identifier id'>result</span> <span class='assign token'>=</span> <span class='nil nil kw'>nil</span>
+  <span class='timestamp identifier id'>timestamp</span> <span class='assign token'>=</span> <span class='options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:timestamp</span><span class='rbrack token'>]</span> <span class='orop op'>||</span> <span class='nil nil kw'>nil</span>
   <span class='log identifier id'>log</span> <span class='dstring node'>&quot;SELECT (#{column}) FROM #{table_name} WHERE ROW=#{row};&quot;</span> <span class='do do kw'>do</span>
-    <span class='result identifier id'>result</span> <span class='assign token'>=</span> <span class='@connection ivar id'>@connection</span><span class='dot token'>.</span><span class='get identifier id'>get</span><span class='lparen token'>(</span><span class='table_name identifier id'>table_name</span><span class='comma token'>,</span> <span class='row identifier id'>row</span><span class='comma token'>,</span> <span class='column identifier id'>column</span><span class='comma token'>,</span> <span class='options identifier id'>options</span><span class='rparen token'>)</span>
+    <span class='columns identifier id'>columns</span> <span class='assign token'>=</span> <span class='@connection ivar id'>@connection</span><span class='dot token'>.</span><span class='show_row identifier id'>show_row</span><span class='lparen token'>(</span><span class='table_name identifier id'>table_name</span><span class='comma token'>,</span> <span class='row identifier id'>row</span><span class='comma token'>,</span> <span class='timestamp identifier id'>timestamp</span><span class='comma token'>,</span> <span class='column identifier id'>column</span><span class='comma token'>,</span> <span class='options identifier id'>options</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='columns identifier id'>columns</span>
+
+    <span class='result identifier id'>result</span> <span class='assign token'>=</span> <span class='lparen token'>(</span><span class='columns identifier id'>columns</span><span class='dot token'>.</span><span class='size identifier id'>size</span> <span class='eq op'>==</span> <span class='integer val'>1</span><span class='rparen token'>)</span> <span class='question op'>?</span> <span class='columns identifier id'>columns</span><span class='dot token'>.</span><span class='first identifier id'>first</span><span class='dot token'>.</span><span class='value identifier id'>value</span> <span class='colon op'>:</span> <span class='columns identifier id'>columns</span><span class='dot token'>.</span><span class='map identifier id'>map</span><span class='lparen token'>(</span><span class='bitand op'>&amp;</span><span class='symbol val'>:value</span><span class='rparen token'>)</span>
   <span class='end end kw'>end</span>
   <span class='result identifier id'>result</span>
 <span class='end end kw'>end</span>
@@ -1629,18 +1706,18 @@ SCHEMA STATEMENTS ========================================
           <pre class="lines">
 
 
+208
+209
+210
+211
+212
 213
 214
 215
-216
-217
-218
-219
-220
-221</pre>
+216</pre>
         </td>
         <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/hbase_adapter.rb', line 213</span>
+          <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/hbase_rest_adapter.rb', line 208</span>
 
 <span class='def def kw'>def</span> <span class='initialize_schema_migrations_table identifier id'>initialize_schema_migrations_table</span>
   <span class='sm_table identifier id'>sm_table</span> <span class='assign token'>=</span> <span class='BigRecord constant id'>BigRecord</span><span class='colon2 op'>::</span><span class='Migrator constant id'>Migrator</span><span class='dot token'>.</span><span class='schema_migrations_table_name identifier id'>schema_migrations_table_name</span>
@@ -1688,27 +1765,13 @@ SCHEMA STATEMENTS ========================================
           <pre class="lines">
 
 
-281
-282
-283
-284
-285
-286
-287
-288
-289</pre>
+264
+265</pre>
         </td>
         <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/hbase_adapter.rb', line 281</span>
+          <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/hbase_rest_adapter.rb', line 264</span>
 
 <span class='def def kw'>def</span> <span class='modify_column_family identifier id'>modify_column_family</span><span class='lparen token'>(</span><span class='table_name identifier id'>table_name</span><span class='comma token'>,</span> <span class='column_name identifier id'>column_name</span><span class='comma token'>,</span> <span class='options identifier id'>options</span> <span class='assign token'>=</span> <span class='lbrace token'>{</span><span class='rbrace token'>}</span><span class='rparen token'>)</span>
-  <span class='column identifier id'>column</span> <span class='assign token'>=</span> <span class='BigRecordDriver constant id'>BigRecordDriver</span><span class='colon2 op'>::</span><span class='ColumnDescriptor constant id'>ColumnDescriptor</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='column_name identifier id'>column_name</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span><span class='comma token'>,</span> <span class='options identifier id'>options</span><span class='rparen token'>)</span>
-
-  <span class='result identifier id'>result</span> <span class='assign token'>=</span> <span class='nil nil kw'>nil</span>
-  <span class='log identifier id'>log</span> <span class='dstring node'>&quot;MODIFY COLUMN TABLE #{table_name} COLUMN #{column_name} (#{options.inspect});&quot;</span> <span class='do do kw'>do</span>
-    <span class='result identifier id'>result</span> <span class='assign token'>=</span> <span class='@connection ivar id'>@connection</span><span class='dot token'>.</span><span class='modify_column identifier id'>modify_column</span><span class='lparen token'>(</span><span class='table_name identifier id'>table_name</span><span class='comma token'>,</span> <span class='column identifier id'>column</span><span class='rparen token'>)</span>
-  <span class='end end kw'>end</span>
-  <span class='result identifier id'>result</span>
 <span class='end end kw'>end</span>
 </pre>
         </td>
@@ -1742,17 +1805,13 @@ SCHEMA STATEMENTS ========================================
           <pre class="lines">
 
 
-93
-94
-95
-96</pre>
+67
+68</pre>
         </td>
         <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/hbase_adapter.rb', line 93</span>
+          <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/hbase_rest_adapter.rb', line 67</span>
 
 <span class='def def kw'>def</span> <span class='reconnect! fid id'>reconnect!</span>
-  <span class='disconnect! fid id'>disconnect!</span>
-  <span class='connect identifier id'>connect</span>
 <span class='end end kw'>end</span>
 </pre>
         </td>
@@ -1791,23 +1850,13 @@ SCHEMA STATEMENTS ========================================
           <pre class="lines">
 
 
-271
-272
-273
-274
-275
-276
-277</pre>
+259
+260</pre>
         </td>
         <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/hbase_adapter.rb', line 271</span>
+          <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/hbase_rest_adapter.rb', line 259</span>
 
 <span class='def def kw'>def</span> <span class='remove_column_family identifier id'>remove_column_family</span><span class='lparen token'>(</span><span class='table_name identifier id'>table_name</span><span class='comma token'>,</span> <span class='column_name identifier id'>column_name</span><span class='rparen token'>)</span>
-  <span class='result identifier id'>result</span> <span class='assign token'>=</span> <span class='nil nil kw'>nil</span>
-  <span class='log identifier id'>log</span> <span class='dstring node'>&quot;REMOVE COLUMN TABLE #{table_name} COLUMN #{column_name};&quot;</span> <span class='do do kw'>do</span>
-    <span class='result identifier id'>result</span> <span class='assign token'>=</span> <span class='@connection ivar id'>@connection</span><span class='dot token'>.</span><span class='remove_column identifier id'>remove_column</span><span class='lparen token'>(</span><span class='table_name identifier id'>table_name</span><span class='comma token'>,</span> <span class='column_name identifier id'>column_name</span><span class='rparen token'>)</span>
-  <span class='end end kw'>end</span>
-  <span class='result identifier id'>result</span>
 <span class='end end kw'>end</span>
 </pre>
         </td>
@@ -1846,16 +1895,16 @@ Serialize the given value
           <pre class="lines">
 
 
-294
-295
-296
-297
-298
-299
-300</pre>
+270
+271
+272
+273
+274
+275
+276</pre>
         </td>
         <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/hbase_adapter.rb', line 294</span>
+          <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/hbase_rest_adapter.rb', line 270</span>
 
 <span class='def def kw'>def</span> <span class='serialize identifier id'>serialize</span><span class='lparen token'>(</span><span class='value identifier id'>value</span><span class='rparen token'>)</span>
   <span class='case case kw'>case</span> <span class='value identifier id'>value</span>
@@ -1896,12 +1945,12 @@ Serialize the given value
           <pre class="lines">
 
 
-81
-82
-83</pre>
+57
+58
+59</pre>
         </td>
         <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/hbase_adapter.rb', line 81</span>
+          <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/hbase_rest_adapter.rb', line 57</span>
 
 <span class='def def kw'>def</span> <span class='supports_migrations? fid id'>supports_migrations?</span> 
   <span class='true true kw'>true</span>
@@ -1938,18 +1987,18 @@ Serialize the given value
           <pre class="lines">
 
 
-229
-230
-231
-232
-233</pre>
+224
+225
+226
+227
+228</pre>
         </td>
         <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/hbase_adapter.rb', line 229</span>
+          <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/hbase_rest_adapter.rb', line 224</span>
 
 <span class='def def kw'>def</span> <span class='table_exists? fid id'>table_exists?</span><span class='lparen token'>(</span><span class='table_name identifier id'>table_name</span><span class='rparen token'>)</span>
   <span class='log identifier id'>log</span> <span class='dstring node'>&quot;TABLE EXISTS? #{table_name};&quot;</span> <span class='do do kw'>do</span>
-    <span class='@connection ivar id'>@connection</span><span class='dot token'>.</span><span class='table_exists? fid id'>table_exists?</span><span class='lparen token'>(</span><span class='table_name identifier id'>table_name</span><span class='rparen token'>)</span>
+    <span class='@connection ivar id'>@connection</span><span class='dot token'>.</span><span class='list_tables identifier id'>list_tables</span><span class='dot token'>.</span><span class='map identifier id'>map</span><span class='lparen token'>(</span><span class='bitand op'>&amp;</span><span class='symbol val'>:name</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='include? fid id'>include?</span><span class='lparen token'>(</span><span class='table_name identifier id'>table_name</span><span class='rparen token'>)</span>
   <span class='end end kw'>end</span>
 <span class='end end kw'>end</span>
 </pre>
@@ -1985,22 +2034,12 @@ Serialize the given value
 
 
 202
-203
-204
-205
-206
-207
-208</pre>
+203</pre>
         </td>
         <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/hbase_adapter.rb', line 202</span>
+          <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/hbase_rest_adapter.rb', line 202</span>
 
 <span class='def def kw'>def</span> <span class='truncate_table identifier id'>truncate_table</span><span class='lparen token'>(</span><span class='table_name identifier id'>table_name</span><span class='rparen token'>)</span>
-  <span class='result identifier id'>result</span> <span class='assign token'>=</span> <span class='nil nil kw'>nil</span>
-  <span class='log identifier id'>log</span> <span class='dstring node'>&quot;TRUNCATE TABLE #{table_name}&quot;</span> <span class='do do kw'>do</span>
-    <span class='result identifier id'>result</span> <span class='assign token'>=</span> <span class='@connection ivar id'>@connection</span><span class='dot token'>.</span><span class='truncate_table identifier id'>truncate_table</span><span class='lparen token'>(</span><span class='table_name identifier id'>table_name</span><span class='rparen token'>)</span>
-  <span class='end end kw'>end</span>
-  <span class='result identifier id'>result</span>
 <span class='end end kw'>end</span>
 </pre>
         </td>
@@ -2034,16 +2073,16 @@ Serialize the given value
           <pre class="lines">
 
 
-113
-114
-115
-116
-117
-118
-119</pre>
+94
+95
+96
+97
+98
+99
+100</pre>
         </td>
         <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/hbase_adapter.rb', line 113</span>
+          <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/hbase_rest_adapter.rb', line 94</span>
 
 <span class='def def kw'>def</span> <span class='update identifier id'>update</span><span class='lparen token'>(</span><span class='table_name identifier id'>table_name</span><span class='comma token'>,</span> <span class='row identifier id'>row</span><span class='comma token'>,</span> <span class='values identifier id'>values</span><span class='comma token'>,</span> <span class='timestamp identifier id'>timestamp</span><span class='rparen token'>)</span>
   <span class='serialized_collection identifier id'>serialized_collection</span> <span class='assign token'>=</span> <span class='lbrace token'>{</span><span class='rbrace token'>}</span>
@@ -2075,11 +2114,6 @@ Serialize the given value
     </tt>
   </div>
 
-</div><div class="section docstring">
-  <p>
-DATABASE STATEMENTS ======================================
-</p>
-
 </div><div class="section source">
   <span>[<a class="source_link" href="#">View source</a>]</span>
   <div class="source_code">
@@ -2089,21 +2123,29 @@ DATABASE STATEMENTS ======================================
           <pre class="lines">
 
 
-105
-106
-107
-108
-109
-110
-111</pre>
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92</pre>
         </td>
         <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/hbase_adapter.rb', line 105</span>
+          <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/hbase_rest_adapter.rb', line 82</span>
 
 <span class='def def kw'>def</span> <span class='update_raw identifier id'>update_raw</span><span class='lparen token'>(</span><span class='table_name identifier id'>table_name</span><span class='comma token'>,</span> <span class='row identifier id'>row</span><span class='comma token'>,</span> <span class='values identifier id'>values</span><span class='comma token'>,</span> <span class='timestamp identifier id'>timestamp</span><span class='rparen token'>)</span>
   <span class='result identifier id'>result</span> <span class='assign token'>=</span> <span class='nil nil kw'>nil</span>
+
+  <span class='columns identifier id'>columns</span> <span class='assign token'>=</span> <span class='columns_to_hbase_format identifier id'>columns_to_hbase_format</span><span class='lparen token'>(</span><span class='values identifier id'>values</span><span class='rparen token'>)</span>
+  <span class='timestamp identifier id'>timestamp</span> <span class='assign token'>=</span> <span class='Time constant id'>Time</span><span class='dot token'>.</span><span class='now identifier id'>now</span><span class='dot token'>.</span><span class='to_bigrecord_timestamp identifier id'>to_bigrecord_timestamp</span>
+
   <span class='log identifier id'>log</span> <span class='dstring node'>&quot;UPDATE #{table_name} SET #{values.inspect if values} WHERE ROW=#{row};&quot;</span> <span class='do do kw'>do</span>
-    <span class='result identifier id'>result</span> <span class='assign token'>=</span> <span class='@connection ivar id'>@connection</span><span class='dot token'>.</span><span class='update identifier id'>update</span><span class='lparen token'>(</span><span class='table_name identifier id'>table_name</span><span class='comma token'>,</span> <span class='row identifier id'>row</span><span class='comma token'>,</span> <span class='values identifier id'>values</span><span class='comma token'>,</span> <span class='timestamp identifier id'>timestamp</span><span class='rparen token'>)</span>
+    <span class='@connection ivar id'>@connection</span><span class='dot token'>.</span><span class='create_row identifier id'>create_row</span><span class='lparen token'>(</span><span class='table_name identifier id'>table_name</span><span class='comma token'>,</span> <span class='row identifier id'>row</span><span class='comma token'>,</span> <span class='timestamp identifier id'>timestamp</span><span class='comma token'>,</span> <span class='columns identifier id'>columns</span><span class='rparen token'>)</span>
   <span class='end end kw'>end</span>
   <span class='result identifier id'>result</span>
 <span class='end end kw'>end</span>
@@ -2122,7 +2164,7 @@ DATABASE STATEMENTS ======================================
 </div>
     </div>
     <div id="yard_info">
-  Generated on Thursday, November 12 2009 at 05:28:14 PM by 
+  Generated on Thursday, November 12 2009 at 05:28:13 PM by 
   <abbr class="yard" title="Yay! A Ruby Documentation Tool"><a href="http://yard.soen.ca">YARD</a></abbr> 
   0.2.3.5 (ruby-1.8.7).
 </div>

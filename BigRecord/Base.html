@@ -170,11 +170,6 @@ master through Client#master.
           <pre class="lines">
 
 
-608
-609
-610
-611
-612
 613
 614
 615
@@ -190,10 +185,15 @@ master through Client#master.
 625
 626
 627
-628</pre>
+628
+629
+630
+631
+632
+633</pre>
         </td>
         <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/abstract_base.rb', line 608</span>
+          <pre class="code"><span class="info file"># File 'lib/big_record/abstract_base.rb', line 613</span>
 
 <span class='def def kw'>def</span> <span class='method_missing identifier id'>method_missing</span><span class='lparen token'>(</span><span class='method_id identifier id'>method_id</span><span class='comma token'>,</span> <span class='mult op'>*</span><span class='args identifier id'>args</span><span class='comma token'>,</span> <span class='bitand op'>&amp;</span><span class='block identifier id'>block</span><span class='rparen token'>)</span>
   <span class='method_name identifier id'>method_name</span> <span class='assign token'>=</span> <span class='method_id identifier id'>method_id</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span>
@@ -672,14 +672,18 @@ Return the list of families for this class.
       <th class="signature">
         
           <span class='overload'>
-            <span class='name'><a href="#find_all_by_id-class_method" title="find_all_by_id">find_all_by_id</a></span><span class='args'>(ids, options = {})</span>
+            <span class='name'><a href="#hbase_connection-class_method" title="hbase_connection">hbase_connection</a></span><span class='args'>(config)</span>
             <span class='block'></span>
           </span>
         
         
       </th>
       <td class="docstring">
-        
+        <p>
+Establishes a connection to the database that&#8217;s used by all Active
+Record objects.
+</p>
+
         
       </td>
     </tr>
@@ -688,7 +692,7 @@ Return the list of families for this class.
       <th class="signature">
         
           <span class='overload'>
-            <span class='name'><a href="#hbase_connection-class_method" title="hbase_connection">hbase_connection</a></span><span class='args'>(config)</span>
+            <span class='name'><a href="#hbase_rest_connection-class_method" title="hbase_rest_connection">hbase_rest_connection</a></span><span class='args'>(config)</span>
             <span class='block'></span>
           </span>
         
@@ -1063,7 +1067,7 @@ Get the full hash of views consisting of the name as keys, and the
   
   <div>
     <h1>Public Class Methods Inherited from <a href="AbstractBase.html" title="BigRecord::AbstractBase">BigRecord::AbstractBase</a></h1>
-    <p><span class='name'><a href="AbstractBase.html#%3D%3D%3D-class_method" title="===">===</a></span>, <span class='name'><a href="AbstractBase.html#accessible_attributes-class_method" title="accessible_attributes">accessible_attributes</a></span>, <span class='name'><a href="AbstractBase.html#attr_accessible-class_method" title="attr_accessible">attr_accessible</a></span>, <span class='name'><a href="AbstractBase.html#attr_create_accessible-class_method" title="attr_create_accessible">attr_create_accessible</a></span>, <span class='name'><a href="AbstractBase.html#attr_protected-class_method" title="attr_protected">attr_protected</a></span>, <span class='name'><a href="AbstractBase.html#attr_readonly-class_method" title="attr_readonly">attr_readonly</a></span>, <span class='name'><a href="AbstractBase.html#benchmark-class_method" title="benchmark">benchmark</a></span>, <span class='name'><a href="AbstractBase.html#column_methods_hash-class_method" title="column_methods_hash">column_methods_hash</a></span>, <span class='name'><a href="AbstractBase.html#column_names-class_method" title="column_names">column_names</a></span>, <span class='name'><a href="AbstractBase.html#columns-class_method" title="columns">columns</a></span>, <span class='name'><a href="AbstractBase.html#columns_hash-class_method" title="columns_hash">columns_hash</a></span>, <span class='name'><a href="AbstractBase.html#content_columns-class_method" title="content_columns">content_columns</a></span>, <span class='name'><a href="AbstractBase.html#create_accessible_attributes-class_method" title="create_accessible_attributes">create_accessible_attributes</a></span>, <span class='name'><a href="AbstractBase.html#create_column-class_method" title="create_column">create_column</a></span>, <span class='name'><a href="AbstractBase.html#human_attribute_name-class_method" title="human_attribute_name">human_attribute_name</a></span>, <span class='name'><a href="AbstractBase.html#instantiate-class_method" title="instantiate">instantiate</a></span>, <span class='name'><a href="AbstractBase.html#protected_attributes-class_method" title="protected_attributes">protected_attributes</a></span>, <span class='name'><a href="AbstractBase.html#quote_value-class_method" title="quote_value">quote_value</a></span>, <span class='name'><a href="AbstractBase.html#read_methods-class_method" title="read_methods">read_methods</a></span>, <span class='name'><a href="AbstractBase.html#readonly_attributes-class_method" title="readonly_attributes">readonly_attributes</a></span>, <span class='name'><a href="AbstractBase.html#reset_subclasses-class_method" title="reset_subclasses">reset_subclasses</a></span>, <span class='name'><a href="AbstractBase.html#silence-class_method" title="silence">silence</a></span>, <span class='name'><a href="AbstractBase.html#store_primary_key%3F-class_method" title="store_primary_key?">store_primary_key?</a></span>, <span class='name'><a href="AbstractBase.html#undecorated_table_name-class_method" title="undecorated_table_name">undecorated_table_name</a></span></p>
+    <p><span class='name'><a href="AbstractBase.html#%3D%3D%3D-class_method" title="===">===</a></span>, <span class='name'><a href="AbstractBase.html#accessible_attributes-class_method" title="accessible_attributes">accessible_attributes</a></span>, <span class='name'><a href="AbstractBase.html#attr_accessible-class_method" title="attr_accessible">attr_accessible</a></span>, <span class='name'><a href="AbstractBase.html#attr_create_accessible-class_method" title="attr_create_accessible">attr_create_accessible</a></span>, <span class='name'><a href="AbstractBase.html#attr_protected-class_method" title="attr_protected">attr_protected</a></span>, <span class='name'><a href="AbstractBase.html#attr_readonly-class_method" title="attr_readonly">attr_readonly</a></span>, <span class='name'><a href="AbstractBase.html#benchmark-class_method" title="benchmark">benchmark</a></span>, <span class='name'><a href="AbstractBase.html#column_methods_hash-class_method" title="column_methods_hash">column_methods_hash</a></span>, <span class='name'><a href="AbstractBase.html#column_names-class_method" title="column_names">column_names</a></span>, <span class='name'><a href="AbstractBase.html#columns-class_method" title="columns">columns</a></span>, <span class='name'><a href="AbstractBase.html#columns_hash-class_method" title="columns_hash">columns_hash</a></span>, <span class='name'><a href="AbstractBase.html#content_columns-class_method" title="content_columns">content_columns</a></span>, <span class='name'><a href="AbstractBase.html#create_accessible_attributes-class_method" title="create_accessible_attributes">create_accessible_attributes</a></span>, <span class='name'><a href="AbstractBase.html#human_attribute_name-class_method" title="human_attribute_name">human_attribute_name</a></span>, <span class='name'><a href="AbstractBase.html#instantiate-class_method" title="instantiate">instantiate</a></span>, <span class='name'><a href="AbstractBase.html#protected_attributes-class_method" title="protected_attributes">protected_attributes</a></span>, <span class='name'><a href="AbstractBase.html#quote_value-class_method" title="quote_value">quote_value</a></span>, <span class='name'><a href="AbstractBase.html#read_methods-class_method" title="read_methods">read_methods</a></span>, <span class='name'><a href="AbstractBase.html#readonly_attributes-class_method" title="readonly_attributes">readonly_attributes</a></span>, <span class='name'><a href="AbstractBase.html#reset_subclasses-class_method" title="reset_subclasses">reset_subclasses</a></span>, <span class='name'><a href="AbstractBase.html#silence-class_method" title="silence">silence</a></span>, <span class='name'><a href="AbstractBase.html#store_primary_key%3F-class_method" title="store_primary_key?">store_primary_key?</a></span>, <span class='name'><a href="AbstractBase.html#undecorated_table_name-class_method" title="undecorated_table_name">undecorated_table_name</a></span></p>
   </div>
   
 </div>
@@ -1516,12 +1520,12 @@ The base class which inherits BigRecord::Base directly.
           <pre class="lines">
 
 
-413
 414
-415</pre>
+415
+416</pre>
         </td>
         <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/base.rb', line 413</span>
+          <pre class="code"><span class="info file"># File 'lib/big_record/base.rb', line 414</span>
 
 <span class='def def kw'>def</span> <span class='base_class identifier id'>base_class</span>
   <span class='lparen token'>(</span><span class='superclass identifier id'>superclass</span> <span class='eq op'>==</span> <span class='BigRecord constant id'>BigRecord</span><span class='colon2 op'>::</span><span class='Base constant id'>Base</span><span class='rparen token'>)</span> <span class='question op'>?</span> <span class='self self kw'>self</span> <span class='colon op'>:</span> <span class='superclass identifier id'>superclass</span><span class='dot token'>.</span><span class='base_class identifier id'>base_class</span>
@@ -1709,7 +1713,7 @@ Clears the cache which maps classes
     <dt></dt>
     <dd>
       <span class='desc'>
-        <tt>AbstractBase#column</tt>
+        <tt><a href="AbstractBase.html#column-class_method" title="BigRecord::AbstractBase.column">BigRecord::AbstractBase.column</a></tt>
       </span>
     </dd>
   </dl>
@@ -1724,15 +1728,15 @@ Clears the cache which maps classes
           <pre class="lines">
 
 
-469
 470
 471
 472
 473
-474</pre>
+474
+475</pre>
         </td>
         <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/base.rb', line 469</span>
+          <pre class="code"><span class="info file"># File 'lib/big_record/base.rb', line 470</span>
 
 <span class='def def kw'>def</span> <span class='column identifier id'>column</span><span class='lparen token'>(</span><span class='name identifier id'>name</span><span class='comma token'>,</span> <span class='type identifier id'>type</span><span class='comma token'>,</span> <span class='options identifier id'>options</span><span class='assign token'>=</span><span class='lbrace token'>{</span><span class='rbrace token'>}</span><span class='rparen token'>)</span>
   <span class='name identifier id'>name</span> <span class='assign token'>=</span> <span class='name identifier id'>name</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span>
@@ -1836,6 +1840,15 @@ The name of the view as defined with <tt><a href="#view-class_method" title="vie
           <pre class="lines">
 
 
+489
+490
+491
+492
+493
+494
+495
+496
+497
 498
 499
 500
@@ -1857,19 +1870,10 @@ The name of the view as defined with <tt><a href="#view-class_method" title="vie
 516
 517
 518
-519
-520
-521
-522
-523
-524
-525
-526
-527
-528</pre>
+519</pre>
         </td>
         <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/base.rb', line 498</span>
+          <pre class="code"><span class="info file"># File 'lib/big_record/base.rb', line 489</span>
 
 <span class='def def kw'>def</span> <span class='columns_to_find identifier id'>columns_to_find</span><span class='lparen token'>(</span><span class='options identifier id'>options</span><span class='assign token'>=</span><span class='lbrace token'>{</span><span class='rbrace token'>}</span><span class='rparen token'>)</span>
   <span class='c identifier id'>c</span> <span class='assign token'>=</span>
@@ -2115,7 +2119,6 @@ unsaved object is still returned.
           <pre class="lines">
 
 
-310
 311
 312
 313
@@ -2123,10 +2126,11 @@ unsaved object is still returned.
 315
 316
 317
-318</pre>
+318
+319</pre>
         </td>
         <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/base.rb', line 310</span>
+          <pre class="code"><span class="info file"># File 'lib/big_record/base.rb', line 311</span>
 
 <span class='def def kw'>def</span> <span class='create identifier id'>create</span><span class='lparen token'>(</span><span class='attrs identifier id'>attrs</span> <span class='assign token'>=</span> <span class='nil nil kw'>nil</span><span class='rparen token'>)</span>
   <span class='if if kw'>if</span> <span class='attrs identifier id'>attrs</span><span class='dot token'>.</span><span class='is_a? fid id'>is_a?</span><span class='lparen token'>(</span><span class='Array constant id'>Array</span><span class='rparen token'>)</span>
@@ -2174,12 +2178,12 @@ Default columns to create with the model, such as primary key.
           <pre class="lines">
 
 
-464
 465
-466</pre>
+466
+467</pre>
         </td>
         <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/base.rb', line 464</span>
+          <pre class="code"><span class="info file"># File 'lib/big_record/base.rb', line 465</span>
 
 <span class='def def kw'>def</span> <span class='default_columns identifier id'>default_columns</span>
   <span class='lbrace token'>{</span><span class='primary_key identifier id'>primary_key</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='ConnectionAdapters constant id'>ConnectionAdapters</span><span class='colon2 op'>::</span><span class='Column constant id'>Column</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='primary_key identifier id'>primary_key</span><span class='comma token'>,</span> <span class='string val'>'string'</span><span class='rparen token'>)</span><span class='rbrace token'>}</span>
@@ -2225,12 +2229,12 @@ Defaults to &quot;attribute&quot;
           <pre class="lines">
 
 
-400
 401
-402</pre>
+402
+403</pre>
         </td>
         <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/base.rb', line 400</span>
+          <pre class="code"><span class="info file"># File 'lib/big_record/base.rb', line 401</span>
 
 <span class='def def kw'>def</span> <span class='default_family identifier id'>default_family</span>
   <span class='lparen token'>(</span><span class='superclass identifier id'>superclass</span> <span class='eq op'>==</span> <span class='BigRecord constant id'>BigRecord</span><span class='colon2 op'>::</span><span class='Base constant id'>Base</span><span class='rparen token'>)</span> <span class='question op'>?</span> <span class='lparen token'>(</span><span class='@default_family ivar id'>@default_family</span> <span class='opasgn op'>||=</span> <span class='string val'>&quot;attribute&quot;</span><span class='rparen token'>)</span> <span class='colon op'>:</span> <span class='superclass identifier id'>superclass</span><span class='dot token'>.</span><span class='default_family identifier id'>default_family</span>
@@ -2273,12 +2277,12 @@ Return the hash of default views which consist of all columns and the
           <pre class="lines">
 
 
-477
 478
-479</pre>
+479
+480</pre>
         </td>
         <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/base.rb', line 477</span>
+          <pre class="code"><span class="info file"># File 'lib/big_record/base.rb', line 478</span>
 
 <span class='def def kw'>def</span> <span class='default_views identifier id'>default_views</span>
   <span class='lbrace token'>{</span><span class='symbol val'>:all=</span><span class='gt op'>&gt;</span><span class='ConnectionAdapters constant id'>ConnectionAdapters</span><span class='colon2 op'>::</span><span class='View constant id'>View</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='string val'>'all'</span><span class='comma token'>,</span> <span class='nil nil kw'>nil</span><span class='comma token'>,</span> <span class='self self kw'>self</span><span class='rparen token'>)</span><span class='comma token'>,</span> <span class='symbol val'>:default=</span><span class='gt op'>&gt;</span><span class='ConnectionAdapters constant id'>ConnectionAdapters</span><span class='colon2 op'>::</span><span class='View constant id'>View</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='string val'>'default'</span><span class='comma token'>,</span> <span class='nil nil kw'>nil</span><span class='comma token'>,</span> <span class='self self kw'>self</span><span class='rparen token'>)</span><span class='rbrace token'>}</span>
@@ -2321,16 +2325,16 @@ object first. If an array of ids is provided, all of them are deleted.
           <pre class="lines">
 
 
-345
 346
 347
 348
 349
 350
-351</pre>
+351
+352</pre>
         </td>
         <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/base.rb', line 345</span>
+          <pre class="code"><span class="info file"># File 'lib/big_record/base.rb', line 346</span>
 
 <span class='def def kw'>def</span> <span class='delete identifier id'>delete</span><span class='lparen token'>(</span><span class='id identifier id'>id</span><span class='rparen token'>)</span>
   <span class='if if kw'>if</span> <span class='id identifier id'>id</span><span class='dot token'>.</span><span class='is_a? fid id'>is_a?</span><span class='lparen token'>(</span><span class='Array constant id'>Array</span><span class='rparen token'>)</span>
@@ -2371,10 +2375,17 @@ Example:
 <pre class="code">
   <span class='Post constant id'>Post</span><span class='dot token'>.</span><span class='delete_all identifier id'>delete_all</span> <span class='string val'>&quot;person_id = 5 AND (category = 'Something' OR category = 'Else')&quot;</span>
 </pre>
-<p>
-TODO: take into consideration the conditions
-</p>
 
+</div><div class="section tags">
+  <h2>Meta Tags</h2>
+  <div class="todo">
+  <h3>Todo Item:</h3>
+  <ul>
+  
+    <li><strong>take into consideration the conditions</strong> </li>
+  
+  </ul>
+</div>
 </div><div class="section source">
   <span>[<a class="source_link" href="#">View source</a>]</span>
   <div class="source_code">
@@ -2384,14 +2395,14 @@ TODO: take into consideration the conditions
           <pre class="lines">
 
 
-378
 379
 380
 381
-382</pre>
+382
+383</pre>
         </td>
         <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/base.rb', line 378</span>
+          <pre class="code"><span class="info file"># File 'lib/big_record/base.rb', line 379</span>
 
 <span class='def def kw'>def</span> <span class='delete_all identifier id'>delete_all</span><span class='lparen token'>(</span><span class='conditions identifier id'>conditions</span> <span class='assign token'>=</span> <span class='nil nil kw'>nil</span><span class='rparen token'>)</span>
   <span class='connection identifier id'>connection</span><span class='dot token'>.</span><span class='get_consecutive_rows identifier id'>get_consecutive_rows</span><span class='lparen token'>(</span><span class='table_name identifier id'>table_name</span><span class='comma token'>,</span> <span class='nil nil kw'>nil</span><span class='comma token'>,</span> <span class='nil nil kw'>nil</span><span class='comma token'>,</span> <span class='lbrack token'>[</span><span class='dstring node'>&quot;#{default_family}:&quot;</span><span class='rbrack token'>]</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='each identifier id'>each</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='row identifier id'>row</span><span class='bitor op'>|</span>
@@ -2437,12 +2448,12 @@ ids is provided, all of them are destroyed.
           <pre class="lines">
 
 
-355
 356
-357</pre>
+357
+358</pre>
         </td>
         <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/base.rb', line 355</span>
+          <pre class="code"><span class="info file"># File 'lib/big_record/base.rb', line 356</span>
 
 <span class='def def kw'>def</span> <span class='destroy identifier id'>destroy</span><span class='lparen token'>(</span><span class='id identifier id'>id</span><span class='rparen token'>)</span>
   <span class='id identifier id'>id</span><span class='dot token'>.</span><span class='is_a? fid id'>is_a?</span><span class='lparen token'>(</span><span class='Array constant id'>Array</span><span class='rparen token'>)</span> <span class='question op'>?</span> <span class='id identifier id'>id</span><span class='dot token'>.</span><span class='each identifier id'>each</span> <span class='lbrace token'>{</span> <span class='bitor op'>|</span><span class='a identifier id'>a</span><span class='bitor op'>|</span> <span class='destroy identifier id'>destroy</span><span class='lparen token'>(</span><span class='a identifier id'>a</span><span class='rparen token'>)</span> <span class='rbrace token'>}</span> <span class='colon op'>:</span> <span class='find identifier id'>find</span><span class='lparen token'>(</span><span class='id identifier id'>id</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='destroy identifier id'>destroy</span>
@@ -2488,12 +2499,12 @@ by instantiating each object and calling the destroy method. Example:
           <pre class="lines">
 
 
-369
 370
-371</pre>
+371
+372</pre>
         </td>
         <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/base.rb', line 369</span>
+          <pre class="code"><span class="info file"># File 'lib/big_record/base.rb', line 370</span>
 
 <span class='def def kw'>def</span> <span class='destroy_all identifier id'>destroy_all</span><span class='lparen token'>(</span><span class='conditions identifier id'>conditions</span> <span class='assign token'>=</span> <span class='nil nil kw'>nil</span><span class='rparen token'>)</span>
   <span class='find identifier id'>find</span><span class='lparen token'>(</span><span class='symbol val'>:all</span><span class='comma token'>,</span> <span class='symbol val'>:conditions</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='conditions identifier id'>conditions</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='each identifier id'>each</span> <span class='lbrace token'>{</span> <span class='bitor op'>|</span><span class='object identifier id'>object</span><span class='bitor op'>|</span> <span class='object identifier id'>object</span><span class='dot token'>.</span><span class='destroy identifier id'>destroy</span> <span class='rbrace token'>}</span>
@@ -2658,14 +2669,14 @@ record in the database, false otherwise.
           <pre class="lines">
 
 
-302
 303
 304
 305
-306</pre>
+306
+307</pre>
         </td>
         <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/base.rb', line 302</span>
+          <pre class="code"><span class="info file"># File 'lib/big_record/base.rb', line 303</span>
 
 <span class='def def kw'>def</span> <span class='exists? fid id'>exists?</span><span class='lparen token'>(</span><span class='id identifier id'>id</span><span class='rparen token'>)</span>
   <span class='notop op'>!</span><span class='find identifier id'>find</span><span class='lparen token'>(</span><span class='id identifier id'>id</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='nil? fid id'>nil?</span>
@@ -2751,7 +2762,6 @@ Return the list of families for this class
           <pre class="lines">
 
 
-283
 284
 285
 286
@@ -2767,10 +2777,11 @@ Return the list of families for this class
 296
 297
 298
-299</pre>
+299
+300</pre>
         </td>
         <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/base.rb', line 283</span>
+          <pre class="code"><span class="info file"># File 'lib/big_record/base.rb', line 284</span>
 
 <span class='def def kw'>def</span> <span class='find identifier id'>find</span><span class='lparen token'>(</span><span class='mult op'>*</span><span class='args identifier id'>args</span><span class='rparen token'>)</span>
   <span class='options identifier id'>options</span> <span class='assign token'>=</span> <span class='extract_options_from_args! fid id'>extract_options_from_args!</span><span class='lparen token'>(</span><span class='args identifier id'>args</span><span class='rparen token'>)</span>
@@ -2787,60 +2798,6 @@ Return the list of families for this class
     <span class='when when kw'>when</span> <span class='symbol val'>:first</span> <span class='then then kw'>then</span> <span class='find_every identifier id'>find_every</span><span class='lparen token'>(</span><span class='options identifier id'>options</span><span class='dot token'>.</span><span class='merge identifier id'>merge</span><span class='lparen token'>(</span><span class='lbrace token'>{</span><span class='symbol val'>:limit</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='integer val'>1</span><span class='rbrace token'>}</span><span class='rparen token'>)</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='first identifier id'>first</span>
     <span class='when when kw'>when</span> <span class='symbol val'>:all</span>   <span class='then then kw'>then</span> <span class='find_every identifier id'>find_every</span><span class='lparen token'>(</span><span class='options identifier id'>options</span><span class='rparen token'>)</span>
     <span class='else else kw'>else</span>             <span class='find_from_ids identifier id'>find_from_ids</span><span class='lparen token'>(</span><span class='args identifier id'>args</span><span class='comma token'>,</span> <span class='options identifier id'>options</span><span class='rparen token'>)</span>
-  <span class='end end kw'>end</span>
-<span class='end end kw'>end</span>
-</pre>
-        </td>
-      </tr>
-    </table>
-  </div>
-</div>
-</div>
-    </div>
-  
-    <div class="method">
-      <div class="method_header">
-  <h3>find_all_by_id</h3>
-</div><div id="find_all_by_id-class_method" class="section method">
-  <div class="details_title">
-    <div class='section methodsignature'>
-    <tt class='def'>
-      <span class='visibility'>public</span>
-      <span class='return_types'></span>
-      <span class='name'>find_all_by_id</span><span class='args'>(ids, options = {})</span>
-      <span class='block'></span>
-    </tt>
-  </div>
-
-</div><div class="section source">
-  <span>[<a class="source_link" href="#">View source</a>]</span>
-  <div class="source_code">
-    <table>
-      <tr>
-        <td>
-          <pre class="lines">
-
-
-481
-482
-483
-484
-485
-486
-487
-488
-489</pre>
-        </td>
-        <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/base.rb', line 481</span>
-
-<span class='def def kw'>def</span> <span class='find_all_by_id identifier id'>find_all_by_id</span><span class='lparen token'>(</span><span class='ids identifier id'>ids</span><span class='comma token'>,</span> <span class='options identifier id'>options</span><span class='assign token'>=</span><span class='lbrace token'>{</span><span class='rbrace token'>}</span><span class='rparen token'>)</span>
-  <span class='ids identifier id'>ids</span><span class='dot token'>.</span><span class='inject identifier id'>inject</span><span class='lparen token'>(</span><span class='lbrack token'>[</span><span class='rbrack token'>]</span><span class='rparen token'>)</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='result identifier id'>result</span><span class='comma token'>,</span> <span class='id identifier id'>id</span><span class='bitor op'>|</span>
-    <span class='begin begin kw'>begin</span>
-      <span class='result identifier id'>result</span> <span class='lshft op'>&lt;&lt;</span> <span class='find_one identifier id'>find_one</span><span class='lparen token'>(</span><span class='id identifier id'>id</span><span class='comma token'>,</span> <span class='options identifier id'>options</span><span class='rparen token'>)</span>
-    <span class='rescue rescue kw'>rescue</span> <span class='BigRecord constant id'>BigRecord</span><span class='colon2 op'>::</span><span class='RecordNotFound constant id'>RecordNotFound</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='e identifier id'>e</span>
-    <span class='end end kw'>end</span>
-    <span class='result identifier id'>result</span>
   <span class='end end kw'>end</span>
 <span class='end end kw'>end</span>
 </pre>
@@ -2908,6 +2865,66 @@ Record objects.
   <span class='hbase identifier id'>hbase</span> <span class='assign token'>=</span> <span class='BigRecordDriver constant id'>BigRecordDriver</span><span class='colon2 op'>::</span><span class='Client constant id'>Client</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='config identifier id'>config</span><span class='rparen token'>)</span>
 
   <span class='ConnectionAdapters constant id'>ConnectionAdapters</span><span class='colon2 op'>::</span><span class='HbaseAdapter constant id'>HbaseAdapter</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='hbase identifier id'>hbase</span><span class='comma token'>,</span> <span class='logger identifier id'>logger</span><span class='comma token'>,</span> <span class='lbrack token'>[</span><span class='zookeeper_host identifier id'>zookeeper_host</span><span class='comma token'>,</span> <span class='zookeeper_client_port identifier id'>zookeeper_client_port</span><span class='rbrack token'>]</span><span class='comma token'>,</span> <span class='config identifier id'>config</span><span class='rparen token'>)</span>
+<span class='end end kw'>end</span>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>hbase_rest_connection</h3>
+</div><div id="hbase_rest_connection-class_method" class="section method">
+  <div class="details_title">
+    <div class='section methodsignature'>
+    <tt class='def'>
+      <span class='visibility'>public</span>
+      <span class='return_types'></span>
+      <span class='name'>hbase_rest_connection</span><span class='args'>(config)</span>
+      <span class='block'></span>
+    </tt>
+  </div>
+
+</div><div class="section docstring">
+  <p>
+Establishes a connection to the database that&#8217;s used by all Active
+Record objects.
+</p>
+
+</div><div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="source_code">
+    <table>
+      <tr>
+        <td>
+          <pre class="lines">
+
+
+7
+8
+9
+10
+11
+12
+13
+14
+15</pre>
+        </td>
+        <td>
+          <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/hbase_rest_adapter.rb', line 7</span>
+
+<span class='def def kw'>def</span> <span class='self self kw'>self</span><span class='dot token'>.</span><span class='hbase_rest_connection identifier id'>hbase_rest_connection</span><span class='lparen token'>(</span><span class='config identifier id'>config</span><span class='rparen token'>)</span> <span class='comment val'># :nodoc:</span>
+  <span class='config identifier id'>config</span> <span class='assign token'>=</span> <span class='config identifier id'>config</span><span class='dot token'>.</span><span class='symbolize_keys identifier id'>symbolize_keys</span>
+
+  <span class='api_address identifier id'>api_address</span> <span class='assign token'>=</span> <span class='config identifier id'>config</span><span class='lbrack token'>[</span><span class='symbol val'>:api_address</span><span class='rbrack token'>]</span>
+
+  <span class='hbase identifier id'>hbase</span> <span class='assign token'>=</span> <span class='HBase constant id'>HBase</span><span class='colon2 op'>::</span><span class='Client constant id'>Client</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='api_address identifier id'>api_address</span><span class='rparen token'>)</span>
+
+  <span class='ConnectionAdapters constant id'>ConnectionAdapters</span><span class='colon2 op'>::</span><span class='HbaseRestAdapter constant id'>HbaseRestAdapter</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='hbase identifier id'>hbase</span><span class='comma token'>,</span> <span class='logger identifier id'>logger</span><span class='comma token'>,</span> <span class='lbrack token'>[</span><span class='rbrack token'>]</span><span class='comma token'>,</span> <span class='config identifier id'>config</span><span class='rparen token'>)</span>
 <span class='end end kw'>end</span>
 </pre>
         </td>
@@ -3302,7 +3319,6 @@ record
           <pre class="lines">
 
 
-251
 252
 253
 254
@@ -3332,10 +3348,11 @@ record
 278
 279
 280
-281</pre>
+281
+282</pre>
         </td>
         <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/base.rb', line 251</span>
+          <pre class="code"><span class="info file"># File 'lib/big_record/base.rb', line 252</span>
 
 <span class='def def kw'>def</span> <span class='scan identifier id'>scan</span><span class='lparen token'>(</span><span class='options identifier id'>options</span><span class='assign token'>=</span><span class='lbrace token'>{</span><span class='rbrace token'>}</span><span class='comma token'>,</span> <span class='bitand op'>&amp;</span><span class='code identifier id'>code</span><span class='rparen token'>)</span>
   <span class='options identifier id'>options</span> <span class='assign token'>=</span> <span class='options identifier id'>options</span><span class='dot token'>.</span><span class='dup identifier id'>dup</span>
@@ -3418,12 +3435,12 @@ family set explicitly.
           <pre class="lines">
 
 
-408
 409
-410</pre>
+410
+411</pre>
         </td>
         <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/base.rb', line 408</span>
+          <pre class="code"><span class="info file"># File 'lib/big_record/base.rb', line 409</span>
 
 <span class='def def kw'>def</span> <span class='set_default_family identifier id'>set_default_family</span><span class='lparen token'>(</span><span class='name identifier id'>name</span><span class='rparen token'>)</span>
   <span class='@default_family ivar id'>@default_family</span> <span class='assign token'>=</span> <span class='name identifier id'>name</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span>
@@ -3460,12 +3477,12 @@ family set explicitly.
           <pre class="lines">
 
 
-393
 394
-395</pre>
+395
+396</pre>
         </td>
         <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/base.rb', line 393</span>
+          <pre class="code"><span class="info file"># File 'lib/big_record/base.rb', line 394</span>
 
 <span class='def def kw'>def</span> <span class='set_table_name identifier id'>set_table_name</span><span class='lparen token'>(</span><span class='name identifier id'>name</span><span class='rparen token'>)</span>
   <span class='@table_name ivar id'>@table_name</span> <span class='assign token'>=</span> <span class='name identifier id'>name</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span>
@@ -3544,12 +3561,12 @@ family set explicitly.
           <pre class="lines">
 
 
-389
 390
-391</pre>
+391
+392</pre>
         </td>
         <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/base.rb', line 389</span>
+          <pre class="code"><span class="info file"># File 'lib/big_record/base.rb', line 390</span>
 
 <span class='def def kw'>def</span> <span class='table_name identifier id'>table_name</span>
   <span class='lparen token'>(</span><span class='superclass identifier id'>superclass</span> <span class='eq op'>==</span> <span class='BigRecord constant id'>BigRecord</span><span class='colon2 op'>::</span><span class='Base constant id'>Base</span><span class='rparen token'>)</span> <span class='question op'>?</span> <span class='@table_name ivar id'>@table_name</span> <span class='colon op'>:</span> <span class='superclass identifier id'>superclass</span><span class='dot token'>.</span><span class='table_name identifier id'>table_name</span>
@@ -3638,12 +3655,12 @@ Truncate the table for this model
           <pre class="lines">
 
 
-385
 386
-387</pre>
+387
+388</pre>
         </td>
         <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/base.rb', line 385</span>
+          <pre class="code"><span class="info file"># File 'lib/big_record/base.rb', line 386</span>
 
 <span class='def def kw'>def</span> <span class='truncate identifier id'>truncate</span>
   <span class='connection identifier id'>connection</span><span class='dot token'>.</span><span class='truncate_table identifier id'>truncate_table</span><span class='lparen token'>(</span><span class='table_name identifier id'>table_name</span><span class='rparen token'>)</span>
@@ -3718,7 +3735,6 @@ of objects is returned.
           <pre class="lines">
 
 
-332
 333
 334
 335
@@ -3727,10 +3743,11 @@ of objects is returned.
 338
 339
 340
-341</pre>
+341
+342</pre>
         </td>
         <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/base.rb', line 332</span>
+          <pre class="code"><span class="info file"># File 'lib/big_record/base.rb', line 333</span>
 
 <span class='def def kw'>def</span> <span class='update identifier id'>update</span><span class='lparen token'>(</span><span class='id identifier id'>id</span><span class='comma token'>,</span> <span class='attributes identifier id'>attributes</span><span class='rparen token'>)</span>
   <span class='if if kw'>if</span> <span class='id identifier id'>id</span><span class='dot token'>.</span><span class='is_a? fid id'>is_a?</span><span class='lparen token'>(</span><span class='Array constant id'>Array</span><span class='rparen token'>)</span>
@@ -3805,12 +3822,12 @@ Example:
           <pre class="lines">
 
 
-362
 363
-364</pre>
+364
+365</pre>
         </td>
         <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/base.rb', line 362</span>
+          <pre class="code"><span class="info file"># File 'lib/big_record/base.rb', line 363</span>
 
 <span class='def def kw'>def</span> <span class='update_all identifier id'>update_all</span><span class='lparen token'>(</span><span class='updates identifier id'>updates</span><span class='comma token'>,</span> <span class='conditions identifier id'>conditions</span> <span class='assign token'>=</span> <span class='nil nil kw'>nil</span><span class='rparen token'>)</span>
   <span class='raise identifier id'>raise</span> <span class='NotImplemented constant id'>NotImplemented</span><span class='comma token'>,</span> <span class='string val'>&quot;update_all&quot;</span>
@@ -3962,7 +3979,6 @@ qualified names.
           <pre class="lines">
 
 
-425
 426
 427
 428
@@ -3970,10 +3986,11 @@ qualified names.
 430
 431
 432
-433</pre>
+433
+434</pre>
         </td>
         <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/base.rb', line 425</span>
+          <pre class="code"><span class="info file"># File 'lib/big_record/base.rb', line 426</span>
 
 <span class='def def kw'>def</span> <span class='view identifier id'>view</span><span class='lparen token'>(</span><span class='name identifier id'>name</span><span class='comma token'>,</span> <span class='mult op'>*</span><span class='columns identifier id'>columns</span><span class='rparen token'>)</span>
   <span class='name identifier id'>name</span> <span class='assign token'>=</span> <span class='name identifier id'>name</span><span class='dot token'>.</span><span class='to_sym identifier id'>to_sym</span>
@@ -4021,12 +4038,12 @@ Get a list of view names defined by <tt><a href="#view-class_method" title="view
           <pre class="lines">
 
 
-441
 442
-443</pre>
+443
+444</pre>
         </td>
         <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/base.rb', line 441</span>
+          <pre class="code"><span class="info file"># File 'lib/big_record/base.rb', line 442</span>
 
 <span class='def def kw'>def</span> <span class='view_names identifier id'>view_names</span>
   <span class='@view_names ivar id'>@view_names</span> <span class='opasgn op'>||=</span> <span class='views_hash identifier id'>views_hash</span><span class='dot token'>.</span><span class='keys identifier id'>keys</span>
@@ -4068,12 +4085,12 @@ Get a list of all the views defined by the <tt><a href="#view-class_method" titl
           <pre class="lines">
 
 
-436
 437
-438</pre>
+438
+439</pre>
         </td>
         <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/base.rb', line 436</span>
+          <pre class="code"><span class="info file"># File 'lib/big_record/base.rb', line 437</span>
 
 <span class='def def kw'>def</span> <span class='views identifier id'>views</span>
   <span class='@views ivar id'>@views</span> <span class='opasgn op'>||=</span> <span class='views_hash identifier id'>views_hash</span><span class='dot token'>.</span><span class='values identifier id'>values</span>
@@ -4116,7 +4133,6 @@ Get the full hash of views consisting of the name as keys, and the
           <pre class="lines">
 
 
-446
 447
 448
 449
@@ -4131,10 +4147,11 @@ Get the full hash of views consisting of the name as keys, and the
 458
 459
 460
-461</pre>
+461
+462</pre>
         </td>
         <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/base.rb', line 446</span>
+          <pre class="code"><span class="info file"># File 'lib/big_record/base.rb', line 447</span>
 
 <span class='def def kw'>def</span> <span class='views_hash identifier id'>views_hash</span>
   <span class='unless unless kw'>unless</span> <span class='@all_views_hash ivar id'>@all_views_hash</span>
@@ -4996,7 +5013,7 @@ of save so an exception is raised if the record is invalid.
 </div>
     </div>
     <div id="yard_info">
-  Generated on Tuesday, November 10 2009 at 06:18:36 PM by 
+  Generated on Thursday, November 12 2009 at 05:28:04 PM by 
   <abbr class="yard" title="Yay! A Ruby Documentation Tool"><a href="http://yard.soen.ca">YARD</a></abbr> 
   0.2.3.5 (ruby-1.8.7).
 </div>

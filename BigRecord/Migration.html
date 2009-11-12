@@ -16,9 +16,10 @@
       <div class="section class BigRecord_Migration">
   <h1 class="title">Class: BigRecord::Migration</h1>
   <div class="section docstring">
-  <p>
+  <h1>Migrations</h1>
+<p>
 Although column-oriented databases are generally schema-less, certain ones
-(like Hbase) require the creation of tables and column families ahead of
+(like HBase) require the creation of tables and column families ahead of
 time. The individual columns, however, are defined in the model itself and
 can be modified dynamically without the need for migrations.
 </p>
@@ -45,6 +46,34 @@ scheme. Leave any options blank for the default value.
      <span class='drop_table identifier id'>drop_table</span> <span class='symbol val'>:books</span>
    <span class='end end kw'>end</span>
  <span class='end end kw'>end</span>
+</pre>
+<h2>HBase column family options (HBase specific)</h2>
+<ul>
+<li>versions: integer. By default, Hbase will store 3 versions of changes for
+
+</li>
+</ul>
+<p>
+any column family. Changing this value on the creation will change this
+behavior.
+</p>
+<ul>
+<li>compression: &#8216;none&#8217;, &#8216;gz&#8217;, &#8216;lzo&#8217;.
+Defaults to &#8216;none&#8217;. Since Hbase 0.20,
+
+</li>
+</ul>
+<p>
+column families can be stored using compression. The compression scheme you
+define here must be installed on the Hbase servers!
+</p>
+<h2>Migrating</h2>
+<p>
+Run the following rake task to migrate your tables and column families up
+to the latest version:
+</p>
+<pre class="code">
+  <span class='rake identifier id'>rake</span> <span class='bigrecord identifier id'>bigrecord</span><span class='symbol val'>:migrate</span>
 </pre>
 
 </div><div class="section constants">
@@ -267,14 +296,14 @@ recursively.
           <pre class="lines">
 
 
-109
-110
-111
-112
-113</pre>
+131
+132
+133
+134
+135</pre>
         </td>
         <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/migration.rb', line 109</span>
+          <pre class="code"><span class="info file"># File 'lib/big_record/migration.rb', line 131</span>
 
 <span class='def def kw'>def</span> <span class='announce identifier id'>announce</span><span class='lparen token'>(</span><span class='message identifier id'>message</span><span class='rparen token'>)</span>
   <span class='text identifier id'>text</span> <span class='assign token'>=</span> <span class='dstring node'>&quot;#{@version} #{name}: #{message}&quot;</span>
@@ -313,12 +342,12 @@ recursively.
           <pre class="lines">
 
 
-135
-136
-137</pre>
+157
+158
+159</pre>
         </td>
         <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/migration.rb', line 135</span>
+          <pre class="code"><span class="info file"># File 'lib/big_record/migration.rb', line 157</span>
 
 <span class='def def kw'>def</span> <span class='connection identifier id'>connection</span>
   <span class='BigRecord constant id'>BigRecord</span><span class='colon2 op'>::</span><span class='Base constant id'>Base</span><span class='dot token'>.</span><span class='connection identifier id'>connection</span>
@@ -355,12 +384,12 @@ recursively.
           <pre class="lines">
 
 
-63
-64
-65</pre>
+85
+86
+87</pre>
         </td>
         <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/migration.rb', line 63</span>
+          <pre class="code"><span class="info file"># File 'lib/big_record/migration.rb', line 85</span>
 
 <span class='def def kw'>def</span> <span class='down_with_benchmarks identifier id'>down_with_benchmarks</span> 
   <span class='migrate identifier id'>migrate</span><span class='lparen token'>(</span><span class='symbol val'>:down</span><span class='rparen token'>)</span>
@@ -397,19 +426,19 @@ recursively.
           <pre class="lines">
 
 
-139
-140
-141
-142
-143
-144
-145
-146
-147
-148</pre>
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170</pre>
         </td>
         <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/migration.rb', line 139</span>
+          <pre class="code"><span class="info file"># File 'lib/big_record/migration.rb', line 161</span>
 
 <span class='def def kw'>def</span> <span class='method_missing identifier id'>method_missing</span><span class='lparen token'>(</span><span class='method identifier id'>method</span><span class='comma token'>,</span> <span class='mult op'>*</span><span class='arguments identifier id'>arguments</span><span class='comma token'>,</span> <span class='bitand op'>&amp;</span><span class='block identifier id'>block</span><span class='rparen token'>)</span>
   <span class='arg_list identifier id'>arg_list</span> <span class='assign token'>=</span> <span class='arguments identifier id'>arguments</span><span class='dot token'>.</span><span class='map identifier id'>map</span><span class='lparen token'>(</span><span class='bitand op'>&amp;</span><span class='symbol val'>:inspect</span><span class='rparen token'>)</span> <span class='mult op'>*</span> <span class='string val'>', '</span>
@@ -458,27 +487,27 @@ Execute this migration in the named direction
           <pre class="lines">
 
 
-68
-69
-70
-71
-72
-73
-74
-75
-76
-77
-78
-79
-80
-81
-82
-83
-84
-85</pre>
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107</pre>
         </td>
         <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/migration.rb', line 68</span>
+          <pre class="code"><span class="info file"># File 'lib/big_record/migration.rb', line 90</span>
 
 <span class='def def kw'>def</span> <span class='migrate identifier id'>migrate</span><span class='lparen token'>(</span><span class='direction identifier id'>direction</span><span class='rparen token'>)</span>
   <span class='return return kw'>return</span> <span class='unless unless_mod kw'>unless</span> <span class='respond_to? fid id'>respond_to?</span><span class='lparen token'>(</span><span class='direction identifier id'>direction</span><span class='rparen token'>)</span>
@@ -530,12 +559,12 @@ Execute this migration in the named direction
           <pre class="lines">
 
 
-115
-116
-117</pre>
+137
+138
+139</pre>
         </td>
         <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/migration.rb', line 115</span>
+          <pre class="code"><span class="info file"># File 'lib/big_record/migration.rb', line 137</span>
 
 <span class='def def kw'>def</span> <span class='say identifier id'>say</span><span class='lparen token'>(</span><span class='message identifier id'>message</span><span class='comma token'>,</span> <span class='subitem identifier id'>subitem</span><span class='assign token'>=</span><span class='false false kw'>false</span><span class='rparen token'>)</span>
   <span class='write identifier id'>write</span> <span class='dstring node'>&quot;#{subitem ? &quot;   -&gt;&quot; : &quot;--&quot;} #{message}&quot;</span>
@@ -572,17 +601,17 @@ Execute this migration in the named direction
           <pre class="lines">
 
 
-119
-120
-121
-122
-123
-124
-125
-126</pre>
+141
+142
+143
+144
+145
+146
+147
+148</pre>
         </td>
         <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/migration.rb', line 119</span>
+          <pre class="code"><span class="info file"># File 'lib/big_record/migration.rb', line 141</span>
 
 <span class='def def kw'>def</span> <span class='say_with_time identifier id'>say_with_time</span><span class='lparen token'>(</span><span class='message identifier id'>message</span><span class='rparen token'>)</span>
   <span class='say identifier id'>say</span><span class='lparen token'>(</span><span class='message identifier id'>message</span><span class='rparen token'>)</span>
@@ -631,23 +660,23 @@ is safe for the call to proceed.
           <pre class="lines">
 
 
-90
-91
-92
-93
-94
-95
-96
-97
-98
-99
-100
-101
-102
-103</pre>
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125</pre>
         </td>
         <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/migration.rb', line 90</span>
+          <pre class="code"><span class="info file"># File 'lib/big_record/migration.rb', line 112</span>
 
 <span class='def def kw'>def</span> <span class='singleton_method_added identifier id'>singleton_method_added</span><span class='lparen token'>(</span><span class='sym identifier id'>sym</span><span class='rparen token'>)</span> <span class='comment val'>#:nodoc:</span>
   <span class='return return kw'>return</span> <span class='if if_mod kw'>if</span> <span class='defined? defined kw'>defined?</span><span class='lparen token'>(</span><span class='@ignore_new_methods ivar id'>@ignore_new_methods</span><span class='rparen token'>)</span> <span class='andop op'>&amp;&amp;</span> <span class='@ignore_new_methods ivar id'>@ignore_new_methods</span>
@@ -717,15 +746,15 @@ is safe for the call to proceed.
           <pre class="lines">
 
 
-128
-129
-130
-131
-132
-133</pre>
+150
+151
+152
+153
+154
+155</pre>
         </td>
         <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/migration.rb', line 128</span>
+          <pre class="code"><span class="info file"># File 'lib/big_record/migration.rb', line 150</span>
 
 <span class='def def kw'>def</span> <span class='suppress_messages identifier id'>suppress_messages</span>
   <span class='save identifier id'>save</span><span class='comma token'>,</span> <span class='self self kw'>self</span><span class='dot token'>.</span><span class='verbose identifier id'>verbose</span> <span class='assign token'>=</span> <span class='verbose identifier id'>verbose</span><span class='comma token'>,</span> <span class='false false kw'>false</span>
@@ -765,12 +794,12 @@ is safe for the call to proceed.
           <pre class="lines">
 
 
-59
-60
-61</pre>
+81
+82
+83</pre>
         </td>
         <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/migration.rb', line 59</span>
+          <pre class="code"><span class="info file"># File 'lib/big_record/migration.rb', line 81</span>
 
 <span class='def def kw'>def</span> <span class='up_with_benchmarks identifier id'>up_with_benchmarks</span> 
   <span class='migrate identifier id'>migrate</span><span class='lparen token'>(</span><span class='symbol val'>:up</span><span class='rparen token'>)</span>
@@ -807,12 +836,12 @@ is safe for the call to proceed.
           <pre class="lines">
 
 
-105
-106
-107</pre>
+127
+128
+129</pre>
         </td>
         <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/migration.rb', line 105</span>
+          <pre class="code"><span class="info file"># File 'lib/big_record/migration.rb', line 127</span>
 
 <span class='def def kw'>def</span> <span class='write identifier id'>write</span><span class='lparen token'>(</span><span class='text identifier id'>text</span><span class='assign token'>=</span><span class='string val'>&quot;&quot;</span><span class='rparen token'>)</span>
   <span class='puts identifier id'>puts</span><span class='lparen token'>(</span><span class='text identifier id'>text</span><span class='rparen token'>)</span> <span class='if if_mod kw'>if</span> <span class='verbose identifier id'>verbose</span>
@@ -832,7 +861,7 @@ is safe for the call to proceed.
 </div>
     </div>
     <div id="yard_info">
-  Generated on Tuesday, November 10 2009 at 06:18:49 PM by 
+  Generated on Thursday, November 12 2009 at 05:28:17 PM by 
   <abbr class="yard" title="Yay! A Ruby Documentation Tool"><a href="http://yard.soen.ca">YARD</a></abbr> 
   0.2.3.5 (ruby-1.8.7).
 </div>

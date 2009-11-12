@@ -15,7 +15,82 @@
     <div id="content">
       <div class="section class BigRecord_ConnectionAdapters_View">
   <h1 class="title">Class: BigRecord::ConnectionAdapters::View</h1>
-  <div class="section attributes">
+  <div class="section docstring">
+  <h1>Named Views</h1>
+<p>
+To use column-oriented databases more efficiently, it helps to know exactly
+which specific columns are required for a query.
+</p>
+<p>
+For example, supposing we&#8217;re designing two queries: (A) used on the
+front page of a website. (B) used on the summary page for a particular
+item.
+</p>
+<p>
+Since we know these two queries will be serving up different information,
+we can also figure out which columns are needed by each. In general, query
+(A) would only require a subset of columns of (B). This functionality is
+analogous to the SQL command &quot;SELECT column1,column2 &#8230;&quot; for
+defining specific columns to query for.
+</p>
+<p>
+Named views are defined in models by using the <tt><a href="../Base.html#view-class_method" title="BigRecord::Base.view">BigRecord::Base.view</a></tt> macro
+like in the following example:
+</p>
+<pre class="code">
+  <span class='class class kw'>class</span> <span class='Book constant id'>Book</span> <span class='lt op'>&lt;</span> <span class='BigRecord constant id'>BigRecord</span><span class='colon2 op'>::</span><span class='Base constant id'>Base</span>
+    <span class='column identifier id'>column</span> <span class='symbol val'>:title</span><span class='comma token'>,</span>   <span class='symbol val'>:string</span>
+    <span class='column identifier id'>column</span> <span class='symbol val'>:author</span><span class='comma token'>,</span>             <span class='symbol val'>:string</span>
+    <span class='column identifier id'>column</span> <span class='symbol val'>:description</span><span class='comma token'>,</span>        <span class='symbol val'>:string</span>
+    <span class='column identifier id'>column</span> <span class='symbol val'>:links</span><span class='comma token'>,</span>              <span class='symbol val'>:string</span><span class='comma token'>,</span>  <span class='symbol val'>:collection</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='true true kw'>true</span>
+
+    <span class='view identifier id'>view</span> <span class='symbol val'>:front_page</span><span class='comma token'>,</span> <span class='symbol val'>:title</span><span class='comma token'>,</span> <span class='symbol val'>:author</span>
+    <span class='view identifier id'>view</span> <span class='symbol val'>:summary_page</span><span class='comma token'>,</span> <span class='symbol val'>:title</span><span class='comma token'>,</span> <span class='symbol val'>:author</span><span class='comma token'>,</span> <span class='symbol val'>:description</span>
+
+    <span class='comment val'># Override default if you don't want all columns returned</span>
+    <span class='view identifier id'>view</span> <span class='symbol val'>:default</span><span class='comma token'>,</span> <span class='symbol val'>:title</span><span class='comma token'>,</span> <span class='symbol val'>:author</span><span class='comma token'>,</span> <span class='symbol val'>:description</span>
+  <span class='end end kw'>end</span>
+</pre>
+<p>
+Now, whenever you work with a Book record, it will only returned the
+columns you specify according to the view option you pass. i.e.
+</p>
+<pre class="code">
+  <span class='rshft op'>&gt;&gt;</span> <span class='Book constant id'>Book</span><span class='dot token'>.</span><span class='find identifier id'>find</span><span class='lparen token'>(</span><span class='symbol val'>:first</span><span class='comma token'>,</span> <span class='symbol val'>:view</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='symbol val'>:front_page</span><span class='rparen token'>)</span>
+  <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='comment val'>#&lt;Book id: &quot;2e13f182-1085-495e-9841-fe5c84ae9992&quot;, attribute:title: &quot;Hello Thar&quot;, attribute:author: &quot;Greg&quot;&gt;</span>
+
+  <span class='rshft op'>&gt;&gt;</span> <span class='Book constant id'>Book</span><span class='dot token'>.</span><span class='find identifier id'>find</span><span class='lparen token'>(</span><span class='symbol val'>:first</span><span class='comma token'>,</span> <span class='symbol val'>:view</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='symbol val'>:summary_page</span><span class='rparen token'>)</span>
+  <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='comment val'>#&lt;Book id: &quot;2e13f182-1085-495e-9841-fe5c84ae9992&quot;, attribute:description: &quot;Masterpiece!&quot;, attribute:title: &quot;Hello Thar&quot;, attribute:author: &quot;Greg&quot;&gt;</span>
+
+  <span class='rshft op'>&gt;&gt;</span> <span class='Book constant id'>Book</span><span class='dot token'>.</span><span class='find identifier id'>find</span><span class='lparen token'>(</span><span class='symbol val'>:first</span><span class='comma token'>,</span> <span class='symbol val'>:view</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='symbol val'>:default</span><span class='rparen token'>)</span>
+  <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='comment val'>#&lt;Book id: &quot;2e13f182-1085-495e-9841-fe5c84ae9992&quot;, attribute:description: &quot;Masterpiece!&quot;, attribute:title: &quot;Hello Thar&quot;, attribute:links: [&quot;link1&quot;, &quot;link2&quot;, &quot;link3&quot;, &quot;link4&quot;], attribute:author: &quot;Greg&quot;&gt;</span>
+</pre>
+<p>
+Any attributes that were not loaded in as part of the view will be
+lazy-loaded on request. This is very inefficient and should be avoided at
+all costs! It&#8217;s better to load more columns in, than to have any
+attributes lazy-loaded afterwards.
+</p>
+<p>
+Note: A Bigrecord model will return all the columns within the default
+column family (when :view option is left blank, for example). You can
+override the :default name view to change this behaviour.
+</p>
+<p>
+It&#8217;s also possible to define specific columns to load at query time.
+To do this, you can just pass an array of columns to the :columns option of
+the find method and it will return only those attributes:
+</p>
+<pre class="code">
+  <span class='rshft op'>&gt;&gt;</span> <span class='Book constant id'>Book</span><span class='dot token'>.</span><span class='find identifier id'>find</span><span class='lparen token'>(</span><span class='symbol val'>:first</span><span class='comma token'>,</span> <span class='symbol val'>:columns</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='lbrack token'>[</span><span class='symbol val'>:author</span><span class='comma token'>,</span> <span class='symbol val'>:description</span><span class='rbrack token'>]</span><span class='rparen token'>)</span>
+  <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='comment val'>#&lt;Book id: &quot;2e13f182-1085-495e-9841-fe5c84ae9992&quot;, attribute:description: &quot;Masterpiece!&quot;, attribute:author: &quot;Greg&quot;&gt;</span>
+</pre>
+<p>
+Once again, any attributes not loaded during query time will be lazy-loaded
+on request.
+</p>
+
+</div><div class="section attributes">
   <h1>Attributes</h1>
 
   
@@ -93,14 +168,14 @@ Returns the value of attribute <tt>owner</tt>.
           <pre class="lines">
 
 
-6
-7
-8
-9
-10</pre>
+69
+70
+71
+72
+73</pre>
         </td>
         <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/view.rb', line 6</span>
+          <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/view.rb', line 69</span>
 
 <span class='def def kw'>def</span> <span class='initialize identifier id'>initialize</span><span class='lparen token'>(</span><span class='name identifier id'>name</span><span class='comma token'>,</span> <span class='column_names identifier id'>column_names</span><span class='comma token'>,</span> <span class='owner identifier id'>owner</span><span class='rparen token'>)</span>
   <span class='@name ivar id'>@name</span> <span class='assign token'>=</span> <span class='name identifier id'>name</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span>
@@ -193,12 +268,12 @@ the views &#8216;all&#8217; and &#8216;default&#8217; return every column.
           <pre class="lines">
 
 
-34
-35
-36</pre>
+97
+98
+99</pre>
         </td>
         <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/view.rb', line 34</span>
+          <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/view.rb', line 97</span>
 
 <span class='def def kw'>def</span> <span class='column_names identifier id'>column_names</span>
   <span class='@column_names ivar id'>@column_names</span> <span class='orop op'>||</span> <span class='owner identifier id'>owner</span><span class='dot token'>.</span><span class='column_names identifier id'>column_names</span>
@@ -241,28 +316,28 @@ Return the column objects associated with this view. By default the views
           <pre class="lines">
 
 
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31</pre>
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94</pre>
         </td>
         <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/view.rb', line 13</span>
+          <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/view.rb', line 76</span>
 
 <span class='def def kw'>def</span> <span class='columns identifier id'>columns</span>
   <span class='if if kw'>if</span> <span class='@column_names ivar id'>@column_names</span>
@@ -298,7 +373,7 @@ Return the column objects associated with this view. By default the views
 </div>
     </div>
     <div id="yard_info">
-  Generated on Tuesday, November 10 2009 at 06:18:40 PM by 
+  Generated on Thursday, November 12 2009 at 05:28:16 PM by 
   <abbr class="yard" title="Yay! A Ruby Documentation Tool"><a href="http://yard.soen.ca">YARD</a></abbr> 
   0.2.3.5 (ruby-1.8.7).
 </div>

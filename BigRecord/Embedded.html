@@ -19,11 +19,183 @@
   <ul>
   <li><a href="AbstractBase.html" title="BigRecord::AbstractBase">BigRecord::AbstractBase</a></li><ul><li>BigRecord::Embedded</li>
   </ul></ul>
+</div><div class="section docstring">
+  <h1>Embedded Records</h1>
+<p>
+Since a single column in a column-oriented database is perfectly suited to
+handle large amounts of data, BigRecord gives you the option to store
+entire records within a single column of another <tt><a href="Base.html" title="BigRecord::Base">BigRecord::Base</a></tt> record.
+</p>
+<p>
+These are known as Embedded records, and they behave similarly to
+<tt><a href="Base.html" title="BigRecord::Base">BigRecord::Base</a></tt> objects, except that their data is physically stored
+within another <tt><a href="Base.html" title="BigRecord::Base">BigRecord::Base</a></tt> record, and they don&#8217;t exist unless
+associated with one. Furthermore, they don&#8217;t possess any find or
+querying functionality.
+</p>
+<p>
+So what are the benefits of Embedded records?
+</p>
+<ul>
+<li>Cleaner organization of models
+
+</li>
+<li>Avoids the need to create entire tables and associations for models that
+exist only in the context of another model.
+
+</li>
+<li>Allows more complicated functionality to be encompassed within an embedded
+record, instead of in a parent model.
+
+</li>
+</ul>
+<p>
+All of this has been very abstract so far, therefore examples are in order.
+</p>
+<h2>Examples</h2>
+<p>
+Let&#8217;s say we start off with the following arbitrarily created models:
+</p>
+<p>
+app/model/book.rb:
+</p>
+<pre class="code">
+  <span class='class class kw'>class</span> <span class='Book constant id'>Book</span> <span class='lt op'>&lt;</span> <span class='BigRecord constant id'>BigRecord</span><span class='colon2 op'>::</span><span class='Base constant id'>Base</span>
+    <span class='column identifier id'>column</span> <span class='symbol val'>:title</span><span class='comma token'>,</span>       <span class='symbol val'>:string</span>
+    <span class='column identifier id'>column</span> <span class='symbol val'>:author</span><span class='comma token'>,</span>      <span class='symbol val'>:string</span>
+    <span class='column identifier id'>column</span> <span class='symbol val'>:description</span><span class='comma token'>,</span> <span class='symbol val'>:string</span>
+  <span class='end end kw'>end</span>
+</pre>
+<p>
+app/model/company.rb:
+</p>
+<pre class="code">
+  <span class='class class kw'>class</span> <span class='Company constant id'>Company</span> <span class='lt op'>&lt;</span> <span class='BigRecord constant id'>BigRecord</span><span class='colon2 op'>::</span><span class='Base constant id'>Base</span>
+    <span class='column identifier id'>column</span> <span class='symbol val'>:name</span><span class='comma token'>,</span>        <span class='symbol val'>:string</span>
+    <span class='column identifier id'>column</span> <span class='symbol val'>:address</span><span class='comma token'>,</span>     <span class='symbol val'>:string</span>
+    <span class='column identifier id'>column</span> <span class='symbol val'>:description</span><span class='comma token'>,</span> <span class='symbol val'>:string</span>
+  <span class='end end kw'>end</span>
+</pre>
+<p>
+Now, let&#8217;s say we want the ability to create and associate weblinks
+with each of these models. This is a trivial modification if all we do is
+create a new column in each model called &quot;weblink&quot; (or something
+similar), and have a string that stores a URL.
+</p>
+<p>
+However, what if we wanted these weblinks to have more metadata attached
+and more complex functionality added to it? Then our only choice is to
+create a new model called WebLink (for example), with its own table, set of
+attributes and methods. Then we have our Book and Company models associate
+to these newly created WebLink models, giving us something like this:
+</p>
+<p>
+app/model/web_link.rb:
+</p>
+<pre class="code">
+  <span class='class class kw'>class</span> <span class='WebLink constant id'>WebLink</span> <span class='lt op'>&lt;</span> <span class='BigRecord constant id'>BigRecord</span><span class='colon2 op'>::</span><span class='Base constant id'>Base</span>
+    <span class='column identifier id'>column</span> <span class='symbol val'>:name</span><span class='comma token'>,</span>         <span class='symbol val'>:string</span>
+    <span class='column identifier id'>column</span> <span class='symbol val'>:url</span><span class='comma token'>,</span>          <span class='symbol val'>:string</span>
+    <span class='column identifier id'>column</span> <span class='symbol val'>:description</span><span class='comma token'>,</span>  <span class='symbol val'>:string</span>
+    <span class='column identifier id'>column</span> <span class='symbol val'>:submitted_by</span><span class='comma token'>,</span> <span class='symbol val'>:string</span>
+    <span class='column identifier id'>column</span> <span class='symbol val'>:book_id</span><span class='comma token'>,</span>      <span class='symbol val'>:string</span>
+    <span class='column identifier id'>column</span> <span class='symbol val'>:company_id</span><span class='comma token'>,</span>   <span class='symbol val'>:string</span>
+
+    <span class='comment val'># Could use a polymorphic association here, of course.</span>
+    <span class='belongs_to_bigrecord identifier id'>belongs_to_bigrecord</span> <span class='symbol val'>:book</span><span class='comma token'>,</span> <span class='symbol val'>:foreign_key</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>&quot;attribute:book_id&quot;</span>
+    <span class='belongs_to_bigrecord identifier id'>belongs_to_bigrecord</span> <span class='symbol val'>:company</span><span class='comma token'>,</span> <span class='symbol val'>:foreign_key</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>&quot;attribute:company_id&quot;</span>
+
+    <span class='comment val'># other methods ...</span>
+  <span class='end end kw'>end</span>
+</pre>
+<p>
+and likewise an association to WebLink from the Book and Company models.
+</p>
+<p>
+Now notice the problem here? A simple concept like adding a WebLink with
+some metadata has increased the model logic and created some unnecessary
+associations. In this situation, a WebLink doesn&#8217;t need to exist
+except when associated to a certain model. Therefore this association
+should be implicit somehow.
+</p>
+<p>
+Enter Embedded records. We will now instead define WebLink as follows:
+</p>
+<p>
+app/model/web_link.rb:
+</p>
+<pre class="code">
+  <span class='class class kw'>class</span> <span class='WebLink constant id'>WebLink</span> <span class='lt op'>&lt;</span> <span class='BigRecord constant id'>BigRecord</span><span class='colon2 op'>::</span><span class='Embedded constant id'>Embedded</span>
+    <span class='column identifier id'>column</span> <span class='symbol val'>:name</span><span class='comma token'>,</span>         <span class='symbol val'>:string</span>
+    <span class='column identifier id'>column</span> <span class='symbol val'>:url</span><span class='comma token'>,</span>          <span class='symbol val'>:string</span>
+    <span class='column identifier id'>column</span> <span class='symbol val'>:description</span><span class='comma token'>,</span>  <span class='symbol val'>:string</span>
+    <span class='column identifier id'>column</span> <span class='symbol val'>:submitted_by</span><span class='comma token'>,</span> <span class='symbol val'>:string</span>
+
+    <span class='comment val'># other methods ...</span>
+  <span class='end end kw'>end</span>
+</pre>
+<p>
+And modify our Base records like so:
+</p>
+<p>
+app/model/book.rb:
+</p>
+<pre class="code">
+  <span class='class class kw'>class</span> <span class='Book constant id'>Book</span> <span class='lt op'>&lt;</span> <span class='BigRecord constant id'>BigRecord</span><span class='colon2 op'>::</span><span class='Base constant id'>Base</span>
+    <span class='column identifier id'>column</span> <span class='symbol val'>:title</span><span class='comma token'>,</span>       <span class='symbol val'>:string</span>
+    <span class='column identifier id'>column</span> <span class='symbol val'>:author</span><span class='comma token'>,</span>      <span class='symbol val'>:string</span>
+    <span class='column identifier id'>column</span> <span class='symbol val'>:description</span><span class='comma token'>,</span> <span class='symbol val'>:string</span>
+    <span class='column identifier id'>column</span> <span class='symbol val'>:web_link</span><span class='comma token'>,</span>    <span class='string val'>'WebLink'</span>
+  <span class='end end kw'>end</span>
+</pre>
+<p>
+app/model/company.rb:
+</p>
+<pre class="code">
+  <span class='class class kw'>class</span> <span class='Company constant id'>Company</span> <span class='lt op'>&lt;</span> <span class='BigRecord constant id'>BigRecord</span><span class='colon2 op'>::</span><span class='Base constant id'>Base</span>
+    <span class='column identifier id'>column</span> <span class='symbol val'>:name</span><span class='comma token'>,</span>        <span class='symbol val'>:string</span>
+    <span class='column identifier id'>column</span> <span class='symbol val'>:address</span><span class='comma token'>,</span>     <span class='symbol val'>:string</span>
+    <span class='column identifier id'>column</span> <span class='symbol val'>:description</span><span class='comma token'>,</span> <span class='symbol val'>:string</span>
+    <span class='column identifier id'>column</span> <span class='symbol val'>:web_link</span><span class='comma token'>,</span>    <span class='string val'>'WebLink'</span>
+  <span class='end end kw'>end</span>
+</pre>
+<p>
+Now we can encompass any WebLink specific attributes and methods within the
+WebLink embedded class, and use them with any other Base model.
+</p>
+<p>
+To use WebLink now, we treat it as though it were a regular model, except
+that we don&#8217;t execute saves on it. For example:
+</p>
+<pre class="code">
+  <span class='rshft op'>&gt;&gt;</span> <span class='amazon_link identifier id'>amazon_link</span> <span class='assign token'>=</span> <span class='WebLink constant id'>WebLink</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='symbol val'>:name</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>&quot;Amazon Link to Book&quot;</span><span class='comma token'>,</span> <span class='symbol val'>:url</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>&quot;http://amazon.com/some/book&quot;</span><span class='comma token'>,</span> <span class='symbol val'>:description</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>&quot;Amazon sells this book for cheap!&quot;</span><span class='rparen token'>)</span>
+  <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='comment val'>#&lt;WebLink created_at: &quot;2009-11-12 17:11:57&quot;, name: &quot;Amazon Link to Book&quot;, url: &quot;http://amazon.com/some/book&quot;, description: &quot;Amazon sells this book for cheap!&quot;, submitted_by: nil, id: &quot;2b619a68-e462-475d-8e04-01ba2aace11a&quot;&gt;</span>
+  <span class='rshft op'>&gt;&gt;</span> <span class='amazon_link identifier id'>amazon_link</span><span class='dot token'>.</span><span class='save identifier id'>save</span>
+  <span class='BigRecord constant id'>BigRecord</span><span class='colon2 op'>::</span><span class='NotImplemented constant id'>NotImplemented</span><span class='colon op'>:</span> <span class='BigRecord constant id'>BigRecord</span><span class='colon2 op'>::</span><span class='NotImplemented constant id'>NotImplemented</span>
+  <span class='comment val'># =&gt; [...]</span>
+  <span class='rshft op'>&gt;&gt;</span> <span class='book identifier id'>book</span> <span class='assign token'>=</span> <span class='Book constant id'>Book</span><span class='dot token'>.</span><span class='find identifier id'>find</span><span class='lparen token'>(</span><span class='symbol val'>:first</span><span class='rparen token'>)</span>
+  <span class='comment val'># =&gt; [...]</span>
+  <span class='rshft op'>&gt;&gt;</span> <span class='book identifier id'>book</span><span class='dot token'>.</span><span class='web_link identifier id'>web_link</span> <span class='assign token'>=</span> <span class='amazon_link identifier id'>amazon_link</span>
+  <span class='rshft op'>&gt;&gt;</span> <span class='book identifier id'>book</span><span class='dot token'>.</span><span class='save identifier id'>save</span>
+</pre>
+<p>
+Now any subsequent access to that book object we just saved to will have a
+WebLink record available with it.
+</p>
+
 </div><div class="section constants">
   <div class="inherited">
   
   <div>
     <h1>Constants Inherited from <a href="AbstractBase.html" title="BigRecord::AbstractBase">BigRecord::AbstractBase</a></h1>
+    <p><span class='name'><a href="AbstractBase.html#ID_FIELD_SEPARATOR-constant" title="ID_FIELD_SEPARATOR">ID_FIELD_SEPARATOR</a></span>, <span class='name'><a href="AbstractBase.html#ID_WHITE_SPACE_CHAR-constant" title="ID_WHITE_SPACE_CHAR">ID_WHITE_SPACE_CHAR</a></span></p>
+  </div>
+  
+</div>
+<div class="clear"></div><div class="included">
+  
+  <div>
+    <h1>Constants Included from <a href="AbstractBase.html" title="BigRecord::AbstractBase">BigRecord::AbstractBase</a></h1>
     <p><span class='name'><a href="AbstractBase.html#ID_FIELD_SEPARATOR-constant" title="ID_FIELD_SEPARATOR">ID_FIELD_SEPARATOR</a></span>, <span class='name'><a href="AbstractBase.html#ID_WHITE_SPACE_CHAR-constant" title="ID_WHITE_SPACE_CHAR">ID_WHITE_SPACE_CHAR</a></span></p>
   </div>
   
@@ -51,18 +223,20 @@
           <pre class="lines">
 
 
-4
-5
-6
-7
-8</pre>
+128
+129
+130
+131
+132
+133</pre>
         </td>
         <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/embedded.rb', line 4</span>
+          <pre class="code"><span class="info file"># File 'lib/big_record/embedded.rb', line 128</span>
 
 <span class='def def kw'>def</span> <span class='initialize identifier id'>initialize</span><span class='lparen token'>(</span><span class='attrs identifier id'>attrs</span> <span class='assign token'>=</span> <span class='nil nil kw'>nil</span><span class='rparen token'>)</span>
   <span class='super super kw'>super</span>
-  <span class='comment val'># Regenerate the id unless it's already there (i.e. we're instantiating an existing property)</span>
+  <span class='comment val'># Regenerate the id unless it's already there</span>
+  <span class='comment val'># (i.e. we're instantiating an existing property)</span>
   <span class='@attributes ivar id'>@attributes</span><span class='lbrack token'>[</span><span class='string val'>&quot;id&quot;</span><span class='rbrack token'>]</span> <span class='opasgn op'>||=</span> <span class='generate_id identifier id'>generate_id</span>
 <span class='end end kw'>end</span>
 </pre>
@@ -117,11 +291,6 @@ master through Client#master.
           <pre class="lines">
 
 
-608
-609
-610
-611
-612
 613
 614
 615
@@ -137,10 +306,15 @@ master through Client#master.
 625
 626
 627
-628</pre>
+628
+629
+630
+631
+632
+633</pre>
         </td>
         <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/abstract_base.rb', line 608</span>
+          <pre class="code"><span class="info file"># File 'lib/big_record/abstract_base.rb', line 613</span>
 
 <span class='def def kw'>def</span> <span class='method_missing identifier id'>method_missing</span><span class='lparen token'>(</span><span class='method_id identifier id'>method_id</span><span class='comma token'>,</span> <span class='mult op'>*</span><span class='args identifier id'>args</span><span class='comma token'>,</span> <span class='bitand op'>&amp;</span><span class='block identifier id'>block</span><span class='rparen token'>)</span>
   <span class='method_name identifier id'>method_name</span> <span class='assign token'>=</span> <span class='method_id identifier id'>method_id</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span>
@@ -347,7 +521,7 @@ Class attribute that holds the name of the embedded type for dispaly.
   
   <div>
     <h1>Public Class Methods Inherited from <a href="AbstractBase.html" title="BigRecord::AbstractBase">BigRecord::AbstractBase</a></h1>
-    <p><span class='name'><a href="AbstractBase.html#%3D%3D%3D-class_method" title="===">===</a></span>, <span class='name'><a href="AbstractBase.html#accessible_attributes-class_method" title="accessible_attributes">accessible_attributes</a></span>, <span class='name'><a href="AbstractBase.html#alias_attribute-class_method" title="alias_attribute">alias_attribute</a></span>, <span class='name'><a href="AbstractBase.html#attr_accessible-class_method" title="attr_accessible">attr_accessible</a></span>, <span class='name'><a href="AbstractBase.html#attr_create_accessible-class_method" title="attr_create_accessible">attr_create_accessible</a></span>, <span class='name'><a href="AbstractBase.html#attr_protected-class_method" title="attr_protected">attr_protected</a></span>, <span class='name'><a href="AbstractBase.html#attr_readonly-class_method" title="attr_readonly">attr_readonly</a></span>, <span class='name'><a href="AbstractBase.html#benchmark-class_method" title="benchmark">benchmark</a></span>, <span class='name'><a href="AbstractBase.html#column-class_method" title="column">column</a></span>, <span class='name'><a href="AbstractBase.html#column_methods_hash-class_method" title="column_methods_hash">column_methods_hash</a></span>, <span class='name'><a href="AbstractBase.html#column_names-class_method" title="column_names">column_names</a></span>, <span class='name'><a href="AbstractBase.html#columns-class_method" title="columns">columns</a></span>, <span class='name'><a href="AbstractBase.html#columns_hash-class_method" title="columns_hash">columns_hash</a></span>, <span class='name'><a href="AbstractBase.html#content_columns-class_method" title="content_columns">content_columns</a></span>, <span class='name'><a href="AbstractBase.html#create_accessible_attributes-class_method" title="create_accessible_attributes">create_accessible_attributes</a></span>, <span class='name'><a href="AbstractBase.html#create_column-class_method" title="create_column">create_column</a></span>, <span class='name'><a href="AbstractBase.html#human_attribute_name-class_method" title="human_attribute_name">human_attribute_name</a></span>, <span class='name'><a href="AbstractBase.html#instantiate-class_method" title="instantiate">instantiate</a></span>, <span class='name'><a href="AbstractBase.html#protected_attributes-class_method" title="protected_attributes">protected_attributes</a></span>, <span class='name'><a href="AbstractBase.html#quote_value-class_method" title="quote_value">quote_value</a></span>, <span class='name'><a href="AbstractBase.html#read_methods-class_method" title="read_methods">read_methods</a></span>, <span class='name'><a href="AbstractBase.html#readonly_attributes-class_method" title="readonly_attributes">readonly_attributes</a></span>, <span class='name'><a href="AbstractBase.html#reset_subclasses-class_method" title="reset_subclasses">reset_subclasses</a></span>, <span class='name'><a href="AbstractBase.html#silence-class_method" title="silence">silence</a></span>, <span class='name'><a href="AbstractBase.html#undecorated_table_name-class_method" title="undecorated_table_name">undecorated_table_name</a></span></p>
+    <p><span class='name'><a href="AbstractBase.html#%3D%3D%3D-class_method" title="===">===</a></span>, <span class='name'><a href="AbstractBase.html#accessible_attributes-class_method" title="accessible_attributes">accessible_attributes</a></span>, <span class='name'><a href="AbstractBase.html#alias_attribute-class_method" title="alias_attribute">alias_attribute</a></span>, <span class='name'><a href="AbstractBase.html#attr_accessible-class_method" title="attr_accessible">attr_accessible</a></span>, <span class='name'><a href="AbstractBase.html#attr_create_accessible-class_method" title="attr_create_accessible">attr_create_accessible</a></span>, <span class='name'><a href="AbstractBase.html#attr_protected-class_method" title="attr_protected">attr_protected</a></span>, <span class='name'><a href="AbstractBase.html#attr_readonly-class_method" title="attr_readonly">attr_readonly</a></span>, <span class='name'><a href="AbstractBase.html#benchmark-class_method" title="benchmark">benchmark</a></span>, <span class='name'><a href="AbstractBase.html#column-class_method" title="column">column</a></span>, <span class='name'><a href="AbstractBase.html#column_methods_hash-class_method" title="column_methods_hash">column_methods_hash</a></span>, <span class='name'><a href="AbstractBase.html#column_names-class_method" title="column_names">column_names</a></span>, <span class='name'><a href="AbstractBase.html#columns-class_method" title="columns">columns</a></span>, <span class='name'><a href="AbstractBase.html#columns_hash-class_method" title="columns_hash">columns_hash</a></span>, <span class='name'><a href="AbstractBase.html#content_columns-class_method" title="content_columns">content_columns</a></span>, <span class='name'><a href="AbstractBase.html#create_accessible_attributes-class_method" title="create_accessible_attributes">create_accessible_attributes</a></span>, <span class='name'><a href="AbstractBase.html#human_attribute_name-class_method" title="human_attribute_name">human_attribute_name</a></span>, <span class='name'><a href="AbstractBase.html#instantiate-class_method" title="instantiate">instantiate</a></span>, <span class='name'><a href="AbstractBase.html#protected_attributes-class_method" title="protected_attributes">protected_attributes</a></span>, <span class='name'><a href="AbstractBase.html#quote_value-class_method" title="quote_value">quote_value</a></span>, <span class='name'><a href="AbstractBase.html#read_methods-class_method" title="read_methods">read_methods</a></span>, <span class='name'><a href="AbstractBase.html#readonly_attributes-class_method" title="readonly_attributes">readonly_attributes</a></span>, <span class='name'><a href="AbstractBase.html#reset_subclasses-class_method" title="reset_subclasses">reset_subclasses</a></span>, <span class='name'><a href="AbstractBase.html#silence-class_method" title="silence">silence</a></span>, <span class='name'><a href="AbstractBase.html#undecorated_table_name-class_method" title="undecorated_table_name">undecorated_table_name</a></span></p>
   </div>
   
 </div>
@@ -434,12 +608,12 @@ Class attribute that holds the name of the embedded type for dispaly.
           <pre class="lines">
 
 
-38
-39
-40</pre>
+165
+166
+167</pre>
         </td>
         <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/embedded.rb', line 38</span>
+          <pre class="code"><span class="info file"># File 'lib/big_record/embedded.rb', line 165</span>
 
 <span class='def def kw'>def</span> <span class='base_class identifier id'>base_class</span>
   <span class='lparen token'>(</span><span class='superclass identifier id'>superclass</span> <span class='eq op'>==</span> <span class='BigRecord constant id'>BigRecord</span><span class='colon2 op'>::</span><span class='Embedded constant id'>Embedded</span><span class='rparen token'>)</span> <span class='question op'>?</span> <span class='self self kw'>self</span> <span class='colon op'>:</span> <span class='superclass identifier id'>superclass</span><span class='dot token'>.</span><span class='base_class identifier id'>base_class</span>
@@ -481,12 +655,12 @@ Borrow the default connection of BigRecord
           <pre class="lines">
 
 
-34
-35
-36</pre>
+161
+162
+163</pre>
         </td>
         <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/embedded.rb', line 34</span>
+          <pre class="code"><span class="info file"># File 'lib/big_record/embedded.rb', line 161</span>
 
 <span class='def def kw'>def</span> <span class='connection identifier id'>connection</span>
   <span class='BigRecord constant id'>BigRecord</span><span class='colon2 op'>::</span><span class='Base constant id'>Base</span><span class='dot token'>.</span><span class='connection identifier id'>connection</span>
@@ -523,12 +697,12 @@ Borrow the default connection of BigRecord
           <pre class="lines">
 
 
-64
-65
-66</pre>
+191
+192
+193</pre>
         </td>
         <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/embedded.rb', line 64</span>
+          <pre class="code"><span class="info file"># File 'lib/big_record/embedded.rb', line 191</span>
 
 <span class='def def kw'>def</span> <span class='default_columns identifier id'>default_columns</span>
   <span class='lbrace token'>{</span><span class='primary_key identifier id'>primary_key</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='ConnectionAdapters constant id'>ConnectionAdapters</span><span class='colon2 op'>::</span><span class='Column constant id'>Column</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='primary_key identifier id'>primary_key</span><span class='comma token'>,</span> <span class='string val'>'string'</span><span class='rparen token'>)</span><span class='rbrace token'>}</span>
@@ -565,12 +739,12 @@ Borrow the default connection of BigRecord
           <pre class="lines">
 
 
-51
-52
-53</pre>
+178
+179
+180</pre>
         </td>
         <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/embedded.rb', line 51</span>
+          <pre class="code"><span class="info file"># File 'lib/big_record/embedded.rb', line 178</span>
 
 <span class='def def kw'>def</span> <span class='hide_to_users identifier id'>hide_to_users</span>
   <span class='@hide_to_user ivar id'>@hide_to_user</span> <span class='assign token'>=</span> <span class='true true kw'>true</span>
@@ -607,13 +781,13 @@ Borrow the default connection of BigRecord
           <pre class="lines">
 
 
-59
-60
-61
-62</pre>
+186
+187
+188
+189</pre>
         </td>
         <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/embedded.rb', line 59</span>
+          <pre class="code"><span class="info file"># File 'lib/big_record/embedded.rb', line 186</span>
 
 <span class='def def kw'>def</span> <span class='inherited identifier id'>inherited</span><span class='lparen token'>(</span><span class='child identifier id'>child</span><span class='rparen token'>)</span> <span class='comment val'>#:nodoc:</span>
   <span class='child identifier id'>child</span><span class='dot token'>.</span><span class='set_pretty_name identifier id'>set_pretty_name</span> <span class='child identifier id'>child</span><span class='dot token'>.</span><span class='name identifier id'>name</span><span class='dot token'>.</span><span class='split identifier id'>split</span><span class='lparen token'>(</span><span class='string val'>&quot;::&quot;</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='last identifier id'>last</span>
@@ -656,12 +830,12 @@ Class attribute that holds the name of the embedded type for dispaly
           <pre class="lines">
 
 
-43
-44
-45</pre>
+170
+171
+172</pre>
         </td>
         <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/embedded.rb', line 43</span>
+          <pre class="code"><span class="info file"># File 'lib/big_record/embedded.rb', line 170</span>
 
 <span class='def def kw'>def</span> <span class='pretty_name identifier id'>pretty_name</span>
   <span class='@pretty_name ivar id'>@pretty_name</span> <span class='orop op'>||</span> <span class='self self kw'>self</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span>
@@ -698,12 +872,12 @@ Class attribute that holds the name of the embedded type for dispaly
           <pre class="lines">
 
 
-29
-30
-31</pre>
+156
+157
+158</pre>
         </td>
         <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/embedded.rb', line 29</span>
+          <pre class="code"><span class="info file"># File 'lib/big_record/embedded.rb', line 156</span>
 
 <span class='def def kw'>def</span> <span class='primary_key identifier id'>primary_key</span>
   <span class='string val'>&quot;id&quot;</span>
@@ -740,12 +914,12 @@ Class attribute that holds the name of the embedded type for dispaly
           <pre class="lines">
 
 
-47
-48
-49</pre>
+174
+175
+176</pre>
         </td>
         <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/embedded.rb', line 47</span>
+          <pre class="code"><span class="info file"># File 'lib/big_record/embedded.rb', line 174</span>
 
 <span class='def def kw'>def</span> <span class='set_pretty_name identifier id'>set_pretty_name</span> <span class='new_name identifier id'>new_name</span>
   <span class='@pretty_name ivar id'>@pretty_name</span> <span class='assign token'>=</span> <span class='new_name identifier id'>new_name</span>
@@ -782,12 +956,12 @@ Class attribute that holds the name of the embedded type for dispaly
           <pre class="lines">
 
 
-55
-56
-57</pre>
+182
+183
+184</pre>
         </td>
         <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/embedded.rb', line 55</span>
+          <pre class="code"><span class="info file"># File 'lib/big_record/embedded.rb', line 182</span>
 
 <span class='def def kw'>def</span> <span class='show_to_users? fid id'>show_to_users?</span>
   <span class='notop op'>!</span><span class='@hide_to_user ivar id'>@hide_to_user</span>
@@ -824,12 +998,12 @@ Class attribute that holds the name of the embedded type for dispaly
           <pre class="lines">
 
 
-25
-26
-27</pre>
+152
+153
+154</pre>
         </td>
         <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/embedded.rb', line 25</span>
+          <pre class="code"><span class="info file"># File 'lib/big_record/embedded.rb', line 152</span>
 
 <span class='def def kw'>def</span> <span class='store_primary_key? fid id'>store_primary_key?</span>
   <span class='true true kw'>true</span>
@@ -869,12 +1043,12 @@ Class attribute that holds the name of the embedded type for dispaly
           <pre class="lines">
 
 
-10
-11
-12</pre>
+135
+136
+137</pre>
         </td>
         <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/embedded.rb', line 10</span>
+          <pre class="code"><span class="info file"># File 'lib/big_record/embedded.rb', line 135</span>
 
 <span class='def def kw'>def</span> <span class='connection identifier id'>connection</span>
   <span class='self self kw'>self</span><span class='dot token'>.</span><span class='class identifier id'>class</span><span class='dot token'>.</span><span class='connection identifier id'>connection</span>
@@ -911,12 +1085,12 @@ Class attribute that holds the name of the embedded type for dispaly
           <pre class="lines">
 
 
-14
-15
-16</pre>
+139
+140
+141</pre>
         </td>
         <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/embedded.rb', line 14</span>
+          <pre class="code"><span class="info file"># File 'lib/big_record/embedded.rb', line 139</span>
 
 <span class='def def kw'>def</span> <span class='id identifier id'>id</span>
   <span class='super super kw'>super</span> <span class='orop op'>||</span> <span class='lparen token'>(</span><span class='self self kw'>self</span><span class='dot token'>.</span><span class='id identifier id'>id</span> <span class='assign token'>=</span> <span class='generate_id identifier id'>generate_id</span><span class='rparen token'>)</span>
@@ -936,7 +1110,7 @@ Class attribute that holds the name of the embedded type for dispaly
 </div>
     </div>
     <div id="yard_info">
-  Generated on Tuesday, November 10 2009 at 06:18:32 PM by 
+  Generated on Thursday, November 12 2009 at 05:28:00 PM by 
   <abbr class="yard" title="Yay! A Ruby Documentation Tool"><a href="http://yard.soen.ca">YARD</a></abbr> 
   0.2.3.5 (ruby-1.8.7).
 </div>

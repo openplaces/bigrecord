@@ -13,31 +13,51 @@
     <div id="content">
       <div class="section docstring readme">
         <h1>Getting Started</h1>
-<h2>Requirements</h2>
-<ul>
-<li>Database set up (please refer to the database&#8217;s own documentation)
-with the required information known such as host, port, username, password,
-etc. in order for Bigrecord to connect to it.
-
-</li>
-<li>Bigrecord Driver (if your database requires it for connecting)
-
-<ul>
-<li>JRuby 1.1.6+ is needed to run Bigrecord Driver.
-
-</li>
-</ul>
-</li>
-</ul>
-<h2><b>NOTE</b> At the time of this writing, Hbase is the only supported database for Bigrecord, and the following instructions are for specific to Hbase.</h2>
-<h2>Installation</h2>
+<h2>Setting up HBase and Stargate</h2>
+<p>
+To quickly get started with development, you can set up HBase to run as a
+single server on your local computer, along with Stargate, its RESTful web
+service front-end.
+</p>
+<p>
+(1) Download and unpack the most recent release of HBase from
+http://hadoop.apache.org/hbase/releases.html#Download
+</p>
+<p>
+(2) Edit (hbase-dir)/conf/hbase-env.sh and uncomment/modify the following
+line to correspond to your Java home path:
+</p>
+<pre class="code">
+  <span class='export identifier id'>export</span> <span class='JAVA_HOME constant id'>JAVA_HOME</span><span class='assign token'>=</span><span class='regexp val'>/usr/</span><span class='lib identifier id'>lib</span><span class='div op'>/</span><span class='jvm identifier id'>jvm</span><span class='div op'>/</span><span class='java identifier id'>java</span><span class='minus op'>-</span><span class='integer val'>6</span><span class='minus op'>-</span><span class='sun identifier id'>sun</span>
+</pre>
+<p>
+(3) Copy (hbase-dir)/contrib/stargate/hbase-&lt;version&gt;-stargate.jar
+into &lt;hbase-dir&gt;/lib
+</p>
+<p>
+(4) Copy all the files in the (hbase-dir)/contrib/stargate/lib folder into
+&lt;hbase-dir&gt;/lib
+</p>
+<p>
+(5) Start up HBase:
+</p>
+<pre class="code">
+  $ <span class='lparen token'>(</span><span class='hbase identifier id'>hbase</span><span class='minus op'>-</span><span class='dir identifier id'>dir</span><span class='rparen token'>)</span><span class='div op'>/</span><span class='bin identifier id'>bin</span><span class='div op'>/</span><span class='start identifier id'>start</span><span class='minus op'>-</span><span class='hbase identifier id'>hbase</span><span class='dot token'>.</span><span class='sh identifier id'>sh</span>
+</pre>
+<p>
+(6)Start up Stargate (append &quot;-p 1234&quot; at the end if you want to
+change the port):
+</p>
+<pre class="code">
+  $ <span class='lparen token'>(</span><span class='hbase identifier id'>hbase</span><span class='minus op'>-</span><span class='dir identifier id'>dir</span><span class='rparen token'>)</span><span class='div op'>/</span><span class='bin identifier id'>bin</span><span class='div op'>/</span><span class='hbase identifier id'>hbase</span> <span class='org identifier id'>org</span><span class='dot token'>.</span><span class='apache identifier id'>apache</span><span class='dot token'>.</span><span class='hadoop identifier id'>hadoop</span><span class='dot token'>.</span><span class='hbase identifier id'>hbase</span><span class='dot token'>.</span><span class='stargate identifier id'>stargate</span><span class='dot token'>.</span><span class='Main constant id'>Main</span>
+</pre>
+<h2>Setting up Bigrecord</h2>
 <p>
 (1) Install the Bigrecord Driver gem and its dependencies, then start up a
 DRb server. Please see the Bigrecord Driver documentation for more detailed
 instructions.
 (http://github.com/openplaces/bigrecord/blob/master/bigrecord-driver/README.rdoc)
 </p>
-<h3>Method 1 (recommended): Install as a gem</h3>
 <p>
 (2) Add the following line into the Rails::Initializer.run do |config|
 block:
@@ -60,21 +80,13 @@ app:
 </pre>
 <p>
 (4) Edit the config/bigrecord.yml[.sample] file in your Rails root to the
-information corresponding to your database install and Bigrecord Driver DRb
-server.
-</p>
-<h3>Method 2: Install as a plugin</h3>
-<p>
-(2) Run the following command to install it as a plugin:
+information corresponding to the Stargate server.
 </p>
 <pre class="code">
-  <span class='script identifier id'>script</span><span class='div op'>/</span><span class='plugin identifier id'>plugin</span> <span class='install identifier id'>install</span> <span class='git identifier id'>git</span><span class='symbol val'>:/</span><span class='regexp val'>/github.com/o</span><span class='penplaces identifier id'>penplaces</span><span class='div op'>/</span><span class='bigrecord identifier id'>bigrecord</span><span class='dot token'>.</span><span class='git identifier id'>git</span>
-</pre>
-<p>
-(3) Edit the config/bigrecord.yml[.sample] file in your Rails root to the
-information corresponding to your database install and Bigrecord Driver DRb
-server.
-</p>
+  <span class='development identifier id'>development</span><span class='colon op'>:</span>
+    <span class='adapter identifier id'>adapter</span><span class='colon op'>:</span> <span class='hbase_rest identifier id'>hbase_rest</span>
+    <span class='api_address identifier id'>api_address</span><span class='colon op'>:</span> <span class='http identifier id'>http</span><span class='symbol val'>:/</span><span class='regexp val'>/localhost:8080  # default API address for Stargate
+</span></pre>
 <h2>Usage</h2>
 <h3>Generators</h3>
 <p>
@@ -95,7 +107,7 @@ db/bigrecord_migrate. Note: This generator does not accept attributes.
 Creates a Bigrecord specific migration and adds it into
 db/bigrecord_migrate
 </p>
-<h3>Migration File</h3>
+<h3><tt><a href="BigRecord/Migration.html" title="Migration File">Migration File</a></tt></h3>
 <p>
 Although column-oriented databases are generally schema-less, certain ones
 (like Hbase) require the creation of tables and column families ahead of
@@ -148,7 +160,7 @@ to the latest version:
 <pre class="code">
   <span class='rake identifier id'>rake</span> <span class='bigrecord identifier id'>bigrecord</span><span class='symbol val'>:migrate</span>
 </pre>
-<h3>Column and Attribute Definition</h3>
+<h3><tt><a href="BigRecord/ConnectionAdapters/Column.html" title="Column and Attribute Definition">Column and Attribute Definition</a></tt></h3>
 <p>
 Now that you have your tables and column families all set up, you can begin
 adding columns to your model. The following is an example of a model named
@@ -171,7 +183,7 @@ column family (attribute) automatically if one is not defined. Furthermore,
 in Hbase, there&#8217;s the option of storing collections for a given
 column. This will return an array for the links attribute on a Book record.
 </p>
-<h3>Associations</h3>
+<h3><tt><a href="BigRecord/BrAssociations.html" title="Associations">Associations</a></tt></h3>
 <p>
 There are also associations available in Bigrecord, as well as the ability
 to associate to Activerecord models. The following are a few models
@@ -209,7 +221,7 @@ Once the association columns are defined, you define the associations
 themselves with either belongs_to_bigrecord or belongs_to_many and defining
 the :foreign_key (this is required for all associations).
 </p>
-<h3>Specifying return columns</h3>
+<h3><tt><a href="BigRecord/ConnectionAdapters/View.html" title="Specifying return columns">Specifying return columns</a></tt></h3>
 <p>
 There are two ways to define specific columns to be returned with your
 models: 1) at the model level and 2) during the query.
@@ -264,12 +276,13 @@ only those attributes:
 As you may have noticed, this functionality is synonymous with the :select
 option in Activerecord.
 </p>
+<h3><tt><a href="BigRecord/Embedded.html" title="Embedded Records">Embedded Records</a></tt></h3>
 <h3>At this point, usage patterns for a Bigrecord model are similar to that of an Activerecord model, and much of that documentation applies as well. Please refer to those and see if they work!</h3>
 
       </div>
     </div>
     <div id="yard_info">
-  Generated on Tuesday, November 10 2009 at 06:18:30 PM by 
+  Generated on Thursday, November 12 2009 at 05:27:58 PM by 
   <abbr class="yard" title="Yay! A Ruby Documentation Tool"><a href="http://yard.soen.ca">YARD</a></abbr> 
   0.2.3.5 (ruby-1.8.7).
 </div>

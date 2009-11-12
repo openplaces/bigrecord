@@ -28,15 +28,20 @@ module BigRecord
     end
   end
 
-  # Although column-oriented databases are generally schema-less, certain ones (like Hbase)
-  # require the creation of tables and column families ahead of time. The individual columns,
-  # however, are defined in the model itself and can be modified dynamically without the need for migrations.
+  # = Migrations
   #
-  # Unless you're familiar with column families, the majority of use cases work perfectly fine within one
-  # column family. When you generate a bigrecord_model, it will default to creating the :attribute column family.
+  # Although column-oriented databases are generally schema-less, certain
+  # ones (like HBase) require the creation of tables and column families
+  # ahead of time. The individual columns, however, are defined in the model
+  # itself and can be modified dynamically without the need for migrations.
   #
-  # The following is a standard migration file that creates a table called "Books" with the default
-  # column family :attribute that has the following option of 100 versions and uses the 'lzo' compression scheme.
+  # Unless you're familiar with column families, the majority of use cases
+  # work perfectly fine within one column family. When you generate a
+  # bigrecord_model, it will default to creating the :attribute column family.
+  #
+  # The following is a standard migration file that creates a table
+  # called "Books" with the default column family :attribute that has the
+  # following option of 100 versions and uses the 'lzo' compression scheme.
   # Leave any options blank for the default value.
   #
   #  class CreateBooks < BigRecord::Migration
@@ -50,6 +55,23 @@ module BigRecord
   #      drop_table :books
   #    end
   #  end
+  #
+  # == HBase column family options (HBase specific)
+  #
+  # * versions: integer. By default, Hbase will store 3 versions of changes for
+  # any column family. Changing this value on the creation will change this
+  # behavior.
+  #
+  # * compression: 'none', 'gz', 'lzo'. Defaults to 'none'. Since Hbase 0.20,
+  # column families can be stored using compression. The compression scheme
+  # you define here must be installed on the Hbase servers!
+  #
+  # == Migrating
+  #
+  # Run the following rake task to migrate your tables and column families up
+  # to the latest version:
+  #
+  #   rake bigrecord:migrate
   #
   class Migration
     @@verbose = true
@@ -170,7 +192,7 @@ module BigRecord
 
   end
 
-  class Migrator#:nodoc:
+  class Migrator #:nodoc:
     class << self
       def migrate(migrations_path, target_version = nil)
         case

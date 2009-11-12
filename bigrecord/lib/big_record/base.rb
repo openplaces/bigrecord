@@ -242,6 +242,7 @@ module BigRecord
       end
 
       # HBase scanner utility -- scans the table and executes code on each record
+      #
       # @example
       #    Entity.scan(:batch_size => 200) {|e|puts "#{e.name} is a child!" if e.parent}
       #
@@ -374,7 +375,7 @@ module BigRecord
       # calling the destroy method). Example:
       #   Post.delete_all "person_id = 5 AND (category = 'Something' OR category = 'Else')"
       #
-      # TODO: take into consideration the conditions
+      # @todo take into consideration the conditions
       def delete_all(conditions = nil)
         connection.get_consecutive_rows(table_name, nil, nil, ["#{default_family}:"]).each do |row|
           connection.delete(table_name, row["id"])
@@ -465,7 +466,7 @@ module BigRecord
         {primary_key => ConnectionAdapters::Column.new(primary_key, 'string')}
       end
 
-      # @see AbstractBase#column
+      # @see BigRecord::AbstractBase.column
       def column(name, type, options={})
         name = name.to_s
         name = "#{self.default_family}:#{name}" unless (name =~ /:/)
@@ -476,16 +477,6 @@ module BigRecord
       # Return the hash of default views which consist of all columns and the :default named views.
       def default_views
         {:all=>ConnectionAdapters::View.new('all', nil, self), :default=>ConnectionAdapters::View.new('default', nil, self)}
-      end
-
-      def find_all_by_id(ids, options={})
-        ids.inject([]) do |result, id|
-          begin
-            result << find_one(id, options)
-          rescue BigRecord::RecordNotFound => e
-          end
-          result
-        end
       end
 
       # Return the list of fully qualified column names, i.e. ["family:qualifier"].
@@ -620,6 +611,16 @@ module BigRecord
           end
         else
           raise RecordNotFound, "Couldn't find #{name} with ID=#{id}"
+        end
+      end
+
+      def find_all_by_id(ids, options={})
+        ids.inject([]) do |result, id|
+          begin
+            result << find_one(id, options)
+          rescue BigRecord::RecordNotFound => e
+          end
+          result
         end
       end
 

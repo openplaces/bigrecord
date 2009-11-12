@@ -11,7 +11,7 @@ class Object
   end
 end
 
-module ActionView
+module ActionView #:nodoc:
   module Helpers
     class InstanceTag #:nodoc:
 

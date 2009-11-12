@@ -883,7 +883,7 @@ private
       # Macro for defining a new column for a model. Invokes {create_column} and
       # adds the new column into the model's column hash.
       #
-      # @option type [Symbol] Column type as defined in {ConnectionAdapters::Column#klass}
+      # @param type [Symbol, String] Column type as defined in the source of {ConnectionAdapters::Column#klass}
       # @option options [true,false] :collection Whether this column is a collection.
       # @option options [String] :alias Define an alias for the column that cannot be inferred. By default, 'attribute:name' will be aliased to 'name'.
       # @option options [String] :default Default value to set for this column.
@@ -903,11 +903,6 @@ private
         alias_attribute c.alias, c.name if c.alias
 
         c
-      end
-
-      # Creates a {ConnectionAdapters::Column} object.
-      def create_column(name, type, options)
-        ConnectionAdapters::Column.new(name, type, options)
       end
 
       # Define aliases to the fully qualified attributes
@@ -1060,6 +1055,11 @@ private
         @columns = nil
         @column_names = nil
         @content_columns = nil
+      end
+
+      # Creates a {ConnectionAdapters::Column} object.
+      def create_column(name, type, options)
+        ConnectionAdapters::Column.new(name, type, options)
       end
 
       def default_columns

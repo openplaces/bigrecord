@@ -1,7 +1,9 @@
-# The following overrides are required because we use strings as ids and it's
-# possible that these strings are not clean. The default implementation
-# escapes them with URI.escape() but its' not good. e.g. '&' becomes &amp; instead of %26
-module ActionController
+module ActionController #:nodoc
+
+  # The following overrides are required because we use strings as ids and it's
+  # possible that these strings are not clean. The default implementation
+  # escapes them with URI.escape() but its' not good. e.g. '&' becomes
+  # &amp; instead of %26.
   module Routing
     class PathSegment
       def interpolation_chunk(value_code = "#{local_name}")

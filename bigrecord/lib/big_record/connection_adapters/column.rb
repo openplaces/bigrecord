@@ -4,6 +4,36 @@ require 'bigdecimal/util'
 
 module BigRecord
   module ConnectionAdapters #:nodoc:
+
+    # = Column/Attribute Definition
+    #
+    # As long as a model has at least one column family set up for it, then
+    # columns (a.k.a. model attributes) can then be defined for the model.
+    #
+    # The following is an example of a model named book.rb that has a
+    # column family called "attribute" set up for it:
+    #
+    #   class Book < BigRecord::Base
+    #     column 'attribute:title',   :string
+    #     column :author,             :string
+    #     column :description,        :string
+    #     column :links,              :string,  :collection => true
+    #   end
+    #
+    # This simple model defines 4 columns of type string. An important thing
+    # to notice here is that the first column 'attribute:title' has the column
+    # family prepended to it. This is identical to just passing the symbol
+    # :title to the column method, and the default behaviour is to prepend
+    # the column family (attribute) automatically if one is not defined.
+    #
+    # Furthermore, in HBase, there's the option of storing collections for a
+    # given column. This will return an array for the links attribute on a
+    # Book record.
+    #
+    # == Types and Options
+    #
+    # @see BigRecord::AbstractBase.column
+    #
     class Column
       module Format
         ISO_DATE = /\A(\d{4})-(\d\d)-(\d\d)\z/

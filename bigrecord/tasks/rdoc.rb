@@ -1,8 +1,14 @@
-desc 'Generate documentation for BigRecord.'
-Rake::RDocTask.new(:rdoc) do |rdoc|
-  rdoc.rdoc_dir = 'rdoc'
-  rdoc.title    = 'BigRecord'
-  rdoc.options << '--line-numbers' << '--inline-source'
-  rdoc.rdoc_files.include('../README.rdoc')
-  rdoc.rdoc_files.include('lib/**/*.rb')
+begin
+  require 'yard'
+
+  desc 'Generate documentation for BigRecord.'
+  YARD::Rake::YardocTask.new do |t|
+    t.files = %w(- guides/*.rdoc)
+    t.options = ["--title", "BigRecord Documentation"]
+  end
+
+  desc 'Generate documentation for BigRecord.'
+  task :rdoc => :yardoc
+rescue LoadError
+  puts "yard not available. Install it with: sudo gem install yard"
 end

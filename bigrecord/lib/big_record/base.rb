@@ -33,7 +33,6 @@ module BigRecord
       end
     end
 
-#  protected
     # Returns the value of the attribute identified by <tt>attr_name</tt> after it has been typecast (for example,
     # "2004-12-12" in a data column is cast to a date object, like Date.new(2004, 12, 12)).
     def read_attribute(attr_name, options={})
@@ -81,6 +80,7 @@ module BigRecord
       end
     end
 
+    # Read an attribute that defines a column family.
     def read_family_attributes(attr_name)
       attr_name = attr_name.to_s
       column = column_for_attribute(attr_name)
@@ -197,6 +197,7 @@ module BigRecord
 
   protected
 
+    # Invoke {#create} if {#new_record} returns true, otherwise it's an {#update}
     def create_or_update
       raise ReadOnlyRecord if readonly?
       result = new_record? ? create : update
@@ -230,11 +231,7 @@ module BigRecord
   public
     class << self
 
-      # Replaced with: class_inheritable_accessor :default_family (line 46)
-      # def default_family
-      #   "attribute"
-      # end
-
+      # Return the name of the primary key. Defaults to "id".
       def primary_key
         @primary_key ||= "id"
       end
@@ -245,12 +242,11 @@ module BigRecord
       end
 
       # HBase scanner utility -- scans the table and executes code on each record
-      # Example:
+      # @example
       #    Entity.scan(:batch_size => 200) {|e|puts "#{e.name} is a child!" if e.parent}
       #
-      # Parameters:
-      #    batch_size - number of records to retrieve from database with each scan iteration.
-      #    code - the code to execute (see example above for syntax)
+      # @option options [Integer] :batch_size - number of records to retrieve from database with each scan iteration.
+      # @option options [Block] :code - the code to execute (see example above for syntax)
       #
       def scan(options={}, &code)
         options = options.dup
@@ -327,10 +323,10 @@ module BigRecord
       # The arguments may also be given as arrays in which case the update method is called for each pair of +id+ and
       # +attributes+ and an array of objects is returned.
       #
-      # Example of updating one record:
+      # @example of updating one record:
       #   Person.update(15, {:user_name => 'Samuel', :group => 'expert'})
       #
-      # Example of updating multiple records:
+      # @example of updating multiple records:
       #   people = { 1 => { "first_name" => "David" }, 2 => { "first_name" => "Jeremy"} }
       #   Person.update(people.keys, people.values)
       def update(id, attributes)
@@ -398,18 +394,34 @@ module BigRecord
         @table_name = name.to_s
       end
 
+      # Get the default column family used to store attributes that have no column family set explicitly.
+      #
+      # Defaults to "attribute"
       def default_family
         (superclass == BigRecord::Base) ? (@default_family ||= "attribute") : superclass.default_family
       end
 
+      # Set the default column family used to store attributes that have no column family set explicitly.
+      #
+      # @example
+      #   set_default_family :attr  # instead of using :attribute as the default.
       def set_default_family(name)
         @default_family = name.to_s
       end
 
+      # @return [Class] The base class which inherits BigRecord::Base directly.
       def base_class
         (superclass == BigRecord::Base) ? self : superclass.base_class
       end
 
+      # Macro for defining a named view to a list of columns.
+      #
+      # @param [String, Symbol] name Give it an arbitrary name.
+      # @param [Array<String, Symbol>] columns List of columns to associate to this view. Can use column aliases or fully qualified names.
+      #
+      # @example
+      #   view :front_page, :name, :title, :description
+      #   view :summary, ["attribute:name", "attribute:title"]
       def view(name, *columns)
         name = name.to_sym
         @views_hash ||= default_views
@@ -420,14 +432,17 @@ module BigRecord
         @views_hash[name] = ConnectionAdapters::View.new(name, columns.flatten, self)
       end
 
+      # Get a list of all the views defined by the {view} macro for the model.
       def views
         @views ||= views_hash.values
       end
 
+      # Get a list of view names defined by {view}.
       def view_names
         @view_names ||= views_hash.keys
       end
 
+      # Get the full hash of views consisting of the name as keys, and the {ConnectionAdapters::View} views.
       def views_hash
         unless @all_views_hash
           # add default hbase columns
@@ -445,10 +460,12 @@ module BigRecord
         @all_views_hash
       end
 
+      # Default columns to create with the model, such as primary key.
       def default_columns
         {primary_key => ConnectionAdapters::Column.new(primary_key, 'string')}
       end
 
+      # @see AbstractBase#column
       def column(name, type, options={})
         name = name.to_s
         name = "#{self.default_family}:#{name}" unless (name =~ /:/)
@@ -456,6 +473,7 @@ module BigRecord
         super(name, type, options)
       end
 
+      # Return the hash of default views which consist of all columns and the :default named views.
       def default_views
         {:all=>ConnectionAdapters::View.new('all', nil, self), :default=>ConnectionAdapters::View.new('default', nil, self)}
       end
@@ -470,7 +488,13 @@ module BigRecord
         end
       end
 
-      # return the list of columns to get from hbase
+      # Return the list of fully qualified column names, i.e. ["family:qualifier"].
+      #
+      # Returns the column names based on the options argument in order of
+      # :columns,then :view, i.e. disregards :view if :columns is defined.
+      #
+      # @option options [Array<String, Symbol>] :columns List of fully qualified column names or column aliases.
+      # @option options [String, Symbol] :view The name of the view as defined with {view}.
       def columns_to_find(options={})
         c =
           if options[:columns]

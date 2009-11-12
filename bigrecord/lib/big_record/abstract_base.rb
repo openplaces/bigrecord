@@ -159,6 +159,9 @@ module BigRecord
 
     # Safe version of attributes= so that objects can be instantiated even
     # if columns are removed.
+    #
+    # @param [Hash] Attribute hash consisting of the column name and their values.
+    # @param [true, false] Pass the attributes hash through {#remove_attributes_protected_from_mass_assignment}
     def safe_attributes=(new_attributes, guard_protected_attributes = true)
       return if new_attributes.nil?
       attributes = new_attributes.dup
@@ -193,7 +196,7 @@ module BigRecord
 
     # Default to_s method that just returns invokes the {#id} method
     #
-    # @return [String] The row identifier/id of the record
+    # @return [String] The row identifier/id of the record.
     def to_s
       id
     end
@@ -209,6 +212,8 @@ module BigRecord
     # The optional options argument is passed to find when reloading so you
     # may do e.g. record.reload(:lock => true) to reload the same record with
     # an exclusive row lock.
+    #
+    # @return Itself with reloaded attributes.
     def reload(options = nil)
       @attributes.update(self.class.find(self.id, options).instance_variable_get('@attributes'))
       self
@@ -270,12 +275,18 @@ module BigRecord
 
     # Returns true if the specified +attribute+ has been set by the user or by a database load and is neither
     # nil nor empty? (the latter only applies to objects that respond to empty?, most notably Strings).
+    #
+    # @return [String, Symbol] Name of an attribute.
+    # @return [true,false] Whether that attribute exists.
     def attribute_present?(attribute)
       value = read_attribute(attribute)
       !value.blank? or value == 0
     end
 
     # Returns true if the given attribute is in the attributes hash
+    #
+    # @return [String, Symbol] Name of an attribute.
+    # @return [true,false] Whether that attribute exists in the attributes hash.
     def has_attribute?(attr_name)
       @attributes.has_key?(attr_name.to_s)
     end
@@ -340,6 +351,9 @@ module BigRecord
       @attributes.freeze; self
     end
 
+    # Checks whether the object has had its attributes hash frozen.
+    #
+    # @return [true,false]
     def frozen?
       @attributes.frozen?
     end
@@ -353,7 +367,8 @@ module BigRecord
       write_attribute(self.class.primary_key, value)
     end
 
-    # Returns true if this object hasn't been saved yet -- that is, a record for the object doesn't exist yet.
+    # Returns true if this object hasn't been saved yet -- that is, a record for the object doesn't
+    # yet exist in the data store.
     def new_record?
       false
     end
@@ -394,6 +409,7 @@ module BigRecord
       raise NotImplemented
     end
 
+    # Returns the connection adapter of the current session.
     def connection
       self.class.connection
     end
@@ -403,6 +419,7 @@ module BigRecord
       @readonly == true
     end
 
+    # Sets the record to be readonly
     def readonly! #:nodoc:
       @readonly = true
     end
@@ -474,13 +491,10 @@ module BigRecord
       end
     end
 
-    # Generate a new id. Override this to use custom ids.
+    # Generate a new id with the UUIDTools library.
+    # Override this method to use another id generator.
     def generate_new_id
       UUIDTools::UUID.random_create.to_s
-    end
-
-    def self.random_id #not necessarily unique! -- this is strictly for 'stumbling', not for assigning to new entities
-      [8,4,4,4,12].map{|l| "%0#{l}x" % rand(1 << l*4) }.join('-')
     end
 
     # Initializes the attributes array with keys matching the columns from the linked table and
@@ -618,6 +632,9 @@ module BigRecord
       end
     end
 
+    # Removes any attributes from the argument hash that have been declared as protected
+    # from mass assignment. See the {#attr_protected} and {#attr_accessible} macros to define
+    # these attributes.
     def remove_attributes_protected_from_mass_assignment(attributes)
       safe_attributes =
         if self.class.accessible_attributes.nil? && self.class.protected_attributes.nil?
@@ -687,7 +704,7 @@ module BigRecord
 private
     # Called on first read access to any given column and generates reader
     # methods for all columns in the columns_hash if
-    # ActiveRecord::Base.generate_read_methods is set to true.
+    # BigRecord::Base.generate_read_methods is set to true.
     def define_read_methods
       self.class.columns_hash.each do |name, column|
         unless respond_to_without_attributes?(name)
@@ -700,7 +717,7 @@ private
       end
     end
 
-    # Define an attribute reader method.  Cope with nil column.
+    # Define an attribute reader method. Cope with a nil column.
     def define_read_method(symbol, attr_name, column)
       cast_code = column.type_cast_code('v') if column
       access_code = cast_code ? "(v=@attributes['#{attr_name}']) && #{cast_code}" : "@attributes['#{attr_name}']"
@@ -768,22 +785,9 @@ private
         raise NotImplemented
       end
 
-#      # Returns a string like 'Post id:integer, title:string, body:text'
-#      def inspect
-#        if self == Base
-#          super
-#        elsif abstract_class?
-#          "#{super}(abstract)"
-#        elsif table_exists?
-#          attr_list = columns.map { |c| "#{c.name}: #{c.type}" } * ', '
-#          "#{super}(#{attr_list})"
-#        else
-#          "#{super}(Table doesn't exist)"
-#        end
-#      end
-
-      # Log and benchmark multiple statements in a single block. Example:
+      # Log and benchmark multiple statements in a single block.
       #
+      # @example
       #   Project.benchmark("Creating project") do
       #     project = Project.create("name" => "stuff")
       #     project.create_manager("name" => "David")
@@ -824,7 +828,7 @@ private
       end
 
       # Override this method in the subclasses to add new columns. This is different from ActiveRecord because
-      # the number of columns in a Hbase table is variable.
+      # the number of columns in an Hbase table is variable.
       def columns
         @columns = columns_hash.values
       end
@@ -876,6 +880,15 @@ private
         end
       end
 
+      # Macro for defining a new column for a model. Invokes {create_column} and
+      # adds the new column into the model's column hash.
+      #
+      # @option type [Symbol] Column type as defined in {ConnectionAdapters::Column#klass}
+      # @option options [true,false] :collection Whether this column is a collection.
+      # @option options [String] :alias Define an alias for the column that cannot be inferred. By default, 'attribute:name' will be aliased to 'name'.
+      # @option options [String] :default Default value to set for this column.
+      #
+      # @return [ConnectionAdapters::Column] The column object created.
       def column(name, type, options={})
         name = name.to_s
 
@@ -892,6 +905,7 @@ private
         c
       end
 
+      # Creates a {ConnectionAdapters::Column} object.
       def create_column(name, type, options)
         ConnectionAdapters::Column.new(name, type, options)
       end

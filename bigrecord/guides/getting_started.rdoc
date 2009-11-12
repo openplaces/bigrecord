@@ -58,7 +58,7 @@ This will add a model in app/models and a migration file in db/bigrecord_migrate
 
 Creates a Bigrecord specific migration and adds it into db/bigrecord_migrate
 
-=== Migration File
+=== {BigRecord::Migration Migration File}
 
 Although column-oriented databases are generally schema-less, certain ones (like Hbase) require the creation of tables and column families ahead of time. The individual columns, however, are defined in the model itself and can be modified dynamically without the need for migrations.
 
@@ -89,7 +89,7 @@ Run the following rake task to migrate your tables and column families up to the
 
   rake bigrecord:migrate
 
-=== Column and Attribute Definition
+=== {BigRecord::ConnectionAdapters::Column Column and Attribute Definition}
 
 Now that you have your tables and column families all set up, you can begin adding columns to your model. The following is an example of a model named book.rb
 
@@ -102,7 +102,7 @@ Now that you have your tables and column families all set up, you can begin addi
 
 This simple model defines 4 columns of type string. An important thing to notice here is that the first column 'attribute:title' had the column family prepended to it. This is identical to just passing the symbol :title to the column method, and the default behaviour is to prepend the column family (attribute) automatically if one is not defined. Furthermore, in Hbase, there's the option of storing collections for a given column. This will return an array for the links attribute on a Book record.
 
-=== Associations
+=== {BigRecord::BrAssociations Associations}
 
 There are also associations available in Bigrecord, as well as the ability to associate to Activerecord models. The following are a few models demonstrating this:
 
@@ -126,7 +126,7 @@ In this example, an Animal is related to Zoo and Trainer. Both Animal and Zoo ar
 
 Once the association columns are defined, you define the associations themselves with either belongs_to_bigrecord or belongs_to_many and defining the :foreign_key (this is required for all associations).
 
-=== Specifying return columns
+=== {BigRecord::ConnectionAdapters::View Specifying return columns}
 
 There are two ways to define specific columns to be returned with your models: 1) at the model level and 2) during the query.
 
@@ -165,5 +165,7 @@ Note: A Bigrecord model will return all the columns within the default column fa
   => #<Book id: "2e13f182-1085-495e-9841-fe5c84ae9992", attribute:description: "Masterpiece!", attribute:author: "Greg">
 
 As you may have noticed, this functionality is synonymous with the :select option in Activerecord.
+
+=== {BigRecord::Embedded Embedded Records}
 
 === At this point, usage patterns for a Bigrecord model are similar to that of an Activerecord model, and much of that documentation applies as well. Please refer to those and see if they work!

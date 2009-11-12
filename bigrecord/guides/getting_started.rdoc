@@ -1,18 +1,29 @@
 = Getting Started
 
-== Requirements
 
-* Database set up (please refer to the database's own documentation) with the required information known such as host, port, username, password, etc. in order for Bigrecord to connect to it.
-* Bigrecord Driver (if your database requires it for connecting)
-  * JRuby 1.1.6+ is needed to run Bigrecord Driver.
+== Setting up HBase and Stargate
 
-== *NOTE* At the time of this writing, Hbase is the only supported database for Bigrecord, and the following instructions are for specific to Hbase.
+To quickly get started with development, you can set up HBase to run as a single server on your local computer, along with Stargate, its RESTful web service front-end.
 
-== Installation
+(1) Download and unpack the most recent release of HBase from http://hadoop.apache.org/hbase/releases.html#Download
+
+(2) Edit (hbase-dir)/conf/hbase-env.sh and uncomment/modify the following line to correspond to your Java home path:
+  export JAVA_HOME=/usr/lib/jvm/java-6-sun
+
+(3) Copy (hbase-dir)/contrib/stargate/hbase-<version>-stargate.jar into <hbase-dir>/lib
+
+(4) Copy all the files in the (hbase-dir)/contrib/stargate/lib folder into <hbase-dir>/lib
+
+(5) Start up HBase:
+  $ (hbase-dir)/bin/start-hbase.sh
+
+(6)Start up Stargate (append "-p 1234" at the end if you want to change the port):
+  $ (hbase-dir)/bin/hbase org.apache.hadoop.hbase.stargate.Main
+
+
+== Setting up Bigrecord
 
 (1) Install the Bigrecord Driver gem and its dependencies, then start up a DRb server. Please see the Bigrecord Driver documentation for more detailed instructions. (http://github.com/openplaces/bigrecord/blob/master/bigrecord-driver/README.rdoc)
-
-=== Method 1 (recommended): Install as a gem
 
 (2) Add the following line into the Rails::Initializer.run do |config| block:
 
@@ -26,15 +37,12 @@ and run the following command to install all the gems listed for your Rails app:
 
   script/generate bigrecord
 
-(4) Edit the config/bigrecord.yml[.sample] file in your Rails root to the information corresponding to your database install and Bigrecord Driver DRb server.
+(4) Edit the config/bigrecord.yml[.sample] file in your Rails root to the information corresponding to the Stargate server.
 
-=== Method 2: Install as a plugin
+  development:
+    adapter: hbase_rest
+    api_address: http://localhost:8080	# default API address for Stargate
 
-(2) Run the following command to install it as a plugin:
-
-  script/plugin install git://github.com/openplaces/bigrecord.git
-
-(3) Edit the config/bigrecord.yml[.sample] file in your Rails root to the information corresponding to your database install and Bigrecord Driver DRb server.
 
 == Usage
 

@@ -1,0 +1,7 @@
+= Deploying Big Record
+
+== Requirements
+
+* Database set up (please refer to the database's own documentation) with the required information known such as host, port, username, password, etc. in order for Bigrecord to connect to it.
+* Bigrecord Driver (if your database requires it for connecting)
+  * JRuby 1.1.6+ is needed to run Bigrecord Driver.

@@ -196,7 +196,7 @@ module BigRecord
 
     # Default to_s method that just returns invokes the {#id} method
     #
-    # @return [String] The row identifier/id of the record.
+    # @return [String] The row identifier/id of the record
     def to_s
       id
     end

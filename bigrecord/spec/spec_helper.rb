@@ -7,7 +7,13 @@ require 'spec'
 SPEC_ROOT = Pathname(__FILE__).dirname.expand_path
 require SPEC_ROOT.parent + 'lib/big_record'
 
-BigRecord::Base.configurations = YAML::load(File.open(File.join(File.dirname(__FILE__), "connections", "bigrecord.yml")))
+if ENV["HBASE_REST_ADDRESS"]
+  config = YAML::load(File.open(File.join(File.dirname(__FILE__), "connections", "bigrecord.yml")))
+  config["hbase"]["api_address"] = ENV["HBASE_REST_ADDRESS"]
+  BigRecord::Base.configurations = config
+else
+  BigRecord::Base.configurations = YAML::load(File.open(File.join(File.dirname(__FILE__), "connections", "bigrecord.yml")))
+end
 BigRecord::Base.logger = Logger.new(File.join(File.dirname(__FILE__), "debug.log"))
 
 begin

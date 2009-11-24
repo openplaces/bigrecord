@@ -1,7 +1,21 @@
 = Deploying Big Record
 
-== Requirements
+Stargate is a new implementation for HBase's web service front-end, and as such, is not currently recommended for deployment.
 
-* Database set up (please refer to the database's own documentation) with the required information known such as host, port, username, password, etc. in order for Bigrecord to connect to it.
+We here at Openplaces have developed Bigrecord Driver, which uses JRuby to interact with HBase via the native Java API and connect to Bigrecord through the DRb protocol. This method is slightly more complicated to setup, but preliminary benchmarks show that it runs faster (especially for scanner functionality).
+
+== Instructions
+* Your database should already be set up (please refer to the database's own documentation) with the required information known such as the zookeeper quorum/port, etc. in order for Bigrecord to connect to it.
 * Bigrecord Driver (if your database requires it for connecting)
   * JRuby 1.1.6+ is needed to run Bigrecord Driver.
+
+Install the Bigrecord Driver gem and its dependencies, then start up a DRb server. Please refer the Bigrecord Driver documentation for more detailed instructions. (http://github.com/openplaces/bigrecord/blob/master/bigrecord-driver/README.rdoc)
+
+Edit your bigrecord.yml config file as follows:
+
+	production:
+	  adapter: hbase
+	  zookeeper_quorum: localhost
+	  zookeeper_client_port: 2181
+	  drb_host: localhost
+	  drb_port: 50001

@@ -1,6 +1,13 @@
 namespace :data_store do
   require 'lib/big_record'
-  BigRecord::Base.configurations = YAML::load(File.open(File.join(ROOT, "spec", "connections", "bigrecord.yml")))
+
+  if ENV["HBASE_REST_ADDRESS"]
+    config = YAML::load(File.open(File.join(ROOT, "spec", "connections", "bigrecord.yml")))
+    config["hbase"]["api_address"] = ENV["HBASE_REST_ADDRESS"]
+    BigRecord::Base.configurations = config
+  else
+    BigRecord::Base.configurations = YAML::load(File.open(File.join(ROOT, "spec", "connections", "bigrecord.yml")))
+  end
   BigRecord::Base.logger = Logger.new(File.expand_path(File.join(ROOT, "migrate.log")))
 
   @migrations_path = File.expand_path(File.join(ROOT, "spec", "lib", "migrations"))

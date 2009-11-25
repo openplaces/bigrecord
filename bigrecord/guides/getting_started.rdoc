@@ -41,7 +41,9 @@ and run the following command to install all the gems listed for your Rails app:
 
   development:
     adapter: hbase_rest
-    api_address: http://localhost:8080	# default API address for Stargate
+    api_address: http://localhost:8080
+
+Note: 8080 is the default port that Stargate starts up on. Make sure you modify this if you changed the port from the default.
 
 
 == Usage

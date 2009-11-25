@@ -10,6 +10,7 @@ begin
 
   # Try establishing the connection
   BigRecord::Base.establish_connection
-rescue
-  puts "[Bigrecord] Couldn't load the config/bigrecord.yml config file. Please bootstrap it into your application with: script/generate bigrecord"
+rescue Exception => e
+  puts "[Bigrecord] Error encountered while loading the config file and establishing a connection. Please bootstrap Bigrecord into your application if you haven't done so already with: script/generate bigrecord\n" +
+          e.message
 end

@@ -85,8 +85,12 @@ information corresponding to the Stargate server.
 <pre class="code">
   <span class='development identifier id'>development</span><span class='colon op'>:</span>
     <span class='adapter identifier id'>adapter</span><span class='colon op'>:</span> <span class='hbase_rest identifier id'>hbase_rest</span>
-    <span class='api_address identifier id'>api_address</span><span class='colon op'>:</span> <span class='http identifier id'>http</span><span class='symbol val'>:/</span><span class='regexp val'>/localhost:8080  # default API address for Stargate
+    <span class='api_address identifier id'>api_address</span><span class='colon op'>:</span> <span class='http identifier id'>http</span><span class='symbol val'>:/</span><span class='regexp val'>/localhost:8080
 </span></pre>
+<p>
+Note: 8080 is the default port that Stargate starts up on. Make sure you
+modify this if you changed the port from the default.
+</p>
 <h2>Usage</h2>
 <h3>Generators</h3>
 <p>
@@ -282,7 +286,7 @@ option in Activerecord.
       </div>
     </div>
     <div id="yard_info">
-  Generated on Tuesday, November 24 2009 at 05:12:35 PM by 
+  Generated on Wednesday, November 25 2009 at 02:43:12 PM by 
   <abbr class="yard" title="Yay! A Ruby Documentation Tool"><a href="http://yard.soen.ca">YARD</a></abbr> 
   0.2.3.5 (ruby-1.8.7).
 </div>

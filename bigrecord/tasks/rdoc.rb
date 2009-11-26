@@ -8,7 +8,7 @@ begin
   end
 
   desc 'Generate documentation for BigRecord.'
-  task :rdoc => :yardoc
+  task :rdoc => :yard
 rescue LoadError
   puts "yard not available. Install it with: sudo gem install yard"
 end

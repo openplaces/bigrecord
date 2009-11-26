@@ -83,7 +83,7 @@ module BigRecord
         result = nil
 
         columns = columns_to_hbase_format(values)
-        timestamp = Time.now.to_bigrecord_timestamp
+        timestamp ||= Time.now.to_bigrecord_timestamp
 
         log "UPDATE #{table_name} SET #{values.inspect if values} WHERE ROW=#{row};" do
           @connection.create_row(table_name, row, timestamp, columns)

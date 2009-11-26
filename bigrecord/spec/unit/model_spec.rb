@@ -76,7 +76,7 @@ describe BigRecord::Base do
     Book.new.should respond_to(:save!)
   end
 
-  describe '.save and .save!' do
+  describe 'save and delete functionality' do
 
     describe 'with a new resource' do
 
@@ -99,6 +99,15 @@ describe BigRecord::Base do
         book2.title.should == "I Am Legend"
         book2.author.should == "Richard Matheson"
         book2.description.should == "The most clever and riveting vampire novel since Dracula."
+
+        # Verify that we can destroy this
+        lambda {
+          book2.destroy
+        }.should_not raise_error
+
+        lambda {
+          verify_delete = Book.find(book.id)
+        }.should raise_error
       end
 
       it 'should raise an exception with .save! if a record was not saved or true if successful' do

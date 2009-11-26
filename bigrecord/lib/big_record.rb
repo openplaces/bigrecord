@@ -32,7 +32,7 @@ end
 begin
   require 'active_record'
 rescue LoadError
-  puts "[Bigrecord] ActiveRecord could not be loaded. Bigrecord associations with AR models disabled."
+  raise LoadError, "Bigrecord depends on ActiveRecord. Install it with: gem install activerecord"
 end
 
 require dir + '/routing_ext'
@@ -40,7 +40,6 @@ require dir + '/abstract_base'
 require dir + '/base'
 require dir + '/embedded'
 require dir + '/validations'
-#require dir + '/callbacks'
 require dir + '/ar_reflection'
 require dir + '/br_reflection'
 require dir + '/ar_associations'
@@ -60,7 +59,6 @@ require dir + '/action_view_extensions'
 
 BigRecord::Base.class_eval do
   include BigRecord::Validations
-#  include BigRecord::Callbacks
   include ActiveRecord::Callbacks
   include BigRecord::Timestamp
   include BigRecord::ArAssociations
@@ -75,7 +73,6 @@ end
 
 BigRecord::Embedded.class_eval do
   include BigRecord::Validations
-#  include BigRecord::Callbacks
   include ActiveRecord::Callbacks
   include BigRecord::Timestamp
   include BigRecord::ArAssociations

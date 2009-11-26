@@ -26,11 +26,9 @@ module BigRecord
     # TODO: this sucks... aren't there a better way to do it?
     if self.class < ActiveRecord::Base
       class MacroReflectionAbstract < ActiveRecord::Reflection::MacroReflection
-
       end
     else
       class MacroReflectionAbstract < BigRecord::ArReflection::MacroReflection
-
       end
     end
 
@@ -88,7 +86,7 @@ module BigRecord
 
       # Gets an array of possible :through source reflection names
       #
-      #   [singularized, pluralized]
+      # [singularized, pluralized]
       #
       def source_reflection_names
         @source_reflection_names ||= (options[:source] ? [options[:source]] : [name.to_s.singularize, name]).collect { |n| n.to_sym }

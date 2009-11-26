@@ -1,433 +1,414 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
-    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-<link rel="stylesheet" href="../../style.css" type="text/css" charset="utf-8" />
-<link rel="stylesheet" href="../../custom.css" type="text/css" charset="utf-8" />
-<link rel="stylesheet" href="../../syntax_highlight.css" type="text/css" charset="utf-8" />
+    <meta name="Content-Type" content="text/html; charset=UTF-8" />
+<title>Class: BigRecord::BrAssociations::BelongsToManyAssociation</title>
+<link rel="stylesheet" href="../../css/style.css" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="../../css/common.css" type="text/css" media="screen" charset="utf-8" />
 
-    <script src="../../jquery.js" type="text/javascript" charset="utf-8"></script>
-    <script src="../../app.js" type="text/javascript" charset="utf-8"></script>
-    <title>Class: BigRecord::BrAssociations::BelongsToManyAssociation</title>
+<script type="text/javascript" charset="utf-8">
+  relpath = '../..';
+  if (relpath != '') relpath += '/';
+</script>
+<script type="text/javascript" charset="utf-8" src="../../js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="../../js/app.js"></script>
+
   </head>
   <body>
-    <div id="content">
-      <div class="section class BigRecord_BrAssociations_BelongsToManyAssociation">
-  <h1 class="title">Class: BigRecord::BrAssociations::BelongsToManyAssociation</h1>
-  <div class="section inheritance">
-  <ul>
-  <li><a href="AssociationProxy.html" title="BigRecord::BrAssociations::AssociationProxy">BigRecord::BrAssociations::AssociationProxy</a></li><ul><li>BigRecord::BrAssociations::BelongsToManyAssociation</li>
-  </ul></ul>
-</div><div class="section constants">
+    <div id="header">
+      <div id="menu">
   
-</div><div class="section constructor">
-<h1>Constructor Summary</h1>
-  <p class="inherited_msg">
-    This class inherits a constructor from <a href="AssociationProxy.html#initialize-instance_method" title="BigRecord::BrAssociations::AssociationProxy">BigRecord::BrAssociations::AssociationProxy</a>.
-  </p>
-</div><div class="section methodmissing">
-  <h1>Dynamic Method Handling</h1>
-
-  <p class="note">
-    This class handles dynamic methods through the <tt>method_missing</tt> method
-    
-      in the class <a href="AssociationProxy.html" title="BigRecord::BrAssociations::AssociationProxy">BigRecord::BrAssociations::AssociationProxy</a>
-    
-  </p>
-
-  <div id="method_missing-instance_method" class="section method">
-  <div class="details_title">
-    <div class='section methodsignature'>
-    <tt class='def'>
-      <span class='visibility'>private</span>
-      <span class='return_types'></span>
-      <span class='name'>method_missing</span><span class='args'>(method, *args, &amp;block)</span>
-      <span class='block'></span>
-    </tt>
-  </div>
-
-</div><div class="section source">
-  <span>[<a class="source_link" href="#">View source</a>]</span>
-  <div class="source_code">
-    <table>
-      <tr>
-        <td>
-          <pre class="lines">
-
-
-116
-117
-118
-119
-120</pre>
-        </td>
-        <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/br_associations/association_proxy.rb', line 116</span>
-
-<span class='def def kw'>def</span> <span class='method_missing identifier id'>method_missing</span><span class='lparen token'>(</span><span class='method identifier id'>method</span><span class='comma token'>,</span> <span class='mult op'>*</span><span class='args identifier id'>args</span><span class='comma token'>,</span> <span class='bitand op'>&amp;</span><span class='block identifier id'>block</span><span class='rparen token'>)</span>
-  <span class='if if kw'>if</span> <span class='load_target identifier id'>load_target</span>
-    <span class='@target ivar id'>@target</span><span class='dot token'>.</span><span class='send identifier id'>send</span><span class='lparen token'>(</span><span class='method identifier id'>method</span><span class='comma token'>,</span> <span class='mult op'>*</span><span class='args identifier id'>args</span><span class='comma token'>,</span> <span class='bitand op'>&amp;</span><span class='block identifier id'>block</span><span class='rparen token'>)</span>
-  <span class='end end kw'>end</span>
-<span class='end end kw'>end</span>
-</pre>
-        </td>
-      </tr>
-    </table>
-  </div>
-</div>
-</div>
-</div>  <div class="section visibilitygroup public">
-    <h1>Public Visibility</h1>
-      <div class="section methodsummary instance public">
-    <h1>Public Instance Method Summary</h1>
-<table class="summary">
+    <a href="../../_index.html">Index (B)</a> &raquo; 
+    <a title="BigRecord" href="../../BigRecord.html">BigRecord</a> &raquo; <a title="BrAssociations" href="../BrAssociations.html">BrAssociations</a>
+     &raquo; 
+    <span class="title">BelongsToManyAssociation</span>
   
-    <tr>
-      <th class="signature">
-        
-          <span class='overload'>
-            <span class='name'><a href="#%3C%3C-instance_method" title="#&lt;&lt;">#&lt;&lt;</a></span><span class='args'>(*records)</span>
-            <span class='block'></span>
-          </span>
-        
-        
-          <span class='alias'>#push</span>
-        
-      </th>
-      <td class="docstring">
-        <p>
+</div>
+
+      <div id="search">
+  <a id="class_list_link" href="#">Namespace List</a>
+  <a id="method_list_link" href="#">Method List</a>
+  <a id ="file_list_link" href="#">File List</a>
+</div>
+
+      <div class="clear"></div>
+    </div>
+    
+    <iframe id="search_frame"></iframe>
+    
+    <div id="content"><h1>Class: BigRecord::BrAssociations::BelongsToManyAssociation 
+  
+  
+</h1>
+
+<dl class="box">
+  
+    <dt class="r1">Inherits:</dt>
+    <dd class="r1">
+      <span class="inheritName"><a title="BigRecord::BrAssociations::AssociationProxy" href="AssociationProxy.html">BigRecord::BrAssociations::AssociationProxy</a></span>
+      
+        <ul class="fullTree">
+          <li><a title="Object" href="../../Object.html">Object</a></li>
+          
+            <li class="next"><a title="BigRecord::BrAssociations::AssociationProxy" href="AssociationProxy.html">BigRecord::BrAssociations::AssociationProxy</a></li>
+          
+            <li class="next">BigRecord::BrAssociations::BelongsToManyAssociation</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+      </dd>
+    
+  
+  
+    
+  
+    
+  
+  
+    <dt class="r2 last">Defined in:</dt>
+    <dd class="r2 last">lib/big_record/br_associations/belongs_to_many_association.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+
+
+  
+  
+  
+  
+
+  <h2>Method Summary</h2>
+  <ul class="summary">
+    
+      <li class="public ">
+  <span class="summary_signature"><a title="#<< (instance method)" href="#%3C%3C-instance_method">- (Object) <strong><<</strong>(*records) </a>
+  
+    (also: #push)
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc">
 Add <tt>records</tt> to this association.
-</p>
 
-        
-      </td>
-    </tr>
+</span>
   
-    <tr>
-      <th class="signature">
-        
-          <span class='overload'>
-            <span class='name'><a href="#build-instance_method" title="#build">#build</a></span><span class='args'>(attributes = {})</span>
-            <span class='block'></span>
-          </span>
-        
-        
-      </th>
-      <td class="docstring">
-        
-        
-      </td>
-    </tr>
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a title="#build (instance method)" href="#build-instance_method">- (Object) <strong>build</strong>(attributes = {}) </a>
   
-    <tr>
-      <th class="signature">
-        
-          <span class='overload'>
-            <span class='name'><a href="#clear-instance_method" title="#clear">#clear</a></span><span class='args'></span>
-            <span class='block'></span>
-          </span>
-        
-        
-      </th>
-      <td class="docstring">
-        <p>
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a title="#clear (instance method)" href="#clear-instance_method">- (Object) <strong>clear</strong> </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc">
 Removes all records from this association.
-</p>
 
-        
-      </td>
-    </tr>
+</span>
   
-    <tr>
-      <th class="signature">
-        
-          <span class='overload'>
-            <span class='name'><a href="#count-instance_method" title="#count">#count</a></span><span class='args'>(*args)</span>
-            <span class='block'></span>
-          </span>
-        
-        
-      </th>
-      <td class="docstring">
-        <p>
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a title="#count (instance method)" href="#count-instance_method">- (Object) <strong>count</strong>(*args) </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc">
 Count the number of associated records.
-</p>
 
-        
-      </td>
-    </tr>
+</span>
   
-    <tr>
-      <th class="signature">
-        
-          <span class='overload'>
-            <span class='name'><a href="#create-instance_method" title="#create">#create</a></span><span class='args'>(attributes = {})</span>
-            <span class='block'></span>
-          </span>
-        
-        
-      </th>
-      <td class="docstring">
-        
-        
-      </td>
-    </tr>
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a title="#create (instance method)" href="#create-instance_method">- (Object) <strong>create</strong>(attributes = {}) </a>
   
-    <tr>
-      <th class="signature">
-        
-          <span class='overload'>
-            <span class='name'><a href="#delete-instance_method" title="#delete">#delete</a></span><span class='args'>(*records)</span>
-            <span class='block'></span>
-          </span>
-        
-        
-      </th>
-      <td class="docstring">
-        <p>
-# Calculate sum using SQL, not Enumerable
-</p>
-<pre class="code">
-     <span class='def def kw'>def</span> <span class='sum identifier id'>sum</span><span class='lparen token'>(</span><span class='mult op'>*</span><span class='args identifier id'>args</span><span class='comma token'>,</span> <span class='bitand op'>&amp;</span><span class='block identifier id'>block</span><span class='rparen token'>)</span>
-       <span class='calculate identifier id'>calculate</span><span class='lparen token'>(</span><span class='symbol val'>:sum</span><span class='comma token'>,</span> <span class='mult op'>*</span><span class='args identifier id'>args</span><span class='comma token'>,</span> <span class='bitand op'>&amp;</span><span class='block identifier id'>block</span><span class='rparen token'>)</span>
-     <span class='end end kw'>end</span>
-</pre>
-<p>
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a title="#delete (instance method)" href="#delete-instance_method">- (Object) <strong>delete</strong>(*records) </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc">
 Remove <tt>records</tt> from this association.
-</p>
 
-        
-      </td>
-    </tr>
+</span>
   
-    <tr>
-      <th class="signature">
-        
-          <span class='overload'>
-            <span class='name'><a href="#destroy_all-instance_method" title="#destroy_all">#destroy_all</a></span><span class='args'></span>
-            <span class='block'></span>
-          </span>
-        
-        
-      </th>
-      <td class="docstring">
-        
-        
-      </td>
-    </tr>
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a title="#destroy_all (instance method)" href="#destroy_all-instance_method">- (Object) <strong>destroy_all</strong> </a>
   
-    <tr>
-      <th class="signature">
-        
-          <span class='overload'>
-            <span class='name'><a href="#empty%3F-instance_method" title="#empty?">#empty?</a></span><span class='args'></span>
-            <span class='block'></span>
-          </span>
-        
-        
-      </th>
-      <td class="docstring">
-        
-        
-      </td>
-    </tr>
+  </span>
   
-    <tr>
-      <th class="signature">
-        
-          <span class='overload'>
-            <span class='name'><a href="#find-instance_method" title="#find">#find</a></span><span class='args'>(*args)</span>
-            <span class='block'></span>
-          </span>
-        
-        
-      </th>
-      <td class="docstring">
-        
-        
-      </td>
-    </tr>
   
-    <tr>
-      <th class="signature">
-        
-          <span class='overload'>
-            <span class='name'><a href="#length-instance_method" title="#length">#length</a></span><span class='args'></span>
-            <span class='block'></span>
-          </span>
-        
-        
-      </th>
-      <td class="docstring">
-        <p>
+  
+  
+
+  
+    <span class="summary_desc"></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a title="#empty? (instance method)" href="#empty%3F-instance_method">- (Object) <strong>empty?</strong> </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a title="#find (instance method)" href="#find-instance_method">- (Object) <strong>find</strong>(*args) </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a title="#length (instance method)" href="#length-instance_method">- (Object) <strong>length</strong> </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc">
 Returns the size of the collection by loading it and calling size on the
 array.
-</p>
 
-        
-      </td>
-    </tr>
+</span>
   
-    <tr>
-      <th class="signature">
-        
-          <span class='overload'>
-            <span class='name'><a href="#replace-instance_method" title="#replace">#replace</a></span><span class='args'>(other_array)</span>
-            <span class='block'></span>
-          </span>
-        
-        
-      </th>
-      <td class="docstring">
-        <p>
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a title="#replace (instance method)" href="#replace-instance_method">- (Object) <strong>replace</strong>(other_array) </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc">
 Replace this collection with <tt>other_array</tt> This will perform a diff
 and delete/add only records that have changed.
-</p>
 
-        
-      </td>
-    </tr>
+</span>
   
-    <tr>
-      <th class="signature">
-        
-          <span class='overload'>
-            <span class='name'><a href="#reset-instance_method" title="#reset">#reset</a></span><span class='args'></span>
-            <span class='block'></span>
-          </span>
-        
-        
-      </th>
-      <td class="docstring">
-        
-        
-      </td>
-    </tr>
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a title="#reset (instance method)" href="#reset-instance_method">- (Object) <strong>reset</strong> </a>
   
-    <tr>
-      <th class="signature">
-        
-          <span class='overload'>
-            <span class='name'><a href="#size-instance_method" title="#size">#size</a></span><span class='args'></span>
-            <span class='block'></span>
-          </span>
-        
-        
-      </th>
-      <td class="docstring">
-        <p>
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a title="#size (instance method)" href="#size-instance_method">- (Object) <strong>size</strong> </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc">
 Returns the size of the collection by executing a SELECT COUNT(*) query if
-the collection hasn&#8217;t been loaded and calling collection.
-</p>
+the collection hasn&#8217;t been loaded and calling collection.size if it
+has.
 
-        
-      </td>
-    </tr>
+</span>
   
-    <tr>
-      <th class="signature">
-        
-          <span class='overload'>
-            <span class='name'><a href="#to_ary-instance_method" title="#to_ary">#to_ary</a></span><span class='args'></span>
-            <span class='block'></span>
-          </span>
-        
-        
-      </th>
-      <td class="docstring">
-        
-        
-      </td>
-    </tr>
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a title="#to_ary (instance method)" href="#to_ary-instance_method">- (Object) <strong>to_ary</strong> </a>
   
-    <tr>
-      <th class="signature">
-        
-          <span class='overload'>
-            <span class='name'><a href="#uniq-instance_method" title="#uniq">#uniq</a></span><span class='args'>(collection = self)</span>
-            <span class='block'></span>
-          </span>
-        
-        
-      </th>
-      <td class="docstring">
-        
-        
-      </td>
-    </tr>
+  </span>
   
-    <tr>
-      <th class="signature">
-        
-          <span class='overload'>
-            <span class='name'><a href="#updated%3F-instance_method" title="#updated?">#updated?</a></span><span class='args'></span>
-            <span class='block'></span>
-          </span>
-        
-        
-      </th>
-      <td class="docstring">
-        
-        
-      </td>
-    </tr>
   
-</table>
-<div class="inherited">
   
-  <div>
-    <h1>Public Instance Methods Inherited from <a href="AssociationProxy.html" title="BigRecord::BrAssociations::AssociationProxy">BigRecord::BrAssociations::AssociationProxy</a></h1>
-    <p><span class='name'><a href="AssociationProxy.html#%3D%3D%3D-instance_method" title="===">===</a></span>, <span class='name'><a href="AssociationProxy.html#aliased_table_name-instance_method" title="aliased_table_name">aliased_table_name</a></span>, <span class='name'><a href="AssociationProxy.html#loaded-instance_method" title="loaded">loaded</a></span>, <span class='name'><a href="AssociationProxy.html#loaded%3F-instance_method" title="loaded?">loaded?</a></span>, <span class='name'><a href="AssociationProxy.html#proxy_owner-instance_method" title="proxy_owner">proxy_owner</a></span>, <span class='name'><a href="AssociationProxy.html#proxy_reflection-instance_method" title="proxy_reflection">proxy_reflection</a></span>, <span class='name'><a href="AssociationProxy.html#proxy_target-instance_method" title="proxy_target">proxy_target</a></span>, <span class='name'><a href="AssociationProxy.html#reload-instance_method" title="reload">reload</a></span>, <span class='name'><a href="AssociationProxy.html#respond_to%3F-instance_method" title="respond_to?">respond_to?</a></span>, <span class='name'><a href="AssociationProxy.html#target-instance_method" title="target">target</a></span>, <span class='name'><a href="AssociationProxy.html#target%3D-instance_method" title="target=">target=</a></span></p>
-  </div>
   
-</div>
-<div class="clear"></div><div class="included">
+
   
-  <div>
-    <h1>Public Instance Methods Included from <a href="AssociationProxy.html" title="BigRecord::BrAssociations::AssociationProxy">BigRecord::BrAssociations::AssociationProxy</a></h1>
-    <p><span class='name'><a href="AssociationProxy.html#%3D%3D%3D-instance_method" title="===">===</a></span>, <span class='name'><a href="AssociationProxy.html#aliased_table_name-instance_method" title="aliased_table_name">aliased_table_name</a></span>, <span class='name'><a href="AssociationProxy.html#loaded-instance_method" title="loaded">loaded</a></span>, <span class='name'><a href="AssociationProxy.html#loaded%3F-instance_method" title="loaded?">loaded?</a></span>, <span class='name'><a href="AssociationProxy.html#proxy_owner-instance_method" title="proxy_owner">proxy_owner</a></span>, <span class='name'><a href="AssociationProxy.html#proxy_reflection-instance_method" title="proxy_reflection">proxy_reflection</a></span>, <span class='name'><a href="AssociationProxy.html#proxy_target-instance_method" title="proxy_target">proxy_target</a></span>, <span class='name'><a href="AssociationProxy.html#reload-instance_method" title="reload">reload</a></span>, <span class='name'><a href="AssociationProxy.html#respond_to%3F-instance_method" title="respond_to?">respond_to?</a></span>, <span class='name'><a href="AssociationProxy.html#target-instance_method" title="target">target</a></span>, <span class='name'><a href="AssociationProxy.html#target%3D-instance_method" title="target=">target=</a></span></p>
-  </div>
+    <span class="summary_desc"></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a title="#uniq (instance method)" href="#uniq-instance_method">- (Object) <strong>uniq</strong>(collection = self) </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a title="#updated? (instance method)" href="#updated%3F-instance_method">- (Object) <strong>updated?</strong> </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"></span>
+  
+</li>
+
+    
+  </ul>
+
+
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods inherited from <a title="BigRecord::BrAssociations::AssociationProxy" href="AssociationProxy.html">BigRecord::BrAssociations::AssociationProxy</a></h3>
+  <p class="inherited"><a title="#===" href="AssociationProxy.html#%3D%3D%3D-instance_method">#===</a>, <a title="#aliased_table_name" href="AssociationProxy.html#aliased_table_name-instance_method">#aliased_table_name</a>, <a title="#dependent?" href="AssociationProxy.html#dependent%3F-instance_method">#dependent?</a>, <a title="#extract_options_from_args!" href="AssociationProxy.html#extract_options_from_args%21-instance_method">#extract_options_from_args!</a>, <a title="#flatten_deeper" href="AssociationProxy.html#flatten_deeper-instance_method">#flatten_deeper</a>, <a title="#foreign_key_present" href="AssociationProxy.html#foreign_key_present-instance_method">#foreign_key_present</a>, <a title="#initialize" href="AssociationProxy.html#initialize-instance_method">#initialize</a>, <a title="#loaded" href="AssociationProxy.html#loaded-instance_method">#loaded</a>, <a title="#loaded?" href="AssociationProxy.html#loaded%3F-instance_method">#loaded?</a>, <a title="#merge_options_from_reflection!" href="AssociationProxy.html#merge_options_from_reflection%21-instance_method">#merge_options_from_reflection!</a>, <a title="#method_missing" href="AssociationProxy.html#method_missing-instance_method">#method_missing</a>, <a title="#proxy_owner" href="AssociationProxy.html#proxy_owner-instance_method">#proxy_owner</a>, <a title="#proxy_reflection" href="AssociationProxy.html#proxy_reflection-instance_method">#proxy_reflection</a>, <a title="#proxy_target" href="AssociationProxy.html#proxy_target-instance_method">#proxy_target</a>, <a title="#quoted_record_ids" href="AssociationProxy.html#quoted_record_ids-instance_method">#quoted_record_ids</a>, <a title="#raise_on_type_mismatch" href="AssociationProxy.html#raise_on_type_mismatch-instance_method">#raise_on_type_mismatch</a>, <a title="#reload" href="AssociationProxy.html#reload-instance_method">#reload</a>, <a title="#respond_to?" href="AssociationProxy.html#respond_to%3F-instance_method">#respond_to?</a>, <a title="#set_belongs_to_association_for" href="AssociationProxy.html#set_belongs_to_association_for-instance_method">#set_belongs_to_association_for</a>, <a title="#target" href="AssociationProxy.html#target-instance_method">#target</a>, <a title="#target=" href="AssociationProxy.html#target%3D-instance_method">#target=</a></p>
+<div id="constructor_details">
+  <h2>Constructor Details</h2>
+  
+    <p class="notice">This class inherits a constructor from <a title="BigRecord::BrAssociations::AssociationProxy" href="AssociationProxy.html#initialize-instance_method">BigRecord::BrAssociations::AssociationProxy</a></p>
   
 </div>
-<div class="clear"></div>
-  </div>
-<div class="section methoddetails instance public">
-  <h1>Public Instance Method Details</h1>
+<div id="method_missing_details">
+  <h2>Dynamic Method Handling</h2>
+  <p class="notice super">
+    This class handles dynamic methods through the <tt>method_missing</tt> method
+    
+      in the class <a title="BigRecord::BrAssociations::AssociationProxy" href="AssociationProxy.html#method_missing-instance_method">BigRecord::BrAssociations::AssociationProxy</a>
+    
+  </p>
   
-    <div class="method">
-      <div class="method_header">
-  <h3>&lt;&lt;</h3>
-</div><div id="<<-instance_method" class="section method">
-  <div class="details_title">
-    <div class='section methodsignature'>
-    <tt class='def'>
-      <span class='visibility'>public</span>
-      <span class='return_types'></span>
-      <span class='name'><<</span><span class='args'>(*records)</span>
-      <span class='block'></span>
-    </tt>
-  </div>
-<p class="aliases">
-  <span class="aka">Also known as:</span>
+</div>
+
+
+  <div id="method_details">
+    <h2>Method Details</h2>
+    
+      <div class="method_details first">
+  <p class="signature first" id="<<-instance_method">
   
-    <tt id="push-instance_method">push</tt>
+    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong><<</strong>(*records) 
   
-</p>
-</div><div class="section docstring">
-  <p>
+
+  
+    <span class="aliases">Also known as:
+    <span class="names">push</span>
+    </span>
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
 Add <tt>records</tt> to this association. Returns <tt>self</tt> so method
 calls may be chained. Since &lt;&lt; flattens its argument list and inserts
 each record, <tt>push</tt> and <tt>concat</tt> behave identically.
 </p>
 
-</div><div class="section source">
-  <span>[<a class="source_link" href="#">View source</a>]</span>
-  <div class="source_code">
-    <table>
-      <tr>
-        <td>
-          <pre class="lines">
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
 
 
 16
@@ -444,9 +425,9 @@ each record, <tt>push</tt> and <tt>concat</tt> behave identically.
 27
 28
 29</pre>
-        </td>
-        <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/br_associations/belongs_to_many_association.rb', line 16</span>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/big_record/br_associations/belongs_to_many_association.rb', line 16</span>
 
 <span class='def def kw'>def</span> <span class='lshft op'>&lt;&lt;</span><span class='lparen token'>(</span><span class='mult op'>*</span><span class='records identifier id'>records</span><span class='rparen token'>)</span>
   <span class='result identifier id'>result</span> <span class='assign token'>=</span> <span class='true true kw'>true</span>
@@ -463,35 +444,22 @@ each record, <tt>push</tt> and <tt>concat</tt> behave identically.
   <span class='result identifier id'>result</span> <span class='andop op'>&amp;&amp;</span> <span class='self self kw'>self</span>
 <span class='end end kw'>end</span>
 </pre>
-        </td>
-      </tr>
-    </table>
-  </div>
+    </td>
+  </tr>
+</table>
 </div>
-</div>
-    </div>
+    
+      <div class="method_details ">
+  <p class="signature " id="build-instance_method">
   
-    <div class="method">
-      <div class="method_header">
-  <h3>build</h3>
-</div><div id="build-instance_method" class="section method">
-  <div class="details_title">
-    <div class='section methodsignature'>
-    <tt class='def'>
-      <span class='visibility'>public</span>
-      <span class='return_types'></span>
-      <span class='name'>build</span><span class='args'>(attributes = {})</span>
-      <span class='block'></span>
-    </tt>
-  </div>
+    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>build</strong>(attributes = {}) 
+  
 
-</div><div class="section source">
-  <span>[<a class="source_link" href="#">View source</a>]</span>
-  <div class="source_code">
-    <table>
-      <tr>
-        <td>
-          <pre class="lines">
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
 
 
 187
@@ -507,9 +475,9 @@ each record, <tt>push</tt> and <tt>concat</tt> behave identically.
 197
 198
 199</pre>
-        </td>
-        <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/br_associations/belongs_to_many_association.rb', line 187</span>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/big_record/br_associations/belongs_to_many_association.rb', line 187</span>
 
 <span class='def def kw'>def</span> <span class='build identifier id'>build</span><span class='lparen token'>(</span><span class='attributes identifier id'>attributes</span> <span class='assign token'>=</span> <span class='lbrace token'>{</span><span class='rbrace token'>}</span><span class='rparen token'>)</span>
   <span class='if if kw'>if</span> <span class='attributes identifier id'>attributes</span><span class='dot token'>.</span><span class='is_a? fid id'>is_a?</span><span class='lparen token'>(</span><span class='Array constant id'>Array</span><span class='rparen token'>)</span>
@@ -525,41 +493,34 @@ each record, <tt>push</tt> and <tt>concat</tt> behave identically.
   <span class='end end kw'>end</span>
 <span class='end end kw'>end</span>
 </pre>
-        </td>
-      </tr>
-    </table>
-  </div>
+    </td>
+  </tr>
+</table>
 </div>
-</div>
-    </div>
+    
+      <div class="method_details ">
+  <p class="signature " id="clear-instance_method">
   
-    <div class="method">
-      <div class="method_header">
-  <h3>clear</h3>
-</div><div id="clear-instance_method" class="section method">
-  <div class="details_title">
-    <div class='section methodsignature'>
-    <tt class='def'>
-      <span class='visibility'>public</span>
-      <span class='return_types'></span>
-      <span class='name'>clear</span><span class='args'></span>
-      <span class='block'></span>
-    </tt>
-  </div>
+    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>clear</strong> 
+  
 
-</div><div class="section docstring">
-  <p>
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
 Removes all records from this association. Returns <tt>self</tt> so method
 calls may be chained.
 </p>
 
-</div><div class="section source">
-  <span>[<a class="source_link" href="#">View source</a>]</span>
-  <div class="source_code">
-    <table>
-      <tr>
-        <td>
-          <pre class="lines">
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
 
 
 62
@@ -573,9 +534,9 @@ calls may be chained.
 70
 71
 72</pre>
-        </td>
-        <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/br_associations/belongs_to_many_association.rb', line 62</span>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/big_record/br_associations/belongs_to_many_association.rb', line 62</span>
 
 <span class='def def kw'>def</span> <span class='clear identifier id'>clear</span>
   <span class='return return kw'>return</span> <span class='self self kw'>self</span> <span class='if if_mod kw'>if</span> <span class='length identifier id'>length</span><span class='dot token'>.</span><span class='zero? fid id'>zero?</span> <span class='comment val'># forces load_target if hasn't happened already</span>
@@ -589,84 +550,64 @@ calls may be chained.
   <span class='self self kw'>self</span>
 <span class='end end kw'>end</span>
 </pre>
-        </td>
-      </tr>
-    </table>
-  </div>
+    </td>
+  </tr>
+</table>
 </div>
-</div>
-    </div>
+    
+      <div class="method_details ">
+  <p class="signature " id="count-instance_method">
   
-    <div class="method">
-      <div class="method_header">
-  <h3>count</h3>
-</div><div id="count-instance_method" class="section method">
-  <div class="details_title">
-    <div class='section methodsignature'>
-    <tt class='def'>
-      <span class='visibility'>public</span>
-      <span class='return_types'></span>
-      <span class='name'>count</span><span class='args'>(*args)</span>
-      <span class='block'></span>
-    </tt>
-  </div>
+    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>count</strong>(*args) 
+  
 
-</div><div class="section docstring">
-  <p>
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
 Count the number of associated records. All arguments are optional.
 </p>
 
-</div><div class="section source">
-  <span>[<a class="source_link" href="#">View source</a>]</span>
-  <div class="source_code">
-    <table>
-      <tr>
-        <td>
-          <pre class="lines">
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
 
 
 202
 203
 204
 205</pre>
-        </td>
-        <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/br_associations/belongs_to_many_association.rb', line 202</span>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/big_record/br_associations/belongs_to_many_association.rb', line 202</span>
 
 <span class='def def kw'>def</span> <span class='count identifier id'>count</span><span class='lparen token'>(</span><span class='mult op'>*</span><span class='args identifier id'>args</span><span class='rparen token'>)</span>
   <span class='load_target identifier id'>load_target</span>
   <span class='@target ivar id'>@target</span><span class='dot token'>.</span><span class='size identifier id'>size</span>
 <span class='end end kw'>end</span>
 </pre>
-        </td>
-      </tr>
-    </table>
-  </div>
+    </td>
+  </tr>
+</table>
 </div>
-</div>
-    </div>
+    
+      <div class="method_details ">
+  <p class="signature " id="create-instance_method">
   
-    <div class="method">
-      <div class="method_header">
-  <h3>create</h3>
-</div><div id="create-instance_method" class="section method">
-  <div class="details_title">
-    <div class='section methodsignature'>
-    <tt class='def'>
-      <span class='visibility'>public</span>
-      <span class='return_types'></span>
-      <span class='name'>create</span><span class='args'>(attributes = {})</span>
-      <span class='block'></span>
-    </tt>
-  </div>
+    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>create</strong>(attributes = {}) 
+  
 
-</div><div class="section source">
-  <span>[<a class="source_link" href="#">View source</a>]</span>
-  <div class="source_code">
-    <table>
-      <tr>
-        <td>
-          <pre class="lines">
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
 
 
 83
@@ -679,9 +620,9 @@ Count the number of associated records. All arguments are optional.
 90
 91
 92</pre>
-        </td>
-        <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/br_associations/belongs_to_many_association.rb', line 83</span>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/big_record/br_associations/belongs_to_many_association.rb', line 83</span>
 
 <span class='def def kw'>def</span> <span class='create identifier id'>create</span><span class='lparen token'>(</span><span class='attributes identifier id'>attributes</span> <span class='assign token'>=</span> <span class='lbrace token'>{</span><span class='rbrace token'>}</span><span class='rparen token'>)</span>
   <span class='comment val'># Can't use Base.create since the foreign key may be a protected attribute.</span>
@@ -694,49 +635,34 @@ Count the number of associated records. All arguments are optional.
   <span class='end end kw'>end</span>
 <span class='end end kw'>end</span>
 </pre>
-        </td>
-      </tr>
-    </table>
-  </div>
+    </td>
+  </tr>
+</table>
 </div>
-</div>
-    </div>
+    
+      <div class="method_details ">
+  <p class="signature " id="delete-instance_method">
   
-    <div class="method">
-      <div class="method_header">
-  <h3>delete</h3>
-</div><div id="delete-instance_method" class="section method">
-  <div class="details_title">
-    <div class='section methodsignature'>
-    <tt class='def'>
-      <span class='visibility'>public</span>
-      <span class='return_types'></span>
-      <span class='name'>delete</span><span class='args'>(*records)</span>
-      <span class='block'></span>
-    </tt>
-  </div>
+    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>delete</strong>(*records) 
+  
 
-</div><div class="section docstring">
-  <p>
-# Calculate sum using SQL, not Enumerable
-</p>
-<pre class="code">
-     <span class='def def kw'>def</span> <span class='sum identifier id'>sum</span><span class='lparen token'>(</span><span class='mult op'>*</span><span class='args identifier id'>args</span><span class='comma token'>,</span> <span class='bitand op'>&amp;</span><span class='block identifier id'>block</span><span class='rparen token'>)</span>
-       <span class='calculate identifier id'>calculate</span><span class='lparen token'>(</span><span class='symbol val'>:sum</span><span class='comma token'>,</span> <span class='mult op'>*</span><span class='args identifier id'>args</span><span class='comma token'>,</span> <span class='bitand op'>&amp;</span><span class='block identifier id'>block</span><span class='rparen token'>)</span>
-     <span class='end end kw'>end</span>
-</pre>
-<p>
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
 Remove <tt>records</tt> from this association. Does not destroy
 <tt>records</tt>.
 </p>
 
-</div><div class="section source">
-  <span>[<a class="source_link" href="#">View source</a>]</span>
-  <div class="source_code">
-    <table>
-      <tr>
-        <td>
-          <pre class="lines">
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
 
 
 47
@@ -752,9 +678,9 @@ Remove <tt>records</tt> from this association. Does not destroy
 57
 58
 59</pre>
-        </td>
-        <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/br_associations/belongs_to_many_association.rb', line 47</span>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/big_record/br_associations/belongs_to_many_association.rb', line 47</span>
 
 <span class='def def kw'>def</span> <span class='delete identifier id'>delete</span><span class='lparen token'>(</span><span class='mult op'>*</span><span class='records identifier id'>records</span><span class='rparen token'>)</span>
   <span class='records identifier id'>records</span> <span class='assign token'>=</span> <span class='flatten_deeper identifier id'>flatten_deeper</span><span class='lparen token'>(</span><span class='records identifier id'>records</span><span class='rparen token'>)</span>
@@ -770,35 +696,22 @@ Remove <tt>records</tt> from this association. Does not destroy
   <span class='end end kw'>end</span>
 <span class='end end kw'>end</span>
 </pre>
-        </td>
-      </tr>
-    </table>
-  </div>
+    </td>
+  </tr>
+</table>
 </div>
-</div>
-    </div>
+    
+      <div class="method_details ">
+  <p class="signature " id="destroy_all-instance_method">
   
-    <div class="method">
-      <div class="method_header">
-  <h3>destroy_all</h3>
-</div><div id="destroy_all-instance_method" class="section method">
-  <div class="details_title">
-    <div class='section methodsignature'>
-    <tt class='def'>
-      <span class='visibility'>public</span>
-      <span class='return_types'></span>
-      <span class='name'>destroy_all</span><span class='args'></span>
-      <span class='block'></span>
-    </tt>
-  </div>
+    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>destroy_all</strong> 
+  
 
-</div><div class="section source">
-  <span>[<a class="source_link" href="#">View source</a>]</span>
-  <div class="source_code">
-    <table>
-      <tr>
-        <td>
-          <pre class="lines">
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
 
 
 74
@@ -809,9 +722,9 @@ Remove <tt>records</tt> from this association. Does not destroy
 79
 80
 81</pre>
-        </td>
-        <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/br_associations/belongs_to_many_association.rb', line 74</span>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/big_record/br_associations/belongs_to_many_association.rb', line 74</span>
 
 <span class='def def kw'>def</span> <span class='destroy_all identifier id'>destroy_all</span>
   <span class='comment val'># HbaseAdapter doesn't support transactions</span>
@@ -822,97 +735,72 @@ Remove <tt>records</tt> from this association. Does not destroy
   <span class='reset_target! fid id'>reset_target!</span>
 <span class='end end kw'>end</span>
 </pre>
-        </td>
-      </tr>
-    </table>
-  </div>
+    </td>
+  </tr>
+</table>
 </div>
-</div>
-    </div>
+    
+      <div class="method_details ">
+  <p class="signature " id="empty?-instance_method">
   
-    <div class="method">
-      <div class="method_header">
-  <h3>empty?</h3>
-</div><div id="empty?-instance_method" class="section method">
-  <div class="details_title">
-    <div class='section methodsignature'>
-    <tt class='def'>
-      <span class='visibility'>public</span>
-      <span class='return_types'></span>
-      <span class='name'>empty?</span><span class='args'></span>
-      <span class='block'></span>
-    </tt>
-  </div>
+    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>empty?</strong> 
+  
 
-</div><div class="section source">
-  <span>[<a class="source_link" href="#">View source</a>]</span>
-  <div class="source_code">
-    <table>
-      <tr>
-        <td>
-          <pre class="lines">
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
 
 
 107
 108
 109</pre>
-        </td>
-        <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/br_associations/belongs_to_many_association.rb', line 107</span>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/big_record/br_associations/belongs_to_many_association.rb', line 107</span>
 
 <span class='def def kw'>def</span> <span class='empty? fid id'>empty?</span>
   <span class='size identifier id'>size</span><span class='dot token'>.</span><span class='zero? fid id'>zero?</span>
 <span class='end end kw'>end</span>
 </pre>
-        </td>
-      </tr>
-    </table>
-  </div>
+    </td>
+  </tr>
+</table>
 </div>
-</div>
-    </div>
+    
+      <div class="method_details ">
+  <p class="signature " id="find-instance_method">
   
-    <div class="method">
-      <div class="method_header">
-  <h3>find</h3>
-</div><div id="find-instance_method" class="section method">
-  <div class="details_title">
-    <div class='section methodsignature'>
-    <tt class='def'>
-      <span class='visibility'>public</span>
-      <span class='return_types'></span>
-      <span class='name'>find</span><span class='args'>(*args)</span>
-      <span class='block'></span>
-    </tt>
-  </div>
+    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>find</strong>(*args) 
+  
 
-</div><div class="section tags">
-  <h2>Meta Tags</h2>
-  <div class="raise">
+  
+</p><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
   <h3>Raises:</h3>
-  <dl>
+<ul class="raise">
   
-    <dt>
+    <li>
       
-        <span class='type'>[<tt>ArgumentError</tt>]</span>
+        <span class='type'>(<tt>ArgumentError</tt>)</span>
       
       
       
-    </dt>
-    <dd>
-      <span class='desc'></span>
-    </dd>
+      
+    </li>
   
-  </dl>
-</div>
+</ul>
 
-</div><div class="section source">
-  <span>[<a class="source_link" href="#">View source</a>]</span>
-  <div class="source_code">
-    <table>
-      <tr>
-        <td>
-          <pre class="lines">
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
 
 
 207
@@ -939,9 +827,9 @@ Remove <tt>records</tt> from this association. Does not destroy
 228
 229
 230</pre>
-        </td>
-        <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/br_associations/belongs_to_many_association.rb', line 207</span>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/big_record/br_associations/belongs_to_many_association.rb', line 207</span>
 
 <span class='def def kw'>def</span> <span class='find identifier id'>find</span><span class='lparen token'>(</span><span class='mult op'>*</span><span class='args identifier id'>args</span><span class='rparen token'>)</span>
   <span class='raise identifier id'>raise</span> <span class='ArgumentError constant id'>ArgumentError</span><span class='comma token'>,</span> <span class='string val'>&quot;Only find(:all) is supported&quot;</span> <span class='unless unless_mod kw'>unless</span> <span class='args identifier id'>args</span> <span class='eq op'>==</span> <span class='lbrack token'>[</span><span class='symbol val'>:all</span><span class='rbrack token'>]</span>
@@ -968,90 +856,76 @@ Remove <tt>records</tt> from this association. Does not destroy
   <span class='end end kw'>end</span>
 <span class='end end kw'>end</span>
 </pre>
-        </td>
-      </tr>
-    </table>
-  </div>
+    </td>
+  </tr>
+</table>
 </div>
-</div>
-    </div>
+    
+      <div class="method_details ">
+  <p class="signature " id="length-instance_method">
   
-    <div class="method">
-      <div class="method_header">
-  <h3>length</h3>
-</div><div id="length-instance_method" class="section method">
-  <div class="details_title">
-    <div class='section methodsignature'>
-    <tt class='def'>
-      <span class='visibility'>public</span>
-      <span class='return_types'></span>
-      <span class='name'>length</span><span class='args'></span>
-      <span class='block'></span>
-    </tt>
-  </div>
+    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>length</strong> 
+  
 
-</div><div class="section docstring">
-  <p>
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
 Returns the size of the collection by loading it and calling size on the
 array. If you want to use this method to check whether the collection is
 empty, use collection.length.zero? instead of collection.empty?
 </p>
 
-</div><div class="section source">
-  <span>[<a class="source_link" href="#">View source</a>]</span>
-  <div class="source_code">
-    <table>
-      <tr>
-        <td>
-          <pre class="lines">
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
 
 
 103
 104
 105</pre>
-        </td>
-        <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/br_associations/belongs_to_many_association.rb', line 103</span>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/big_record/br_associations/belongs_to_many_association.rb', line 103</span>
 
 <span class='def def kw'>def</span> <span class='length identifier id'>length</span>
   <span class='load_target identifier id'>load_target</span><span class='dot token'>.</span><span class='size identifier id'>size</span>
 <span class='end end kw'>end</span>
 </pre>
-        </td>
-      </tr>
-    </table>
-  </div>
+    </td>
+  </tr>
+</table>
 </div>
-</div>
-    </div>
+    
+      <div class="method_details ">
+  <p class="signature " id="replace-instance_method">
   
-    <div class="method">
-      <div class="method_header">
-  <h3>replace</h3>
-</div><div id="replace-instance_method" class="section method">
-  <div class="details_title">
-    <div class='section methodsignature'>
-    <tt class='def'>
-      <span class='visibility'>public</span>
-      <span class='return_types'></span>
-      <span class='name'>replace</span><span class='args'>(other_array)</span>
-      <span class='block'></span>
-    </tt>
-  </div>
+    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>replace</strong>(other_array) 
+  
 
-</div><div class="section docstring">
-  <p>
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
 Replace this collection with <tt>other_array</tt> This will perform a diff
 and delete/add only records that have changed.
 </p>
 
-</div><div class="section source">
-  <span>[<a class="source_link" href="#">View source</a>]</span>
-  <div class="source_code">
-    <table>
-      <tr>
-        <td>
-          <pre class="lines">
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
 
 
 124
@@ -1072,9 +946,9 @@ and delete/add only records that have changed.
 139
 140
 141</pre>
-        </td>
-        <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/br_associations/belongs_to_many_association.rb', line 124</span>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/big_record/br_associations/belongs_to_many_association.rb', line 124</span>
 
 <span class='def def kw'>def</span> <span class='replace identifier id'>replace</span><span class='lparen token'>(</span><span class='other_array identifier id'>other_array</span><span class='rparen token'>)</span>
   <span class='if if kw'>if</span> <span class='other_array identifier id'>other_array</span><span class='dot token'>.</span><span class='nil? fid id'>nil?</span>
@@ -1095,74 +969,52 @@ and delete/add only records that have changed.
   <span class='self self kw'>self</span>
 <span class='end end kw'>end</span>
 </pre>
-        </td>
-      </tr>
-    </table>
-  </div>
+    </td>
+  </tr>
+</table>
 </div>
-</div>
-    </div>
+    
+      <div class="method_details ">
+  <p class="signature " id="reset-instance_method">
   
-    <div class="method">
-      <div class="method_header">
-  <h3>reset</h3>
-</div><div id="reset-instance_method" class="section method">
-  <div class="details_title">
-    <div class='section methodsignature'>
-    <tt class='def'>
-      <span class='visibility'>public</span>
-      <span class='return_types'></span>
-      <span class='name'>reset</span><span class='args'></span>
-      <span class='block'></span>
-    </tt>
-  </div>
+    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>reset</strong> 
+  
 
-</div><div class="section source">
-  <span>[<a class="source_link" href="#">View source</a>]</span>
-  <div class="source_code">
-    <table>
-      <tr>
-        <td>
-          <pre class="lines">
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
 
 
 9
 10
 11
 12</pre>
-        </td>
-        <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/br_associations/belongs_to_many_association.rb', line 9</span>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/big_record/br_associations/belongs_to_many_association.rb', line 9</span>
 
 <span class='def def kw'>def</span> <span class='reset identifier id'>reset</span>
   <span class='@loaded ivar id'>@loaded</span> <span class='assign token'>=</span> <span class='false false kw'>false</span>
   <span class='reset_target! fid id'>reset_target!</span>
 <span class='end end kw'>end</span>
 </pre>
-        </td>
-      </tr>
-    </table>
-  </div>
+    </td>
+  </tr>
+</table>
 </div>
-</div>
-    </div>
+    
+      <div class="method_details ">
+  <p class="signature " id="size-instance_method">
   
-    <div class="method">
-      <div class="method_header">
-  <h3>size</h3>
-</div><div id="size-instance_method" class="section method">
-  <div class="details_title">
-    <div class='section methodsignature'>
-    <tt class='def'>
-      <span class='visibility'>public</span>
-      <span class='return_types'></span>
-      <span class='name'>size</span><span class='args'></span>
-      <span class='block'></span>
-    </tt>
-  </div>
+    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>size</strong> 
+  
 
-</div><div class="section docstring">
-  <p>
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
 Returns the size of the collection by executing a SELECT COUNT(*) query if
 the collection hasn&#8217;t been loaded and calling collection.size if it
 has. If it&#8217;s more likely than not that the collection does have a
@@ -1170,99 +1022,75 @@ size larger than zero and you need to fetch that collection afterwards,
 it&#8217;ll take one less SELECT query if you use length.
 </p>
 
-</div><div class="section source">
-  <span>[<a class="source_link" href="#">View source</a>]</span>
-  <div class="source_code">
-    <table>
-      <tr>
-        <td>
-          <pre class="lines">
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
 
 
 97
 98
 99</pre>
-        </td>
-        <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/br_associations/belongs_to_many_association.rb', line 97</span>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/big_record/br_associations/belongs_to_many_association.rb', line 97</span>
 
 <span class='def def kw'>def</span> <span class='size identifier id'>size</span>
   <span class='@target ivar id'>@target</span><span class='dot token'>.</span><span class='size identifier id'>size</span>
 <span class='end end kw'>end</span>
 </pre>
-        </td>
-      </tr>
-    </table>
-  </div>
+    </td>
+  </tr>
+</table>
 </div>
-</div>
-    </div>
+    
+      <div class="method_details ">
+  <p class="signature " id="to_ary-instance_method">
   
-    <div class="method">
-      <div class="method_header">
-  <h3>to_ary</h3>
-</div><div id="to_ary-instance_method" class="section method">
-  <div class="details_title">
-    <div class='section methodsignature'>
-    <tt class='def'>
-      <span class='visibility'>public</span>
-      <span class='return_types'></span>
-      <span class='name'>to_ary</span><span class='args'></span>
-      <span class='block'></span>
-    </tt>
-  </div>
+    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>to_ary</strong> 
+  
 
-</div><div class="section source">
-  <span>[<a class="source_link" href="#">View source</a>]</span>
-  <div class="source_code">
-    <table>
-      <tr>
-        <td>
-          <pre class="lines">
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
 
 
 4
 5
 6
 7</pre>
-        </td>
-        <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/br_associations/belongs_to_many_association.rb', line 4</span>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/big_record/br_associations/belongs_to_many_association.rb', line 4</span>
 
 <span class='def def kw'>def</span> <span class='to_ary identifier id'>to_ary</span>
   <span class='load_target identifier id'>load_target</span>
   <span class='@target ivar id'>@target</span><span class='dot token'>.</span><span class='to_ary identifier id'>to_ary</span>
 <span class='end end kw'>end</span>
 </pre>
-        </td>
-      </tr>
-    </table>
-  </div>
+    </td>
+  </tr>
+</table>
 </div>
-</div>
-    </div>
+    
+      <div class="method_details ">
+  <p class="signature " id="uniq-instance_method">
   
-    <div class="method">
-      <div class="method_header">
-  <h3>uniq</h3>
-</div><div id="uniq-instance_method" class="section method">
-  <div class="details_title">
-    <div class='section methodsignature'>
-    <tt class='def'>
-      <span class='visibility'>public</span>
-      <span class='return_types'></span>
-      <span class='name'>uniq</span><span class='args'>(collection = self)</span>
-      <span class='block'></span>
-    </tt>
-  </div>
+    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>uniq</strong>(collection = self) 
+  
 
-</div><div class="section source">
-  <span>[<a class="source_link" href="#">View source</a>]</span>
-  <div class="source_code">
-    <table>
-      <tr>
-        <td>
-          <pre class="lines">
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
 
 
 111
@@ -1275,9 +1103,9 @@ it&#8217;ll take one less SELECT query if you use length.
 118
 119
 120</pre>
-        </td>
-        <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/br_associations/belongs_to_many_association.rb', line 111</span>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/big_record/br_associations/belongs_to_many_association.rb', line 111</span>
 
 <span class='def def kw'>def</span> <span class='uniq identifier id'>uniq</span><span class='lparen token'>(</span><span class='collection identifier id'>collection</span> <span class='assign token'>=</span> <span class='self self kw'>self</span><span class='rparen token'>)</span>
   <span class='seen identifier id'>seen</span> <span class='assign token'>=</span> <span class='Set constant id'>Set</span><span class='dot token'>.</span><span class='new identifier id'>new</span>
@@ -1290,65 +1118,48 @@ it&#8217;ll take one less SELECT query if you use length.
   <span class='end end kw'>end</span>
 <span class='end end kw'>end</span>
 </pre>
-        </td>
-      </tr>
-    </table>
-  </div>
+    </td>
+  </tr>
+</table>
 </div>
-</div>
-    </div>
+    
+      <div class="method_details ">
+  <p class="signature " id="updated?-instance_method">
   
-    <div class="method">
-      <div class="method_header">
-  <h3>updated?</h3>
-</div><div id="updated?-instance_method" class="section method">
-  <div class="details_title">
-    <div class='section methodsignature'>
-    <tt class='def'>
-      <span class='visibility'>public</span>
-      <span class='return_types'></span>
-      <span class='name'>updated?</span><span class='args'></span>
-      <span class='block'></span>
-    </tt>
-  </div>
+    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>updated?</strong> 
+  
 
-</div><div class="section source">
-  <span>[<a class="source_link" href="#">View source</a>]</span>
-  <div class="source_code">
-    <table>
-      <tr>
-        <td>
-          <pre class="lines">
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
 
 
 143
 144
 145</pre>
-        </td>
-        <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/br_associations/belongs_to_many_association.rb', line 143</span>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/big_record/br_associations/belongs_to_many_association.rb', line 143</span>
 
 <span class='def def kw'>def</span> <span class='updated? fid id'>updated?</span>
   <span class='@updated ivar id'>@updated</span>
 <span class='end end kw'>end</span>
 </pre>
-        </td>
-      </tr>
-    </table>
-  </div>
+    </td>
+  </tr>
+</table>
 </div>
-</div>
-    </div>
-  
-</div>
+    
   </div>
 
 </div>
-    </div>
-    <div id="yard_info">
-  Generated on Wednesday, November 25 2009 at 02:43:23 PM by 
-  <abbr class="yard" title="Yay! A Ruby Documentation Tool"><a href="http://yard.soen.ca">YARD</a></abbr> 
-  0.2.3.5 (ruby-1.8.7).
+    
+    <div id="footer">
+  Generated on Thu Nov 26 18:22:31 2009 by 
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool">yard</a>
+  0.4.0 (ruby-1.8.7).
 </div>
 
   </body>

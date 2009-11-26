@@ -1,22 +1,71 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
-    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-<link rel="stylesheet" href="../style.css" type="text/css" charset="utf-8" />
-<link rel="stylesheet" href="../custom.css" type="text/css" charset="utf-8" />
-<link rel="stylesheet" href="../syntax_highlight.css" type="text/css" charset="utf-8" />
+    <meta name="Content-Type" content="text/html; charset=UTF-8" />
+<title>Class: BigRecord::Migration</title>
+<link rel="stylesheet" href="../css/style.css" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="../css/common.css" type="text/css" media="screen" charset="utf-8" />
 
-    <script src="../jquery.js" type="text/javascript" charset="utf-8"></script>
-    <script src="../app.js" type="text/javascript" charset="utf-8"></script>
-    <title>Class: BigRecord::Migration</title>
+<script type="text/javascript" charset="utf-8">
+  relpath = '..';
+  if (relpath != '') relpath += '/';
+</script>
+<script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
   </head>
   <body>
-    <div id="content">
-      <div class="section class BigRecord_Migration">
-  <h1 class="title">Class: BigRecord::Migration</h1>
-  <div class="section docstring">
-  <h1>Migrations</h1>
+    <div id="header">
+      <div id="menu">
+  
+    <a href="../_index.html">Index (M)</a> &raquo; 
+    <a title="BigRecord" href="../BigRecord.html">BigRecord</a>
+     &raquo; 
+    <span class="title">Migration</span>
+  
+</div>
+
+      <div id="search">
+  <a id="class_list_link" href="#">Namespace List</a>
+  <a id="method_list_link" href="#">Method List</a>
+  <a id ="file_list_link" href="#">File List</a>
+</div>
+
+      <div class="clear"></div>
+    </div>
+    
+    <iframe id="search_frame"></iframe>
+    
+    <div id="content"><h1>Class: BigRecord::Migration 
+  
+  
+</h1>
+
+<dl class="box">
+  
+    <dt class="r1">Inherits:</dt>
+    <dd class="r1">
+      <span class="inheritName"><a title="Object" href="../Object.html">Object</a></span>
+      
+      </dd>
+    
+  
+  
+    
+  
+    
+  
+  
+    <dt class="r2 last">Defined in:</dt>
+    <dd class="r2 last">lib/big_record/migration.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    <h1>Migrations</h1>
 <p>
 Although column-oriented databases are generally schema-less, certain ones
 (like HBase) require the creation of tables and column families ahead of
@@ -76,224 +125,220 @@ to the latest version:
   <span class='rake identifier id'>rake</span> <span class='bigrecord identifier id'>bigrecord</span><span class='symbol val'>:migrate</span>
 </pre>
 
-</div><div class="section constants">
-  
-</div>  <div class="section visibilitygroup public">
-    <h1>Public Visibility</h1>
-      <div class="section methodsummary class public">
-    <h1>Public Class Method Summary</h1>
-<table class="summary">
-  
-    <tr>
-      <th class="signature">
-        
-          <span class='overload'>
-            <span class='name'><a href="#announce-class_method" title="announce">announce</a></span><span class='args'>(message)</span>
-            <span class='block'></span>
-          </span>
-        
-        
-      </th>
-      <td class="docstring">
-        
-        
-      </td>
-    </tr>
-  
-    <tr>
-      <th class="signature">
-        
-          <span class='overload'>
-            <span class='name'><a href="#connection-class_method" title="connection">connection</a></span><span class='args'></span>
-            <span class='block'></span>
-          </span>
-        
-        
-      </th>
-      <td class="docstring">
-        
-        
-      </td>
-    </tr>
-  
-    <tr>
-      <th class="signature">
-        
-          <span class='overload'>
-            <span class='name'><a href="#down_with_benchmarks-class_method" title="down_with_benchmarks">down_with_benchmarks</a></span><span class='args'></span>
-            <span class='block'></span>
-          </span>
-        
-        
-      </th>
-      <td class="docstring">
-        
-        
-      </td>
-    </tr>
-  
-    <tr>
-      <th class="signature">
-        
-          <span class='overload'>
-            <span class='name'><a href="#method_missing-class_method" title="method_missing">method_missing</a></span><span class='args'>(method, *arguments, &amp;block)</span>
-            <span class='block'></span>
-          </span>
-        
-        
-      </th>
-      <td class="docstring">
-        
-        
-      </td>
-    </tr>
-  
-    <tr>
-      <th class="signature">
-        
-          <span class='overload'>
-            <span class='name'><a href="#migrate-class_method" title="migrate">migrate</a></span><span class='args'>(direction)</span>
-            <span class='block'></span>
-          </span>
-        
-        
-      </th>
-      <td class="docstring">
-        <p>
-Execute this migration in the named direction.
-</p>
 
-        
-      </td>
-    </tr>
+  </div>
+</div>
+<div class="tags">
   
-    <tr>
-      <th class="signature">
-        
-          <span class='overload'>
-            <span class='name'><a href="#say-class_method" title="say">say</a></span><span class='args'>(message, subitem = false)</span>
-            <span class='block'></span>
-          </span>
-        
-        
-      </th>
-      <td class="docstring">
-        
-        
-      </td>
-    </tr>
+</div>
+  <h2>Constant Summary</h2>
   
-    <tr>
-      <th class="signature">
-        
-          <span class='overload'>
-            <span class='name'><a href="#say_with_time-class_method" title="say_with_time">say_with_time</a></span><span class='args'>(message)</span>
-            <span class='block'></span>
-          </span>
-        
-        
-      </th>
-      <td class="docstring">
-        
-        
-      </td>
-    </tr>
+    <dl class="constants">
+      
+        <dt id="verbose-classvariable ">@@verbose =
+            <span class="summary_desc"></span>
+        </dt>
+        <dd><pre class="code"><span class='true true kw'>true</span>
+</pre></dd>
+      
+    </dl>
   
-    <tr>
-      <th class="signature">
-        
-          <span class='overload'>
-            <span class='name'><a href="#singleton_method_added-class_method" title="singleton_method_added">singleton_method_added</a></span><span class='args'>(sym)</span>
-            <span class='block'></span>
-          </span>
-        
-        
-      </th>
-      <td class="docstring">
-        <p>
+
+
+
+  <h2>Method Summary</h2>
+  <ul class="summary">
+    
+      <li class="public ">
+  <span class="summary_signature"><a title="announce (class method)" href="#announce-class_method">+ (Object) <strong>announce</strong>(message) </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a title="connection (class method)" href="#connection-class_method">+ (Object) <strong>connection</strong> </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a title="down_with_benchmarks (class method)" href="#down_with_benchmarks-class_method">+ (Object) <strong>down_with_benchmarks</strong> </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a title="method_missing (class method)" href="#method_missing-class_method">+ (Object) <strong>method_missing</strong>(method, *arguments, &amp;block) </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a title="migrate (class method)" href="#migrate-class_method">+ (Object) <strong>migrate</strong>(direction) </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc">
+Execute this migration in the named direction.
+
+</span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a title="say (class method)" href="#say-class_method">+ (Object) <strong>say</strong>(message, subitem = false) </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a title="say_with_time (class method)" href="#say_with_time-class_method">+ (Object) <strong>say_with_time</strong>(message) </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a title="singleton_method_added (class method)" href="#singleton_method_added-class_method">+ (Object) <strong>singleton_method_added</strong>(sym) </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc">
 Because the method added may do an alias_method, it can be invoked
 recursively.
-</p>
 
-        
-      </td>
-    </tr>
+</span>
   
-    <tr>
-      <th class="signature">
-        
-          <span class='overload'>
-            <span class='name'><a href="#suppress_messages-class_method" title="suppress_messages">suppress_messages</a></span><span class='args'></span>
-            <span class='block'></span>
-          </span>
-        
-        
-      </th>
-      <td class="docstring">
-        
-        
-      </td>
-    </tr>
-  
-    <tr>
-      <th class="signature">
-        
-          <span class='overload'>
-            <span class='name'><a href="#up_with_benchmarks-class_method" title="up_with_benchmarks">up_with_benchmarks</a></span><span class='args'></span>
-            <span class='block'></span>
-          </span>
-        
-        
-      </th>
-      <td class="docstring">
-        
-        
-      </td>
-    </tr>
-  
-    <tr>
-      <th class="signature">
-        
-          <span class='overload'>
-            <span class='name'><a href="#write-class_method" title="write">write</a></span><span class='args'>(text = &quot;&quot;)</span>
-            <span class='block'></span>
-          </span>
-        
-        
-      </th>
-      <td class="docstring">
-        
-        
-      </td>
-    </tr>
-  
-</table>
+</li>
 
-  </div>
-<div class="section methoddetails class public">
-  <h1>Public Class Method Details</h1>
+    
+      <li class="public ">
+  <span class="summary_signature"><a title="suppress_messages (class method)" href="#suppress_messages-class_method">+ (Object) <strong>suppress_messages</strong> </a>
   
-    <div class="method">
-      <div class="method_header">
-  <h3>announce</h3>
-</div><div id="announce-class_method" class="section method">
-  <div class="details_title">
-    <div class='section methodsignature'>
-    <tt class='def'>
-      <span class='visibility'>public</span>
-      <span class='return_types'></span>
-      <span class='name'>announce</span><span class='args'>(message)</span>
-      <span class='block'></span>
-    </tt>
-  </div>
+  </span>
+  
+  
+  
+  
 
-</div><div class="section source">
-  <span>[<a class="source_link" href="#">View source</a>]</span>
-  <div class="source_code">
-    <table>
-      <tr>
-        <td>
-          <pre class="lines">
+  
+    <span class="summary_desc"></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a title="up_with_benchmarks (class method)" href="#up_with_benchmarks-class_method">+ (Object) <strong>up_with_benchmarks</strong> </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a title="write (class method)" href="#write-class_method">+ (Object) <strong>write</strong>(text = &quot;&quot;) </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"></span>
+  
+</li>
+
+    
+  </ul>
+
+
+
+  <div id="method_details">
+    <h2>Method Details</h2>
+    
+      <div class="method_details first">
+  <p class="signature first" id="announce-class_method">
+  
+    + (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>announce</strong>(message) 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
 
 
 131
@@ -301,9 +346,9 @@ recursively.
 133
 134
 135</pre>
-        </td>
-        <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/migration.rb', line 131</span>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/big_record/migration.rb', line 131</span>
 
 <span class='def def kw'>def</span> <span class='announce identifier id'>announce</span><span class='lparen token'>(</span><span class='message identifier id'>message</span><span class='rparen token'>)</span>
   <span class='text identifier id'>text</span> <span class='assign token'>=</span> <span class='dstring node'>&quot;#{@version} #{name}: #{message}&quot;</span>
@@ -311,119 +356,80 @@ recursively.
   <span class='write identifier id'>write</span> <span class='string val'>&quot;== %s %s&quot;</span> <span class='mod op'>%</span> <span class='lbrack token'>[</span><span class='text identifier id'>text</span><span class='comma token'>,</span> <span class='string val'>&quot;=&quot;</span> <span class='mult op'>*</span> <span class='length identifier id'>length</span><span class='rbrack token'>]</span>
 <span class='end end kw'>end</span>
 </pre>
-        </td>
-      </tr>
-    </table>
-  </div>
+    </td>
+  </tr>
+</table>
 </div>
-</div>
-    </div>
+    
+      <div class="method_details ">
+  <p class="signature " id="connection-class_method">
   
-    <div class="method">
-      <div class="method_header">
-  <h3>connection</h3>
-</div><div id="connection-class_method" class="section method">
-  <div class="details_title">
-    <div class='section methodsignature'>
-    <tt class='def'>
-      <span class='visibility'>public</span>
-      <span class='return_types'></span>
-      <span class='name'>connection</span><span class='args'></span>
-      <span class='block'></span>
-    </tt>
-  </div>
+    + (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>connection</strong> 
+  
 
-</div><div class="section source">
-  <span>[<a class="source_link" href="#">View source</a>]</span>
-  <div class="source_code">
-    <table>
-      <tr>
-        <td>
-          <pre class="lines">
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
 
 
 157
 158
 159</pre>
-        </td>
-        <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/migration.rb', line 157</span>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/big_record/migration.rb', line 157</span>
 
 <span class='def def kw'>def</span> <span class='connection identifier id'>connection</span>
   <span class='BigRecord constant id'>BigRecord</span><span class='colon2 op'>::</span><span class='Base constant id'>Base</span><span class='dot token'>.</span><span class='connection identifier id'>connection</span>
 <span class='end end kw'>end</span>
 </pre>
-        </td>
-      </tr>
-    </table>
-  </div>
+    </td>
+  </tr>
+</table>
 </div>
-</div>
-    </div>
+    
+      <div class="method_details ">
+  <p class="signature " id="down_with_benchmarks-class_method">
   
-    <div class="method">
-      <div class="method_header">
-  <h3>down_with_benchmarks</h3>
-</div><div id="down_with_benchmarks-class_method" class="section method">
-  <div class="details_title">
-    <div class='section methodsignature'>
-    <tt class='def'>
-      <span class='visibility'>public</span>
-      <span class='return_types'></span>
-      <span class='name'>down_with_benchmarks</span><span class='args'></span>
-      <span class='block'></span>
-    </tt>
-  </div>
+    + (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>down_with_benchmarks</strong> 
+  
 
-</div><div class="section source">
-  <span>[<a class="source_link" href="#">View source</a>]</span>
-  <div class="source_code">
-    <table>
-      <tr>
-        <td>
-          <pre class="lines">
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
 
 
 85
 86
 87</pre>
-        </td>
-        <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/migration.rb', line 85</span>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/big_record/migration.rb', line 85</span>
 
 <span class='def def kw'>def</span> <span class='down_with_benchmarks identifier id'>down_with_benchmarks</span> 
   <span class='migrate identifier id'>migrate</span><span class='lparen token'>(</span><span class='symbol val'>:down</span><span class='rparen token'>)</span>
 <span class='end end kw'>end</span>
 </pre>
-        </td>
-      </tr>
-    </table>
-  </div>
+    </td>
+  </tr>
+</table>
 </div>
-</div>
-    </div>
+    
+      <div class="method_details ">
+  <p class="signature " id="method_missing-class_method">
   
-    <div class="method">
-      <div class="method_header">
-  <h3>method_missing</h3>
-</div><div id="method_missing-class_method" class="section method">
-  <div class="details_title">
-    <div class='section methodsignature'>
-    <tt class='def'>
-      <span class='visibility'>public</span>
-      <span class='return_types'></span>
-      <span class='name'>method_missing</span><span class='args'>(method, *arguments, &amp;block)</span>
-      <span class='block'></span>
-    </tt>
-  </div>
+    + (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>method_missing</strong>(method, *arguments, &amp;block) 
+  
 
-</div><div class="section source">
-  <span>[<a class="source_link" href="#">View source</a>]</span>
-  <div class="source_code">
-    <table>
-      <tr>
-        <td>
-          <pre class="lines">
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
 
 
 161
@@ -436,9 +442,9 @@ recursively.
 168
 169
 170</pre>
-        </td>
-        <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/migration.rb', line 161</span>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/big_record/migration.rb', line 161</span>
 
 <span class='def def kw'>def</span> <span class='method_missing identifier id'>method_missing</span><span class='lparen token'>(</span><span class='method identifier id'>method</span><span class='comma token'>,</span> <span class='mult op'>*</span><span class='arguments identifier id'>arguments</span><span class='comma token'>,</span> <span class='bitand op'>&amp;</span><span class='block identifier id'>block</span><span class='rparen token'>)</span>
   <span class='arg_list identifier id'>arg_list</span> <span class='assign token'>=</span> <span class='arguments identifier id'>arguments</span><span class='dot token'>.</span><span class='map identifier id'>map</span><span class='lparen token'>(</span><span class='bitand op'>&amp;</span><span class='symbol val'>:inspect</span><span class='rparen token'>)</span> <span class='mult op'>*</span> <span class='string val'>', '</span>
@@ -451,40 +457,33 @@ recursively.
   <span class='end end kw'>end</span>
 <span class='end end kw'>end</span>
 </pre>
-        </td>
-      </tr>
-    </table>
-  </div>
+    </td>
+  </tr>
+</table>
 </div>
-</div>
-    </div>
+    
+      <div class="method_details ">
+  <p class="signature " id="migrate-class_method">
   
-    <div class="method">
-      <div class="method_header">
-  <h3>migrate</h3>
-</div><div id="migrate-class_method" class="section method">
-  <div class="details_title">
-    <div class='section methodsignature'>
-    <tt class='def'>
-      <span class='visibility'>public</span>
-      <span class='return_types'></span>
-      <span class='name'>migrate</span><span class='args'>(direction)</span>
-      <span class='block'></span>
-    </tt>
-  </div>
+    + (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>migrate</strong>(direction) 
+  
 
-</div><div class="section docstring">
-  <p>
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
 Execute this migration in the named direction
 </p>
 
-</div><div class="section source">
-  <span>[<a class="source_link" href="#">View source</a>]</span>
-  <div class="source_code">
-    <table>
-      <tr>
-        <td>
-          <pre class="lines">
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
 
 
 90
@@ -505,9 +504,9 @@ Execute this migration in the named direction
 105
 106
 107</pre>
-        </td>
-        <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/migration.rb', line 90</span>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/big_record/migration.rb', line 90</span>
 
 <span class='def def kw'>def</span> <span class='migrate identifier id'>migrate</span><span class='lparen token'>(</span><span class='direction identifier id'>direction</span><span class='rparen token'>)</span>
   <span class='return return kw'>return</span> <span class='unless unless_mod kw'>unless</span> <span class='respond_to? fid id'>respond_to?</span><span class='lparen token'>(</span><span class='direction identifier id'>direction</span><span class='rparen token'>)</span>
@@ -528,77 +527,51 @@ Execute this migration in the named direction
   <span class='result identifier id'>result</span>
 <span class='end end kw'>end</span>
 </pre>
-        </td>
-      </tr>
-    </table>
-  </div>
+    </td>
+  </tr>
+</table>
 </div>
-</div>
-    </div>
+    
+      <div class="method_details ">
+  <p class="signature " id="say-class_method">
   
-    <div class="method">
-      <div class="method_header">
-  <h3>say</h3>
-</div><div id="say-class_method" class="section method">
-  <div class="details_title">
-    <div class='section methodsignature'>
-    <tt class='def'>
-      <span class='visibility'>public</span>
-      <span class='return_types'></span>
-      <span class='name'>say</span><span class='args'>(message, subitem = false)</span>
-      <span class='block'></span>
-    </tt>
-  </div>
+    + (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>say</strong>(message, subitem = false) 
+  
 
-</div><div class="section source">
-  <span>[<a class="source_link" href="#">View source</a>]</span>
-  <div class="source_code">
-    <table>
-      <tr>
-        <td>
-          <pre class="lines">
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
 
 
 137
 138
 139</pre>
-        </td>
-        <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/migration.rb', line 137</span>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/big_record/migration.rb', line 137</span>
 
 <span class='def def kw'>def</span> <span class='say identifier id'>say</span><span class='lparen token'>(</span><span class='message identifier id'>message</span><span class='comma token'>,</span> <span class='subitem identifier id'>subitem</span><span class='assign token'>=</span><span class='false false kw'>false</span><span class='rparen token'>)</span>
   <span class='write identifier id'>write</span> <span class='dstring node'>&quot;#{subitem ? &quot;   -&gt;&quot; : &quot;--&quot;} #{message}&quot;</span>
 <span class='end end kw'>end</span>
 </pre>
-        </td>
-      </tr>
-    </table>
-  </div>
+    </td>
+  </tr>
+</table>
 </div>
-</div>
-    </div>
+    
+      <div class="method_details ">
+  <p class="signature " id="say_with_time-class_method">
   
-    <div class="method">
-      <div class="method_header">
-  <h3>say_with_time</h3>
-</div><div id="say_with_time-class_method" class="section method">
-  <div class="details_title">
-    <div class='section methodsignature'>
-    <tt class='def'>
-      <span class='visibility'>public</span>
-      <span class='return_types'></span>
-      <span class='name'>say_with_time</span><span class='args'>(message)</span>
-      <span class='block'></span>
-    </tt>
-  </div>
+    + (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>say_with_time</strong>(message) 
+  
 
-</div><div class="section source">
-  <span>[<a class="source_link" href="#">View source</a>]</span>
-  <div class="source_code">
-    <table>
-      <tr>
-        <td>
-          <pre class="lines">
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
 
 
 141
@@ -609,9 +582,9 @@ Execute this migration in the named direction
 146
 147
 148</pre>
-        </td>
-        <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/migration.rb', line 141</span>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/big_record/migration.rb', line 141</span>
 
 <span class='def def kw'>def</span> <span class='say_with_time identifier id'>say_with_time</span><span class='lparen token'>(</span><span class='message identifier id'>message</span><span class='rparen token'>)</span>
   <span class='say identifier id'>say</span><span class='lparen token'>(</span><span class='message identifier id'>message</span><span class='rparen token'>)</span>
@@ -622,42 +595,35 @@ Execute this migration in the named direction
   <span class='result identifier id'>result</span>
 <span class='end end kw'>end</span>
 </pre>
-        </td>
-      </tr>
-    </table>
-  </div>
+    </td>
+  </tr>
+</table>
 </div>
-</div>
-    </div>
+    
+      <div class="method_details ">
+  <p class="signature " id="singleton_method_added-class_method">
   
-    <div class="method">
-      <div class="method_header">
-  <h3>singleton_method_added</h3>
-</div><div id="singleton_method_added-class_method" class="section method">
-  <div class="details_title">
-    <div class='section methodsignature'>
-    <tt class='def'>
-      <span class='visibility'>public</span>
-      <span class='return_types'></span>
-      <span class='name'>singleton_method_added</span><span class='args'>(sym)</span>
-      <span class='block'></span>
-    </tt>
-  </div>
+    + (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>singleton_method_added</strong>(sym) 
+  
 
-</div><div class="section docstring">
-  <p>
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
 Because the method added may do an alias_method, it can be invoked
 recursively. We use @ignore_new_methods as a guard to indicate whether it
 is safe for the call to proceed.
 </p>
 
-</div><div class="section source">
-  <span>[<a class="source_link" href="#">View source</a>]</span>
-  <div class="source_code">
-    <table>
-      <tr>
-        <td>
-          <pre class="lines">
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
 
 
 112
@@ -674,9 +640,9 @@ is safe for the call to proceed.
 123
 124
 125</pre>
-        </td>
-        <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/migration.rb', line 112</span>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/big_record/migration.rb', line 112</span>
 
 <span class='def def kw'>def</span> <span class='singleton_method_added identifier id'>singleton_method_added</span><span class='lparen token'>(</span><span class='sym identifier id'>sym</span><span class='rparen token'>)</span> <span class='comment val'>#:nodoc:</span>
   <span class='return return kw'>return</span> <span class='if if_mod kw'>if</span> <span class='defined? defined kw'>defined?</span><span class='lparen token'>(</span><span class='@ignore_new_methods ivar id'>@ignore_new_methods</span><span class='rparen token'>)</span> <span class='andop op'>&amp;&amp;</span> <span class='@ignore_new_methods ivar id'>@ignore_new_methods</span>
@@ -693,57 +659,22 @@ is safe for the call to proceed.
   <span class='end end kw'>end</span>
 <span class='end end kw'>end</span>
 </pre>
-        </td>
-      </tr>
-    </table>
-  </div>
+    </td>
+  </tr>
+</table>
 </div>
-</div>
-    </div>
+    
+      <div class="method_details ">
+  <p class="signature " id="suppress_messages-class_method">
   
-    <div class="method">
-      <div class="method_header">
-  <h3>suppress_messages</h3>
-</div><div id="suppress_messages-class_method" class="section method">
-  <div class="details_title">
-    <div class='section methodsignature'>
-    <tt class='def'>
-      <span class='visibility'>public</span>
-      <span class='return_types'></span>
-      <span class='name'>suppress_messages</span><span class='args'></span>
-      <span class='block'></span>
-    </tt>
-  </div>
+    + (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>suppress_messages</strong> 
+  
 
-</div><div class="section tags">
-  <h2>Meta Tags</h2>
-  <div class="yield">
-  <h3>Yields:</h3>
-  <dl>
   
-    <dt>
-      
-        <span class='type'></span>
-      
-      
-        <span class='name'></span>
-      
-      
-    </dt>
-    <dd>
-      <span class='desc'></span>
-    </dd>
-  
-  </dl>
-</div>
-
-</div><div class="section source">
-  <span>[<a class="source_link" href="#">View source</a>]</span>
-  <div class="source_code">
-    <table>
-      <tr>
-        <td>
-          <pre class="lines">
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
 
 
 150
@@ -752,9 +683,9 @@ is safe for the call to proceed.
 153
 154
 155</pre>
-        </td>
-        <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/migration.rb', line 150</span>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/big_record/migration.rb', line 150</span>
 
 <span class='def def kw'>def</span> <span class='suppress_messages identifier id'>suppress_messages</span>
   <span class='save identifier id'>save</span><span class='comma token'>,</span> <span class='self self kw'>self</span><span class='dot token'>.</span><span class='verbose identifier id'>verbose</span> <span class='assign token'>=</span> <span class='verbose identifier id'>verbose</span><span class='comma token'>,</span> <span class='false false kw'>false</span>
@@ -763,107 +694,77 @@ is safe for the call to proceed.
   <span class='self self kw'>self</span><span class='dot token'>.</span><span class='verbose identifier id'>verbose</span> <span class='assign token'>=</span> <span class='save identifier id'>save</span>
 <span class='end end kw'>end</span>
 </pre>
-        </td>
-      </tr>
-    </table>
-  </div>
+    </td>
+  </tr>
+</table>
 </div>
-</div>
-    </div>
+    
+      <div class="method_details ">
+  <p class="signature " id="up_with_benchmarks-class_method">
   
-    <div class="method">
-      <div class="method_header">
-  <h3>up_with_benchmarks</h3>
-</div><div id="up_with_benchmarks-class_method" class="section method">
-  <div class="details_title">
-    <div class='section methodsignature'>
-    <tt class='def'>
-      <span class='visibility'>public</span>
-      <span class='return_types'></span>
-      <span class='name'>up_with_benchmarks</span><span class='args'></span>
-      <span class='block'></span>
-    </tt>
-  </div>
+    + (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>up_with_benchmarks</strong> 
+  
 
-</div><div class="section source">
-  <span>[<a class="source_link" href="#">View source</a>]</span>
-  <div class="source_code">
-    <table>
-      <tr>
-        <td>
-          <pre class="lines">
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
 
 
 81
 82
 83</pre>
-        </td>
-        <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/migration.rb', line 81</span>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/big_record/migration.rb', line 81</span>
 
 <span class='def def kw'>def</span> <span class='up_with_benchmarks identifier id'>up_with_benchmarks</span> 
   <span class='migrate identifier id'>migrate</span><span class='lparen token'>(</span><span class='symbol val'>:up</span><span class='rparen token'>)</span>
 <span class='end end kw'>end</span>
 </pre>
-        </td>
-      </tr>
-    </table>
-  </div>
+    </td>
+  </tr>
+</table>
 </div>
-</div>
-    </div>
+    
+      <div class="method_details ">
+  <p class="signature " id="write-class_method">
   
-    <div class="method">
-      <div class="method_header">
-  <h3>write</h3>
-</div><div id="write-class_method" class="section method">
-  <div class="details_title">
-    <div class='section methodsignature'>
-    <tt class='def'>
-      <span class='visibility'>public</span>
-      <span class='return_types'></span>
-      <span class='name'>write</span><span class='args'>(text = &quot;&quot;)</span>
-      <span class='block'></span>
-    </tt>
-  </div>
+    + (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>write</strong>(text = &quot;&quot;) 
+  
 
-</div><div class="section source">
-  <span>[<a class="source_link" href="#">View source</a>]</span>
-  <div class="source_code">
-    <table>
-      <tr>
-        <td>
-          <pre class="lines">
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
 
 
 127
 128
 129</pre>
-        </td>
-        <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/migration.rb', line 127</span>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/big_record/migration.rb', line 127</span>
 
 <span class='def def kw'>def</span> <span class='write identifier id'>write</span><span class='lparen token'>(</span><span class='text identifier id'>text</span><span class='assign token'>=</span><span class='string val'>&quot;&quot;</span><span class='rparen token'>)</span>
   <span class='puts identifier id'>puts</span><span class='lparen token'>(</span><span class='text identifier id'>text</span><span class='rparen token'>)</span> <span class='if if_mod kw'>if</span> <span class='verbose identifier id'>verbose</span>
 <span class='end end kw'>end</span>
 </pre>
-        </td>
-      </tr>
-    </table>
-  </div>
+    </td>
+  </tr>
+</table>
 </div>
-</div>
-    </div>
-  
-</div>
+    
   </div>
 
 </div>
-    </div>
-    <div id="yard_info">
-  Generated on Wednesday, November 25 2009 at 02:43:31 PM by 
-  <abbr class="yard" title="Yay! A Ruby Documentation Tool"><a href="http://yard.soen.ca">YARD</a></abbr> 
-  0.2.3.5 (ruby-1.8.7).
+    
+    <div id="footer">
+  Generated on Thu Nov 26 18:22:10 2009 by 
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool">yard</a>
+  0.4.0 (ruby-1.8.7).
 </div>
 
   </body>

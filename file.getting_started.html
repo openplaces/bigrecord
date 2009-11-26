@@ -1,18 +1,41 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
-    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-<link rel="stylesheet" href="style.css" type="text/css" charset="utf-8" />
-<link rel="stylesheet" href="custom.css" type="text/css" charset="utf-8" />
-<link rel="stylesheet" href="syntax_highlight.css" type="text/css" charset="utf-8" />
+    <meta name="Content-Type" content="text/html; charset=UTF-8" />
+<title>File: getting_started</title>
+<link rel="stylesheet" href="css/style.css" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="css/common.css" type="text/css" media="screen" charset="utf-8" />
 
-    <title>getting_started.rdoc</title>
+<script type="text/javascript" charset="utf-8">
+  relpath = '';
+  if (relpath != '') relpath += '/';
+</script>
+<script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
   </head>
   <body>
-    <div id="content">
-      <div class="section docstring readme">
-        <h1>Getting Started</h1>
+    <div id="header">
+      <div id="menu">
+  
+    <a title="Index" href="_index.html">Index</a> &raquo; 
+    <span class="title">File: getting_started</span>
+  
+</div>
+
+      <div id="search">
+  <a id="class_list_link" href="#">Namespace List</a>
+  <a id="method_list_link" href="#">Method List</a>
+  <a id ="file_list_link" href="#">File List</a>
+</div>
+
+      <div class="clear"></div>
+    </div>
+    
+    <iframe id="search_frame"></iframe>
+    
+    <div id="content"><div id='filecontents'><h1>Getting Started</h1>
 <h2>Setting up HBase and Stargate</h2>
 <p>
 To quickly get started with development, you can set up HBase to run as a
@@ -111,7 +134,7 @@ db/bigrecord_migrate. Note: This generator does not accept attributes.
 Creates a Bigrecord specific migration and adds it into
 db/bigrecord_migrate
 </p>
-<h3><tt><a href="BigRecord/Migration.html" title="Migration File">Migration File</a></tt></h3>
+<h3><tt><a title="Migration File" href="BigRecord/Migration.html">Migration File</a></tt></h3>
 <p>
 Although column-oriented databases are generally schema-less, certain ones
 (like Hbase) require the creation of tables and column families ahead of
@@ -164,7 +187,7 @@ to the latest version:
 <pre class="code">
   <span class='rake identifier id'>rake</span> <span class='bigrecord identifier id'>bigrecord</span><span class='symbol val'>:migrate</span>
 </pre>
-<h3><tt><a href="BigRecord/ConnectionAdapters/Column.html" title="Column and Attribute Definition">Column and Attribute Definition</a></tt></h3>
+<h3><tt><a title="Column and Attribute Definition" href="BigRecord/ConnectionAdapters/Column.html">Column and Attribute Definition</a></tt></h3>
 <p>
 Now that you have your tables and column families all set up, you can begin
 adding columns to your model. The following is an example of a model named
@@ -187,7 +210,7 @@ column family (attribute) automatically if one is not defined. Furthermore,
 in Hbase, there&#8217;s the option of storing collections for a given
 column. This will return an array for the links attribute on a Book record.
 </p>
-<h3><tt><a href="BigRecord/BrAssociations.html" title="Associations">Associations</a></tt></h3>
+<h3><tt><a title="Associations" href="BigRecord/BrAssociations.html">Associations</a></tt></h3>
 <p>
 There are also associations available in Bigrecord, as well as the ability
 to associate to Activerecord models. The following are a few models
@@ -225,7 +248,7 @@ Once the association columns are defined, you define the associations
 themselves with either belongs_to_bigrecord or belongs_to_many and defining
 the :foreign_key (this is required for all associations).
 </p>
-<h3><tt><a href="BigRecord/ConnectionAdapters/View.html" title="Specifying return columns">Specifying return columns</a></tt></h3>
+<h3><tt><a title="Specifying return columns" href="BigRecord/ConnectionAdapters/View.html">Specifying return columns</a></tt></h3>
 <p>
 There are two ways to define specific columns to be returned with your
 models: 1) at the model level and 2) during the query.
@@ -280,15 +303,14 @@ only those attributes:
 As you may have noticed, this functionality is synonymous with the :select
 option in Activerecord.
 </p>
-<h3><tt><a href="BigRecord/Embedded.html" title="Embedded Records">Embedded Records</a></tt></h3>
+<h3><tt><a title="Embedded Records" href="BigRecord/Embedded.html">Embedded Records</a></tt></h3>
 <h3>At this point, usage patterns for a Bigrecord model are similar to that of an Activerecord model, and much of that documentation applies as well. Please refer to those and see if they work!</h3>
-
-      </div>
-    </div>
-    <div id="yard_info">
-  Generated on Wednesday, November 25 2009 at 02:43:12 PM by 
-  <abbr class="yard" title="Yay! A Ruby Documentation Tool"><a href="http://yard.soen.ca">YARD</a></abbr> 
-  0.2.3.5 (ruby-1.8.7).
+</div></div>
+    
+    <div id="footer">
+  Generated on Thu Nov 26 18:22:07 2009 by 
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool">yard</a>
+  0.4.0 (ruby-1.8.7).
 </div>
 
   </body>

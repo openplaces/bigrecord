@@ -1,93 +1,261 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
-    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-<link rel="stylesheet" href="../../style.css" type="text/css" charset="utf-8" />
-<link rel="stylesheet" href="../../custom.css" type="text/css" charset="utf-8" />
-<link rel="stylesheet" href="../../syntax_highlight.css" type="text/css" charset="utf-8" />
+    <meta name="Content-Type" content="text/html; charset=UTF-8" />
+<title>Class: BigRecord::ArAssociations::HasManyAssociation</title>
+<link rel="stylesheet" href="../../css/style.css" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="../../css/common.css" type="text/css" media="screen" charset="utf-8" />
 
-    <script src="../../jquery.js" type="text/javascript" charset="utf-8"></script>
-    <script src="../../app.js" type="text/javascript" charset="utf-8"></script>
-    <title>Class: BigRecord::ArAssociations::HasManyAssociation</title>
+<script type="text/javascript" charset="utf-8">
+  relpath = '../..';
+  if (relpath != '') relpath += '/';
+</script>
+<script type="text/javascript" charset="utf-8" src="../../js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="../../js/app.js"></script>
+
   </head>
   <body>
-    <div id="content">
-      <div class="section class BigRecord_ArAssociations_HasManyAssociation">
-  <h1 class="title">Class: BigRecord::ArAssociations::HasManyAssociation</h1>
-  <div class="section inheritance">
-  <ul>
-  <li><a href="AssociationProxy.html" title="BigRecord::ArAssociations::AssociationProxy">BigRecord::ArAssociations::AssociationProxy</a></li><ul><li><a href="AssociationCollection.html" title="BigRecord::ArAssociations::AssociationCollection">BigRecord::ArAssociations::AssociationCollection</a></li><ul><li>BigRecord::ArAssociations::HasManyAssociation</li>
-  </ul></ul></ul>
-</div><div class="section constants">
+    <div id="header">
+      <div id="menu">
   
-</div><div class="section constructor">
-<h1>Constructor Summary</h1>
-  <div id="initialize-instance_method" class="section method">
-  <div class="details_title">
-    <div class='section methodsignature'>
-    <tt class='def'>
-      <span class='visibility'>public</span>
-      <span class='return_types'></span>
-      <span class='name'>initialize</span><span class='args'>(owner, reflection)</span>
-      <span class='block'></span>
-    </tt>
-  </div>
+    <a href="../../_index.html">Index (H)</a> &raquo; 
+    <a title="BigRecord" href="../../BigRecord.html">BigRecord</a> &raquo; <a title="ArAssociations" href="../ArAssociations.html">ArAssociations</a>
+     &raquo; 
+    <span class="title">HasManyAssociation</span>
+  
+</div>
 
-</div><div class="section source">
-  <span>[<a class="source_link" href="#">View source</a>]</span>
-  <div class="source_code">
-    <table>
-      <tr>
-        <td>
-          <pre class="lines">
+      <div id="search">
+  <a id="class_list_link" href="#">Namespace List</a>
+  <a id="method_list_link" href="#">Method List</a>
+  <a id ="file_list_link" href="#">File List</a>
+</div>
+
+      <div class="clear"></div>
+    </div>
+    
+    <iframe id="search_frame"></iframe>
+    
+    <div id="content"><h1>Class: BigRecord::ArAssociations::HasManyAssociation 
+  
+  
+</h1>
+
+<dl class="box">
+  
+    <dt class="r1">Inherits:</dt>
+    <dd class="r1">
+      <span class="inheritName"><a title="BigRecord::ArAssociations::AssociationCollection" href="AssociationCollection.html">BigRecord::ArAssociations::AssociationCollection</a></span>
+      
+        <ul class="fullTree">
+          <li><a title="Object" href="../../Object.html">Object</a></li>
+          
+            <li class="next"><a title="BigRecord::ArAssociations::AssociationProxy" href="AssociationProxy.html">BigRecord::ArAssociations::AssociationProxy</a></li>
+          
+            <li class="next"><a title="BigRecord::ArAssociations::AssociationCollection" href="AssociationCollection.html">BigRecord::ArAssociations::AssociationCollection</a></li>
+          
+            <li class="next">BigRecord::ArAssociations::HasManyAssociation</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+      </dd>
+    
+  
+  
+    
+  
+    
+  
+  
+    <dt class="r2 last">Defined in:</dt>
+    <dd class="r2 last">lib/big_record/ar_associations/has_many_association.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+
+  <h2>Method Summary</h2>
+  <ul class="summary">
+    
+      <li class="public ">
+  <span class="summary_signature"><a title="#build (instance method)" href="#build-instance_method">- (Object) <strong>build</strong>(attributes = {}) </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a title="#count (instance method)" href="#count-instance_method">- (Object) <strong>count</strong>(*args) </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc">
+Count the number of associated records.
+
+</span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a title="#find (instance method)" href="#find-instance_method">- (Object) <strong>find</strong>(*args) </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a title="#initialize (instance method)" href="#initialize-instance_method">- (HasManyAssociation) <strong>initialize</strong>(owner, reflection) </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc">
+A new instance of <tt>HasManyAssociation</tt>.
+
+</span>
+  
+</li>
+
+    
+  </ul>
+
+
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods inherited from <a title="BigRecord::ArAssociations::AssociationCollection" href="AssociationCollection.html">BigRecord::ArAssociations::AssociationCollection</a></h3>
+  <p class="inherited"><a title="#<<" href="AssociationCollection.html#%3C%3C-instance_method">#<<</a>, <a title="#callback" href="AssociationCollection.html#callback-instance_method">#callback</a>, <a title="#callbacks_for" href="AssociationCollection.html#callbacks_for-instance_method">#callbacks_for</a>, <a title="#clear" href="AssociationCollection.html#clear-instance_method">#clear</a>, <a title="#create" href="AssociationCollection.html#create-instance_method">#create</a>, <a title="#delete" href="AssociationCollection.html#delete-instance_method">#delete</a>, <a title="#destroy_all" href="AssociationCollection.html#destroy_all-instance_method">#destroy_all</a>, <a title="#empty?" href="AssociationCollection.html#empty%3F-instance_method">#empty?</a>, <a title="#find_target" href="AssociationCollection.html#find_target-instance_method">#find_target</a>, <a title="#length" href="AssociationCollection.html#length-instance_method">#length</a>, <a title="#replace" href="AssociationCollection.html#replace-instance_method">#replace</a>, <a title="#reset" href="AssociationCollection.html#reset-instance_method">#reset</a>, <a title="#reset_target!" href="AssociationCollection.html#reset_target%21-instance_method">#reset_target!</a>, <a title="#size" href="AssociationCollection.html#size-instance_method">#size</a>, <a title="#sum" href="AssociationCollection.html#sum-instance_method">#sum</a>, <a title="#to_ary" href="AssociationCollection.html#to_ary-instance_method">#to_ary</a>, <a title="#uniq" href="AssociationCollection.html#uniq-instance_method">#uniq</a></p>
+
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods inherited from <a title="BigRecord::ArAssociations::AssociationProxy" href="AssociationProxy.html">BigRecord::ArAssociations::AssociationProxy</a></h3>
+  <p class="inherited"><a title="#===" href="AssociationProxy.html#%3D%3D%3D-instance_method">#===</a>, <a title="#aliased_table_name" href="AssociationProxy.html#aliased_table_name-instance_method">#aliased_table_name</a>, <a title="#conditions" href="AssociationProxy.html#conditions-instance_method">#conditions</a>, <a title="#dependent?" href="AssociationProxy.html#dependent%3F-instance_method">#dependent?</a>, <a title="#extract_options_from_args!" href="AssociationProxy.html#extract_options_from_args%21-instance_method">#extract_options_from_args!</a>, <a title="#flatten_deeper" href="AssociationProxy.html#flatten_deeper-instance_method">#flatten_deeper</a>, <a title="#foreign_key_present" href="AssociationProxy.html#foreign_key_present-instance_method">#foreign_key_present</a>, <a title="#interpolate_sql" href="AssociationProxy.html#interpolate_sql-instance_method">#interpolate_sql</a>, <a title="#interpolate_sql_options!" href="AssociationProxy.html#interpolate_sql_options%21-instance_method">#interpolate_sql_options!</a>, <a title="#loaded" href="AssociationProxy.html#loaded-instance_method">#loaded</a>, <a title="#loaded?" href="AssociationProxy.html#loaded%3F-instance_method">#loaded?</a>, <a title="#merge_options_from_reflection!" href="AssociationProxy.html#merge_options_from_reflection%21-instance_method">#merge_options_from_reflection!</a>, <a title="#proxy_owner" href="AssociationProxy.html#proxy_owner-instance_method">#proxy_owner</a>, <a title="#proxy_reflection" href="AssociationProxy.html#proxy_reflection-instance_method">#proxy_reflection</a>, <a title="#proxy_target" href="AssociationProxy.html#proxy_target-instance_method">#proxy_target</a>, <a title="#quoted_record_ids" href="AssociationProxy.html#quoted_record_ids-instance_method">#quoted_record_ids</a>, <a title="#raise_on_type_mismatch" href="AssociationProxy.html#raise_on_type_mismatch-instance_method">#raise_on_type_mismatch</a>, <a title="#reload" href="AssociationProxy.html#reload-instance_method">#reload</a>, <a title="#reset" href="AssociationProxy.html#reset-instance_method">#reset</a>, <a title="#respond_to?" href="AssociationProxy.html#respond_to%3F-instance_method">#respond_to?</a>, <a title="#sanitize_sql" href="AssociationProxy.html#sanitize_sql-instance_method">#sanitize_sql</a>, <a title="#set_belongs_to_association_for" href="AssociationProxy.html#set_belongs_to_association_for-instance_method">#set_belongs_to_association_for</a>, <a title="#target" href="AssociationProxy.html#target-instance_method">#target</a>, <a title="#target=" href="AssociationProxy.html#target%3D-instance_method">#target=</a></p>
+<div id="constructor_details">
+  <h2>Constructor Details</h2>
+  
+    <div class="method_details first">
+  <p class="signature first" id="initialize-instance_method">
+  
+    - (<tt><a title="HasManyAssociation" href="">HasManyAssociation</a></tt>) <strong>initialize</strong>(owner, reflection) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+A new instance of <tt>HasManyAssociation</tt>
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt><a title="HasManyAssociation" href="">HasManyAssociation</a></tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        
+a new instance of <tt>HasManyAssociation</tt>
+
+
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
 
 
 4
 5
 6
 7</pre>
-        </td>
-        <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/ar_associations/has_many_association.rb', line 4</span>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/big_record/ar_associations/has_many_association.rb', line 4</span>
 
 <span class='def def kw'>def</span> <span class='initialize identifier id'>initialize</span><span class='lparen token'>(</span><span class='owner identifier id'>owner</span><span class='comma token'>,</span> <span class='reflection identifier id'>reflection</span><span class='rparen token'>)</span>
   <span class='super super kw'>super</span>
   <span class='construct_sql identifier id'>construct_sql</span>
 <span class='end end kw'>end</span>
 </pre>
-        </td>
-      </tr>
-    </table>
-  </div>
+    </td>
+  </tr>
+</table>
 </div>
+  
 </div>
-</div><div class="section methodmissing">
-  <h1>Dynamic Method Handling</h1>
-
-  <p class="note">
+<div id="method_missing_details">
+  <h2>Dynamic Method Handling</h2>
+  <p class="notice this">
     This class handles dynamic methods through the <tt>method_missing</tt> method
     
   </p>
+  
+    <div class="method_details first">
+  <p class="signature first" id="method_missing-instance_method">
+  
+    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>method_missing</strong>(method, *args, &amp;block)  <span class="extras">(protected)</span>
+  
 
-  <div id="method_missing-instance_method" class="section method">
-  <div class="details_title">
-    <div class='section methodsignature'>
-    <tt class='def'>
-      <span class='visibility'>protected</span>
-      <span class='return_types'></span>
-      <span class='name'>method_missing</span><span class='args'>(method, *args, &amp;block)</span>
-      <span class='block'></span>
-    </tt>
-  </div>
-
-</div><div class="section source">
-  <span>[<a class="source_link" href="#">View source</a>]</span>
-  <div class="source_code">
-    <table>
-      <tr>
-        <td>
-          <pre class="lines">
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
 
 
 77
@@ -109,9 +277,9 @@
 93
 94
 95</pre>
-        </td>
-        <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/ar_associations/has_many_association.rb', line 77</span>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/big_record/ar_associations/has_many_association.rb', line 77</span>
 
 <span class='def def kw'>def</span> <span class='method_missing identifier id'>method_missing</span><span class='lparen token'>(</span><span class='method identifier id'>method</span><span class='comma token'>,</span> <span class='mult op'>*</span><span class='args identifier id'>args</span><span class='comma token'>,</span> <span class='bitand op'>&amp;</span><span class='block identifier id'>block</span><span class='rparen token'>)</span>
   <span class='if if kw'>if</span> <span class='@target ivar id'>@target</span><span class='dot token'>.</span><span class='respond_to? fid id'>respond_to?</span><span class='lparen token'>(</span><span class='method identifier id'>method</span><span class='rparen token'>)</span> <span class='orop op'>||</span> <span class='lparen token'>(</span><span class='notop op'>!</span><span class='@reflection ivar id'>@reflection</span><span class='dot token'>.</span><span class='klass identifier id'>klass</span><span class='dot token'>.</span><span class='respond_to? fid id'>respond_to?</span><span class='lparen token'>(</span><span class='method identifier id'>method</span><span class='rparen token'>)</span> <span class='andop op'>&amp;&amp;</span> <span class='Class constant id'>Class</span><span class='dot token'>.</span><span class='respond_to? fid id'>respond_to?</span><span class='lparen token'>(</span><span class='method identifier id'>method</span><span class='rparen token'>)</span><span class='rparen token'>)</span>
@@ -133,109 +301,28 @@
   <span class='end end kw'>end</span>
 <span class='end end kw'>end</span>
 </pre>
-        </td>
-      </tr>
-    </table>
-  </div>
-</div>
-</div>
-</div>  <div class="section visibilitygroup public">
-    <h1>Public Visibility</h1>
-      <div class="section methodsummary instance public">
-    <h1>Public Instance Method Summary</h1>
-<table class="summary">
-  
-    <tr>
-      <th class="signature">
-        
-          <span class='overload'>
-            <span class='name'><a href="#build-instance_method" title="#build">#build</a></span><span class='args'>(attributes = {})</span>
-            <span class='block'></span>
-          </span>
-        
-        
-      </th>
-      <td class="docstring">
-        
-        
-      </td>
-    </tr>
-  
-    <tr>
-      <th class="signature">
-        
-          <span class='overload'>
-            <span class='name'><a href="#count-instance_method" title="#count">#count</a></span><span class='args'>(*args)</span>
-            <span class='block'></span>
-          </span>
-        
-        
-      </th>
-      <td class="docstring">
-        <p>
-Count the number of associated records.
-</p>
-
-        
-      </td>
-    </tr>
-  
-    <tr>
-      <th class="signature">
-        
-          <span class='overload'>
-            <span class='name'><a href="#find-instance_method" title="#find">#find</a></span><span class='args'>(*args)</span>
-            <span class='block'></span>
-          </span>
-        
-        
-      </th>
-      <td class="docstring">
-        
-        
-      </td>
-    </tr>
-  
+    </td>
+  </tr>
 </table>
-<div class="inherited">
-  
-  <div>
-    <h1>Public Instance Methods Inherited from <a href="AssociationCollection.html" title="BigRecord::ArAssociations::AssociationCollection">BigRecord::ArAssociations::AssociationCollection</a></h1>
-    <p><span class='name'><a href="AssociationCollection.html#%3C%3C-instance_method" title="&lt;&lt;">&lt;&lt;</a></span>, <span class='name'><a href="AssociationCollection.html#clear-instance_method" title="clear">clear</a></span>, <span class='name'><a href="AssociationCollection.html#create-instance_method" title="create">create</a></span>, <span class='name'><a href="AssociationCollection.html#delete-instance_method" title="delete">delete</a></span>, <span class='name'><a href="AssociationCollection.html#destroy_all-instance_method" title="destroy_all">destroy_all</a></span>, <span class='name'><a href="AssociationCollection.html#empty%3F-instance_method" title="empty?">empty?</a></span>, <span class='name'><a href="AssociationCollection.html#length-instance_method" title="length">length</a></span>, <span class='name'><a href="AssociationCollection.html#replace-instance_method" title="replace">replace</a></span>, <span class='name'><a href="AssociationCollection.html#reset-instance_method" title="reset">reset</a></span>, <span class='name'><a href="AssociationCollection.html#size-instance_method" title="size">size</a></span>, <span class='name'><a href="AssociationCollection.html#sum-instance_method" title="sum">sum</a></span>, <span class='name'><a href="AssociationCollection.html#to_ary-instance_method" title="to_ary">to_ary</a></span>, <span class='name'><a href="AssociationCollection.html#uniq-instance_method" title="uniq">uniq</a></span></p>
-  </div>
-  
-  <div>
-    <h1>Public Instance Methods Inherited from <a href="AssociationProxy.html" title="BigRecord::ArAssociations::AssociationProxy">BigRecord::ArAssociations::AssociationProxy</a></h1>
-    <p><span class='name'><a href="AssociationProxy.html#%3D%3D%3D-instance_method" title="===">===</a></span>, <span class='name'><a href="AssociationProxy.html#aliased_table_name-instance_method" title="aliased_table_name">aliased_table_name</a></span>, <span class='name'><a href="AssociationProxy.html#conditions-instance_method" title="conditions">conditions</a></span>, <span class='name'><a href="AssociationProxy.html#loaded-instance_method" title="loaded">loaded</a></span>, <span class='name'><a href="AssociationProxy.html#loaded%3F-instance_method" title="loaded?">loaded?</a></span>, <span class='name'><a href="AssociationProxy.html#proxy_owner-instance_method" title="proxy_owner">proxy_owner</a></span>, <span class='name'><a href="AssociationProxy.html#proxy_reflection-instance_method" title="proxy_reflection">proxy_reflection</a></span>, <span class='name'><a href="AssociationProxy.html#proxy_target-instance_method" title="proxy_target">proxy_target</a></span>, <span class='name'><a href="AssociationProxy.html#reload-instance_method" title="reload">reload</a></span>, <span class='name'><a href="AssociationProxy.html#respond_to%3F-instance_method" title="respond_to?">respond_to?</a></span>, <span class='name'><a href="AssociationProxy.html#target-instance_method" title="target">target</a></span>, <span class='name'><a href="AssociationProxy.html#target%3D-instance_method" title="target=">target=</a></span></p>
-  </div>
+</div>
   
 </div>
-<div class="clear"></div>
-  </div>
-<div class="section methoddetails instance public">
-  <h1>Public Instance Method Details</h1>
-  
-    <div class="method">
-      <div class="method_header">
-  <h3>build</h3>
-</div><div id="build-instance_method" class="section method">
-  <div class="details_title">
-    <div class='section methodsignature'>
-    <tt class='def'>
-      <span class='visibility'>public</span>
-      <span class='return_types'></span>
-      <span class='name'>build</span><span class='args'>(attributes = {})</span>
-      <span class='block'></span>
-    </tt>
-  </div>
 
-</div><div class="section source">
-  <span>[<a class="source_link" href="#">View source</a>]</span>
-  <div class="source_code">
-    <table>
-      <tr>
-        <td>
-          <pre class="lines">
+
+  <div id="method_details">
+    <h2>Method Details</h2>
+    
+      <div class="method_details first">
+  <p class="signature first" id="build-instance_method">
+  
+    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>build</strong>(attributes = {}) 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
 
 
 9
@@ -251,9 +338,9 @@ Count the number of associated records.
 19
 20
 21</pre>
-        </td>
-        <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/ar_associations/has_many_association.rb', line 9</span>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/big_record/ar_associations/has_many_association.rb', line 9</span>
 
 <span class='def def kw'>def</span> <span class='build identifier id'>build</span><span class='lparen token'>(</span><span class='attributes identifier id'>attributes</span> <span class='assign token'>=</span> <span class='lbrace token'>{</span><span class='rbrace token'>}</span><span class='rparen token'>)</span>
   <span class='if if kw'>if</span> <span class='attributes identifier id'>attributes</span><span class='dot token'>.</span><span class='is_a? fid id'>is_a?</span><span class='lparen token'>(</span><span class='Array constant id'>Array</span><span class='rparen token'>)</span>
@@ -269,40 +356,33 @@ Count the number of associated records.
   <span class='end end kw'>end</span>
 <span class='end end kw'>end</span>
 </pre>
-        </td>
-      </tr>
-    </table>
-  </div>
+    </td>
+  </tr>
+</table>
 </div>
-</div>
-    </div>
+    
+      <div class="method_details ">
+  <p class="signature " id="count-instance_method">
   
-    <div class="method">
-      <div class="method_header">
-  <h3>count</h3>
-</div><div id="count-instance_method" class="section method">
-  <div class="details_title">
-    <div class='section methodsignature'>
-    <tt class='def'>
-      <span class='visibility'>public</span>
-      <span class='return_types'></span>
-      <span class='name'>count</span><span class='args'>(*args)</span>
-      <span class='block'></span>
-    </tt>
-  </div>
+    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>count</strong>(*args) 
+  
 
-</div><div class="section docstring">
-  <p>
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
 Count the number of associated records. All arguments are optional.
 </p>
 
-</div><div class="section source">
-  <span>[<a class="source_link" href="#">View source</a>]</span>
-  <div class="source_code">
-    <table>
-      <tr>
-        <td>
-          <pre class="lines">
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
 
 
 24
@@ -320,9 +400,9 @@ Count the number of associated records. All arguments are optional.
 36
 37
 38</pre>
-        </td>
-        <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/ar_associations/has_many_association.rb', line 24</span>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/big_record/ar_associations/has_many_association.rb', line 24</span>
 
 <span class='def def kw'>def</span> <span class='count identifier id'>count</span><span class='lparen token'>(</span><span class='mult op'>*</span><span class='args identifier id'>args</span><span class='rparen token'>)</span>
   <span class='if if kw'>if</span> <span class='@reflection ivar id'>@reflection</span><span class='dot token'>.</span><span class='options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:counter_sql</span><span class='rbrack token'>]</span>
@@ -340,35 +420,22 @@ Count the number of associated records. All arguments are optional.
   <span class='end end kw'>end</span>
 <span class='end end kw'>end</span>
 </pre>
-        </td>
-      </tr>
-    </table>
-  </div>
+    </td>
+  </tr>
+</table>
 </div>
-</div>
-    </div>
+    
+      <div class="method_details ">
+  <p class="signature " id="find-instance_method">
   
-    <div class="method">
-      <div class="method_header">
-  <h3>find</h3>
-</div><div id="find-instance_method" class="section method">
-  <div class="details_title">
-    <div class='section methodsignature'>
-    <tt class='def'>
-      <span class='visibility'>public</span>
-      <span class='return_types'></span>
-      <span class='name'>find</span><span class='args'>(*args)</span>
-      <span class='block'></span>
-    </tt>
-  </div>
+    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>find</strong>(*args) 
+  
 
-</div><div class="section source">
-  <span>[<a class="source_link" href="#">View source</a>]</span>
-  <div class="source_code">
-    <table>
-      <tr>
-        <td>
-          <pre class="lines">
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
 
 
 40
@@ -406,9 +473,9 @@ Count the number of associated records. All arguments are optional.
 72
 73
 74</pre>
-        </td>
-        <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/ar_associations/has_many_association.rb', line 40</span>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/big_record/ar_associations/has_many_association.rb', line 40</span>
 
 <span class='def def kw'>def</span> <span class='find identifier id'>find</span><span class='lparen token'>(</span><span class='mult op'>*</span><span class='args identifier id'>args</span><span class='rparen token'>)</span>
   <span class='options identifier id'>options</span> <span class='assign token'>=</span> <span class='Base constant id'>Base</span><span class='dot token'>.</span><span class='send identifier id'>send</span><span class='lparen token'>(</span><span class='symbol val'>:extract_options_from_args!</span><span class='comma token'>,</span> <span class='args identifier id'>args</span><span class='rparen token'>)</span>
@@ -446,23 +513,19 @@ Count the number of associated records. All arguments are optional.
   <span class='end end kw'>end</span>
 <span class='end end kw'>end</span>
 </pre>
-        </td>
-      </tr>
-    </table>
-  </div>
+    </td>
+  </tr>
+</table>
 </div>
-</div>
-    </div>
-  
-</div>
+    
   </div>
 
 </div>
-    </div>
-    <div id="yard_info">
-  Generated on Wednesday, November 25 2009 at 02:43:29 PM by 
-  <abbr class="yard" title="Yay! A Ruby Documentation Tool"><a href="http://yard.soen.ca">YARD</a></abbr> 
-  0.2.3.5 (ruby-1.8.7).
+    
+    <div id="footer">
+  Generated on Thu Nov 26 18:22:28 2009 by 
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool">yard</a>
+  0.4.0 (ruby-1.8.7).
 </div>
 
   </body>

@@ -1,26 +1,75 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
-    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-<link rel="stylesheet" href="../../style.css" type="text/css" charset="utf-8" />
-<link rel="stylesheet" href="../../custom.css" type="text/css" charset="utf-8" />
-<link rel="stylesheet" href="../../syntax_highlight.css" type="text/css" charset="utf-8" />
+    <meta name="Content-Type" content="text/html; charset=UTF-8" />
+<title>Class: BigRecord::ConnectionAdapters::AbstractAdapter</title>
+<link rel="stylesheet" href="../../css/style.css" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="../../css/common.css" type="text/css" media="screen" charset="utf-8" />
 
-    <script src="../../jquery.js" type="text/javascript" charset="utf-8"></script>
-    <script src="../../app.js" type="text/javascript" charset="utf-8"></script>
-    <title>Class: BigRecord::ConnectionAdapters::AbstractAdapter</title>
+<script type="text/javascript" charset="utf-8">
+  relpath = '../..';
+  if (relpath != '') relpath += '/';
+</script>
+<script type="text/javascript" charset="utf-8" src="../../js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="../../js/app.js"></script>
+
   </head>
   <body>
-    <div id="content">
-      <div class="section class BigRecord_ConnectionAdapters_AbstractAdapter">
-  <h1 class="title">Class: BigRecord::ConnectionAdapters::AbstractAdapter</h1>
-  <div class="section mixins">
-  <h1>Included Modules</h1>
-  <p><a href="AbstractAdapter/Quoting.html" title="BigRecord::ConnectionAdapters::Quoting">BigRecord::ConnectionAdapters::Quoting</a>, <a href="AbstractAdapter/DatabaseStatements.html" title="BigRecord::ConnectionAdapters::DatabaseStatements">BigRecord::ConnectionAdapters::DatabaseStatements</a></p>
+    <div id="header">
+      <div id="menu">
+  
+    <a href="../../_index.html">Index (A)</a> &raquo; 
+    <a title="BigRecord" href="../../BigRecord.html">BigRecord</a> &raquo; <a title="ConnectionAdapters" href="../ConnectionAdapters.html">ConnectionAdapters</a>
+     &raquo; 
+    <span class="title">AbstractAdapter</span>
+  
 </div>
-<div class="section docstring">
-  <p>
+
+      <div id="search">
+  <a id="class_list_link" href="#">Namespace List</a>
+  <a id="method_list_link" href="#">Method List</a>
+  <a id ="file_list_link" href="#">File List</a>
+</div>
+
+      <div class="clear"></div>
+    </div>
+    
+    <iframe id="search_frame"></iframe>
+    
+    <div id="content"><h1>Class: BigRecord::ConnectionAdapters::AbstractAdapter 
+  
+  
+</h1>
+
+<dl class="box">
+  
+    <dt class="r1">Inherits:</dt>
+    <dd class="r1">
+      <span class="inheritName"><a title="Object" href="../../Object.html">Object</a></span>
+      
+      </dd>
+    
+  
+  
+    
+  
+    
+      <dt class="r2">Includes:</dt>
+      <dd class="r2"><a title="BigRecord::ConnectionAdapters::DatabaseStatements" href="DatabaseStatements.html">BigRecord::ConnectionAdapters::DatabaseStatements</a>, <a title="BigRecord::ConnectionAdapters::Quoting" href="Quoting.html">BigRecord::ConnectionAdapters::Quoting</a></dd>
+      
+    
+  
+  
+    <dt class="r1 last">Defined in:</dt>
+    <dd class="r1 last">lib/big_record/connection_adapters/abstract_adapter.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    <p>
 All the concrete database adapters follow the interface laid down in this
 class. You can use this interface directly by borrowing the database
 connection from the Base with Base.connection.
@@ -30,31 +79,575 @@ Most of the methods in the adapter are useful during migrations. Most
 notably, SchemaStatements#create_table, SchemaStatements#drop_table,
 SchemaStatements#add_index, SchemaStatements#remove_index,
 SchemaStatements#add_column, SchemaStatements#change_column and
-SchemaStatements#remove_column are very useful. class AbstractAdapter
+SchemaStatements#remove_column are very useful.
 </p>
 
-</div><div class="section constants">
-  
-</div><div class="section constructor">
-<h1>Constructor Summary</h1>
-  <div id="initialize-instance_method" class="section method">
-  <div class="details_title">
-    <div class='section methodsignature'>
-    <tt class='def'>
-      <span class='visibility'>public</span>
-      <span class='return_types'></span>
-      <span class='name'>initialize</span><span class='args'>(connection, logger = nil)</span>
-      <span class='block'></span>
-    </tt>
-  </div>
 
-</div><div class="section source">
-  <span>[<a class="source_link" href="#">View source</a>]</span>
-  <div class="source_code">
-    <table>
-      <tr>
-        <td>
-          <pre class="lines">
+  </div>
+</div>
+<div class="tags">
+  
+</div>
+  <h2>Constant Summary</h2>
+  
+    <dl class="constants">
+      
+        <dt id="row_even-classvariable ">@@row_even =
+            <span class="summary_desc"></span>
+        </dt>
+        <dd><pre class="code"><span class='true true kw'>true</span>
+</pre></dd>
+      
+    </dl>
+  
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+
+  <h2>Method Summary</h2>
+  <ul class="summary">
+    
+      <li class="public ">
+  <span class="summary_signature"><a title="#active? (instance method)" href="#active%3F-instance_method">- (Object) <strong>active?</strong> </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc">
+Is this connection active and ready to perform queries?.
+
+</span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a title="#adapter_name (instance method)" href="#adapter_name-instance_method">- (Object) <strong>adapter_name</strong> </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc">
+Returns the human-readable name of the adapter.
+
+</span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a title="#create_table (instance method)" href="#create_table-instance_method">- (Object) <strong>create_table</strong>(table_name, column_families) </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a title="#delete (instance method)" href="#delete-instance_method">- (Object) <strong>delete</strong>(table_name, row) </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a title="#delete_all (instance method)" href="#delete_all-instance_method">- (Object) <strong>delete_all</strong>(table_name) </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a title="#disable_referential_integrity (instance method)" href="#disable_referential_integrity-instance_method">- (Object) <strong>disable_referential_integrity</strong>(&amp;block) </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc">
+Override to turn off referential integrity while executing
+<tt>&amp;block</tt>.
+
+</span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a title="#disconnect! (instance method)" href="#disconnect%21-instance_method">- (Object) <strong>disconnect!</strong> </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc">
+Close this connection.
+
+</span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a title="#drop_table (instance method)" href="#drop_table-instance_method">- (Object) <strong>drop_table</strong>(table_name) </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a title="#get (instance method)" href="#get-instance_method">- (Object) <strong>get</strong>(table_name, row, column, options = {}) </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a title="#get_columns (instance method)" href="#get_columns-instance_method">- (Object) <strong>get_columns</strong>(table_name, row, columns, options = {}) </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a title="#get_columns_raw (instance method)" href="#get_columns_raw-instance_method">- (Object) <strong>get_columns_raw</strong>(table_name, row, columns, options = {}) </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a title="#get_consecutive_rows (instance method)" href="#get_consecutive_rows-instance_method">- (Object) <strong>get_consecutive_rows</strong>(table_name, start_row, limit, columns, stop_row = nil) </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a title="#get_consecutive_rows_raw (instance method)" href="#get_consecutive_rows_raw-instance_method">- (Object) <strong>get_consecutive_rows_raw</strong>(table_name, start_row, limit, columns, stop_row = nil) </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a title="#get_raw (instance method)" href="#get_raw-instance_method">- (Object) <strong>get_raw</strong>(table_name, row, column, options = {}) </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a title="#initialize (instance method)" href="#initialize-instance_method">- (AbstractAdapter) <strong>initialize</strong>(connection, logger = nil) </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc">
+A new instance of <tt>AbstractAdapter</tt>.
+
+</span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a title="#prefetch_primary_key? (instance method)" href="#prefetch_primary_key%3F-instance_method">- (Object) <strong>prefetch_primary_key?</strong>(table_name = nil) </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc">
+Should primary key values be selected from their corresponding sequence
+before the insert statement? If true, next_sequence_value is called before
+each insert to set the record&#8217;s primary key.
+
+</span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a title="#quote_table_name (instance method)" href="#quote_table_name-instance_method">- (Object) <strong>quote_table_name</strong>(name) </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc">
+Override to return the quoted table name if the database needs it.
+
+</span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a title="#raw_connection (instance method)" href="#raw_connection-instance_method">- (Object) <strong>raw_connection</strong> </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc">
+Provides access to the underlying database connection.
+
+</span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a title="#reconnect! (instance method)" href="#reconnect%21-instance_method">- (Object) <strong>reconnect!</strong> </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc">
+Close this connection and open a new one in its place.
+
+</span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a title="#requires_reloading? (instance method)" href="#requires_reloading%3F-instance_method">- (Object) <strong>requires_reloading?</strong> </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc">
+Returns true if its safe to reload the connection between requests for
+development mode.
+
+</span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a title="#reset_runtime (instance method)" href="#reset_runtime-instance_method">- (Object) <strong>reset_runtime</strong> </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a title="#supports_count_distinct? (instance method)" href="#supports_count_distinct%3F-instance_method">- (Object) <strong>supports_count_distinct?</strong> </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc">
+Does this adapter support using DISTINCT within COUNT? This is
+<tt>true</tt> for all adapters except sqlite.
+
+</span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a title="#supports_ddl_transactions? (instance method)" href="#supports_ddl_transactions%3F-instance_method">- (Object) <strong>supports_ddl_transactions?</strong> </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a title="#supports_migrations? (instance method)" href="#supports_migrations%3F-instance_method">- (Object) <strong>supports_migrations?</strong> </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc">
+Does this adapter support migrations? Backend specific, as the abstract
+adapter always returns <tt>false</tt>.
+
+</span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a title="#table_exists? (instance method)" href="#table_exists%3F-instance_method">- (Object) <strong>table_exists?</strong>(table_name) </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc">
+SCHEMA STATEMENTS ========================================.
+
+</span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a title="#update (instance method)" href="#update-instance_method">- (Object) <strong>update</strong>(table_name, row, values, timestamp) </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a title="#update_raw (instance method)" href="#update_raw-instance_method">- (Object) <strong>update_raw</strong>(table_name, row, values, timestamp) </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc">
+DATABASE STATEMENTS ======================================.
+
+</span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a title="#verify! (instance method)" href="#verify%21-instance_method">- (Object) <strong>verify!</strong>(timeout) </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc">
+Lazily verify this connection, calling <tt>active?</tt> only if it
+hasn&#8217;t been called for <tt>timeout</tt> seconds.
+
+</span>
+  
+</li>
+
+    
+  </ul>
+
+
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods included from <a title="BigRecord::ConnectionAdapters::Quoting" href="Quoting.html">BigRecord::ConnectionAdapters::Quoting</a></h3>
+  <p class="inherited"><a title="#quote" href="Quoting.html#quote-instance_method">#quote</a>, <a title="#quote_column_name" href="Quoting.html#quote_column_name-instance_method">#quote_column_name</a>, <a title="#quote_string" href="Quoting.html#quote_string-instance_method">#quote_string</a>, <a title="#quoted_date" href="Quoting.html#quoted_date-instance_method">#quoted_date</a>, <a title="#quoted_false" href="Quoting.html#quoted_false-instance_method">#quoted_false</a>, <a title="#quoted_true" href="Quoting.html#quoted_true-instance_method">#quoted_true</a></p>
+
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods included from <a title="BigRecord::ConnectionAdapters::DatabaseStatements" href="DatabaseStatements.html">BigRecord::ConnectionAdapters::DatabaseStatements</a></h3>
+  <p class="inherited"><a title="#insert_fixture" href="DatabaseStatements.html#insert_fixture-instance_method">#insert_fixture</a></p>
+<div id="constructor_details">
+  <h2>Constructor Details</h2>
+  
+    <div class="method_details first">
+  <p class="signature first" id="initialize-instance_method">
+  
+    - (<tt><a title="AbstractAdapter" href="">AbstractAdapter</a></tt>) <strong>initialize</strong>(connection, logger = nil) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+A new instance of <tt>AbstractAdapter</tt>
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt><a title="AbstractAdapter" href="">AbstractAdapter</a></tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        
+a new instance of <tt>AbstractAdapter</tt>
+
+
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
 
 
 21
@@ -62,9 +655,9 @@ SchemaStatements#remove_column are very useful. class AbstractAdapter
 23
 24
 25</pre>
-        </td>
-        <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/abstract_adapter.rb', line 21</span>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/abstract_adapter.rb', line 21</span>
 
 <span class='def def kw'>def</span> <span class='initialize identifier id'>initialize</span><span class='lparen token'>(</span><span class='connection identifier id'>connection</span><span class='comma token'>,</span> <span class='logger identifier id'>logger</span> <span class='assign token'>=</span> <span class='nil nil kw'>nil</span><span class='rparen token'>)</span> <span class='comment val'>#:nodoc:</span>
   <span class='@connection ivar id'>@connection</span><span class='comma token'>,</span> <span class='@logger ivar id'>@logger</span> <span class='assign token'>=</span> <span class='connection identifier id'>connection</span><span class='comma token'>,</span> <span class='logger identifier id'>logger</span>
@@ -72,2000 +665,1206 @@ SchemaStatements#remove_column are very useful. class AbstractAdapter
   <span class='@last_verification ivar id'>@last_verification</span> <span class='assign token'>=</span> <span class='integer val'>0</span>
 <span class='end end kw'>end</span>
 </pre>
-        </td>
-      </tr>
-    </table>
-  </div>
-</div>
-</div>
-</div>  <div class="section visibilitygroup public">
-    <h1>Public Visibility</h1>
-      <div class="section methodsummary instance public">
-    <h1>Public Instance Method Summary</h1>
-<table class="summary">
-  
-    <tr>
-      <th class="signature">
-        
-          <span class='overload'>
-            <span class='name'><a href="#active%3F-instance_method" title="#active?">#active?</a></span><span class='args'></span>
-            <span class='block'></span>
-          </span>
-        
-        
-      </th>
-      <td class="docstring">
-        <p>
-CONNECTION MANAGEMENT ==================================== Is this
-connection active and ready to perform queries?.
-</p>
-
-        
-      </td>
-    </tr>
-  
-    <tr>
-      <th class="signature">
-        
-          <span class='overload'>
-            <span class='name'><a href="#adapter_name-instance_method" title="#adapter_name">#adapter_name</a></span><span class='args'></span>
-            <span class='block'></span>
-          </span>
-        
-        
-      </th>
-      <td class="docstring">
-        <p>
-Returns the human-readable name of the adapter.
-</p>
-
-        
-      </td>
-    </tr>
-  
-    <tr>
-      <th class="signature">
-        
-          <span class='overload'>
-            <span class='name'><a href="#create_table-instance_method" title="#create_table">#create_table</a></span><span class='args'>(table_name, column_families)</span>
-            <span class='block'></span>
-          </span>
-        
-        
-      </th>
-      <td class="docstring">
-        
-        
-      </td>
-    </tr>
-  
-    <tr>
-      <th class="signature">
-        
-          <span class='overload'>
-            <span class='name'><a href="#delete-instance_method" title="#delete">#delete</a></span><span class='args'>(table_name, row)</span>
-            <span class='block'></span>
-          </span>
-        
-        
-      </th>
-      <td class="docstring">
-        
-        
-      </td>
-    </tr>
-  
-    <tr>
-      <th class="signature">
-        
-          <span class='overload'>
-            <span class='name'><a href="#delete_all-instance_method" title="#delete_all">#delete_all</a></span><span class='args'>(table_name)</span>
-            <span class='block'></span>
-          </span>
-        
-        
-      </th>
-      <td class="docstring">
-        
-        
-      </td>
-    </tr>
-  
-    <tr>
-      <th class="signature">
-        
-          <span class='overload'>
-            <span class='name'><a href="#disable_referential_integrity-instance_method" title="#disable_referential_integrity">#disable_referential_integrity</a></span><span class='args'>(&amp;block)</span>
-            <span class='block'></span>
-          </span>
-        
-        
-      </th>
-      <td class="docstring">
-        <p>
-REFERENTIAL INTEGRITY ==================================== Override to turn
-off referential integrity while executing <tt>&amp;block</tt>.
-</p>
-
-        
-      </td>
-    </tr>
-  
-    <tr>
-      <th class="signature">
-        
-          <span class='overload'>
-            <span class='name'><a href="#disconnect%21-instance_method" title="#disconnect!">#disconnect!</a></span><span class='args'></span>
-            <span class='block'></span>
-          </span>
-        
-        
-      </th>
-      <td class="docstring">
-        <p>
-Close this connection.
-</p>
-
-        
-      </td>
-    </tr>
-  
-    <tr>
-      <th class="signature">
-        
-          <span class='overload'>
-            <span class='name'><a href="#drop_table-instance_method" title="#drop_table">#drop_table</a></span><span class='args'>(table_name)</span>
-            <span class='block'></span>
-          </span>
-        
-        
-      </th>
-      <td class="docstring">
-        
-        
-      </td>
-    </tr>
-  
-    <tr>
-      <th class="signature">
-        
-          <span class='overload'>
-            <span class='name'><a href="#get-instance_method" title="#get">#get</a></span><span class='args'>(table_name, row, column, options = {})</span>
-            <span class='block'></span>
-          </span>
-        
-        
-      </th>
-      <td class="docstring">
-        
-        
-      </td>
-    </tr>
-  
-    <tr>
-      <th class="signature">
-        
-          <span class='overload'>
-            <span class='name'><a href="#get_columns-instance_method" title="#get_columns">#get_columns</a></span><span class='args'>(table_name, row, columns, options = {})</span>
-            <span class='block'></span>
-          </span>
-        
-        
-      </th>
-      <td class="docstring">
-        
-        
-      </td>
-    </tr>
-  
-    <tr>
-      <th class="signature">
-        
-          <span class='overload'>
-            <span class='name'><a href="#get_columns_raw-instance_method" title="#get_columns_raw">#get_columns_raw</a></span><span class='args'>(table_name, row, columns, options = {})</span>
-            <span class='block'></span>
-          </span>
-        
-        
-      </th>
-      <td class="docstring">
-        
-        
-      </td>
-    </tr>
-  
-    <tr>
-      <th class="signature">
-        
-          <span class='overload'>
-            <span class='name'><a href="#get_consecutive_rows-instance_method" title="#get_consecutive_rows">#get_consecutive_rows</a></span><span class='args'>(table_name, start_row, limit, columns, stop_row = nil)</span>
-            <span class='block'></span>
-          </span>
-        
-        
-      </th>
-      <td class="docstring">
-        
-        
-      </td>
-    </tr>
-  
-    <tr>
-      <th class="signature">
-        
-          <span class='overload'>
-            <span class='name'><a href="#get_consecutive_rows_raw-instance_method" title="#get_consecutive_rows_raw">#get_consecutive_rows_raw</a></span><span class='args'>(table_name, start_row, limit, columns, stop_row = nil)</span>
-            <span class='block'></span>
-          </span>
-        
-        
-      </th>
-      <td class="docstring">
-        
-        
-      </td>
-    </tr>
-  
-    <tr>
-      <th class="signature">
-        
-          <span class='overload'>
-            <span class='name'><a href="#get_raw-instance_method" title="#get_raw">#get_raw</a></span><span class='args'>(table_name, row, column, options = {})</span>
-            <span class='block'></span>
-          </span>
-        
-        
-      </th>
-      <td class="docstring">
-        
-        
-      </td>
-    </tr>
-  
-    <tr>
-      <th class="signature">
-        
-          <span class='overload'>
-            <span class='name'><a href="#prefetch_primary_key%3F-instance_method" title="#prefetch_primary_key?">#prefetch_primary_key?</a></span><span class='args'>(table_name = nil)</span>
-            <span class='block'></span>
-          </span>
-        
-        
-      </th>
-      <td class="docstring">
-        <p>
-Should primary key values be selected from their corresponding sequence
-before the insert statement? If true, next_sequence_value is called before
-each insert to set the record&#8217;s primary key.
-</p>
-
-        
-      </td>
-    </tr>
-  
-    <tr>
-      <th class="signature">
-        
-          <span class='overload'>
-            <span class='name'><a href="#quote_table_name-instance_method" title="#quote_table_name">#quote_table_name</a></span><span class='args'>(name)</span>
-            <span class='block'></span>
-          </span>
-        
-        
-      </th>
-      <td class="docstring">
-        <p>
-QUOTING ================================================== Override to
-return the quoted table name if the database needs it.
-</p>
-
-        
-      </td>
-    </tr>
-  
-    <tr>
-      <th class="signature">
-        
-          <span class='overload'>
-            <span class='name'><a href="#raw_connection-instance_method" title="#raw_connection">#raw_connection</a></span><span class='args'></span>
-            <span class='block'></span>
-          </span>
-        
-        
-      </th>
-      <td class="docstring">
-        <p>
-Provides access to the underlying database connection.
-</p>
-
-        
-      </td>
-    </tr>
-  
-    <tr>
-      <th class="signature">
-        
-          <span class='overload'>
-            <span class='name'><a href="#reconnect%21-instance_method" title="#reconnect!">#reconnect!</a></span><span class='args'></span>
-            <span class='block'></span>
-          </span>
-        
-        
-      </th>
-      <td class="docstring">
-        <p>
-Close this connection and open a new one in its place.
-</p>
-
-        
-      </td>
-    </tr>
-  
-    <tr>
-      <th class="signature">
-        
-          <span class='overload'>
-            <span class='name'><a href="#requires_reloading%3F-instance_method" title="#requires_reloading?">#requires_reloading?</a></span><span class='args'></span>
-            <span class='block'></span>
-          </span>
-        
-        
-      </th>
-      <td class="docstring">
-        <p>
-Returns true if its safe to reload the connection between requests for
-development mode.
-</p>
-
-        
-      </td>
-    </tr>
-  
-    <tr>
-      <th class="signature">
-        
-          <span class='overload'>
-            <span class='name'><a href="#reset_runtime-instance_method" title="#reset_runtime">#reset_runtime</a></span><span class='args'></span>
-            <span class='block'></span>
-          </span>
-        
-        
-      </th>
-      <td class="docstring">
-        
-        
-      </td>
-    </tr>
-  
-    <tr>
-      <th class="signature">
-        
-          <span class='overload'>
-            <span class='name'><a href="#supports_count_distinct%3F-instance_method" title="#supports_count_distinct?">#supports_count_distinct?</a></span><span class='args'></span>
-            <span class='block'></span>
-          </span>
-        
-        
-      </th>
-      <td class="docstring">
-        <p>
-Does this adapter support using DISTINCT within COUNT? This is
-<tt>true</tt> for all adapters except sqlite.
-</p>
-
-        
-      </td>
-    </tr>
-  
-    <tr>
-      <th class="signature">
-        
-          <span class='overload'>
-            <span class='name'><a href="#supports_ddl_transactions%3F-instance_method" title="#supports_ddl_transactions?">#supports_ddl_transactions?</a></span><span class='args'></span>
-            <span class='block'></span>
-          </span>
-        
-        
-      </th>
-      <td class="docstring">
-        
-        
-      </td>
-    </tr>
-  
-    <tr>
-      <th class="signature">
-        
-          <span class='overload'>
-            <span class='name'><a href="#supports_migrations%3F-instance_method" title="#supports_migrations?">#supports_migrations?</a></span><span class='args'></span>
-            <span class='block'></span>
-          </span>
-        
-        
-      </th>
-      <td class="docstring">
-        <p>
-Does this adapter support migrations? Backend specific, as the abstract
-adapter always returns <tt>false</tt>.
-</p>
-
-        
-      </td>
-    </tr>
-  
-    <tr>
-      <th class="signature">
-        
-          <span class='overload'>
-            <span class='name'><a href="#table_exists%3F-instance_method" title="#table_exists?">#table_exists?</a></span><span class='args'>(table_name)</span>
-            <span class='block'></span>
-          </span>
-        
-        
-      </th>
-      <td class="docstring">
-        <p>
-SCHEMA STATEMENTS ========================================.
-</p>
-
-        
-      </td>
-    </tr>
-  
-    <tr>
-      <th class="signature">
-        
-          <span class='overload'>
-            <span class='name'><a href="#update-instance_method" title="#update">#update</a></span><span class='args'>(table_name, row, values, timestamp)</span>
-            <span class='block'></span>
-          </span>
-        
-        
-      </th>
-      <td class="docstring">
-        
-        
-      </td>
-    </tr>
-  
-    <tr>
-      <th class="signature">
-        
-          <span class='overload'>
-            <span class='name'><a href="#update_raw-instance_method" title="#update_raw">#update_raw</a></span><span class='args'>(table_name, row, values, timestamp)</span>
-            <span class='block'></span>
-          </span>
-        
-        
-      </th>
-      <td class="docstring">
-        <p>
-DATABASE STATEMENTS ======================================.
-</p>
-
-        
-      </td>
-    </tr>
-  
-    <tr>
-      <th class="signature">
-        
-          <span class='overload'>
-            <span class='name'><a href="#verify%21-instance_method" title="#verify!">#verify!</a></span><span class='args'>(timeout)</span>
-            <span class='block'></span>
-          </span>
-        
-        
-      </th>
-      <td class="docstring">
-        <p>
-Lazily verify this connection, calling <tt>active?</tt> only if it hasn&#8217;t
-been called for <tt>timeout</tt> seconds.
-</p>
-
-        
-      </td>
-    </tr>
-  
+    </td>
+  </tr>
 </table>
-<div class="included">
-  
-  <div>
-    <h1>Public Instance Methods Included from <a href="AbstractAdapter/Quoting.html" title="BigRecord::ConnectionAdapters::Quoting">BigRecord::ConnectionAdapters::Quoting</a></h1>
-    <p><span class='name'><a href="Quoting.html#quote-instance_method" title="quote">quote</a></span>, <span class='name'><a href="Quoting.html#quote_column_name-instance_method" title="quote_column_name">quote_column_name</a></span>, <span class='name'><a href="Quoting.html#quote_string-instance_method" title="quote_string">quote_string</a></span>, <span class='name'><a href="Quoting.html#quoted_date-instance_method" title="quoted_date">quoted_date</a></span>, <span class='name'><a href="Quoting.html#quoted_false-instance_method" title="quoted_false">quoted_false</a></span>, <span class='name'><a href="Quoting.html#quoted_true-instance_method" title="quoted_true">quoted_true</a></span></p>
-  </div>
-  
-  <div>
-    <h1>Public Instance Methods Included from <a href="AbstractAdapter/DatabaseStatements.html" title="BigRecord::ConnectionAdapters::DatabaseStatements">BigRecord::ConnectionAdapters::DatabaseStatements</a></h1>
-    <p><span class='name'><a href="DatabaseStatements.html#insert_fixture-instance_method" title="insert_fixture">insert_fixture</a></span></p>
-  </div>
+</div>
   
 </div>
-<div class="clear"></div>
-  </div>
-<div class="section methoddetails instance public">
-  <h1>Public Instance Method Details</h1>
-  
-    <div class="method">
-      <div class="method_header">
-  <h3>active?</h3>
-</div><div id="active?-instance_method" class="section method">
-  <div class="details_title">
-    <div class='section methodsignature'>
-    <tt class='def'>
-      <span class='visibility'>public</span>
-      <span class='return_types'></span>
-      <span class='name'>active?</span><span class='args'></span>
-      <span class='block'></span>
-    </tt>
-  </div>
 
-</div><div class="section docstring">
-  <p>
-CONNECTION MANAGEMENT ==================================== Is this
-connection active and ready to perform queries?
+
+  <div id="method_details">
+    <h2>Method Details</h2>
+    
+      <div class="method_details first">
+  <p class="signature first" id="active?-instance_method">
+  
+    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>active?</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Is this connection active and ready to perform queries?
 </p>
 
-</div><div class="section source">
-  <span>[<a class="source_link" href="#">View source</a>]</span>
-  <div class="source_code">
-    <table>
-      <tr>
-        <td>
-          <pre class="lines">
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
 
 
 79
 80
 81</pre>
-        </td>
-        <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/abstract_adapter.rb', line 79</span>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/abstract_adapter.rb', line 79</span>
 
 <span class='def def kw'>def</span> <span class='active? fid id'>active?</span>
   <span class='@active ivar id'>@active</span> <span class='neq op'>!=</span> <span class='false false kw'>false</span>
 <span class='end end kw'>end</span>
 </pre>
-        </td>
-      </tr>
-    </table>
-  </div>
+    </td>
+  </tr>
+</table>
 </div>
-</div>
-    </div>
+    
+      <div class="method_details ">
+  <p class="signature " id="adapter_name-instance_method">
   
-    <div class="method">
-      <div class="method_header">
-  <h3>adapter_name</h3>
-</div><div id="adapter_name-instance_method" class="section method">
-  <div class="details_title">
-    <div class='section methodsignature'>
-    <tt class='def'>
-      <span class='visibility'>public</span>
-      <span class='return_types'></span>
-      <span class='name'>adapter_name</span><span class='args'></span>
-      <span class='block'></span>
-    </tt>
-  </div>
+    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>adapter_name</strong> 
+  
 
-</div><div class="section docstring">
-  <p>
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
 Returns the human-readable name of the adapter. Use mixed case - one can
 always use downcase if needed.
 </p>
 
-</div><div class="section source">
-  <span>[<a class="source_link" href="#">View source</a>]</span>
-  <div class="source_code">
-    <table>
-      <tr>
-        <td>
-          <pre class="lines">
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
 
 
 29
 30
 31</pre>
-        </td>
-        <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/abstract_adapter.rb', line 29</span>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/abstract_adapter.rb', line 29</span>
 
 <span class='def def kw'>def</span> <span class='adapter_name identifier id'>adapter_name</span>
   <span class='string val'>'Abstract'</span>
 <span class='end end kw'>end</span>
 </pre>
-        </td>
-      </tr>
-    </table>
-  </div>
+    </td>
+  </tr>
+</table>
 </div>
-</div>
-    </div>
+    
+      <div class="method_details ">
+  <p class="signature " id="create_table-instance_method">
   
-    <div class="method">
-      <div class="method_header">
-  <h3>create_table</h3>
-</div><div id="create_table-instance_method" class="section method">
-  <div class="details_title">
-    <div class='section methodsignature'>
-    <tt class='def'>
-      <span class='visibility'>public</span>
-      <span class='return_types'></span>
-      <span class='name'>create_table</span><span class='args'>(table_name, column_families)</span>
-      <span class='block'></span>
-    </tt>
-  </div>
+    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>create_table</strong>(table_name, column_families) 
+  
 
-</div><div class="section tags">
-  <h2>Meta Tags</h2>
-  <div class="raise">
+  
+</p><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
   <h3>Raises:</h3>
-  <dl>
+<ul class="raise">
   
-    <dt>
+    <li>
       
-        <span class='type'>[<tt>NotImplementedError</tt>]</span>
+        <span class='type'>(<tt>NotImplementedError</tt>)</span>
       
       
       
-    </dt>
-    <dd>
-      <span class='desc'></span>
-    </dd>
+      
+    </li>
   
-  </dl>
-</div>
+</ul>
 
-</div><div class="section source">
-  <span>[<a class="source_link" href="#">View source</a>]</span>
-  <div class="source_code">
-    <table>
-      <tr>
-        <td>
-          <pre class="lines">
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
 
 
 164
 165
 166</pre>
-        </td>
-        <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/abstract_adapter.rb', line 164</span>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/abstract_adapter.rb', line 164</span>
 
 <span class='def def kw'>def</span> <span class='create_table identifier id'>create_table</span><span class='lparen token'>(</span><span class='table_name identifier id'>table_name</span><span class='comma token'>,</span> <span class='column_families identifier id'>column_families</span><span class='rparen token'>)</span>
   <span class='raise identifier id'>raise</span> <span class='NotImplementedError constant id'>NotImplementedError</span>
 <span class='end end kw'>end</span>
 </pre>
-        </td>
-      </tr>
-    </table>
-  </div>
+    </td>
+  </tr>
+</table>
 </div>
-</div>
-    </div>
+    
+      <div class="method_details ">
+  <p class="signature " id="delete-instance_method">
   
-    <div class="method">
-      <div class="method_header">
-  <h3>delete</h3>
-</div><div id="delete-instance_method" class="section method">
-  <div class="details_title">
-    <div class='section methodsignature'>
-    <tt class='def'>
-      <span class='visibility'>public</span>
-      <span class='return_types'></span>
-      <span class='name'>delete</span><span class='args'>(table_name, row)</span>
-      <span class='block'></span>
-    </tt>
-  </div>
+    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>delete</strong>(table_name, row) 
+  
 
-</div><div class="section tags">
-  <h2>Meta Tags</h2>
-  <div class="raise">
+  
+</p><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
   <h3>Raises:</h3>
-  <dl>
+<ul class="raise">
   
-    <dt>
+    <li>
       
-        <span class='type'>[<tt>NotImplementedError</tt>]</span>
+        <span class='type'>(<tt>NotImplementedError</tt>)</span>
       
       
       
-    </dt>
-    <dd>
-      <span class='desc'></span>
-    </dd>
+      
+    </li>
   
-  </dl>
-</div>
+</ul>
 
-</div><div class="section source">
-  <span>[<a class="source_link" href="#">View source</a>]</span>
-  <div class="source_code">
-    <table>
-      <tr>
-        <td>
-          <pre class="lines">
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
 
 
 150
 151
 152</pre>
-        </td>
-        <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/abstract_adapter.rb', line 150</span>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/abstract_adapter.rb', line 150</span>
 
 <span class='def def kw'>def</span> <span class='delete identifier id'>delete</span><span class='lparen token'>(</span><span class='table_name identifier id'>table_name</span><span class='comma token'>,</span> <span class='row identifier id'>row</span><span class='rparen token'>)</span>
   <span class='raise identifier id'>raise</span> <span class='NotImplementedError constant id'>NotImplementedError</span>
 <span class='end end kw'>end</span>
 </pre>
-        </td>
-      </tr>
-    </table>
-  </div>
+    </td>
+  </tr>
+</table>
 </div>
-</div>
-    </div>
+    
+      <div class="method_details ">
+  <p class="signature " id="delete_all-instance_method">
   
-    <div class="method">
-      <div class="method_header">
-  <h3>delete_all</h3>
-</div><div id="delete_all-instance_method" class="section method">
-  <div class="details_title">
-    <div class='section methodsignature'>
-    <tt class='def'>
-      <span class='visibility'>public</span>
-      <span class='return_types'></span>
-      <span class='name'>delete_all</span><span class='args'>(table_name)</span>
-      <span class='block'></span>
-    </tt>
-  </div>
+    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>delete_all</strong>(table_name) 
+  
 
-</div><div class="section tags">
-  <h2>Meta Tags</h2>
-  <div class="raise">
+  
+</p><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
   <h3>Raises:</h3>
-  <dl>
+<ul class="raise">
   
-    <dt>
+    <li>
       
-        <span class='type'>[<tt>NotImplementedError</tt>]</span>
+        <span class='type'>(<tt>NotImplementedError</tt>)</span>
       
       
       
-    </dt>
-    <dd>
-      <span class='desc'></span>
-    </dd>
+      
+    </li>
   
-  </dl>
-</div>
+</ul>
 
-</div><div class="section source">
-  <span>[<a class="source_link" href="#">View source</a>]</span>
-  <div class="source_code">
-    <table>
-      <tr>
-        <td>
-          <pre class="lines">
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
 
 
 154
 155
 156</pre>
-        </td>
-        <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/abstract_adapter.rb', line 154</span>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/abstract_adapter.rb', line 154</span>
 
 <span class='def def kw'>def</span> <span class='delete_all identifier id'>delete_all</span><span class='lparen token'>(</span><span class='table_name identifier id'>table_name</span><span class='rparen token'>)</span>
   <span class='raise identifier id'>raise</span> <span class='NotImplementedError constant id'>NotImplementedError</span>
 <span class='end end kw'>end</span>
 </pre>
-        </td>
-      </tr>
-    </table>
-  </div>
+    </td>
+  </tr>
+</table>
 </div>
-</div>
-    </div>
+    
+      <div class="method_details ">
+  <p class="signature " id="disable_referential_integrity-instance_method">
   
-    <div class="method">
-      <div class="method_header">
-  <h3>disable_referential_integrity</h3>
-</div><div id="disable_referential_integrity-instance_method" class="section method">
-  <div class="details_title">
-    <div class='section methodsignature'>
-    <tt class='def'>
-      <span class='visibility'>public</span>
-      <span class='return_types'></span>
-      <span class='name'>disable_referential_integrity</span><span class='args'>(&amp;block)</span>
-      <span class='block'></span>
-    </tt>
-  </div>
+    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>disable_referential_integrity</strong>(&amp;block) 
+  
 
-</div><div class="section docstring">
-  <p>
-REFERENTIAL INTEGRITY ==================================== Override to turn
-off referential integrity while executing <tt>&amp;block</tt>
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Override to turn off referential integrity while executing
+<tt>&amp;block</tt>
 </p>
 
-</div><div class="section tags">
-  <h2>Meta Tags</h2>
-  <div class="yield">
-  <h3>Yields:</h3>
-  <dl>
-  
-    <dt>
-      
-        <span class='type'></span>
-      
-      
-        <span class='name'></span>
-      
-      
-    </dt>
-    <dd>
-      <span class='desc'></span>
-    </dd>
-  
-  </dl>
-</div>
 
-</div><div class="section source">
-  <span>[<a class="source_link" href="#">View source</a>]</span>
-  <div class="source_code">
-    <table>
-      <tr>
-        <td>
-          <pre class="lines">
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
 
 
 72
 73
 74</pre>
-        </td>
-        <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/abstract_adapter.rb', line 72</span>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/abstract_adapter.rb', line 72</span>
 
 <span class='def def kw'>def</span> <span class='disable_referential_integrity identifier id'>disable_referential_integrity</span><span class='lparen token'>(</span><span class='bitand op'>&amp;</span><span class='block identifier id'>block</span><span class='rparen token'>)</span>
   <span class='yield yield kw'>yield</span>
 <span class='end end kw'>end</span>
 </pre>
-        </td>
-      </tr>
-    </table>
-  </div>
+    </td>
+  </tr>
+</table>
 </div>
-</div>
-    </div>
+    
+      <div class="method_details ">
+  <p class="signature " id="disconnect!-instance_method">
   
-    <div class="method">
-      <div class="method_header">
-  <h3>disconnect!</h3>
-</div><div id="disconnect!-instance_method" class="section method">
-  <div class="details_title">
-    <div class='section methodsignature'>
-    <tt class='def'>
-      <span class='visibility'>public</span>
-      <span class='return_types'></span>
-      <span class='name'>disconnect!</span><span class='args'></span>
-      <span class='block'></span>
-    </tt>
-  </div>
+    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>disconnect!</strong> 
+  
 
-</div><div class="section docstring">
-  <p>
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
 Close this connection
 </p>
 
-</div><div class="section source">
-  <span>[<a class="source_link" href="#">View source</a>]</span>
-  <div class="source_code">
-    <table>
-      <tr>
-        <td>
-          <pre class="lines">
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
 
 
 89
 90
 91</pre>
-        </td>
-        <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/abstract_adapter.rb', line 89</span>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/abstract_adapter.rb', line 89</span>
 
 <span class='def def kw'>def</span> <span class='disconnect! fid id'>disconnect!</span>
   <span class='@active ivar id'>@active</span> <span class='assign token'>=</span> <span class='false false kw'>false</span>
 <span class='end end kw'>end</span>
 </pre>
-        </td>
-      </tr>
-    </table>
-  </div>
+    </td>
+  </tr>
+</table>
 </div>
-</div>
-    </div>
+    
+      <div class="method_details ">
+  <p class="signature " id="drop_table-instance_method">
   
-    <div class="method">
-      <div class="method_header">
-  <h3>drop_table</h3>
-</div><div id="drop_table-instance_method" class="section method">
-  <div class="details_title">
-    <div class='section methodsignature'>
-    <tt class='def'>
-      <span class='visibility'>public</span>
-      <span class='return_types'></span>
-      <span class='name'>drop_table</span><span class='args'>(table_name)</span>
-      <span class='block'></span>
-    </tt>
-  </div>
+    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>drop_table</strong>(table_name) 
+  
 
-</div><div class="section tags">
-  <h2>Meta Tags</h2>
-  <div class="raise">
+  
+</p><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
   <h3>Raises:</h3>
-  <dl>
+<ul class="raise">
   
-    <dt>
+    <li>
       
-        <span class='type'>[<tt>NotImplementedError</tt>]</span>
+        <span class='type'>(<tt>NotImplementedError</tt>)</span>
       
       
       
-    </dt>
-    <dd>
-      <span class='desc'></span>
-    </dd>
+      
+    </li>
   
-  </dl>
-</div>
+</ul>
 
-</div><div class="section source">
-  <span>[<a class="source_link" href="#">View source</a>]</span>
-  <div class="source_code">
-    <table>
-      <tr>
-        <td>
-          <pre class="lines">
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
 
 
 168
 169
 170</pre>
-        </td>
-        <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/abstract_adapter.rb', line 168</span>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/abstract_adapter.rb', line 168</span>
 
 <span class='def def kw'>def</span> <span class='drop_table identifier id'>drop_table</span><span class='lparen token'>(</span><span class='table_name identifier id'>table_name</span><span class='rparen token'>)</span>
   <span class='raise identifier id'>raise</span> <span class='NotImplementedError constant id'>NotImplementedError</span>
 <span class='end end kw'>end</span>
 </pre>
-        </td>
-      </tr>
-    </table>
-  </div>
+    </td>
+  </tr>
+</table>
 </div>
-</div>
-    </div>
+    
+      <div class="method_details ">
+  <p class="signature " id="get-instance_method">
   
-    <div class="method">
-      <div class="method_header">
-  <h3>get</h3>
-</div><div id="get-instance_method" class="section method">
-  <div class="details_title">
-    <div class='section methodsignature'>
-    <tt class='def'>
-      <span class='visibility'>public</span>
-      <span class='return_types'></span>
-      <span class='name'>get</span><span class='args'>(table_name, row, column, options = {})</span>
-      <span class='block'></span>
-    </tt>
-  </div>
+    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>get</strong>(table_name, row, column, options = {}) 
+  
 
-</div><div class="section tags">
-  <h2>Meta Tags</h2>
-  <div class="raise">
+  
+</p><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
   <h3>Raises:</h3>
-  <dl>
+<ul class="raise">
   
-    <dt>
+    <li>
       
-        <span class='type'>[<tt>NotImplementedError</tt>]</span>
+        <span class='type'>(<tt>NotImplementedError</tt>)</span>
       
       
       
-    </dt>
-    <dd>
-      <span class='desc'></span>
-    </dd>
+      
+    </li>
   
-  </dl>
-</div>
+</ul>
 
-</div><div class="section source">
-  <span>[<a class="source_link" href="#">View source</a>]</span>
-  <div class="source_code">
-    <table>
-      <tr>
-        <td>
-          <pre class="lines">
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
 
 
 130
 131
 132</pre>
-        </td>
-        <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/abstract_adapter.rb', line 130</span>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/abstract_adapter.rb', line 130</span>
 
 <span class='def def kw'>def</span> <span class='get identifier id'>get</span><span class='lparen token'>(</span><span class='table_name identifier id'>table_name</span><span class='comma token'>,</span> <span class='row identifier id'>row</span><span class='comma token'>,</span> <span class='column identifier id'>column</span><span class='comma token'>,</span> <span class='options identifier id'>options</span><span class='assign token'>=</span><span class='lbrace token'>{</span><span class='rbrace token'>}</span><span class='rparen token'>)</span>
   <span class='raise identifier id'>raise</span> <span class='NotImplementedError constant id'>NotImplementedError</span>
 <span class='end end kw'>end</span>
 </pre>
-        </td>
-      </tr>
-    </table>
-  </div>
+    </td>
+  </tr>
+</table>
 </div>
-</div>
-    </div>
+    
+      <div class="method_details ">
+  <p class="signature " id="get_columns-instance_method">
   
-    <div class="method">
-      <div class="method_header">
-  <h3>get_columns</h3>
-</div><div id="get_columns-instance_method" class="section method">
-  <div class="details_title">
-    <div class='section methodsignature'>
-    <tt class='def'>
-      <span class='visibility'>public</span>
-      <span class='return_types'></span>
-      <span class='name'>get_columns</span><span class='args'>(table_name, row, columns, options = {})</span>
-      <span class='block'></span>
-    </tt>
-  </div>
+    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>get_columns</strong>(table_name, row, columns, options = {}) 
+  
 
-</div><div class="section tags">
-  <h2>Meta Tags</h2>
-  <div class="raise">
+  
+</p><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
   <h3>Raises:</h3>
-  <dl>
+<ul class="raise">
   
-    <dt>
+    <li>
       
-        <span class='type'>[<tt>NotImplementedError</tt>]</span>
+        <span class='type'>(<tt>NotImplementedError</tt>)</span>
       
       
       
-    </dt>
-    <dd>
-      <span class='desc'></span>
-    </dd>
+      
+    </li>
   
-  </dl>
-</div>
+</ul>
 
-</div><div class="section source">
-  <span>[<a class="source_link" href="#">View source</a>]</span>
-  <div class="source_code">
-    <table>
-      <tr>
-        <td>
-          <pre class="lines">
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
 
 
 138
 139
 140</pre>
-        </td>
-        <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/abstract_adapter.rb', line 138</span>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/abstract_adapter.rb', line 138</span>
 
 <span class='def def kw'>def</span> <span class='get_columns identifier id'>get_columns</span><span class='lparen token'>(</span><span class='table_name identifier id'>table_name</span><span class='comma token'>,</span> <span class='row identifier id'>row</span><span class='comma token'>,</span> <span class='columns identifier id'>columns</span><span class='comma token'>,</span> <span class='options identifier id'>options</span><span class='assign token'>=</span><span class='lbrace token'>{</span><span class='rbrace token'>}</span><span class='rparen token'>)</span>
   <span class='raise identifier id'>raise</span> <span class='NotImplementedError constant id'>NotImplementedError</span>
 <span class='end end kw'>end</span>
 </pre>
-        </td>
-      </tr>
-    </table>
-  </div>
+    </td>
+  </tr>
+</table>
 </div>
-</div>
-    </div>
+    
+      <div class="method_details ">
+  <p class="signature " id="get_columns_raw-instance_method">
   
-    <div class="method">
-      <div class="method_header">
-  <h3>get_columns_raw</h3>
-</div><div id="get_columns_raw-instance_method" class="section method">
-  <div class="details_title">
-    <div class='section methodsignature'>
-    <tt class='def'>
-      <span class='visibility'>public</span>
-      <span class='return_types'></span>
-      <span class='name'>get_columns_raw</span><span class='args'>(table_name, row, columns, options = {})</span>
-      <span class='block'></span>
-    </tt>
-  </div>
+    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>get_columns_raw</strong>(table_name, row, columns, options = {}) 
+  
 
-</div><div class="section tags">
-  <h2>Meta Tags</h2>
-  <div class="raise">
+  
+</p><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
   <h3>Raises:</h3>
-  <dl>
+<ul class="raise">
   
-    <dt>
+    <li>
       
-        <span class='type'>[<tt>NotImplementedError</tt>]</span>
+        <span class='type'>(<tt>NotImplementedError</tt>)</span>
       
       
       
-    </dt>
-    <dd>
-      <span class='desc'></span>
-    </dd>
+      
+    </li>
   
-  </dl>
-</div>
+</ul>
 
-</div><div class="section source">
-  <span>[<a class="source_link" href="#">View source</a>]</span>
-  <div class="source_code">
-    <table>
-      <tr>
-        <td>
-          <pre class="lines">
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
 
 
 134
 135
 136</pre>
-        </td>
-        <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/abstract_adapter.rb', line 134</span>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/abstract_adapter.rb', line 134</span>
 
 <span class='def def kw'>def</span> <span class='get_columns_raw identifier id'>get_columns_raw</span><span class='lparen token'>(</span><span class='table_name identifier id'>table_name</span><span class='comma token'>,</span> <span class='row identifier id'>row</span><span class='comma token'>,</span> <span class='columns identifier id'>columns</span><span class='comma token'>,</span> <span class='options identifier id'>options</span><span class='assign token'>=</span><span class='lbrace token'>{</span><span class='rbrace token'>}</span><span class='rparen token'>)</span>
   <span class='raise identifier id'>raise</span> <span class='NotImplementedError constant id'>NotImplementedError</span>
 <span class='end end kw'>end</span>
 </pre>
-        </td>
-      </tr>
-    </table>
-  </div>
+    </td>
+  </tr>
+</table>
 </div>
-</div>
-    </div>
+    
+      <div class="method_details ">
+  <p class="signature " id="get_consecutive_rows-instance_method">
   
-    <div class="method">
-      <div class="method_header">
-  <h3>get_consecutive_rows</h3>
-</div><div id="get_consecutive_rows-instance_method" class="section method">
-  <div class="details_title">
-    <div class='section methodsignature'>
-    <tt class='def'>
-      <span class='visibility'>public</span>
-      <span class='return_types'></span>
-      <span class='name'>get_consecutive_rows</span><span class='args'>(table_name, start_row, limit, columns, stop_row = nil)</span>
-      <span class='block'></span>
-    </tt>
-  </div>
+    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>get_consecutive_rows</strong>(table_name, start_row, limit, columns, stop_row = nil) 
+  
 
-</div><div class="section tags">
-  <h2>Meta Tags</h2>
-  <div class="raise">
+  
+</p><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
   <h3>Raises:</h3>
-  <dl>
+<ul class="raise">
   
-    <dt>
+    <li>
       
-        <span class='type'>[<tt>NotImplementedError</tt>]</span>
+        <span class='type'>(<tt>NotImplementedError</tt>)</span>
       
       
       
-    </dt>
-    <dd>
-      <span class='desc'></span>
-    </dd>
+      
+    </li>
   
-  </dl>
-</div>
+</ul>
 
-</div><div class="section source">
-  <span>[<a class="source_link" href="#">View source</a>]</span>
-  <div class="source_code">
-    <table>
-      <tr>
-        <td>
-          <pre class="lines">
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
 
 
 146
 147
 148</pre>
-        </td>
-        <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/abstract_adapter.rb', line 146</span>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/abstract_adapter.rb', line 146</span>
 
 <span class='def def kw'>def</span> <span class='get_consecutive_rows identifier id'>get_consecutive_rows</span><span class='lparen token'>(</span><span class='table_name identifier id'>table_name</span><span class='comma token'>,</span> <span class='start_row identifier id'>start_row</span><span class='comma token'>,</span> <span class='limit identifier id'>limit</span><span class='comma token'>,</span> <span class='columns identifier id'>columns</span><span class='comma token'>,</span> <span class='stop_row identifier id'>stop_row</span> <span class='assign token'>=</span> <span class='nil nil kw'>nil</span><span class='rparen token'>)</span>
   <span class='raise identifier id'>raise</span> <span class='NotImplementedError constant id'>NotImplementedError</span>
 <span class='end end kw'>end</span>
 </pre>
-        </td>
-      </tr>
-    </table>
-  </div>
+    </td>
+  </tr>
+</table>
 </div>
-</div>
-    </div>
+    
+      <div class="method_details ">
+  <p class="signature " id="get_consecutive_rows_raw-instance_method">
   
-    <div class="method">
-      <div class="method_header">
-  <h3>get_consecutive_rows_raw</h3>
-</div><div id="get_consecutive_rows_raw-instance_method" class="section method">
-  <div class="details_title">
-    <div class='section methodsignature'>
-    <tt class='def'>
-      <span class='visibility'>public</span>
-      <span class='return_types'></span>
-      <span class='name'>get_consecutive_rows_raw</span><span class='args'>(table_name, start_row, limit, columns, stop_row = nil)</span>
-      <span class='block'></span>
-    </tt>
-  </div>
+    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>get_consecutive_rows_raw</strong>(table_name, start_row, limit, columns, stop_row = nil) 
+  
 
-</div><div class="section tags">
-  <h2>Meta Tags</h2>
-  <div class="raise">
+  
+</p><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
   <h3>Raises:</h3>
-  <dl>
+<ul class="raise">
   
-    <dt>
+    <li>
       
-        <span class='type'>[<tt>NotImplementedError</tt>]</span>
+        <span class='type'>(<tt>NotImplementedError</tt>)</span>
       
       
       
-    </dt>
-    <dd>
-      <span class='desc'></span>
-    </dd>
+      
+    </li>
   
-  </dl>
-</div>
+</ul>
 
-</div><div class="section source">
-  <span>[<a class="source_link" href="#">View source</a>]</span>
-  <div class="source_code">
-    <table>
-      <tr>
-        <td>
-          <pre class="lines">
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
 
 
 142
 143
 144</pre>
-        </td>
-        <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/abstract_adapter.rb', line 142</span>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/abstract_adapter.rb', line 142</span>
 
 <span class='def def kw'>def</span> <span class='get_consecutive_rows_raw identifier id'>get_consecutive_rows_raw</span><span class='lparen token'>(</span><span class='table_name identifier id'>table_name</span><span class='comma token'>,</span> <span class='start_row identifier id'>start_row</span><span class='comma token'>,</span> <span class='limit identifier id'>limit</span><span class='comma token'>,</span> <span class='columns identifier id'>columns</span><span class='comma token'>,</span> <span class='stop_row identifier id'>stop_row</span> <span class='assign token'>=</span> <span class='nil nil kw'>nil</span><span class='rparen token'>)</span>
   <span class='raise identifier id'>raise</span> <span class='NotImplementedError constant id'>NotImplementedError</span>
 <span class='end end kw'>end</span>
 </pre>
-        </td>
-      </tr>
-    </table>
-  </div>
+    </td>
+  </tr>
+</table>
 </div>
-</div>
-    </div>
+    
+      <div class="method_details ">
+  <p class="signature " id="get_raw-instance_method">
   
-    <div class="method">
-      <div class="method_header">
-  <h3>get_raw</h3>
-</div><div id="get_raw-instance_method" class="section method">
-  <div class="details_title">
-    <div class='section methodsignature'>
-    <tt class='def'>
-      <span class='visibility'>public</span>
-      <span class='return_types'></span>
-      <span class='name'>get_raw</span><span class='args'>(table_name, row, column, options = {})</span>
-      <span class='block'></span>
-    </tt>
-  </div>
+    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>get_raw</strong>(table_name, row, column, options = {}) 
+  
 
-</div><div class="section tags">
-  <h2>Meta Tags</h2>
-  <div class="raise">
+  
+</p><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
   <h3>Raises:</h3>
-  <dl>
+<ul class="raise">
   
-    <dt>
+    <li>
       
-        <span class='type'>[<tt>NotImplementedError</tt>]</span>
+        <span class='type'>(<tt>NotImplementedError</tt>)</span>
       
       
       
-    </dt>
-    <dd>
-      <span class='desc'></span>
-    </dd>
+      
+    </li>
   
-  </dl>
-</div>
+</ul>
 
-</div><div class="section source">
-  <span>[<a class="source_link" href="#">View source</a>]</span>
-  <div class="source_code">
-    <table>
-      <tr>
-        <td>
-          <pre class="lines">
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
 
 
 126
 127
 128</pre>
-        </td>
-        <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/abstract_adapter.rb', line 126</span>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/abstract_adapter.rb', line 126</span>
 
 <span class='def def kw'>def</span> <span class='get_raw identifier id'>get_raw</span><span class='lparen token'>(</span><span class='table_name identifier id'>table_name</span><span class='comma token'>,</span> <span class='row identifier id'>row</span><span class='comma token'>,</span> <span class='column identifier id'>column</span><span class='comma token'>,</span> <span class='options identifier id'>options</span><span class='assign token'>=</span><span class='lbrace token'>{</span><span class='rbrace token'>}</span><span class='rparen token'>)</span>
   <span class='raise identifier id'>raise</span> <span class='NotImplementedError constant id'>NotImplementedError</span>
 <span class='end end kw'>end</span>
 </pre>
-        </td>
-      </tr>
-    </table>
-  </div>
+    </td>
+  </tr>
+</table>
 </div>
-</div>
-    </div>
+    
+      <div class="method_details ">
+  <p class="signature " id="prefetch_primary_key?-instance_method">
   
-    <div class="method">
-      <div class="method_header">
-  <h3>prefetch_primary_key?</h3>
-</div><div id="prefetch_primary_key?-instance_method" class="section method">
-  <div class="details_title">
-    <div class='section methodsignature'>
-    <tt class='def'>
-      <span class='visibility'>public</span>
-      <span class='return_types'></span>
-      <span class='name'>prefetch_primary_key?</span><span class='args'>(table_name = nil)</span>
-      <span class='block'></span>
-    </tt>
-  </div>
+    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>prefetch_primary_key?</strong>(table_name = nil) 
+  
 
-</div><div class="section docstring">
-  <p>
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
 Should primary key values be selected from their corresponding sequence
 before the insert statement? If true, next_sequence_value is called before
 each insert to set the record&#8217;s primary key. This is false for all
 adapters but Firebird.
 </p>
 
-</div><div class="section source">
-  <span>[<a class="source_link" href="#">View source</a>]</span>
-  <div class="source_code">
-    <table>
-      <tr>
-        <td>
-          <pre class="lines">
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
 
 
 53
 54
 55</pre>
-        </td>
-        <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/abstract_adapter.rb', line 53</span>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/abstract_adapter.rb', line 53</span>
 
 <span class='def def kw'>def</span> <span class='prefetch_primary_key? fid id'>prefetch_primary_key?</span><span class='lparen token'>(</span><span class='table_name identifier id'>table_name</span> <span class='assign token'>=</span> <span class='nil nil kw'>nil</span><span class='rparen token'>)</span>
   <span class='false false kw'>false</span>
 <span class='end end kw'>end</span>
 </pre>
-        </td>
-      </tr>
-    </table>
-  </div>
+    </td>
+  </tr>
+</table>
 </div>
-</div>
-    </div>
+    
+      <div class="method_details ">
+  <p class="signature " id="quote_table_name-instance_method">
   
-    <div class="method">
-      <div class="method_header">
-  <h3>quote_table_name</h3>
-</div><div id="quote_table_name-instance_method" class="section method">
-  <div class="details_title">
-    <div class='section methodsignature'>
-    <tt class='def'>
-      <span class='visibility'>public</span>
-      <span class='return_types'></span>
-      <span class='name'>quote_table_name</span><span class='args'>(name)</span>
-      <span class='block'></span>
-    </tt>
-  </div>
+    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>quote_table_name</strong>(name) 
+  
 
-</div><div class="section docstring">
-  <p>
-QUOTING ================================================== Override to
-return the quoted table name if the database needs it
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Override to return the quoted table name if the database needs it
 </p>
 
-</div><div class="section source">
-  <span>[<a class="source_link" href="#">View source</a>]</span>
-  <div class="source_code">
-    <table>
-      <tr>
-        <td>
-          <pre class="lines">
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
 
 
 65
 66
 67</pre>
-        </td>
-        <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/abstract_adapter.rb', line 65</span>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/abstract_adapter.rb', line 65</span>
 
 <span class='def def kw'>def</span> <span class='quote_table_name identifier id'>quote_table_name</span><span class='lparen token'>(</span><span class='name identifier id'>name</span><span class='rparen token'>)</span>
   <span class='name identifier id'>name</span>
 <span class='end end kw'>end</span>
 </pre>
-        </td>
-      </tr>
-    </table>
-  </div>
+    </td>
+  </tr>
+</table>
 </div>
-</div>
-    </div>
+    
+      <div class="method_details ">
+  <p class="signature " id="raw_connection-instance_method">
   
-    <div class="method">
-      <div class="method_header">
-  <h3>raw_connection</h3>
-</div><div id="raw_connection-instance_method" class="section method">
-  <div class="details_title">
-    <div class='section methodsignature'>
-    <tt class='def'>
-      <span class='visibility'>public</span>
-      <span class='return_types'></span>
-      <span class='name'>raw_connection</span><span class='args'></span>
-      <span class='block'></span>
-    </tt>
-  </div>
+    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>raw_connection</strong> 
+  
 
-</div><div class="section docstring">
-  <p>
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
 Provides access to the underlying database connection. Useful for when you
 need to call a proprietary method such as postgresql&#8217;s lo_* methods
 </p>
 
-</div><div class="section source">
-  <span>[<a class="source_link" href="#">View source</a>]</span>
-  <div class="source_code">
-    <table>
-      <tr>
-        <td>
-          <pre class="lines">
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
 
 
 112
 113
 114</pre>
-        </td>
-        <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/abstract_adapter.rb', line 112</span>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/abstract_adapter.rb', line 112</span>
 
 <span class='def def kw'>def</span> <span class='raw_connection identifier id'>raw_connection</span>
   <span class='@connection ivar id'>@connection</span>
 <span class='end end kw'>end</span>
 </pre>
-        </td>
-      </tr>
-    </table>
-  </div>
+    </td>
+  </tr>
+</table>
 </div>
-</div>
-    </div>
+    
+      <div class="method_details ">
+  <p class="signature " id="reconnect!-instance_method">
   
-    <div class="method">
-      <div class="method_header">
-  <h3>reconnect!</h3>
-</div><div id="reconnect!-instance_method" class="section method">
-  <div class="details_title">
-    <div class='section methodsignature'>
-    <tt class='def'>
-      <span class='visibility'>public</span>
-      <span class='return_types'></span>
-      <span class='name'>reconnect!</span><span class='args'></span>
-      <span class='block'></span>
-    </tt>
-  </div>
+    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>reconnect!</strong> 
+  
 
-</div><div class="section docstring">
-  <p>
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
 Close this connection and open a new one in its place.
 </p>
 
-</div><div class="section source">
-  <span>[<a class="source_link" href="#">View source</a>]</span>
-  <div class="source_code">
-    <table>
-      <tr>
-        <td>
-          <pre class="lines">
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
 
 
 84
 85
 86</pre>
-        </td>
-        <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/abstract_adapter.rb', line 84</span>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/abstract_adapter.rb', line 84</span>
 
 <span class='def def kw'>def</span> <span class='reconnect! fid id'>reconnect!</span>
   <span class='@active ivar id'>@active</span> <span class='assign token'>=</span> <span class='true true kw'>true</span>
 <span class='end end kw'>end</span>
 </pre>
-        </td>
-      </tr>
-    </table>
-  </div>
+    </td>
+  </tr>
+</table>
 </div>
-</div>
-    </div>
+    
+      <div class="method_details ">
+  <p class="signature " id="requires_reloading?-instance_method">
   
-    <div class="method">
-      <div class="method_header">
-  <h3>requires_reloading?</h3>
-</div><div id="requires_reloading?-instance_method" class="section method">
-  <div class="details_title">
-    <div class='section methodsignature'>
-    <tt class='def'>
-      <span class='visibility'>public</span>
-      <span class='return_types'></span>
-      <span class='name'>requires_reloading?</span><span class='args'></span>
-      <span class='block'></span>
-    </tt>
-  </div>
+    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>requires_reloading?</strong> 
+  
 
-</div><div class="section docstring">
-  <p>
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
 Returns true if its safe to reload the connection between requests for
 development mode. This is not the case for Ruby/MySQL and it&#8217;s not
 necessary for any adapters except SQLite.
 </p>
 
-</div><div class="section source">
-  <span>[<a class="source_link" href="#">View source</a>]</span>
-  <div class="source_code">
-    <table>
-      <tr>
-        <td>
-          <pre class="lines">
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
 
 
 95
 96
 97</pre>
-        </td>
-        <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/abstract_adapter.rb', line 95</span>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/abstract_adapter.rb', line 95</span>
 
 <span class='def def kw'>def</span> <span class='requires_reloading? fid id'>requires_reloading?</span>
   <span class='false false kw'>false</span>
 <span class='end end kw'>end</span>
 </pre>
-        </td>
-      </tr>
-    </table>
-  </div>
+    </td>
+  </tr>
+</table>
 </div>
-</div>
-    </div>
+    
+      <div class="method_details ">
+  <p class="signature " id="reset_runtime-instance_method">
   
-    <div class="method">
-      <div class="method_header">
-  <h3>reset_runtime</h3>
-</div><div id="reset_runtime-instance_method" class="section method">
-  <div class="details_title">
-    <div class='section methodsignature'>
-    <tt class='def'>
-      <span class='visibility'>public</span>
-      <span class='return_types'></span>
-      <span class='name'>reset_runtime</span><span class='args'></span>
-      <span class='block'></span>
-    </tt>
-  </div>
+    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>reset_runtime</strong> 
+  
 
-</div><div class="section source">
-  <span>[<a class="source_link" href="#">View source</a>]</span>
-  <div class="source_code">
-    <table>
-      <tr>
-        <td>
-          <pre class="lines">
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
 
 
 57
 58
 59
 60</pre>
-        </td>
-        <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/abstract_adapter.rb', line 57</span>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/abstract_adapter.rb', line 57</span>
 
 <span class='def def kw'>def</span> <span class='reset_runtime identifier id'>reset_runtime</span> 
   <span class='rt identifier id'>rt</span><span class='comma token'>,</span> <span class='@runtime ivar id'>@runtime</span> <span class='assign token'>=</span> <span class='@runtime ivar id'>@runtime</span><span class='comma token'>,</span> <span class='integer val'>0</span>
   <span class='rt identifier id'>rt</span>
 <span class='end end kw'>end</span>
 </pre>
-        </td>
-      </tr>
-    </table>
-  </div>
+    </td>
+  </tr>
+</table>
 </div>
-</div>
-    </div>
+    
+      <div class="method_details ">
+  <p class="signature " id="supports_count_distinct?-instance_method">
   
-    <div class="method">
-      <div class="method_header">
-  <h3>supports_count_distinct?</h3>
-</div><div id="supports_count_distinct?-instance_method" class="section method">
-  <div class="details_title">
-    <div class='section methodsignature'>
-    <tt class='def'>
-      <span class='visibility'>public</span>
-      <span class='return_types'></span>
-      <span class='name'>supports_count_distinct?</span><span class='args'></span>
-      <span class='block'></span>
-    </tt>
-  </div>
+    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>supports_count_distinct?</strong> 
+  
 
-</div><div class="section docstring">
-  <p>
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
 Does this adapter support using DISTINCT within COUNT? This is
 <tt>true</tt> for all adapters except sqlite.
 </p>
 
-</div><div class="section source">
-  <span>[<a class="source_link" href="#">View source</a>]</span>
-  <div class="source_code">
-    <table>
-      <tr>
-        <td>
-          <pre class="lines">
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
 
 
 41
 42
 43</pre>
-        </td>
-        <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/abstract_adapter.rb', line 41</span>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/abstract_adapter.rb', line 41</span>
 
 <span class='def def kw'>def</span> <span class='supports_count_distinct? fid id'>supports_count_distinct?</span>
   <span class='false false kw'>false</span>
 <span class='end end kw'>end</span>
 </pre>
-        </td>
-      </tr>
-    </table>
-  </div>
+    </td>
+  </tr>
+</table>
 </div>
-</div>
-    </div>
+    
+      <div class="method_details ">
+  <p class="signature " id="supports_ddl_transactions?-instance_method">
   
-    <div class="method">
-      <div class="method_header">
-  <h3>supports_ddl_transactions?</h3>
-</div><div id="supports_ddl_transactions?-instance_method" class="section method">
-  <div class="details_title">
-    <div class='section methodsignature'>
-    <tt class='def'>
-      <span class='visibility'>public</span>
-      <span class='return_types'></span>
-      <span class='name'>supports_ddl_transactions?</span><span class='args'></span>
-      <span class='block'></span>
-    </tt>
-  </div>
+    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>supports_ddl_transactions?</strong> 
+  
 
-</div><div class="section source">
-  <span>[<a class="source_link" href="#">View source</a>]</span>
-  <div class="source_code">
-    <table>
-      <tr>
-        <td>
-          <pre class="lines">
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
 
 
 45
 46
 47</pre>
-        </td>
-        <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/abstract_adapter.rb', line 45</span>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/abstract_adapter.rb', line 45</span>
 
 <span class='def def kw'>def</span> <span class='supports_ddl_transactions? fid id'>supports_ddl_transactions?</span>
   <span class='false false kw'>false</span>
 <span class='end end kw'>end</span>
 </pre>
-        </td>
-      </tr>
-    </table>
-  </div>
+    </td>
+  </tr>
+</table>
 </div>
-</div>
-    </div>
+    
+      <div class="method_details ">
+  <p class="signature " id="supports_migrations?-instance_method">
   
-    <div class="method">
-      <div class="method_header">
-  <h3>supports_migrations?</h3>
-</div><div id="supports_migrations?-instance_method" class="section method">
-  <div class="details_title">
-    <div class='section methodsignature'>
-    <tt class='def'>
-      <span class='visibility'>public</span>
-      <span class='return_types'></span>
-      <span class='name'>supports_migrations?</span><span class='args'></span>
-      <span class='block'></span>
-    </tt>
-  </div>
+    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>supports_migrations?</strong> 
+  
 
-</div><div class="section docstring">
-  <p>
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
 Does this adapter support migrations? Backend specific, as the abstract
 adapter always returns <tt>false</tt>.
 </p>
 
-</div><div class="section source">
-  <span>[<a class="source_link" href="#">View source</a>]</span>
-  <div class="source_code">
-    <table>
-      <tr>
-        <td>
-          <pre class="lines">
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
 
 
 35
 36
 37</pre>
-        </td>
-        <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/abstract_adapter.rb', line 35</span>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/abstract_adapter.rb', line 35</span>
 
 <span class='def def kw'>def</span> <span class='supports_migrations? fid id'>supports_migrations?</span>
   <span class='false false kw'>false</span>
 <span class='end end kw'>end</span>
 </pre>
-        </td>
-      </tr>
-    </table>
-  </div>
+    </td>
+  </tr>
+</table>
 </div>
-</div>
-    </div>
+    
+      <div class="method_details ">
+  <p class="signature " id="table_exists?-instance_method">
   
-    <div class="method">
-      <div class="method_header">
-  <h3>table_exists?</h3>
-</div><div id="table_exists?-instance_method" class="section method">
-  <div class="details_title">
-    <div class='section methodsignature'>
-    <tt class='def'>
-      <span class='visibility'>public</span>
-      <span class='return_types'></span>
-      <span class='name'>table_exists?</span><span class='args'>(table_name)</span>
-      <span class='block'></span>
-    </tt>
-  </div>
+    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>table_exists?</strong>(table_name) 
+  
 
-</div><div class="section docstring">
-  <p>
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
 SCHEMA STATEMENTS ========================================
 </p>
 
-</div><div class="section tags">
-  <h2>Meta Tags</h2>
-  <div class="raise">
-  <h3>Raises:</h3>
-  <dl>
-  
-    <dt>
-      
-        <span class='type'>[<tt>NotImplementedError</tt>]</span>
-      
-      
-      
-    </dt>
-    <dd>
-      <span class='desc'></span>
-    </dd>
-  
-  </dl>
-</div>
 
-</div><div class="section source">
-  <span>[<a class="source_link" href="#">View source</a>]</span>
-  <div class="source_code">
-    <table>
-      <tr>
-        <td>
-          <pre class="lines">
+  </div>
+</div>
+<div class="tags">
+  <h3>Raises:</h3>
+<ul class="raise">
+  
+    <li>
+      
+        <span class='type'>(<tt>NotImplementedError</tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
 
 
 160
 161
 162</pre>
-        </td>
-        <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/abstract_adapter.rb', line 160</span>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/abstract_adapter.rb', line 160</span>
 
 <span class='def def kw'>def</span> <span class='table_exists? fid id'>table_exists?</span><span class='lparen token'>(</span><span class='table_name identifier id'>table_name</span><span class='rparen token'>)</span>
   <span class='raise identifier id'>raise</span> <span class='NotImplementedError constant id'>NotImplementedError</span>
 <span class='end end kw'>end</span>
 </pre>
-        </td>
-      </tr>
-    </table>
-  </div>
+    </td>
+  </tr>
+</table>
 </div>
-</div>
-    </div>
+    
+      <div class="method_details ">
+  <p class="signature " id="update-instance_method">
   
-    <div class="method">
-      <div class="method_header">
-  <h3>update</h3>
-</div><div id="update-instance_method" class="section method">
-  <div class="details_title">
-    <div class='section methodsignature'>
-    <tt class='def'>
-      <span class='visibility'>public</span>
-      <span class='return_types'></span>
-      <span class='name'>update</span><span class='args'>(table_name, row, values, timestamp)</span>
-      <span class='block'></span>
-    </tt>
-  </div>
+    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>update</strong>(table_name, row, values, timestamp) 
+  
 
-</div><div class="section tags">
-  <h2>Meta Tags</h2>
-  <div class="raise">
+  
+</p><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
   <h3>Raises:</h3>
-  <dl>
+<ul class="raise">
   
-    <dt>
+    <li>
       
-        <span class='type'>[<tt>NotImplementedError</tt>]</span>
+        <span class='type'>(<tt>NotImplementedError</tt>)</span>
       
       
       
-    </dt>
-    <dd>
-      <span class='desc'></span>
-    </dd>
+      
+    </li>
   
-  </dl>
-</div>
+</ul>
 
-</div><div class="section source">
-  <span>[<a class="source_link" href="#">View source</a>]</span>
-  <div class="source_code">
-    <table>
-      <tr>
-        <td>
-          <pre class="lines">
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
 
 
 122
 123
 124</pre>
-        </td>
-        <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/abstract_adapter.rb', line 122</span>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/abstract_adapter.rb', line 122</span>
 
 <span class='def def kw'>def</span> <span class='update identifier id'>update</span><span class='lparen token'>(</span><span class='table_name identifier id'>table_name</span><span class='comma token'>,</span> <span class='row identifier id'>row</span><span class='comma token'>,</span> <span class='values identifier id'>values</span><span class='comma token'>,</span> <span class='timestamp identifier id'>timestamp</span><span class='rparen token'>)</span>
   <span class='raise identifier id'>raise</span> <span class='NotImplementedError constant id'>NotImplementedError</span>
 <span class='end end kw'>end</span>
 </pre>
-        </td>
-      </tr>
-    </table>
-  </div>
+    </td>
+  </tr>
+</table>
 </div>
-</div>
-    </div>
+    
+      <div class="method_details ">
+  <p class="signature " id="update_raw-instance_method">
   
-    <div class="method">
-      <div class="method_header">
-  <h3>update_raw</h3>
-</div><div id="update_raw-instance_method" class="section method">
-  <div class="details_title">
-    <div class='section methodsignature'>
-    <tt class='def'>
-      <span class='visibility'>public</span>
-      <span class='return_types'></span>
-      <span class='name'>update_raw</span><span class='args'>(table_name, row, values, timestamp)</span>
-      <span class='block'></span>
-    </tt>
-  </div>
+    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>update_raw</strong>(table_name, row, values, timestamp) 
+  
 
-</div><div class="section docstring">
-  <p>
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
 DATABASE STATEMENTS ======================================
 </p>
 
-</div><div class="section tags">
-  <h2>Meta Tags</h2>
-  <div class="raise">
-  <h3>Raises:</h3>
-  <dl>
-  
-    <dt>
-      
-        <span class='type'>[<tt>NotImplementedError</tt>]</span>
-      
-      
-      
-    </dt>
-    <dd>
-      <span class='desc'></span>
-    </dd>
-  
-  </dl>
-</div>
 
-</div><div class="section source">
-  <span>[<a class="source_link" href="#">View source</a>]</span>
-  <div class="source_code">
-    <table>
-      <tr>
-        <td>
-          <pre class="lines">
+  </div>
+</div>
+<div class="tags">
+  <h3>Raises:</h3>
+<ul class="raise">
+  
+    <li>
+      
+        <span class='type'>(<tt>NotImplementedError</tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
 
 
 118
 119
 120</pre>
-        </td>
-        <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/abstract_adapter.rb', line 118</span>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/abstract_adapter.rb', line 118</span>
 
 <span class='def def kw'>def</span> <span class='update_raw identifier id'>update_raw</span><span class='lparen token'>(</span><span class='table_name identifier id'>table_name</span><span class='comma token'>,</span> <span class='row identifier id'>row</span><span class='comma token'>,</span> <span class='values identifier id'>values</span><span class='comma token'>,</span> <span class='timestamp identifier id'>timestamp</span><span class='rparen token'>)</span>
   <span class='raise identifier id'>raise</span> <span class='NotImplementedError constant id'>NotImplementedError</span>
 <span class='end end kw'>end</span>
 </pre>
-        </td>
-      </tr>
-    </table>
-  </div>
+    </td>
+  </tr>
+</table>
 </div>
-</div>
-    </div>
+    
+      <div class="method_details ">
+  <p class="signature " id="verify!-instance_method">
   
-    <div class="method">
-      <div class="method_header">
-  <h3>verify!</h3>
-</div><div id="verify!-instance_method" class="section method">
-  <div class="details_title">
-    <div class='section methodsignature'>
-    <tt class='def'>
-      <span class='visibility'>public</span>
-      <span class='return_types'></span>
-      <span class='name'>verify!</span><span class='args'>(timeout)</span>
-      <span class='block'></span>
-    </tt>
-  </div>
+    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>verify!</strong>(timeout) 
+  
 
-</div><div class="section docstring">
-  <p>
-Lazily verify this connection, calling <tt>active?</tt> only if it hasn&#8217;t
-been called for <tt>timeout</tt> seconds.
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Lazily verify this connection, calling <tt>active?</tt> only if it
+hasn&#8217;t been called for <tt>timeout</tt> seconds.
 </p>
 
-</div><div class="section source">
-  <span>[<a class="source_link" href="#">View source</a>]</span>
-  <div class="source_code">
-    <table>
-      <tr>
-        <td>
-          <pre class="lines">
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
 
 
 101
@@ -2075,9 +1874,9 @@ been called for <tt>timeout</tt> seconds.
 105
 106
 107</pre>
-        </td>
-        <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/abstract_adapter.rb', line 101</span>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/abstract_adapter.rb', line 101</span>
 
 <span class='def def kw'>def</span> <span class='verify! fid id'>verify!</span><span class='lparen token'>(</span><span class='timeout identifier id'>timeout</span><span class='rparen token'>)</span>
   <span class='now identifier id'>now</span> <span class='assign token'>=</span> <span class='Time constant id'>Time</span><span class='dot token'>.</span><span class='now identifier id'>now</span><span class='dot token'>.</span><span class='to_i identifier id'>to_i</span>
@@ -2087,23 +1886,19 @@ been called for <tt>timeout</tt> seconds.
   <span class='end end kw'>end</span>
 <span class='end end kw'>end</span>
 </pre>
-        </td>
-      </tr>
-    </table>
-  </div>
+    </td>
+  </tr>
+</table>
 </div>
-</div>
-    </div>
-  
-</div>
+    
   </div>
 
 </div>
-    </div>
-    <div id="yard_info">
-  Generated on Wednesday, November 25 2009 at 02:43:22 PM by 
-  <abbr class="yard" title="Yay! A Ruby Documentation Tool"><a href="http://yard.soen.ca">YARD</a></abbr> 
-  0.2.3.5 (ruby-1.8.7).
+    
+    <div id="footer">
+  Generated on Thu Nov 26 18:22:32 2009 by 
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool">yard</a>
+  0.4.0 (ruby-1.8.7).
 </div>
 
   </body>

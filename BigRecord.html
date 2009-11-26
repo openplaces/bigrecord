@@ -1,34 +1,97 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
-    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-<link rel="stylesheet" href="style.css" type="text/css" charset="utf-8" />
-<link rel="stylesheet" href="custom.css" type="text/css" charset="utf-8" />
-<link rel="stylesheet" href="syntax_highlight.css" type="text/css" charset="utf-8" />
+    <meta name="Content-Type" content="text/html; charset=UTF-8" />
+<title>Module: BigRecord</title>
+<link rel="stylesheet" href="css/style.css" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="css/common.css" type="text/css" media="screen" charset="utf-8" />
 
-    <script src="jquery.js" type="text/javascript" charset="utf-8"></script>
-    <script src="app.js" type="text/javascript" charset="utf-8"></script>
-    <title>Module: BigRecord</title>
+<script type="text/javascript" charset="utf-8">
+  relpath = '';
+  if (relpath != '') relpath += '/';
+</script>
+<script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
   </head>
   <body>
-    <div id="content">
-      <div class="section module BigRecord">
-  <h1 class="title">Module: BigRecord</h1>
-  <div class="section docstring">
-  <p>
+    <div id="header">
+      <div id="menu">
+  
+    <a href="_index.html">Index (B)</a> &raquo; 
+    
+    
+    <span class="title">BigRecord</span>
+  
+</div>
+
+      <div id="search">
+  <a id="class_list_link" href="#">Namespace List</a>
+  <a id="method_list_link" href="#">Method List</a>
+  <a id ="file_list_link" href="#">File List</a>
+</div>
+
+      <div class="clear"></div>
+    </div>
+    
+    <iframe id="search_frame"></iframe>
+    
+    <div id="content"><h1>Module: BigRecord 
+  
+  
+</h1>
+
+<dl class="box">
+  
+  
+    
+  
+    
+  
+  
+    <dt class="r1 last">Defined in:</dt>
+    <dd class="r1 last">lib/big_record/family_span_columns.rb<span class="defines">,<br />
+  lib/big_record/base.rb,<br /> lib/big_record/fixtures.rb,<br /> lib/big_record/embedded.rb,<br /> lib/big_record/deletion.rb,<br /> lib/big_record/callbacks.rb,<br /> lib/big_record/migration.rb,<br /> lib/big_record/timestamp.rb,<br /> lib/big_record/validations.rb,<br /> lib/big_record/br_reflection.rb,<br /> lib/big_record/abstract_base.rb,<br /> lib/big_record/ar_reflection.rb,<br /> lib/big_record/dynamic_schema.rb,<br /> lib/big_record/br_associations.rb,<br /> lib/big_record/ar_associations.rb,<br /> lib/big_record/attribute_methods.rb,<br /> lib/big_record/connection_adapters/view.rb,<br /> lib/big_record/connection_adapters/column.rb,<br /> lib/big_record/br_associations/cached_item_proxy.rb,<br /> lib/big_record/connection_adapters/hbase_adapter.rb,<br /> lib/big_record/ar_associations/association_proxy.rb,<br /> lib/big_record/br_associations/association_proxy.rb,<br /> lib/big_record/br_associations/has_one_association.rb,<br /> lib/big_record/ar_associations/has_one_association.rb,<br /> lib/big_record/ar_associations/has_many_association.rb,<br /> lib/big_record/connection_adapters/abstract/quoting.rb,<br /> lib/big_record/connection_adapters/abstract_adapter.rb,<br /> lib/big_record/connection_adapters/hbase_rest_adapter.rb,<br /> lib/big_record/ar_associations/association_collection.rb,<br /> lib/big_record/br_associations/association_collection.rb,<br /> lib/big_record/br_associations/belongs_to_association.rb,<br /> lib/big_record/ar_associations/belongs_to_association.rb,<br /> lib/big_record/embedded_associations/association_proxy.rb,<br /> lib/big_record/br_associations/cached_item_proxy_factory.rb,<br /> lib/big_record/br_associations/belongs_to_many_association.rb,<br /> lib/big_record/ar_associations/belongs_to_many_association.rb,<br /> lib/big_record/connection_adapters/abstract/database_statements.rb,<br /> lib/big_record/ar_associations/has_and_belongs_to_many_association.rb,<br /> lib/big_record/br_associations/has_and_belongs_to_many_association.rb,<br /> lib/big_record/connection_adapters/abstract/connection_specification.rb</span>
+</dd>
+  
+</dl>
+<div class="clear"></div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    <p>
 module BigRecord
 </p>
 
-</div><div class="section constants">
+
+  </div>
+</div>
+<div class="tags">
   
+</div><h2>Defined Under Namespace</h2>
+<p class="children">
+   
+    
+      <strong class="modules">Modules:</strong> <a title="ArAssociations" href="BigRecord/ArAssociations.html">ArAssociations</a>, <a title="ArReflection" href="BigRecord/ArReflection.html">ArReflection</a>, <a title="AttributeMethods" href="BigRecord/AttributeMethods.html">AttributeMethods</a>, <a title="BrAssociations" href="BigRecord/BrAssociations.html">BrAssociations</a>, <a title="BrReflection" href="BigRecord/BrReflection.html">BrReflection</a>, <a title="Callbacks" href="BigRecord/Callbacks.html">Callbacks</a>, <a title="ConnectionAdapters" href="BigRecord/ConnectionAdapters.html">ConnectionAdapters</a>, <a title="Deletion" href="BigRecord/Deletion.html">Deletion</a>, <a title="DynamicSchema" href="BigRecord/DynamicSchema.html">DynamicSchema</a>, <a title="EmbeddedAssociations" href="BigRecord/EmbeddedAssociations.html">EmbeddedAssociations</a>, <a title="FamilySpanColumns" href="BigRecord/FamilySpanColumns.html">FamilySpanColumns</a>, <a title="TestFixtures" href="BigRecord/TestFixtures.html">TestFixtures</a>, <a title="Timestamp" href="BigRecord/Timestamp.html">Timestamp</a>, <a title="Validations" href="BigRecord/Validations.html">Validations</a>
+    
+   
+    
+      <strong class="classes">Classes:</strong> <a title="AbstractBase" href="BigRecord/AbstractBase.html">AbstractBase</a>, <a title="AdapterNotFound" href="BigRecord/AdapterNotFound.html">AdapterNotFound</a>, <a title="AdapterNotSpecified" href="BigRecord/AdapterNotSpecified.html">AdapterNotSpecified</a>, <a title="AssociationTypeMismatch" href="BigRecord/AssociationTypeMismatch.html">AssociationTypeMismatch</a>, <a title="AttributeAssignmentError" href="BigRecord/AttributeAssignmentError.html">AttributeAssignmentError</a>, <a title="AttributeMissing" href="BigRecord/AttributeMissing.html">AttributeMissing</a>, <a title="Base" href="BigRecord/Base.html">Base</a>, <a title="BigRecordError" href="BigRecord/BigRecordError.html">BigRecordError</a>, <a title="ColumnNotFound" href="BigRecord/ColumnNotFound.html">ColumnNotFound</a>, <a title="ConfigurationError" href="BigRecord/ConfigurationError.html">ConfigurationError</a>, <a title="ConnectionFailed" href="BigRecord/ConnectionFailed.html">ConnectionFailed</a>, <a title="ConnectionNotEstablished" href="BigRecord/ConnectionNotEstablished.html">ConnectionNotEstablished</a>, <a title="DuplicateMigrationNameError" href="BigRecord/DuplicateMigrationNameError.html">DuplicateMigrationNameError</a>, <a title="DuplicateMigrationVersionError" href="BigRecord/DuplicateMigrationVersionError.html">DuplicateMigrationVersionError</a>, <a title="EagerLoadPolymorphicError" href="BigRecord/EagerLoadPolymorphicError.html">EagerLoadPolymorphicError</a>, <a title="Embedded" href="BigRecord/Embedded.html">Embedded</a>, <a title="Errors" href="BigRecord/Errors.html">Errors</a>, <a title="HasManyThroughAssociationNotFoundError" href="BigRecord/HasManyThroughAssociationNotFoundError.html">HasManyThroughAssociationNotFoundError</a>, <a title="HasManyThroughAssociationPointlessSourceTypeError" href="BigRecord/HasManyThroughAssociationPointlessSourceTypeError.html">HasManyThroughAssociationPointlessSourceTypeError</a>, <a title="HasManyThroughAssociationPolymorphicError" href="BigRecord/HasManyThroughAssociationPolymorphicError.html">HasManyThroughAssociationPolymorphicError</a>, <a title="HasManyThroughCantAssociateNewRecords" href="BigRecord/HasManyThroughCantAssociateNewRecords.html">HasManyThroughCantAssociateNewRecords</a>, <a title="HasManyThroughSourceAssociationMacroError" href="BigRecord/HasManyThroughSourceAssociationMacroError.html">HasManyThroughSourceAssociationMacroError</a>, <a title="HasManyThroughSourceAssociationNotFoundError" href="BigRecord/HasManyThroughSourceAssociationNotFoundError.html">HasManyThroughSourceAssociationNotFoundError</a>, <a title="IllegalMigrationNameError" href="BigRecord/IllegalMigrationNameError.html">IllegalMigrationNameError</a>, <a title="IrreversibleMigration" href="BigRecord/IrreversibleMigration.html">IrreversibleMigration</a>, <a title="Migration" href="BigRecord/Migration.html">Migration</a>, <a title="MigrationProxy" href="BigRecord/MigrationProxy.html">MigrationProxy</a>, <a title="Migrator" href="BigRecord/Migrator.html">Migrator</a>, <a title="MultiparameterAssignmentErrors" href="BigRecord/MultiparameterAssignmentErrors.html">MultiparameterAssignmentErrors</a>, <a title="NotImplemented" href="BigRecord/NotImplemented.html">NotImplemented</a>, <a title="PreparedStatementInvalid" href="BigRecord/PreparedStatementInvalid.html">PreparedStatementInvalid</a>, <a title="ReadOnlyAssociation" href="BigRecord/ReadOnlyAssociation.html">ReadOnlyAssociation</a>, <a title="ReadOnlyRecord" href="BigRecord/ReadOnlyRecord.html">ReadOnlyRecord</a>, <a title="RecordInvalid" href="BigRecord/RecordInvalid.html">RecordInvalid</a>, <a title="RecordNotFound" href="BigRecord/RecordNotFound.html">RecordNotFound</a>, <a title="RecordNotSaved" href="BigRecord/RecordNotSaved.html">RecordNotSaved</a>, <a title="StaleObjectError" href="BigRecord/StaleObjectError.html">StaleObjectError</a>, <a title="StatementInvalid" href="BigRecord/StatementInvalid.html">StatementInvalid</a>, <a title="SubclassNotFound" href="BigRecord/SubclassNotFound.html">SubclassNotFound</a>, <a title="UnknownAttribute" href="BigRecord/UnknownAttribute.html">UnknownAttribute</a>, <a title="UnknownMigrationVersionError" href="BigRecord/UnknownMigrationVersionError.html">UnknownMigrationVersionError</a>, <a title="WrongAttributeDataType" href="BigRecord/WrongAttributeDataType.html">WrongAttributeDataType</a>
+    
+  
+</p>
+
+
+
+
+
 </div>
-</div>
-    </div>
-    <div id="yard_info">
-  Generated on Wednesday, November 25 2009 at 02:43:26 PM by 
-  <abbr class="yard" title="Yay! A Ruby Documentation Tool"><a href="http://yard.soen.ca">YARD</a></abbr> 
-  0.2.3.5 (ruby-1.8.7).
+    
+    <div id="footer">
+  Generated on Thu Nov 26 18:22:18 2009 by 
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool">yard</a>
+  0.4.0 (ruby-1.8.7).
 </div>
 
   </body>

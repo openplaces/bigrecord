@@ -1,62 +1,391 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
-    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-<link rel="stylesheet" href="../style.css" type="text/css" charset="utf-8" />
-<link rel="stylesheet" href="../custom.css" type="text/css" charset="utf-8" />
-<link rel="stylesheet" href="../syntax_highlight.css" type="text/css" charset="utf-8" />
+    <meta name="Content-Type" content="text/html; charset=UTF-8" />
+<title>Class: BigRecord::Migrator</title>
+<link rel="stylesheet" href="../css/style.css" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="../css/common.css" type="text/css" media="screen" charset="utf-8" />
 
-    <script src="../jquery.js" type="text/javascript" charset="utf-8"></script>
-    <script src="../app.js" type="text/javascript" charset="utf-8"></script>
-    <title>Class: BigRecord::Migrator</title>
+<script type="text/javascript" charset="utf-8">
+  relpath = '..';
+  if (relpath != '') relpath += '/';
+</script>
+<script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
   </head>
   <body>
-    <div id="content">
-      <div class="section class BigRecord_Migrator">
-  <h1 class="title">Class: BigRecord::Migrator</h1>
-  <div class="section constants">
+    <div id="header">
+      <div id="menu">
   
-</div><div class="section constructor">
-<h1>Constructor Summary</h1>
-  <div id="initialize-instance_method" class="section method">
-  <div class="details_title">
-    <div class='section methodsignature'>
-    <tt class='def'>
-      <span class='visibility'>public</span>
-      <span class='return_types'></span>
-      <span class='name'>initialize</span><span class='args'>(direction, migrations_path, target_version = nil)</span>
-      <span class='block'></span>
-    </tt>
-  </div>
-
-</div><div class="section tags">
-  <h2>Meta Tags</h2>
-  <div class="raise">
-  <h3>Raises:</h3>
-  <dl>
+    <a href="../_index.html">Index (M)</a> &raquo; 
+    <a title="BigRecord" href="../BigRecord.html">BigRecord</a>
+     &raquo; 
+    <span class="title">Migrator</span>
   
-    <dt>
-      
-        <span class='type'>[<tt>StandardError</tt>]</span>
-      
-      
-      
-    </dt>
-    <dd>
-      <span class='desc'></span>
-    </dd>
-  
-  </dl>
 </div>
 
-</div><div class="section source">
-  <span>[<a class="source_link" href="#">View source</a>]</span>
-  <div class="source_code">
-    <table>
-      <tr>
-        <td>
-          <pre class="lines">
+      <div id="search">
+  <a id="class_list_link" href="#">Namespace List</a>
+  <a id="method_list_link" href="#">Method List</a>
+  <a id ="file_list_link" href="#">File List</a>
+</div>
+
+      <div class="clear"></div>
+    </div>
+    
+    <iframe id="search_frame"></iframe>
+    
+    <div id="content"><h1>Class: BigRecord::Migrator 
+  
+  
+</h1>
+
+<dl class="box">
+  
+    <dt class="r1">Inherits:</dt>
+    <dd class="r1">
+      <span class="inheritName"><a title="Object" href="../Object.html">Object</a></span>
+      
+      </dd>
+    
+  
+  
+    
+  
+    
+  
+  
+    <dt class="r2 last">Defined in:</dt>
+    <dd class="r2 last">lib/big_record/migration.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+
+
+
+  <h2>Method Summary</h2>
+  <ul class="summary">
+    
+      <li class="public ">
+  <span class="summary_signature"><a title="current_version (class method)" href="#current_version-class_method">+ (Object) <strong>current_version</strong> </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a title="down (class method)" href="#down-class_method">+ (Object) <strong>down</strong>(migrations_path, target_version = nil) </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a title="get_all_versions (class method)" href="#get_all_versions-class_method">+ (Object) <strong>get_all_versions</strong> </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a title="migrate (class method)" href="#migrate-class_method">+ (Object) <strong>migrate</strong>(migrations_path, target_version = nil) </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a title="proper_table_name (class method)" href="#proper_table_name-class_method">+ (Object) <strong>proper_table_name</strong>(name) </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a title="rollback (class method)" href="#rollback-class_method">+ (Object) <strong>rollback</strong>(migrations_path, steps = 1) </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a title="run (class method)" href="#run-class_method">+ (Object) <strong>run</strong>(direction, migrations_path, target_version) </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a title="schema_migrations_table_name (class method)" href="#schema_migrations_table_name-class_method">+ (Object) <strong>schema_migrations_table_name</strong> </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a title="up (class method)" href="#up-class_method">+ (Object) <strong>up</strong>(migrations_path, target_version = nil) </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a title="#current_migration (instance method)" href="#current_migration-instance_method">- (Object) <strong>current_migration</strong> </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a title="#current_version (instance method)" href="#current_version-instance_method">- (Object) <strong>current_version</strong> </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a title="#initialize (instance method)" href="#initialize-instance_method">- (Migrator) <strong>initialize</strong>(direction, migrations_path, target_version = nil) </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc">
+A new instance of <tt>Migrator</tt>.
+
+</span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a title="#migrate (instance method)" href="#migrate-instance_method">- (Object) <strong>migrate</strong> </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a title="#migrated (instance method)" href="#migrated-instance_method">- (Object) <strong>migrated</strong> </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a title="#migrations (instance method)" href="#migrations-instance_method">- (Object) <strong>migrations</strong> </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a title="#pending_migrations (instance method)" href="#pending_migrations-instance_method">- (Object) <strong>pending_migrations</strong> </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a title="#run (instance method)" href="#run-instance_method">- (Object) <strong>run</strong> </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"></span>
+  
+</li>
+
+    
+  </ul>
+
+<div id="constructor_details">
+  <h2>Constructor Details</h2>
+  
+    <div class="method_details first">
+  <p class="signature first" id="initialize-instance_method">
+  
+    - (<tt><a title="Migrator" href="">Migrator</a></tt>) <strong>initialize</strong>(direction, migrations_path, target_version = nil) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+A new instance of <tt>Migrator</tt>
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt><a title="Migrator" href="">Migrator</a></tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        
+a new instance of <tt>Migrator</tt>
+
+
+      
+    </li>
+  
+</ul>
+<h3>Raises:</h3>
+<ul class="raise">
+  
+    <li>
+      
+        <span class='type'>(<tt>StandardError</tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
 
 
 250
@@ -64,9 +393,9 @@
 252
 253
 254</pre>
-        </td>
-        <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/migration.rb', line 250</span>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/big_record/migration.rb', line 250</span>
 
 <span class='def def kw'>def</span> <span class='initialize identifier id'>initialize</span><span class='lparen token'>(</span><span class='direction identifier id'>direction</span><span class='comma token'>,</span> <span class='migrations_path identifier id'>migrations_path</span><span class='comma token'>,</span> <span class='target_version identifier id'>target_version</span> <span class='assign token'>=</span> <span class='nil nil kw'>nil</span><span class='rparen token'>)</span>
   <span class='raise identifier id'>raise</span> <span class='StandardError constant id'>StandardError</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='string val'>&quot;This database does not yet support migrations&quot;</span><span class='rparen token'>)</span> <span class='unless unless_mod kw'>unless</span> <span class='Base constant id'>Base</span><span class='dot token'>.</span><span class='connection identifier id'>connection</span><span class='dot token'>.</span><span class='supports_migrations? fid id'>supports_migrations?</span>
@@ -74,308 +403,28 @@
   <span class='@direction ivar id'>@direction</span><span class='comma token'>,</span> <span class='@migrations_path ivar id'>@migrations_path</span><span class='comma token'>,</span> <span class='@target_version ivar id'>@target_version</span> <span class='assign token'>=</span> <span class='direction identifier id'>direction</span><span class='comma token'>,</span> <span class='migrations_path identifier id'>migrations_path</span><span class='comma token'>,</span> <span class='target_version identifier id'>target_version</span>
 <span class='end end kw'>end</span>
 </pre>
-        </td>
-      </tr>
-    </table>
-  </div>
-</div>
-</div>
-</div>  <div class="section visibilitygroup public">
-    <h1>Public Visibility</h1>
-      <div class="section methodsummary class public">
-    <h1>Public Class Method Summary</h1>
-<table class="summary">
-  
-    <tr>
-      <th class="signature">
-        
-          <span class='overload'>
-            <span class='name'><a href="#current_version-class_method" title="current_version">current_version</a></span><span class='args'></span>
-            <span class='block'></span>
-          </span>
-        
-        
-      </th>
-      <td class="docstring">
-        
-        
-      </td>
-    </tr>
-  
-    <tr>
-      <th class="signature">
-        
-          <span class='overload'>
-            <span class='name'><a href="#down-class_method" title="down">down</a></span><span class='args'>(migrations_path, target_version = nil)</span>
-            <span class='block'></span>
-          </span>
-        
-        
-      </th>
-      <td class="docstring">
-        
-        
-      </td>
-    </tr>
-  
-    <tr>
-      <th class="signature">
-        
-          <span class='overload'>
-            <span class='name'><a href="#get_all_versions-class_method" title="get_all_versions">get_all_versions</a></span><span class='args'></span>
-            <span class='block'></span>
-          </span>
-        
-        
-      </th>
-      <td class="docstring">
-        
-        
-      </td>
-    </tr>
-  
-    <tr>
-      <th class="signature">
-        
-          <span class='overload'>
-            <span class='name'><a href="#migrate-class_method" title="migrate">migrate</a></span><span class='args'>(migrations_path, target_version = nil)</span>
-            <span class='block'></span>
-          </span>
-        
-        
-      </th>
-      <td class="docstring">
-        
-        
-      </td>
-    </tr>
-  
-    <tr>
-      <th class="signature">
-        
-          <span class='overload'>
-            <span class='name'><a href="#proper_table_name-class_method" title="proper_table_name">proper_table_name</a></span><span class='args'>(name)</span>
-            <span class='block'></span>
-          </span>
-        
-        
-      </th>
-      <td class="docstring">
-        
-        
-      </td>
-    </tr>
-  
-    <tr>
-      <th class="signature">
-        
-          <span class='overload'>
-            <span class='name'><a href="#rollback-class_method" title="rollback">rollback</a></span><span class='args'>(migrations_path, steps = 1)</span>
-            <span class='block'></span>
-          </span>
-        
-        
-      </th>
-      <td class="docstring">
-        
-        
-      </td>
-    </tr>
-  
-    <tr>
-      <th class="signature">
-        
-          <span class='overload'>
-            <span class='name'><a href="#run-class_method" title="run">run</a></span><span class='args'>(direction, migrations_path, target_version)</span>
-            <span class='block'></span>
-          </span>
-        
-        
-      </th>
-      <td class="docstring">
-        
-        
-      </td>
-    </tr>
-  
-    <tr>
-      <th class="signature">
-        
-          <span class='overload'>
-            <span class='name'><a href="#schema_migrations_table_name-class_method" title="schema_migrations_table_name">schema_migrations_table_name</a></span><span class='args'></span>
-            <span class='block'></span>
-          </span>
-        
-        
-      </th>
-      <td class="docstring">
-        
-        
-      </td>
-    </tr>
-  
-    <tr>
-      <th class="signature">
-        
-          <span class='overload'>
-            <span class='name'><a href="#up-class_method" title="up">up</a></span><span class='args'>(migrations_path, target_version = nil)</span>
-            <span class='block'></span>
-          </span>
-        
-        
-      </th>
-      <td class="docstring">
-        
-        
-      </td>
-    </tr>
-  
+    </td>
+  </tr>
 </table>
+</div>
+  
+</div>
 
-  </div>
-  <div class="section methodsummary instance public">
-    <h1>Public Instance Method Summary</h1>
-<table class="summary">
-  
-    <tr>
-      <th class="signature">
-        
-          <span class='overload'>
-            <span class='name'><a href="#current_migration-instance_method" title="#current_migration">#current_migration</a></span><span class='args'></span>
-            <span class='block'></span>
-          </span>
-        
-        
-      </th>
-      <td class="docstring">
-        
-        
-      </td>
-    </tr>
-  
-    <tr>
-      <th class="signature">
-        
-          <span class='overload'>
-            <span class='name'><a href="#current_version-instance_method" title="#current_version">#current_version</a></span><span class='args'></span>
-            <span class='block'></span>
-          </span>
-        
-        
-      </th>
-      <td class="docstring">
-        
-        
-      </td>
-    </tr>
-  
-    <tr>
-      <th class="signature">
-        
-          <span class='overload'>
-            <span class='name'><a href="#migrate-instance_method" title="#migrate">#migrate</a></span><span class='args'></span>
-            <span class='block'></span>
-          </span>
-        
-        
-      </th>
-      <td class="docstring">
-        
-        
-      </td>
-    </tr>
-  
-    <tr>
-      <th class="signature">
-        
-          <span class='overload'>
-            <span class='name'><a href="#migrated-instance_method" title="#migrated">#migrated</a></span><span class='args'></span>
-            <span class='block'></span>
-          </span>
-        
-        
-      </th>
-      <td class="docstring">
-        
-        
-      </td>
-    </tr>
-  
-    <tr>
-      <th class="signature">
-        
-          <span class='overload'>
-            <span class='name'><a href="#migrations-instance_method" title="#migrations">#migrations</a></span><span class='args'></span>
-            <span class='block'></span>
-          </span>
-        
-        
-      </th>
-      <td class="docstring">
-        
-        
-      </td>
-    </tr>
-  
-    <tr>
-      <th class="signature">
-        
-          <span class='overload'>
-            <span class='name'><a href="#pending_migrations-instance_method" title="#pending_migrations">#pending_migrations</a></span><span class='args'></span>
-            <span class='block'></span>
-          </span>
-        
-        
-      </th>
-      <td class="docstring">
-        
-        
-      </td>
-    </tr>
-  
-    <tr>
-      <th class="signature">
-        
-          <span class='overload'>
-            <span class='name'><a href="#run-instance_method" title="#run">#run</a></span><span class='args'></span>
-            <span class='block'></span>
-          </span>
-        
-        
-      </th>
-      <td class="docstring">
-        
-        
-      </td>
-    </tr>
-  
-</table>
 
-  </div>
-<div class="section methoddetails class public">
-  <h1>Public Class Method Details</h1>
+  <div id="method_details">
+    <h2>Method Details</h2>
+    
+      <div class="method_details first">
+  <p class="signature first" id="current_version-class_method">
   
-    <div class="method">
-      <div class="method_header">
-  <h3>current_version</h3>
-</div><div id="current_version-class_method" class="section method">
-  <div class="details_title">
-    <div class='section methodsignature'>
-    <tt class='def'>
-      <span class='visibility'>public</span>
-      <span class='return_types'></span>
-      <span class='name'>current_version</span><span class='args'></span>
-      <span class='block'></span>
-    </tt>
-  </div>
+    + (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>current_version</strong> 
+  
 
-</div><div class="section source">
-  <span>[<a class="source_link" href="#">View source</a>]</span>
-  <div class="source_code">
-    <table>
-      <tr>
-        <td>
-          <pre class="lines">
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
 
 
 235
@@ -386,9 +435,9 @@
 240
 241
 242</pre>
-        </td>
-        <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/migration.rb', line 235</span>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/big_record/migration.rb', line 235</span>
 
 <span class='def def kw'>def</span> <span class='current_version identifier id'>current_version</span>
   <span class='sm_table identifier id'>sm_table</span> <span class='assign token'>=</span> <span class='schema_migrations_table_name identifier id'>schema_migrations_table_name</span>
@@ -399,119 +448,80 @@
   <span class='end end kw'>end</span>
 <span class='end end kw'>end</span>
 </pre>
-        </td>
-      </tr>
-    </table>
-  </div>
+    </td>
+  </tr>
+</table>
 </div>
-</div>
-    </div>
+    
+      <div class="method_details ">
+  <p class="signature " id="down-class_method">
   
-    <div class="method">
-      <div class="method_header">
-  <h3>down</h3>
-</div><div id="down-class_method" class="section method">
-  <div class="details_title">
-    <div class='section methodsignature'>
-    <tt class='def'>
-      <span class='visibility'>public</span>
-      <span class='return_types'></span>
-      <span class='name'>down</span><span class='args'>(migrations_path, target_version = nil)</span>
-      <span class='block'></span>
-    </tt>
-  </div>
+    + (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>down</strong>(migrations_path, target_version = nil) 
+  
 
-</div><div class="section source">
-  <span>[<a class="source_link" href="#">View source</a>]</span>
-  <div class="source_code">
-    <table>
-      <tr>
-        <td>
-          <pre class="lines">
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
 
 
 219
 220
 221</pre>
-        </td>
-        <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/migration.rb', line 219</span>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/big_record/migration.rb', line 219</span>
 
 <span class='def def kw'>def</span> <span class='down identifier id'>down</span><span class='lparen token'>(</span><span class='migrations_path identifier id'>migrations_path</span><span class='comma token'>,</span> <span class='target_version identifier id'>target_version</span> <span class='assign token'>=</span> <span class='nil nil kw'>nil</span><span class='rparen token'>)</span>
   <span class='self self kw'>self</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='symbol val'>:down</span><span class='comma token'>,</span> <span class='migrations_path identifier id'>migrations_path</span><span class='comma token'>,</span> <span class='target_version identifier id'>target_version</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='migrate identifier id'>migrate</span>
 <span class='end end kw'>end</span>
 </pre>
-        </td>
-      </tr>
-    </table>
-  </div>
+    </td>
+  </tr>
+</table>
 </div>
-</div>
-    </div>
+    
+      <div class="method_details ">
+  <p class="signature " id="get_all_versions-class_method">
   
-    <div class="method">
-      <div class="method_header">
-  <h3>get_all_versions</h3>
-</div><div id="get_all_versions-class_method" class="section method">
-  <div class="details_title">
-    <div class='section methodsignature'>
-    <tt class='def'>
-      <span class='visibility'>public</span>
-      <span class='return_types'></span>
-      <span class='name'>get_all_versions</span><span class='args'></span>
-      <span class='block'></span>
-    </tt>
-  </div>
+    + (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>get_all_versions</strong> 
+  
 
-</div><div class="section source">
-  <span>[<a class="source_link" href="#">View source</a>]</span>
-  <div class="source_code">
-    <table>
-      <tr>
-        <td>
-          <pre class="lines">
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
 
 
 231
 232
 233</pre>
-        </td>
-        <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/migration.rb', line 231</span>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/big_record/migration.rb', line 231</span>
 
 <span class='def def kw'>def</span> <span class='get_all_versions identifier id'>get_all_versions</span>
   <span class='Base constant id'>Base</span><span class='dot token'>.</span><span class='connection identifier id'>connection</span><span class='dot token'>.</span><span class='get_all_schema_versions identifier id'>get_all_schema_versions</span><span class='dot token'>.</span><span class='sort identifier id'>sort</span>
 <span class='end end kw'>end</span>
 </pre>
-        </td>
-      </tr>
-    </table>
-  </div>
+    </td>
+  </tr>
+</table>
 </div>
-</div>
-    </div>
+    
+      <div class="method_details ">
+  <p class="signature " id="migrate-class_method">
   
-    <div class="method">
-      <div class="method_header">
-  <h3>migrate</h3>
-</div><div id="migrate-class_method" class="section method">
-  <div class="details_title">
-    <div class='section methodsignature'>
-    <tt class='def'>
-      <span class='visibility'>public</span>
-      <span class='return_types'></span>
-      <span class='name'>migrate</span><span class='args'>(migrations_path, target_version = nil)</span>
-      <span class='block'></span>
-    </tt>
-  </div>
+    + (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>migrate</strong>(migrations_path, target_version = nil) 
+  
 
-</div><div class="section source">
-  <span>[<a class="source_link" href="#">View source</a>]</span>
-  <div class="source_code">
-    <table>
-      <tr>
-        <td>
-          <pre class="lines">
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
 
 
 197
@@ -521,9 +531,9 @@
 201
 202
 203</pre>
-        </td>
-        <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/migration.rb', line 197</span>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/big_record/migration.rb', line 197</span>
 
 <span class='def def kw'>def</span> <span class='migrate identifier id'>migrate</span><span class='lparen token'>(</span><span class='migrations_path identifier id'>migrations_path</span><span class='comma token'>,</span> <span class='target_version identifier id'>target_version</span> <span class='assign token'>=</span> <span class='nil nil kw'>nil</span><span class='rparen token'>)</span>
   <span class='case case kw'>case</span>
@@ -533,79 +543,53 @@
   <span class='end end kw'>end</span>
 <span class='end end kw'>end</span>
 </pre>
-        </td>
-      </tr>
-    </table>
-  </div>
+    </td>
+  </tr>
+</table>
 </div>
-</div>
-    </div>
+    
+      <div class="method_details ">
+  <p class="signature " id="proper_table_name-class_method">
   
-    <div class="method">
-      <div class="method_header">
-  <h3>proper_table_name</h3>
-</div><div id="proper_table_name-class_method" class="section method">
-  <div class="details_title">
-    <div class='section methodsignature'>
-    <tt class='def'>
-      <span class='visibility'>public</span>
-      <span class='return_types'></span>
-      <span class='name'>proper_table_name</span><span class='args'>(name)</span>
-      <span class='block'></span>
-    </tt>
-  </div>
+    + (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>proper_table_name</strong>(name) 
+  
 
-</div><div class="section source">
-  <span>[<a class="source_link" href="#">View source</a>]</span>
-  <div class="source_code">
-    <table>
-      <tr>
-        <td>
-          <pre class="lines">
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
 
 
 244
 245
 246
 247</pre>
-        </td>
-        <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/migration.rb', line 244</span>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/big_record/migration.rb', line 244</span>
 
 <span class='def def kw'>def</span> <span class='proper_table_name identifier id'>proper_table_name</span><span class='lparen token'>(</span><span class='name identifier id'>name</span><span class='rparen token'>)</span>
   <span class='comment val'># Use the Active Record objects own table_name, or pre/suffix from ActiveRecord::Base if name is a symbol/string</span>
   <span class='name identifier id'>name</span><span class='dot token'>.</span><span class='table_name identifier id'>table_name</span> <span class='rescue rescue kw'>rescue</span> <span class='dstring node'>&quot;#{BigRecord::Base.table_name_prefix}#{name}#{BigRecord::Base.table_name_suffix}&quot;</span>
 <span class='end end kw'>end</span>
 </pre>
-        </td>
-      </tr>
-    </table>
-  </div>
+    </td>
+  </tr>
+</table>
 </div>
-</div>
-    </div>
+    
+      <div class="method_details ">
+  <p class="signature " id="rollback-class_method">
   
-    <div class="method">
-      <div class="method_header">
-  <h3>rollback</h3>
-</div><div id="rollback-class_method" class="section method">
-  <div class="details_title">
-    <div class='section methodsignature'>
-    <tt class='def'>
-      <span class='visibility'>public</span>
-      <span class='return_types'></span>
-      <span class='name'>rollback</span><span class='args'>(migrations_path, steps = 1)</span>
-      <span class='block'></span>
-    </tt>
-  </div>
+    + (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>rollback</strong>(migrations_path, steps = 1) 
+  
 
-</div><div class="section source">
-  <span>[<a class="source_link" href="#">View source</a>]</span>
-  <div class="source_code">
-    <table>
-      <tr>
-        <td>
-          <pre class="lines">
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
 
 
 205
@@ -617,9 +601,9 @@
 211
 212
 213</pre>
-        </td>
-        <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/migration.rb', line 205</span>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/big_record/migration.rb', line 205</span>
 
 <span class='def def kw'>def</span> <span class='rollback identifier id'>rollback</span><span class='lparen token'>(</span><span class='migrations_path identifier id'>migrations_path</span><span class='comma token'>,</span> <span class='steps identifier id'>steps</span><span class='assign token'>=</span><span class='integer val'>1</span><span class='rparen token'>)</span>
   <span class='migrator identifier id'>migrator</span> <span class='assign token'>=</span> <span class='self self kw'>self</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='symbol val'>:down</span><span class='comma token'>,</span> <span class='migrations_path identifier id'>migrations_path</span><span class='rparen token'>)</span>
@@ -631,248 +615,167 @@
   <span class='down identifier id'>down</span><span class='lparen token'>(</span><span class='migrations_path identifier id'>migrations_path</span><span class='comma token'>,</span> <span class='finish identifier id'>finish</span> <span class='integer val'>? </span><span class='finish identifier id'>finish</span><span class='dot token'>.</span><span class='version identifier id'>version</span> <span class='colon op'>:</span> <span class='integer val'>0</span><span class='rparen token'>)</span>
 <span class='end end kw'>end</span>
 </pre>
-        </td>
-      </tr>
-    </table>
-  </div>
+    </td>
+  </tr>
+</table>
 </div>
-</div>
-    </div>
+    
+      <div class="method_details ">
+  <p class="signature " id="run-class_method">
   
-    <div class="method">
-      <div class="method_header">
-  <h3>run</h3>
-</div><div id="run-class_method" class="section method">
-  <div class="details_title">
-    <div class='section methodsignature'>
-    <tt class='def'>
-      <span class='visibility'>public</span>
-      <span class='return_types'></span>
-      <span class='name'>run</span><span class='args'>(direction, migrations_path, target_version)</span>
-      <span class='block'></span>
-    </tt>
-  </div>
+    + (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>run</strong>(direction, migrations_path, target_version) 
+  
 
-</div><div class="section source">
-  <span>[<a class="source_link" href="#">View source</a>]</span>
-  <div class="source_code">
-    <table>
-      <tr>
-        <td>
-          <pre class="lines">
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
 
 
 223
 224
 225</pre>
-        </td>
-        <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/migration.rb', line 223</span>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/big_record/migration.rb', line 223</span>
 
 <span class='def def kw'>def</span> <span class='run identifier id'>run</span><span class='lparen token'>(</span><span class='direction identifier id'>direction</span><span class='comma token'>,</span> <span class='migrations_path identifier id'>migrations_path</span><span class='comma token'>,</span> <span class='target_version identifier id'>target_version</span><span class='rparen token'>)</span>
   <span class='self self kw'>self</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='direction identifier id'>direction</span><span class='comma token'>,</span> <span class='migrations_path identifier id'>migrations_path</span><span class='comma token'>,</span> <span class='target_version identifier id'>target_version</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='run identifier id'>run</span>
 <span class='end end kw'>end</span>
 </pre>
-        </td>
-      </tr>
-    </table>
-  </div>
+    </td>
+  </tr>
+</table>
 </div>
-</div>
-    </div>
+    
+      <div class="method_details ">
+  <p class="signature " id="schema_migrations_table_name-class_method">
   
-    <div class="method">
-      <div class="method_header">
-  <h3>schema_migrations_table_name</h3>
-</div><div id="schema_migrations_table_name-class_method" class="section method">
-  <div class="details_title">
-    <div class='section methodsignature'>
-    <tt class='def'>
-      <span class='visibility'>public</span>
-      <span class='return_types'></span>
-      <span class='name'>schema_migrations_table_name</span><span class='args'></span>
-      <span class='block'></span>
-    </tt>
-  </div>
+    + (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>schema_migrations_table_name</strong> 
+  
 
-</div><div class="section source">
-  <span>[<a class="source_link" href="#">View source</a>]</span>
-  <div class="source_code">
-    <table>
-      <tr>
-        <td>
-          <pre class="lines">
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
 
 
 227
 228
 229</pre>
-        </td>
-        <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/migration.rb', line 227</span>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/big_record/migration.rb', line 227</span>
 
 <span class='def def kw'>def</span> <span class='schema_migrations_table_name identifier id'>schema_migrations_table_name</span>
   <span class='Base constant id'>Base</span><span class='dot token'>.</span><span class='table_name_prefix identifier id'>table_name_prefix</span> <span class='plus op'>+</span> <span class='string val'>'schema_migrations'</span> <span class='plus op'>+</span> <span class='Base constant id'>Base</span><span class='dot token'>.</span><span class='table_name_suffix identifier id'>table_name_suffix</span>
 <span class='end end kw'>end</span>
 </pre>
-        </td>
-      </tr>
-    </table>
-  </div>
+    </td>
+  </tr>
+</table>
 </div>
-</div>
-    </div>
+    
+      <div class="method_details ">
+  <p class="signature " id="up-class_method">
   
-    <div class="method">
-      <div class="method_header">
-  <h3>up</h3>
-</div><div id="up-class_method" class="section method">
-  <div class="details_title">
-    <div class='section methodsignature'>
-    <tt class='def'>
-      <span class='visibility'>public</span>
-      <span class='return_types'></span>
-      <span class='name'>up</span><span class='args'>(migrations_path, target_version = nil)</span>
-      <span class='block'></span>
-    </tt>
-  </div>
+    + (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>up</strong>(migrations_path, target_version = nil) 
+  
 
-</div><div class="section source">
-  <span>[<a class="source_link" href="#">View source</a>]</span>
-  <div class="source_code">
-    <table>
-      <tr>
-        <td>
-          <pre class="lines">
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
 
 
 215
 216
 217</pre>
-        </td>
-        <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/migration.rb', line 215</span>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/big_record/migration.rb', line 215</span>
 
 <span class='def def kw'>def</span> <span class='up identifier id'>up</span><span class='lparen token'>(</span><span class='migrations_path identifier id'>migrations_path</span><span class='comma token'>,</span> <span class='target_version identifier id'>target_version</span> <span class='assign token'>=</span> <span class='nil nil kw'>nil</span><span class='rparen token'>)</span>
   <span class='self self kw'>self</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='symbol val'>:up</span><span class='comma token'>,</span> <span class='migrations_path identifier id'>migrations_path</span><span class='comma token'>,</span> <span class='target_version identifier id'>target_version</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='migrate identifier id'>migrate</span>
 <span class='end end kw'>end</span>
 </pre>
-        </td>
-      </tr>
-    </table>
-  </div>
+    </td>
+  </tr>
+</table>
 </div>
-</div>
-    </div>
+    
+      <div class="method_details ">
+  <p class="signature " id="current_migration-instance_method">
   
-</div><div class="section methoddetails instance public">
-  <h1>Public Instance Method Details</h1>
+    - (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>current_migration</strong> 
   
-    <div class="method">
-      <div class="method_header">
-  <h3>current_migration</h3>
-</div><div id="current_migration-instance_method" class="section method">
-  <div class="details_title">
-    <div class='section methodsignature'>
-    <tt class='def'>
-      <span class='visibility'>public</span>
-      <span class='return_types'></span>
-      <span class='name'>current_migration</span><span class='args'></span>
-      <span class='block'></span>
-    </tt>
-  </div>
 
-</div><div class="section source">
-  <span>[<a class="source_link" href="#">View source</a>]</span>
-  <div class="source_code">
-    <table>
-      <tr>
-        <td>
-          <pre class="lines">
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
 
 
 260
 261
 262</pre>
-        </td>
-        <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/migration.rb', line 260</span>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/big_record/migration.rb', line 260</span>
 
 <span class='def def kw'>def</span> <span class='current_migration identifier id'>current_migration</span>
   <span class='migrations identifier id'>migrations</span><span class='dot token'>.</span><span class='detect identifier id'>detect</span> <span class='lbrace token'>{</span> <span class='bitor op'>|</span><span class='m identifier id'>m</span><span class='bitor op'>|</span> <span class='m identifier id'>m</span><span class='dot token'>.</span><span class='version identifier id'>version</span> <span class='eq op'>==</span> <span class='current_version identifier id'>current_version</span> <span class='rbrace token'>}</span>
 <span class='end end kw'>end</span>
 </pre>
-        </td>
-      </tr>
-    </table>
-  </div>
+    </td>
+  </tr>
+</table>
 </div>
-</div>
-    </div>
+    
+      <div class="method_details ">
+  <p class="signature " id="current_version-instance_method">
   
-    <div class="method">
-      <div class="method_header">
-  <h3>current_version</h3>
-</div><div id="current_version-instance_method" class="section method">
-  <div class="details_title">
-    <div class='section methodsignature'>
-    <tt class='def'>
-      <span class='visibility'>public</span>
-      <span class='return_types'></span>
-      <span class='name'>current_version</span><span class='args'></span>
-      <span class='block'></span>
-    </tt>
-  </div>
+    - (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>current_version</strong> 
+  
 
-</div><div class="section source">
-  <span>[<a class="source_link" href="#">View source</a>]</span>
-  <div class="source_code">
-    <table>
-      <tr>
-        <td>
-          <pre class="lines">
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
 
 
 256
 257
 258</pre>
-        </td>
-        <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/migration.rb', line 256</span>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/big_record/migration.rb', line 256</span>
 
 <span class='def def kw'>def</span> <span class='current_version identifier id'>current_version</span>
   <span class='migrated identifier id'>migrated</span><span class='dot token'>.</span><span class='last identifier id'>last</span> <span class='orop op'>||</span> <span class='integer val'>0</span>
 <span class='end end kw'>end</span>
 </pre>
-        </td>
-      </tr>
-    </table>
-  </div>
+    </td>
+  </tr>
+</table>
 </div>
-</div>
-    </div>
+    
+      <div class="method_details ">
+  <p class="signature " id="migrate-instance_method">
   
-    <div class="method">
-      <div class="method_header">
-  <h3>migrate</h3>
-</div><div id="migrate-instance_method" class="section method">
-  <div class="details_title">
-    <div class='section methodsignature'>
-    <tt class='def'>
-      <span class='visibility'>public</span>
-      <span class='return_types'></span>
-      <span class='name'>migrate</span><span class='args'></span>
-      <span class='block'></span>
-    </tt>
-  </div>
+    - (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>migrate</strong> 
+  
 
-</div><div class="section source">
-  <span>[<a class="source_link" href="#">View source</a>]</span>
-  <div class="source_code">
-    <table>
-      <tr>
-        <td>
-          <pre class="lines">
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
 
 
 273
@@ -913,9 +816,9 @@
 308
 309
 310</pre>
-        </td>
-        <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/migration.rb', line 273</span>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/big_record/migration.rb', line 273</span>
 
 <span class='def def kw'>def</span> <span class='migrate identifier id'>migrate</span>
   <span class='current identifier id'>current</span> <span class='assign token'>=</span> <span class='migrations identifier id'>migrations</span><span class='dot token'>.</span><span class='detect identifier id'>detect</span> <span class='lbrace token'>{</span> <span class='bitor op'>|</span><span class='m identifier id'>m</span><span class='bitor op'>|</span> <span class='m identifier id'>m</span><span class='dot token'>.</span><span class='version identifier id'>version</span> <span class='eq op'>==</span> <span class='current_version identifier id'>current_version</span> <span class='rbrace token'>}</span>
@@ -956,77 +859,51 @@
   <span class='end end kw'>end</span>
 <span class='end end kw'>end</span>
 </pre>
-        </td>
-      </tr>
-    </table>
-  </div>
+    </td>
+  </tr>
+</table>
 </div>
-</div>
-    </div>
+    
+      <div class="method_details ">
+  <p class="signature " id="migrated-instance_method">
   
-    <div class="method">
-      <div class="method_header">
-  <h3>migrated</h3>
-</div><div id="migrated-instance_method" class="section method">
-  <div class="details_title">
-    <div class='section methodsignature'>
-    <tt class='def'>
-      <span class='visibility'>public</span>
-      <span class='return_types'></span>
-      <span class='name'>migrated</span><span class='args'></span>
-      <span class='block'></span>
-    </tt>
-  </div>
+    - (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>migrated</strong> 
+  
 
-</div><div class="section source">
-  <span>[<a class="source_link" href="#">View source</a>]</span>
-  <div class="source_code">
-    <table>
-      <tr>
-        <td>
-          <pre class="lines">
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
 
 
 347
 348
 349</pre>
-        </td>
-        <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/migration.rb', line 347</span>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/big_record/migration.rb', line 347</span>
 
 <span class='def def kw'>def</span> <span class='migrated identifier id'>migrated</span>
   <span class='@migrated_versions ivar id'>@migrated_versions</span> <span class='opasgn op'>||=</span> <span class='self self kw'>self</span><span class='dot token'>.</span><span class='class identifier id'>class</span><span class='dot token'>.</span><span class='get_all_versions identifier id'>get_all_versions</span>
 <span class='end end kw'>end</span>
 </pre>
-        </td>
-      </tr>
-    </table>
-  </div>
+    </td>
+  </tr>
+</table>
 </div>
-</div>
-    </div>
+    
+      <div class="method_details ">
+  <p class="signature " id="migrations-instance_method">
   
-    <div class="method">
-      <div class="method_header">
-  <h3>migrations</h3>
-</div><div id="migrations-instance_method" class="section method">
-  <div class="details_title">
-    <div class='section methodsignature'>
-    <tt class='def'>
-      <span class='visibility'>public</span>
-      <span class='return_types'></span>
-      <span class='name'>migrations</span><span class='args'></span>
-      <span class='block'></span>
-    </tt>
-  </div>
+    - (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>migrations</strong> 
+  
 
-</div><div class="section source">
-  <span>[<a class="source_link" href="#">View source</a>]</span>
-  <div class="source_code">
-    <table>
-      <tr>
-        <td>
-          <pre class="lines">
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
 
 
 312
@@ -1058,9 +935,9 @@
 338
 339
 340</pre>
-        </td>
-        <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/migration.rb', line 312</span>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/big_record/migration.rb', line 312</span>
 
 <span class='def def kw'>def</span> <span class='migrations identifier id'>migrations</span>
   <span class='@migrations ivar id'>@migrations</span> <span class='opasgn op'>||=</span> <span class='begin begin kw'>begin</span>
@@ -1092,99 +969,74 @@
   <span class='end end kw'>end</span>
 <span class='end end kw'>end</span>
 </pre>
-        </td>
-      </tr>
-    </table>
-  </div>
+    </td>
+  </tr>
+</table>
 </div>
-</div>
-    </div>
+    
+      <div class="method_details ">
+  <p class="signature " id="pending_migrations-instance_method">
   
-    <div class="method">
-      <div class="method_header">
-  <h3>pending_migrations</h3>
-</div><div id="pending_migrations-instance_method" class="section method">
-  <div class="details_title">
-    <div class='section methodsignature'>
-    <tt class='def'>
-      <span class='visibility'>public</span>
-      <span class='return_types'></span>
-      <span class='name'>pending_migrations</span><span class='args'></span>
-      <span class='block'></span>
-    </tt>
-  </div>
+    - (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>pending_migrations</strong> 
+  
 
-</div><div class="section source">
-  <span>[<a class="source_link" href="#">View source</a>]</span>
-  <div class="source_code">
-    <table>
-      <tr>
-        <td>
-          <pre class="lines">
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
 
 
 342
 343
 344
 345</pre>
-        </td>
-        <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/migration.rb', line 342</span>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/big_record/migration.rb', line 342</span>
 
 <span class='def def kw'>def</span> <span class='pending_migrations identifier id'>pending_migrations</span>
   <span class='already_migrated identifier id'>already_migrated</span> <span class='assign token'>=</span> <span class='migrated identifier id'>migrated</span>
   <span class='migrations identifier id'>migrations</span><span class='dot token'>.</span><span class='reject identifier id'>reject</span> <span class='lbrace token'>{</span> <span class='bitor op'>|</span><span class='m identifier id'>m</span><span class='bitor op'>|</span> <span class='already_migrated identifier id'>already_migrated</span><span class='dot token'>.</span><span class='include? fid id'>include?</span><span class='lparen token'>(</span><span class='m identifier id'>m</span><span class='dot token'>.</span><span class='version identifier id'>version</span><span class='dot token'>.</span><span class='to_i identifier id'>to_i</span><span class='rparen token'>)</span> <span class='rbrace token'>}</span>
 <span class='end end kw'>end</span>
 </pre>
-        </td>
-      </tr>
-    </table>
-  </div>
+    </td>
+  </tr>
+</table>
 </div>
-</div>
-    </div>
+    
+      <div class="method_details ">
+  <p class="signature " id="run-instance_method">
   
-    <div class="method">
-      <div class="method_header">
-  <h3>run</h3>
-</div><div id="run-instance_method" class="section method">
-  <div class="details_title">
-    <div class='section methodsignature'>
-    <tt class='def'>
-      <span class='visibility'>public</span>
-      <span class='return_types'></span>
-      <span class='name'>run</span><span class='args'></span>
-      <span class='block'></span>
-    </tt>
-  </div>
+    - (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>run</strong> 
+  
 
-</div><div class="section tags">
-  <h2>Meta Tags</h2>
-  <div class="raise">
+  
+</p><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
   <h3>Raises:</h3>
-  <dl>
+<ul class="raise">
   
-    <dt>
+    <li>
       
-        <span class='type'>[<tt><a href="UnknownMigrationVersionError.html" title="UnknownMigrationVersionError">UnknownMigrationVersionError</a></tt>]</span>
+        <span class='type'>(<tt><a title="UnknownMigrationVersionError" href="UnknownMigrationVersionError.html">UnknownMigrationVersionError</a></tt>)</span>
       
       
       
-    </dt>
-    <dd>
-      <span class='desc'></span>
-    </dd>
+      
+    </li>
   
-  </dl>
-</div>
+</ul>
 
-</div><div class="section source">
-  <span>[<a class="source_link" href="#">View source</a>]</span>
-  <div class="source_code">
-    <table>
-      <tr>
-        <td>
-          <pre class="lines">
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
 
 
 264
@@ -1195,9 +1047,9 @@
 269
 270
 271</pre>
-        </td>
-        <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/migration.rb', line 264</span>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/big_record/migration.rb', line 264</span>
 
 <span class='def def kw'>def</span> <span class='run identifier id'>run</span>
   <span class='target identifier id'>target</span> <span class='assign token'>=</span> <span class='migrations identifier id'>migrations</span><span class='dot token'>.</span><span class='detect identifier id'>detect</span> <span class='lbrace token'>{</span> <span class='bitor op'>|</span><span class='m identifier id'>m</span><span class='bitor op'>|</span> <span class='m identifier id'>m</span><span class='dot token'>.</span><span class='version identifier id'>version</span> <span class='eq op'>==</span> <span class='@target_version ivar id'>@target_version</span> <span class='rbrace token'>}</span>
@@ -1208,23 +1060,19 @@
   <span class='end end kw'>end</span>
 <span class='end end kw'>end</span>
 </pre>
-        </td>
-      </tr>
-    </table>
-  </div>
+    </td>
+  </tr>
+</table>
 </div>
-</div>
-    </div>
-  
-</div>
+    
   </div>
 
 </div>
-    </div>
-    <div id="yard_info">
-  Generated on Wednesday, November 25 2009 at 02:43:30 PM by 
-  <abbr class="yard" title="Yay! A Ruby Documentation Tool"><a href="http://yard.soen.ca">YARD</a></abbr> 
-  0.2.3.5 (ruby-1.8.7).
+    
+    <div id="footer">
+  Generated on Thu Nov 26 18:22:09 2009 by 
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool">yard</a>
+  0.4.0 (ruby-1.8.7).
 </div>
 
   </body>

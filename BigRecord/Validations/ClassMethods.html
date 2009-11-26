@@ -1,22 +1,64 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
-    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-<link rel="stylesheet" href="../../style.css" type="text/css" charset="utf-8" />
-<link rel="stylesheet" href="../../custom.css" type="text/css" charset="utf-8" />
-<link rel="stylesheet" href="../../syntax_highlight.css" type="text/css" charset="utf-8" />
+    <meta name="Content-Type" content="text/html; charset=UTF-8" />
+<title>Module: BigRecord::Validations::ClassMethods</title>
+<link rel="stylesheet" href="../../css/style.css" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="../../css/common.css" type="text/css" media="screen" charset="utf-8" />
 
-    <script src="../../jquery.js" type="text/javascript" charset="utf-8"></script>
-    <script src="../../app.js" type="text/javascript" charset="utf-8"></script>
-    <title>Module: BigRecord::Validations::ClassMethods</title>
+<script type="text/javascript" charset="utf-8">
+  relpath = '../..';
+  if (relpath != '') relpath += '/';
+</script>
+<script type="text/javascript" charset="utf-8" src="../../js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="../../js/app.js"></script>
+
   </head>
   <body>
-    <div id="content">
-      <div class="section module BigRecord_Validations_ClassMethods">
-  <h1 class="title">Module: BigRecord::Validations::ClassMethods</h1>
-  <div class="section docstring">
-  <p>
+    <div id="header">
+      <div id="menu">
+  
+    <a href="../../_index.html">Index (C)</a> &raquo; 
+    <a title="BigRecord" href="../../BigRecord.html">BigRecord</a> &raquo; <a title="Validations" href="../Validations.html">Validations</a>
+     &raquo; 
+    <span class="title">ClassMethods</span>
+  
+</div>
+
+      <div id="search">
+  <a id="class_list_link" href="#">Namespace List</a>
+  <a id="method_list_link" href="#">Method List</a>
+  <a id ="file_list_link" href="#">File List</a>
+</div>
+
+      <div class="clear"></div>
+    </div>
+    
+    <iframe id="search_frame"></iframe>
+    
+    <div id="content"><h1>Module: BigRecord::Validations::ClassMethods 
+  
+  
+</h1>
+
+<dl class="box">
+  
+  
+    
+  
+    
+  
+  
+    <dt class="r1 last">Defined in:</dt>
+    <dd class="r1 last">lib/big_record/validations.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    <p>
 All of the following validations are defined in the class scope of the
 model that you&#8217;re interested in validating. They offer a more
 declarative way of specifying when the model is valid and when it is not.
@@ -24,429 +66,410 @@ It is recommended to use these over the low-level calls to validate and
 validate_on_create when possible.
 </p>
 
-</div><div class="section constants">
-  <div class="thisclass">
-  <h1>Constants</h1>
-  <dl>
-    
-      <dt id="ALL_RANGE_OPTIONS-constant">ALL_RANGE_OPTIONS</dt>
-      <dd>[ :is, :within, :in, :minimum, :maximum ].freeze</dd>
-    
-      <dt id="DEFAULT_VALIDATION_OPTIONS-constant">DEFAULT_VALIDATION_OPTIONS</dt>
-      <dd>{
-  :on =&gt; :save,
-  :allow_nil =&gt; false,
-  :message =&gt; nil
-}.freeze</dd>
-    
-  </dl>
+
+  </div>
 </div>
+<div class="tags">
+  
+</div>
+  <h2>Constant Summary</h2>
+  
+    <dl class="constants">
+      
+        <dt id="DEFAULT_VALIDATION_OPTIONS-constant ">DEFAULT_VALIDATION_OPTIONS =
+            <span class="summary_desc"></span>
+        </dt>
+        <dd><pre class="code"><span class='lbrace token'>{</span>
+  <span class='symbol val'>:on</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='symbol val'>:save</span><span class='comma token'>,</span>
+  <span class='symbol val'>:allow_nil</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='false false kw'>false</span><span class='comma token'>,</span>
+  <span class='symbol val'>:message</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='nil nil kw'>nil</span>
+<span class='rbrace token'>}</span><span class='dot token'>.</span><span class='freeze identifier id'>freeze</span>
+</pre></dd>
+      
+        <dt id="ALL_RANGE_OPTIONS-constant ">ALL_RANGE_OPTIONS =
+            <span class="summary_desc"></span>
+        </dt>
+        <dd><pre class="code"><span class='lbrack token'>[</span> <span class='symbol val'>:is</span><span class='comma token'>,</span> <span class='symbol val'>:within</span><span class='comma token'>,</span> <span class='symbol val'>:in</span><span class='comma token'>,</span> <span class='symbol val'>:minimum</span><span class='comma token'>,</span> <span class='symbol val'>:maximum</span> <span class='rbrack token'>]</span><span class='dot token'>.</span><span class='freeze identifier id'>freeze</span>
+</pre></dd>
+      
+    </dl>
+  
 
-</div>  <div class="section visibilitygroup public">
-    <h1>Public Visibility</h1>
-      <div class="section methodsummary instance public">
-    <h1>Public Instance Method Summary</h1>
-<table class="summary">
-  
-    <tr>
-      <th class="signature">
-        
-          <span class='overload'>
-            <span class='name'><a href="#condition_block%3F-instance_method" title="#condition_block?">#condition_block?</a></span><span class='args'>(condition)</span>
-            <span class='block'></span>
-          </span>
-        
-        
-      </th>
-      <td class="docstring">
-        
-        
-      </td>
-    </tr>
-  
-    <tr>
-      <th class="signature">
-        
-          <span class='overload'>
-            <span class='name'><a href="#create%21-instance_method" title="#create!">#create!</a></span><span class='args'>(attributes = nil)</span>
-            <span class='block'></span>
-          </span>
-        
-        
-      </th>
-      <td class="docstring">
-        <p>
-Creates an object just like Base.
-</p>
 
-        
-      </td>
-    </tr>
+
+  <h2>Method Summary</h2>
+  <ul class="summary">
+    
+      <li class="public ">
+  <span class="summary_signature"><a title="#condition_block? (instance method)" href="#condition_block%3F-instance_method">- (Object) <strong>condition_block?</strong>(condition) </a>
   
-    <tr>
-      <th class="signature">
-        
-          <span class='overload'>
-            <span class='name'><a href="#evaluate_condition-instance_method" title="#evaluate_condition">#evaluate_condition</a></span><span class='args'>(condition, record)</span>
-            <span class='block'></span>
-          </span>
-        
-        
-      </th>
-      <td class="docstring">
-        <p>
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a title="#create! (instance method)" href="#create%21-instance_method">- (Object) <strong>create!</strong>(attributes = nil) </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc">
+Creates an object just like Base.create but calls save! instead of save so
+an exception is raised if the record is invalid.
+
+</span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a title="#evaluate_condition (instance method)" href="#evaluate_condition-instance_method">- (Object) <strong>evaluate_condition</strong>(condition, record) </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc">
 Determine from the given condition (whether a block, procedure, method or
 string) whether or not to validate the record.
-</p>
 
-        
-      </td>
-    </tr>
+</span>
   
-    <tr>
-      <th class="signature">
-        
-          <span class='overload'>
-            <span class='name'><a href="#validate-instance_method" title="#validate">#validate</a></span><span class='args'>(*methods, &amp;block)</span>
-            <span class='block'></span>
-          </span>
-        
-        
-      </th>
-      <td class="docstring">
-        
-        
-      </td>
-    </tr>
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a title="#validate (instance method)" href="#validate-instance_method">- (Object) <strong>validate</strong>(*methods, &amp;block) </a>
   
-    <tr>
-      <th class="signature">
-        
-          <span class='overload'>
-            <span class='name'><a href="#validate_on_create-instance_method" title="#validate_on_create">#validate_on_create</a></span><span class='args'>(*methods, &amp;block)</span>
-            <span class='block'></span>
-          </span>
-        
-        
-      </th>
-      <td class="docstring">
-        
-        
-      </td>
-    </tr>
+  </span>
   
-    <tr>
-      <th class="signature">
-        
-          <span class='overload'>
-            <span class='name'><a href="#validate_on_update-instance_method" title="#validate_on_update">#validate_on_update</a></span><span class='args'>(*methods, &amp;block)</span>
-            <span class='block'></span>
-          </span>
-        
-        
-      </th>
-      <td class="docstring">
-        
-        
-      </td>
-    </tr>
   
-    <tr>
-      <th class="signature">
-        
-          <span class='overload'>
-            <span class='name'><a href="#validates_acceptance_of-instance_method" title="#validates_acceptance_of">#validates_acceptance_of</a></span><span class='args'>(*attr_names)</span>
-            <span class='block'></span>
-          </span>
-        
-        
-      </th>
-      <td class="docstring">
-        <p>
+  
+  
+
+  
+    <span class="summary_desc"></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a title="#validate_on_create (instance method)" href="#validate_on_create-instance_method">- (Object) <strong>validate_on_create</strong>(*methods, &amp;block) </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a title="#validate_on_update (instance method)" href="#validate_on_update-instance_method">- (Object) <strong>validate_on_update</strong>(*methods, &amp;block) </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a title="#validates_acceptance_of (instance method)" href="#validates_acceptance_of-instance_method">- (Object) <strong>validates_acceptance_of</strong>(*attr_names) </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc">
 Encapsulates the pattern of wanting to validate the acceptance of a terms
 of service check box (or similar agreement).
-</p>
 
-        
-      </td>
-    </tr>
+</span>
   
-    <tr>
-      <th class="signature">
-        
-          <span class='overload'>
-            <span class='name'><a href="#validates_associated-instance_method" title="#validates_associated">#validates_associated</a></span><span class='args'>(*attr_names)</span>
-            <span class='block'></span>
-          </span>
-        
-        
-      </th>
-      <td class="docstring">
-        <p>
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a title="#validates_associated (instance method)" href="#validates_associated-instance_method">- (Object) <strong>validates_associated</strong>(*attr_names) </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc">
 Validates whether the associated object or objects are all valid
 themselves.
-</p>
 
-        
-      </td>
-    </tr>
+</span>
   
-    <tr>
-      <th class="signature">
-        
-          <span class='overload'>
-            <span class='name'><a href="#validates_confirmation_of-instance_method" title="#validates_confirmation_of">#validates_confirmation_of</a></span><span class='args'>(*attr_names)</span>
-            <span class='block'></span>
-          </span>
-        
-        
-      </th>
-      <td class="docstring">
-        <p>
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a title="#validates_confirmation_of (instance method)" href="#validates_confirmation_of-instance_method">- (Object) <strong>validates_confirmation_of</strong>(*attr_names) </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc">
 Encapsulates the pattern of wanting to validate a password or email address
 field with a confirmation.
-</p>
 
-        
-      </td>
-    </tr>
+</span>
   
-    <tr>
-      <th class="signature">
-        
-          <span class='overload'>
-            <span class='name'><a href="#validates_each-instance_method" title="#validates_each">#validates_each</a></span><span class='args'>(*attrs)</span>
-            <span class='block'></span>
-          </span>
-        
-        
-      </th>
-      <td class="docstring">
-        <p>
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a title="#validates_each (instance method)" href="#validates_each-instance_method">- (Object) <strong>validates_each</strong>(*attrs) </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc">
 Validates each attribute against a block.
-</p>
 
-        
-      </td>
-    </tr>
+</span>
   
-    <tr>
-      <th class="signature">
-        
-          <span class='overload'>
-            <span class='name'><a href="#validates_exclusion_of-instance_method" title="#validates_exclusion_of">#validates_exclusion_of</a></span><span class='args'>(*attr_names)</span>
-            <span class='block'></span>
-          </span>
-        
-        
-      </th>
-      <td class="docstring">
-        <p>
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a title="#validates_exclusion_of (instance method)" href="#validates_exclusion_of-instance_method">- (Object) <strong>validates_exclusion_of</strong>(*attr_names) </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc">
 Validates that the value of the specified attribute is not in a particular
 enumerable object.
-</p>
 
-        
-      </td>
-    </tr>
+</span>
   
-    <tr>
-      <th class="signature">
-        
-          <span class='overload'>
-            <span class='name'><a href="#validates_format_of-instance_method" title="#validates_format_of">#validates_format_of</a></span><span class='args'>(*attr_names)</span>
-            <span class='block'></span>
-          </span>
-        
-        
-      </th>
-      <td class="docstring">
-        <p>
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a title="#validates_format_of (instance method)" href="#validates_format_of-instance_method">- (Object) <strong>validates_format_of</strong>(*attr_names) </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc">
 Validates whether the value of the specified attribute is of the correct
 form by matching it against the regular expression provided.
-</p>
 
-        
-      </td>
-    </tr>
+</span>
   
-    <tr>
-      <th class="signature">
-        
-          <span class='overload'>
-            <span class='name'><a href="#validates_inclusion_of-instance_method" title="#validates_inclusion_of">#validates_inclusion_of</a></span><span class='args'>(*attr_names)</span>
-            <span class='block'></span>
-          </span>
-        
-        
-      </th>
-      <td class="docstring">
-        <p>
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a title="#validates_inclusion_of (instance method)" href="#validates_inclusion_of-instance_method">- (Object) <strong>validates_inclusion_of</strong>(*attr_names) </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc">
 Validates whether the value of the specified attribute is available in a
 particular enumerable object.
-</p>
 
-        
-      </td>
-    </tr>
+</span>
   
-    <tr>
-      <th class="signature">
-        
-          <span class='overload'>
-            <span class='name'><a href="#validates_length_of-instance_method" title="#validates_length_of">#validates_length_of</a></span><span class='args'>(*attrs)</span>
-            <span class='block'></span>
-          </span>
-        
-        
-          <span class='alias'>#validates_size_of</span>
-        
-      </th>
-      <td class="docstring">
-        <p>
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a title="#validates_length_of (instance method)" href="#validates_length_of-instance_method">- (Object) <strong>validates_length_of</strong>(*attrs) </a>
+  
+    (also: #validates_size_of)
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc">
 Validates that the specified attribute matches the length restrictions
 supplied.
-</p>
 
-        
-      </td>
-    </tr>
+</span>
   
-    <tr>
-      <th class="signature">
-        
-          <span class='overload'>
-            <span class='name'><a href="#validates_numericality_of-instance_method" title="#validates_numericality_of">#validates_numericality_of</a></span><span class='args'>(*attr_names)</span>
-            <span class='block'></span>
-          </span>
-        
-        
-      </th>
-      <td class="docstring">
-        <p>
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a title="#validates_numericality_of (instance method)" href="#validates_numericality_of-instance_method">- (Object) <strong>validates_numericality_of</strong>(*attr_names) </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc">
 Validates whether the value of the specified attribute is numeric by trying
-to convert it to a float with Kernel.
-</p>
+to convert it to a float with Kernel.Float (if <tt>integer</tt> is false)
+or applying it to the regular expression
+<tt>/\A[&lt;tt&gt;\-]?\d</tt>\Z/&lt;/tt&gt; (if <tt>integer</tt> is set to
+true).
 
-        
-      </td>
-    </tr>
+</span>
   
-    <tr>
-      <th class="signature">
-        
-          <span class='overload'>
-            <span class='name'><a href="#validates_presence_of-instance_method" title="#validates_presence_of">#validates_presence_of</a></span><span class='args'>(*attr_names)</span>
-            <span class='block'></span>
-          </span>
-        
-        
-      </th>
-      <td class="docstring">
-        <p>
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a title="#validates_presence_of (instance method)" href="#validates_presence_of-instance_method">- (Object) <strong>validates_presence_of</strong>(*attr_names) </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc">
 Validates that the specified attributes are not blank (as defined by
 Object#blank?).
-</p>
 
-        
-      </td>
-    </tr>
+</span>
   
-    <tr>
-      <th class="signature">
-        
-          <span class='overload'>
-            <span class='name'><a href="#validates_uniqueness_of-instance_method" title="#validates_uniqueness_of">#validates_uniqueness_of</a></span><span class='args'>(*attr_names)</span>
-            <span class='block'></span>
-          </span>
-        
-        
-      </th>
-      <td class="docstring">
-        <p>
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a title="#validates_uniqueness_of (instance method)" href="#validates_uniqueness_of-instance_method">- (Object) <strong>validates_uniqueness_of</strong>(*attr_names) </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc">
 Validates whether the value of the specified attributes are unique across
 the system.
-</p>
 
-        
-      </td>
-    </tr>
+</span>
   
-</table>
+</li>
 
-  </div>
-<div class="section methoddetails instance public">
-  <h1>Public Instance Method Details</h1>
+    
+  </ul>
+
+
+
+  <div id="method_details">
+    <h2>Method Details</h2>
+    
+      <div class="method_details first">
+  <p class="signature first" id="condition_block?-instance_method">
   
-    <div class="method">
-      <div class="method_header">
-  <h3>condition_block?</h3>
-</div><div id="condition_block?-instance_method" class="section method">
-  <div class="details_title">
-    <div class='section methodsignature'>
-    <tt class='def'>
-      <span class='visibility'>public</span>
-      <span class='return_types'></span>
-      <span class='name'>condition_block?</span><span class='args'>(condition)</span>
-      <span class='block'></span>
-    </tt>
-  </div>
+    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>condition_block?</strong>(condition) 
+  
 
-</div><div class="section source">
-  <span>[<a class="source_link" href="#">View source</a>]</span>
-  <div class="source_code">
-    <table>
-      <tr>
-        <td>
-          <pre class="lines">
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
 
 
 241
 242
 243</pre>
-        </td>
-        <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/validations.rb', line 241</span>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/big_record/validations.rb', line 241</span>
 
 <span class='def def kw'>def</span> <span class='condition_block? fid id'>condition_block?</span><span class='lparen token'>(</span><span class='condition identifier id'>condition</span><span class='rparen token'>)</span>
   <span class='condition identifier id'>condition</span><span class='dot token'>.</span><span class='respond_to? fid id'>respond_to?</span><span class='lparen token'>(</span><span class='string val'>&quot;call&quot;</span><span class='rparen token'>)</span> <span class='andop op'>&amp;&amp;</span> <span class='lparen token'>(</span><span class='condition identifier id'>condition</span><span class='dot token'>.</span><span class='arity identifier id'>arity</span> <span class='eq op'>==</span> <span class='integer val'>1</span> <span class='orop op'>||</span> <span class='condition identifier id'>condition</span><span class='dot token'>.</span><span class='arity identifier id'>arity</span> <span class='eq op'>==</span> <span class='integer val'>-1</span><span class='rparen token'>)</span>
 <span class='end end kw'>end</span>
 </pre>
-        </td>
-      </tr>
-    </table>
-  </div>
+    </td>
+  </tr>
+</table>
 </div>
-</div>
-    </div>
+    
+      <div class="method_details ">
+  <p class="signature " id="create!-instance_method">
   
-    <div class="method">
-      <div class="method_header">
-  <h3>create!</h3>
-</div><div id="create!-instance_method" class="section method">
-  <div class="details_title">
-    <div class='section methodsignature'>
-    <tt class='def'>
-      <span class='visibility'>public</span>
-      <span class='return_types'></span>
-      <span class='name'>create!</span><span class='args'>(attributes = nil)</span>
-      <span class='block'></span>
-    </tt>
-  </div>
+    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>create!</strong>(attributes = nil) 
+  
 
-</div><div class="section docstring">
-  <p>
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
 Creates an object just like Base.create but calls save! instead of save so
 an exception is raised if the record is invalid.
 </p>
 
-</div><div class="section source">
-  <span>[<a class="source_link" href="#">View source</a>]</span>
-  <div class="source_code">
-    <table>
-      <tr>
-        <td>
-          <pre class="lines">
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
 
 
 706
@@ -461,9 +484,9 @@ an exception is raised if the record is invalid.
 715
 716
 717</pre>
-        </td>
-        <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/validations.rb', line 706</span>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/big_record/validations.rb', line 706</span>
 
 <span class='def def kw'>def</span> <span class='create! fid id'>create!</span><span class='lparen token'>(</span><span class='attributes identifier id'>attributes</span> <span class='assign token'>=</span> <span class='nil nil kw'>nil</span><span class='rparen token'>)</span>
   <span class='if if kw'>if</span> <span class='attributes identifier id'>attributes</span><span class='dot token'>.</span><span class='is_a? fid id'>is_a?</span><span class='lparen token'>(</span><span class='Array constant id'>Array</span><span class='rparen token'>)</span>
@@ -478,41 +501,34 @@ an exception is raised if the record is invalid.
   <span class='end end kw'>end</span>
 <span class='end end kw'>end</span>
 </pre>
-        </td>
-      </tr>
-    </table>
-  </div>
+    </td>
+  </tr>
+</table>
 </div>
-</div>
-    </div>
+    
+      <div class="method_details ">
+  <p class="signature " id="evaluate_condition-instance_method">
   
-    <div class="method">
-      <div class="method_header">
-  <h3>evaluate_condition</h3>
-</div><div id="evaluate_condition-instance_method" class="section method">
-  <div class="details_title">
-    <div class='section methodsignature'>
-    <tt class='def'>
-      <span class='visibility'>public</span>
-      <span class='return_types'></span>
-      <span class='name'>evaluate_condition</span><span class='args'>(condition, record)</span>
-      <span class='block'></span>
-    </tt>
-  </div>
+    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>evaluate_condition</strong>(condition, record) 
+  
 
-</div><div class="section docstring">
-  <p>
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
 Determine from the given condition (whether a block, procedure, method or
 string) whether or not to validate the record. See #validates_each.
 </p>
 
-</div><div class="section source">
-  <span>[<a class="source_link" href="#">View source</a>]</span>
-  <div class="source_code">
-    <table>
-      <tr>
-        <td>
-          <pre class="lines">
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
 
 
 247
@@ -531,9 +547,9 @@ string) whether or not to validate the record. See #validates_each.
 260
 261
 262</pre>
-        </td>
-        <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/validations.rb', line 247</span>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/big_record/validations.rb', line 247</span>
 
 <span class='def def kw'>def</span> <span class='evaluate_condition identifier id'>evaluate_condition</span><span class='lparen token'>(</span><span class='condition identifier id'>condition</span><span class='comma token'>,</span> <span class='record identifier id'>record</span><span class='rparen token'>)</span>
   <span class='case case kw'>case</span> <span class='condition identifier id'>condition</span>
@@ -552,162 +568,114 @@ string) whether or not to validate the record. See #validates_each.
     <span class='end end kw'>end</span>
 <span class='end end kw'>end</span>
 </pre>
-        </td>
-      </tr>
-    </table>
-  </div>
+    </td>
+  </tr>
+</table>
 </div>
-</div>
-    </div>
+    
+      <div class="method_details ">
+  <p class="signature " id="validate-instance_method">
   
-    <div class="method">
-      <div class="method_header">
-  <h3>validate</h3>
-</div><div id="validate-instance_method" class="section method">
-  <div class="details_title">
-    <div class='section methodsignature'>
-    <tt class='def'>
-      <span class='visibility'>public</span>
-      <span class='return_types'></span>
-      <span class='name'>validate</span><span class='args'>(*methods, &amp;block)</span>
-      <span class='block'></span>
-    </tt>
-  </div>
+    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>validate</strong>(*methods, &amp;block) 
+  
 
-</div><div class="section source">
-  <span>[<a class="source_link" href="#">View source</a>]</span>
-  <div class="source_code">
-    <table>
-      <tr>
-        <td>
-          <pre class="lines">
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
 
 
 226
 227
 228
 229</pre>
-        </td>
-        <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/validations.rb', line 226</span>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/big_record/validations.rb', line 226</span>
 
 <span class='def def kw'>def</span> <span class='validate identifier id'>validate</span><span class='lparen token'>(</span><span class='mult op'>*</span><span class='methods identifier id'>methods</span><span class='comma token'>,</span> <span class='bitand op'>&amp;</span><span class='block identifier id'>block</span><span class='rparen token'>)</span>
   <span class='methods identifier id'>methods</span> <span class='lshft op'>&lt;&lt;</span> <span class='block identifier id'>block</span> <span class='if if_mod kw'>if</span> <span class='block_given? fid id'>block_given?</span>
   <span class='write_inheritable_set identifier id'>write_inheritable_set</span><span class='lparen token'>(</span><span class='symbol val'>:validate</span><span class='comma token'>,</span> <span class='methods identifier id'>methods</span><span class='rparen token'>)</span>
 <span class='end end kw'>end</span>
 </pre>
-        </td>
-      </tr>
-    </table>
-  </div>
+    </td>
+  </tr>
+</table>
 </div>
-</div>
-    </div>
+    
+      <div class="method_details ">
+  <p class="signature " id="validate_on_create-instance_method">
   
-    <div class="method">
-      <div class="method_header">
-  <h3>validate_on_create</h3>
-</div><div id="validate_on_create-instance_method" class="section method">
-  <div class="details_title">
-    <div class='section methodsignature'>
-    <tt class='def'>
-      <span class='visibility'>public</span>
-      <span class='return_types'></span>
-      <span class='name'>validate_on_create</span><span class='args'>(*methods, &amp;block)</span>
-      <span class='block'></span>
-    </tt>
-  </div>
+    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>validate_on_create</strong>(*methods, &amp;block) 
+  
 
-</div><div class="section source">
-  <span>[<a class="source_link" href="#">View source</a>]</span>
-  <div class="source_code">
-    <table>
-      <tr>
-        <td>
-          <pre class="lines">
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
 
 
 231
 232
 233
 234</pre>
-        </td>
-        <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/validations.rb', line 231</span>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/big_record/validations.rb', line 231</span>
 
 <span class='def def kw'>def</span> <span class='validate_on_create identifier id'>validate_on_create</span><span class='lparen token'>(</span><span class='mult op'>*</span><span class='methods identifier id'>methods</span><span class='comma token'>,</span> <span class='bitand op'>&amp;</span><span class='block identifier id'>block</span><span class='rparen token'>)</span>
   <span class='methods identifier id'>methods</span> <span class='lshft op'>&lt;&lt;</span> <span class='block identifier id'>block</span> <span class='if if_mod kw'>if</span> <span class='block_given? fid id'>block_given?</span>
   <span class='write_inheritable_set identifier id'>write_inheritable_set</span><span class='lparen token'>(</span><span class='symbol val'>:validate_on_create</span><span class='comma token'>,</span> <span class='methods identifier id'>methods</span><span class='rparen token'>)</span>
 <span class='end end kw'>end</span>
 </pre>
-        </td>
-      </tr>
-    </table>
-  </div>
+    </td>
+  </tr>
+</table>
 </div>
-</div>
-    </div>
+    
+      <div class="method_details ">
+  <p class="signature " id="validate_on_update-instance_method">
   
-    <div class="method">
-      <div class="method_header">
-  <h3>validate_on_update</h3>
-</div><div id="validate_on_update-instance_method" class="section method">
-  <div class="details_title">
-    <div class='section methodsignature'>
-    <tt class='def'>
-      <span class='visibility'>public</span>
-      <span class='return_types'></span>
-      <span class='name'>validate_on_update</span><span class='args'>(*methods, &amp;block)</span>
-      <span class='block'></span>
-    </tt>
-  </div>
+    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>validate_on_update</strong>(*methods, &amp;block) 
+  
 
-</div><div class="section source">
-  <span>[<a class="source_link" href="#">View source</a>]</span>
-  <div class="source_code">
-    <table>
-      <tr>
-        <td>
-          <pre class="lines">
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
 
 
 236
 237
 238
 239</pre>
-        </td>
-        <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/validations.rb', line 236</span>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/big_record/validations.rb', line 236</span>
 
 <span class='def def kw'>def</span> <span class='validate_on_update identifier id'>validate_on_update</span><span class='lparen token'>(</span><span class='mult op'>*</span><span class='methods identifier id'>methods</span><span class='comma token'>,</span> <span class='bitand op'>&amp;</span><span class='block identifier id'>block</span><span class='rparen token'>)</span>
   <span class='methods identifier id'>methods</span> <span class='lshft op'>&lt;&lt;</span> <span class='block identifier id'>block</span> <span class='if if_mod kw'>if</span> <span class='block_given? fid id'>block_given?</span>
   <span class='write_inheritable_set identifier id'>write_inheritable_set</span><span class='lparen token'>(</span><span class='symbol val'>:validate_on_update</span><span class='comma token'>,</span> <span class='methods identifier id'>methods</span><span class='rparen token'>)</span>
 <span class='end end kw'>end</span>
 </pre>
-        </td>
-      </tr>
-    </table>
-  </div>
+    </td>
+  </tr>
+</table>
 </div>
-</div>
-    </div>
+    
+      <div class="method_details ">
+  <p class="signature " id="validates_acceptance_of-instance_method">
   
-    <div class="method">
-      <div class="method_header">
-  <h3>validates_acceptance_of</h3>
-</div><div id="validates_acceptance_of-instance_method" class="section method">
-  <div class="details_title">
-    <div class='section methodsignature'>
-    <tt class='def'>
-      <span class='visibility'>public</span>
-      <span class='return_types'></span>
-      <span class='name'>validates_acceptance_of</span><span class='args'>(*attr_names)</span>
-      <span class='block'></span>
-    </tt>
-  </div>
+    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>validates_acceptance_of</strong>(*attr_names) 
+  
 
-</div><div class="section docstring">
-  <p>
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
 Encapsulates the pattern of wanting to validate the acceptance of a terms
 of service check box (or similar agreement). Example:
 </p>
@@ -754,13 +722,15 @@ user.signup_step &gt; 2 }). The method, proc or string should return or
 evaluate to a true or false value.
 </p>
 
-</div><div class="section source">
-  <span>[<a class="source_link" href="#">View source</a>]</span>
-  <div class="source_code">
-    <table>
-      <tr>
-        <td>
-          <pre class="lines">
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
 
 
 346
@@ -773,9 +743,9 @@ evaluate to a true or false value.
 353
 354
 355</pre>
-        </td>
-        <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/validations.rb', line 346</span>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/big_record/validations.rb', line 346</span>
 
 <span class='def def kw'>def</span> <span class='validates_acceptance_of identifier id'>validates_acceptance_of</span><span class='lparen token'>(</span><span class='mult op'>*</span><span class='attr_names identifier id'>attr_names</span><span class='rparen token'>)</span>
   <span class='configuration identifier id'>configuration</span> <span class='assign token'>=</span> <span class='lbrace token'>{</span> <span class='symbol val'>:message</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='BigRecord constant id'>BigRecord</span><span class='colon2 op'>::</span><span class='Errors constant id'>Errors</span><span class='dot token'>.</span><span class='default_error_messages identifier id'>default_error_messages</span><span class='lbrack token'>[</span><span class='symbol val'>:accepted</span><span class='rbrack token'>]</span><span class='comma token'>,</span> <span class='symbol val'>:on</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='symbol val'>:save</span><span class='comma token'>,</span> <span class='symbol val'>:allow_nil</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='true true kw'>true</span><span class='comma token'>,</span> <span class='symbol val'>:accept</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>&quot;1&quot;</span> <span class='rbrace token'>}</span>
@@ -788,30 +758,21 @@ evaluate to a true or false value.
   <span class='end end kw'>end</span>
 <span class='end end kw'>end</span>
 </pre>
-        </td>
-      </tr>
-    </table>
-  </div>
+    </td>
+  </tr>
+</table>
 </div>
-</div>
-    </div>
+    
+      <div class="method_details ">
+  <p class="signature " id="validates_associated-instance_method">
   
-    <div class="method">
-      <div class="method_header">
-  <h3>validates_associated</h3>
-</div><div id="validates_associated-instance_method" class="section method">
-  <div class="details_title">
-    <div class='section methodsignature'>
-    <tt class='def'>
-      <span class='visibility'>public</span>
-      <span class='return_types'></span>
-      <span class='name'>validates_associated</span><span class='args'>(*attr_names)</span>
-      <span class='block'></span>
-    </tt>
-  </div>
+    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>validates_associated</strong>(*attr_names) 
+  
 
-</div><div class="section docstring">
-  <p>
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
 Validates whether the associated object or objects are all valid
 themselves. Works with any kind of association.
 </p>
@@ -861,13 +822,15 @@ user.signup_step &gt; 2 }). The method, proc or string should return or
 evaluate to a true or false value.
 </p>
 
-</div><div class="section source">
-  <span>[<a class="source_link" href="#">View source</a>]</span>
-  <div class="source_code">
-    <table>
-      <tr>
-        <td>
-          <pre class="lines">
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
 
 
 656
@@ -879,9 +842,9 @@ evaluate to a true or false value.
 662
 663
 664</pre>
-        </td>
-        <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/validations.rb', line 656</span>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/big_record/validations.rb', line 656</span>
 
 <span class='def def kw'>def</span> <span class='validates_associated identifier id'>validates_associated</span><span class='lparen token'>(</span><span class='mult op'>*</span><span class='attr_names identifier id'>attr_names</span><span class='rparen token'>)</span>
   <span class='configuration identifier id'>configuration</span> <span class='assign token'>=</span> <span class='lbrace token'>{</span> <span class='symbol val'>:message</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='BigRecord constant id'>BigRecord</span><span class='colon2 op'>::</span><span class='Errors constant id'>Errors</span><span class='dot token'>.</span><span class='default_error_messages identifier id'>default_error_messages</span><span class='lbrack token'>[</span><span class='symbol val'>:invalid</span><span class='rbrack token'>]</span><span class='comma token'>,</span> <span class='symbol val'>:on</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='symbol val'>:save</span> <span class='rbrace token'>}</span>
@@ -893,30 +856,21 @@ evaluate to a true or false value.
   <span class='end end kw'>end</span>
 <span class='end end kw'>end</span>
 </pre>
-        </td>
-      </tr>
-    </table>
-  </div>
+    </td>
+  </tr>
+</table>
 </div>
-</div>
-    </div>
+    
+      <div class="method_details ">
+  <p class="signature " id="validates_confirmation_of-instance_method">
   
-    <div class="method">
-      <div class="method_header">
-  <h3>validates_confirmation_of</h3>
-</div><div id="validates_confirmation_of-instance_method" class="section method">
-  <div class="details_title">
-    <div class='section methodsignature'>
-    <tt class='def'>
-      <span class='visibility'>public</span>
-      <span class='return_types'></span>
-      <span class='name'>validates_confirmation_of</span><span class='args'>(*attr_names)</span>
-      <span class='block'></span>
-    </tt>
-  </div>
+    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>validates_confirmation_of</strong>(*attr_names) 
+  
 
-</div><div class="section docstring">
-  <p>
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
 Encapsulates the pattern of wanting to validate a password or email address
 field with a confirmation. Example:
 </p>
@@ -960,13 +914,15 @@ user.signup_step &gt; 2 }). The method, proc or string should return or
 evaluate to a true or false value.
 </p>
 
-</div><div class="section source">
-  <span>[<a class="source_link" href="#">View source</a>]</span>
-  <div class="source_code">
-    <table>
-      <tr>
-        <td>
-          <pre class="lines">
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
 
 
 317
@@ -979,9 +935,9 @@ evaluate to a true or false value.
 324
 325
 326</pre>
-        </td>
-        <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/validations.rb', line 317</span>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/big_record/validations.rb', line 317</span>
 
 <span class='def def kw'>def</span> <span class='validates_confirmation_of identifier id'>validates_confirmation_of</span><span class='lparen token'>(</span><span class='mult op'>*</span><span class='attr_names identifier id'>attr_names</span><span class='rparen token'>)</span>
   <span class='configuration identifier id'>configuration</span> <span class='assign token'>=</span> <span class='lbrace token'>{</span> <span class='symbol val'>:message</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='BigRecord constant id'>BigRecord</span><span class='colon2 op'>::</span><span class='Errors constant id'>Errors</span><span class='dot token'>.</span><span class='default_error_messages identifier id'>default_error_messages</span><span class='lbrack token'>[</span><span class='symbol val'>:confirmation</span><span class='rbrack token'>]</span><span class='comma token'>,</span> <span class='symbol val'>:on</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='symbol val'>:save</span> <span class='rbrace token'>}</span>
@@ -994,30 +950,21 @@ evaluate to a true or false value.
   <span class='end end kw'>end</span>
 <span class='end end kw'>end</span>
 </pre>
-        </td>
-      </tr>
-    </table>
-  </div>
+    </td>
+  </tr>
+</table>
 </div>
-</div>
-    </div>
+    
+      <div class="method_details ">
+  <p class="signature " id="validates_each-instance_method">
   
-    <div class="method">
-      <div class="method_header">
-  <h3>validates_each</h3>
-</div><div id="validates_each-instance_method" class="section method">
-  <div class="details_title">
-    <div class='section methodsignature'>
-    <tt class='def'>
-      <span class='visibility'>public</span>
-      <span class='return_types'></span>
-      <span class='name'>validates_each</span><span class='args'>(*attrs)</span>
-      <span class='block'></span>
-    </tt>
-  </div>
+    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>validates_each</strong>(*attrs) 
+  
 
-</div><div class="section docstring">
-  <p>
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
 Validates each attribute against a block.
 </p>
 <pre class="code">
@@ -1049,13 +996,15 @@ user.signup_step &gt; 2 }). The method, proc or string should return or
 evaluate to a true or false value.
 </p>
 
-</div><div class="section source">
-  <span>[<a class="source_link" href="#">View source</a>]</span>
-  <div class="source_code">
-    <table>
-      <tr>
-        <td>
-          <pre class="lines">
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
 
 
 278
@@ -1074,9 +1023,9 @@ evaluate to a true or false value.
 291
 292
 293</pre>
-        </td>
-        <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/validations.rb', line 278</span>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/big_record/validations.rb', line 278</span>
 
 <span class='def def kw'>def</span> <span class='validates_each identifier id'>validates_each</span><span class='lparen token'>(</span><span class='mult op'>*</span><span class='attrs identifier id'>attrs</span><span class='rparen token'>)</span>
   <span class='options identifier id'>options</span> <span class='assign token'>=</span> <span class='attrs identifier id'>attrs</span><span class='dot token'>.</span><span class='last identifier id'>last</span><span class='dot token'>.</span><span class='is_a? fid id'>is_a?</span><span class='lparen token'>(</span><span class='Hash constant id'>Hash</span><span class='rparen token'>)</span> <span class='question op'>?</span> <span class='attrs identifier id'>attrs</span><span class='dot token'>.</span><span class='pop identifier id'>pop</span><span class='dot token'>.</span><span class='symbolize_keys identifier id'>symbolize_keys</span> <span class='colon op'>:</span> <span class='lbrace token'>{</span><span class='rbrace token'>}</span>
@@ -1095,30 +1044,21 @@ evaluate to a true or false value.
   <span class='end end kw'>end</span>
 <span class='end end kw'>end</span>
 </pre>
-        </td>
-      </tr>
-    </table>
-  </div>
+    </td>
+  </tr>
+</table>
 </div>
-</div>
-    </div>
+    
+      <div class="method_details ">
+  <p class="signature " id="validates_exclusion_of-instance_method">
   
-    <div class="method">
-      <div class="method_header">
-  <h3>validates_exclusion_of</h3>
-</div><div id="validates_exclusion_of-instance_method" class="section method">
-  <div class="details_title">
-    <div class='section methodsignature'>
-    <tt class='def'>
-      <span class='visibility'>public</span>
-      <span class='return_types'></span>
-      <span class='name'>validates_exclusion_of</span><span class='args'>(*attr_names)</span>
-      <span class='block'></span>
-    </tt>
-  </div>
+    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>validates_exclusion_of</strong>(*attr_names) 
+  
 
-</div><div class="section docstring">
-  <p>
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
 Validates that the value of the specified attribute is not in a particular
 enumerable object.
 </p>
@@ -1155,33 +1095,28 @@ user.signup_step &gt; 2 }). The method, proc or string should return or
 evaluate to a true or false value.
 </p>
 
-</div><div class="section tags">
-  <h2>Meta Tags</h2>
-  <div class="raise">
-  <h3>Raises:</h3>
-  <dl>
-  
-    <dt>
-      
-        <span class='type'>[<tt>ArgumentError</tt>]</span>
-      
-      
-      
-    </dt>
-    <dd>
-      <span class='desc'></span>
-    </dd>
-  
-  </dl>
-</div>
 
-</div><div class="section source">
-  <span>[<a class="source_link" href="#">View source</a>]</span>
-  <div class="source_code">
-    <table>
-      <tr>
-        <td>
-          <pre class="lines">
+  </div>
+</div>
+<div class="tags">
+  <h3>Raises:</h3>
+<ul class="raise">
+  
+    <li>
+      
+        <span class='type'>(<tt>ArgumentError</tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
 
 
 616
@@ -1196,9 +1131,9 @@ evaluate to a true or false value.
 625
 626
 627</pre>
-        </td>
-        <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/validations.rb', line 616</span>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/big_record/validations.rb', line 616</span>
 
 <span class='def def kw'>def</span> <span class='validates_exclusion_of identifier id'>validates_exclusion_of</span><span class='lparen token'>(</span><span class='mult op'>*</span><span class='attr_names identifier id'>attr_names</span><span class='rparen token'>)</span>
   <span class='configuration identifier id'>configuration</span> <span class='assign token'>=</span> <span class='lbrace token'>{</span> <span class='symbol val'>:message</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='BigRecord constant id'>BigRecord</span><span class='colon2 op'>::</span><span class='Errors constant id'>Errors</span><span class='dot token'>.</span><span class='default_error_messages identifier id'>default_error_messages</span><span class='lbrack token'>[</span><span class='symbol val'>:exclusion</span><span class='rbrack token'>]</span><span class='comma token'>,</span> <span class='symbol val'>:on</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='symbol val'>:save</span> <span class='rbrace token'>}</span>
@@ -1213,36 +1148,27 @@ evaluate to a true or false value.
   <span class='end end kw'>end</span>
 <span class='end end kw'>end</span>
 </pre>
-        </td>
-      </tr>
-    </table>
-  </div>
+    </td>
+  </tr>
+</table>
 </div>
-</div>
-    </div>
+    
+      <div class="method_details ">
+  <p class="signature " id="validates_format_of-instance_method">
   
-    <div class="method">
-      <div class="method_header">
-  <h3>validates_format_of</h3>
-</div><div id="validates_format_of-instance_method" class="section method">
-  <div class="details_title">
-    <div class='section methodsignature'>
-    <tt class='def'>
-      <span class='visibility'>public</span>
-      <span class='return_types'></span>
-      <span class='name'>validates_format_of</span><span class='args'>(*attr_names)</span>
-      <span class='block'></span>
-    </tt>
-  </div>
+    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>validates_format_of</strong>(*attr_names) 
+  
 
-</div><div class="section docstring">
-  <p>
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
 Validates whether the value of the specified attribute is of the correct
 form by matching it against the regular expression provided.
 </p>
 <pre class="code">
   <span class='class class kw'>class</span> <span class='Person constant id'>Person</span> <span class='lt op'>&lt;</span> <span class='ActiveRecord constant id'>ActiveRecord</span><span class='colon2 op'>::</span><span class='Base constant id'>Base</span>
-    <span class='validates_format_of identifier id'>validates_format_of</span> <span class='symbol val'>:email</span><span class='comma token'>,</span> <span class='symbol val'>:with</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='regexp val'>/\A([^@\s]&lt;tt&gt;)@((?:[-a-z0-9]&lt;/</span><span class='tt identifier id'>tt</span><span class='gt op'>&gt;</span>\<span class='dot token'>.</span><span class='rparen token'>)</span><span class='plus op'>+</span><span class='lbrack token'>[</span><span class='a identifier id'>a</span><span class='minus op'>-</span><span class='z identifier id'>z</span><span class='rbrack token'>]</span><span class='lbrace token'>{</span><span class='integer val'>2</span><span class='comma token'>,</span><span class='rbrace token'>}</span><span class='rparen token'>)</span>\<span class='Z constant id'>Z</span><span class='div op'>/</span><span class='i identifier id'>i</span><span class='comma token'>,</span> <span class='symbol val'>:on</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='symbol val'>:create</span>
+    <span class='validates_format_of identifier id'>validates_format_of</span> <span class='symbol val'>:email</span><span class='comma token'>,</span> <span class='symbol val'>:with</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='regexp val'>/\A([^@\s]&lt;tt&gt;)@((?:[-a-z0-9]&lt;/</span><span class='tt identifier id'>tt</span><span class='gt op'>&gt;</span>\<span class='dot token'>.</span><span class='rparen token'>)</span><span class='plus op'>+</span><span class='lbrack token'>[</span><span class='a identifier id'>a</span><span class='minus op'>-</span><span class='z identifier id'>z</span><span class='rbrack token'>]</span><span class='lbrace token'>{</span><span class='integer val'>2</span><span class='comma token'>,</span><span class='rbrace token'>}</span><span class='rparen token'>)</span>\<span class='Z constant id'>Z</span><span class='div op'>/</span><span class='i identifier id'>i</span><span class='comma token'>,</span> <span class='symbol val'>:on</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='symbol val'>:create</span>
   <span class='end end kw'>end</span>
 </pre>
 <p>
@@ -1279,33 +1205,28 @@ user.signup_step &gt; 2 }). The method, proc or string should return or
 evaluate to a true or false value.
 </p>
 
-</div><div class="section tags">
-  <h2>Meta Tags</h2>
-  <div class="raise">
-  <h3>Raises:</h3>
-  <dl>
-  
-    <dt>
-      
-        <span class='type'>[<tt>ArgumentError</tt>]</span>
-      
-      
-      
-    </dt>
-    <dd>
-      <span class='desc'></span>
-    </dd>
-  
-  </dl>
-</div>
 
-</div><div class="section source">
-  <span>[<a class="source_link" href="#">View source</a>]</span>
-  <div class="source_code">
-    <table>
-      <tr>
-        <td>
-          <pre class="lines">
+  </div>
+</div>
+<div class="tags">
+  <h3>Raises:</h3>
+<ul class="raise">
+  
+    <li>
+      
+        <span class='type'>(<tt>ArgumentError</tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
 
 
 564
@@ -1318,9 +1239,9 @@ evaluate to a true or false value.
 571
 572
 573</pre>
-        </td>
-        <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/validations.rb', line 564</span>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/big_record/validations.rb', line 564</span>
 
 <span class='def def kw'>def</span> <span class='validates_format_of identifier id'>validates_format_of</span><span class='lparen token'>(</span><span class='mult op'>*</span><span class='attr_names identifier id'>attr_names</span><span class='rparen token'>)</span>
   <span class='configuration identifier id'>configuration</span> <span class='assign token'>=</span> <span class='lbrace token'>{</span> <span class='symbol val'>:message</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='BigRecord constant id'>BigRecord</span><span class='colon2 op'>::</span><span class='Errors constant id'>Errors</span><span class='dot token'>.</span><span class='default_error_messages identifier id'>default_error_messages</span><span class='lbrack token'>[</span><span class='symbol val'>:invalid</span><span class='rbrack token'>]</span><span class='comma token'>,</span> <span class='symbol val'>:on</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='symbol val'>:save</span><span class='comma token'>,</span> <span class='symbol val'>:with</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='nil nil kw'>nil</span> <span class='rbrace token'>}</span>
@@ -1333,30 +1254,21 @@ evaluate to a true or false value.
   <span class='end end kw'>end</span>
 <span class='end end kw'>end</span>
 </pre>
-        </td>
-      </tr>
-    </table>
-  </div>
+    </td>
+  </tr>
+</table>
 </div>
-</div>
-    </div>
+    
+      <div class="method_details ">
+  <p class="signature " id="validates_inclusion_of-instance_method">
   
-    <div class="method">
-      <div class="method_header">
-  <h3>validates_inclusion_of</h3>
-</div><div id="validates_inclusion_of-instance_method" class="section method">
-  <div class="details_title">
-    <div class='section methodsignature'>
-    <tt class='def'>
-      <span class='visibility'>public</span>
-      <span class='return_types'></span>
-      <span class='name'>validates_inclusion_of</span><span class='args'>(*attr_names)</span>
-      <span class='block'></span>
-    </tt>
-  </div>
+    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>validates_inclusion_of</strong>(*attr_names) 
+  
 
-</div><div class="section docstring">
-  <p>
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
 Validates whether the value of the specified attribute is available in a
 particular enumerable object.
 </p>
@@ -1392,33 +1304,28 @@ user.signup_step &gt; 2 }). The method, proc or string should return or
 evaluate to a true or false value.
 </p>
 
-</div><div class="section tags">
-  <h2>Meta Tags</h2>
-  <div class="raise">
-  <h3>Raises:</h3>
-  <dl>
-  
-    <dt>
-      
-        <span class='type'>[<tt>ArgumentError</tt>]</span>
-      
-      
-      
-    </dt>
-    <dd>
-      <span class='desc'></span>
-    </dd>
-  
-  </dl>
-</div>
 
-</div><div class="section source">
-  <span>[<a class="source_link" href="#">View source</a>]</span>
-  <div class="source_code">
-    <table>
-      <tr>
-        <td>
-          <pre class="lines">
+  </div>
+</div>
+<div class="tags">
+  <h3>Raises:</h3>
+<ul class="raise">
+  
+    <li>
+      
+        <span class='type'>(<tt>ArgumentError</tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
 
 
 589
@@ -1433,9 +1340,9 @@ evaluate to a true or false value.
 598
 599
 600</pre>
-        </td>
-        <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/validations.rb', line 589</span>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/big_record/validations.rb', line 589</span>
 
 <span class='def def kw'>def</span> <span class='validates_inclusion_of identifier id'>validates_inclusion_of</span><span class='lparen token'>(</span><span class='mult op'>*</span><span class='attr_names identifier id'>attr_names</span><span class='rparen token'>)</span>
   <span class='configuration identifier id'>configuration</span> <span class='assign token'>=</span> <span class='lbrace token'>{</span> <span class='symbol val'>:message</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='BigRecord constant id'>BigRecord</span><span class='colon2 op'>::</span><span class='Errors constant id'>Errors</span><span class='dot token'>.</span><span class='default_error_messages identifier id'>default_error_messages</span><span class='lbrack token'>[</span><span class='symbol val'>:inclusion</span><span class='rbrack token'>]</span><span class='comma token'>,</span> <span class='symbol val'>:on</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='symbol val'>:save</span> <span class='rbrace token'>}</span>
@@ -1450,35 +1357,25 @@ evaluate to a true or false value.
   <span class='end end kw'>end</span>
 <span class='end end kw'>end</span>
 </pre>
-        </td>
-      </tr>
-    </table>
-  </div>
+    </td>
+  </tr>
+</table>
 </div>
-</div>
-    </div>
+    
+      <div class="method_details ">
+  <p class="signature " id="validates_length_of-instance_method">
   
-    <div class="method">
-      <div class="method_header">
-  <h3>validates_length_of</h3>
-</div><div id="validates_length_of-instance_method" class="section method">
-  <div class="details_title">
-    <div class='section methodsignature'>
-    <tt class='def'>
-      <span class='visibility'>public</span>
-      <span class='return_types'></span>
-      <span class='name'>validates_length_of</span><span class='args'>(*attrs)</span>
-      <span class='block'></span>
-    </tt>
-  </div>
-<p class="aliases">
-  <span class="aka">Also known as:</span>
+    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>validates_length_of</strong>(*attrs) 
   
-    <tt id="validates_size_of-instance_method">validates_size_of</tt>
+
   
-</p>
-</div><div class="section docstring">
-  <p>
+    <span class="aliases">Also known as:
+    <span class="names">validates_size_of</span>
+    </span>
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
 Validates that the specified attribute matches the length restrictions
 supplied. Only one option can be used at a time:
 </p>
@@ -1548,13 +1445,15 @@ user.signup_step &gt; 2 }). The method, proc or string should return or
 evaluate to a true or false value.
 </p>
 
-</div><div class="section source">
-  <span>[<a class="source_link" href="#">View source</a>]</span>
-  <div class="source_code">
-    <table>
-      <tr>
-        <td>
-          <pre class="lines">
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
 
 
 429
@@ -1613,9 +1512,9 @@ evaluate to a true or false value.
 482
 483
 484</pre>
-        </td>
-        <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/validations.rb', line 429</span>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/big_record/validations.rb', line 429</span>
 
 <span class='def def kw'>def</span> <span class='validates_length_of identifier id'>validates_length_of</span><span class='lparen token'>(</span><span class='mult op'>*</span><span class='attrs identifier id'>attrs</span><span class='rparen token'>)</span>
   <span class='comment val'># Merge given options with defaults.</span>
@@ -1674,34 +1573,26 @@ evaluate to a true or false value.
   <span class='end end kw'>end</span>
 <span class='end end kw'>end</span>
 </pre>
-        </td>
-      </tr>
-    </table>
-  </div>
+    </td>
+  </tr>
+</table>
 </div>
-</div>
-    </div>
+    
+      <div class="method_details ">
+  <p class="signature " id="validates_numericality_of-instance_method">
   
-    <div class="method">
-      <div class="method_header">
-  <h3>validates_numericality_of</h3>
-</div><div id="validates_numericality_of-instance_method" class="section method">
-  <div class="details_title">
-    <div class='section methodsignature'>
-    <tt class='def'>
-      <span class='visibility'>public</span>
-      <span class='return_types'></span>
-      <span class='name'>validates_numericality_of</span><span class='args'>(*attr_names)</span>
-      <span class='block'></span>
-    </tt>
-  </div>
+    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>validates_numericality_of</strong>(*attr_names) 
+  
 
-</div><div class="section docstring">
-  <p>
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
 Validates whether the value of the specified attribute is numeric by trying
 to convert it to a float with Kernel.Float (if <tt>integer</tt> is false)
-or applying it to the regular expression <tt>/\A[<tt>\-]?\d</tt>\Z/</tt> (if
-<tt>integer</tt> is set to true).
+or applying it to the regular expression
+<tt>/\A[&lt;tt&gt;\-]?\d</tt>\Z/&lt;/tt&gt; (if <tt>integer</tt> is set to
+true).
 </p>
 <pre class="code">
   <span class='class class kw'>class</span> <span class='Person constant id'>Person</span> <span class='lt op'>&lt;</span> <span class='ActiveRecord constant id'>ActiveRecord</span><span class='colon2 op'>::</span><span class='Base constant id'>Base</span>
@@ -1739,13 +1630,15 @@ user.signup_step &gt; 2 }). The method, proc or string should return or
 evaluate to a true or false value.
 </p>
 
-</div><div class="section source">
-  <span>[<a class="source_link" href="#">View source</a>]</span>
-  <div class="source_code">
-    <table>
-      <tr>
-        <td>
-          <pre class="lines">
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
 
 
 682
@@ -1768,9 +1661,9 @@ evaluate to a true or false value.
 699
 700
 701</pre>
-        </td>
-        <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/validations.rb', line 682</span>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/big_record/validations.rb', line 682</span>
 
 <span class='def def kw'>def</span> <span class='validates_numericality_of identifier id'>validates_numericality_of</span><span class='lparen token'>(</span><span class='mult op'>*</span><span class='attr_names identifier id'>attr_names</span><span class='rparen token'>)</span>
   <span class='configuration identifier id'>configuration</span> <span class='assign token'>=</span> <span class='lbrace token'>{</span> <span class='symbol val'>:message</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='BigRecord constant id'>BigRecord</span><span class='colon2 op'>::</span><span class='Errors constant id'>Errors</span><span class='dot token'>.</span><span class='default_error_messages identifier id'>default_error_messages</span><span class='lbrack token'>[</span><span class='symbol val'>:not_a_number</span><span class='rbrack token'>]</span><span class='comma token'>,</span> <span class='symbol val'>:on</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='symbol val'>:save</span><span class='comma token'>,</span>
@@ -1793,30 +1686,21 @@ evaluate to a true or false value.
   <span class='end end kw'>end</span>
 <span class='end end kw'>end</span>
 </pre>
-        </td>
-      </tr>
-    </table>
-  </div>
+    </td>
+  </tr>
+</table>
 </div>
-</div>
-    </div>
+    
+      <div class="method_details ">
+  <p class="signature " id="validates_presence_of-instance_method">
   
-    <div class="method">
-      <div class="method_header">
-  <h3>validates_presence_of</h3>
-</div><div id="validates_presence_of-instance_method" class="section method">
-  <div class="details_title">
-    <div class='section methodsignature'>
-    <tt class='def'>
-      <span class='visibility'>public</span>
-      <span class='return_types'></span>
-      <span class='name'>validates_presence_of</span><span class='args'>(*attr_names)</span>
-      <span class='block'></span>
-    </tt>
-  </div>
+    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>validates_presence_of</strong>(*attr_names) 
+  
 
-</div><div class="section docstring">
-  <p>
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
 Validates that the specified attributes are not blank (as defined by
 Object#blank?). Happens by default on save. Example:
 </p>
@@ -1875,13 +1759,15 @@ If you validate the presence of the associated object, you will get
 failures on saves when both the parent object and the child object are new.
 </p>
 
-</div><div class="section source">
-  <span>[<a class="source_link" href="#">View source</a>]</span>
-  <div class="source_code">
-    <table>
-      <tr>
-        <td>
-          <pre class="lines">
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
 
 
 387
@@ -1898,9 +1784,9 @@ failures on saves when both the parent object and the child object are new.
 398
 399
 400</pre>
-        </td>
-        <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/validations.rb', line 387</span>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/big_record/validations.rb', line 387</span>
 
 <span class='def def kw'>def</span> <span class='validates_presence_of identifier id'>validates_presence_of</span><span class='lparen token'>(</span><span class='mult op'>*</span><span class='attr_names identifier id'>attr_names</span><span class='rparen token'>)</span>
   <span class='configuration identifier id'>configuration</span> <span class='assign token'>=</span> <span class='lbrace token'>{</span> <span class='symbol val'>:message</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='BigRecord constant id'>BigRecord</span><span class='colon2 op'>::</span><span class='Errors constant id'>Errors</span><span class='dot token'>.</span><span class='default_error_messages identifier id'>default_error_messages</span><span class='lbrack token'>[</span><span class='symbol val'>:blank</span><span class='rbrack token'>]</span><span class='comma token'>,</span> <span class='symbol val'>:on</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='symbol val'>:save</span> <span class='rbrace token'>}</span>
@@ -1917,30 +1803,21 @@ failures on saves when both the parent object and the child object are new.
   <span class='end end kw'>end</span>
 <span class='end end kw'>end</span>
 </pre>
-        </td>
-      </tr>
-    </table>
-  </div>
+    </td>
+  </tr>
+</table>
 </div>
-</div>
-    </div>
+    
+      <div class="method_details ">
+  <p class="signature " id="validates_uniqueness_of-instance_method">
   
-    <div class="method">
-      <div class="method_header">
-  <h3>validates_uniqueness_of</h3>
-</div><div id="validates_uniqueness_of-instance_method" class="section method">
-  <div class="details_title">
-    <div class='section methodsignature'>
-    <tt class='def'>
-      <span class='visibility'>public</span>
-      <span class='return_types'></span>
-      <span class='name'>validates_uniqueness_of</span><span class='args'>(*attr_names)</span>
-      <span class='block'></span>
-    </tt>
-  </div>
+    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>validates_uniqueness_of</strong>(*attr_names) 
+  
 
-</div><div class="section docstring">
-  <p>
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
 Validates whether the value of the specified attributes are unique across
 the system. Useful for making sure that only one user can be named
 &quot;davidhh&quot;.
@@ -1998,13 +1875,15 @@ user.signup_step &gt; 2 }). The method, proc or string should return or
 evaluate to a true or false value.
 </p>
 
-</div><div class="section source">
-  <span>[<a class="source_link" href="#">View source</a>]</span>
-  <div class="source_code">
-    <table>
-      <tr>
-        <td>
-          <pre class="lines">
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
 
 
 515
@@ -2035,9 +1914,9 @@ evaluate to a true or false value.
 540
 541
 542</pre>
-        </td>
-        <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/validations.rb', line 515</span>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/big_record/validations.rb', line 515</span>
 
 <span class='def def kw'>def</span> <span class='validates_uniqueness_of identifier id'>validates_uniqueness_of</span><span class='lparen token'>(</span><span class='mult op'>*</span><span class='attr_names identifier id'>attr_names</span><span class='rparen token'>)</span>
   <span class='configuration identifier id'>configuration</span> <span class='assign token'>=</span> <span class='lbrace token'>{</span> <span class='symbol val'>:message</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='BigRecord constant id'>BigRecord</span><span class='colon2 op'>::</span><span class='Errors constant id'>Errors</span><span class='dot token'>.</span><span class='default_error_messages identifier id'>default_error_messages</span><span class='lbrack token'>[</span><span class='symbol val'>:taken</span><span class='rbrack token'>]</span><span class='comma token'>,</span> <span class='symbol val'>:case_sensitive</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='true true kw'>true</span> <span class='rbrace token'>}</span>
@@ -2068,23 +1947,19 @@ evaluate to a true or false value.
   <span class='end end kw'>end</span>
 <span class='end end kw'>end</span>
 </pre>
-        </td>
-      </tr>
-    </table>
-  </div>
+    </td>
+  </tr>
+</table>
 </div>
-</div>
-    </div>
-  
-</div>
+    
   </div>
 
 </div>
-    </div>
-    <div id="yard_info">
-  Generated on Wednesday, November 25 2009 at 02:43:25 PM by 
-  <abbr class="yard" title="Yay! A Ruby Documentation Tool"><a href="http://yard.soen.ca">YARD</a></abbr> 
-  0.2.3.5 (ruby-1.8.7).
+    
+    <div id="footer">
+  Generated on Thu Nov 26 18:22:27 2009 by 
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool">yard</a>
+  0.4.0 (ruby-1.8.7).
 </div>
 
   </body>

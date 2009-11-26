@@ -1,318 +1,332 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
-    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-<link rel="stylesheet" href="../../style.css" type="text/css" charset="utf-8" />
-<link rel="stylesheet" href="../../custom.css" type="text/css" charset="utf-8" />
-<link rel="stylesheet" href="../../syntax_highlight.css" type="text/css" charset="utf-8" />
+    <meta name="Content-Type" content="text/html; charset=UTF-8" />
+<title>Class: ActionView::Helpers::InstanceTag</title>
+<link rel="stylesheet" href="../../css/style.css" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="../../css/common.css" type="text/css" media="screen" charset="utf-8" />
 
-    <script src="../../jquery.js" type="text/javascript" charset="utf-8"></script>
-    <script src="../../app.js" type="text/javascript" charset="utf-8"></script>
-    <title>Class: ActionView::Helpers::InstanceTag</title>
+<script type="text/javascript" charset="utf-8">
+  relpath = '../..';
+  if (relpath != '') relpath += '/';
+</script>
+<script type="text/javascript" charset="utf-8" src="../../js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="../../js/app.js"></script>
+
   </head>
   <body>
-    <div id="content">
-      <div class="section class ActionView_Helpers_InstanceTag">
-  <h1 class="title">Class: ActionView::Helpers::InstanceTag</h1>
-  <div class="section constants">
+    <div id="header">
+      <div id="menu">
   
-</div>  <div class="section visibilitygroup public">
-    <h1>Public Visibility</h1>
-      <div class="section methodsummary class public">
-    <h1>Public Class Method Summary</h1>
-<table class="summary">
+    <a href="../../_index.html">Index (I)</a> &raquo; 
+    <a title="ActionView" href="../../ActionView.html">ActionView</a> &raquo; <a title="Helpers" href="../Helpers.html">Helpers</a>
+     &raquo; 
+    <span class="title">InstanceTag</span>
   
-    <tr>
-      <th class="signature">
-        
-          <span class='overload'>
-            <span class='name'><a href="#value-class_method" title="value">value</a></span><span class='args'>(object, method_name, options = {})</span>
-            <span class='block'></span>
-          </span>
-        
-        
-      </th>
-      <td class="docstring">
-        
-        
-      </td>
-    </tr>
-  
-    <tr>
-      <th class="signature">
-        
-          <span class='overload'>
-            <span class='name'><a href="#value_before_type_cast-class_method" title="value_before_type_cast">value_before_type_cast</a></span><span class='args'>(object, method_name, options = {})</span>
-            <span class='block'></span>
-          </span>
-        
-        
-      </th>
-      <td class="docstring">
-        
-        
-      </td>
-    </tr>
-  
-</table>
+</div>
 
-  </div>
-  <div class="section methodsummary instance public">
-    <h1>Public Instance Method Summary</h1>
-<table class="summary">
-  
-    <tr>
-      <th class="signature">
-        
-          <span class='overload'>
-            <span class='name'><a href="#object-instance_method" title="#object">#object</a></span><span class='args'></span>
-            <span class='block'></span>
-          </span>
-        
-        
-      </th>
-      <td class="docstring">
-        
-        
-      </td>
-    </tr>
-  
-    <tr>
-      <th class="signature">
-        
-          <span class='overload'>
-            <span class='name'><a href="#to_check_box_tag-instance_method" title="#to_check_box_tag">#to_check_box_tag</a></span><span class='args'>(options = {}, checked_value = &quot;1&quot;, unchecked_value = &quot;0&quot;)</span>
-            <span class='block'></span>
-          </span>
-        
-        
-      </th>
-      <td class="docstring">
-        
-        
-      </td>
-    </tr>
-  
-    <tr>
-      <th class="signature">
-        
-          <span class='overload'>
-            <span class='name'><a href="#to_content_tag-instance_method" title="#to_content_tag">#to_content_tag</a></span><span class='args'>(tag_name, options = {})</span>
-            <span class='block'></span>
-          </span>
-        
-        
-      </th>
-      <td class="docstring">
-        
-        
-      </td>
-    </tr>
-  
-    <tr>
-      <th class="signature">
-        
-          <span class='overload'>
-            <span class='name'><a href="#to_date_select_tag-instance_method" title="#to_date_select_tag">#to_date_select_tag</a></span><span class='args'>(options = {})</span>
-            <span class='block'></span>
-          </span>
-        
-        
-      </th>
-      <td class="docstring">
-        
-        
-      </td>
-    </tr>
-  
-    <tr>
-      <th class="signature">
-        
-          <span class='overload'>
-            <span class='name'><a href="#to_date_tag-instance_method" title="#to_date_tag">#to_date_tag</a></span><span class='args'></span>
-            <span class='block'></span>
-          </span>
-        
-        
-      </th>
-      <td class="docstring">
-        
-        
-      </td>
-    </tr>
-  
-    <tr>
-      <th class="signature">
-        
-          <span class='overload'>
-            <span class='name'><a href="#to_datetime_select_tag-instance_method" title="#to_datetime_select_tag">#to_datetime_select_tag</a></span><span class='args'>(options = {})</span>
-            <span class='block'></span>
-          </span>
-        
-        
-      </th>
-      <td class="docstring">
-        
-        
-      </td>
-    </tr>
-  
-    <tr>
-      <th class="signature">
-        
-          <span class='overload'>
-            <span class='name'><a href="#to_input_field_tag-instance_method" title="#to_input_field_tag">#to_input_field_tag</a></span><span class='args'>(field_type, options = {})</span>
-            <span class='block'></span>
-          </span>
-        
-        
-      </th>
-      <td class="docstring">
-        
-        
-      </td>
-    </tr>
-  
-    <tr>
-      <th class="signature">
-        
-          <span class='overload'>
-            <span class='name'><a href="#to_label_tag-instance_method" title="#to_label_tag">#to_label_tag</a></span><span class='args'>(text = nil, options = {})</span>
-            <span class='block'></span>
-          </span>
-        
-        
-      </th>
-      <td class="docstring">
-        
-        
-      </td>
-    </tr>
-  
-    <tr>
-      <th class="signature">
-        
-          <span class='overload'>
-            <span class='name'><a href="#to_radio_button_tag-instance_method" title="#to_radio_button_tag">#to_radio_button_tag</a></span><span class='args'>(tag_value, options = {})</span>
-            <span class='block'></span>
-          </span>
-        
-        
-      </th>
-      <td class="docstring">
-        
-        
-      </td>
-    </tr>
-  
-    <tr>
-      <th class="signature">
-        
-          <span class='overload'>
-            <span class='name'><a href="#to_select_tag-instance_method" title="#to_select_tag">#to_select_tag</a></span><span class='args'>(choices, options, html_options)</span>
-            <span class='block'></span>
-          </span>
-        
-        
-      </th>
-      <td class="docstring">
-        
-        
-      </td>
-    </tr>
-  
-    <tr>
-      <th class="signature">
-        
-          <span class='overload'>
-            <span class='name'><a href="#to_text_area_tag-instance_method" title="#to_text_area_tag">#to_text_area_tag</a></span><span class='args'>(options = {})</span>
-            <span class='block'></span>
-          </span>
-        
-        
-      </th>
-      <td class="docstring">
-        
-        
-      </td>
-    </tr>
-  
-    <tr>
-      <th class="signature">
-        
-          <span class='overload'>
-            <span class='name'><a href="#to_time_select_tag-instance_method" title="#to_time_select_tag">#to_time_select_tag</a></span><span class='args'>(options = {})</span>
-            <span class='block'></span>
-          </span>
-        
-        
-      </th>
-      <td class="docstring">
-        
-        
-      </td>
-    </tr>
-  
-    <tr>
-      <th class="signature">
-        
-          <span class='overload'>
-            <span class='name'><a href="#value-instance_method" title="#value">#value</a></span><span class='args'>(object, options = {})</span>
-            <span class='block'></span>
-          </span>
-        
-        
-      </th>
-      <td class="docstring">
-        
-        
-      </td>
-    </tr>
-  
-    <tr>
-      <th class="signature">
-        
-          <span class='overload'>
-            <span class='name'><a href="#value_before_type_cast-instance_method" title="#value_before_type_cast">#value_before_type_cast</a></span><span class='args'>(object, options = {})</span>
-            <span class='block'></span>
-          </span>
-        
-        
-      </th>
-      <td class="docstring">
-        
-        
-      </td>
-    </tr>
-  
-</table>
+      <div id="search">
+  <a id="class_list_link" href="#">Namespace List</a>
+  <a id="method_list_link" href="#">Method List</a>
+  <a id ="file_list_link" href="#">File List</a>
+</div>
 
-  </div>
-<div class="section methoddetails class public">
-  <h1>Public Class Method Details</h1>
+      <div class="clear"></div>
+    </div>
+    
+    <iframe id="search_frame"></iframe>
+    
+    <div id="content"><h1>Class: ActionView::Helpers::InstanceTag 
   
-    <div class="method">
-      <div class="method_header">
-  <h3>value</h3>
-</div><div id="value-class_method" class="section method">
-  <div class="details_title">
-    <div class='section methodsignature'>
-    <tt class='def'>
-      <span class='visibility'>public</span>
-      <span class='return_types'></span>
-      <span class='name'>value</span><span class='args'>(object, method_name, options = {})</span>
-      <span class='block'></span>
-    </tt>
-  </div>
+  
+</h1>
 
-</div><div class="section source">
-  <span>[<a class="source_link" href="#">View source</a>]</span>
-  <div class="source_code">
-    <table>
-      <tr>
-        <td>
-          <pre class="lines">
+<dl class="box">
+  
+    <dt class="r1">Inherits:</dt>
+    <dd class="r1">
+      <span class="inheritName"><a title="Object" href="../../Object.html">Object</a></span>
+      
+      </dd>
+    
+  
+  
+    
+  
+    
+  
+  
+    <dt class="r2 last">Defined in:</dt>
+    <dd class="r2 last">lib/big_record/action_view_extensions.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+
+
+
+  <h2>Method Summary</h2>
+  <ul class="summary">
+    
+      <li class="public ">
+  <span class="summary_signature"><a title="value (class method)" href="#value-class_method">+ (Object) <strong>value</strong>(object, method_name, options = {}) </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a title="value_before_type_cast (class method)" href="#value_before_type_cast-class_method">+ (Object) <strong>value_before_type_cast</strong>(object, method_name, options = {}) </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a title="#object (instance method)" href="#object-instance_method">- (Object) <strong>object</strong> </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a title="#to_check_box_tag (instance method)" href="#to_check_box_tag-instance_method">- (Object) <strong>to_check_box_tag</strong>(options = {}, checked_value = &quot;1&quot;, unchecked_value = &quot;0&quot;) </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a title="#to_content_tag (instance method)" href="#to_content_tag-instance_method">- (Object) <strong>to_content_tag</strong>(tag_name, options = {}) </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a title="#to_date_select_tag (instance method)" href="#to_date_select_tag-instance_method">- (Object) <strong>to_date_select_tag</strong>(options = {}) </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a title="#to_date_tag (instance method)" href="#to_date_tag-instance_method">- (Object) <strong>to_date_tag</strong> </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a title="#to_datetime_select_tag (instance method)" href="#to_datetime_select_tag-instance_method">- (Object) <strong>to_datetime_select_tag</strong>(options = {}) </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a title="#to_input_field_tag (instance method)" href="#to_input_field_tag-instance_method">- (Object) <strong>to_input_field_tag</strong>(field_type, options = {}) </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a title="#to_label_tag (instance method)" href="#to_label_tag-instance_method">- (Object) <strong>to_label_tag</strong>(text = nil, options = {}) </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a title="#to_radio_button_tag (instance method)" href="#to_radio_button_tag-instance_method">- (Object) <strong>to_radio_button_tag</strong>(tag_value, options = {}) </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a title="#to_select_tag (instance method)" href="#to_select_tag-instance_method">- (Object) <strong>to_select_tag</strong>(choices, options, html_options) </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a title="#to_text_area_tag (instance method)" href="#to_text_area_tag-instance_method">- (Object) <strong>to_text_area_tag</strong>(options = {}) </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a title="#to_time_select_tag (instance method)" href="#to_time_select_tag-instance_method">- (Object) <strong>to_time_select_tag</strong>(options = {}) </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a title="#value (instance method)" href="#value-instance_method">- (Object) <strong>value</strong>(object, options = {}) </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a title="#value_before_type_cast (instance method)" href="#value_before_type_cast-instance_method">- (Object) <strong>value_before_type_cast</strong>(object, options = {}) </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"></span>
+  
+</li>
+
+    
+  </ul>
+
+
+
+  <div id="method_details">
+    <h2>Method Details</h2>
+    
+      <div class="method_details first">
+  <p class="signature first" id="value-class_method">
+  
+    + (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>value</strong>(object, method_name, options = {}) 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
 
 
 133
@@ -320,9 +334,9 @@
 135
 136
 137</pre>
-        </td>
-        <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/action_view_extensions.rb', line 133</span>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/big_record/action_view_extensions.rb', line 133</span>
 
 <span class='def def kw'>def</span> <span class='value identifier id'>value</span><span class='lparen token'>(</span><span class='object identifier id'>object</span><span class='comma token'>,</span> <span class='method_name identifier id'>method_name</span><span class='comma token'>,</span> <span class='options identifier id'>options</span><span class='assign token'>=</span><span class='lbrace token'>{</span><span class='rbrace token'>}</span><span class='rparen token'>)</span>
   <span class='options identifier id'>options</span> <span class='assign token'>=</span> <span class='options identifier id'>options</span><span class='dot token'>.</span><span class='stringify_keys identifier id'>stringify_keys</span>
@@ -330,35 +344,22 @@
   <span class='lparen token'>(</span><span class='options identifier id'>options</span><span class='lbrack token'>[</span><span class='string val'>&quot;index&quot;</span><span class='rbrack token'>]</span> <span class='and and kw'>and</span> <span class='v identifier id'>v</span><span class='dot token'>.</span><span class='is_a? fid id'>is_a?</span><span class='lparen token'>(</span><span class='Array constant id'>Array</span><span class='rparen token'>)</span><span class='rparen token'>)</span> <span class='question op'>?</span> <span class='v identifier id'>v</span><span class='lbrack token'>[</span><span class='options identifier id'>options</span><span class='lbrack token'>[</span><span class='string val'>&quot;index&quot;</span><span class='rbrack token'>]</span><span class='rbrack token'>]</span> <span class='colon op'>:</span> <span class='v identifier id'>v</span>
 <span class='end end kw'>end</span>
 </pre>
-        </td>
-      </tr>
-    </table>
-  </div>
+    </td>
+  </tr>
+</table>
 </div>
-</div>
-    </div>
+    
+      <div class="method_details ">
+  <p class="signature " id="value_before_type_cast-class_method">
   
-    <div class="method">
-      <div class="method_header">
-  <h3>value_before_type_cast</h3>
-</div><div id="value_before_type_cast-class_method" class="section method">
-  <div class="details_title">
-    <div class='section methodsignature'>
-    <tt class='def'>
-      <span class='visibility'>public</span>
-      <span class='return_types'></span>
-      <span class='name'>value_before_type_cast</span><span class='args'>(object, method_name, options = {})</span>
-      <span class='block'></span>
-    </tt>
-  </div>
+    + (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>value_before_type_cast</strong>(object, method_name, options = {}) 
+  
 
-</div><div class="section source">
-  <span>[<a class="source_link" href="#">View source</a>]</span>
-  <div class="source_code">
-    <table>
-      <tr>
-        <td>
-          <pre class="lines">
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
 
 
 139
@@ -370,9 +371,9 @@
 145
 146
 147</pre>
-        </td>
-        <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/action_view_extensions.rb', line 139</span>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/big_record/action_view_extensions.rb', line 139</span>
 
 <span class='def def kw'>def</span> <span class='value_before_type_cast identifier id'>value_before_type_cast</span><span class='lparen token'>(</span><span class='object identifier id'>object</span><span class='comma token'>,</span> <span class='method_name identifier id'>method_name</span><span class='comma token'>,</span> <span class='options identifier id'>options</span><span class='assign token'>=</span><span class='lbrace token'>{</span><span class='rbrace token'>}</span><span class='rparen token'>)</span>
   <span class='unless unless kw'>unless</span> <span class='object identifier id'>object</span><span class='dot token'>.</span><span class='nil? fid id'>nil?</span>
@@ -384,80 +385,51 @@
   <span class='end end kw'>end</span>
 <span class='end end kw'>end</span>
 </pre>
-        </td>
-      </tr>
-    </table>
-  </div>
+    </td>
+  </tr>
+</table>
 </div>
-</div>
-    </div>
+    
+      <div class="method_details ">
+  <p class="signature " id="object-instance_method">
   
-</div><div class="section methoddetails instance public">
-  <h1>Public Instance Method Details</h1>
+    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>object</strong> 
   
-    <div class="method">
-      <div class="method_header">
-  <h3>object</h3>
-</div><div id="object-instance_method" class="section method">
-  <div class="details_title">
-    <div class='section methodsignature'>
-    <tt class='def'>
-      <span class='visibility'>public</span>
-      <span class='return_types'></span>
-      <span class='name'>object</span><span class='args'></span>
-      <span class='block'></span>
-    </tt>
-  </div>
 
-</div><div class="section source">
-  <span>[<a class="source_link" href="#">View source</a>]</span>
-  <div class="source_code">
-    <table>
-      <tr>
-        <td>
-          <pre class="lines">
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
 
 
 120
 121
 122</pre>
-        </td>
-        <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/action_view_extensions.rb', line 120</span>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/big_record/action_view_extensions.rb', line 120</span>
 
 <span class='def def kw'>def</span> <span class='object identifier id'>object</span>
   <span class='@object ivar id'>@object</span> <span class='orop op'>||</span> <span class='lparen token'>(</span><span class='@template_object ivar id'>@template_object</span><span class='dot token'>.</span><span class='instance_variable_get identifier id'>instance_variable_get</span><span class='lparen token'>(</span><span class='dstring node'>&quot;@#{@object_name}&quot;</span><span class='rparen token'>)</span> <span class='rescue rescue kw'>rescue</span> <span class='nil nil kw'>nil</span><span class='rparen token'>)</span>
 <span class='end end kw'>end</span>
 </pre>
-        </td>
-      </tr>
-    </table>
-  </div>
+    </td>
+  </tr>
+</table>
 </div>
-</div>
-    </div>
+    
+      <div class="method_details ">
+  <p class="signature " id="to_check_box_tag-instance_method">
   
-    <div class="method">
-      <div class="method_header">
-  <h3>to_check_box_tag</h3>
-</div><div id="to_check_box_tag-instance_method" class="section method">
-  <div class="details_title">
-    <div class='section methodsignature'>
-    <tt class='def'>
-      <span class='visibility'>public</span>
-      <span class='return_types'></span>
-      <span class='name'>to_check_box_tag</span><span class='args'>(options = {}, checked_value = &quot;1&quot;, unchecked_value = &quot;0&quot;)</span>
-      <span class='block'></span>
-    </tt>
-  </div>
+    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>to_check_box_tag</strong>(options = {}, checked_value = &quot;1&quot;, unchecked_value = &quot;0&quot;) 
+  
 
-</div><div class="section source">
-  <span>[<a class="source_link" href="#">View source</a>]</span>
-  <div class="source_code">
-    <table>
-      <tr>
-        <td>
-          <pre class="lines">
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
 
 
 80
@@ -474,9 +446,9 @@
 91
 92
 93</pre>
-        </td>
-        <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/action_view_extensions.rb', line 80</span>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/big_record/action_view_extensions.rb', line 80</span>
 
 <span class='def def kw'>def</span> <span class='to_check_box_tag identifier id'>to_check_box_tag</span><span class='lparen token'>(</span><span class='options identifier id'>options</span> <span class='assign token'>=</span> <span class='lbrace token'>{</span><span class='rbrace token'>}</span><span class='comma token'>,</span> <span class='checked_value identifier id'>checked_value</span> <span class='assign token'>=</span> <span class='string val'>&quot;1&quot;</span><span class='comma token'>,</span> <span class='unchecked_value identifier id'>unchecked_value</span> <span class='assign token'>=</span> <span class='string val'>&quot;0&quot;</span><span class='rparen token'>)</span>
   <span class='options identifier id'>options</span> <span class='assign token'>=</span> <span class='options identifier id'>options</span><span class='dot token'>.</span><span class='stringify_keys identifier id'>stringify_keys</span>
@@ -493,119 +465,80 @@
   <span class='tag identifier id'>tag</span><span class='lparen token'>(</span><span class='string val'>&quot;input&quot;</span><span class='comma token'>,</span> <span class='options identifier id'>options</span><span class='rparen token'>)</span> <span class='lshft op'>&lt;&lt;</span> <span class='tag identifier id'>tag</span><span class='lparen token'>(</span><span class='string val'>&quot;input&quot;</span><span class='comma token'>,</span> <span class='string val'>&quot;name&quot;</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='options identifier id'>options</span><span class='lbrack token'>[</span><span class='string val'>&quot;name&quot;</span><span class='rbrack token'>]</span><span class='comma token'>,</span> <span class='string val'>&quot;type&quot;</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>&quot;hidden&quot;</span><span class='comma token'>,</span> <span class='string val'>&quot;value&quot;</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='options identifier id'>options</span><span class='lbrack token'>[</span><span class='string val'>'disabled'</span><span class='rbrack token'>]</span> <span class='andop op'>&amp;&amp;</span> <span class='checked identifier id'>checked</span> <span class='integer val'>? </span><span class='checked_value identifier id'>checked_value</span> <span class='colon op'>:</span> <span class='unchecked_value identifier id'>unchecked_value</span><span class='rparen token'>)</span>
 <span class='end end kw'>end</span>
 </pre>
-        </td>
-      </tr>
-    </table>
-  </div>
+    </td>
+  </tr>
+</table>
 </div>
-</div>
-    </div>
+    
+      <div class="method_details ">
+  <p class="signature " id="to_content_tag-instance_method">
   
-    <div class="method">
-      <div class="method_header">
-  <h3>to_content_tag</h3>
-</div><div id="to_content_tag-instance_method" class="section method">
-  <div class="details_title">
-    <div class='section methodsignature'>
-    <tt class='def'>
-      <span class='visibility'>public</span>
-      <span class='return_types'></span>
-      <span class='name'>to_content_tag</span><span class='args'>(tag_name, options = {})</span>
-      <span class='block'></span>
-    </tt>
-  </div>
+    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>to_content_tag</strong>(tag_name, options = {}) 
+  
 
-</div><div class="section source">
-  <span>[<a class="source_link" href="#">View source</a>]</span>
-  <div class="source_code">
-    <table>
-      <tr>
-        <td>
-          <pre class="lines">
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
 
 
 116
 117
 118</pre>
-        </td>
-        <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/action_view_extensions.rb', line 116</span>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/big_record/action_view_extensions.rb', line 116</span>
 
 <span class='def def kw'>def</span> <span class='to_content_tag identifier id'>to_content_tag</span><span class='lparen token'>(</span><span class='tag_name identifier id'>tag_name</span><span class='comma token'>,</span> <span class='options identifier id'>options</span> <span class='assign token'>=</span> <span class='lbrace token'>{</span><span class='rbrace token'>}</span><span class='rparen token'>)</span>
   <span class='content_tag identifier id'>content_tag</span><span class='lparen token'>(</span><span class='tag_name identifier id'>tag_name</span><span class='comma token'>,</span> <span class='value identifier id'>value</span><span class='lparen token'>(</span><span class='object identifier id'>object</span><span class='comma token'>,</span> <span class='options identifier id'>options</span><span class='rparen token'>)</span><span class='comma token'>,</span> <span class='options identifier id'>options</span><span class='rparen token'>)</span>
 <span class='end end kw'>end</span>
 </pre>
-        </td>
-      </tr>
-    </table>
-  </div>
+    </td>
+  </tr>
+</table>
 </div>
-</div>
-    </div>
+    
+      <div class="method_details ">
+  <p class="signature " id="to_date_select_tag-instance_method">
   
-    <div class="method">
-      <div class="method_header">
-  <h3>to_date_select_tag</h3>
-</div><div id="to_date_select_tag-instance_method" class="section method">
-  <div class="details_title">
-    <div class='section methodsignature'>
-    <tt class='def'>
-      <span class='visibility'>public</span>
-      <span class='return_types'></span>
-      <span class='name'>to_date_select_tag</span><span class='args'>(options = {})</span>
-      <span class='block'></span>
-    </tt>
-  </div>
+    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>to_date_select_tag</strong>(options = {}) 
+  
 
-</div><div class="section source">
-  <span>[<a class="source_link" href="#">View source</a>]</span>
-  <div class="source_code">
-    <table>
-      <tr>
-        <td>
-          <pre class="lines">
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
 
 
 18
 19
 20</pre>
-        </td>
-        <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/action_view_extensions.rb', line 18</span>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/big_record/action_view_extensions.rb', line 18</span>
 
 <span class='def def kw'>def</span> <span class='to_date_select_tag identifier id'>to_date_select_tag</span><span class='lparen token'>(</span><span class='options identifier id'>options</span> <span class='assign token'>=</span> <span class='lbrace token'>{</span><span class='rbrace token'>}</span><span class='rparen token'>)</span>
   <span class='date_or_time_select identifier id'>date_or_time_select</span><span class='lparen token'>(</span><span class='options identifier id'>options</span><span class='dot token'>.</span><span class='merge identifier id'>merge</span><span class='lparen token'>(</span><span class='symbol val'>:discard_hour</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='true true kw'>true</span><span class='rparen token'>)</span><span class='rparen token'>)</span>
 <span class='end end kw'>end</span>
 </pre>
-        </td>
-      </tr>
-    </table>
-  </div>
+    </td>
+  </tr>
+</table>
 </div>
-</div>
-    </div>
+    
+      <div class="method_details ">
+  <p class="signature " id="to_date_tag-instance_method">
   
-    <div class="method">
-      <div class="method_header">
-  <h3>to_date_tag</h3>
-</div><div id="to_date_tag-instance_method" class="section method">
-  <div class="details_title">
-    <div class='section methodsignature'>
-    <tt class='def'>
-      <span class='visibility'>public</span>
-      <span class='return_types'></span>
-      <span class='name'>to_date_tag</span><span class='args'></span>
-      <span class='block'></span>
-    </tt>
-  </div>
+    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>to_date_tag</strong> 
+  
 
-</div><div class="section source">
-  <span>[<a class="source_link" href="#">View source</a>]</span>
-  <div class="source_code">
-    <table>
-      <tr>
-        <td>
-          <pre class="lines">
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
 
 
 95
@@ -616,9 +549,9 @@
 100
 101
 102</pre>
-        </td>
-        <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/action_view_extensions.rb', line 95</span>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/big_record/action_view_extensions.rb', line 95</span>
 
 <span class='def def kw'>def</span> <span class='to_date_tag identifier id'>to_date_tag</span><span class='lparen token'>(</span><span class='rparen token'>)</span>
   <span class='defaults identifier id'>defaults</span> <span class='assign token'>=</span> <span class='DEFAULT_DATE_OPTIONS constant id'>DEFAULT_DATE_OPTIONS</span><span class='dot token'>.</span><span class='dup identifier id'>dup</span>
@@ -629,77 +562,51 @@
   <span class='html_year_select identifier id'>html_year_select</span><span class='lparen token'>(</span><span class='date identifier id'>date</span><span class='comma token'>,</span> <span class='options identifier id'>options</span><span class='dot token'>.</span><span class='call identifier id'>call</span><span class='lparen token'>(</span><span class='integer val'>1</span><span class='rparen token'>)</span><span class='rparen token'>)</span>
 <span class='end end kw'>end</span>
 </pre>
-        </td>
-      </tr>
-    </table>
-  </div>
+    </td>
+  </tr>
+</table>
 </div>
-</div>
-    </div>
+    
+      <div class="method_details ">
+  <p class="signature " id="to_datetime_select_tag-instance_method">
   
-    <div class="method">
-      <div class="method_header">
-  <h3>to_datetime_select_tag</h3>
-</div><div id="to_datetime_select_tag-instance_method" class="section method">
-  <div class="details_title">
-    <div class='section methodsignature'>
-    <tt class='def'>
-      <span class='visibility'>public</span>
-      <span class='return_types'></span>
-      <span class='name'>to_datetime_select_tag</span><span class='args'>(options = {})</span>
-      <span class='block'></span>
-    </tt>
-  </div>
+    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>to_datetime_select_tag</strong>(options = {}) 
+  
 
-</div><div class="section source">
-  <span>[<a class="source_link" href="#">View source</a>]</span>
-  <div class="source_code">
-    <table>
-      <tr>
-        <td>
-          <pre class="lines">
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
 
 
 26
 27
 28</pre>
-        </td>
-        <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/action_view_extensions.rb', line 26</span>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/big_record/action_view_extensions.rb', line 26</span>
 
 <span class='def def kw'>def</span> <span class='to_datetime_select_tag identifier id'>to_datetime_select_tag</span><span class='lparen token'>(</span><span class='options identifier id'>options</span> <span class='assign token'>=</span> <span class='lbrace token'>{</span><span class='rbrace token'>}</span><span class='rparen token'>)</span>
   <span class='date_or_time_select identifier id'>date_or_time_select</span> <span class='options identifier id'>options</span>
 <span class='end end kw'>end</span>
 </pre>
-        </td>
-      </tr>
-    </table>
-  </div>
+    </td>
+  </tr>
+</table>
 </div>
-</div>
-    </div>
+    
+      <div class="method_details ">
+  <p class="signature " id="to_input_field_tag-instance_method">
   
-    <div class="method">
-      <div class="method_header">
-  <h3>to_input_field_tag</h3>
-</div><div id="to_input_field_tag-instance_method" class="section method">
-  <div class="details_title">
-    <div class='section methodsignature'>
-    <tt class='def'>
-      <span class='visibility'>public</span>
-      <span class='return_types'></span>
-      <span class='name'>to_input_field_tag</span><span class='args'>(field_type, options = {})</span>
-      <span class='block'></span>
-    </tt>
-  </div>
+    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>to_input_field_tag</strong>(field_type, options = {}) 
+  
 
-</div><div class="section source">
-  <span>[<a class="source_link" href="#">View source</a>]</span>
-  <div class="source_code">
-    <table>
-      <tr>
-        <td>
-          <pre class="lines">
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
 
 
 38
@@ -714,9 +621,9 @@
 47
 48
 49</pre>
-        </td>
-        <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/action_view_extensions.rb', line 38</span>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/big_record/action_view_extensions.rb', line 38</span>
 
 <span class='def def kw'>def</span> <span class='to_input_field_tag identifier id'>to_input_field_tag</span><span class='lparen token'>(</span><span class='field_type identifier id'>field_type</span><span class='comma token'>,</span> <span class='options identifier id'>options</span> <span class='assign token'>=</span> <span class='lbrace token'>{</span><span class='rbrace token'>}</span><span class='rparen token'>)</span>
   <span class='options identifier id'>options</span> <span class='assign token'>=</span> <span class='options identifier id'>options</span><span class='dot token'>.</span><span class='stringify_keys identifier id'>stringify_keys</span>
@@ -731,35 +638,22 @@
   <span class='tag identifier id'>tag</span><span class='lparen token'>(</span><span class='string val'>&quot;input&quot;</span><span class='comma token'>,</span> <span class='options identifier id'>options</span><span class='rparen token'>)</span>
 <span class='end end kw'>end</span>
 </pre>
-        </td>
-      </tr>
-    </table>
-  </div>
+    </td>
+  </tr>
+</table>
 </div>
-</div>
-    </div>
+    
+      <div class="method_details ">
+  <p class="signature " id="to_label_tag-instance_method">
   
-    <div class="method">
-      <div class="method_header">
-  <h3>to_label_tag</h3>
-</div><div id="to_label_tag-instance_method" class="section method">
-  <div class="details_title">
-    <div class='section methodsignature'>
-    <tt class='def'>
-      <span class='visibility'>public</span>
-      <span class='return_types'></span>
-      <span class='name'>to_label_tag</span><span class='args'>(text = nil, options = {})</span>
-      <span class='block'></span>
-    </tt>
-  </div>
+    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>to_label_tag</strong>(text = nil, options = {}) 
+  
 
-</div><div class="section source">
-  <span>[<a class="source_link" href="#">View source</a>]</span>
-  <div class="source_code">
-    <table>
-      <tr>
-        <td>
-          <pre class="lines">
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
 
 
 30
@@ -769,9 +663,9 @@
 34
 35
 36</pre>
-        </td>
-        <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/action_view_extensions.rb', line 30</span>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/big_record/action_view_extensions.rb', line 30</span>
 
 <span class='def def kw'>def</span> <span class='to_label_tag identifier id'>to_label_tag</span><span class='lparen token'>(</span><span class='text identifier id'>text</span> <span class='assign token'>=</span> <span class='nil nil kw'>nil</span><span class='comma token'>,</span> <span class='options identifier id'>options</span> <span class='assign token'>=</span> <span class='lbrace token'>{</span><span class='rbrace token'>}</span><span class='rparen token'>)</span>
   <span class='name_and_id identifier id'>name_and_id</span> <span class='assign token'>=</span> <span class='options identifier id'>options</span><span class='dot token'>.</span><span class='dup identifier id'>dup</span>
@@ -781,35 +675,22 @@
   <span class='content_tag identifier id'>content_tag</span><span class='lparen token'>(</span><span class='string val'>&quot;label&quot;</span><span class='comma token'>,</span> <span class='content identifier id'>content</span><span class='comma token'>,</span> <span class='options identifier id'>options</span><span class='rparen token'>)</span>
 <span class='end end kw'>end</span>
 </pre>
-        </td>
-      </tr>
-    </table>
-  </div>
+    </td>
+  </tr>
+</table>
 </div>
-</div>
-    </div>
+    
+      <div class="method_details ">
+  <p class="signature " id="to_radio_button_tag-instance_method">
   
-    <div class="method">
-      <div class="method_header">
-  <h3>to_radio_button_tag</h3>
-</div><div id="to_radio_button_tag-instance_method" class="section method">
-  <div class="details_title">
-    <div class='section methodsignature'>
-    <tt class='def'>
-      <span class='visibility'>public</span>
-      <span class='return_types'></span>
-      <span class='name'>to_radio_button_tag</span><span class='args'>(tag_value, options = {})</span>
-      <span class='block'></span>
-    </tt>
-  </div>
+    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>to_radio_button_tag</strong>(tag_value, options = {}) 
+  
 
-</div><div class="section source">
-  <span>[<a class="source_link" href="#">View source</a>]</span>
-  <div class="source_code">
-    <table>
-      <tr>
-        <td>
-          <pre class="lines">
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
 
 
 51
@@ -830,9 +711,9 @@
 66
 67
 68</pre>
-        </td>
-        <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/action_view_extensions.rb', line 51</span>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/big_record/action_view_extensions.rb', line 51</span>
 
 <span class='def def kw'>def</span> <span class='to_radio_button_tag identifier id'>to_radio_button_tag</span><span class='lparen token'>(</span><span class='tag_value identifier id'>tag_value</span><span class='comma token'>,</span> <span class='options identifier id'>options</span> <span class='assign token'>=</span> <span class='lbrace token'>{</span><span class='rbrace token'>}</span><span class='rparen token'>)</span>
   <span class='options identifier id'>options</span> <span class='assign token'>=</span> <span class='DEFAULT_RADIO_OPTIONS constant id'>DEFAULT_RADIO_OPTIONS</span><span class='dot token'>.</span><span class='merge identifier id'>merge</span><span class='lparen token'>(</span><span class='options identifier id'>options</span><span class='dot token'>.</span><span class='stringify_keys identifier id'>stringify_keys</span><span class='rparen token'>)</span>
@@ -853,35 +734,22 @@
   <span class='tag identifier id'>tag</span><span class='lparen token'>(</span><span class='string val'>&quot;input&quot;</span><span class='comma token'>,</span> <span class='options identifier id'>options</span><span class='rparen token'>)</span>
 <span class='end end kw'>end</span>
 </pre>
-        </td>
-      </tr>
-    </table>
-  </div>
+    </td>
+  </tr>
+</table>
 </div>
-</div>
-    </div>
+    
+      <div class="method_details ">
+  <p class="signature " id="to_select_tag-instance_method">
   
-    <div class="method">
-      <div class="method_header">
-  <h3>to_select_tag</h3>
-</div><div id="to_select_tag-instance_method" class="section method">
-  <div class="details_title">
-    <div class='section methodsignature'>
-    <tt class='def'>
-      <span class='visibility'>public</span>
-      <span class='return_types'></span>
-      <span class='name'>to_select_tag</span><span class='args'>(choices, options, html_options)</span>
-      <span class='block'></span>
-    </tt>
-  </div>
+    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>to_select_tag</strong>(choices, options, html_options) 
+  
 
-</div><div class="section source">
-  <span>[<a class="source_link" href="#">View source</a>]</span>
-  <div class="source_code">
-    <table>
-      <tr>
-        <td>
-          <pre class="lines">
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
 
 
 104
@@ -895,9 +763,9 @@
 112
 113
 114</pre>
-        </td>
-        <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/action_view_extensions.rb', line 104</span>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/big_record/action_view_extensions.rb', line 104</span>
 
 <span class='def def kw'>def</span> <span class='to_select_tag identifier id'>to_select_tag</span><span class='lparen token'>(</span><span class='choices identifier id'>choices</span><span class='comma token'>,</span> <span class='options identifier id'>options</span><span class='comma token'>,</span> <span class='html_options identifier id'>html_options</span><span class='rparen token'>)</span>
   <span class='html_options identifier id'>html_options</span> <span class='assign token'>=</span> <span class='html_options identifier id'>html_options</span><span class='dot token'>.</span><span class='stringify_keys identifier id'>stringify_keys</span>
@@ -911,35 +779,22 @@
   <span class='content_tag identifier id'>content_tag</span><span class='lparen token'>(</span><span class='string val'>&quot;select&quot;</span><span class='comma token'>,</span> <span class='add_options identifier id'>add_options</span><span class='lparen token'>(</span><span class='options_for_select identifier id'>options_for_select</span><span class='lparen token'>(</span><span class='choices identifier id'>choices</span><span class='comma token'>,</span> <span class='selected_value identifier id'>selected_value</span><span class='rparen token'>)</span><span class='comma token'>,</span> <span class='options identifier id'>options</span><span class='comma token'>,</span> <span class='selected_value identifier id'>selected_value</span><span class='rparen token'>)</span><span class='comma token'>,</span> <span class='html_options identifier id'>html_options</span><span class='rparen token'>)</span>
 <span class='end end kw'>end</span>
 </pre>
-        </td>
-      </tr>
-    </table>
-  </div>
+    </td>
+  </tr>
+</table>
 </div>
-</div>
-    </div>
+    
+      <div class="method_details ">
+  <p class="signature " id="to_text_area_tag-instance_method">
   
-    <div class="method">
-      <div class="method_header">
-  <h3>to_text_area_tag</h3>
-</div><div id="to_text_area_tag-instance_method" class="section method">
-  <div class="details_title">
-    <div class='section methodsignature'>
-    <tt class='def'>
-      <span class='visibility'>public</span>
-      <span class='return_types'></span>
-      <span class='name'>to_text_area_tag</span><span class='args'>(options = {})</span>
-      <span class='block'></span>
-    </tt>
-  </div>
+    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>to_text_area_tag</strong>(options = {}) 
+  
 
-</div><div class="section source">
-  <span>[<a class="source_link" href="#">View source</a>]</span>
-  <div class="source_code">
-    <table>
-      <tr>
-        <td>
-          <pre class="lines">
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
 
 
 70
@@ -951,9 +806,9 @@
 76
 77
 78</pre>
-        </td>
-        <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/action_view_extensions.rb', line 70</span>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/big_record/action_view_extensions.rb', line 70</span>
 
 <span class='def def kw'>def</span> <span class='to_text_area_tag identifier id'>to_text_area_tag</span><span class='lparen token'>(</span><span class='options identifier id'>options</span> <span class='assign token'>=</span> <span class='lbrace token'>{</span><span class='rbrace token'>}</span><span class='rparen token'>)</span>
   <span class='options identifier id'>options</span> <span class='assign token'>=</span> <span class='DEFAULT_TEXT_AREA_OPTIONS constant id'>DEFAULT_TEXT_AREA_OPTIONS</span><span class='dot token'>.</span><span class='merge identifier id'>merge</span><span class='lparen token'>(</span><span class='options identifier id'>options</span><span class='dot token'>.</span><span class='stringify_keys identifier id'>stringify_keys</span><span class='rparen token'>)</span>
@@ -965,149 +820,106 @@
   <span class='content_tag identifier id'>content_tag</span><span class='lparen token'>(</span><span class='string val'>&quot;textarea&quot;</span><span class='comma token'>,</span> <span class='html_escape identifier id'>html_escape</span><span class='lparen token'>(</span><span class='options identifier id'>options</span><span class='dot token'>.</span><span class='delete identifier id'>delete</span><span class='lparen token'>(</span><span class='string val'>'value'</span><span class='rparen token'>)</span> <span class='orop op'>||</span> <span class='value_before_type_cast identifier id'>value_before_type_cast</span><span class='lparen token'>(</span><span class='object identifier id'>object</span><span class='comma token'>,</span> <span class='options identifier id'>options</span><span class='rparen token'>)</span><span class='rparen token'>)</span><span class='comma token'>,</span> <span class='options identifier id'>options</span><span class='rparen token'>)</span>
 <span class='end end kw'>end</span>
 </pre>
-        </td>
-      </tr>
-    </table>
-  </div>
+    </td>
+  </tr>
+</table>
 </div>
-</div>
-    </div>
+    
+      <div class="method_details ">
+  <p class="signature " id="to_time_select_tag-instance_method">
   
-    <div class="method">
-      <div class="method_header">
-  <h3>to_time_select_tag</h3>
-</div><div id="to_time_select_tag-instance_method" class="section method">
-  <div class="details_title">
-    <div class='section methodsignature'>
-    <tt class='def'>
-      <span class='visibility'>public</span>
-      <span class='return_types'></span>
-      <span class='name'>to_time_select_tag</span><span class='args'>(options = {})</span>
-      <span class='block'></span>
-    </tt>
-  </div>
+    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>to_time_select_tag</strong>(options = {}) 
+  
 
-</div><div class="section source">
-  <span>[<a class="source_link" href="#">View source</a>]</span>
-  <div class="source_code">
-    <table>
-      <tr>
-        <td>
-          <pre class="lines">
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
 
 
 22
 23
 24</pre>
-        </td>
-        <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/action_view_extensions.rb', line 22</span>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/big_record/action_view_extensions.rb', line 22</span>
 
 <span class='def def kw'>def</span> <span class='to_time_select_tag identifier id'>to_time_select_tag</span><span class='lparen token'>(</span><span class='options identifier id'>options</span> <span class='assign token'>=</span> <span class='lbrace token'>{</span><span class='rbrace token'>}</span><span class='rparen token'>)</span>
   <span class='date_or_time_select identifier id'>date_or_time_select</span> <span class='options identifier id'>options</span><span class='dot token'>.</span><span class='merge identifier id'>merge</span><span class='lparen token'>(</span><span class='symbol val'>:discard_year</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='true true kw'>true</span><span class='comma token'>,</span> <span class='symbol val'>:discard_month</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='true true kw'>true</span><span class='rparen token'>)</span>
 <span class='end end kw'>end</span>
 </pre>
-        </td>
-      </tr>
-    </table>
-  </div>
+    </td>
+  </tr>
+</table>
 </div>
-</div>
-    </div>
+    
+      <div class="method_details ">
+  <p class="signature " id="value-instance_method">
   
-    <div class="method">
-      <div class="method_header">
-  <h3>value</h3>
-</div><div id="value-instance_method" class="section method">
-  <div class="details_title">
-    <div class='section methodsignature'>
-    <tt class='def'>
-      <span class='visibility'>public</span>
-      <span class='return_types'></span>
-      <span class='name'>value</span><span class='args'>(object, options = {})</span>
-      <span class='block'></span>
-    </tt>
-  </div>
+    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>value</strong>(object, options = {}) 
+  
 
-</div><div class="section source">
-  <span>[<a class="source_link" href="#">View source</a>]</span>
-  <div class="source_code">
-    <table>
-      <tr>
-        <td>
-          <pre class="lines">
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
 
 
 124
 125
 126</pre>
-        </td>
-        <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/action_view_extensions.rb', line 124</span>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/big_record/action_view_extensions.rb', line 124</span>
 
 <span class='def def kw'>def</span> <span class='value identifier id'>value</span><span class='lparen token'>(</span><span class='object identifier id'>object</span><span class='comma token'>,</span> <span class='options identifier id'>options</span><span class='assign token'>=</span><span class='lbrace token'>{</span><span class='rbrace token'>}</span><span class='rparen token'>)</span>
   <span class='self self kw'>self</span><span class='dot token'>.</span><span class='class identifier id'>class</span><span class='dot token'>.</span><span class='value identifier id'>value</span><span class='lparen token'>(</span><span class='object identifier id'>object</span><span class='comma token'>,</span> <span class='@method_name ivar id'>@method_name</span><span class='comma token'>,</span> <span class='options identifier id'>options</span><span class='rparen token'>)</span>
 <span class='end end kw'>end</span>
 </pre>
-        </td>
-      </tr>
-    </table>
-  </div>
+    </td>
+  </tr>
+</table>
 </div>
-</div>
-    </div>
+    
+      <div class="method_details ">
+  <p class="signature " id="value_before_type_cast-instance_method">
   
-    <div class="method">
-      <div class="method_header">
-  <h3>value_before_type_cast</h3>
-</div><div id="value_before_type_cast-instance_method" class="section method">
-  <div class="details_title">
-    <div class='section methodsignature'>
-    <tt class='def'>
-      <span class='visibility'>public</span>
-      <span class='return_types'></span>
-      <span class='name'>value_before_type_cast</span><span class='args'>(object, options = {})</span>
-      <span class='block'></span>
-    </tt>
-  </div>
+    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>value_before_type_cast</strong>(object, options = {}) 
+  
 
-</div><div class="section source">
-  <span>[<a class="source_link" href="#">View source</a>]</span>
-  <div class="source_code">
-    <table>
-      <tr>
-        <td>
-          <pre class="lines">
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
 
 
 128
 129
 130</pre>
-        </td>
-        <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/action_view_extensions.rb', line 128</span>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/big_record/action_view_extensions.rb', line 128</span>
 
 <span class='def def kw'>def</span> <span class='value_before_type_cast identifier id'>value_before_type_cast</span><span class='lparen token'>(</span><span class='object identifier id'>object</span><span class='comma token'>,</span> <span class='options identifier id'>options</span><span class='assign token'>=</span><span class='lbrace token'>{</span><span class='rbrace token'>}</span><span class='rparen token'>)</span>
   <span class='self self kw'>self</span><span class='dot token'>.</span><span class='class identifier id'>class</span><span class='dot token'>.</span><span class='value_before_type_cast identifier id'>value_before_type_cast</span><span class='lparen token'>(</span><span class='object identifier id'>object</span><span class='comma token'>,</span> <span class='@method_name ivar id'>@method_name</span><span class='comma token'>,</span> <span class='options identifier id'>options</span><span class='rparen token'>)</span>
 <span class='end end kw'>end</span>
 </pre>
-        </td>
-      </tr>
-    </table>
-  </div>
+    </td>
+  </tr>
+</table>
 </div>
-</div>
-    </div>
-  
-</div>
+    
   </div>
 
 </div>
-    </div>
-    <div id="yard_info">
-  Generated on Wednesday, November 25 2009 at 02:43:16 PM by 
-  <abbr class="yard" title="Yay! A Ruby Documentation Tool"><a href="http://yard.soen.ca">YARD</a></abbr> 
-  0.2.3.5 (ruby-1.8.7).
+    
+    <div id="footer">
+  Generated on Thu Nov 26 18:22:17 2009 by 
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool">yard</a>
+  0.4.0 (ruby-1.8.7).
 </div>
 
   </body>

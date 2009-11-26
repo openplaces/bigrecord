@@ -1,26 +1,81 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
-    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-<link rel="stylesheet" href="style.css" type="text/css" charset="utf-8" />
-<link rel="stylesheet" href="custom.css" type="text/css" charset="utf-8" />
-<link rel="stylesheet" href="syntax_highlight.css" type="text/css" charset="utf-8" />
+    <meta name="Content-Type" content="text/html; charset=UTF-8" />
+<title>Class: BigRecordFixtures</title>
+<link rel="stylesheet" href="css/style.css" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="css/common.css" type="text/css" media="screen" charset="utf-8" />
 
-    <script src="jquery.js" type="text/javascript" charset="utf-8"></script>
-    <script src="app.js" type="text/javascript" charset="utf-8"></script>
-    <title>Class: BigRecordFixtures</title>
+<script type="text/javascript" charset="utf-8">
+  relpath = '';
+  if (relpath != '') relpath += '/';
+</script>
+<script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
   </head>
   <body>
-    <div id="content">
-      <div class="section class BigRecordFixtures">
-  <h1 class="title">Class: BigRecordFixtures</h1>
-  <div class="section inheritance">
-  <ul>
-  <li><a href="YAML/Omap.html" title="YAML::Omap">YAML::Omap</a></li><ul><li>BigRecordFixtures</li>
-  </ul></ul>
-</div><div class="section docstring">
-  <p>
+    <div id="header">
+      <div id="menu">
+  
+    <a href="_index.html">Index (B)</a> &raquo; 
+    
+    
+    <span class="title">BigRecordFixtures</span>
+  
+</div>
+
+      <div id="search">
+  <a id="class_list_link" href="#">Namespace List</a>
+  <a id="method_list_link" href="#">Method List</a>
+  <a id ="file_list_link" href="#">File List</a>
+</div>
+
+      <div class="clear"></div>
+    </div>
+    
+    <iframe id="search_frame"></iframe>
+    
+    <div id="content"><h1>Class: BigRecordFixtures 
+  
+  
+</h1>
+
+<dl class="box">
+  
+    <dt class="r1">Inherits:</dt>
+    <dd class="r1">
+      <span class="inheritName"><a title="YAML::Omap" href="YAML/Omap.html">YAML::Omap</a></span>
+      
+        <ul class="fullTree">
+          <li><a title="Object" href="Object.html">Object</a></li>
+          
+            <li class="next"><a title="YAML::Omap" href="YAML/Omap.html">YAML::Omap</a></li>
+          
+            <li class="next">BigRecordFixtures</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+      </dd>
+    
+  
+  
+    
+  
+    
+  
+  
+    <dt class="r2 last">Defined in:</dt>
+    <dd class="r2 last">lib/big_record/fixtures.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    <p>
 Fixtures are a way of organizing data that you want to test against; in
 short, sample data. They come in 3 flavors:
 </p>
@@ -264,10 +319,10 @@ fixtures are to be considered a code smell.
 </p>
 <h1>Transactional fixtures</h1>
 <p>
-TestCases can use begin<tt>rollback to isolate their changes to the database
-instead of having to delete</tt>insert for every test case. They can also turn
-off auto-instantiation of fixture data since the feature is costly and
-often unused.
+TestCases can use begin<tt>rollback to isolate their changes to the
+database instead of having to delete</tt>insert for every test case. They
+can also turn off auto-instantiation of fixture data since the feature is
+costly and often unused.
 </p>
 <pre class="code">
   <span class='class class kw'>class</span> <span class='FooTest constant id'>FooTest</span> <span class='lt op'>&lt;</span> <span class='Test constant id'>Test</span><span class='colon2 op'>::</span><span class='Unit constant id'>Unit</span><span class='colon2 op'>::</span><span class='TestCase constant id'>TestCase</span>
@@ -295,9 +350,9 @@ there and every case rolls back its changes.
 </p>
 <p>
 In order to use instantiated fixtures with preloaded data, set
-<tt>self.pre_loaded_fixtures</tt> to true. This will provide access to fixture
-data for every table that has been loaded through fixtures (depending on
-the value of <tt>use_instantiated_fixtures</tt>)
+<tt>self.pre_loaded_fixtures</tt> to true. This will provide access to
+fixture data for every table that has been loaded through fixtures
+(depending on the value of <tt>use_instantiated_fixtures</tt>)
 </p>
 <p>
 When <b>not</b> to use transactional fixtures:
@@ -546,7 +601,8 @@ the rescue:
 <h2>Support for YAML defaults</h2>
 <p>
 You probably already know how to use YAML to set and reuse defaults in your
-<tt>database.yml</tt> file,. You can use the same technique in your fixtures:
+<tt>database.yml</tt> file,. You can use the same technique in your
+fixtures:
 </p>
 <pre class="code">
   <span class='DEFAULTS constant id'>DEFAULTS</span><span class='colon op'>:</span> <span class='bitand op'>&amp;</span><span class='DEFAULTS constant id'>DEFAULTS</span>
@@ -564,70 +620,306 @@ You probably already know how to use YAML to set and reuse defaults in your
 Any fixture labeled &quot;DEFAULTS&quot; is safely ignored.
 </p>
 
-</div><div class="section attributes">
-  <h1>Attributes</h1>
+
+  </div>
+</div>
+<div class="tags">
+  
+</div>
+  <h2>Constant Summary</h2>
+  
+    <dl class="constants">
+      
+        <dt id="DEFAULT_FILTER_RE-constant ">DEFAULT_FILTER_RE =
+            <span class="summary_desc"></span>
+        </dt>
+        <dd><pre class="code"><span class='regexp val'>/\.ya?ml$/</span>
+</pre></dd>
+      
+        <dt id="all_cached_big_record_fixtures-classvariable ">@@all_cached_big_record_fixtures =
+            <span class="summary_desc"></span>
+        </dt>
+        <dd><pre class="code"><span class='lbrace token'>{</span><span class='rbrace token'>}</span>
+</pre></dd>
+      
+    </dl>
+  
+
 
   
-    <div class="instance">
-      <h2>Instance Attributes</h2>
-      <table>
-      
-        
-        <tr class="">
-          <th class='signature'>
-            <span class='name'>table_name</span>
-          </td>
-          <td class="readwrite">
-            [<span id='table_name-instance_method'>R</span>] 
-          </td>
-          <td class="visibility">
-            public
-          </td>
-          <td class="docstring">
-            <p>
+  
+  
+  
+  <h2>Attribute Summary</h2>
+  <ul class="summary">
+    
+      <li class="public ">
+  <span class="summary_signature"><a title="#table_name (instance method)" href="#table_name-instance_method">- (Object) <strong>table_name</strong> </a>
+  
+  </span>
+  
+    <span class="note title readonly">readonly</span>
+    
+  
+  
+  
+  
+
+  
+    <span class="summary_desc">
 Returns the value of attribute <tt>table_name</tt>.
+
+</span>
+  
+</li>
+
+    
+  </ul>
+
+
+  <h2>Method Summary</h2>
+  <ul class="summary">
+    
+      <li class="public ">
+  <span class="summary_signature"><a title="cache_fixtures (class method)" href="#cache_fixtures-class_method">+ (Object) <strong>cache_fixtures</strong>(connection, fixtures) </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a title="cache_for_connection (class method)" href="#cache_for_connection-class_method">+ (Object) <strong>cache_for_connection</strong>(connection) </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a title="cached_fixtures (class method)" href="#cached_fixtures-class_method">+ (Object) <strong>cached_fixtures</strong>(connection, keys_to_fetch = nil) </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a title="create_fixtures (class method)" href="#create_fixtures-class_method">+ (Object) <strong>create_fixtures</strong>(fixtures_directory, table_names, class_names = {}) </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a title="fixture_is_cached? (class method)" href="#fixture_is_cached%3F-class_method">+ (Object) <strong>fixture_is_cached?</strong>(connection, table_name) </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a title="identify (class method)" href="#identify-class_method">+ (Object) <strong>identify</strong>(label) </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc">
+Returns a consistent identifier for <tt>label</tt>.
+
+</span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a title="instantiate_all_loaded_fixtures (class method)" href="#instantiate_all_loaded_fixtures-class_method">+ (Object) <strong>instantiate_all_loaded_fixtures</strong>(object, load_instances = true) </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a title="instantiate_fixtures (class method)" href="#instantiate_fixtures-class_method">+ (Object) <strong>instantiate_fixtures</strong>(object, table_name, fixtures, load_instances = true) </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a title="reset_cache (class method)" href="#reset_cache-class_method">+ (Object) <strong>reset_cache</strong>(connection = nil) </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a title="#delete_existing_fixtures (instance method)" href="#delete_existing_fixtures-instance_method">- (Object) <strong>delete_existing_fixtures</strong> </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a title="#initialize (instance method)" href="#initialize-instance_method">- (BigRecordFixtures) <strong>initialize</strong>(connection, table_name, class_name, fixture_path, file_filter = DEFAULT_FILTER_RE) </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc">
+A new instance of <tt>BigRecordFixtures</tt>.
+
+</span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature"><a title="#insert_fixtures (instance method)" href="#insert_fixtures-instance_method">- (Object) <strong>insert_fixtures</strong> </a>
+  
+  </span>
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"></span>
+  
+</li>
+
+    
+  </ul>
+
+
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods inherited from <a title="YAML::Omap" href="YAML/Omap.html">YAML::Omap</a></h3>
+  <p class="inherited"><a title="#keys" href="YAML/Omap.html#keys-instance_method">#keys</a>, <a title="#values" href="YAML/Omap.html#values-instance_method">#values</a></p>
+<div id="constructor_details">
+  <h2>Constructor Details</h2>
+  
+    <div class="method_details first">
+  <p class="signature first" id="initialize-instance_method">
+  
+    - (<tt><a title="BigRecordFixtures" href="">BigRecordFixtures</a></tt>) <strong>initialize</strong>(connection, table_name, class_name, fixture_path, file_filter = DEFAULT_FILTER_RE) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+A new instance of <tt>BigRecordFixtures</tt>
 </p>
 
-            
-          </td>
-        </tr>
-        
-      
-      </table>
-    </div>
-  
-</div>
-<div class="section constants">
-  <div class="thisclass">
-  <h1>Constants</h1>
-  <dl>
-    
-      <dt id="DEFAULT_FILTER_RE-constant">DEFAULT_FILTER_RE</dt>
-      <dd>/\.ya?ml$/</dd>
-    
-  </dl>
-</div>
 
-</div><div class="section constructor">
-<h1>Constructor Summary</h1>
-  <div id="initialize-instance_method" class="section method">
-  <div class="details_title">
-    <div class='section methodsignature'>
-    <tt class='def'>
-      <span class='visibility'>public</span>
-      <span class='return_types'></span>
-      <span class='name'>initialize</span><span class='args'>(connection, table_name, class_name, fixture_path, file_filter = DEFAULT_FILTER_RE)</span>
-      <span class='block'></span>
-    </tt>
   </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt><a title="BigRecordFixtures" href="">BigRecordFixtures</a></tt>)</span>
+      
+      
+      
+      
+        &mdash;
+        
+a new instance of <tt>BigRecordFixtures</tt>
 
-</div><div class="section source">
-  <span>[<a class="source_link" href="#">View source</a>]</span>
-  <div class="source_code">
-    <table>
-      <tr>
-        <td>
-          <pre class="lines">
+
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
 
 
 542
@@ -639,9 +931,9 @@ Returns the value of attribute <tt>table_name</tt>.
 548
 549
 550</pre>
-        </td>
-        <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/fixtures.rb', line 542</span>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/big_record/fixtures.rb', line 542</span>
 
 <span class='def def kw'>def</span> <span class='initialize identifier id'>initialize</span><span class='lparen token'>(</span><span class='connection identifier id'>connection</span><span class='comma token'>,</span> <span class='table_name identifier id'>table_name</span><span class='comma token'>,</span> <span class='class_name identifier id'>class_name</span><span class='comma token'>,</span> <span class='fixture_path identifier id'>fixture_path</span><span class='comma token'>,</span> <span class='file_filter identifier id'>file_filter</span> <span class='assign token'>=</span> <span class='DEFAULT_FILTER_RE constant id'>DEFAULT_FILTER_RE</span><span class='rparen token'>)</span>
   <span class='@connection ivar id'>@connection</span><span class='comma token'>,</span> <span class='@table_name ivar id'>@table_name</span><span class='comma token'>,</span> <span class='@fixture_path ivar id'>@fixture_path</span><span class='comma token'>,</span> <span class='@file_filter ivar id'>@file_filter</span> <span class='assign token'>=</span> <span class='connection identifier id'>connection</span><span class='comma token'>,</span> <span class='table_name identifier id'>table_name</span><span class='comma token'>,</span> <span class='fixture_path identifier id'>fixture_path</span><span class='comma token'>,</span> <span class='file_filter identifier id'>file_filter</span>
@@ -653,325 +945,136 @@ Returns the value of attribute <tt>table_name</tt>.
   <span class='read_fixture_files identifier id'>read_fixture_files</span>
 <span class='end end kw'>end</span>
 </pre>
-        </td>
-      </tr>
-    </table>
-  </div>
+    </td>
+  </tr>
+</table>
 </div>
+  
 </div>
-</div>  <div class="section visibilitygroup public">
-    <h1>Public Visibility</h1>
-      <div class="section methodsummary class public">
-    <h1>Public Class Method Summary</h1>
-<table class="summary">
+
+  <div id="attr_details">
+    <h2>Attribute Details</h2>
+    
+      
+      <span id=""></span>
+      <span id="table_name-instance_method"></span>
+      <div class="method_details first">
+  <p class="signature first" id="table_name-instance_method">
   
-    <tr>
-      <th class="signature">
-        
-          <span class='overload'>
-            <span class='name'><a href="#cache_fixtures-class_method" title="cache_fixtures">cache_fixtures</a></span><span class='args'>(connection, fixtures)</span>
-            <span class='block'></span>
-          </span>
-        
-        
-      </th>
-      <td class="docstring">
-        
-        
-      </td>
-    </tr>
+    - (<tt><a title="Object" href="Object.html">Object</a></tt>) <strong>table_name</strong>  <span class="extras">(readonly)</span>
   
-    <tr>
-      <th class="signature">
-        
-          <span class='overload'>
-            <span class='name'><a href="#cache_for_connection-class_method" title="cache_for_connection">cache_for_connection</a></span><span class='args'>(connection)</span>
-            <span class='block'></span>
-          </span>
-        
-        
-      </th>
-      <td class="docstring">
-        
-        
-      </td>
-    </tr>
+
   
-    <tr>
-      <th class="signature">
-        
-          <span class='overload'>
-            <span class='name'><a href="#cached_fixtures-class_method" title="cached_fixtures">cached_fixtures</a></span><span class='args'>(connection, keys_to_fetch = nil)</span>
-            <span class='block'></span>
-          </span>
-        
-        
-      </th>
-      <td class="docstring">
-        
-        
-      </td>
-    </tr>
-  
-    <tr>
-      <th class="signature">
-        
-          <span class='overload'>
-            <span class='name'><a href="#create_fixtures-class_method" title="create_fixtures">create_fixtures</a></span><span class='args'>(fixtures_directory, table_names, class_names = {})</span>
-            <span class='block'></span>
-          </span>
-        
-        
-      </th>
-      <td class="docstring">
-        
-        
-      </td>
-    </tr>
-  
-    <tr>
-      <th class="signature">
-        
-          <span class='overload'>
-            <span class='name'><a href="#fixture_is_cached%3F-class_method" title="fixture_is_cached?">fixture_is_cached?</a></span><span class='args'>(connection, table_name)</span>
-            <span class='block'></span>
-          </span>
-        
-        
-      </th>
-      <td class="docstring">
-        
-        
-      </td>
-    </tr>
-  
-    <tr>
-      <th class="signature">
-        
-          <span class='overload'>
-            <span class='name'><a href="#identify-class_method" title="identify">identify</a></span><span class='args'>(label)</span>
-            <span class='block'></span>
-          </span>
-        
-        
-      </th>
-      <td class="docstring">
-        <p>
-Returns a consistent identifier for <tt>label</tt>.
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Returns the value of attribute <tt>table_name</tt>
 </p>
 
-        
-      </td>
-    </tr>
-  
-    <tr>
-      <th class="signature">
-        
-          <span class='overload'>
-            <span class='name'><a href="#instantiate_all_loaded_fixtures-class_method" title="instantiate_all_loaded_fixtures">instantiate_all_loaded_fixtures</a></span><span class='args'>(object, load_instances = true)</span>
-            <span class='block'></span>
-          </span>
-        
-        
-      </th>
-      <td class="docstring">
-        
-        
-      </td>
-    </tr>
-  
-    <tr>
-      <th class="signature">
-        
-          <span class='overload'>
-            <span class='name'><a href="#instantiate_fixtures-class_method" title="instantiate_fixtures">instantiate_fixtures</a></span><span class='args'>(object, table_name, fixtures, load_instances = true)</span>
-            <span class='block'></span>
-          </span>
-        
-        
-      </th>
-      <td class="docstring">
-        
-        
-      </td>
-    </tr>
-  
-    <tr>
-      <th class="signature">
-        
-          <span class='overload'>
-            <span class='name'><a href="#reset_cache-class_method" title="reset_cache">reset_cache</a></span><span class='args'>(connection = nil)</span>
-            <span class='block'></span>
-          </span>
-        
-        
-      </th>
-      <td class="docstring">
-        
-        
-      </td>
-    </tr>
-  
-</table>
 
   </div>
-  <div class="section methodsummary instance public">
-    <h1>Public Instance Method Summary</h1>
-<table class="summary">
-  
-    <tr>
-      <th class="signature">
-        
-          <span class='overload'>
-            <span class='name'><a href="#delete_existing_fixtures-instance_method" title="#delete_existing_fixtures">#delete_existing_fixtures</a></span><span class='args'></span>
-            <span class='block'></span>
-          </span>
-        
-        
-      </th>
-      <td class="docstring">
-        
-        
-      </td>
-    </tr>
-  
-    <tr>
-      <th class="signature">
-        
-          <span class='overload'>
-            <span class='name'><a href="#insert_fixtures-instance_method" title="#insert_fixtures">#insert_fixtures</a></span><span class='args'></span>
-            <span class='block'></span>
-          </span>
-        
-        
-      </th>
-      <td class="docstring">
-        
-        
-      </td>
-    </tr>
-  
-</table>
-<div class="inherited">
-  
-  <div>
-    <h1>Public Instance Methods Inherited from <a href="YAML/Omap.html" title="YAML::Omap">YAML::Omap</a></h1>
-    <p><span class='name'><a href="YAML/Omap.html#keys-instance_method" title="keys">keys</a></span>, <span class='name'><a href="YAML/Omap.html#values-instance_method" title="values">values</a></span></p>
-  </div>
-  
 </div>
-<div class="clear"></div>
-  </div>
-<div class="section methoddetails class public">
-  <h1>Public Class Method Details</h1>
+<div class="tags">
   
-    <div class="method">
-      <div class="method_header">
-  <h3>cache_fixtures</h3>
-</div><div id="cache_fixtures-class_method" class="section method">
-  <div class="details_title">
-    <div class='section methodsignature'>
-    <tt class='def'>
-      <span class='visibility'>public</span>
-      <span class='return_types'></span>
-      <span class='name'>cache_fixtures</span><span class='args'>(connection, fixtures)</span>
-      <span class='block'></span>
-    </tt>
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+540
+541
+542</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/big_record/fixtures.rb', line 540</span>
+
+<span class='def def kw'>def</span> <span class='table_name identifier id'>table_name</span>
+  <span class='@table_name ivar id'>@table_name</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
   </div>
 
-</div><div class="section source">
-  <span>[<a class="source_link" href="#">View source</a>]</span>
-  <div class="source_code">
-    <table>
-      <tr>
-        <td>
-          <pre class="lines">
+
+  <div id="method_details">
+    <h2>Method Details</h2>
+    
+      <div class="method_details first">
+  <p class="signature first" id="cache_fixtures-class_method">
+  
+    + (<tt><a title="Object" href="Object.html">Object</a></tt>) <strong>cache_fixtures</strong>(connection, fixtures) 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
 
 
 469
 470
 471</pre>
-        </td>
-        <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/fixtures.rb', line 469</span>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/big_record/fixtures.rb', line 469</span>
 
 <span class='def def kw'>def</span> <span class='self self kw'>self</span><span class='dot token'>.</span><span class='cache_fixtures identifier id'>cache_fixtures</span><span class='lparen token'>(</span><span class='connection identifier id'>connection</span><span class='comma token'>,</span> <span class='fixtures identifier id'>fixtures</span><span class='rparen token'>)</span>
   <span class='cache_for_connection identifier id'>cache_for_connection</span><span class='lparen token'>(</span><span class='connection identifier id'>connection</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='update identifier id'>update</span><span class='lparen token'>(</span><span class='fixtures identifier id'>fixtures</span><span class='dot token'>.</span><span class='index_by identifier id'>index_by</span><span class='lparen token'>(</span><span class='bitand op'>&amp;</span><span class='symbol val'>:table_name</span><span class='rparen token'>)</span><span class='rparen token'>)</span>
 <span class='end end kw'>end</span>
 </pre>
-        </td>
-      </tr>
-    </table>
-  </div>
+    </td>
+  </tr>
+</table>
 </div>
-</div>
-    </div>
+    
+      <div class="method_details ">
+  <p class="signature " id="cache_for_connection-class_method">
   
-    <div class="method">
-      <div class="method_header">
-  <h3>cache_for_connection</h3>
-</div><div id="cache_for_connection-class_method" class="section method">
-  <div class="details_title">
-    <div class='section methodsignature'>
-    <tt class='def'>
-      <span class='visibility'>public</span>
-      <span class='return_types'></span>
-      <span class='name'>cache_for_connection</span><span class='args'>(connection)</span>
-      <span class='block'></span>
-    </tt>
-  </div>
+    + (<tt><a title="Object" href="Object.html">Object</a></tt>) <strong>cache_for_connection</strong>(connection) 
+  
 
-</div><div class="section source">
-  <span>[<a class="source_link" href="#">View source</a>]</span>
-  <div class="source_code">
-    <table>
-      <tr>
-        <td>
-          <pre class="lines">
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
 
 
 451
 452
 453
 454</pre>
-        </td>
-        <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/fixtures.rb', line 451</span>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/big_record/fixtures.rb', line 451</span>
 
 <span class='def def kw'>def</span> <span class='self self kw'>self</span><span class='dot token'>.</span><span class='cache_for_connection identifier id'>cache_for_connection</span><span class='lparen token'>(</span><span class='connection identifier id'>connection</span><span class='rparen token'>)</span>
   <span class='@@all_cached_big_record_fixtures ivar id'>@@all_cached_big_record_fixtures</span><span class='lbrack token'>[</span><span class='connection identifier id'>connection</span><span class='dot token'>.</span><span class='object_id identifier id'>object_id</span><span class='rbrack token'>]</span> <span class='opasgn op'>||=</span> <span class='lbrace token'>{</span><span class='rbrace token'>}</span>
   <span class='@@all_cached_big_record_fixtures ivar id'>@@all_cached_big_record_fixtures</span><span class='lbrack token'>[</span><span class='connection identifier id'>connection</span><span class='dot token'>.</span><span class='object_id identifier id'>object_id</span><span class='rbrack token'>]</span>
 <span class='end end kw'>end</span>
 </pre>
-        </td>
-      </tr>
-    </table>
-  </div>
+    </td>
+  </tr>
+</table>
 </div>
-</div>
-    </div>
+    
+      <div class="method_details ">
+  <p class="signature " id="cached_fixtures-class_method">
   
-    <div class="method">
-      <div class="method_header">
-  <h3>cached_fixtures</h3>
-</div><div id="cached_fixtures-class_method" class="section method">
-  <div class="details_title">
-    <div class='section methodsignature'>
-    <tt class='def'>
-      <span class='visibility'>public</span>
-      <span class='return_types'></span>
-      <span class='name'>cached_fixtures</span><span class='args'>(connection, keys_to_fetch = nil)</span>
-      <span class='block'></span>
-    </tt>
-  </div>
+    + (<tt><a title="Object" href="Object.html">Object</a></tt>) <strong>cached_fixtures</strong>(connection, keys_to_fetch = nil) 
+  
 
-</div><div class="section source">
-  <span>[<a class="source_link" href="#">View source</a>]</span>
-  <div class="source_code">
-    <table>
-      <tr>
-        <td>
-          <pre class="lines">
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
 
 
 460
@@ -982,9 +1085,9 @@ Returns a consistent identifier for <tt>label</tt>.
 465
 466
 467</pre>
-        </td>
-        <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/fixtures.rb', line 460</span>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/big_record/fixtures.rb', line 460</span>
 
 <span class='def def kw'>def</span> <span class='self self kw'>self</span><span class='dot token'>.</span><span class='cached_fixtures identifier id'>cached_fixtures</span><span class='lparen token'>(</span><span class='connection identifier id'>connection</span><span class='comma token'>,</span> <span class='keys_to_fetch identifier id'>keys_to_fetch</span> <span class='assign token'>=</span> <span class='nil nil kw'>nil</span><span class='rparen token'>)</span>
   <span class='if if kw'>if</span> <span class='keys_to_fetch identifier id'>keys_to_fetch</span>
@@ -995,35 +1098,22 @@ Returns a consistent identifier for <tt>label</tt>.
   <span class='fixtures identifier id'>fixtures</span><span class='dot token'>.</span><span class='size identifier id'>size</span> <span class='gt op'>&gt;</span> <span class='integer val'>1</span> <span class='question op'>?</span> <span class='fixtures identifier id'>fixtures</span> <span class='colon op'>:</span> <span class='fixtures identifier id'>fixtures</span><span class='dot token'>.</span><span class='first identifier id'>first</span>
 <span class='end end kw'>end</span>
 </pre>
-        </td>
-      </tr>
-    </table>
-  </div>
+    </td>
+  </tr>
+</table>
 </div>
-</div>
-    </div>
+    
+      <div class="method_details ">
+  <p class="signature " id="create_fixtures-class_method">
   
-    <div class="method">
-      <div class="method_header">
-  <h3>create_fixtures</h3>
-</div><div id="create_fixtures-class_method" class="section method">
-  <div class="details_title">
-    <div class='section methodsignature'>
-    <tt class='def'>
-      <span class='visibility'>public</span>
-      <span class='return_types'></span>
-      <span class='name'>create_fixtures</span><span class='args'>(fixtures_directory, table_names, class_names = {})</span>
-      <span class='block'></span>
-    </tt>
-  </div>
+    + (<tt><a title="Object" href="Object.html">Object</a></tt>) <strong>create_fixtures</strong>(fixtures_directory, table_names, class_names = {}) 
+  
 
-</div><div class="section source">
-  <span>[<a class="source_link" href="#">View source</a>]</span>
-  <div class="source_code">
-    <table>
-      <tr>
-        <td>
-          <pre class="lines">
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
 
 
 497
@@ -1061,9 +1151,9 @@ Returns a consistent identifier for <tt>label</tt>.
 529
 530
 531</pre>
-        </td>
-        <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/fixtures.rb', line 497</span>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/big_record/fixtures.rb', line 497</span>
 
 <span class='def def kw'>def</span> <span class='self self kw'>self</span><span class='dot token'>.</span><span class='create_fixtures identifier id'>create_fixtures</span><span class='lparen token'>(</span><span class='fixtures_directory identifier id'>fixtures_directory</span><span class='comma token'>,</span> <span class='table_names identifier id'>table_names</span><span class='comma token'>,</span> <span class='class_names identifier id'>class_names</span> <span class='assign token'>=</span> <span class='lbrace token'>{</span><span class='rbrace token'>}</span><span class='rparen token'>)</span>
   <span class='table_names identifier id'>table_names</span> <span class='assign token'>=</span> <span class='lbrack token'>[</span><span class='table_names identifier id'>table_names</span><span class='rbrack token'>]</span><span class='dot token'>.</span><span class='flatten identifier id'>flatten</span><span class='dot token'>.</span><span class='map identifier id'>map</span> <span class='lbrace token'>{</span> <span class='bitor op'>|</span><span class='n identifier id'>n</span><span class='bitor op'>|</span> <span class='n identifier id'>n</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span> <span class='rbrace token'>}</span>
@@ -1101,126 +1191,93 @@ Returns a consistent identifier for <tt>label</tt>.
   <span class='cached_fixtures identifier id'>cached_fixtures</span><span class='lparen token'>(</span><span class='connection identifier id'>connection</span><span class='comma token'>,</span> <span class='table_names identifier id'>table_names</span><span class='rparen token'>)</span>
 <span class='end end kw'>end</span>
 </pre>
-        </td>
-      </tr>
-    </table>
-  </div>
+    </td>
+  </tr>
+</table>
 </div>
-</div>
-    </div>
+    
+      <div class="method_details ">
+  <p class="signature " id="fixture_is_cached?-class_method">
   
-    <div class="method">
-      <div class="method_header">
-  <h3>fixture_is_cached?</h3>
-</div><div id="fixture_is_cached?-class_method" class="section method">
-  <div class="details_title">
-    <div class='section methodsignature'>
-    <tt class='def'>
-      <span class='visibility'>public</span>
-      <span class='return_types'></span>
-      <span class='name'>fixture_is_cached?</span><span class='args'>(connection, table_name)</span>
-      <span class='block'></span>
-    </tt>
-  </div>
+    + (<tt><a title="Object" href="Object.html">Object</a></tt>) <strong>fixture_is_cached?</strong>(connection, table_name) 
+  
 
-</div><div class="section source">
-  <span>[<a class="source_link" href="#">View source</a>]</span>
-  <div class="source_code">
-    <table>
-      <tr>
-        <td>
-          <pre class="lines">
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
 
 
 456
 457
 458</pre>
-        </td>
-        <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/fixtures.rb', line 456</span>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/big_record/fixtures.rb', line 456</span>
 
 <span class='def def kw'>def</span> <span class='self self kw'>self</span><span class='dot token'>.</span><span class='fixture_is_cached? fid id'>fixture_is_cached?</span><span class='lparen token'>(</span><span class='connection identifier id'>connection</span><span class='comma token'>,</span> <span class='table_name identifier id'>table_name</span><span class='rparen token'>)</span>
   <span class='cache_for_connection identifier id'>cache_for_connection</span><span class='lparen token'>(</span><span class='connection identifier id'>connection</span><span class='rparen token'>)</span><span class='lbrack token'>[</span><span class='table_name identifier id'>table_name</span><span class='rbrack token'>]</span>
 <span class='end end kw'>end</span>
 </pre>
-        </td>
-      </tr>
-    </table>
-  </div>
+    </td>
+  </tr>
+</table>
 </div>
-</div>
-    </div>
+    
+      <div class="method_details ">
+  <p class="signature " id="identify-class_method">
   
-    <div class="method">
-      <div class="method_header">
-  <h3>identify</h3>
-</div><div id="identify-class_method" class="section method">
-  <div class="details_title">
-    <div class='section methodsignature'>
-    <tt class='def'>
-      <span class='visibility'>public</span>
-      <span class='return_types'></span>
-      <span class='name'>identify</span><span class='args'>(label)</span>
-      <span class='block'></span>
-    </tt>
-  </div>
+    + (<tt><a title="Object" href="Object.html">Object</a></tt>) <strong>identify</strong>(label) 
+  
 
-</div><div class="section docstring">
-  <p>
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
 Returns a consistent identifier for <tt>label</tt>. This will always be a
 positive integer, and will always be the same for a given label, assuming
 the same OS, platform, and version of Ruby.
 </p>
 
-</div><div class="section source">
-  <span>[<a class="source_link" href="#">View source</a>]</span>
-  <div class="source_code">
-    <table>
-      <tr>
-        <td>
-          <pre class="lines">
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
 
 
 536
 537
 538</pre>
-        </td>
-        <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/fixtures.rb', line 536</span>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/big_record/fixtures.rb', line 536</span>
 
 <span class='def def kw'>def</span> <span class='self self kw'>self</span><span class='dot token'>.</span><span class='identify identifier id'>identify</span><span class='lparen token'>(</span><span class='label identifier id'>label</span><span class='rparen token'>)</span>
   <span class='label identifier id'>label</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span><span class='dot token'>.</span><span class='hash identifier id'>hash</span><span class='dot token'>.</span><span class='abs identifier id'>abs</span>
 <span class='end end kw'>end</span>
 </pre>
-        </td>
-      </tr>
-    </table>
-  </div>
+    </td>
+  </tr>
+</table>
 </div>
-</div>
-    </div>
+    
+      <div class="method_details ">
+  <p class="signature " id="instantiate_all_loaded_fixtures-class_method">
   
-    <div class="method">
-      <div class="method_header">
-  <h3>instantiate_all_loaded_fixtures</h3>
-</div><div id="instantiate_all_loaded_fixtures-class_method" class="section method">
-  <div class="details_title">
-    <div class='section methodsignature'>
-    <tt class='def'>
-      <span class='visibility'>public</span>
-      <span class='return_types'></span>
-      <span class='name'>instantiate_all_loaded_fixtures</span><span class='args'>(object, load_instances = true)</span>
-      <span class='block'></span>
-    </tt>
-  </div>
+    + (<tt><a title="Object" href="Object.html">Object</a></tt>) <strong>instantiate_all_loaded_fixtures</strong>(object, load_instances = true) 
+  
 
-</div><div class="section source">
-  <span>[<a class="source_link" href="#">View source</a>]</span>
-  <div class="source_code">
-    <table>
-      <tr>
-        <td>
-          <pre class="lines">
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
 
 
 488
@@ -1228,9 +1285,9 @@ the same OS, platform, and version of Ruby.
 490
 491
 492</pre>
-        </td>
-        <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/fixtures.rb', line 488</span>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/big_record/fixtures.rb', line 488</span>
 
 <span class='def def kw'>def</span> <span class='self self kw'>self</span><span class='dot token'>.</span><span class='instantiate_all_loaded_fixtures identifier id'>instantiate_all_loaded_fixtures</span><span class='lparen token'>(</span><span class='object identifier id'>object</span><span class='comma token'>,</span> <span class='load_instances identifier id'>load_instances</span> <span class='assign token'>=</span> <span class='true true kw'>true</span><span class='rparen token'>)</span>
   <span class='all_loaded_fixtures identifier id'>all_loaded_fixtures</span><span class='dot token'>.</span><span class='each identifier id'>each</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='table_name identifier id'>table_name</span><span class='comma token'>,</span> <span class='fixtures identifier id'>fixtures</span><span class='bitor op'>|</span>
@@ -1238,35 +1295,22 @@ the same OS, platform, and version of Ruby.
   <span class='end end kw'>end</span>
 <span class='end end kw'>end</span>
 </pre>
-        </td>
-      </tr>
-    </table>
-  </div>
+    </td>
+  </tr>
+</table>
 </div>
-</div>
-    </div>
+    
+      <div class="method_details ">
+  <p class="signature " id="instantiate_fixtures-class_method">
   
-    <div class="method">
-      <div class="method_header">
-  <h3>instantiate_fixtures</h3>
-</div><div id="instantiate_fixtures-class_method" class="section method">
-  <div class="details_title">
-    <div class='section methodsignature'>
-    <tt class='def'>
-      <span class='visibility'>public</span>
-      <span class='return_types'></span>
-      <span class='name'>instantiate_fixtures</span><span class='args'>(object, table_name, fixtures, load_instances = true)</span>
-      <span class='block'></span>
-    </tt>
-  </div>
+    + (<tt><a title="Object" href="Object.html">Object</a></tt>) <strong>instantiate_fixtures</strong>(object, table_name, fixtures, load_instances = true) 
+  
 
-</div><div class="section source">
-  <span>[<a class="source_link" href="#">View source</a>]</span>
-  <div class="source_code">
-    <table>
-      <tr>
-        <td>
-          <pre class="lines">
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
 
 
 473
@@ -1283,9 +1327,9 @@ the same OS, platform, and version of Ruby.
 484
 485
 486</pre>
-        </td>
-        <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/fixtures.rb', line 473</span>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/big_record/fixtures.rb', line 473</span>
 
 <span class='def def kw'>def</span> <span class='self self kw'>self</span><span class='dot token'>.</span><span class='instantiate_fixtures identifier id'>instantiate_fixtures</span><span class='lparen token'>(</span><span class='object identifier id'>object</span><span class='comma token'>,</span> <span class='table_name identifier id'>table_name</span><span class='comma token'>,</span> <span class='fixtures identifier id'>fixtures</span><span class='comma token'>,</span> <span class='load_instances identifier id'>load_instances</span> <span class='assign token'>=</span> <span class='true true kw'>true</span><span class='rparen token'>)</span>
   <span class='object identifier id'>object</span><span class='dot token'>.</span><span class='instance_variable_set identifier id'>instance_variable_set</span> <span class='dstring node'>&quot;@#{table_name.to_s.gsub('.','_')}&quot;</span><span class='comma token'>,</span> <span class='fixtures identifier id'>fixtures</span>
@@ -1302,82 +1346,53 @@ the same OS, platform, and version of Ruby.
   <span class='end end kw'>end</span>
 <span class='end end kw'>end</span>
 </pre>
-        </td>
-      </tr>
-    </table>
-  </div>
+    </td>
+  </tr>
+</table>
 </div>
-</div>
-    </div>
+    
+      <div class="method_details ">
+  <p class="signature " id="reset_cache-class_method">
   
-    <div class="method">
-      <div class="method_header">
-  <h3>reset_cache</h3>
-</div><div id="reset_cache-class_method" class="section method">
-  <div class="details_title">
-    <div class='section methodsignature'>
-    <tt class='def'>
-      <span class='visibility'>public</span>
-      <span class='return_types'></span>
-      <span class='name'>reset_cache</span><span class='args'>(connection = nil)</span>
-      <span class='block'></span>
-    </tt>
-  </div>
+    + (<tt><a title="Object" href="Object.html">Object</a></tt>) <strong>reset_cache</strong>(connection = nil) 
+  
 
-</div><div class="section source">
-  <span>[<a class="source_link" href="#">View source</a>]</span>
-  <div class="source_code">
-    <table>
-      <tr>
-        <td>
-          <pre class="lines">
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
 
 
 446
 447
 448
 449</pre>
-        </td>
-        <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/fixtures.rb', line 446</span>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/big_record/fixtures.rb', line 446</span>
 
 <span class='def def kw'>def</span> <span class='self self kw'>self</span><span class='dot token'>.</span><span class='reset_cache identifier id'>reset_cache</span><span class='lparen token'>(</span><span class='connection identifier id'>connection</span> <span class='assign token'>=</span> <span class='nil nil kw'>nil</span><span class='rparen token'>)</span>
   <span class='connection identifier id'>connection</span> <span class='opasgn op'>||=</span> <span class='BigRecord constant id'>BigRecord</span><span class='colon2 op'>::</span><span class='Base constant id'>Base</span><span class='dot token'>.</span><span class='connection identifier id'>connection</span>
   <span class='@@all_cached_big_record_fixtures ivar id'>@@all_cached_big_record_fixtures</span><span class='lbrack token'>[</span><span class='connection identifier id'>connection</span><span class='dot token'>.</span><span class='object_id identifier id'>object_id</span><span class='rbrack token'>]</span> <span class='assign token'>=</span> <span class='lbrace token'>{</span><span class='rbrace token'>}</span>
 <span class='end end kw'>end</span>
 </pre>
-        </td>
-      </tr>
-    </table>
-  </div>
+    </td>
+  </tr>
+</table>
 </div>
-</div>
-    </div>
+    
+      <div class="method_details ">
+  <p class="signature " id="delete_existing_fixtures-instance_method">
   
-</div><div class="section methoddetails instance public">
-  <h1>Public Instance Method Details</h1>
+    - (<tt><a title="Object" href="Object.html">Object</a></tt>) <strong>delete_existing_fixtures</strong> 
   
-    <div class="method">
-      <div class="method_header">
-  <h3>delete_existing_fixtures</h3>
-</div><div id="delete_existing_fixtures-instance_method" class="section method">
-  <div class="details_title">
-    <div class='section methodsignature'>
-    <tt class='def'>
-      <span class='visibility'>public</span>
-      <span class='return_types'></span>
-      <span class='name'>delete_existing_fixtures</span><span class='args'></span>
-      <span class='block'></span>
-    </tt>
-  </div>
 
-</div><div class="section source">
-  <span>[<a class="source_link" href="#">View source</a>]</span>
-  <div class="source_code">
-    <table>
-      <tr>
-        <td>
-          <pre class="lines">
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
 
 
 552
@@ -1385,9 +1400,9 @@ the same OS, platform, and version of Ruby.
 554
 555
 556</pre>
-        </td>
-        <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/fixtures.rb', line 552</span>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/big_record/fixtures.rb', line 552</span>
 
 <span class='def def kw'>def</span> <span class='delete_existing_fixtures identifier id'>delete_existing_fixtures</span>
   <span class='@connection ivar id'>@connection</span><span class='dot token'>.</span><span class='get_consecutive_rows identifier id'>get_consecutive_rows</span><span class='lparen token'>(</span><span class='table_name identifier id'>table_name</span><span class='comma token'>,</span> <span class='nil nil kw'>nil</span><span class='comma token'>,</span> <span class='nil nil kw'>nil</span><span class='comma token'>,</span> <span class='lbrack token'>[</span><span class='string val'>&quot;attribute:&quot;</span><span class='rbrack token'>]</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='each identifier id'>each</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='row identifier id'>row</span><span class='bitor op'>|</span>
@@ -1395,35 +1410,22 @@ the same OS, platform, and version of Ruby.
   <span class='end end kw'>end</span>
 <span class='end end kw'>end</span>
 </pre>
-        </td>
-      </tr>
-    </table>
-  </div>
+    </td>
+  </tr>
+</table>
 </div>
-</div>
-    </div>
+    
+      <div class="method_details ">
+  <p class="signature " id="insert_fixtures-instance_method">
   
-    <div class="method">
-      <div class="method_header">
-  <h3>insert_fixtures</h3>
-</div><div id="insert_fixtures-instance_method" class="section method">
-  <div class="details_title">
-    <div class='section methodsignature'>
-    <tt class='def'>
-      <span class='visibility'>public</span>
-      <span class='return_types'></span>
-      <span class='name'>insert_fixtures</span><span class='args'></span>
-      <span class='block'></span>
-    </tt>
-  </div>
+    - (<tt><a title="Object" href="Object.html">Object</a></tt>) <strong>insert_fixtures</strong> 
+  
 
-</div><div class="section source">
-  <span>[<a class="source_link" href="#">View source</a>]</span>
-  <div class="source_code">
-    <table>
-      <tr>
-        <td>
-          <pre class="lines">
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
 
 
 558
@@ -1510,9 +1512,9 @@ the same OS, platform, and version of Ruby.
 639
 640
 641</pre>
-        </td>
-        <td>
-          <pre class="code"><span class="info file"># File 'lib/big_record/fixtures.rb', line 558</span>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/big_record/fixtures.rb', line 558</span>
 
 <span class='def def kw'>def</span> <span class='insert_fixtures identifier id'>insert_fixtures</span>
   <span class='now identifier id'>now</span> <span class='assign token'>=</span> <span class='ActiveRecord constant id'>ActiveRecord</span><span class='colon2 op'>::</span><span class='Base constant id'>Base</span><span class='dot token'>.</span><span class='default_timezone identifier id'>default_timezone</span> <span class='eq op'>==</span> <span class='symbol val'>:utc</span> <span class='question op'>?</span> <span class='Time constant id'>Time</span><span class='dot token'>.</span><span class='now identifier id'>now</span><span class='dot token'>.</span><span class='utc identifier id'>utc</span> <span class='colon op'>:</span> <span class='Time constant id'>Time</span><span class='dot token'>.</span><span class='now identifier id'>now</span>
@@ -1599,23 +1601,19 @@ the same OS, platform, and version of Ruby.
   <span class='end end kw'>end</span>
 <span class='end end kw'>end</span>
 </pre>
-        </td>
-      </tr>
-    </table>
-  </div>
+    </td>
+  </tr>
+</table>
 </div>
-</div>
-    </div>
-  
-</div>
+    
   </div>
 
 </div>
-    </div>
-    <div id="yard_info">
-  Generated on Wednesday, November 25 2009 at 02:43:29 PM by 
-  <abbr class="yard" title="Yay! A Ruby Documentation Tool"><a href="http://yard.soen.ca">YARD</a></abbr> 
-  0.2.3.5 (ruby-1.8.7).
+    
+    <div id="footer">
+  Generated on Thu Nov 26 18:22:21 2009 by 
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool">yard</a>
+  0.4.0 (ruby-1.8.7).
 </div>
 
   </body>

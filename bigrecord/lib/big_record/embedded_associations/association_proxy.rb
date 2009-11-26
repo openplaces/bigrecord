@@ -3,12 +3,6 @@ module BigRecord
     class AssociationProxy #:nodoc:
       instance_methods.each { |m| undef_method m unless m =~ /(^__|^nil\?$|^send$|proxy_)/ }
 
-#      def initialize(owner, reflection)
-#        @owner, @reflection = owner, reflection
-#        Array(reflection.options[:extend]).each { |ext| proxy_extend(ext) }
-#        reset
-#      end
-
       def find(id)
         @target.select{|s| s.id == id}.first
       end

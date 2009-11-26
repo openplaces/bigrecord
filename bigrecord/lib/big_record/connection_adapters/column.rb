@@ -339,36 +339,6 @@ module BigRecord
           parse_collection(value).collect{|v| string_to_dummy_time(v.to_s)}
         end
 
-#        def hash_to_time_collection(hash)
-#          return []
-#          return hash unless hash.is_a?(Hash)
-#          hash_to_collection(hash).collect do |attributes|
-#            cleaned_attributes = {}
-#            debugger
-#            attributes.each do |k, v|
-#              k =~ /reflect_value(.*)/
-#              cleaned_attributes[$1] = v
-#            end
-#            string_to_time(cleaned_attributes)
-#          end
-#        end
-#
-#        def hash_to_dummy_time_collection(hash)
-#          return []
-#          return hash unless hash.is_a?(Array)
-#          hash.split(COLLECTION_SEPARATOR).collect{|v|string_to_dummy_time(v)}
-#        end
-#
-#        def hash_to_date_collection(hash)
-#          return []
-#          return hash unless hash.is_a?(Array)
-#          hash_to_collection(hash).collect do |attributes|
-#            debugger
-#            callstack = extract_callstack_for_multiparameter_attributes(attributes.to_a)
-#
-#          end
-#        end
-
         def hash_to_boolean_collection(value)
           parse_collection(value).collect{|v| value_to_boolean(v)}
         end

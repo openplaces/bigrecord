@@ -56,7 +56,30 @@
 </dl>
 <div class="clear"></div>
 
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    <h1>Dynamic Schema</h1>
+<p>
+The dynamic schema functionality of Bigrecord refers to the ability to
+modify the attributes of a model within the class itself, rather than being
+bounded by the database. This is an inherit property of using the BigTable
+database model, and Bigrecord leverages its use.
+</p>
+<p>
+New attributes defined will simply return nil for records that existed
+before their addition into the model, while attributes that are removed
+from the model will just be ignored when accessing existing records.
+</p>
+<p>
+Refer to <tt><a title="BigRecord::ConnectionAdapters::Column" href="ConnectionAdapters/Column.html">BigRecord::ConnectionAdapters::Column</a></tt> for more information.
+</p>
 
+
+  </div>
+</div>
+<div class="tags">
+  
+</div>
 
 
   <h2>Method Summary</h2>
@@ -282,17 +305,17 @@ Returns the contents of the record as a nicely formatted string.
       <pre class="lines">
 
 
-4
-5
-6
-7
-8
-9
-10
-11</pre>
+18
+19
+20
+21
+22
+23
+24
+25</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/big_record/dynamic_schema.rb', line 4</span>
+      <pre class="code"><span class="info file"># File 'lib/big_record/dynamic_schema.rb', line 18</span>
 
 <span class='def def kw'>def</span> <span class='self self kw'>self</span><span class='dot token'>.</span><span class='included identifier id'>included</span><span class='lparen token'>(</span><span class='base identifier id'>base</span><span class='rparen token'>)</span> <span class='comment val'>#:nodoc:</span>
   <span class='super super kw'>super</span>
@@ -332,14 +355,14 @@ Add an existing dynamic column to this record
       <pre class="lines">
 
 
-23
-24
-25
-26
-27</pre>
+37
+38
+39
+40
+41</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/big_record/dynamic_schema.rb', line 23</span>
+      <pre class="code"><span class="info file"># File 'lib/big_record/dynamic_schema.rb', line 37</span>
 
 <span class='def def kw'>def</span> <span class='add_dynamic_column identifier id'>add_dynamic_column</span><span class='lparen token'>(</span><span class='col identifier id'>col</span><span class='rparen token'>)</span>
   <span class='columns_hash identifier id'>columns_hash</span><span class='lbrack token'>[</span><span class='c identifier id'>c</span><span class='dot token'>.</span><span class='name identifier id'>name</span><span class='rbrack token'>]</span> <span class='assign token'>=</span> <span class='col identifier id'>col</span>
@@ -380,17 +403,17 @@ would.
       <pre class="lines">
 
 
-54
-55
-56
-57
-58
-59
-60
-61</pre>
+68
+69
+70
+71
+72
+73
+74
+75</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/big_record/dynamic_schema.rb', line 54</span>
+      <pre class="code"><span class="info file"># File 'lib/big_record/dynamic_schema.rb', line 68</span>
 
 <span class='def def kw'>def</span> <span class='attributes_from_column_definition_with_dynamic_schema identifier id'>attributes_from_column_definition_with_dynamic_schema</span>
   <span class='self self kw'>self</span><span class='dot token'>.</span><span class='columns identifier id'>columns</span><span class='dot token'>.</span><span class='inject identifier id'>inject</span><span class='lparen token'>(</span><span class='lbrace token'>{</span><span class='rbrace token'>}</span><span class='rparen token'>)</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='attributes identifier id'>attributes</span><span class='comma token'>,</span> <span class='column identifier id'>column</span><span class='bitor op'>|</span>
@@ -430,12 +453,12 @@ Returns the column object for the named attribute.
       <pre class="lines">
 
 
-46
-47
-48</pre>
+60
+61
+62</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/big_record/dynamic_schema.rb', line 46</span>
+      <pre class="code"><span class="info file"># File 'lib/big_record/dynamic_schema.rb', line 60</span>
 
 <span class='def def kw'>def</span> <span class='column_for_attribute_with_dynamic_schema identifier id'>column_for_attribute_with_dynamic_schema</span><span class='lparen token'>(</span><span class='name identifier id'>name</span><span class='rparen token'>)</span>
   <span class='self self kw'>self</span><span class='dot token'>.</span><span class='columns_hash identifier id'>columns_hash</span><span class='lbrack token'>[</span><span class='name identifier id'>name</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span><span class='rbrack token'>]</span>
@@ -459,12 +482,12 @@ Returns the column object for the named attribute.
       <pre class="lines">
 
 
-41
-42
-43</pre>
+55
+56
+57</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/big_record/dynamic_schema.rb', line 41</span>
+      <pre class="code"><span class="info file"># File 'lib/big_record/dynamic_schema.rb', line 55</span>
 
 <span class='def def kw'>def</span> <span class='column_names identifier id'>column_names</span>
   <span class='@column_names ivar id'>@column_names</span> <span class='opasgn op'>||=</span> <span class='columns_hash identifier id'>columns_hash</span><span class='dot token'>.</span><span class='keys identifier id'>keys</span>
@@ -488,12 +511,12 @@ Returns the column object for the named attribute.
       <pre class="lines">
 
 
-37
-38
-39</pre>
+51
+52
+53</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/big_record/dynamic_schema.rb', line 37</span>
+      <pre class="code"><span class="info file"># File 'lib/big_record/dynamic_schema.rb', line 51</span>
 
 <span class='def def kw'>def</span> <span class='columns identifier id'>columns</span>
   <span class='@columns ivar id'>@columns</span> <span class='opasgn op'>||=</span> <span class='columns_hash identifier id'>columns_hash</span><span class='dot token'>.</span><span class='values identifier id'>values</span>
@@ -517,16 +540,16 @@ Returns the column object for the named attribute.
       <pre class="lines">
 
 
-29
-30
-31
-32
-33
-34
-35</pre>
+43
+44
+45
+46
+47
+48
+49</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/big_record/dynamic_schema.rb', line 29</span>
+      <pre class="code"><span class="info file"># File 'lib/big_record/dynamic_schema.rb', line 43</span>
 
 <span class='def def kw'>def</span> <span class='columns_hash identifier id'>columns_hash</span>
   <span class='unless unless kw'>unless</span> <span class='@columns_hash ivar id'>@columns_hash</span>
@@ -567,20 +590,20 @@ ActiveRecord::Base.generate_read_methods is set to true.
       <pre class="lines">
 
 
-76
-77
-78
-79
-80
-81
-82
-83
-84
-85
-86</pre>
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/big_record/dynamic_schema.rb', line 76</span>
+      <pre class="code"><span class="info file"># File 'lib/big_record/dynamic_schema.rb', line 90</span>
 
 <span class='def def kw'>def</span> <span class='define_read_methods_with_dynamic_schema identifier id'>define_read_methods_with_dynamic_schema</span>
   <span class='columns_hash identifier id'>columns_hash</span><span class='dot token'>.</span><span class='each identifier id'>each</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='name identifier id'>name</span><span class='comma token'>,</span> <span class='column identifier id'>column</span><span class='bitor op'>|</span>
@@ -623,12 +646,12 @@ Create and add a dynamic column to this record
       <pre class="lines">
 
 
-18
-19
-20</pre>
+32
+33
+34</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/big_record/dynamic_schema.rb', line 18</span>
+      <pre class="code"><span class="info file"># File 'lib/big_record/dynamic_schema.rb', line 32</span>
 
 <span class='def def kw'>def</span> <span class='dynamic_column identifier id'>dynamic_column</span><span class='lparen token'>(</span><span class='name identifier id'>name</span><span class='comma token'>,</span> <span class='type identifier id'>type</span><span class='comma token'>,</span> <span class='options identifier id'>options</span><span class='assign token'>=</span><span class='lbrace token'>{</span><span class='rbrace token'>}</span><span class='rparen token'>)</span>
   <span class='add_dynamic_column identifier id'>add_dynamic_column</span> <span class='ConnectionAdapters constant id'>ConnectionAdapters</span><span class='colon2 op'>::</span><span class='Column constant id'>Column</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='name identifier id'>name</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span><span class='comma token'>,</span> <span class='type identifier id'>type</span><span class='comma token'>,</span> <span class='options identifier id'>options</span><span class='rparen token'>)</span>
@@ -664,11 +687,11 @@ dynamic columns
       <pre class="lines">
 
 
-14
-15</pre>
+28
+29</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/big_record/dynamic_schema.rb', line 14</span>
+      <pre class="code"><span class="info file"># File 'lib/big_record/dynamic_schema.rb', line 28</span>
 
 <span class='def def kw'>def</span> <span class='initialize_columns identifier id'>initialize_columns</span><span class='lparen token'>(</span><span class='options identifier id'>options</span><span class='assign token'>=</span><span class='lbrace token'>{</span><span class='rbrace token'>}</span><span class='rparen token'>)</span>
 <span class='end end kw'>end</span>
@@ -702,17 +725,17 @@ Returns the contents of the record as a nicely formatted string.
       <pre class="lines">
 
 
-64
-65
-66
-67
-68
-69
-70
-71</pre>
+78
+79
+80
+81
+82
+83
+84
+85</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/big_record/dynamic_schema.rb', line 64</span>
+      <pre class="code"><span class="info file"># File 'lib/big_record/dynamic_schema.rb', line 78</span>
 
 <span class='def def kw'>def</span> <span class='inspect_with_dynamic_schema identifier id'>inspect_with_dynamic_schema</span>
   <span class='attributes_as_nice_string identifier id'>attributes_as_nice_string</span> <span class='assign token'>=</span> <span class='self self kw'>self</span><span class='dot token'>.</span><span class='column_names identifier id'>column_names</span><span class='dot token'>.</span><span class='collect identifier id'>collect</span> <span class='lbrace token'>{</span> <span class='bitor op'>|</span><span class='name identifier id'>name</span><span class='bitor op'>|</span>
@@ -733,7 +756,7 @@ Returns the contents of the record as a nicely formatted string.
 </div>
     
     <div id="footer">
-  Generated on Thu Nov 26 18:22:21 2009 by 
+  Generated on Tue Dec  1 18:30:50 2009 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool">yard</a>
   0.4.0 (ruby-1.8.7).
 </div>

@@ -131,10 +131,7 @@ Remove <tt>records</tt> from this association.
   
 
   
-    <span class="summary_desc">
-def initialize(owner, reflection).
-
-</span>
+    <span class="summary_desc"></span>
   
 </li>
 
@@ -311,14 +308,14 @@ def initialize(owner, reflection).
       <pre class="lines">
 
 
-111
-112
-113
-114
-115</pre>
+105
+106
+107
+108
+109</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/big_record/embedded_associations/association_proxy.rb', line 111</span>
+      <pre class="code"><span class="info file"># File 'lib/big_record/embedded_associations/association_proxy.rb', line 105</span>
 
 <span class='def def kw'>def</span> <span class='method_missing identifier id'>method_missing</span><span class='lparen token'>(</span><span class='method identifier id'>method</span><span class='comma token'>,</span> <span class='mult op'>*</span><span class='args identifier id'>args</span><span class='comma token'>,</span> <span class='bitand op'>&amp;</span><span class='block identifier id'>block</span><span class='rparen token'>)</span>
   <span class='if if kw'>if</span> <span class='load_target identifier id'>load_target</span>
@@ -362,13 +359,13 @@ doesn&#8217;t catch it.
       <pre class="lines">
 
 
-41
-42
-43
-44</pre>
+35
+36
+37
+38</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/big_record/embedded_associations/association_proxy.rb', line 41</span>
+      <pre class="code"><span class="info file"># File 'lib/big_record/embedded_associations/association_proxy.rb', line 35</span>
 
 <span class='def def kw'>def</span> <span class='eqq op'>===</span><span class='lparen token'>(</span><span class='other identifier id'>other</span><span class='rparen token'>)</span>
   <span class='load_target identifier id'>load_target</span>
@@ -393,12 +390,12 @@ doesn&#8217;t catch it.
       <pre class="lines">
 
 
-46
-47
-48</pre>
+40
+41
+42</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/big_record/embedded_associations/association_proxy.rb', line 46</span>
+      <pre class="code"><span class="info file"># File 'lib/big_record/embedded_associations/association_proxy.rb', line 40</span>
 
 <span class='def def kw'>def</span> <span class='aliased_table_name identifier id'>aliased_table_name</span>
   <span class='@reflection ivar id'>@reflection</span><span class='dot token'>.</span><span class='klass identifier id'>klass</span><span class='dot token'>.</span><span class='table_name identifier id'>table_name</span>
@@ -434,14 +431,14 @@ Remove <tt>records</tt> from this association. Does not destroy
       <pre class="lines">
 
 
-17
-18
-19
-20
-21</pre>
+11
+12
+13
+14
+15</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/big_record/embedded_associations/association_proxy.rb', line 17</span>
+      <pre class="code"><span class="info file"># File 'lib/big_record/embedded_associations/association_proxy.rb', line 11</span>
 
 <span class='def def kw'>def</span> <span class='delete identifier id'>delete</span><span class='lparen token'>(</span><span class='mult op'>*</span><span class='records identifier id'>records</span><span class='rparen token'>)</span>
   <span class='records identifier id'>records</span> <span class='assign token'>=</span> <span class='flatten_deeper identifier id'>flatten_deeper</span><span class='lparen token'>(</span><span class='records identifier id'>records</span><span class='rparen token'>)</span>
@@ -461,35 +458,18 @@ Remove <tt>records</tt> from this association. Does not destroy
   
 
   
-</p><div class="docstring">
-  <div class="discussion">
-    <p>
-def initialize(owner, reflection)
-</p>
-<pre class="code">
-       <span class='@owner ivar id'>@owner</span><span class='comma token'>,</span> <span class='@reflection ivar id'>@reflection</span> <span class='assign token'>=</span> <span class='owner identifier id'>owner</span><span class='comma token'>,</span> <span class='reflection identifier id'>reflection</span>
-       <span class='Array constant id'>Array</span><span class='lparen token'>(</span><span class='reflection identifier id'>reflection</span><span class='dot token'>.</span><span class='options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:extend</span><span class='rbrack token'>]</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='each identifier id'>each</span> <span class='lbrace token'>{</span> <span class='bitor op'>|</span><span class='ext identifier id'>ext</span><span class='bitor op'>|</span> <span class='proxy_extend identifier id'>proxy_extend</span><span class='lparen token'>(</span><span class='ext identifier id'>ext</span><span class='rparen token'>)</span> <span class='rbrace token'>}</span>
-       <span class='reset identifier id'>reset</span>
-     <span class='end end kw'>end</span>
-</pre>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-</div><table class="source_code">
+</p><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-12
-13
-14</pre>
+6
+7
+8</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/big_record/embedded_associations/association_proxy.rb', line 12</span>
+      <pre class="code"><span class="info file"># File 'lib/big_record/embedded_associations/association_proxy.rb', line 6</span>
 
 <span class='def def kw'>def</span> <span class='find identifier id'>find</span><span class='lparen token'>(</span><span class='id identifier id'>id</span><span class='rparen token'>)</span>
   <span class='@target ivar id'>@target</span><span class='dot token'>.</span><span class='select identifier id'>select</span><span class='lbrace token'>{</span><span class='bitor op'>|</span><span class='s identifier id'>s</span><span class='bitor op'>|</span> <span class='s identifier id'>s</span><span class='dot token'>.</span><span class='id identifier id'>id</span> <span class='eq op'>==</span> <span class='id identifier id'>id</span><span class='rbrace token'>}</span><span class='dot token'>.</span><span class='first identifier id'>first</span>
@@ -513,12 +493,12 @@ def initialize(owner, reflection)
       <pre class="lines">
 
 
-64
-65
-66</pre>
+58
+59
+60</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/big_record/embedded_associations/association_proxy.rb', line 64</span>
+      <pre class="code"><span class="info file"># File 'lib/big_record/embedded_associations/association_proxy.rb', line 58</span>
 
 <span class='def def kw'>def</span> <span class='loaded identifier id'>loaded</span>
   <span class='@loaded ivar id'>@loaded</span> <span class='assign token'>=</span> <span class='true true kw'>true</span>
@@ -542,12 +522,12 @@ def initialize(owner, reflection)
       <pre class="lines">
 
 
-60
-61
-62</pre>
+54
+55
+56</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/big_record/embedded_associations/association_proxy.rb', line 60</span>
+      <pre class="code"><span class="info file"># File 'lib/big_record/embedded_associations/association_proxy.rb', line 54</span>
 
 <span class='def def kw'>def</span> <span class='loaded? fid id'>loaded?</span>
   <span class='@loaded ivar id'>@loaded</span>
@@ -571,12 +551,12 @@ def initialize(owner, reflection)
       <pre class="lines">
 
 
-23
-24
-25</pre>
+17
+18
+19</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/big_record/embedded_associations/association_proxy.rb', line 23</span>
+      <pre class="code"><span class="info file"># File 'lib/big_record/embedded_associations/association_proxy.rb', line 17</span>
 
 <span class='def def kw'>def</span> <span class='proxy_owner identifier id'>proxy_owner</span>
   <span class='@owner ivar id'>@owner</span>
@@ -600,12 +580,12 @@ def initialize(owner, reflection)
       <pre class="lines">
 
 
-27
-28
-29</pre>
+21
+22
+23</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/big_record/embedded_associations/association_proxy.rb', line 27</span>
+      <pre class="code"><span class="info file"># File 'lib/big_record/embedded_associations/association_proxy.rb', line 21</span>
 
 <span class='def def kw'>def</span> <span class='proxy_reflection identifier id'>proxy_reflection</span>
   <span class='@reflection ivar id'>@reflection</span>
@@ -629,12 +609,12 @@ def initialize(owner, reflection)
       <pre class="lines">
 
 
-31
-32
-33</pre>
+25
+26
+27</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/big_record/embedded_associations/association_proxy.rb', line 31</span>
+      <pre class="code"><span class="info file"># File 'lib/big_record/embedded_associations/association_proxy.rb', line 25</span>
 
 <span class='def def kw'>def</span> <span class='proxy_target identifier id'>proxy_target</span>
   <span class='@target ivar id'>@target</span>
@@ -658,13 +638,13 @@ def initialize(owner, reflection)
       <pre class="lines">
 
 
-55
-56
-57
-58</pre>
+49
+50
+51
+52</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/big_record/embedded_associations/association_proxy.rb', line 55</span>
+      <pre class="code"><span class="info file"># File 'lib/big_record/embedded_associations/association_proxy.rb', line 49</span>
 
 <span class='def def kw'>def</span> <span class='reload identifier id'>reload</span>
   <span class='reset identifier id'>reset</span>
@@ -689,13 +669,13 @@ def initialize(owner, reflection)
       <pre class="lines">
 
 
-50
-51
-52
-53</pre>
+44
+45
+46
+47</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/big_record/embedded_associations/association_proxy.rb', line 50</span>
+      <pre class="code"><span class="info file"># File 'lib/big_record/embedded_associations/association_proxy.rb', line 44</span>
 
 <span class='def def kw'>def</span> <span class='reset identifier id'>reset</span>
   <span class='@loaded ivar id'>@loaded</span> <span class='assign token'>=</span> <span class='false false kw'>false</span>
@@ -720,12 +700,12 @@ def initialize(owner, reflection)
       <pre class="lines">
 
 
-35
-36
-37</pre>
+29
+30
+31</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/big_record/embedded_associations/association_proxy.rb', line 35</span>
+      <pre class="code"><span class="info file"># File 'lib/big_record/embedded_associations/association_proxy.rb', line 29</span>
 
 <span class='def def kw'>def</span> <span class='respond_to? fid id'>respond_to?</span><span class='lparen token'>(</span><span class='symbol identifier id'>symbol</span><span class='comma token'>,</span> <span class='include_priv identifier id'>include_priv</span> <span class='assign token'>=</span> <span class='false false kw'>false</span><span class='rparen token'>)</span>
   <span class='proxy_respond_to? fid id'>proxy_respond_to?</span><span class='lparen token'>(</span><span class='symbol identifier id'>symbol</span><span class='comma token'>,</span> <span class='include_priv identifier id'>include_priv</span><span class='rparen token'>)</span> <span class='orop op'>||</span> <span class='lparen token'>(</span><span class='load_target identifier id'>load_target</span> <span class='andop op'>&amp;&amp;</span> <span class='@target ivar id'>@target</span><span class='dot token'>.</span><span class='respond_to? fid id'>respond_to?</span><span class='lparen token'>(</span><span class='symbol identifier id'>symbol</span><span class='comma token'>,</span> <span class='include_priv identifier id'>include_priv</span><span class='rparen token'>)</span><span class='rparen token'>)</span>
@@ -749,12 +729,12 @@ def initialize(owner, reflection)
       <pre class="lines">
 
 
-68
-69
-70</pre>
+62
+63
+64</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/big_record/embedded_associations/association_proxy.rb', line 68</span>
+      <pre class="code"><span class="info file"># File 'lib/big_record/embedded_associations/association_proxy.rb', line 62</span>
 
 <span class='def def kw'>def</span> <span class='target identifier id'>target</span>
   <span class='@target ivar id'>@target</span>
@@ -778,13 +758,13 @@ def initialize(owner, reflection)
       <pre class="lines">
 
 
-72
-73
-74
-75</pre>
+66
+67
+68
+69</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/big_record/embedded_associations/association_proxy.rb', line 72</span>
+      <pre class="code"><span class="info file"># File 'lib/big_record/embedded_associations/association_proxy.rb', line 66</span>
 
 <span class='def def kw'>def</span> <span class='target= identifier id'>target=</span><span class='lparen token'>(</span><span class='target identifier id'>target</span><span class='rparen token'>)</span>
   <span class='@target ivar id'>@target</span> <span class='assign token'>=</span> <span class='target identifier id'>target</span>
@@ -801,7 +781,7 @@ def initialize(owner, reflection)
 </div>
     
     <div id="footer">
-  Generated on Thu Nov 26 18:22:13 2009 by 
+  Generated on Tue Dec  1 18:30:46 2009 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool">yard</a>
   0.4.0 (ruby-1.8.7).
 </div>

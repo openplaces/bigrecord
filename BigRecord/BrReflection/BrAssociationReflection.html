@@ -254,12 +254,12 @@ Gets an array of possible :through source reflection names.
       <pre class="lines">
 
 
-73
-74
-75</pre>
+71
+72
+73</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/big_record/br_reflection.rb', line 73</span>
+      <pre class="code"><span class="info file"># File 'lib/big_record/br_reflection.rb', line 71</span>
 
 <span class='def def kw'>def</span> <span class='association_foreign_key identifier id'>association_foreign_key</span>
   <span class='@association_foreign_key ivar id'>@association_foreign_key</span> <span class='opasgn op'>||=</span> <span class='@options ivar id'>@options</span><span class='lbrack token'>[</span><span class='symbol val'>:association_foreign_key</span><span class='rbrack token'>]</span> <span class='orop op'>||</span> <span class='class_name identifier id'>class_name</span><span class='dot token'>.</span><span class='foreign_key identifier id'>foreign_key</span>
@@ -283,6 +283,8 @@ Gets an array of possible :through source reflection names.
       <pre class="lines">
 
 
+107
+108
 109
 110
 111
@@ -303,12 +305,10 @@ Gets an array of possible :through source reflection names.
 126
 127
 128
-129
-130
-131</pre>
+129</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/big_record/br_reflection.rb', line 109</span>
+      <pre class="code"><span class="info file"># File 'lib/big_record/br_reflection.rb', line 107</span>
 
 <span class='def def kw'>def</span> <span class='check_validity! fid id'>check_validity!</span>
   <span class='if if kw'>if</span> <span class='options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:through</span><span class='rbrack token'>]</span>
@@ -352,16 +352,16 @@ Gets an array of possible :through source reflection names.
       <pre class="lines">
 
 
+75
+76
 77
 78
 79
 80
-81
-82
-83</pre>
+81</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/big_record/br_reflection.rb', line 77</span>
+      <pre class="code"><span class="info file"># File 'lib/big_record/br_reflection.rb', line 75</span>
 
 <span class='def def kw'>def</span> <span class='counter_cache_column identifier id'>counter_cache_column</span>
   <span class='if if kw'>if</span> <span class='options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:counter_cache</span><span class='rbrack token'>]</span> <span class='eq op'>==</span> <span class='true true kw'>true</span>
@@ -389,12 +389,12 @@ Gets an array of possible :through source reflection names.
       <pre class="lines">
 
 
-51
-52
-53</pre>
+49
+50
+51</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/big_record/br_reflection.rb', line 51</span>
+      <pre class="code"><span class="info file"># File 'lib/big_record/br_reflection.rb', line 49</span>
 
 <span class='def def kw'>def</span> <span class='klass identifier id'>klass</span>
   <span class='@klass ivar id'>@klass</span> <span class='opasgn op'>||=</span> <span class='big_record identifier id'>big_record</span><span class='dot token'>.</span><span class='send identifier id'>send</span><span class='lparen token'>(</span><span class='symbol val'>:compute_type</span><span class='comma token'>,</span> <span class='class_name identifier id'>class_name</span><span class='rparen token'>)</span>
@@ -418,6 +418,8 @@ Gets an array of possible :through source reflection names.
       <pre class="lines">
 
 
+57
+58
 59
 60
 61
@@ -428,12 +430,10 @@ Gets an array of possible :through source reflection names.
 66
 67
 68
-69
-70
-71</pre>
+69</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/big_record/br_reflection.rb', line 59</span>
+      <pre class="code"><span class="info file"># File 'lib/big_record/br_reflection.rb', line 57</span>
 
 <span class='def def kw'>def</span> <span class='primary_key_name identifier id'>primary_key_name</span>
   <span class='return return kw'>return</span> <span class='@primary_key_name ivar id'>@primary_key_name</span> <span class='if if_mod kw'>if</span> <span class='@primary_key_name ivar id'>@primary_key_name</span>
@@ -485,13 +485,13 @@ Tagging below)
       <pre class="lines">
 
 
+102
+103
 104
-105
-106
-107</pre>
+105</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/big_record/br_reflection.rb', line 104</span>
+      <pre class="code"><span class="info file"># File 'lib/big_record/br_reflection.rb', line 102</span>
 
 <span class='def def kw'>def</span> <span class='source_reflection identifier id'>source_reflection</span>
   <span class='return return kw'>return</span> <span class='nil nil kw'>nil</span> <span class='unless unless_mod kw'>unless</span> <span class='through_reflection identifier id'>through_reflection</span>
@@ -515,9 +515,9 @@ Tagging below)
     <p>
 Gets an array of possible :through source reflection names
 </p>
-<pre class="code">
-  <span class='lbrack token'>[</span><span class='singularized identifier id'>singularized</span><span class='comma token'>,</span> <span class='pluralized identifier id'>pluralized</span><span class='rbrack token'>]</span>
-</pre>
+<p>
+[singularized, pluralized]
+</p>
 
 
   </div>
@@ -530,12 +530,12 @@ Gets an array of possible :through source reflection names
       <pre class="lines">
 
 
-93
-94
-95</pre>
+91
+92
+93</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/big_record/br_reflection.rb', line 93</span>
+      <pre class="code"><span class="info file"># File 'lib/big_record/br_reflection.rb', line 91</span>
 
 <span class='def def kw'>def</span> <span class='source_reflection_names identifier id'>source_reflection_names</span>
   <span class='@source_reflection_names ivar id'>@source_reflection_names</span> <span class='opasgn op'>||=</span> <span class='lparen token'>(</span><span class='options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:source</span><span class='rbrack token'>]</span> <span class='question op'>?</span> <span class='lbrack token'>[</span><span class='options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:source</span><span class='rbrack token'>]</span><span class='rbrack token'>]</span> <span class='colon op'>:</span> <span class='lbrack token'>[</span><span class='name identifier id'>name</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span><span class='dot token'>.</span><span class='singularize identifier id'>singularize</span><span class='comma token'>,</span> <span class='name identifier id'>name</span><span class='rbrack token'>]</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='collect identifier id'>collect</span> <span class='lbrace token'>{</span> <span class='bitor op'>|</span><span class='n identifier id'>n</span><span class='bitor op'>|</span> <span class='n identifier id'>n</span><span class='dot token'>.</span><span class='to_sym identifier id'>to_sym</span> <span class='rbrace token'>}</span>
@@ -559,12 +559,12 @@ Gets an array of possible :through source reflection names
       <pre class="lines">
 
 
-55
-56
-57</pre>
+53
+54
+55</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/big_record/br_reflection.rb', line 55</span>
+      <pre class="code"><span class="info file"># File 'lib/big_record/br_reflection.rb', line 53</span>
 
 <span class='def def kw'>def</span> <span class='table_name identifier id'>table_name</span>
   <span class='@table_name ivar id'>@table_name</span> <span class='opasgn op'>||=</span> <span class='klass identifier id'>klass</span><span class='dot token'>.</span><span class='table_name identifier id'>table_name</span>
@@ -588,12 +588,12 @@ Gets an array of possible :through source reflection names
       <pre class="lines">
 
 
-85
-86
-87</pre>
+83
+84
+85</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/big_record/br_reflection.rb', line 85</span>
+      <pre class="code"><span class="info file"># File 'lib/big_record/br_reflection.rb', line 83</span>
 
 <span class='def def kw'>def</span> <span class='through_reflection identifier id'>through_reflection</span>
   <span class='@through_reflection ivar id'>@through_reflection</span> <span class='opasgn op'>||=</span> <span class='options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:through</span><span class='rbrack token'>]</span> <span class='question op'>?</span> <span class='big_record identifier id'>big_record</span><span class='dot token'>.</span><span class='reflect_on_association identifier id'>reflect_on_association</span><span class='lparen token'>(</span><span class='options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:through</span><span class='rbrack token'>]</span><span class='rparen token'>)</span> <span class='colon op'>:</span> <span class='false false kw'>false</span>
@@ -609,7 +609,7 @@ Gets an array of possible :through source reflection names
 </div>
     
     <div id="footer">
-  Generated on Thu Nov 26 18:22:22 2009 by 
+  Generated on Tue Dec  1 18:30:50 2009 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool">yard</a>
   0.4.0 (ruby-1.8.7).
 </div>

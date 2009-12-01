@@ -355,10 +355,7 @@ Extract the qualifier from a column name.
   
 
   
-    <span class="summary_desc">
-def hash_to_time_collection(hash).
-
-</span>
+    <span class="summary_desc"></span>
   
 </li>
 
@@ -1248,12 +1245,12 @@ Used to convert from BLOBs to Strings
       <pre class="lines">
 
 
-382
-383
-384</pre>
+353
+354
+355</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/column.rb', line 382</span>
+      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/column.rb', line 353</span>
 
 <span class='def def kw'>def</span> <span class='binary_to_string identifier id'>binary_to_string</span><span class='lparen token'>(</span><span class='value identifier id'>value</span><span class='rparen token'>)</span>
   <span class='value identifier id'>value</span>
@@ -1289,15 +1286,15 @@ Embedded
       <pre class="lines">
 
 
-280
 281
 282
 283
 284
-285</pre>
+285
+286</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/column.rb', line 280</span>
+      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/column.rb', line 281</span>
 
 <span class='def def kw'>def</span> <span class='blank_or_invalid_record? fid id'>blank_or_invalid_record?</span><span class='lparen token'>(</span><span class='record_attributes identifier id'>record_attributes</span><span class='rparen token'>)</span>
   <span class='return return kw'>return</span> <span class='true true kw'>true</span> <span class='if if_mod kw'>if</span> <span class='record_attributes identifier id'>record_attributes</span><span class='dot token'>.</span><span class='blank? fid id'>blank?</span> <span class='or or kw'>or</span> <span class='notop op'>!</span><span class='record_attributes identifier id'>record_attributes</span><span class='dot token'>.</span><span class='is_a? fid id'>is_a?</span><span class='lparen token'>(</span><span class='Hash constant id'>Hash</span><span class='rparen token'>)</span>
@@ -1324,7 +1321,6 @@ Embedded
       <pre class="lines">
 
 
-287
 288
 289
 290
@@ -1339,10 +1335,11 @@ Embedded
 299
 300
 301
-302</pre>
+302
+303</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/column.rb', line 287</span>
+      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/column.rb', line 288</span>
 
 <span class='def def kw'>def</span> <span class='extract_callstack_for_multiparameter_attributes identifier id'>extract_callstack_for_multiparameter_attributes</span><span class='lparen token'>(</span><span class='pairs identifier id'>pairs</span><span class='rparen token'>)</span>
   <span class='attributes identifier id'>attributes</span> <span class='assign token'>=</span> <span class='lbrace token'>{</span> <span class='rbrace token'>}</span>
@@ -1390,14 +1387,14 @@ Extract the family from a column name
       <pre class="lines">
 
 
-239
 240
 241
 242
-243</pre>
+243
+244</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/column.rb', line 239</span>
+      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/column.rb', line 240</span>
 
 <span class='def def kw'>def</span> <span class='extract_family identifier id'>extract_family</span><span class='lparen token'>(</span><span class='column_name identifier id'>column_name</span><span class='rparen token'>)</span>
   <span class='return return kw'>return</span> <span class='nil nil kw'>nil</span> <span class='unless unless_mod kw'>unless</span> <span class='column_name identifier id'>column_name</span>
@@ -1434,14 +1431,14 @@ Extract the qualifier from a column name
       <pre class="lines">
 
 
-246
 247
 248
 249
-250</pre>
+250
+251</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/column.rb', line 246</span>
+      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/column.rb', line 247</span>
 
 <span class='def def kw'>def</span> <span class='extract_qualifier identifier id'>extract_qualifier</span><span class='lparen token'>(</span><span class='column_name identifier id'>column_name</span><span class='rparen token'>)</span>
   <span class='return return kw'>return</span> <span class='nil nil kw'>nil</span> <span class='unless unless_mod kw'>unless</span> <span class='column_name identifier id'>column_name</span>
@@ -1461,59 +1458,18 @@ Extract the qualifier from a column name
   
 
   
-</p><div class="docstring">
-  <div class="discussion">
-    <p>
-def hash_to_time_collection(hash)
-</p>
-<pre class="code">
-         <span class='return return kw'>return</span> <span class='lbrack token'>[</span><span class='rbrack token'>]</span>
-         <span class='return return kw'>return</span> <span class='hash identifier id'>hash</span> <span class='unless unless_mod kw'>unless</span> <span class='hash identifier id'>hash</span><span class='dot token'>.</span><span class='is_a? fid id'>is_a?</span><span class='lparen token'>(</span><span class='Hash constant id'>Hash</span><span class='rparen token'>)</span>
-         <span class='hash_to_collection identifier id'>hash_to_collection</span><span class='lparen token'>(</span><span class='hash identifier id'>hash</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='collect identifier id'>collect</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='attributes identifier id'>attributes</span><span class='bitor op'>|</span>
-           <span class='cleaned_attributes identifier id'>cleaned_attributes</span> <span class='assign token'>=</span> <span class='lbrace token'>{</span><span class='rbrace token'>}</span>
-           <span class='debugger identifier id'>debugger</span>
-           <span class='attributes identifier id'>attributes</span><span class='dot token'>.</span><span class='each identifier id'>each</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='k identifier id'>k</span><span class='comma token'>,</span> <span class='v identifier id'>v</span><span class='bitor op'>|</span>
-             <span class='k identifier id'>k</span> <span class='match op'>=~</span> <span class='regexp val'>/reflect_value(.*)/</span>
-             <span class='cleaned_attributes identifier id'>cleaned_attributes</span><span class='lbrack token'>[</span><span class='$1 nth_ref id'>$1</span><span class='rbrack token'>]</span> <span class='assign token'>=</span> <span class='v identifier id'>v</span>
-           <span class='end end kw'>end</span>
-           <span class='string_to_time identifier id'>string_to_time</span><span class='lparen token'>(</span><span class='cleaned_attributes identifier id'>cleaned_attributes</span><span class='rparen token'>)</span>
-         <span class='end end kw'>end</span>
-       <span class='end end kw'>end</span>
-
-       <span class='def def kw'>def</span> <span class='hash_to_dummy_time_collection identifier id'>hash_to_dummy_time_collection</span><span class='lparen token'>(</span><span class='hash identifier id'>hash</span><span class='rparen token'>)</span>
-         <span class='return return kw'>return</span> <span class='lbrack token'>[</span><span class='rbrack token'>]</span>
-         <span class='return return kw'>return</span> <span class='hash identifier id'>hash</span> <span class='unless unless_mod kw'>unless</span> <span class='hash identifier id'>hash</span><span class='dot token'>.</span><span class='is_a? fid id'>is_a?</span><span class='lparen token'>(</span><span class='Array constant id'>Array</span><span class='rparen token'>)</span>
-         <span class='hash identifier id'>hash</span><span class='dot token'>.</span><span class='split identifier id'>split</span><span class='lparen token'>(</span><span class='COLLECTION_SEPARATOR constant id'>COLLECTION_SEPARATOR</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='collect identifier id'>collect</span><span class='lbrace token'>{</span><span class='bitor op'>|</span><span class='v identifier id'>v</span><span class='bitor op'>|</span><span class='string_to_dummy_time identifier id'>string_to_dummy_time</span><span class='lparen token'>(</span><span class='v identifier id'>v</span><span class='rparen token'>)</span><span class='rbrace token'>}</span>
-       <span class='end end kw'>end</span>
-
-       <span class='def def kw'>def</span> <span class='hash_to_date_collection identifier id'>hash_to_date_collection</span><span class='lparen token'>(</span><span class='hash identifier id'>hash</span><span class='rparen token'>)</span>
-         <span class='return return kw'>return</span> <span class='lbrack token'>[</span><span class='rbrack token'>]</span>
-         <span class='return return kw'>return</span> <span class='hash identifier id'>hash</span> <span class='unless unless_mod kw'>unless</span> <span class='hash identifier id'>hash</span><span class='dot token'>.</span><span class='is_a? fid id'>is_a?</span><span class='lparen token'>(</span><span class='Array constant id'>Array</span><span class='rparen token'>)</span>
-         <span class='hash_to_collection identifier id'>hash_to_collection</span><span class='lparen token'>(</span><span class='hash identifier id'>hash</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='collect identifier id'>collect</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='attributes identifier id'>attributes</span><span class='bitor op'>|</span>
-           <span class='debugger identifier id'>debugger</span>
-           <span class='callstack identifier id'>callstack</span> <span class='assign token'>=</span> <span class='extract_callstack_for_multiparameter_attributes identifier id'>extract_callstack_for_multiparameter_attributes</span><span class='lparen token'>(</span><span class='attributes identifier id'>attributes</span><span class='dot token'>.</span><span class='to_a identifier id'>to_a</span><span class='rparen token'>)</span>
-
-         <span class='end end kw'>end</span>
-       <span class='end end kw'>end</span>
-</pre>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-</div><table class="source_code">
+</p><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-372
-373
-374</pre>
+343
+344
+345</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/column.rb', line 372</span>
+      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/column.rb', line 343</span>
 
 <span class='def def kw'>def</span> <span class='hash_to_boolean_collection identifier id'>hash_to_boolean_collection</span><span class='lparen token'>(</span><span class='value identifier id'>value</span><span class='rparen token'>)</span>
   <span class='parse_collection identifier id'>parse_collection</span><span class='lparen token'>(</span><span class='value identifier id'>value</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='collect identifier id'>collect</span><span class='lbrace token'>{</span><span class='bitor op'>|</span><span class='v identifier id'>v</span><span class='bitor op'>|</span> <span class='value_to_boolean identifier id'>value_to_boolean</span><span class='lparen token'>(</span><span class='v identifier id'>v</span><span class='rparen token'>)</span><span class='rbrace token'>}</span>
@@ -1558,7 +1514,6 @@ Inspired from ActiveRecord::NestedAttributes.
       <pre class="lines">
 
 
-262
 263
 264
 265
@@ -1572,10 +1527,11 @@ Inspired from ActiveRecord::NestedAttributes.
 273
 274
 275
-276</pre>
+276
+277</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/column.rb', line 262</span>
+      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/column.rb', line 263</span>
 
 <span class='def def kw'>def</span> <span class='hash_to_collection identifier id'>hash_to_collection</span><span class='lparen token'>(</span><span class='hash identifier id'>hash</span><span class='rparen token'>)</span>
   <span class='return return kw'>return</span> <span class='hash identifier id'>hash</span> <span class='unless unless_mod kw'>unless</span> <span class='hash identifier id'>hash</span><span class='dot token'>.</span><span class='is_a? fid id'>is_a?</span><span class='lparen token'>(</span><span class='Hash constant id'>Hash</span><span class='rparen token'>)</span>
@@ -1611,12 +1567,12 @@ Inspired from ActiveRecord::NestedAttributes.
       <pre class="lines">
 
 
-330
 331
-332</pre>
+332
+333</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/column.rb', line 330</span>
+      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/column.rb', line 331</span>
 
 <span class='def def kw'>def</span> <span class='hash_to_date_collection identifier id'>hash_to_date_collection</span><span class='lparen token'>(</span><span class='value identifier id'>value</span><span class='rparen token'>)</span>
   <span class='parse_collection identifier id'>parse_collection</span><span class='lparen token'>(</span><span class='value identifier id'>value</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='collect identifier id'>collect</span><span class='lbrace token'>{</span><span class='bitor op'>|</span><span class='v identifier id'>v</span><span class='bitor op'>|</span> <span class='string_to_date identifier id'>string_to_date</span><span class='lparen token'>(</span><span class='v identifier id'>v</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span><span class='rparen token'>)</span><span class='rbrace token'>}</span>
@@ -1640,12 +1596,12 @@ Inspired from ActiveRecord::NestedAttributes.
       <pre class="lines">
 
 
-326
 327
-328</pre>
+328
+329</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/column.rb', line 326</span>
+      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/column.rb', line 327</span>
 
 <span class='def def kw'>def</span> <span class='hash_to_decimal_collection identifier id'>hash_to_decimal_collection</span><span class='lparen token'>(</span><span class='value identifier id'>value</span><span class='rparen token'>)</span>
   <span class='parse_collection identifier id'>parse_collection</span><span class='lparen token'>(</span><span class='value identifier id'>value</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='collect identifier id'>collect</span><span class='lbrace token'>{</span><span class='bitor op'>|</span><span class='v identifier id'>v</span><span class='bitor op'>|</span> <span class='value_to_decimal identifier id'>value_to_decimal</span><span class='lparen token'>(</span><span class='v identifier id'>v</span><span class='rparen token'>)</span><span class='rbrace token'>}</span>
@@ -1669,12 +1625,12 @@ Inspired from ActiveRecord::NestedAttributes.
       <pre class="lines">
 
 
-338
 339
-340</pre>
+340
+341</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/column.rb', line 338</span>
+      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/column.rb', line 339</span>
 
 <span class='def def kw'>def</span> <span class='hash_to_dummy_time_collection identifier id'>hash_to_dummy_time_collection</span><span class='lparen token'>(</span><span class='value identifier id'>value</span><span class='rparen token'>)</span>
   <span class='parse_collection identifier id'>parse_collection</span><span class='lparen token'>(</span><span class='value identifier id'>value</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='collect identifier id'>collect</span><span class='lbrace token'>{</span><span class='bitor op'>|</span><span class='v identifier id'>v</span><span class='bitor op'>|</span> <span class='string_to_dummy_time identifier id'>string_to_dummy_time</span><span class='lparen token'>(</span><span class='v identifier id'>v</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span><span class='rparen token'>)</span><span class='rbrace token'>}</span>
@@ -1698,12 +1654,12 @@ Inspired from ActiveRecord::NestedAttributes.
       <pre class="lines">
 
 
-322
 323
-324</pre>
+324
+325</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/column.rb', line 322</span>
+      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/column.rb', line 323</span>
 
 <span class='def def kw'>def</span> <span class='hash_to_float_collection identifier id'>hash_to_float_collection</span><span class='lparen token'>(</span><span class='value identifier id'>value</span><span class='rparen token'>)</span>
   <span class='parse_collection identifier id'>parse_collection</span><span class='lparen token'>(</span><span class='value identifier id'>value</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='collect identifier id'>collect</span><span class='lparen token'>(</span><span class='bitand op'>&amp;</span><span class='symbol val'>:to_f</span><span class='rparen token'>)</span>
@@ -1727,12 +1683,12 @@ Inspired from ActiveRecord::NestedAttributes.
       <pre class="lines">
 
 
-318
 319
-320</pre>
+320
+321</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/column.rb', line 318</span>
+      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/column.rb', line 319</span>
 
 <span class='def def kw'>def</span> <span class='hash_to_integer_collection identifier id'>hash_to_integer_collection</span><span class='lparen token'>(</span><span class='value identifier id'>value</span><span class='rparen token'>)</span>
   <span class='parse_collection identifier id'>parse_collection</span><span class='lparen token'>(</span><span class='value identifier id'>value</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='collect identifier id'>collect</span><span class='lparen token'>(</span><span class='bitand op'>&amp;</span><span class='symbol val'>:to_i</span><span class='rparen token'>)</span>
@@ -1767,12 +1723,12 @@ strings are a special case&#8230;
       <pre class="lines">
 
 
-314
 315
-316</pre>
+316
+317</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/column.rb', line 314</span>
+      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/column.rb', line 315</span>
 
 <span class='def def kw'>def</span> <span class='hash_to_string_collection identifier id'>hash_to_string_collection</span><span class='lparen token'>(</span><span class='value identifier id'>value</span><span class='rparen token'>)</span>
   <span class='parse_collection identifier id'>parse_collection</span><span class='lparen token'>(</span><span class='value identifier id'>value</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='collect identifier id'>collect</span><span class='lparen token'>(</span><span class='bitand op'>&amp;</span><span class='symbol val'>:to_s</span><span class='rparen token'>)</span>
@@ -1796,12 +1752,12 @@ strings are a special case&#8230;
       <pre class="lines">
 
 
-334
 335
-336</pre>
+336
+337</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/column.rb', line 334</span>
+      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/column.rb', line 335</span>
 
 <span class='def def kw'>def</span> <span class='hash_to_time_collection identifier id'>hash_to_time_collection</span><span class='lparen token'>(</span><span class='value identifier id'>value</span><span class='rparen token'>)</span>
   <span class='parse_collection identifier id'>parse_collection</span><span class='lparen token'>(</span><span class='value identifier id'>value</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='collect identifier id'>collect</span><span class='lbrace token'>{</span><span class='bitor op'>|</span><span class='v identifier id'>v</span><span class='bitor op'>|</span> <span class='string_to_time identifier id'>string_to_time</span><span class='lparen token'>(</span><span class='v identifier id'>v</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span><span class='rparen token'>)</span><span class='rbrace token'>}</span>
@@ -1825,17 +1781,17 @@ strings are a special case&#8230;
       <pre class="lines">
 
 
-304
 305
 306
 307
 308
 309
 310
-311</pre>
+311
+312</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/column.rb', line 304</span>
+      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/column.rb', line 305</span>
 
 <span class='def def kw'>def</span> <span class='parse_collection identifier id'>parse_collection</span><span class='lparen token'>(</span><span class='value identifier id'>value</span><span class='rparen token'>)</span>
   <span class='case case kw'>case</span> <span class='value identifier id'>value</span>
@@ -1875,12 +1831,12 @@ Used to convert from Strings to BLOBs
       <pre class="lines">
 
 
-377
-378
-379</pre>
+348
+349
+350</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/column.rb', line 377</span>
+      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/column.rb', line 348</span>
 
 <span class='def def kw'>def</span> <span class='string_to_binary identifier id'>string_to_binary</span><span class='lparen token'>(</span><span class='value identifier id'>value</span><span class='rparen token'>)</span>
   <span class='value identifier id'>value</span>
@@ -1904,15 +1860,15 @@ Used to convert from Strings to BLOBs
       <pre class="lines">
 
 
-386
-387
-388
-389
-390
-391</pre>
+357
+358
+359
+360
+361
+362</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/column.rb', line 386</span>
+      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/column.rb', line 357</span>
 
 <span class='def def kw'>def</span> <span class='string_to_date identifier id'>string_to_date</span><span class='lparen token'>(</span><span class='string identifier id'>string</span><span class='rparen token'>)</span>
   <span class='return return kw'>return</span> <span class='string identifier id'>string</span> <span class='unless unless_mod kw'>unless</span> <span class='string identifier id'>string</span><span class='dot token'>.</span><span class='is_a? fid id'>is_a?</span><span class='lparen token'>(</span><span class='String constant id'>String</span><span class='rparen token'>)</span>
@@ -1939,15 +1895,15 @@ Used to convert from Strings to BLOBs
       <pre class="lines">
 
 
-400
-401
-402
-403
-404
-405</pre>
+371
+372
+373
+374
+375
+376</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/column.rb', line 400</span>
+      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/column.rb', line 371</span>
 
 <span class='def def kw'>def</span> <span class='string_to_dummy_time identifier id'>string_to_dummy_time</span><span class='lparen token'>(</span><span class='string identifier id'>string</span><span class='rparen token'>)</span>
   <span class='return return kw'>return</span> <span class='string identifier id'>string</span> <span class='unless unless_mod kw'>unless</span> <span class='string identifier id'>string</span><span class='dot token'>.</span><span class='is_a? fid id'>is_a?</span><span class='lparen token'>(</span><span class='String constant id'>String</span><span class='rparen token'>)</span>
@@ -1974,15 +1930,15 @@ Used to convert from Strings to BLOBs
       <pre class="lines">
 
 
-393
-394
-395
-396
-397
-398</pre>
+364
+365
+366
+367
+368
+369</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/column.rb', line 393</span>
+      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/column.rb', line 364</span>
 
 <span class='def def kw'>def</span> <span class='string_to_time identifier id'>string_to_time</span><span class='lparen token'>(</span><span class='string identifier id'>string</span><span class='rparen token'>)</span>
   <span class='return return kw'>return</span> <span class='string identifier id'>string</span> <span class='unless unless_mod kw'>unless</span> <span class='string identifier id'>string</span><span class='dot token'>.</span><span class='is_a? fid id'>is_a?</span><span class='lparen token'>(</span><span class='String constant id'>String</span><span class='rparen token'>)</span>
@@ -2020,16 +1976,16 @@ convert something to a boolean
       <pre class="lines">
 
 
-408
-409
-410
-411
-412
-413
-414</pre>
+379
+380
+381
+382
+383
+384
+385</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/column.rb', line 408</span>
+      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/column.rb', line 379</span>
 
 <span class='def def kw'>def</span> <span class='value_to_boolean identifier id'>value_to_boolean</span><span class='lparen token'>(</span><span class='value identifier id'>value</span><span class='rparen token'>)</span>
   <span class='if if kw'>if</span> <span class='value identifier id'>value</span> <span class='eq op'>==</span> <span class='true true kw'>true</span> <span class='orop op'>||</span> <span class='value identifier id'>value</span> <span class='eq op'>==</span> <span class='false false kw'>false</span>
@@ -2068,18 +2024,18 @@ convert something to a BigDecimal
       <pre class="lines">
 
 
-417
-418
-419
-420
-421
-422
-423
-424
-425</pre>
+388
+389
+390
+391
+392
+393
+394
+395
+396</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/column.rb', line 417</span>
+      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/column.rb', line 388</span>
 
 <span class='def def kw'>def</span> <span class='value_to_decimal identifier id'>value_to_decimal</span><span class='lparen token'>(</span><span class='value identifier id'>value</span><span class='rparen token'>)</span>
   <span class='if if kw'>if</span> <span class='value identifier id'>value</span><span class='dot token'>.</span><span class='is_a? fid id'>is_a?</span><span class='lparen token'>(</span><span class='BigDecimal constant id'>BigDecimal</span><span class='rparen token'>)</span>
@@ -2196,16 +2152,16 @@ convert something to a BigDecimal
       <pre class="lines">
 
 
-221
 222
 223
 224
 225
 226
-227</pre>
+227
+228</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/column.rb', line 221</span>
+      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/column.rb', line 222</span>
 
 <span class='def def kw'>def</span> <span class='hash_collection_to_embedded_collection identifier id'>hash_collection_to_embedded_collection</span><span class='lparen token'>(</span><span class='hash_collection identifier id'>hash_collection</span><span class='rparen token'>)</span>
   <span class='return return kw'>return</span> <span class='hash_collection identifier id'>hash_collection</span> <span class='unless unless_mod kw'>unless</span> <span class='hash_collection identifier id'>hash_collection</span><span class='dot token'>.</span><span class='is_a? fid id'>is_a?</span><span class='lparen token'>(</span><span class='Array constant id'>Array</span><span class='rparen token'>)</span>
@@ -2233,15 +2189,15 @@ convert something to a BigDecimal
       <pre class="lines">
 
 
-229
 230
 231
 232
 233
-234</pre>
+234
+235</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/column.rb', line 229</span>
+      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/column.rb', line 230</span>
 
 <span class='def def kw'>def</span> <span class='hash_to_embedded identifier id'>hash_to_embedded</span><span class='lparen token'>(</span><span class='value identifier id'>value</span><span class='rparen token'>)</span>
   <span class='case case kw'>case</span> <span class='value identifier id'>value</span>
@@ -2268,13 +2224,13 @@ convert something to a BigDecimal
       <pre class="lines">
 
 
-216
 217
 218
-219</pre>
+219
+220</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/column.rb', line 216</span>
+      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/column.rb', line 217</span>
 
 <span class='def def kw'>def</span> <span class='hash_to_embedded_collection identifier id'>hash_to_embedded_collection</span><span class='lparen token'>(</span><span class='hash identifier id'>hash</span><span class='rparen token'>)</span>
   <span class='hash_collection identifier id'>hash_collection</span> <span class='assign token'>=</span> <span class='hash identifier id'>hash</span><span class='dot token'>.</span><span class='is_a? fid id'>is_a?</span><span class='lparen token'>(</span><span class='Hash constant id'>Hash</span><span class='rparen token'>)</span> <span class='question op'>?</span> <span class='self self kw'>self</span><span class='dot token'>.</span><span class='class identifier id'>class</span><span class='dot token'>.</span><span class='hash_to_collection identifier id'>hash_to_collection</span><span class='lparen token'>(</span><span class='hash identifier id'>hash</span><span class='rparen token'>)</span> <span class='colon op'>:</span> <span class='hash identifier id'>hash</span>
@@ -2314,12 +2270,12 @@ Returns the human name of the column name.
       <pre class="lines">
 
 
-212
 213
-214</pre>
+214
+215</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/column.rb', line 212</span>
+      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/column.rb', line 213</span>
 
 <span class='def def kw'>def</span> <span class='human_name identifier id'>human_name</span>
   <span class='Base constant id'>Base</span><span class='dot token'>.</span><span class='human_attribute_name identifier id'>human_attribute_name</span><span class='lparen token'>(</span><span class='@name ivar id'>@name</span><span class='rparen token'>)</span>
@@ -2340,7 +2296,8 @@ Returns the human name of the column name.
 </p><div class="docstring">
   <div class="discussion">
     <p>
-Returns the Ruby class that corresponds to the abstract data type.
+Returns the Ruby class that corresponds to the abstract data type. View the
+source for the actual mappings.
 </p>
 
 
@@ -2354,7 +2311,6 @@ Returns the Ruby class that corresponds to the abstract data type.
       <pre class="lines">
 
 
-106
 107
 108
 109
@@ -2371,10 +2327,11 @@ Returns the Ruby class that corresponds to the abstract data type.
 120
 121
 122
-123</pre>
+123
+124</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/column.rb', line 106</span>
+      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/column.rb', line 107</span>
 
 <span class='def def kw'>def</span> <span class='klass identifier id'>klass</span>
   <span class='@klass ivar id'>@klass</span> <span class='opasgn op'>||=</span>
@@ -2581,7 +2538,6 @@ Casts value (which is a String) to an appropriate instance.
       <pre class="lines">
 
 
-126
 127
 128
 129
@@ -2623,10 +2579,11 @@ Casts value (which is a String) to an appropriate instance.
 165
 166
 167
-168</pre>
+168
+169</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/column.rb', line 126</span>
+      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/column.rb', line 127</span>
 
 <span class='def def kw'>def</span> <span class='type_cast identifier id'>type_cast</span><span class='lparen token'>(</span><span class='value identifier id'>value</span><span class='rparen token'>)</span>
   <span class='comment val'># FIXME: this should be recursive but it doesn't work with type_cast_code()... why does</span>
@@ -2690,7 +2647,6 @@ Casts value (which is a String) to an appropriate instance.
       <pre class="lines">
 
 
-170
 171
 172
 173
@@ -2726,10 +2682,11 @@ Casts value (which is a String) to an appropriate instance.
 203
 204
 205
-206</pre>
+206
+207</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/column.rb', line 170</span>
+      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/column.rb', line 171</span>
 
 <span class='def def kw'>def</span> <span class='type_cast_code identifier id'>type_cast_code</span><span class='lparen token'>(</span><span class='var_name identifier id'>var_name</span><span class='rparen token'>)</span>
   <span class='if if kw'>if</span> <span class='collection? fid id'>collection?</span>
@@ -2779,7 +2736,7 @@ Casts value (which is a String) to an appropriate instance.
 </div>
     
     <div id="footer">
-  Generated on Thu Nov 26 18:22:12 2009 by 
+  Generated on Tue Dec  1 18:30:41 2009 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool">yard</a>
   0.4.0 (ruby-1.8.7).
 </div>

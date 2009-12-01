@@ -125,19 +125,19 @@ require something beyond a simple insert (eg. Oracle).
       <pre class="lines">
 
 
-139
-140
-141
-142
-143
-144
-145</pre>
+6
+7
+8
+9
+10
+11
+12</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/abstract/database_statements.rb', line 139</span>
+      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/abstract/database_statements.rb', line 6</span>
 
 <span class='def def kw'>def</span> <span class='insert_fixture identifier id'>insert_fixture</span><span class='lparen token'>(</span><span class='fixture identifier id'>fixture</span><span class='comma token'>,</span> <span class='table_name identifier id'>table_name</span><span class='rparen token'>)</span>
-<span class='comment val'>#        execute &quot;INSERT INTO #{quote_table_name(table_name)} (#{fixture.key_list}) VALUES (#{fixture.value_list})&quot;, 'Fixture Insert'</span>
+  <span class='comment val'># execute &quot;INSERT INTO #{quote_table_name(table_name)} (#{fixture.key_list}) VALUES (#{fixture.value_list})&quot;, 'Fixture Insert'</span>
   <span class='attributes identifier id'>attributes</span> <span class='assign token'>=</span> <span class='fixture identifier id'>fixture</span><span class='dot token'>.</span><span class='to_hash identifier id'>to_hash</span><span class='dot token'>.</span><span class='dup identifier id'>dup</span>
   <span class='id identifier id'>id</span> <span class='assign token'>=</span> <span class='attributes identifier id'>attributes</span><span class='dot token'>.</span><span class='delete identifier id'>delete</span><span class='lparen token'>(</span><span class='string val'>&quot;id&quot;</span><span class='rparen token'>)</span>
   <span class='raise identifier id'>raise</span> <span class='ArgumentError constant id'>ArgumentError</span><span class='comma token'>,</span> <span class='string val'>&quot;the id is missing&quot;</span> <span class='unless unless_mod kw'>unless</span> <span class='id identifier id'>id</span>
@@ -154,7 +154,7 @@ require something beyond a simple insert (eg. Oracle).
 </div>
     
     <div id="footer">
-  Generated on Thu Nov 26 18:22:14 2009 by 
+  Generated on Tue Dec  1 18:30:44 2009 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool">yard</a>
   0.4.0 (ruby-1.8.7).
 </div>

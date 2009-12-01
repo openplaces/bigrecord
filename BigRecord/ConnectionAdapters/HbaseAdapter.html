@@ -706,15 +706,15 @@ a new instance of <tt>HbaseAdapter</tt>
       <pre class="lines">
 
 
-66
-67
 68
 69
 70
-71</pre>
+71
+72
+73</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/hbase_adapter.rb', line 66</span>
+      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/hbase_adapter.rb', line 68</span>
 
 <span class='def def kw'>def</span> <span class='initialize identifier id'>initialize</span><span class='lparen token'>(</span><span class='connection identifier id'>connection</span><span class='comma token'>,</span> <span class='logger identifier id'>logger</span><span class='comma token'>,</span> <span class='connection_options identifier id'>connection_options</span><span class='comma token'>,</span> <span class='config identifier id'>config</span><span class='rparen token'>)</span>
   <span class='super super kw'>super</span><span class='lparen token'>(</span><span class='connection identifier id'>connection</span><span class='comma token'>,</span> <span class='logger identifier id'>logger</span><span class='rparen token'>)</span>
@@ -758,14 +758,14 @@ CONNECTION MANAGEMENT ====================================
       <pre class="lines">
 
 
-87
-88
 89
 90
-91</pre>
+91
+92
+93</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/hbase_adapter.rb', line 87</span>
+      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/hbase_adapter.rb', line 89</span>
 
 <span class='def def kw'>def</span> <span class='active? fid id'>active?</span>
   <span class='@connection ivar id'>@connection</span><span class='dot token'>.</span><span class='ping identifier id'>ping</span>
@@ -791,12 +791,12 @@ CONNECTION MANAGEMENT ====================================
       <pre class="lines">
 
 
-77
-78
-79</pre>
+79
+80
+81</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/hbase_adapter.rb', line 77</span>
+      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/hbase_adapter.rb', line 79</span>
 
 <span class='def def kw'>def</span> <span class='adapter_name identifier id'>adapter_name</span> 
   <span class='string val'>'HBase'</span>
@@ -824,18 +824,18 @@ CONNECTION MANAGEMENT ====================================
       <pre class="lines">
 
 
-259
-260
 261
 262
 263
 264
 265
 266
-267</pre>
+267
+268
+269</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/hbase_adapter.rb', line 259</span>
+      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/hbase_adapter.rb', line 261</span>
 
 <span class='def def kw'>def</span> <span class='add_column_family identifier id'>add_column_family</span><span class='lparen token'>(</span><span class='table_name identifier id'>table_name</span><span class='comma token'>,</span> <span class='column_name identifier id'>column_name</span><span class='comma token'>,</span> <span class='options identifier id'>options</span> <span class='assign token'>=</span> <span class='lbrace token'>{</span><span class='rbrace token'>}</span><span class='rparen token'>)</span>
   <span class='column identifier id'>column</span> <span class='assign token'>=</span> <span class='BigRecordDriver constant id'>BigRecordDriver</span><span class='colon2 op'>::</span><span class='ColumnDescriptor constant id'>ColumnDescriptor</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='column_name identifier id'>column_name</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span><span class='comma token'>,</span> <span class='options identifier id'>options</span><span class='rparen token'>)</span>
@@ -876,12 +876,12 @@ Serialize an object in a given type
       <pre class="lines">
 
 
-303
-304
-305</pre>
+305
+306
+307</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/hbase_adapter.rb', line 303</span>
+      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/hbase_adapter.rb', line 305</span>
 
 <span class='def def kw'>def</span> <span class='build_serialized_value identifier id'>build_serialized_value</span><span class='lparen token'>(</span><span class='type identifier id'>type</span><span class='comma token'>,</span> <span class='value identifier id'>value</span><span class='rparen token'>)</span>
   <span class='type identifier id'>type</span><span class='dot token'>.</span><span class='chr identifier id'>chr</span> <span class='plus op'>+</span> <span class='value identifier id'>value</span>
@@ -905,12 +905,12 @@ Serialize an object in a given type
       <pre class="lines">
 
 
-73
-74
-75</pre>
+75
+76
+77</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/hbase_adapter.rb', line 73</span>
+      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/hbase_adapter.rb', line 75</span>
 
 <span class='def def kw'>def</span> <span class='configuration identifier id'>configuration</span>
   <span class='@config ivar id'>@config</span><span class='dot token'>.</span><span class='clone identifier id'>clone</span>
@@ -955,8 +955,6 @@ Serialize an object in a given type
       <pre class="lines">
 
 
-235
-236
 237
 238
 239
@@ -969,13 +967,15 @@ Serialize an object in a given type
 246
 247
 248
-249</pre>
+249
+250
+251</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/hbase_adapter.rb', line 235</span>
+      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/hbase_adapter.rb', line 237</span>
 
 <span class='def def kw'>def</span> <span class='create_table identifier id'>create_table</span><span class='lparen token'>(</span><span class='table_name identifier id'>table_name</span><span class='comma token'>,</span> <span class='options identifier id'>options</span> <span class='assign token'>=</span> <span class='lbrace token'>{</span><span class='rbrace token'>}</span><span class='rparen token'>)</span>
-  <span class='table_definition identifier id'>table_definition</span> <span class='assign token'>=</span> <span class='TableDefinition constant id'>TableDefinition</span><span class='dot token'>.</span><span class='new identifier id'>new</span>
+  <span class='table_definition identifier id'>table_definition</span> <span class='assign token'>=</span> <span class='HbaseAdapterTable constant id'>HbaseAdapterTable</span><span class='dot token'>.</span><span class='new identifier id'>new</span>
 
   <span class='yield yield kw'>yield</span> <span class='table_definition identifier id'>table_definition</span> <span class='if if_mod kw'>if</span> <span class='block_given? fid id'>block_given?</span>
 
@@ -1008,17 +1008,17 @@ Serialize an object in a given type
       <pre class="lines">
 
 
-193
-194
 195
 196
 197
 198
 199
-200</pre>
+200
+201
+202</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/hbase_adapter.rb', line 193</span>
+      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/hbase_adapter.rb', line 195</span>
 
 <span class='def def kw'>def</span> <span class='delete identifier id'>delete</span><span class='lparen token'>(</span><span class='table_name identifier id'>table_name</span><span class='comma token'>,</span> <span class='row identifier id'>row</span><span class='comma token'>,</span> <span class='timestamp identifier id'>timestamp</span> <span class='assign token'>=</span> <span class='nil nil kw'>nil</span><span class='rparen token'>)</span>
   <span class='timestamp identifier id'>timestamp</span> <span class='opasgn op'>||=</span> <span class='Time constant id'>Time</span><span class='dot token'>.</span><span class='now identifier id'>now</span><span class='dot token'>.</span><span class='to_bigrecord_timestamp identifier id'>to_bigrecord_timestamp</span>
@@ -1059,8 +1059,6 @@ format and the type header format.
       <pre class="lines">
 
 
-309
-310
 311
 312
 313
@@ -1070,10 +1068,12 @@ format and the type header format.
 317
 318
 319
-320</pre>
+320
+321
+322</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/hbase_adapter.rb', line 309</span>
+      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/hbase_adapter.rb', line 311</span>
 
 <span class='def def kw'>def</span> <span class='deserialize identifier id'>deserialize</span><span class='lparen token'>(</span><span class='str identifier id'>str</span><span class='rparen token'>)</span>
   <span class='return return kw'>return</span> <span class='unless unless_mod kw'>unless</span> <span class='str identifier id'>str</span>
@@ -1117,8 +1117,6 @@ Deserialize the given string assumed to be in the type header format.
       <pre class="lines">
 
 
-323
-324
 325
 326
 327
@@ -1129,10 +1127,12 @@ Deserialize the given string assumed to be in the type header format.
 332
 333
 334
-335</pre>
+335
+336
+337</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/hbase_adapter.rb', line 323</span>
+      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/hbase_adapter.rb', line 325</span>
 
 <span class='def def kw'>def</span> <span class='deserialize_with_header identifier id'>deserialize_with_header</span><span class='lparen token'>(</span><span class='data identifier id'>data</span><span class='rparen token'>)</span>
   <span class='return return kw'>return</span> <span class='unless unless_mod kw'>unless</span> <span class='data identifier id'>data</span> <span class='and and kw'>and</span> <span class='data identifier id'>data</span><span class='dot token'>.</span><span class='size identifier id'>size</span> <span class='geq op'>&gt;=</span> <span class='integer val'>2</span>
@@ -1166,12 +1166,12 @@ Deserialize the given string assumed to be in the type header format.
       <pre class="lines">
 
 
-98
-99
-100</pre>
+100
+101
+102</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/hbase_adapter.rb', line 98</span>
+      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/hbase_adapter.rb', line 100</span>
 
 <span class='def def kw'>def</span> <span class='disconnect! fid id'>disconnect!</span>
   <span class='@connection ivar id'>@connection</span><span class='dot token'>.</span><span class='close identifier id'>close</span> <span class='rescue rescue kw'>rescue</span> <span class='nil nil kw'>nil</span>
@@ -1195,16 +1195,16 @@ Deserialize the given string assumed to be in the type header format.
       <pre class="lines">
 
 
-251
-252
 253
 254
 255
 256
-257</pre>
+257
+258
+259</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/hbase_adapter.rb', line 251</span>
+      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/hbase_adapter.rb', line 253</span>
 
 <span class='def def kw'>def</span> <span class='drop_table identifier id'>drop_table</span><span class='lparen token'>(</span><span class='table_name identifier id'>table_name</span><span class='rparen token'>)</span>
   <span class='result identifier id'>result</span> <span class='assign token'>=</span> <span class='nil nil kw'>nil</span>
@@ -1232,8 +1232,6 @@ Deserialize the given string assumed to be in the type header format.
       <pre class="lines">
 
 
-129
-130
 131
 132
 133
@@ -1241,10 +1239,12 @@ Deserialize the given string assumed to be in the type header format.
 135
 136
 137
-138</pre>
+138
+139
+140</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/hbase_adapter.rb', line 129</span>
+      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/hbase_adapter.rb', line 131</span>
 
 <span class='def def kw'>def</span> <span class='get identifier id'>get</span><span class='lparen token'>(</span><span class='table_name identifier id'>table_name</span><span class='comma token'>,</span> <span class='row identifier id'>row</span><span class='comma token'>,</span> <span class='column identifier id'>column</span><span class='comma token'>,</span> <span class='options identifier id'>options</span><span class='assign token'>=</span><span class='lbrace token'>{</span><span class='rbrace token'>}</span><span class='rparen token'>)</span>
   <span class='serialized_result identifier id'>serialized_result</span> <span class='assign token'>=</span> <span class='get_raw identifier id'>get_raw</span><span class='lparen token'>(</span><span class='table_name identifier id'>table_name</span><span class='comma token'>,</span> <span class='row identifier id'>row</span><span class='comma token'>,</span> <span class='column identifier id'>column</span><span class='comma token'>,</span> <span class='options identifier id'>options</span><span class='rparen token'>)</span>
@@ -1275,14 +1275,14 @@ Deserialize the given string assumed to be in the type header format.
       <pre class="lines">
 
 
-223
-224
 225
 226
-227</pre>
+227
+228
+229</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/hbase_adapter.rb', line 223</span>
+      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/hbase_adapter.rb', line 225</span>
 
 <span class='def def kw'>def</span> <span class='get_all_schema_versions identifier id'>get_all_schema_versions</span>
   <span class='sm_table identifier id'>sm_table</span> <span class='assign token'>=</span> <span class='BigRecord constant id'>BigRecord</span><span class='colon2 op'>::</span><span class='Migrator constant id'>Migrator</span><span class='dot token'>.</span><span class='schema_migrations_table_name identifier id'>schema_migrations_table_name</span>
@@ -1308,8 +1308,6 @@ Deserialize the given string assumed to be in the type header format.
       <pre class="lines">
 
 
-148
-149
 150
 151
 152
@@ -1322,10 +1320,12 @@ Deserialize the given string assumed to be in the type header format.
 159
 160
 161
-162</pre>
+162
+163
+164</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/hbase_adapter.rb', line 148</span>
+      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/hbase_adapter.rb', line 150</span>
 
 <span class='def def kw'>def</span> <span class='get_columns identifier id'>get_columns</span><span class='lparen token'>(</span><span class='table_name identifier id'>table_name</span><span class='comma token'>,</span> <span class='row identifier id'>row</span><span class='comma token'>,</span> <span class='columns identifier id'>columns</span><span class='comma token'>,</span> <span class='options identifier id'>options</span><span class='assign token'>=</span><span class='lbrace token'>{</span><span class='rbrace token'>}</span><span class='rparen token'>)</span>
   <span class='row_cols identifier id'>row_cols</span> <span class='assign token'>=</span> <span class='get_columns_raw identifier id'>get_columns_raw</span><span class='lparen token'>(</span><span class='table_name identifier id'>table_name</span><span class='comma token'>,</span> <span class='row identifier id'>row</span><span class='comma token'>,</span> <span class='columns identifier id'>columns</span><span class='comma token'>,</span> <span class='options identifier id'>options</span><span class='rparen token'>)</span>
@@ -1361,16 +1361,16 @@ Deserialize the given string assumed to be in the type header format.
       <pre class="lines">
 
 
-140
-141
 142
 143
 144
 145
-146</pre>
+146
+147
+148</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/hbase_adapter.rb', line 140</span>
+      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/hbase_adapter.rb', line 142</span>
 
 <span class='def def kw'>def</span> <span class='get_columns_raw identifier id'>get_columns_raw</span><span class='lparen token'>(</span><span class='table_name identifier id'>table_name</span><span class='comma token'>,</span> <span class='row identifier id'>row</span><span class='comma token'>,</span> <span class='columns identifier id'>columns</span><span class='comma token'>,</span> <span class='options identifier id'>options</span><span class='assign token'>=</span><span class='lbrace token'>{</span><span class='rbrace token'>}</span><span class='rparen token'>)</span>
   <span class='result identifier id'>result</span> <span class='assign token'>=</span> <span class='lbrace token'>{</span><span class='rbrace token'>}</span>
@@ -1398,8 +1398,6 @@ Deserialize the given string assumed to be in the type header format.
       <pre class="lines">
 
 
-172
-173
 174
 175
 176
@@ -1417,10 +1415,12 @@ Deserialize the given string assumed to be in the type header format.
 188
 189
 190
-191</pre>
+191
+192
+193</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/hbase_adapter.rb', line 172</span>
+      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/hbase_adapter.rb', line 174</span>
 
 <span class='def def kw'>def</span> <span class='get_consecutive_rows identifier id'>get_consecutive_rows</span><span class='lparen token'>(</span><span class='table_name identifier id'>table_name</span><span class='comma token'>,</span> <span class='start_row identifier id'>start_row</span><span class='comma token'>,</span> <span class='limit identifier id'>limit</span><span class='comma token'>,</span> <span class='columns identifier id'>columns</span><span class='comma token'>,</span> <span class='stop_row identifier id'>stop_row</span> <span class='assign token'>=</span> <span class='nil nil kw'>nil</span><span class='rparen token'>)</span>
   <span class='rows identifier id'>rows</span> <span class='assign token'>=</span> <span class='get_consecutive_rows_raw identifier id'>get_consecutive_rows_raw</span><span class='lparen token'>(</span><span class='table_name identifier id'>table_name</span><span class='comma token'>,</span> <span class='start_row identifier id'>start_row</span><span class='comma token'>,</span> <span class='limit identifier id'>limit</span><span class='comma token'>,</span> <span class='columns identifier id'>columns</span><span class='comma token'>,</span> <span class='stop_row identifier id'>stop_row</span><span class='rparen token'>)</span>
@@ -1461,16 +1461,16 @@ Deserialize the given string assumed to be in the type header format.
       <pre class="lines">
 
 
-164
-165
 166
 167
 168
 169
-170</pre>
+170
+171
+172</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/hbase_adapter.rb', line 164</span>
+      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/hbase_adapter.rb', line 166</span>
 
 <span class='def def kw'>def</span> <span class='get_consecutive_rows_raw identifier id'>get_consecutive_rows_raw</span><span class='lparen token'>(</span><span class='table_name identifier id'>table_name</span><span class='comma token'>,</span> <span class='start_row identifier id'>start_row</span><span class='comma token'>,</span> <span class='limit identifier id'>limit</span><span class='comma token'>,</span> <span class='columns identifier id'>columns</span><span class='comma token'>,</span> <span class='stop_row identifier id'>stop_row</span> <span class='assign token'>=</span> <span class='nil nil kw'>nil</span><span class='rparen token'>)</span>
   <span class='result identifier id'>result</span> <span class='assign token'>=</span> <span class='nil nil kw'>nil</span>
@@ -1498,16 +1498,16 @@ Deserialize the given string assumed to be in the type header format.
       <pre class="lines">
 
 
-121
-122
 123
 124
 125
 126
-127</pre>
+127
+128
+129</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/hbase_adapter.rb', line 121</span>
+      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/hbase_adapter.rb', line 123</span>
 
 <span class='def def kw'>def</span> <span class='get_raw identifier id'>get_raw</span><span class='lparen token'>(</span><span class='table_name identifier id'>table_name</span><span class='comma token'>,</span> <span class='row identifier id'>row</span><span class='comma token'>,</span> <span class='column identifier id'>column</span><span class='comma token'>,</span> <span class='options identifier id'>options</span><span class='assign token'>=</span><span class='lbrace token'>{</span><span class='rbrace token'>}</span><span class='rparen token'>)</span>
   <span class='result identifier id'>result</span> <span class='assign token'>=</span> <span class='nil nil kw'>nil</span>
@@ -1546,18 +1546,18 @@ SCHEMA STATEMENTS ========================================
       <pre class="lines">
 
 
-213
-214
 215
 216
 217
 218
 219
 220
-221</pre>
+221
+222
+223</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/hbase_adapter.rb', line 213</span>
+      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/hbase_adapter.rb', line 215</span>
 
 <span class='def def kw'>def</span> <span class='initialize_schema_migrations_table identifier id'>initialize_schema_migrations_table</span>
   <span class='sm_table identifier id'>sm_table</span> <span class='assign token'>=</span> <span class='BigRecord constant id'>BigRecord</span><span class='colon2 op'>::</span><span class='Migrator constant id'>Migrator</span><span class='dot token'>.</span><span class='schema_migrations_table_name identifier id'>schema_migrations_table_name</span>
@@ -1591,18 +1591,18 @@ SCHEMA STATEMENTS ========================================
       <pre class="lines">
 
 
-281
-282
 283
 284
 285
 286
 287
 288
-289</pre>
+289
+290
+291</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/hbase_adapter.rb', line 281</span>
+      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/hbase_adapter.rb', line 283</span>
 
 <span class='def def kw'>def</span> <span class='modify_column_family identifier id'>modify_column_family</span><span class='lparen token'>(</span><span class='table_name identifier id'>table_name</span><span class='comma token'>,</span> <span class='column_name identifier id'>column_name</span><span class='comma token'>,</span> <span class='options identifier id'>options</span> <span class='assign token'>=</span> <span class='lbrace token'>{</span><span class='rbrace token'>}</span><span class='rparen token'>)</span>
   <span class='column identifier id'>column</span> <span class='assign token'>=</span> <span class='BigRecordDriver constant id'>BigRecordDriver</span><span class='colon2 op'>::</span><span class='ColumnDescriptor constant id'>ColumnDescriptor</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='column_name identifier id'>column_name</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span><span class='comma token'>,</span> <span class='options identifier id'>options</span><span class='rparen token'>)</span>
@@ -1632,13 +1632,13 @@ SCHEMA STATEMENTS ========================================
       <pre class="lines">
 
 
-93
-94
 95
-96</pre>
+96
+97
+98</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/hbase_adapter.rb', line 93</span>
+      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/hbase_adapter.rb', line 95</span>
 
 <span class='def def kw'>def</span> <span class='reconnect! fid id'>reconnect!</span>
   <span class='disconnect! fid id'>disconnect!</span>
@@ -1667,16 +1667,16 @@ SCHEMA STATEMENTS ========================================
       <pre class="lines">
 
 
-271
-272
 273
 274
 275
 276
-277</pre>
+277
+278
+279</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/hbase_adapter.rb', line 271</span>
+      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/hbase_adapter.rb', line 273</span>
 
 <span class='def def kw'>def</span> <span class='remove_column_family identifier id'>remove_column_family</span><span class='lparen token'>(</span><span class='table_name identifier id'>table_name</span><span class='comma token'>,</span> <span class='column_name identifier id'>column_name</span><span class='rparen token'>)</span>
   <span class='result identifier id'>result</span> <span class='assign token'>=</span> <span class='nil nil kw'>nil</span>
@@ -1715,16 +1715,16 @@ Serialize the given value
       <pre class="lines">
 
 
-294
-295
 296
 297
 298
 299
-300</pre>
+300
+301
+302</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/hbase_adapter.rb', line 294</span>
+      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/hbase_adapter.rb', line 296</span>
 
 <span class='def def kw'>def</span> <span class='serialize identifier id'>serialize</span><span class='lparen token'>(</span><span class='value identifier id'>value</span><span class='rparen token'>)</span>
   <span class='case case kw'>case</span> <span class='value identifier id'>value</span>
@@ -1752,12 +1752,12 @@ Serialize the given value
       <pre class="lines">
 
 
-81
-82
-83</pre>
+83
+84
+85</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/hbase_adapter.rb', line 81</span>
+      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/hbase_adapter.rb', line 83</span>
 
 <span class='def def kw'>def</span> <span class='supports_migrations? fid id'>supports_migrations?</span> 
   <span class='true true kw'>true</span>
@@ -1781,14 +1781,14 @@ Serialize the given value
       <pre class="lines">
 
 
-229
-230
 231
 232
-233</pre>
+233
+234
+235</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/hbase_adapter.rb', line 229</span>
+      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/hbase_adapter.rb', line 231</span>
 
 <span class='def def kw'>def</span> <span class='table_exists? fid id'>table_exists?</span><span class='lparen token'>(</span><span class='table_name identifier id'>table_name</span><span class='rparen token'>)</span>
   <span class='log identifier id'>log</span> <span class='dstring node'>&quot;TABLE EXISTS? #{table_name};&quot;</span> <span class='do do kw'>do</span>
@@ -1814,16 +1814,16 @@ Serialize the given value
       <pre class="lines">
 
 
-202
-203
 204
 205
 206
 207
-208</pre>
+208
+209
+210</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/hbase_adapter.rb', line 202</span>
+      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/hbase_adapter.rb', line 204</span>
 
 <span class='def def kw'>def</span> <span class='truncate_table identifier id'>truncate_table</span><span class='lparen token'>(</span><span class='table_name identifier id'>table_name</span><span class='rparen token'>)</span>
   <span class='result identifier id'>result</span> <span class='assign token'>=</span> <span class='nil nil kw'>nil</span>
@@ -1851,16 +1851,16 @@ Serialize the given value
       <pre class="lines">
 
 
-113
-114
 115
 116
 117
 118
-119</pre>
+119
+120
+121</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/hbase_adapter.rb', line 113</span>
+      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/hbase_adapter.rb', line 115</span>
 
 <span class='def def kw'>def</span> <span class='update identifier id'>update</span><span class='lparen token'>(</span><span class='table_name identifier id'>table_name</span><span class='comma token'>,</span> <span class='row identifier id'>row</span><span class='comma token'>,</span> <span class='values identifier id'>values</span><span class='comma token'>,</span> <span class='timestamp identifier id'>timestamp</span><span class='rparen token'>)</span>
   <span class='serialized_collection identifier id'>serialized_collection</span> <span class='assign token'>=</span> <span class='lbrace token'>{</span><span class='rbrace token'>}</span>
@@ -1899,16 +1899,16 @@ DATABASE STATEMENTS ======================================
       <pre class="lines">
 
 
-105
-106
 107
 108
 109
 110
-111</pre>
+111
+112
+113</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/hbase_adapter.rb', line 105</span>
+      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/hbase_adapter.rb', line 107</span>
 
 <span class='def def kw'>def</span> <span class='update_raw identifier id'>update_raw</span><span class='lparen token'>(</span><span class='table_name identifier id'>table_name</span><span class='comma token'>,</span> <span class='row identifier id'>row</span><span class='comma token'>,</span> <span class='values identifier id'>values</span><span class='comma token'>,</span> <span class='timestamp identifier id'>timestamp</span><span class='rparen token'>)</span>
   <span class='result identifier id'>result</span> <span class='assign token'>=</span> <span class='nil nil kw'>nil</span>
@@ -1928,7 +1928,7 @@ DATABASE STATEMENTS ======================================
 </div>
     
     <div id="footer">
-  Generated on Thu Nov 26 18:22:25 2009 by 
+  Generated on Tue Dec  1 18:30:51 2009 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool">yard</a>
   0.4.0 (ruby-1.8.7).
 </div>

@@ -229,7 +229,7 @@ module BigRecord
       end
 
       def create_table(table_name, options = {})
-        table_definition = TableDefinition.new
+        table_definition = HbaseRestAdapterTable.new
 
         yield table_definition if block_given?
 
@@ -374,7 +374,7 @@ module BigRecord
 
     end
 
-    class TableDefinition
+    class HbaseRestAdapterTable
 
       ##
       # Given an column descriptor's options hash from Bigrecord, translate it into

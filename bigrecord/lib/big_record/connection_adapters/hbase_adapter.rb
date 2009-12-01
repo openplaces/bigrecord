@@ -235,7 +235,7 @@ module BigRecord
       end
 
       def create_table(table_name, options = {})
-        table_definition = TableDefinition.new
+        table_definition = HbaseAdapterTable.new
 
         yield table_definition if block_given?
 
@@ -400,7 +400,7 @@ module BigRecord
         end
     end
 
-    class TableDefinition
+    class HbaseAdapterTable
 
       def initialize
         @column_families = []

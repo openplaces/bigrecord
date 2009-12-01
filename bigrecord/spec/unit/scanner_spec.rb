@@ -5,9 +5,10 @@ describe BigRecord::Base do
   before(:all) do
     Book.delete_all
     @titles = ["I Am Legend", "The Beach", "Neuromancer"]
-    Book.create(:title => @titles[0], :author => "Richard Matheson")
-    Book.create(:title => @titles[1], :author => "Alex Garland")
-    Book.create(:title => @titles[2], :author => "William Gibson")
+    id1 = Book.create(:title => @titles[0], :author => "Richard Matheson").id
+    id2 = Book.create(:title => @titles[1], :author => "Alex Garland").id
+    id3 = Book.create(:title => @titles[2], :author => "William Gibson").id
+    @ids = [id1, id2, id3]
   end
 
   after(:all) do
@@ -19,10 +20,13 @@ describe BigRecord::Base do
     it "should retrieve all records with find" do
       books = Book.find(:all)
       books.size.should == 3
-      book_titles = books.map(&:title)
 
       @titles.each do |title|
-        book_titles.should include(title)
+        books.map(&:title).should include(title)
+      end
+
+      @ids.each do |id|
+        books.map(&:id).should include(id)
       end
     end
 

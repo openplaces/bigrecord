@@ -1,5 +1,5 @@
 module BigRecord
-  # Big Record automatically timestamps create and update if the table has fields
+  # BigRecord automatically timestamps create and update if the table has fields
   # created_at/created_on or updated_at/updated_on.
   #
   # Timestamping can be turned off by setting
@@ -15,7 +15,7 @@ module BigRecord
   #   end
   #
   # Timestamps are in the local timezone by default but can use UTC by setting
-  #   <tt>ActiveRecord::Base.default_timezone = :utc</tt>
+  #   <tt>BigRecord::Base.default_timezone = :utc</tt>
   module Timestamp
     def self.included(base) #:nodoc:
       super
@@ -48,4 +48,30 @@ module BigRecord
       update_without_timestamps
     end
   end
+end
+
+# Open the Time class to add methods which convert the time into the Bigrecord
+# timestamp format.
+class Time
+
+  # Return the time in the Bigrecord timestamp format, i.e. a 'long' where the
+  # 4 high bytes contain the number of seconds since epoch and the 4 low bytes
+  # contain the microseconds.
+  #
+  # @example
+  #   > Time.now.to_bigrecord_timestamp
+  #   => 5410405886576175030
+  def to_bigrecord_timestamp
+    (self.to_i << 32) + self.usec
+  end
+
+  # Converts a timestamp in Bigrecord format into a regular Time object.
+  #
+  # @example
+  #   > Time.from_bigrecord_timestamp(5410405886576175030)
+  #   => Tue Dec 01 17:58:05 -0500 2009
+  def self.from_bigrecord_timestamp(timestamp)
+    Time.at(timestamp >> 32, timestamp & 0xFFFFFFFF)
+  end
+
 end

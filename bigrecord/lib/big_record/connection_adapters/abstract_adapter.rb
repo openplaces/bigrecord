@@ -7,7 +7,7 @@ module BigRecord
   module ConnectionAdapters # :nodoc:
     # All the concrete database adapters follow the interface laid down in this class.
     # You can use this interface directly by borrowing the database connection from the Base with
-    # Base.connection.
+    # BigRecord::Base.connection
     #
     # Most of the methods in the adapter are useful during migrations.  Most
     # notably, SchemaStatements#create_table, SchemaStatements#drop_table,
@@ -172,19 +172,3 @@ module BigRecord
     end # class AbstractAdapter
   end # module ConnectionAdapters
 end # module BigRecord
-
-
-# Open the time class to add logic for the hbase timestamp
-class Time
-  # Return this time is the hbase timestamp format, i.e. a 'long'. The 4 high bytes contain
-  # the number of seconds since epoch and the 4 low bytes contain the microseconds. That
-  # format is an arbitrary one and could have been something else.
-  def to_bigrecord_timestamp
-    (self.to_i << 32) + self.usec
-  end
-
-  def self.from_bigrecord_timestamp(timestamp)
-    Time.at(timestamp >> 32, timestamp & 0xFFFFFFFF)
-  end
-
-end

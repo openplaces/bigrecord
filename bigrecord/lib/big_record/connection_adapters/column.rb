@@ -103,6 +103,7 @@ module BigRecord
       end
 
       # Returns the Ruby class that corresponds to the abstract data type.
+      # View the source for the actual mappings.
       def klass
         @klass ||=
         case type

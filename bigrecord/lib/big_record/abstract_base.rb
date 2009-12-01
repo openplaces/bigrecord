@@ -367,14 +367,14 @@ module BigRecord
       write_attribute(self.class.primary_key, value)
     end
 
-    # Returns true if this object hasn't been saved yet -- that is, a record for the object doesn't
-    # yet exist in the data store.
+    # Returns true if this object hasn't been saved yet -- that is, a record for the object doesn't exist yet.
     def new_record?
       false
     end
 
-    # * No record exists: Creates a new record with values matching those of the object attributes.
-    # * A record does exist: Updates the record with values matching those of the object attributes.
+    # Method that saves the BigRecord object into the database. It will do one of two things:
+    # * If no record currently exists: Creates a new record with values matching those of the object attributes.
+    # * If a record already exist: Updates the record with values matching those of the object attributes.
     def save
       raise NotImplemented
     end
@@ -435,6 +435,7 @@ module BigRecord
     end
 
   protected
+
     def clone_in_persistence_format
       validate_attributes_schema
 
@@ -682,6 +683,7 @@ module BigRecord
     end
 
   protected
+
     # Returns the value of the attribute identified by <tt>attr_name</tt> after it has been typecast (for example,
     # "2004-12-12" in a data column is cast to a date object, like Date.new(2004, 12, 12)).
     def read_attribute(attr_name)
@@ -701,7 +703,8 @@ module BigRecord
       @attributes[attr_name.to_s]
     end
 
-private
+  private
+
     # Called on first read access to any given column and generates reader
     # methods for all columns in the columns_hash if
     # BigRecord::Base.generate_read_methods is set to true.
@@ -778,6 +781,7 @@ private
     end
 
   public
+
     class << self
 
       # Evaluate the name of the column of the primary key only once
@@ -884,7 +888,8 @@ private
       # adds the new column into the model's column hash.
       #
       # @param type [Symbol, String] Column type as defined in the source of {ConnectionAdapters::Column#klass}
-      # @option options [true,false] :collection Whether this column is a collection.
+      # @param [Hash] options The options to define the column with.
+      # @option options [TrueClass,FalseClass] :collection Whether this column is a collection.
       # @option options [String] :alias Define an alias for the column that cannot be inferred. By default, 'attribute:name' will be aliased to 'name'.
       # @option options [String] :default Default value to set for this column.
       #
@@ -918,7 +923,7 @@ private
       end
 
       # Contains the names of the generated reader methods.
-      def read_methods #:nodoc:
+      def read_methods
         @read_methods ||= Set.new
       end
 
@@ -1045,7 +1050,15 @@ private
        read_inheritable_attribute(:attr_create_accessible)
       end
 
+      # Guesses the table name, but does not decorate it with prefix and suffix information.
+      def undecorated_table_name(class_name = base_class.name)
+        table_name = Inflector.underscore(Inflector.demodulize(class_name))
+        table_name = Inflector.pluralize(table_name) if pluralize_table_names
+        table_name
+      end
+
     protected
+
       def invalidate_views
         @views = nil
         @view_names = nil
@@ -1081,16 +1094,10 @@ private
         type_name.constantize
       end
 
-    public
-      # Guesses the table name, but does not decorate it with prefix and suffix information.
-      def undecorated_table_name(class_name = base_class.name)
-        table_name = Inflector.underscore(Inflector.demodulize(class_name))
-        table_name = Inflector.pluralize(table_name) if pluralize_table_names
-        table_name
-      end
     end
 
   protected
+
     # Handle *? for method_missing.
     def attribute?(attribute_name)
       query_attribute(attribute_name)

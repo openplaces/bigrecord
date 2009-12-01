@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{bigrecord}
-  s.version = "0.0.8"
+  s.version = "0.0.9"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["openplaces.org"]
-  s.date = %q{2009-11-25}
+  s.date = %q{2009-12-01}
   s.description = %q{BigRecord is built from ActiveRecord, and intended to seamlessly integrate into your Ruby on Rails applications.}
   s.email = %q{bigrecord@openplaces.org}
   s.extra_rdoc_files = [
@@ -86,7 +86,6 @@ Gem::Specification.new do |s|
      "spec/connections/bigrecord.yml",
      "spec/connections/cassandra/connection.rb",
      "spec/connections/hbase/connection.rb",
-     "spec/debug.log",
      "spec/integration/br_associations_spec.rb",
      "spec/lib/animal.rb",
      "spec/lib/book.rb",
@@ -106,18 +105,20 @@ Gem::Specification.new do |s|
      "spec/lib/zoo.rb",
      "spec/spec.opts",
      "spec/spec_helper.rb",
-     "spec/unit/abstract_base_spec.rb",
      "spec/unit/adapters/abstract_adapter_spec.rb",
      "spec/unit/adapters/adapter_shared_spec.rb",
      "spec/unit/adapters/hbase_adapter_spec.rb",
      "spec/unit/ar_associations_spec.rb",
-     "spec/unit/base_spec.rb",
+     "spec/unit/attributes_spec.rb",
      "spec/unit/br_associations_spec.rb",
+     "spec/unit/callback_spec.rb",
+     "spec/unit/columns_spec.rb",
      "spec/unit/embedded_spec.rb",
      "spec/unit/find_spec.rb",
      "spec/unit/hash_helper_spec.rb",
      "spec/unit/migration_spec.rb",
      "spec/unit/model_spec.rb",
+     "spec/unit/scanner_spec.rb",
      "spec/unit/validations_spec.rb",
      "tasks/bigrecord_tasks.rake",
      "tasks/data_store.rb",
@@ -138,20 +139,17 @@ Gem::Specification.new do |s|
     if Gem::Version.new(Gem::RubyGemsVersion) >= Gem::Version.new('1.2.0') then
       s.add_development_dependency(%q<rspec>, [">= 0"])
       s.add_runtime_dependency(%q<uuidtools>, [">= 2.0.0"])
-      s.add_runtime_dependency(%q<bigrecord-driver>, [">= 0"])
       s.add_runtime_dependency(%q<activesupport>, [">= 0"])
       s.add_runtime_dependency(%q<activerecord>, [">= 0"])
     else
       s.add_dependency(%q<rspec>, [">= 0"])
       s.add_dependency(%q<uuidtools>, [">= 2.0.0"])
-      s.add_dependency(%q<bigrecord-driver>, [">= 0"])
       s.add_dependency(%q<activesupport>, [">= 0"])
       s.add_dependency(%q<activerecord>, [">= 0"])
     end
   else
     s.add_dependency(%q<rspec>, [">= 0"])
     s.add_dependency(%q<uuidtools>, [">= 2.0.0"])
-    s.add_dependency(%q<bigrecord-driver>, [">= 0"])
     s.add_dependency(%q<activesupport>, [">= 0"])
     s.add_dependency(%q<activerecord>, [">= 0"])
   end

@@ -13,7 +13,6 @@ begin
 
     gemspec.add_development_dependency "rspec"
     gemspec.add_dependency "uuidtools", ">= 2.0.0"
-    gemspec.add_dependency "bigrecord-driver"
     gemspec.add_dependency "activesupport"
     gemspec.add_dependency "activerecord"
   end

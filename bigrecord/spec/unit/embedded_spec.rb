@@ -1,5 +1,5 @@
 require File.expand_path(File.join(File.dirname(__FILE__), '..', 'spec_helper'))
-require File.expand_path(File.join(File.dirname(__FILE__), 'abstract_base_spec'))
+require File.expand_path(File.join(File.dirname(__FILE__), 'attributes_spec'))
 
 describe BigRecord::Embedded do
 

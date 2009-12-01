@@ -1,10 +1,10 @@
 require File.expand_path(File.join(File.dirname(__FILE__), '..', 'spec_helper'))
-require File.expand_path(File.join(File.dirname(__FILE__), 'abstract_base_spec'))
+require File.expand_path(File.join(File.dirname(__FILE__), 'attributes_spec'))
 
 describe BigRecord::Base do
   it_should_behave_like "BigRecord::AbstractBase"
 
-  describe '#columns' do
+  describe 'column functionality' do
 
     before(:all) do
       # Grab the columns from a simple BigRecord model

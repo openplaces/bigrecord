@@ -1,11 +1,23 @@
 # Defined as a shared spec because embedded_spec uses it as well
-describe "BigRecord::AbstractBase", :shared => true do
+describe BigRecord::AbstractBase, :shared => true do
+
+  before(:all) do
+    Book.delete_all
+    Company.delete_all
+    Zoo.delete_all
+  end
+
+  after(:all) do
+    Book.delete_all
+    Company.delete_all
+    Zoo.delete_all
+  end
 
   it "should provide #primary_key" do
     Book.should respond_to(:primary_key)
   end
 
-  describe '.attributes' do
+  describe 'attributes retrieval' do
 
     before(:each) do
       @book = Book.new
@@ -62,7 +74,8 @@ describe "BigRecord::AbstractBase", :shared => true do
 
   end
 
-  describe ".attributes=" do
+
+  describe "attributes setting" do
 
     it 'should be able to mass assign attributes' do
       # Check that the mass asssignment of attributes works with #new
@@ -79,6 +92,7 @@ describe "BigRecord::AbstractBase", :shared => true do
     end
 
   end
+
 
   describe "protected attributes" do
 
@@ -109,6 +123,7 @@ describe "BigRecord::AbstractBase", :shared => true do
     end
 
   end
+
 
   describe "accessible attributes" do
 
@@ -145,6 +160,7 @@ describe "BigRecord::AbstractBase", :shared => true do
     end
 
   end
+
 
   describe "readonly attributes" do
 
@@ -187,6 +203,7 @@ describe "BigRecord::AbstractBase", :shared => true do
     end
 
   end
+
 
   describe "create_accessible attributes" do
 

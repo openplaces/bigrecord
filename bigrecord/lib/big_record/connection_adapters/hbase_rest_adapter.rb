@@ -1,22 +1,27 @@
 require 'set'
-require 'hbase'
 
 module BigRecord
   class Base
     # Establishes a connection to the database that's used by all Active Record objects.
     def self.hbase_rest_connection(config) # :nodoc:
+      begin
+        require 'hbase'
+      rescue LoadError => e
+        puts "[BigRecord] hbase-ruby is needed for HbaseRestAdapter. Install it with: gem install hbase-ruby"
+        raise e
+      end
+
       config = config.symbolize_keys
 
       api_address = config[:api_address]
-
       hbase = HBase::Client.new(api_address)
-
       ConnectionAdapters::HbaseRestAdapter.new(hbase, logger, [], config)
     end
   end
 
   module ConnectionAdapters
     class HbaseRestAdapter < AbstractAdapter
+
       @@emulate_booleans = true
       cattr_accessor :emulate_booleans
 

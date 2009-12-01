@@ -80,7 +80,7 @@ describe BigRecord::Base do
 
     describe 'with a new resource' do
 
-      it 'should create new entries in the data store' do
+      it 'should create new entries in the data store and delete them' do
         # Create a new object
         book = Book.new(  :title => "I Am Legend",
                           :author => "Richard Matheson",
@@ -197,7 +197,7 @@ describe BigRecord::Base do
 
   end
 
-  describe 'attribute functionality' do
+  describe 'attribute functionality on records' do
 
     it "should return a list of attribute names with .attribute_names" do
       (Book.new.attribute_names & ["attribute:author", "attribute:description", "attribute:links", "attribute:title"]).should == ["attribute:author", "attribute:description", "attribute:links", "attribute:title"]
@@ -259,7 +259,7 @@ describe BigRecord::Base do
       book.save.should be_true
 
       book.update_attribute(:description, "One of the Ten All-Time Best Novels of Vampirism.")
-
+      book.reload
       book.description.should == "One of the Ten All-Time Best Novels of Vampirism."
     end
 

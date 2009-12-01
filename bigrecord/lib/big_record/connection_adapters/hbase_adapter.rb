@@ -2,24 +2,26 @@ require 'rubygems'
 require 'set'
 require 'drb'
 
-unless defined?(BigRecordDriver)
-  begin
-    # Bigrecord's source is included with Bigrecord-Driver, that's we check for this first
-    require File.join(File.dirname(__FILE__), "..", "..", "..", "..", "bigrecord-driver", "lib", "big_record_driver")
-  rescue LoadError
-    begin
-      gem 'bigrecord-driver'
-      require 'bigrecord_driver'
-    rescue Gem::LoadError
-      puts "bigrecord-driver not available. Install it with: sudo gem install bigrecord-driver -s http://gemcutter.org"
-    end
-  end
-end
-
 module BigRecord
   class Base
     # Establishes a connection to the database that's used by all Active Record objects.
     def self.hbase_connection(config) # :nodoc:
+      unless defined?(BigRecordDriver)
+        begin
+          # Bigrecord's source is included with Bigrecord-Driver, that's where we check for it first.
+          require File.join(File.dirname(__FILE__), "..", "..", "..", "..", "bigrecord-driver", "lib", "big_record_driver")
+        rescue LoadError
+          # Then we'll require it from the load path (or rubygems)
+          begin
+            require 'bigrecord_driver'
+          rescue LoadError => e
+            # If it couldn't be found, we'll just prompt the user to install the gem.
+            puts "[BigRecord] bigrecord-driver is needed for HbaseAdapter. Install it with: gem install bigrecord-driver"
+            raise e
+          end
+        end
+      end
+
       config = config.symbolize_keys
 
       zookeeper_host          = config[:zookeeper_host]

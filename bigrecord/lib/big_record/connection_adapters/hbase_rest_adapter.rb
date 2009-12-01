@@ -1,22 +1,27 @@
 require 'set'
-require 'hbase'
 
 module BigRecord
   class Base
     # Establishes a connection to the database that's used by all Active Record objects.
     def self.hbase_rest_connection(config) # :nodoc:
+      begin
+        require 'hbase'
+      rescue LoadError => e
+        puts "[BigRecord] hbase-ruby is needed for HbaseRestAdapter. Install it with: gem install hbase-ruby"
+        raise e
+      end
+
       config = config.symbolize_keys
 
       api_address = config[:api_address]
-
       hbase = HBase::Client.new(api_address)
-
       ConnectionAdapters::HbaseRestAdapter.new(hbase, logger, [], config)
     end
   end
 
   module ConnectionAdapters
     class HbaseRestAdapter < AbstractAdapter
+
       @@emulate_booleans = true
       cattr_accessor :emulate_booleans
 
@@ -83,7 +88,7 @@ module BigRecord
         result = nil
 
         columns = columns_to_hbase_format(values)
-        timestamp = Time.now.to_bigrecord_timestamp
+        timestamp ||= Time.now.to_bigrecord_timestamp
 
         log "UPDATE #{table_name} SET #{values.inspect if values} WHERE ROW=#{row};" do
           @connection.create_row(table_name, row, timestamp, columns)
@@ -171,16 +176,12 @@ module BigRecord
 
         result = rows.collect do |row|
           cols = {}
+          cols['id'] = row.name
           row.columns.each do |col|
             key = col.name
             value = col.value
             begin
-              cols[key] =
-              if key == 'id'
-                value
-              else
-                deserialize(value)
-              end
+              cols[key] = deserialize(value)
             rescue Exception => e
               puts "Could not load column value #{key} for row=#{row.name}"
             end
@@ -310,65 +311,67 @@ module BigRecord
         end
       end
 
-      private
+    private
 
-        def connect
-        end
+      def connect
+      end
 
-      protected
-        def log(str, name = nil)
-          if block_given?
-            if @logger and @logger.level <= Logger::INFO
-              result = nil
-              seconds = Benchmark.realtime { result = yield }
-              @runtime += seconds
-              log_info(str, name, seconds)
-              result
-            else
-              yield
-            end
+    protected
+
+      def log(str, name = nil)
+        if block_given?
+          if @logger and @logger.level <= Logger::INFO
+            result = nil
+            seconds = Benchmark.realtime { result = yield }
+            @runtime += seconds
+            log_info(str, name, seconds)
+            result
           else
-            log_info(str, name, 0)
-            nil
+            yield
           end
-        rescue Exception => e
-          # Log message and raise exception.
-          # Set last_verfication to 0, so that connection gets verified
-          # upon reentering the request loop
-          @last_verification = 0
-          message = "#{e.class.name}: #{e.message}: #{str}"
-          log_info(message, name, 0)
-          raise e
+        else
+          log_info(str, name, 0)
+          nil
         end
+      rescue Exception => e
+        # Log message and raise exception.
+        # Set last_verfication to 0, so that connection gets verified
+        # upon reentering the request loop
+        @last_verification = 0
+        message = "#{e.class.name}: #{e.message}: #{str}"
+        log_info(message, name, 0)
+        raise e
+      end
 
-        def log_info(str, name, runtime)
-          return unless @logger
+      def log_info(str, name, runtime)
+        return unless @logger
 
-          @logger.debug(
-            format_log_entry(
-              "#{name.nil? ? "HBASE" : name} (#{sprintf("%f", runtime)})",
-              str.gsub(/ +/, " ")
-            )
+        @logger.debug(
+          format_log_entry(
+            "#{name.nil? ? "HBASE" : name} (#{sprintf("%f", runtime)})",
+            str.gsub(/ +/, " ")
           )
-        end
+        )
+      end
 
-        def format_log_entry(message, dump = nil)
-          if BigRecord::Base.colorize_logging
-            if @@row_even
-              @@row_even = false
-              message_color, dump_color = "4;36;1", "0;1"
-            else
-              @@row_even = true
-              message_color, dump_color = "4;35;1", "0"
-            end
-
-            log_entry = "  \e[#{message_color}m#{message}\e[0m   "
-            log_entry << "\e[#{dump_color}m%#{String === dump ? 's' : 'p'}\e[0m" % dump if dump
-            log_entry
+      def format_log_entry(message, dump = nil)
+        if BigRecord::Base.colorize_logging
+          if @@row_even
+            @@row_even = false
+            message_color, dump_color = "4;36;1", "0;1"
           else
-            "%s  %s" % [message, dump]
+            @@row_even = true
+            message_color, dump_color = "4;35;1", "0"
           end
+
+          log_entry = "  \e[#{message_color}m#{message}\e[0m   "
+          log_entry << "\e[#{dump_color}m%#{String === dump ? 's' : 'p'}\e[0m" % dump if dump
+          log_entry
+        else
+          "%s  %s" % [message, dump]
         end
+      end
+
     end
 
     class TableDefinition

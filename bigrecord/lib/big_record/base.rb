@@ -12,10 +12,8 @@ module BigRecord
       super
     end
 
-  public
-
     # New objects can be instantiated as either empty (pass no construction parameter) or pre-set with
-    # attributes but not yet saved (pass a hash with key names matching the associated column names).
+    # attributes but not yet saved (pass a hash with key names matching the associated table column names).
     # In both instances, valid attribute keys are determined by the column names of the associated table --
     # hence you can't have attributes that aren't part of the table columns.
     def initialize(attrs = nil)
@@ -26,6 +24,7 @@ module BigRecord
 
     # Returns the value of the attribute identified by <tt>attr_name</tt> after it has been typecast (for example,
     # "2004-12-12" in a data column is cast to a date object, like Date.new(2004, 12, 12)).
+    # (Alias for the protected read_attribute method).
     def [](attr_name)
       if attr_name.ends_with?(":")
         read_family_attributes(attr_name)
@@ -81,7 +80,7 @@ module BigRecord
       end
     end
 
-    # Read an attribute that defines a column family, as opposed to a column qualifier.
+    # Read an attribute that defines a column family.
     def read_family_attributes(attr_name)
       attr_name = attr_name.to_s
       column = column_for_attribute(attr_name)
@@ -131,14 +130,24 @@ module BigRecord
       end
     end
 
+    def set_loaded(name)
+      @loaded_columns ||= []
+      @loaded_columns << name
+    end
+
+    def is_loaded?(name)
+      @loaded_columns ||= []
+      @loaded_columns.include?(name)
+    end
+
+  public
     # Returns true if this object hasn't been saved yet -- that is, a record for the object doesn't exist yet.
     def new_record?
       @new_record
     end
 
-    # Method that saves the BigRecord object into the database. It will do one of two things:
-    # * If no record currently exists: Creates a new record with values matching those of the object attributes.
-    # * If a record already exist: Updates the record with values matching those of the object attributes.
+    # * No record exists: Creates a new record with values matching those of the object attributes.
+    # * A record does exist: Updates the record with values matching those of the object attributes.
     def save
       create_or_update
     end
@@ -149,7 +158,8 @@ module BigRecord
       create_or_update || raise(RecordNotSaved)
     end
 
-    # Deletes the record in the database.
+    # Deletes the record in the database and freezes this instance to reflect that no changes should
+    # be made (since they can't be persisted).
     def destroy
       unless new_record?
         connection.delete(self.class.table_name, self.id)
@@ -187,16 +197,6 @@ module BigRecord
 
   protected
 
-    def set_loaded(name)
-      @loaded_columns ||= []
-      @loaded_columns << name
-    end
-
-    def is_loaded?(name)
-      @loaded_columns ||= []
-      @loaded_columns.include?(name)
-    end
-
     # Invoke {#create} if {#new_record} returns true, otherwise it's an {#update}
     def create_or_update
       raise ReadOnlyRecord if readonly?
@@ -218,8 +218,8 @@ module BigRecord
       update_bigrecord
     end
 
-    # Update this record in the database. Cannot be directly in the method 'update' because it would trigger callbacks and
-    # therefore weird behavior.
+    # Update this record in hbase. Cannot be directly in the method 'update' because it would trigger callbacks and
+    # therefore weird behaviors.
     def update_bigrecord
       timestamp = self.respond_to?(:updated_at) ? self.updated_at.to_bigrecord_timestamp : Time.now.to_bigrecord_timestamp
 
@@ -229,7 +229,6 @@ module BigRecord
     end
 
   public
-
     class << self
 
       # Return the name of the primary key. Defaults to "id".
@@ -298,16 +297,6 @@ module BigRecord
           when :all   then find_every(options)
           else             find_from_ids(args, options)
         end
-      end
-
-      # Returns all records for the model by invoking find(:all)
-      def all
-        find(:all)
-      end
-
-      # Returns the first record for the model by invoke find(:first)
-      def first
-        find(:first)
       end
 
       # Returns true if the given +id+ represents the primary key of a record in the database, false otherwise.
@@ -398,16 +387,10 @@ module BigRecord
         connection.truncate_table(table_name)
       end
 
-      # Returns the inflected table name as it's called in your database.
       def table_name
         (superclass == BigRecord::Base) ? @table_name : superclass.table_name
       end
 
-      # If you want to avoid the table name inflection, you can define the name
-      # explicitly with this method.
-      #
-      # @example
-      #   set_table_name :table_xyz
       def set_table_name(name)
         @table_name = name.to_s
       end
@@ -536,7 +519,6 @@ module BigRecord
       end
 
     protected
-
       def invalidate_views
         @views = nil
         @view_names = nil
@@ -629,6 +611,16 @@ module BigRecord
           end
         else
           raise RecordNotFound, "Couldn't find #{name} with ID=#{id}"
+        end
+      end
+
+      def find_all_by_id(ids, options={})
+        ids.inject([]) do |result, id|
+          begin
+            result << find_one(id, options)
+          rescue BigRecord::RecordNotFound => e
+          end
+          result
         end
       end
 

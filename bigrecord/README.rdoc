@@ -3,10 +3,10 @@
 A Ruby Object/Data Mapper for distributed column-oriented data stores (inspired by BigTable) such as HBase. Intended to work as a drop-in for Rails applications.
 
 == Features
-* {BigRecord::DynamicSchema Dynamic schemas} (due to the schema-less design of BigTable).
+* Dynamic schemas (due to the schema-less design of BigTable).
 * Support for column-oriented data stores.
 * Similar usage to Active Record.
-* {BigRecord::Embedded Embedded records} that store within a single table row.
+* Embedded records that store within a single table row.
 * Automatic versioning.
 * Scalability (depending on the data store used).
 
@@ -48,6 +48,5 @@ Big Record is released under the MIT license.
 == Links
 
 * Contact Us
-  * Google Group - http://groups.google.com/group/bigrecord
   * Website - http://www.bigrecord.org
   * IRC Channel - <tt>#bigrecord</tt> on irc.freenode.net

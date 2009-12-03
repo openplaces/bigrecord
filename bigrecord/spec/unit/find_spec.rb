@@ -29,16 +29,6 @@ describe BigRecord::Base do
       Zoo.find(id).should == [zoo]
     end
 
-    it "should be invoked when #all and #first are called" do
-      zoo = Zoo.new
-
-      Zoo.should_receive(:find).with(:all).and_return([zoo])
-      Zoo.all.should == [zoo]
-
-      Zoo.should_receive(:find).with(:first).and_return(zoo)
-      Zoo.first.should == zoo
-    end
-
   end
 
 end

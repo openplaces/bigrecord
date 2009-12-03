@@ -1,18 +1,4 @@
 module BigRecord
-
-  # = Dynamic Schema
-  #
-  # The dynamic schema functionality of Bigrecord refers to the ability to
-  # modify the attributes of a model within the class itself, rather than being
-  # bounded by the database. This is an inherit property of using the BigTable
-  # database model, and Bigrecord leverages its use.
-  #
-  # New attributes defined will simply return nil for records that existed
-  # before their addition into the model, while attributes that are removed
-  # from the model will just be ignored when accessing existing records.
-  #
-  # Refer to {BigRecord::ConnectionAdapters::Column} for more information.
-  #
   module DynamicSchema
 
     def self.included(base) #:nodoc:

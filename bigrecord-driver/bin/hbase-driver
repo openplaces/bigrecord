@@ -1,5 +1,25 @@
 #!/usr/bin/env ruby
 
 launcher = File.join(File.dirname(__FILE__), 'launcher')
-args = ["hbase"] + ARGV
+
+args = ARGV + ["-d", "hbase"]
+
+# Check if we received a lib argument defining the hbase path
+if ARGV.include?("-l")
+  switch_index = ARGV.index("-l")
+  hbase_path = ARGV[switch_index+1]
+
+  # We're only going to include the jar files we need.
+  required_jars = Dir[	hbase_path+"/*.jar",
+						hbase_path+"/lib/commons-logging*.jar",
+						hbase_path+"/lib/zookeeper*.jar",
+						hbase_path+"/lib/log4j*.jar",
+						hbase_path+"/lib/hadoop*.jar"]
+  classpath = required_jars.join(":")
+
+  args.delete_at(switch_index)
+  args.delete_at(switch_index)
+  args = args + ["-c", '"'+classpath+'"']
+end
+
 exec "bash", launcher, *args

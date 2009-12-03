@@ -1,7 +1,71 @@
-#! /bin/bash
-DRIVERNAME=$1
+#!/bin/bash
+
+print_usage()
+{
+cat << EOF
+Bigrecord Driver
+================
+Usage: $DRIVERNAME-driver {start|stop|restart|status|start_debug} OPTIONS
+
+OPTIONS:
+   -h	Show this message
+   -p	Define a port number (defaults to 40000)
+   -l	Path to your $DRIVERNAME install (used to include lib files)
+   -c	Custom class path (overwrites -l option)
+EOF
+}
+
+# Getting the action
+if [ "$1" != "" ]; then
+  if [ "$1" != "-h" -a "$1" != "-d" ]; then
+    ACTION=$1
+    shift
+  fi
+fi
+
+# Getting the other options
+while getopts "ht:d:p:c:" optname
+do
+  case "$optname" in
+    "h")
+      print_usage
+      exit 1
+      ;;
+    "d")
+      DRIVERNAME=$OPTARG
+      ;;
+    "p")
+      PORT=$OPTARG
+      ;;
+    "c")
+      CLASS_PATH=$OPTARG
+      ;;
+    "?")
+      echo "Invalid option $OPTARG"
+      ;;
+    ":")
+      echo "No argument given for option $OPTARG"
+      ;;
+    *)
+      echo "Unknown error while processing options"
+      ;;
+  esac
+done
+
+# Default parameters
+if [ "$PORT" = "" ] ; then PORT=40000 ; fi
+
 # Fix for Amazon EC2 instances
 unset RUBYLIB
+
+# Check that the DRIVERNAME given is valid
+if [ "$DRIVERNAME" == "" ]; then
+  echo "Driver type was not specified"
+  exit 1
+elif [ "$DRIVERNAME" != "hbase" -a "$DRIVERNAME" != "cassandra" ]; then
+  echo "Driver type \"$DRIVERNAME\" is invalid"
+  exit 1
+fi
 
 # Needs the $JRUBY_HOME environment variable to be set
 if [ "$JRUBY_HOME" == "" ]; then
@@ -9,34 +73,37 @@ if [ "$JRUBY_HOME" == "" ]; then
   exit 1
 fi
 
-VENDOR_DIR=`dirname "$0"`
-VENDOR_DIR=`cd "$VENDOR_DIR/../vendor"; pwd`
+CURRENT_DIR=`dirname "$0"`
 
-CONF_DIR=`dirname "$0"`
-CONF_DIR=`cd "$CONF_DIR/../conf"; pwd`
+VENDOR_DIR=`cd "$CURRENT_DIR/../vendor"; pwd`
+CONF_DIR=`cd "$CURRENT_DIR/../conf"; pwd`
 
-# Ruby file that contains the drb server
-DRIVER=$VENDOR_DIR/../lib/big_record_driver/"$DRIVERNAME"_driver/server.rb
+# Ruby file that contains the DRb server
+DRIVER=$CURRENT_DIR/../lib/big_record_driver/"$DRIVERNAME"_driver/server.rb
 
-# location where the pids are stored
-PIDS_DIR=/tmp/$DRIVERNAME-driver/run
+# Location where the pids are stored
+PIDS_DIR=/tmp/bigrecord-driver/$DRIVERNAME/pids
 mkdir -p $PIDS_DIR
 
-# startup delay
-STARTUP_TIMEOUT=60
+# Startup delay
+STARTUP_TIMEOUT=30
 
-# location where the log files are stored
-LOGS_DIR=/tmp/$DRIVERNAME-driver/log
+# Location where the log files are stored
+LOGS_DIR=/tmp/bigrecord-driver/$DRIVERNAME/log
 mkdir -p $LOGS_DIR
 
-# set the environment to use jruby by default
+# Set the environment to use jruby by default
 PATH=$JRUBY_HOME/bin:$PATH
-for f in $VENDOR_DIR/java/$DRIVERNAME/*.jar; do
-  if [ -f $f ]; then
-    CLASSPATH=${CLASSPATH}:$f;
-  fi
-done
-#CLASSPATH=$CLASSPATH:$VENDOR_DIR/java/hadoop-0.19.1-core.jar:$VENDOR_DIR/java/hbase-0.19.1.jar:$VENDOR_DIR/java/commons-logging-1.0.4.jar:$VENDOR_DIR/java/commons-logging-api-1.0.4.jar:$VENDOR_DIR/java/log4j-1.2.13.jar:$CONF_DIR/log4j.properties
+
+if [ "$CLASS_PATH" == "" ]; then
+	for f in $VENDOR_DIR/java/$DRIVERNAME/*.jar; do
+	  if [ -f $f ]; then
+	    CLASSPATH=${CLASSPATH}:$f;
+	  fi
+	done
+else
+  CLASSPATH=${CLASSPATH}:$CLASS_PATH;
+fi
 
 export PATH CLASSPATH
 
@@ -44,112 +111,96 @@ export PATH CLASSPATH
 # manipulating the global variable
 PIDS="" 
 
+
 refresh_pids() {
-		if [ -f $PIDS_DIR/$PORT.pid ]; then
-        	PID=`cat $PIDS_DIR/$PORT.pid`
-        else
-        	PID=""
-        fi
+	if [ -f $PIDS_DIR/$PORT.pid ]; then
+		PID=`cat $PIDS_DIR/$PORT.pid`
+	else
+		PID=""
+	fi
 }
 
 start() {
-        echo -n "Starting $DRIVERNAME driver on port $PORT."
-        
-        refresh_pids
+    echo -n "Starting $DRIVERNAME-driver on port $PORT."
 
-        if [ -f "$PIDS_DIR/$PORT.pid" -a "$PID" != "" ] ; then
-                echo -e "\nAlready running (pid="$PID")." 
-                exit 1
-        else
-            rm -f $LOGS_DIR/$PORT.log
-            nohup jruby $DRIVER $PORT >> $LOGS_DIR/$PORT.log 2>&1 < /dev/null &
-            PID=$!
-            if [ "$PID" != "" ] ; then
-                # monitor the log file for the message saying that the server is started
-                for ((i=0; i<$STARTUP_TIMEOUT; i+=1)); do
-                  sleep 1
-                  echo -n "."
-                  if [ "$(cat $LOGS_DIR/$PORT.log | grep 'Started drb server')" != "" ] ; then
-                    break
-                  fi
-                done
+    refresh_pids
 
-                if [ "$i" == $STARTUP_TIMEOUT ] ; then
-                  echo -e "\nStartup timeout: couldn't start the DRb server."
-                else
-                  echo $PID > $PIDS_DIR/$PORT.pid
-                fi
-                echo ""
-            else
-            	echo -e "\nAn error occured while starting the DRb server."
-            fi
-        fi
+    if [ -f "$PIDS_DIR/$PORT.pid" -a "$PID" != "" ] ; then
+        echo -e "\nAlready running (pid="$PID")."
+        exit 1
+    else
+	    rm -f $LOGS_DIR/$PORT.log
+	    nohup jruby $DRIVER $PORT >> $LOGS_DIR/$PORT.log 2>&1 < /dev/null &
+	    PID=$!
+	    if [ "$PID" != "" ] ; then
+	        # monitor the log file for the message saying that the server is started
+	        for ((i=0; i<$STARTUP_TIMEOUT; i+=1)); do
+	          sleep 1
+	          echo -n "."
+	          if [ "$(cat $LOGS_DIR/$PORT.log | grep 'Started drb server')" != "" ] ; then
+	            break
+	          fi
+	        done
+
+	        if [ "$i" == $STARTUP_TIMEOUT ] ; then
+	          echo -e "\nStartup timeout: couldn't start the DRb server."
+	        else
+	          echo $PID > $PIDS_DIR/$PORT.pid
+	        fi
+	        echo ""
+	    else
+            echo -e "\nAn error occured while starting the DRb server."
+	    fi
+    fi
 }
 
 stop() {
-        echo "Stopping $DRIVERNAME driver on port $PORT."
+	echo "Stopping $DRIVERNAME-driver on port $PORT"
 
-        refresh_pids
+	refresh_pids
 
-        if [ -f "$PIDS_DIR/$PORT.pid" -a "$PID" != "" ] ; then
-        		echo "Stopping driver (pid = $PID)." >> $LOGS_DIR/$PORT.log
-                kill $PID
-                rm $PIDS_DIR/$PORT.pid
-        else
-                echo "No $DRIVERNAME driver to kill."
-        fi
+	if [ -f "$PIDS_DIR/$PORT.pid" -a "$PID" != "" ] ; then
+		echo "Stopping driver (pid = $PID)." >> $LOGS_DIR/$PORT.log
+	    kill $PID
+	    rm $PIDS_DIR/$PORT.pid
+	else
+		echo "No $DRIVERNAME driver to kill."
+	fi
 }
 
 status() {
-		refresh_pids
-		
-		if [ -f "$PIDS_DIR/$PORT.pid" -a "$PID" != "" ] ; then
-				echo "Running."
-		else
-				echo "Stopped."
-		fi
+	refresh_pids
+
+	if [ -f "$PIDS_DIR/$PORT.pid" -a "$PID" != "" ] ; then
+		echo "$DRIVERNAME-driver is RUNNING on port $PORT"
+	else
+		echo "$DRIVERNAME-driver is STOPPED on port $PORT"
+	fi
 }
 
 start_debug() {
-  jruby $DRIVER $PORT
+	jruby $DRIVER $PORT
 }
 
-print_usage() {
-	echo "Usage: $DRIVERNAME-driver {start|stop|restart|status|start_debug} [-p <port>]"
-}
-
-set_port() {
-  if [ "$3" == "-p" -a "$4" != "" ]; then
-    PORT="$4"
-  else
-    PORT=40000
-  fi  
-}
-
-case "$2" in
+case "$ACTION" in
     start)
-    	set_port $@
    		start
         ;;
     stop)
-    	set_port $@
    		stop
         ;;
     restart)
-    	set_port $@
    		stop
    		start
         ;;
     status)
-        set_port $@
         status
         ;;
     start_debug)
-    	set_port $@
     	start_debug
     	;;
     *)
-        print_usage 
+        print_usage
         exit 1
 esac
 exit 0

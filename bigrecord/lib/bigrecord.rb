@@ -1,1 +1,1 @@
-require File.join(File.dirname(__FILE__), 'big_record')
+require 'big_record'

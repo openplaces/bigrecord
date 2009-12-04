@@ -53,6 +53,7 @@ require dir + '/family_span_columns'
 require dir + '/migration'
 require dir + '/connection_adapters'
 require dir + '/fixtures'
+require dir + '/version'
 
 # Add support for collections to tag builders
 require dir + '/action_view_extensions'

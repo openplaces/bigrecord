@@ -1,6 +1,12 @@
-= Big Record Driver
+= Bigrecord Driver
 
-Bigrecord drivers that use JRuby DRb servers to connect with databases through their native Java APIs. Currently supported databases are HBase and Cassandra.
+Bigrecord Driver uses JRuby to interact with Java databases through their native Java APIs, and connect with other Ruby (regular Ruby or JRuby) based applications through DRb.
+
+Currently supported databases are:
+* HBase
+* Cassandra.
+
+The system that's running Bigrecord Driver will of course require JRuby and Java, however any other systems looking to access the databases require only Ruby and network access to the Bigrecord Driver server.
 
 == Requirements
 
@@ -10,7 +16,7 @@ Bigrecord drivers that use JRuby DRb servers to connect with databases through t
 
 == Installation
 
-(1) Install the latest Java Runtime for your operating system. There are many resources online for this.
+(1) Install the latest Java Runtime for your operating system (or any version that's supported by JRuby. There are many resources online for this.
 
 (2) Go to: http://jruby.org/getting-started and follow the instructions for installing the latest JRuby.
 
@@ -18,9 +24,11 @@ Bigrecord drivers that use JRuby DRb servers to connect with databases through t
 
 	export JRUBY_HOME=/path/to/jruby
 
-and then add $JRUBY_HOME/bin to your system PATH.
+and then add $JRUBY_HOME/bin to your system PATH:
 
-(4) Check that JRuby is installed correctly by typing in the following commands, and verifying you get similar output:
+    export PATH=$PATH:$JRUBY_HOME/bin
+
+(4) Check that JRuby is installed correctly by typing in the following commands, and verifying that you get similar output:
 
 	> echo $JRUBY_HOME
 	/path/to/jruby

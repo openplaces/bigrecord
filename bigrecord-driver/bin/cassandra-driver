@@ -1,5 +1,0 @@
-#!/usr/bin/env ruby
-
-launcher = File.join(File.dirname(__FILE__), 'launcher')
-args = ARGV + ["-d", "cassandra"]
-exec "bash", launcher, *args

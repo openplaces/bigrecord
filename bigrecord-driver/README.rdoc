@@ -4,7 +4,6 @@ Bigrecord Driver uses JRuby to interact with Java databases through their native
 
 Currently supported databases are:
 * HBase
-* Cassandra.
 
 The system that's running Bigrecord Driver will of course require JRuby and Java, however any other systems looking to access the databases require only Ruby and network access to the Bigrecord Driver server.
 

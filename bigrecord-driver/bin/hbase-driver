@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-launcher = File.join(File.dirname(__FILE__), 'launcher')
+launcher = File.join(File.dirname(__FILE__), 'bigrecord-driver')
 
 args = ARGV + ["-d", "hbase"]
 

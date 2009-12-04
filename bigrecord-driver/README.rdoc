@@ -42,7 +42,7 @@ and then add $JRUBY_HOME/bin to your system PATH:
 
 === Starting the service
 
-Once you have everything installed, you can start up a Bigrecord Driver DRb server with:
+Once you have everything installed, you can start up a Bigrecord Driver DRb server for HBase with:
 
   hbase-driver start -p [port]
 

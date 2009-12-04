@@ -5,43 +5,36 @@
 
 Gem::Specification.new do |s|
   s.name = %q{bigrecord-driver}
-  s.version = "0.0.5"
+  s.version = "0.0.6"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["openplaces.org"]
-  s.date = %q{2009-12-02}
+  s.date = %q{2009-12-04}
   s.default_executable = %q{hbase-driver}
-  s.description = %q{Bigrecord drivers that use JRuby DRb servers to connect with databases through their native Java APIs. Currently supported databases are HBase and Cassandra.}
+  s.description = %q{Bigrecord drivers that use JRuby DRb servers to connect with databases through their native Java APIs. Currently supported database is HBase.}
   s.email = %q{bigrecord@openplaces.org}
-  s.executables = ["hbase-driver", "cassandra-driver", "launcher"]
+  s.executables = ["hbase-driver", "bigrecord-driver"]
   s.extra_rdoc_files = [
-    "MIT-LICENSE",
-     "README.rdoc"
+    "README.rdoc"
   ]
   s.files = [
-    "MIT-LICENSE",
-     "README.rdoc",
+    "README.rdoc",
      "VERSION",
-     "bin/cassandra-driver",
+     "bin/bigrecord-driver",
      "bin/hbase-driver",
-     "bin/launcher",
      "conf/log4j.properties",
      "lib/big_record_driver.rb",
      "lib/big_record_driver/bigrecord_server.rb",
-     "lib/big_record_driver/cassandra_driver/server.rb",
      "lib/big_record_driver/client.rb",
      "lib/big_record_driver/column_descriptor.rb",
      "lib/big_record_driver/driver_manager.rb",
      "lib/big_record_driver/exceptions.rb",
      "lib/big_record_driver/hbase_driver/server.rb",
+     "lib/big_record_driver/version.rb",
      "lib/bigrecord_driver.rb",
      "test/abstract_test_client.rb",
-     "test/test_client_cassandra.rb",
      "test/test_client_hbase.rb",
      "test/test_driver_manager.rb",
-     "vendor/java/cassandra/cassandra-0.3.0-dev.jar",
-     "vendor/java/cassandra/libthrift.jar",
-     "vendor/java/cassandra/log4j-1.2.15.jar",
      "vendor/java/hbase/commons-logging-1.0.4.jar",
      "vendor/java/hbase/commons-logging-api-1.0.4.jar",
      "vendor/java/hbase/hadoop-0.20.1-hdfs127-core.jar",

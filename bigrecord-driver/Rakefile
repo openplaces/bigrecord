@@ -13,8 +13,8 @@ begin
     gemspec.email = "bigrecord@openplaces.org"
     gemspec.homepage = "http://www.bigrecord.org"
     gemspec.summary = "Bigrecord drivers implemented as JRuby DRb servers"
-    gemspec.description = "Bigrecord drivers that use JRuby DRb servers to connect with databases through their native Java APIs. Currently supported databases are HBase and Cassandra."
-    gemspec.executables = ['hbase-driver', 'cassandra-driver', 'launcher']
+    gemspec.description = "Bigrecord drivers that use JRuby DRb servers to connect with databases through their native Java APIs. Currently supported database is HBase."
+    gemspec.executables = ['hbase-driver', 'bigrecord-driver']
     gemspec.default_executable = 'hbase-driver'
     gemspec.files = FileList["{bin,conf,lib,test,vendor}/**/*","MIT-LICENSE", "README.rdoc", "VERSION"].to_a
     gemspec.extra_rdoc_files = FileList["MIT-LICENSE","README.rdoc"].to_a

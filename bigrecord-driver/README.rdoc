@@ -4,7 +4,8 @@ Bigrecord drivers that use JRuby DRb servers to connect with databases through t
 
 == Requirements
 
-* HBase 0.20.1
+* HBase 0.20.2 (packaged by default)
+  * Any HBase version that conforms to the 0.20.2 API will work, see the "Database lib path" section for more information
 * JRuby 1.3.0+
 
 == Installation
@@ -52,7 +53,7 @@ Check out more usage options with:
 
   hbase-driver
 
-=== Advanced Usage
+=== Database lib path
 
 Bigrecord Driver comes packaged with the latest set of lib files needed to interact with the specified database. Since it might be necessary to include the lib files of a different version than the latest, specify the database install location using the -l argument.
 

@@ -38,5 +38,6 @@ Big Record is released under the MIT license.
 == Links
 
 * Contact Us
+  * Google Group - http://groups.google.com/group/bigrecord
   * Website - http://www.bigrecord.org
   * IRC Channel - <tt>#bigrecord</tt> on irc.freenode.net

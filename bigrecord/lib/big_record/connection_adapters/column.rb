@@ -316,7 +316,16 @@ module BigRecord
         end
 
         def hash_to_integer_collection(value)
-          parse_collection(value).collect(&:to_i)
+          ret = nil
+          begin
+            collection = parse_collection(value)
+            ret = collection.collect(&:to_i)
+          rescue
+            $stderr.puts("expected an array, got #{collection}, (#{collection.class})\n"+
+              "original value fed into parse_collection was #{value}, (#{value.class})")
+            ret = [collection.to_i]
+          end
+          ret
         end
 
         def hash_to_float_collection(value)

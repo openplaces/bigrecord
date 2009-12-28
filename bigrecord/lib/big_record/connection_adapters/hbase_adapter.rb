@@ -332,7 +332,7 @@ module BigRecord
         when TYPE_NULL then nil
         when TYPE_STRING then data[1..-1]
         when TYPE_BINARY then data[1..-1]
-        else nil
+        else data
         end
       end
 

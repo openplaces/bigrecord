@@ -1,4 +1,3 @@
-require 'rubygems'
 require 'set'
 require 'drb'
 
@@ -6,14 +5,14 @@ module BigRecord
   class Base
     # Establishes a connection to the database that's used by all Active Record objects.
     def self.hbase_connection(config) # :nodoc:
-      unless defined?(BigRecordDriver)
+      unless defined?(BigRecord::Driver)
         begin
           # Bigrecord's source is included with Bigrecord-Driver, that's where we check for it first.
           require File.join(File.dirname(__FILE__), "..", "..", "..", "..", "bigrecord-driver", "lib", "big_record_driver")
         rescue LoadError
           # Then we'll require it from the load path (or rubygems)
           begin
-            require 'bigrecord_driver'
+            require 'big_record_driver'
           rescue LoadError => e
             # If it couldn't be found, we'll just prompt the user to install the gem.
             puts "[BigRecord] bigrecord-driver is needed for HbaseAdapter. Install it with: gem install bigrecord-driver"
@@ -29,7 +28,7 @@ module BigRecord
       drb_host                = config[:drb_host]
       drb_port                = config[:drb_port]
 
-      hbase = BigRecordDriver::Client.new(config)
+      hbase = BigRecord::Driver::Client.new(config)
 
       ConnectionAdapters::HbaseAdapter.new(hbase, logger, [zookeeper_host, zookeeper_client_port], config)
     end
@@ -88,7 +87,7 @@ module BigRecord
 
       def active?
         @connection.ping
-      rescue BigRecordError
+      rescue BigRecord::Driver::DriverError
         false
       end
 
@@ -259,7 +258,7 @@ module BigRecord
       end
 
       def add_column_family(table_name, column_name, options = {})
-        column = BigRecordDriver::ColumnDescriptor.new(column_name.to_s, options)
+        column = BigRecord::Driver::ColumnDescriptor.new(column_name.to_s, options)
 
         result = nil
         log "ADD COLUMN TABLE #{table_name} COLUMN #{column_name} (#{options.inspect});" do
@@ -281,7 +280,7 @@ module BigRecord
       alias :remove_family :remove_column_family
 
       def modify_column_family(table_name, column_name, options = {})
-        column = BigRecordDriver::ColumnDescriptor.new(column_name.to_s, options)
+        column = BigRecord::Driver::ColumnDescriptor.new(column_name.to_s, options)
 
         result = nil
         log "MODIFY COLUMN TABLE #{table_name} COLUMN #{column_name} (#{options.inspect});" do
@@ -412,7 +411,7 @@ module BigRecord
       end
 
       def column_family(name, options = {})
-        column = self[name] || BigRecordDriver::ColumnDescriptor.new(name.to_s, options)
+        column = self[name] || BigRecord::Driver::ColumnDescriptor.new(name.to_s, options)
 
         @column_families << column unless @column_families.include? column
         self

@@ -1,26 +1,22 @@
 require File.dirname(__FILE__) + '/abstract_test_client'
 
-class TestHbaseClient < Test::Unit::TestCase #TestClient
-  include AbstractTestClient
-  # Prepare the connection and the test tables.
-  def setup
-    unless @big_db
-      unless BigRecordDriver::DriverManager.running?(40005)
-        BigRecordDriver::DriverManager.restart(40005)
-      end
+PORT = (ARGV[0] || 40000).to_i
 
-      #TODO: don't use hard coded values for the config
-      @big_db = BigRecordDriver::Client.new(:zookeeper_quorum=> 'localhost', :zookeeper_client_port => '2181',:drb_port => 40005)
-    end
+class TestHbaseClient < Test::Unit::TestCase
+  include AbstractTestClient
+
+  def setup
+    @big_db = BigRecord::Driver::Client.new({:zookeeper_quorum=> 'localhost', :zookeeper_client_port => '2181', :drb_port => PORT}) unless @big_db
 
     @big_db.drop_table(TABLE_NAME) if @big_db.table_exists?(TABLE_NAME)
 
-    # Create the test table
-    # unless @big_db.table_exists?(TABLE_NAME)
-      columns_descriptors = []
-      columns_descriptors << BigRecordDriver::ColumnDescriptor.new(:columnfamily1)
-      columns_descriptors << BigRecordDriver::ColumnDescriptor.new(:columnfamily2)
-      @big_db.create_table(TABLE_NAME, columns_descriptors)
-    # end
+    columns_descriptors = []
+    columns_descriptors << BigRecord::Driver::ColumnDescriptor.new(:columnfamily1)
+    columns_descriptors << BigRecord::Driver::ColumnDescriptor.new(:columnfamily2)
+    @big_db.create_table(TABLE_NAME, columns_descriptors)
+  end
+
+  def teardown
+    @big_db.drop_table(TABLE_NAME) if @big_db.table_exists?(TABLE_NAME)
   end
 end

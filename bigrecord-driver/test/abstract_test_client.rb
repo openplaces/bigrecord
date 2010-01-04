@@ -1,9 +1,11 @@
+require 'rubygems'
+
 $:.unshift(File.dirname(__FILE__) + '/../lib')
 
 require 'test/unit'
 require 'big_record_driver'
 
-module AbstractTestClient #< Test::Unit::TestCase
+module AbstractTestClient
 
   TABLE_NAME = :animals
 
@@ -286,7 +288,7 @@ module AbstractTestClient #< Test::Unit::TestCase
   def test_ping
     db = nil
     assert_nothing_raised("Couldn't initialize the client") do
-      db = BigRecordDriver::Client.new(:drb_port => 40005)
+      db = BigRecord::Driver::Client.new(:drb_port => PORT)
     end
     assert_not_nil db, "Couldn't initialize the client"
     assert db.ping, "The client was initialized but we cannot communicate with the db itself"
@@ -308,7 +310,7 @@ module AbstractTestClient #< Test::Unit::TestCase
   end
 
   def test_invalid_column_family
-    assert_raises BigRecordDriver::JavaError do
+    assert_raises BigRecord::Driver::JavaError do
       @big_db.get(TABLE_NAME, 'dog-key', 'nonexistentcolumnfamily:name')
     end
   end

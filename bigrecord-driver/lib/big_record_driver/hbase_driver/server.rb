@@ -9,6 +9,12 @@ module BigRecord
       include_class "java.util.TreeMap"
       include_class "org.apache.hadoop.hbase.client.HTable"
       include_class "org.apache.hadoop.hbase.client.HBaseAdmin"
+      include_class "org.apache.hadoop.hbase.client.Get"
+      include_class "org.apache.hadoop.hbase.client.Put"
+      include_class "org.apache.hadoop.hbase.client.Delete"
+      include_class "org.apache.hadoop.hbase.client.Result"
+      include_class "org.apache.hadoop.hbase.client.RowLock"
+      include_class "org.apache.hadoop.hbase.KeyValue"
       include_class "org.apache.hadoop.hbase.io.BatchUpdate"
       include_class "org.apache.hadoop.hbase.io.hfile.Compression"
       include_class "org.apache.hadoop.hbase.HBaseConfiguration"
@@ -104,32 +110,38 @@ module BigRecord
       def get_columns(table_name, row, columns, options={})
         safe_exec do
           return nil unless row
+
           table_name = table_name.to_s
           table = connect_table(table_name)
 
-          java_cols = Java::String[columns.size].new
-          columns.each_with_index do |col, i|
-            java_cols[i] = Java::String.new(col)
-          end
+          get = generate_get(row, columns)
+          result = table.get(get)
 
-          result =
-          if options[:timestamp]
-            table.getRow(row, java_cols, options[:timestamp])
-          else
-            table.getRow(row, java_cols)
-          end
+          parse_result(result)
 
-          unless !result or result.isEmpty
-            values = {}
-            result.entrySet.each do |entry|
-              column_name = Java::String.new(entry.getKey).to_s
-              values[column_name] = to_ruby_string(entry.getValue)
-            end
-            values["id"] = row
-            values
-          else
-            nil
-          end
+#          java_cols = Java::String[columns.size].new
+#          columns.each_with_index do |col, i|
+#            java_cols[i] = Java::String.new(col)
+#          end
+#
+#          result =
+#          if options[:timestamp]
+#            table.getRow(row, java_cols, options[:timestamp])
+#          else
+#            table.getRow(row, java_cols)
+#          end
+#
+#          unless !result or result.isEmpty
+#            values = {}
+#            result.entrySet.each do |entry|
+#              column_name = Java::String.new(entry.getKey).to_s
+#              values[column_name] = to_ruby_string(entry.getValue)
+#            end
+#            values["id"] = row
+#            values
+#          else
+#            nil
+#          end
         end
       end
 
@@ -185,7 +197,16 @@ module BigRecord
       def delete(table_name, row, timestamp = nil)
         safe_exec do
           table = connect_table(table_name)
-          timestamp ? table.deleteAll(row.to_bytes, timestamp) : table.deleteAll(row.to_bytes)
+
+          delete =
+            if timestamp
+              row_lock = table.lockRow(row.to_bytes)
+              Delete.new(row.to_bytes, timestamp, row_lock)
+            else
+              Delete.new(row.to_bytes)
+            end
+
+          table.delete(delete)
         end
       end
 
@@ -308,7 +329,17 @@ module BigRecord
 
     private
 
-      # Create a connection to a Hbase table and keep it in memory.
+      def init_connection
+        safe_exec do
+          @conf = HBaseConfiguration.new
+          @conf.set('hbase.zookeeper.quorum', "#{@config[:zookeeper_quorum]}")
+          @conf.set('hbase.zookeeper.property.clientPort', "#{@config[:zookeeper_client_port]}")
+          @admin = HBaseAdmin.new(@conf)
+          @tables = {}
+        end
+      end
+
+      # Create a connection to an HBase table and keep it in memory.
       def connect_table(table_name)
         safe_exec do
           table_name = table_name.to_s
@@ -327,14 +358,63 @@ module BigRecord
         end
       end
 
-      def init_connection
-        safe_exec do
-          @conf = HBaseConfiguration.new
-          @conf.set('hbase.zookeeper.quorum', "#{@config[:zookeeper_quorum]}")
-          @conf.set('hbase.zookeeper.property.clientPort', "#{@config[:zookeeper_client_port]}")
-          @admin = HBaseAdmin.new(@conf)
-          @tables = {}
+      # Create a Get object given parameters.
+      #
+      # @param [String] row
+      # @param [Array, String] A single (or collection) of strings
+      #     fully qualified column name or column family (ends with ':').
+      #
+      # @return [Get] org.apache.hadoop.hbase.client.Get object
+      #     corresponding to the arguments passed.
+      def generate_get(row, timestamp, columns)
+        columns = [columns].flatten
+
+        get = Get.new(row.to_bytes)
+
+        columns.each do |column|
+          (column[-1,1] == ":") ?
+            get.addFamily(column.to_bytes) :
+            get.add(column.to_bytes)
         end
+
+        return get
+      end
+
+      # Create a Put object given parameters.
+      #
+      # @param [String] row
+      # @param [Integer] timestamp
+      # @param [Hash] Keys as the fully qualified column names and
+      #     their associated values.
+      #
+      # @return [Put] org.apache.hadoop.hbase.client.Put object
+      #     corresponding to the arguments passed.
+      def generate_put(row, timestamp, columns = {})
+        columns = [columns].flatten
+
+        put = Put.new(row.to_bytes)
+
+        columns.each do |key, value|
+          put.add(key.to_bytes, timestamp, value.to_bytes)
+        end
+
+        return put
+      end
+
+      # Parse a Result object into a Hash.
+      #
+      # @param [Result] result
+      #
+      # @return [Hash] Fully qualified column names as keys
+      #     and their corresponding values.
+      def parse_result(result)
+        output = {}
+
+        result.list.each do |keyvalue|
+          output[to_ruby_string(keyvalue.getColumn)] = to_ruby_string(keyvalue.getValue)
+        end
+
+        return output
       end
 
       def generate_column_descriptor(column_descriptor)

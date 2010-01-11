@@ -81,8 +81,8 @@ module BigRecord
 
     protected
 
-      def to_ruby_string(cell)
-        Java::String.new(cell.getValue).to_s
+      def to_ruby_string(byte_string)
+        Java::String.new(byte_string).to_s
       end
 
       # Try to recover from network related exceptions. e.g. hbase has been restarted and the

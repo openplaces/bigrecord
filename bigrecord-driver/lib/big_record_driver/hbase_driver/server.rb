@@ -12,10 +12,11 @@ module BigRecord
       include_class "org.apache.hadoop.hbase.client.Get"
       include_class "org.apache.hadoop.hbase.client.Put"
       include_class "org.apache.hadoop.hbase.client.Delete"
+      include_class "org.apache.hadoop.hbase.client.Scan"
       include_class "org.apache.hadoop.hbase.client.Result"
+      include_class "org.apache.hadoop.hbase.client.ResultScanner"
       include_class "org.apache.hadoop.hbase.client.RowLock"
       include_class "org.apache.hadoop.hbase.KeyValue"
-      include_class "org.apache.hadoop.hbase.io.BatchUpdate"
       include_class "org.apache.hadoop.hbase.io.hfile.Compression"
       include_class "org.apache.hadoop.hbase.HBaseConfiguration"
       include_class "org.apache.hadoop.hbase.HConstants"
@@ -41,15 +42,15 @@ module BigRecord
       def update(table_name, row, values, timestamp=nil)
         safe_exec do
           return nil unless row
+
           table = connect_table(table_name)
+          row_lock = table.lockRow(row.to_bytes)
 
-          batch = timestamp ? BatchUpdate.new(row, timestamp) : BatchUpdate.new(row)
+          put = generate_put(row, values, timestamp, row_lock)
+          table.put(put)
 
-          values.each do |column, value|
-            batch.put(column, value.to_bytes)
-          end
+          table.unlockRow(row_lock)
 
-          table.commit(batch)
           row
         end
       end
@@ -59,11 +60,12 @@ module BigRecord
       #   => "--- 0.90124565\n"
       #
       # valid options:
-      #   :timestamp      => integer corresponding to the time when the record was saved in hbase
+      #   :timestamp  => integer corresponding to the time when the record was saved in hbase
       #   :versions   => number of versions to retreive, starting at the specified timestamp (or the latest)
       def get(table_name, row, column, options={})
         safe_exec do
           return nil unless row
+
           table = connect_table(table_name)
 
           # Retreive only the last version by default
@@ -73,32 +75,20 @@ module BigRecord
           # validate the arguments
           raise ArgumentError, "versions must be >= 1" unless options[:versions] >= 1
 
-          # get the raw data from hbase
-          unless options[:timestamp]
-            if options[:versions] == 1
-              raw_data = table.get(row, column)
-            else
-              raw_data = table.get(row,
-                                    column,
-                                    options[:versions])
-            end
-          else
-            raw_data = table.get(row,
-                                  column,
-                                  options[:timestamp],
-                                  options[:versions])
-          end
+          get = generate_get(row, column)
+          get.setMaxVersions(options[:versions])
+          get.setTimeStamp(options[:timestamp]) if options[:timestamp]
 
-          # Return either a single value or an array, depending on the number of version that have been requested
-          if options[:versions] == 1
-            return nil unless raw_data
-            raw_data = raw_data[0] if options[:timestamp]
-            to_ruby_string(raw_data)
+          result = table.get(get)
+
+          if (result.nil? || result.isEmpty)
+            nil
           else
-            return [] unless raw_data
-            raw_data.collect do |raw_data_version|
-              to_ruby_string(raw_data_version)
+            output = result.list.collect do |keyvalue|
+              to_ruby_string(keyvalue.getValue)
             end
+
+            return (options[:versions] == 1 ? output[0] : output)
           end
         end
       end
@@ -117,31 +107,11 @@ module BigRecord
           get = generate_get(row, columns)
           result = table.get(get)
 
-          parse_result(result)
-
-#          java_cols = Java::String[columns.size].new
-#          columns.each_with_index do |col, i|
-#            java_cols[i] = Java::String.new(col)
-#          end
-#
-#          result =
-#          if options[:timestamp]
-#            table.getRow(row, java_cols, options[:timestamp])
-#          else
-#            table.getRow(row, java_cols)
-#          end
-#
-#          unless !result or result.isEmpty
-#            values = {}
-#            result.entrySet.each do |entry|
-#              column_name = Java::String.new(entry.getKey).to_s
-#              values[column_name] = to_ruby_string(entry.getValue)
-#            end
-#            values["id"] = row
-#            values
-#          else
-#            nil
-#          end
+          begin
+            parse_result(result)
+          rescue
+            nil
+          end
         end
       end
 
@@ -153,43 +123,34 @@ module BigRecord
           table_name = table_name.to_s
           table = connect_table(table_name)
 
-          java_cols = Java::String[columns.size].new
-          columns.each_with_index do |col, i|
-            java_cols[i] = Java::String.new(col)
+          scan = Scan.new
+          scan.setStartRow(start_row.to_bytes) if start_row
+          scan.setStopRow(stop_row.to_bytes) if stop_row
+
+          columns.each do |column|
+            (column[-1,1] == ":") ?
+              scan.addFamily(column.gsub(":", "").to_bytes) :
+              scan.addColumn(column.to_bytes)
           end
 
-          start_row ||= ""
-          start_row = start_row.to_s
+          scanner = table.getScanner(scan)
 
-          # We cannot set stop_row like start_row because a
-          # default stop row would have to be the biggest value possible
-          if stop_row
-            scanner = table.getScanner(java_cols, start_row, stop_row, HConstants::LATEST_TIMESTAMP)
+          if limit
+            results = scanner.next(limit)
           else
-            scanner = table.getScanner(java_cols, start_row)
+            results = []
+            while (row_result = scanner.next) != nil
+              results << row_result
+            end
           end
 
-          row_count = 0 if limit
-          result = []
-          while (row_result = scanner.next) != nil
-            if limit
-              break if row_count == limit
-              row_count += 1
-            end
-            values = {}
-            row_result.entrySet.each do |entry|
-              column_name = Java::String.new(entry.getKey).to_s
-              data = to_ruby_string(entry.getValue)
-              values[column_name] = data
-            end
-            unless values.empty?
-              # TODO: is this really supposed to be hard coded?
-              values['id'] = Java::String.new(row_result.getRow).to_s
-              result << values
-            end
+          output = []
+          results.each do |result|
+            output << parse_result(result)
           end
           scanner.close
-          result
+
+          return output
         end
       end
 
@@ -198,15 +159,13 @@ module BigRecord
         safe_exec do
           table = connect_table(table_name)
 
-          delete =
-            if timestamp
-              row_lock = table.lockRow(row.to_bytes)
-              Delete.new(row.to_bytes, timestamp, row_lock)
-            else
-              Delete.new(row.to_bytes)
-            end
-
-          table.delete(delete)
+          if timestamp
+            row_lock = table.lockRow(row.to_bytes)
+            table.delete(Delete.new(row.to_bytes, timestamp, row_lock))
+            table.unlockRow(row_lock)
+          else
+            table.delete(Delete.new(row.to_bytes))
+          end
         end
       end
 
@@ -366,15 +325,16 @@ module BigRecord
       #
       # @return [Get] org.apache.hadoop.hbase.client.Get object
       #     corresponding to the arguments passed.
-      def generate_get(row, timestamp, columns)
+      def generate_get(row, columns)
         columns = [columns].flatten
 
         get = Get.new(row.to_bytes)
 
         columns.each do |column|
+          # If the column name ends with ':' then it's a column family.
           (column[-1,1] == ":") ?
-            get.addFamily(column.to_bytes) :
-            get.add(column.to_bytes)
+            get.addFamily(column.gsub(":", "").to_bytes) :
+            get.addColumn(column.to_bytes)
         end
 
         return get
@@ -383,19 +343,20 @@ module BigRecord
       # Create a Put object given parameters.
       #
       # @param [String] row
-      # @param [Integer] timestamp
       # @param [Hash] Keys as the fully qualified column names and
       #     their associated values.
+      # @param [Integer] timestamp
       #
       # @return [Put] org.apache.hadoop.hbase.client.Put object
       #     corresponding to the arguments passed.
-      def generate_put(row, timestamp, columns = {})
-        columns = [columns].flatten
+      def generate_put(row, columns = {}, timestamp = nil, row_lock = nil)
+        put = row_lock ? Put.new(row.to_bytes, row_lock) : Put.new(row.to_bytes)
 
-        put = Put.new(row.to_bytes)
-
-        columns.each do |key, value|
-          put.add(key.to_bytes, timestamp, value.to_bytes)
+        columns.each do |name, value|
+          family, qualifier = name.split(":")
+          timestamp ?
+            put.add(family.to_bytes, qualifier.to_bytes, timestamp, value.to_bytes) :
+            put.add(family.to_bytes, qualifier.to_bytes, value.to_bytes)
         end
 
         return put
@@ -413,6 +374,8 @@ module BigRecord
         result.list.each do |keyvalue|
           output[to_ruby_string(keyvalue.getColumn)] = to_ruby_string(keyvalue.getValue)
         end
+
+        output["id"] = to_ruby_string(result.getRow)
 
         return output
       end

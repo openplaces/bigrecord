@@ -19,11 +19,8 @@ module BigRecord
       include_class "org.apache.hadoop.hbase.KeyValue"
       include_class "org.apache.hadoop.hbase.io.hfile.Compression"
       include_class "org.apache.hadoop.hbase.HBaseConfiguration"
-      include_class "org.apache.hadoop.hbase.HConstants"
-      include_class "org.apache.hadoop.hbase.HStoreKey"
       include_class "org.apache.hadoop.hbase.HTableDescriptor"
       include_class "org.apache.hadoop.hbase.HColumnDescriptor"
-      include_class "org.apache.hadoop.io.Writable"
 
       # Establish the connection with HBase with the given configuration parameters.
       def configure(config = {})
@@ -243,7 +240,6 @@ module BigRecord
       def modify_column(table_name, column_descriptor)
         safe_exec do
           table_name = table_name.to_s
-          column_name = column_name.to_s
 
           if @admin.tableExists(table_name)
             @admin.disableTable(table_name)

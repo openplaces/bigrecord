@@ -4,8 +4,8 @@ require 'drb'
 
 # The name of the java String class conflicts with ruby's String class.
 module Java
-  include_class "java.lang.String"
-  include_class "java.lang.Exception"
+  java_import "java.lang.String"
+  java_import "java.lang.Exception"
 end
 
 class String
@@ -19,7 +19,7 @@ module BigRecord
   module Driver
 
     class Server
-      include_class "java.io.IOException"
+      java_import "java.io.IOException"
 
       def configure(config = {})
         raise NotImplementedError

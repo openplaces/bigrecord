@@ -6,21 +6,13 @@ module BigRecord
   module Driver
 
     class HbaseServer < Server
-      include_class "java.util.TreeMap"
-      include_class "org.apache.hadoop.hbase.client.HTable"
-      include_class "org.apache.hadoop.hbase.client.HBaseAdmin"
-      include_class "org.apache.hadoop.hbase.client.Get"
-      include_class "org.apache.hadoop.hbase.client.Put"
-      include_class "org.apache.hadoop.hbase.client.Delete"
-      include_class "org.apache.hadoop.hbase.client.Scan"
-      include_class "org.apache.hadoop.hbase.client.Result"
-      include_class "org.apache.hadoop.hbase.client.ResultScanner"
-      include_class "org.apache.hadoop.hbase.client.RowLock"
-      include_class "org.apache.hadoop.hbase.KeyValue"
-      include_class "org.apache.hadoop.hbase.io.hfile.Compression"
-      include_class "org.apache.hadoop.hbase.HBaseConfiguration"
-      include_class "org.apache.hadoop.hbase.HTableDescriptor"
-      include_class "org.apache.hadoop.hbase.HColumnDescriptor"
+      java_import "java.util.TreeMap"
+      include_package "org.apache.hadoop.hbase.client"
+      java_import "org.apache.hadoop.hbase.KeyValue"
+      java_import "org.apache.hadoop.hbase.io.hfile.Compression"
+      java_import "org.apache.hadoop.hbase.HBaseConfiguration"
+      java_import "org.apache.hadoop.hbase.HTableDescriptor"
+      java_import "org.apache.hadoop.hbase.HColumnDescriptor"
 
       # Establish the connection with HBase with the given configuration parameters.
       def configure(config = {})
@@ -431,5 +423,5 @@ end
 
 port = ARGV[0] || 40000
 DRb.start_service("druby://:#{port}", BigRecord::Driver::HbaseServer.new)
-puts "Started drb server on port #{port}."
+puts "Started HBase drb server on port #{port}."
 DRb.thread.join

@@ -65,21 +65,19 @@ module BigRecord
 
           table = connect_table(table_name)
 
-          # Retreive only the last version by default
+          # Grab the version number if the client's using the old API,
+          # or retrieve only the lastest version by default
           options[:versions] ||= options[:num_versions]
           options[:versions] ||= 1
 
           # validate the arguments
           raise ArgumentError, "versions must be >= 1" unless options[:versions] >= 1
 
-          get = generate_get(row, column)
-          get.setMaxVersions(options[:versions])
-          get.setTimeStamp(options[:timestamp]) if options[:timestamp]
-
+          get = generate_get(row, column, options)
           result = table.get(get)
 
           if (result.nil? || result.isEmpty)
-            nil
+            return (options[:versions] == 1 ? nil : [])
           else
             output = result.list.collect do |keyvalue|
               to_ruby_string(keyvalue.getValue)
@@ -101,7 +99,7 @@ module BigRecord
           table_name = table_name.to_s
           table = connect_table(table_name)
 
-          get = generate_get(row, columns)
+          get = generate_get(row, columns, options)
           result = table.get(get)
 
           begin
@@ -318,10 +316,11 @@ module BigRecord
       # @param [String] row
       # @param [Array, String] A single (or collection) of strings
       #     fully qualified column name or column family (ends with ':').
+      # @param [Hash] options
       #
       # @return [Get] org.apache.hadoop.hbase.client.Get object
       #     corresponding to the arguments passed.
-      def generate_get(row, columns)
+      def generate_get(row, columns, options = {})
         columns = [columns].flatten
 
         get = Get.new(row.to_bytes)
@@ -333,6 +332,12 @@ module BigRecord
             get.addColumn(column.to_bytes)
         end
 
+        get.setMaxVersions(options[:versions]) if options[:versions]
+
+        # Need to add 1 to the timestamp due to the the API sillyness, i.e. min timestamp
+        # is inclusive while max timestamp is exclusive.
+        get.setTimeRange(java.lang.Long::MIN_VALUE, options[:timestamp]+1) if options[:timestamp]
+
         return get
       end
 
@@ -342,6 +347,7 @@ module BigRecord
       # @param [Hash] Keys as the fully qualified column names and
       #     their associated values.
       # @param [Integer] timestamp
+      # @param [org.apache.hadoop.hbase.client.RowLock] row_lock
       #
       # @return [Put] org.apache.hadoop.hbase.client.Put object
       #     corresponding to the arguments passed.

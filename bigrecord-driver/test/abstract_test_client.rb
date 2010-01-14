@@ -1,9 +1,6 @@
 require 'rubygems'
-
-$:.unshift(File.dirname(__FILE__) + '/../lib')
-
 require 'test/unit'
-require 'big_record_driver'
+require File.dirname(__FILE__) + '/../lib/big_record_driver'
 
 module AbstractTestClient
 

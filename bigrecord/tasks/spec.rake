@@ -1,3 +1,6 @@
+require 'spec'
+require 'spec/rake/spectask'
+
 desc "Run #{DATA_STORES.join(" and ")} specs"
 task :spec => DATA_STORES.map{|store| "spec:#{store}" }
 

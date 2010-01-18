@@ -1,16 +1,7 @@
-#!/usr/bin/env ruby
-
 require 'rubygems'
-require 'rake'
-require 'rake/rdoctask'
-require 'rake/gempackagetask'
-require 'spec/rake/spectask'
-
+require 'active_record'
 
 DATA_STORES = ["hbase", "cassandra"]
 ROOT = File.expand_path(File.dirname(__FILE__)) + '/'
 
-require ROOT + 'tasks/gem'
-require ROOT + 'tasks/rdoc'
-require ROOT + 'tasks/spec'
-require ROOT + 'tasks/data_store'
+Dir['tasks/*.rake'].each { |rake| load rake }

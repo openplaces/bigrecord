@@ -1,7 +1,7 @@
-hbase_rest:
+hbase:
   adapter: hbase_rest
   api_address: http://localhost:8080
-hbase:
+hbase_brd:
   adapter: hbase
   zookeeper_quorum: localhost
   zookeeper_client_port: 2181

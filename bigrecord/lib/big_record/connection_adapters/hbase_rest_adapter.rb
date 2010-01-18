@@ -5,16 +5,16 @@ module BigRecord
     # Establishes a connection to the database that's used by all Active Record objects.
     def self.hbase_rest_connection(config) # :nodoc:
       begin
-        require 'hbase'
+        require 'stargate'
       rescue LoadError => e
-        puts "[BigRecord] hbase-ruby is needed for HbaseRestAdapter. Install it with: gem install hbase-ruby"
+        puts "[BigRecord] hbase-stargate is needed for HbaseRestAdapter. Install it with: gem install hbase-stargate"
         raise e
       end
 
       config = config.symbolize_keys
 
       api_address = config[:api_address]
-      hbase = HBase::Client.new(api_address)
+      hbase = Stargate::Client.new(api_address)
       ConnectionAdapters::HbaseRestAdapter.new(hbase, logger, [], config)
     end
   end

@@ -1,12 +1,14 @@
-module BigRecordDriver
-  class BigDBError < StandardError
-  end
-  class TableNotFound < BigDBError
-  end
-  class TableAlreadyExists < BigDBError
-  end
-  class JavaError < BigDBError
-  end
-  class ConnectionError < BigDBError
+module BigRecord
+  module Driver
+    class DriverError < StandardError
+    end
+    class TableNotFound < DriverError
+    end
+    class TableAlreadyExists < DriverError
+    end
+    class JavaError < DriverError
+    end
+    class ConnectionError < DriverError
+    end
   end
 end

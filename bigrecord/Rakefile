@@ -1,7 +1,9 @@
 require 'rubygems'
-require 'active_record'
 
-DATA_STORES = ["hbase", "cassandra"]
+DATA_STORES = ["hbase"]
 ROOT = File.expand_path(File.dirname(__FILE__)) + '/'
 
-Dir['tasks/*.rake'].each { |rake| load rake }
+load 'tasks/data_store.rake'
+load 'tasks/gem.rake'
+load 'tasks/rdoc.rake'
+load 'tasks/spec.rake'

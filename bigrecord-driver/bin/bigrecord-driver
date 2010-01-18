@@ -62,7 +62,7 @@ unset RUBYLIB
 if [ "$DRIVERNAME" == "" ]; then
   echo "Driver type was not specified"
   exit 1
-elif [ "$DRIVERNAME" != "hbase" -a "$DRIVERNAME" != "cassandra" ]; then
+elif [ "$DRIVERNAME" != "hbase" ]; then
   echo "Driver type \"$DRIVERNAME\" is invalid"
   exit 1
 fi
@@ -126,30 +126,30 @@ start() {
     refresh_pids
 
     if [ -f "$PIDS_DIR/$PORT.pid" -a "$PID" != "" ] ; then
-        echo -e "\nAlready running (pid="$PID")."
-        exit 1
+      echo -e "\nAlready running (pid="$PID")."
+      exit 1
     else
 	    rm -f $LOGS_DIR/$PORT.log
 	    nohup jruby $DRIVER $PORT >> $LOGS_DIR/$PORT.log 2>&1 < /dev/null &
 	    PID=$!
 	    if [ "$PID" != "" ] ; then
-	        # monitor the log file for the message saying that the server is started
-	        for ((i=0; i<$STARTUP_TIMEOUT; i+=1)); do
-	          sleep 1
-	          echo -n "."
-	          if [ "$(cat $LOGS_DIR/$PORT.log | grep 'Started drb server')" != "" ] ; then
-	            break
-	          fi
-	        done
+        # monitor the log file for the message saying that the server is started
+        for ((i=0; i<$STARTUP_TIMEOUT; i+=1)); do
+          sleep 1
+          echo -n "."
+          if [ "$(cat $LOGS_DIR/$PORT.log | grep 'Started drb server')" != "" ] ; then
+            break
+          fi
+        done
 
-	        if [ "$i" == $STARTUP_TIMEOUT ] ; then
-	          echo -e "\nStartup timeout: couldn't start the DRb server."
-	        else
-	          echo $PID > $PIDS_DIR/$PORT.pid
-	        fi
-	        echo ""
+        if [ "$i" == $STARTUP_TIMEOUT ] ; then
+          echo -e "\nStartup timeout: couldn't start the DRb server."
+        else
+          echo $PID > $PIDS_DIR/$PORT.pid
+        fi
+        echo ""
 	    else
-            echo -e "\nAn error occured while starting the DRb server."
+        echo -e "\nAn error occured while starting the DRb server."
 	    fi
     fi
 }
@@ -161,8 +161,8 @@ stop() {
 
 	if [ -f "$PIDS_DIR/$PORT.pid" -a "$PID" != "" ] ; then
 		echo "Stopping driver (pid = $PID)." >> $LOGS_DIR/$PORT.log
-	    kill $PID
-	    rm $PIDS_DIR/$PORT.pid
+    kill $PID
+    rm $PIDS_DIR/$PORT.pid
 	else
 		echo "No $DRIVERNAME driver to kill."
 	fi
@@ -183,24 +183,25 @@ start_debug() {
 }
 
 case "$ACTION" in
-    start)
-   		start
-        ;;
-    stop)
-   		stop
-        ;;
-    restart)
-   		stop
-   		start
-        ;;
-    status)
-        status
-        ;;
-    start_debug)
-    	start_debug
-    	;;
-    *)
-        print_usage
-        exit 1
+  start)
+	  start
+    ;;
+  stop)
+	  stop
+    ;;
+  restart)
+	  stop
+	  start
+    ;;
+  status)
+    status
+    ;;
+  start_debug)
+	  start_debug
+	  ;;
+  *)
+    print_usage
+    exit 1
 esac
+
 exit 0

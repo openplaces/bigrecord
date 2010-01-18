@@ -1,9 +1,11 @@
 require 'rubygems'
-require 'pathname'
 require 'spec'
 
-SPEC_ROOT = Pathname(__FILE__).dirname.expand_path
-require SPEC_ROOT.parent + 'lib/big_record'
+bigrecord_driver_path = File.expand_path(File.dirname(__FILE__)+'/../../bigrecord-driver/lib')
+$:.unshift(bigrecord_driver_path) if File.directory?(bigrecord_driver_path) && !$:.include?(bigrecord_driver_path)
+
+SPEC_ROOT = File.expand_path(File.dirname(__FILE__))
+require SPEC_ROOT + '/../lib/big_record'
 
 if ENV["HBASE_REST_ADDRESS"]
   config = YAML::load(File.open(File.join(File.dirname(__FILE__), "connections", "bigrecord.yml")))

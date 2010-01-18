@@ -423,5 +423,5 @@ end
 
 port = ARGV[0] || 40000
 DRb.start_service("druby://:#{port}", BigRecord::Driver::HbaseServer.new)
-puts "Started HBase drb server on port #{port}."
+puts "Started drb server on port #{port}."
 DRb.thread.join

@@ -4,21 +4,12 @@ require 'drb'
 module BigRecord
   class Base
     # Establishes a connection to the database that's used by all Active Record objects.
-    def self.hbase_connection(config) # :nodoc:
-      unless defined?(BigRecord::Driver)
-        begin
-          # Bigrecord's source is included with Bigrecord-Driver, that's where we check for it first.
-          require File.join(File.dirname(__FILE__), "..", "..", "..", "..", "bigrecord-driver", "lib", "big_record_driver")
-        rescue LoadError
-          # Then we'll require it from the load path (or rubygems)
-          begin
-            require 'big_record_driver'
-          rescue LoadError => e
-            # If it couldn't be found, we'll just prompt the user to install the gem.
-            puts "[BigRecord] bigrecord-driver is needed for HbaseAdapter. Install it with: gem install bigrecord-driver"
-            raise e
-          end
-        end
+    def self.hbase_connection(config)
+      begin
+        require 'big_record_driver'
+      rescue LoadError => e
+        puts "[BigRecord] bigrecord-driver is needed for HbaseAdapter. Install it with: gem install bigrecord-driver"
+        raise e
       end
 
       config = config.symbolize_keys

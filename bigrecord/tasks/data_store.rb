@@ -1,5 +1,5 @@
 namespace :data_store do
-  require 'lib/big_record'
+  require File.join(File.dirname(__FILE__), '..', 'lib', 'big_record')
 
   if ENV["HBASE_REST_ADDRESS"]
     config = YAML::load(File.open(File.join(ROOT, "spec", "connections", "bigrecord.yml")))

@@ -7,7 +7,7 @@ require 'rake/gempackagetask'
 require 'spec/rake/spectask'
 
 
-DATA_STORES = ["hbase", "cassandra"]
+DATA_STORES = ["hbase"]
 ROOT = File.expand_path(File.dirname(__FILE__)) + '/'
 
 require ROOT + 'tasks/gem'

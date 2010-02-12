@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{bigrecord-driver}
-  s.version = "0.0.6"
+  s.version = "0.0.7"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["openplaces.org"]
-  s.date = %q{2009-12-04}
+  s.date = %q{2010-02-12}
   s.default_executable = %q{hbase-driver}
   s.description = %q{Bigrecord drivers that use JRuby DRb servers to connect with databases through their native Java APIs. Currently supported database is HBase.}
   s.email = %q{bigrecord@openplaces.org}
@@ -24,17 +24,15 @@ Gem::Specification.new do |s|
      "bin/hbase-driver",
      "conf/log4j.properties",
      "lib/big_record_driver.rb",
-     "lib/big_record_driver/bigrecord_server.rb",
      "lib/big_record_driver/client.rb",
      "lib/big_record_driver/column_descriptor.rb",
-     "lib/big_record_driver/driver_manager.rb",
      "lib/big_record_driver/exceptions.rb",
      "lib/big_record_driver/hbase_driver/server.rb",
+     "lib/big_record_driver/server.rb",
      "lib/big_record_driver/version.rb",
      "lib/bigrecord_driver.rb",
      "test/abstract_test_client.rb",
      "test/test_client_hbase.rb",
-     "test/test_driver_manager.rb",
      "vendor/java/hbase/commons-logging-1.0.4.jar",
      "vendor/java/hbase/commons-logging-api-1.0.4.jar",
      "vendor/java/hbase/hadoop-0.20.1-hdfs127-core.jar",

@@ -163,7 +163,7 @@ module BigRecord
       def get_consecutive_rows_raw(table_name, start_row, limit, columns, stop_row = nil)
         result = nil
         log "SCAN (#{columns.join(", ")}) FROM #{table_name} WHERE START_ROW=#{start_row} AND STOP_ROW=#{stop_row} LIMIT=#{limit};" do
-          options = {:start_row => start_row, :end_row => stop_row, :columns => columns}
+          options = {:start_row => start_row, :end_row => stop_row, :columns => columns, :batch => 200}
           scanner = @connection.open_scanner(table_name, options)
           result = @connection.get_rows(scanner, limit)
           @connection.close_scanner(scanner)

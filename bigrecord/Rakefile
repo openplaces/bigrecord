@@ -3,7 +3,7 @@ require 'rubygems'
 DATA_STORES = ["hbase"]
 ROOT = File.expand_path(File.dirname(__FILE__)) + '/'
 
-load 'tasks/data_store.rake'
-load 'tasks/gem.rake'
-load 'tasks/rdoc.rake'
-load 'tasks/spec.rake'
+require ROOT + 'tasks/data_store.rb'
+require ROOT + 'tasks/gem.rb'
+require ROOT + 'tasks/rdoc.rb'
+require ROOT + 'tasks/spec.rb'

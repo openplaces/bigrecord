@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{bigrecord}
-  s.version = "0.0.10"
+  s.version = "0.0.11"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["openplaces.org"]
-  s.date = %q{2009-12-02}
+  s.date = %q{2010-02-12}
   s.description = %q{BigRecord is built from ActiveRecord, and intended to seamlessly integrate into your Ruby on Rails applications.}
   s.email = %q{bigrecord@openplaces.org}
   s.extra_rdoc_files = [
@@ -80,6 +80,7 @@ Gem::Specification.new do |s|
      "lib/big_record/routing_ext.rb",
      "lib/big_record/timestamp.rb",
      "lib/big_record/validations.rb",
+     "lib/big_record/version.rb",
      "lib/bigrecord.rb",
      "rails/init.rb",
      "spec/adapter_benchmark.rb",
@@ -120,16 +121,16 @@ Gem::Specification.new do |s|
      "spec/unit/scanner_spec.rb",
      "spec/unit/validations_spec.rb",
      "tasks/bigrecord_tasks.rake",
-     "tasks/data_store.rb",
-     "tasks/gem.rb",
-     "tasks/rdoc.rb",
-     "tasks/spec.rb"
+     "tasks/data_store.rake",
+     "tasks/gem.rake",
+     "tasks/rdoc.rake",
+     "tasks/spec.rake"
   ]
   s.homepage = %q{http://www.bigrecord.org}
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
   s.rubygems_version = %q{1.3.5}
-  s.summary = %q{Object mapper for supporting column-oriented data stores (supports hbase cassandra) in Ruby on Rails.}
+  s.summary = %q{Object mapper for supporting column-oriented data stores (supports hbase) in Ruby on Rails.}
 
   if s.respond_to? :specification_version then
     current_version = Gem::Specification::CURRENT_SPECIFICATION_VERSION

@@ -1,16 +1,9 @@
-#!/usr/bin/env ruby
-
 require 'rubygems'
-require 'rake'
-require 'rake/rdoctask'
-require 'rake/gempackagetask'
-require 'spec/rake/spectask'
 
-
-DATA_STORES = ["hbase", "cassandra"]
+DATA_STORES = ["hbase"]
 ROOT = File.expand_path(File.dirname(__FILE__)) + '/'
 
-require ROOT + 'tasks/gem'
-require ROOT + 'tasks/rdoc'
-require ROOT + 'tasks/spec'
-require ROOT + 'tasks/data_store'
+load 'tasks/data_store.rake'
+load 'tasks/gem.rake'
+load 'tasks/rdoc.rake'
+load 'tasks/spec.rake'

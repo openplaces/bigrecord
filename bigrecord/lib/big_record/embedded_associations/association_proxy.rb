@@ -1,7 +1,7 @@
 module BigRecord
   module EmbeddedAssociations
     class AssociationProxy #:nodoc:
-      instance_methods.each { |m| undef_method m unless m =~ /(^__|^nil\?$|^send$|proxy_)/ }
+      instance_methods.each { |m| undef_method m unless m =~ /(^__|^nil\?$|^send$|proxy_|object_id)/ }
 
       def find(id)
         @target.select{|s| s.id == id}.first

@@ -11,22 +11,22 @@ if ARGV.include?("-l")
 
   # Make sure that the folder exists
   if File.exists?(hbase_path)
-	# We're only going to include the jar files we need.
-	required_jars = Dir[hbase_path+"/*.jar",
-						hbase_path+"/lib/commons-logging*.jar",
-						hbase_path+"/lib/zookeeper*.jar",
-						hbase_path+"/lib/log4j*.jar",
-						hbase_path+"/lib/hadoop*.jar"]
-	classpath = required_jars.join(":")
+	  # We're only going to include the jar files we need.
+	  required_jars = Dir[hbase_path+"/*.jar",
+						  hbase_path+"/lib/commons-logging*.jar",
+						  hbase_path+"/lib/zookeeper*.jar",
+						  hbase_path+"/lib/log4j*.jar",
+						  hbase_path+"/lib/hadoop*.jar"]
+	  classpath = required_jars.join(":")
 
-	args.delete_at(switch_index)
-	args.delete_at(switch_index)
-	args = args + ["-c", '"'+classpath+'"']
+	  args.delete_at(switch_index)
+	  args.delete_at(switch_index)
+	  args = args + ["-c", '"'+classpath+'"']
 
   # Otherwise we'll warn the user and quit
   else
-	puts "Folder #{hbase_path} does not exist"
-	exit
+	  puts "Folder #{hbase_path} does not exist"
+	  exit
   end
 end
 

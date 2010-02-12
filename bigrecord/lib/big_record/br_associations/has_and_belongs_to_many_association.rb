@@ -42,9 +42,10 @@ module BigRecord
           # Generate the sql query. The join table has to be in mysql.
           conditions = "#{@finder_sql}"
 
-          if sanitized_conditions = ActiveRecord::Base.send(:sanitize_sql, options[:conditions])
-            conditions << " AND (#{sanitized_conditions})"
-          end
+          # FIXME: throws "undefined method `abstract_class?' for Object:Class"
+#          if sanitized_conditions = ActiveRecord::Base.send(:sanitize_sql, options[:conditions])
+#            conditions << " AND (#{sanitized_conditions})"
+#          end
 
           if options[:order] && @reflection.options[:order]
             order = "#{options[:order]}, #{@reflection.options[:order]}"

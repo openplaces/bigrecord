@@ -399,7 +399,7 @@ module BigRecord
       #
       # Defaults to "attribute"
       def default_family
-        (superclass == BigRecord::Base) ? (@default_family ||= "attribute") : superclass.default_family
+        @default_family ||= "attribute"
       end
 
       # Set the default column family used to store attributes that have no column family set explicitly.
@@ -466,12 +466,8 @@ module BigRecord
         {primary_key => ConnectionAdapters::Column.new(primary_key, 'string')}
       end
 
-      # @see BigRecord::AbstractBase.column
-      def column(name, type, options={})
-        name = name.to_s
-        name = "#{self.default_family}:#{name}" unless (name =~ /:/)
-
-        super(name, type, options)
+      def default_column_prefix
+        "#{default_family}:"
       end
 
       # Return the hash of default views which consist of all columns and the :default named views.

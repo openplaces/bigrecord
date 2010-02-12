@@ -21,7 +21,7 @@ module BigRecord
 
     # Add an existing dynamic column to this record
     def add_dynamic_column(col)
-      columns_hash[c.name] = col
+      columns_hash[col.name] = col
       @columns_name= nil; @columns= nil #reset
       col
     end

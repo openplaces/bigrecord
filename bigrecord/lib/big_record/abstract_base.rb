@@ -172,7 +172,7 @@ module BigRecord
 
       attributes.each do |k, v|
         begin
-          k.include?("(") ? multi_parameter_attributes << [ k, v ] : send(k + "=", v)
+          k.include?("(") ? multi_parameter_attributes << [ k, v ] : send(k + "=", v) if v
         rescue
           logger.debug "#{__FILE__}:#{__LINE__} Warning! Ignoring attribute '#{k}' because it doesn't exist anymore"
         end
@@ -891,6 +891,7 @@ private
       # @return [ConnectionAdapters::Column] The column object created.
       def column(name, type, options={})
         name = name.to_s
+        name = "#{self.default_column_prefix}#{name}" unless (name =~ /:/) || self.default_column_prefix.blank?
 
         @columns_hash = default_columns unless @columns_hash
 
@@ -1043,6 +1044,11 @@ private
       # Returns an array of all the attributes that have been specified as create_accessible.
       def create_accessible_attributes
        read_inheritable_attribute(:attr_create_accessible)
+      end
+
+      # Default column prefix used when auto-generating column attribute names
+      def default_column_prefix
+        ""
       end
 
     protected

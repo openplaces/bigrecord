@@ -306,7 +306,8 @@ module BigRecord
             when String then value.split(COLLECTION_SEPARATOR)
             when Hash then value.values.first.scan(/\[(.*?)\]/).flatten
             when NilClass then []
-            else value
+            when Array then value
+            else [value]
           end
         end
 
@@ -363,6 +364,9 @@ module BigRecord
         end
 
         def string_to_date(string)
+          # Important: the stored value could be an instance of Time.  If we don't
+          #   cast to Date, the cast will fail because column type != value type
+          return new_date(string.year, string.month, string.day) if (string.is_a?Time)
           return string unless string.is_a?(String)
           return nil if string.empty?
 

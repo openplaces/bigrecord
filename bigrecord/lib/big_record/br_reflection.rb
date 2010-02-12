@@ -60,9 +60,9 @@ module BigRecord
           when macro == :belongs_to_big_record
             @primary_key_name = options[:foreign_key] || class_name.foreign_key
           when macro == :belongs_to_many
-            @primary_key_name = options[:foreign_key] || "#{big_record.default_family}:#{class_name.tableize}_ids"
+            @primary_key_name = options[:foreign_key] || "#{big_record.default_column_prefix}#{class_name.tableize}_ids"
           when options[:as]
-            @primary_key_name = options[:foreign_key] || "#{big_record.default_family}:#{options[:as]}_id"
+            @primary_key_name = options[:foreign_key] || "#{big_record.default_column_prefix}#{options[:as]}_id"
           else
             @primary_key_name = options[:foreign_key] || big_record.name.foreign_key
         end

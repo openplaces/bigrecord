@@ -388,7 +388,7 @@ module BigRecord
       end
 
       def table_name
-        (superclass == BigRecord::Base) ? @table_name : superclass.table_name
+        @table_name || superclass.table_name
       end
 
       def set_table_name(name)

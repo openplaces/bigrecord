@@ -1,6 +1,6 @@
 require 'rubygems'
 
-DATA_STORES = ["hbase"]
+DATA_STORES = ["hbase", "cassandra"]
 ROOT = File.expand_path(File.dirname(__FILE__)) + '/'
 
 require ROOT + 'tasks/data_store.rb'

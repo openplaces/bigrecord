@@ -9,7 +9,5 @@ hbase_brd:
   drb_port: 50001
 cassandra:
   adapter: cassandra
-  address: localhost
-  port: 9160
-  drb_host: localhost
-  drb_port: 50002
+  keyspace: Bigrecord
+  servers: localhost:9160

@@ -5,8 +5,6 @@ describe BigRecord::ConnectionAdapters::HbaseAdapter do
 
   before do
     # Make sure the connection is defined in spec/connections/bigrecord.yml
-    BigRecord::Base.establish_connection 'hbase'
-
     @adapter = BigRecord::Base.connection
   end
 

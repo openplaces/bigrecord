@@ -32,7 +32,7 @@ module BigRecord
     #
     # == Types and Options
     #
-    # @see BigRecord::AbstractBase.column
+    # @see BigRecord::Model.column
     #
     class Column
       module Format

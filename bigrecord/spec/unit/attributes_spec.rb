@@ -1,5 +1,5 @@
 # Defined as a shared spec because embedded_spec uses it as well
-describe BigRecord::AbstractBase, :shared => true do
+describe BigRecord::Model, :shared => true do
 
   before(:all) do
     Book.delete_all
@@ -174,7 +174,7 @@ describe BigRecord::AbstractBase, :shared => true do
     end
 
     it 'should be handled properly' do
-      pending "this still needs to be implemented in BigRecord::AbstractBase"
+      pending "this still needs to be implemented in BigRecord::Model"
 
       # readonly is the readonly attribute here
       @company = Company.new(:name => "The Company", :address => "Unknown", :readonly => "secret")

@@ -64,7 +64,7 @@ module BigRecord
       # ignore methods '=' and '?' (e.g. 'normalized_srf_ief:231=')
       return if name =~ /=|\?$/
 
-      column = self.columns_hash[name]
+      column = column_for_attribute_without_family_span_columns(name)
       unless column
         family = BigRecord::ConnectionAdapters::Column.extract_family(name)
         column = self.columns_hash[family] if family

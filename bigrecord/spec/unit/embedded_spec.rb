@@ -12,7 +12,7 @@ describe BigRecord::Embedded do
     Zoo.delete_all
   end
 
-  it_should_behave_like "BigRecord::AbstractBase"
+  it_should_behave_like "BigRecord::Model"
 
   describe "embedded within a BigRecord::Base model" do
 
@@ -36,6 +36,16 @@ describe BigRecord::Embedded do
 
       zoo.weblink.title.should == "African Lion Safari"
       zoo.weblink.url.should == "http://www.lionsafari.com/"
+    end
+
+  end
+
+  describe "standalone behavior" do
+
+    it "should generate the id in the constructor" do
+      link = Embedded::WebLink.new
+      link.attributes['id'].should_not be_nil
+      link.id.should_not be_nil
     end
 
   end

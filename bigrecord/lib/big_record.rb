@@ -36,7 +36,7 @@ rescue LoadError
 end
 
 require dir + '/routing_ext'
-require dir + '/abstract_base'
+require dir + '/model'
 require dir + '/base'
 require dir + '/embedded'
 require dir + '/validations'

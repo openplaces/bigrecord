@@ -44,7 +44,9 @@ module BigRecord
 
     # Returns the column object for the named attribute.
     def column_for_attribute_with_dynamic_schema(name)
-      self.columns_hash[name.to_s]
+      name_string = name.to_s
+      self.columns_hash[name_string] || self.columns_hash["#{self.class.default_column_prefix}#{name_string}"] ||
+        self.columns.select{|c|c.alias==name_string}.first
     end
 
     # Initializes the attributes array with keys matching the columns from the linked table and

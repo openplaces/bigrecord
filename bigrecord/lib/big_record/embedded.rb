@@ -123,7 +123,7 @@ module BigRecord
   # Now any subsequent access to that book object we just saved to will have
   # a WebLink record available with it.
   #
-  class Embedded < AbstractBase
+  class Embedded < Model
 
     def initialize(attrs = nil)
       super

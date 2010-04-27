@@ -2,7 +2,7 @@ require File.expand_path(File.join(File.dirname(__FILE__), '..', 'spec_helper'))
 require File.expand_path(File.join(File.dirname(__FILE__), 'attributes_spec'))
 
 describe BigRecord::Base do
-  it_should_behave_like "BigRecord::AbstractBase"
+  it_should_behave_like "BigRecord::Model"
 
   describe 'column functionality' do
 

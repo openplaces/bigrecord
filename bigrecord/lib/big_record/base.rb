@@ -1,9 +1,8 @@
 module BigRecord
 
-  class Base < AbstractBase
+  class Base < Model
 
     attr_accessor :modified_attributes
-
 
     def self.inherited(child) #:nodoc:
       @@subclasses[self] ||= []

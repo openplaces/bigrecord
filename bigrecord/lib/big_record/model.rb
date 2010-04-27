@@ -52,7 +52,7 @@ module BigRecord
     end
   end
 
-  class AbstractBase
+  class Model
     require 'rubygems'
     require 'uuidtools'
 
@@ -1069,7 +1069,7 @@ private
       end
 
       def default_columns
-        raise NotImplemented
+        {}
       end
 
       def default_views

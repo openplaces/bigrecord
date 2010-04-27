@@ -68,7 +68,7 @@ module BigRecord
       def update_raw(table_name, row, values, timestamp)
         result = nil
         log "UPDATE #{table_name} SET #{values.inspect if values} WHERE ROW=#{row};" do
-          result = @connection.insert(table_name, row, data_to_cassandra_format(values), {:timestamp => timestamp})
+          result = @connection.insert(table_name, row, data_to_cassandra_format(values), {:consistency => Cassandra::Consistency::QUORUM})
         end
         result
       end
@@ -103,24 +103,24 @@ module BigRecord
 
       def get_columns_raw(table_name, row, columns, options={})
         result = {}
-        result["id"] = row
         
         log "SELECT (#{columns.join(", ")}) FROM #{table_name} WHERE ROW=#{row};" do
           requested_columns = columns_to_cassandra_format(columns)
           super_columns = requested_columns.keys
-          
+
           if super_columns.size == 1 && requested_columns[super_columns.first].size > 0
             column_names = requested_columns[super_columns.first]
 
             values = @connection.get_columns(table_name, row, super_columns.first, column_names)
 
+            result["id"] = row if values && values.compact.size > 0
             column_names.each_index do |id|
               full_key = super_columns.first + ":" + column_names[id].to_s
               result[full_key] = values[id] unless values[id].nil?
             end
           else
             values = @connection.get_columns(table_name, row, super_columns)
-
+            result["id"] = row if values && values.compact.size > 0
             super_columns.each_index do |id|
               next if values[id].nil?
               
@@ -138,7 +138,7 @@ module BigRecord
 
       def get_columns(table_name, row, columns, options={})
         row_cols = get_columns_raw(table_name, row, columns, options)
-        return nil unless row_cols
+        return nil unless row_cols && !row_cols.empty?
 
         result = {}
         row_cols.each do |key,value|
@@ -182,7 +182,7 @@ module BigRecord
                 end
               end
 
-              result << row
+              result << row if row.keys.size > 1
             end
           end
         end
@@ -207,7 +207,11 @@ module BigRecord
       end
 
       def delete(table_name, row)
-        @connection.remove(table_name.to_s, row)
+        result = nil
+        log "DELETE FROM #{table_name} WHERE ROW=#{row};" do
+          result = @connection.remove(table_name.to_s, row, {:consistency => Cassandra::Consistency::QUORUM})
+        end
+        result
       end
 
       def delete_all(table_name)

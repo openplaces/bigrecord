@@ -2,7 +2,7 @@
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
-    <meta name="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="Content-Type" content="text/html; charset=utf-8" />
 <title>Module: BigRecord::ConnectionAdapters::Quoting</title>
 <link rel="stylesheet" href="../../css/style.css" type="text/css" media="screen" charset="utf-8" />
 <link rel="stylesheet" href="../../css/common.css" type="text/css" media="screen" charset="utf-8" />
@@ -16,18 +16,24 @@
 
   </head>
   <body>
+    <script type="text/javascript" charset="utf-8">
+      if (window.top.frames.main) document.body.className = 'frames';
+    </script>
+    
     <div id="header">
       <div id="menu">
   
     <a href="../../_index.html">Index (Q)</a> &raquo; 
-    <a title="BigRecord" href="../../BigRecord.html">BigRecord</a> &raquo; <a title="ConnectionAdapters" href="../ConnectionAdapters.html">ConnectionAdapters</a>
+    <span class='title'><a href="../../BigRecord.html" title="BigRecord (module)">BigRecord</a></span> &raquo; <span class='title'><a href="../ConnectionAdapters.html" title="BigRecord::ConnectionAdapters (module)">ConnectionAdapters</a></span>
      &raquo; 
     <span class="title">Quoting</span>
   
+  
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
 </div>
 
       <div id="search">
-  <a id="class_list_link" href="#">Namespace List</a>
+  <a id="class_list_link" href="#">Class List</a>
   <a id="method_list_link" href="#">Method List</a>
   <a id ="file_list_link" href="#">File List</a>
 </div>
@@ -50,8 +56,13 @@
     
   
   
-    <dt class="r1 last">Defined in:</dt>
-    <dd class="r1 last">lib/big_record/connection_adapters/abstract/quoting.rb</dd>
+    <dt class="r1">Included in:</dt>
+    <dd class="r1"><a href="AbstractAdapter.html" title="BigRecord::ConnectionAdapters::AbstractAdapter (class)">AbstractAdapter</a></dd>
+    
+  
+  
+    <dt class="r2 last">Defined in:</dt>
+    <dd class="r2 last">lib/big_record/connection_adapters/abstract/quoting.rb</dd>
   
 </dl>
 <div class="clear"></div>
@@ -59,121 +70,155 @@
 
 
 
-  <h2>Method Summary</h2>
-  <ul class="summary">
-    
-      <li class="public ">
-  <span class="summary_signature"><a title="#quote (instance method)" href="#quote-instance_method">- (Object) <strong>quote</strong>(value, column = nil) </a>
   
+    <h2>Instance Method Summary</h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#quote-instance_method" title="#quote (instance method)">- (Object) <strong>quote</strong>(value, column = nil) </a>
+    
+
+    
   </span>
+  
   
   
   
   
 
   
-    <span class="summary_desc">
+    <span class="summary_desc"><div class='inline'><p>
 Quotes the column value to help prevent SQL injection attacks
 [http://en.wikipedia.org/wiki/SQL_injection].
-
-</span>
+</p>
+</div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="#quote_column_name (instance method)" href="#quote_column_name-instance_method">- (Object) <strong>quote_column_name</strong>(name) </a>
-  
+      <a href="#quote_column_name-instance_method" title="#quote_column_name (instance method)">- (Object) <strong>quote_column_name</strong>(name) </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc">
+    <span class="summary_desc"><div class='inline'><p>
 Returns a quoted form of the column name.
-
-</span>
+</p>
+</div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="#quote_string (instance method)" href="#quote_string-instance_method">- (Object) <strong>quote_string</strong>(s) </a>
-  
+      <a href="#quote_string-instance_method" title="#quote_string (instance method)">- (Object) <strong>quote_string</strong>(s) </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc">
+    <span class="summary_desc"><div class='inline'><p>
 Quotes a string, escaping any &#8217; (single quote) and \ (backslash)
 characters.
-
-</span>
+</p>
+</div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="#quoted_date (instance method)" href="#quoted_date-instance_method">- (Object) <strong>quoted_date</strong>(value) </a>
-  
+      <a href="#quoted_date-instance_method" title="#quoted_date (instance method)">- (Object) <strong>quoted_date</strong>(value) </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc"></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="#quoted_false (instance method)" href="#quoted_false-instance_method">- (Object) <strong>quoted_false</strong> </a>
-  
+      <a href="#quoted_false-instance_method" title="#quoted_false (instance method)">- (Object) <strong>quoted_false</strong> </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc"></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="#quoted_true (instance method)" href="#quoted_true-instance_method">- (Object) <strong>quoted_true</strong> </a>
-  
+      <a href="#quoted_true-instance_method" title="#quoted_true (instance method)">- (Object) <strong>quoted_true</strong> </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc"></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
+      
+    </ul>
+  
+
+
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
     
-  </ul>
-
-
-
-  <div id="method_details">
-    <h2>Method Details</h2>
     
       <div class="method_details first">
   <p class="signature first" id="quote-instance_method">
   
-    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>quote</strong>(value, column = nil) 
+    - (<tt><a href="../../Object.html" title="Object (class)">Object</a></tt>) <strong>quote</strong>(value, column = nil) 
   
 
   
@@ -260,7 +305,7 @@ Quotes the column value to help prevent SQL injection attacks
       <div class="method_details ">
   <p class="signature " id="quote_column_name-instance_method">
   
-    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>quote_column_name</strong>(name) 
+    - (<tt><a href="../../Object.html" title="Object (class)">Object</a></tt>) <strong>quote_column_name</strong>(name) 
   
 
   
@@ -300,7 +345,7 @@ Returns a quoted form of the column name. This is highly adapter specific.
       <div class="method_details ">
   <p class="signature " id="quote_string-instance_method">
   
-    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>quote_string</strong>(s) 
+    - (<tt><a href="../../Object.html" title="Object (class)">Object</a></tt>) <strong>quote_string</strong>(s) 
   
 
   
@@ -341,7 +386,7 @@ characters.
       <div class="method_details ">
   <p class="signature " id="quoted_date-instance_method">
   
-    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>quoted_date</strong>(value) 
+    - (<tt><a href="../../Object.html" title="Object (class)">Object</a></tt>) <strong>quoted_date</strong>(value) 
   
 
   
@@ -370,7 +415,7 @@ characters.
       <div class="method_details ">
   <p class="signature " id="quoted_false-instance_method">
   
-    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>quoted_false</strong> 
+    - (<tt><a href="../../Object.html" title="Object (class)">Object</a></tt>) <strong>quoted_false</strong> 
   
 
   
@@ -399,7 +444,7 @@ characters.
       <div class="method_details ">
   <p class="signature " id="quoted_true-instance_method">
   
-    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>quoted_true</strong> 
+    - (<tt><a href="../../Object.html" title="Object (class)">Object</a></tt>) <strong>quoted_true</strong> 
   
 
   
@@ -430,9 +475,9 @@ characters.
 </div>
     
     <div id="footer">
-  Generated on Tue Dec  1 18:30:49 2009 by 
+  Generated on Fri Apr 30 12:48:49 2010 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool">yard</a>
-  0.4.0 (ruby-1.8.7).
+  0.5.4 (ruby-1.8.7).
 </div>
 
   </body>

@@ -2,7 +2,7 @@
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
-    <meta name="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="Content-Type" content="text/html; charset=utf-8" />
 <title>Module: BigRecord::Validations</title>
 <link rel="stylesheet" href="../css/style.css" type="text/css" media="screen" charset="utf-8" />
 <link rel="stylesheet" href="../css/common.css" type="text/css" media="screen" charset="utf-8" />
@@ -16,18 +16,24 @@
 
   </head>
   <body>
+    <script type="text/javascript" charset="utf-8">
+      if (window.top.frames.main) document.body.className = 'frames';
+    </script>
+    
     <div id="header">
       <div id="menu">
   
     <a href="../_index.html">Index (V)</a> &raquo; 
-    <a title="BigRecord" href="../BigRecord.html">BigRecord</a>
+    <span class='title'><a href="../BigRecord.html" title="BigRecord (module)">BigRecord</a></span>
      &raquo; 
     <span class="title">Validations</span>
   
+  
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
 </div>
 
       <div id="search">
-  <a id="class_list_link" href="#">Namespace List</a>
+  <a id="class_list_link" href="#">Class List</a>
   <a id="method_list_link" href="#">Method List</a>
   <a id ="file_list_link" href="#">File List</a>
 </div>
@@ -48,6 +54,7 @@
     
   
     
+  
   
   
     <dt class="r1 last">Defined in:</dt>
@@ -94,15 +101,14 @@ Example:
   <span class='person identifier id'>person</span><span class='dot token'>.</span><span class='errors identifier id'>errors</span><span class='dot token'>.</span><span class='on identifier id'>on</span> <span class='string val'>&quot;last_name&quot;</span>        <span class='comment val'># =&gt; &quot;can't be empty&quot;</span>
   <span class='person identifier id'>person</span><span class='dot token'>.</span><span class='errors identifier id'>errors</span><span class='dot token'>.</span><span class='on identifier id'>on</span> <span class='string val'>&quot;phone_number&quot;</span>     <span class='comment val'># =&gt; &quot;has invalid format&quot;</span>
   <span class='person identifier id'>person</span><span class='dot token'>.</span><span class='errors identifier id'>errors</span><span class='dot token'>.</span><span class='each_full identifier id'>each_full</span> <span class='lbrace token'>{</span> <span class='bitor op'>|</span><span class='msg identifier id'>msg</span><span class='bitor op'>|</span> <span class='puts identifier id'>puts</span> <span class='msg identifier id'>msg</span> <span class='rbrace token'>}</span>
-                                      <span class='comment val'># =&gt; &quot;Last name can't be empty\n&quot; &lt;tt&gt;</span>
-                                           <span class='string val'>&quot;Phone number has invalid format&quot;</span>
+                                      <span class='comment val'># =&gt; &quot;Last name can't be empty\n&quot; +</span>
+                                           <span class='string val'>&quot;Phone number has invalid format&quot;</span>
 
-  <span class='p identifier id'>p</span><span class='e identifier id'>e</span><span class='r identifier id'>r</span><span class='s identifier id'>s</span><span class='o identifier id'>o</span><span class='n identifier id'>n</span><span class='dot token'>.</span><span class='a identifier id'>a</span><span class='t identifier id'>t</span><span class='t identifier id'>t</span><span class='r identifier id'>r</span><span class='i identifier id'>i</span><span class='b identifier id'>b</span><span class='u identifier id'>u</span><span class='t identifier id'>t</span><span class='e identifier id'>e</span><span class='s identifier id'>s</span> <span class='assign token'>=</span> <span class='lbrace token'>{</span> <span class='string val'>&quot;last_name&quot;</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>&quot;Heinemeier&quot;</span><span class='comma token'>,</span> <span class='string val'>&quot;phone_number&quot;</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>&quot;555-555&quot;</span> <span class='rbrace token'>}</span>
-  <span class='p identifier id'>p</span><span class='e identifier id'>e</span><span class='r identifier id'>r</span><span class='s identifier id'>s</span><span class='o identifier id'>o</span><span class='n identifier id'>n</span><span class='dot token'>.</span><span class='s identifier id'>s</span><span class='a identifier id'>a</span><span class='v identifier id'>v</span><span class='e identifier id'>e</span> <span class='comment val'># =&gt; true (and person is now saved in the database)</span>
+  <span class='person identifier id'>person</span><span class='dot token'>.</span><span class='attributes identifier id'>attributes</span> <span class='assign token'>=</span> <span class='lbrace token'>{</span> <span class='string val'>&quot;last_name&quot;</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>&quot;Heinemeier&quot;</span><span class='comma token'>,</span> <span class='string val'>&quot;phone_number&quot;</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>&quot;555-555&quot;</span> <span class='rbrace token'>}</span>
+  <span class='person identifier id'>person</span><span class='dot token'>.</span><span class='save identifier id'>save</span> <span class='comment val'># =&gt; true (and person is now saved in the database)</span>
 </pre>
 <p>
-An &lt;/tt&gt;Errors+ object is automatically created for every Active
-Record.
+An <tt>Errors</tt> object is automatically created for every Active Record.
 </p>
 <p>
 Please do have a look at ActiveRecord::Validations::ClassMethods for a
@@ -118,7 +124,7 @@ higher level of validations.
 <p class="children">
    
     
-      <strong class="modules">Modules:</strong> <a title="ClassMethods" href="Validations/ClassMethods.html">ClassMethods</a>
+      <strong class="modules">Modules:</strong> <a href="Validations/ClassMethods.html" title="BigRecord::Validations::ClassMethods (module)">ClassMethods</a>
     
    
     
@@ -129,8 +135,8 @@ higher level of validations.
   
     <dl class="constants">
       
-        <dt id="VALIDATIONS-constant ">VALIDATIONS =
-            <span class="summary_desc"></span>
+        <dt id="VALIDATIONS-constant" class="">VALIDATIONS =
+          
         </dt>
         <dd><pre class="code"><span class='dstring node'>%w( validate validate_on_create validate_on_update )</span>
 </pre></dd>
@@ -140,136 +146,182 @@ higher level of validations.
 
 
 
-  <h2>Method Summary</h2>
-  <ul class="summary">
-    
-      <li class="public ">
-  <span class="summary_signature"><a title="included (class method)" href="#included-class_method">+ (Object) <strong>included</strong>(base) </a>
   
+    <h2>Class Method Summary</h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#included-class_method" title="included (class method)">+ (Object) <strong>included</strong>(base) </a>
+    
+
+    
   </span>
+  
   
   
   
   
 
   
-    <span class="summary_desc"></span>
+    <span class="summary_desc"><div class='inline'><p>
+:nodoc:.
+</p>
+</div></span>
   
 </li>
 
-    
-      <li class="public ">
-  <span class="summary_signature"><a title="#errors (instance method)" href="#errors-instance_method">- (Object) <strong>errors</strong> </a>
+      
+    </ul>
   
+    <h2>Instance Method Summary</h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#errors-instance_method" title="#errors (instance method)">- (Object) <strong>errors</strong> </a>
+    
+
+    
   </span>
+  
   
   
   
   
 
   
-    <span class="summary_desc">
+    <span class="summary_desc"><div class='inline'><p>
 Returns the Errors object that holds all information about attribute error
 messages.
-
-</span>
+</p>
+</div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="#save_with_validation (instance method)" href="#save_with_validation-instance_method">- (Object) <strong>save_with_validation</strong>(perform_validation = true) </a>
-  
+      <a href="#save_with_validation-instance_method" title="#save_with_validation (instance method)">- (Object) <strong>save_with_validation</strong>(perform_validation = true) </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc">
+    <span class="summary_desc"><div class='inline'><p>
 The validation process on save can be skipped by passing false.
-
-</span>
+</p>
+</div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="#save_with_validation! (instance method)" href="#save_with_validation%21-instance_method">- (Object) <strong>save_with_validation!</strong> </a>
-  
+      <a href="#save_with_validation%21-instance_method" title="#save_with_validation! (instance method)">- (Object) <strong>save_with_validation!</strong> </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc">
+    <span class="summary_desc"><div class='inline'><p>
 Attempts to save the record just like Base#save but will raise a
 RecordInvalid exception instead of returning false if the record is not
 valid.
-
-</span>
+</p>
+</div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="#update_attribute_with_validation_skipping (instance method)" href="#update_attribute_with_validation_skipping-instance_method">- (Object) <strong>update_attribute_with_validation_skipping</strong>(name, value) </a>
-  
+      <a href="#update_attribute_with_validation_skipping-instance_method" title="#update_attribute_with_validation_skipping (instance method)">- (Object) <strong>update_attribute_with_validation_skipping</strong>(name, value) </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc">
+    <span class="summary_desc"><div class='inline'><p>
 Updates a single attribute and saves the record without going through the
 normal validation procedure.
-
-</span>
+</p>
+</div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="#valid? (instance method)" href="#valid%3F-instance_method">- (Object) <strong>valid?</strong> </a>
-  
+      <a href="#valid%3F-instance_method" title="#valid? (instance method)">- (Boolean) <strong>valid?</strong> </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc">
+    <span class="summary_desc"><div class='inline'><p>
 Runs validate and validate_on_create or validate_on_update and returns true
 if no errors were added otherwise false.
-
-</span>
+</p>
+</div></span>
   
 </li>
 
+      
+    </ul>
+  
+
+
+
+  <div id="class_method_details" class="method_details_list">
+    <h2>Class Method Details</h2>
     
-  </ul>
-
-
-
-  <div id="method_details">
-    <h2>Method Details</h2>
     
       <div class="method_details first">
   <p class="signature first" id="included-class_method">
   
-    + (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>included</strong>(base) 
+    + (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>included</strong>(base) 
   
 
   
 </p><div class="docstring">
   <div class="discussion">
-    
+    <p>
+:nodoc:
+</p>
+
 
   </div>
 </div>
@@ -307,10 +359,16 @@ if no errors were added otherwise false.
 </table>
 </div>
     
-      <div class="method_details ">
-  <p class="signature " id="errors-instance_method">
+  </div>
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+    
+    
+      <div class="method_details first">
+  <p class="signature first" id="errors-instance_method">
   
-    - (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>errors</strong> 
+    - (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>errors</strong> 
   
 
   
@@ -332,12 +390,12 @@ messages.
       <pre class="lines">
 
 
-782
-783
-784</pre>
+784
+785
+786</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/big_record/validations.rb', line 782</span>
+      <pre class="code"><span class="info file"># File 'lib/big_record/validations.rb', line 784</span>
 
 <span class='def def kw'>def</span> <span class='errors identifier id'>errors</span>
   <span class='@errors ivar id'>@errors</span> <span class='opasgn op'>||=</span> <span class='Errors constant id'>Errors</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='self self kw'>self</span><span class='rparen token'>)</span>
@@ -351,7 +409,7 @@ messages.
       <div class="method_details ">
   <p class="signature " id="save_with_validation-instance_method">
   
-    - (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>save_with_validation</strong>(perform_validation = true) 
+    - (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>save_with_validation</strong>(perform_validation = true) 
   
 
   
@@ -374,16 +432,16 @@ in, which it is by default.
       <pre class="lines">
 
 
-737
-738
 739
 740
 741
 742
-743</pre>
+743
+744
+745</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/big_record/validations.rb', line 737</span>
+      <pre class="code"><span class="info file"># File 'lib/big_record/validations.rb', line 739</span>
 
 <span class='def def kw'>def</span> <span class='save_with_validation identifier id'>save_with_validation</span><span class='lparen token'>(</span><span class='perform_validation identifier id'>perform_validation</span> <span class='assign token'>=</span> <span class='true true kw'>true</span><span class='rparen token'>)</span>
   <span class='if if kw'>if</span> <span class='perform_validation identifier id'>perform_validation</span> <span class='andop op'>&amp;&amp;</span> <span class='valid? fid id'>valid?</span> <span class='orop op'>||</span> <span class='notop op'>!</span><span class='perform_validation identifier id'>perform_validation</span>
@@ -401,7 +459,7 @@ in, which it is by default.
       <div class="method_details ">
   <p class="signature " id="save_with_validation!-instance_method">
   
-    - (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>save_with_validation!</strong> 
+    - (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>save_with_validation!</strong> 
   
 
   
@@ -424,16 +482,16 @@ valid.
       <pre class="lines">
 
 
-747
-748
 749
 750
 751
 752
-753</pre>
+753
+754
+755</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/big_record/validations.rb', line 747</span>
+      <pre class="code"><span class="info file"># File 'lib/big_record/validations.rb', line 749</span>
 
 <span class='def def kw'>def</span> <span class='save_with_validation! fid id'>save_with_validation!</span>
   <span class='if if kw'>if</span> <span class='valid? fid id'>valid?</span>
@@ -451,7 +509,7 @@ valid.
       <div class="method_details ">
   <p class="signature " id="update_attribute_with_validation_skipping-instance_method">
   
-    - (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>update_attribute_with_validation_skipping</strong>(name, value) 
+    - (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>update_attribute_with_validation_skipping</strong>(name, value) 
   
 
   
@@ -476,13 +534,13 @@ default.
       <pre class="lines">
 
 
-758
-759
 760
-761</pre>
+761
+762
+763</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/big_record/validations.rb', line 758</span>
+      <pre class="code"><span class="info file"># File 'lib/big_record/validations.rb', line 760</span>
 
 <span class='def def kw'>def</span> <span class='update_attribute_with_validation_skipping identifier id'>update_attribute_with_validation_skipping</span><span class='lparen token'>(</span><span class='name identifier id'>name</span><span class='comma token'>,</span> <span class='value identifier id'>value</span><span class='rparen token'>)</span>
   <span class='send identifier id'>send</span><span class='lparen token'>(</span><span class='name identifier id'>name</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span> <span class='plus op'>+</span> <span class='string val'>'='</span><span class='comma token'>,</span> <span class='value identifier id'>value</span><span class='rparen token'>)</span>
@@ -497,7 +555,7 @@ default.
       <div class="method_details ">
   <p class="signature " id="valid?-instance_method">
   
-    - (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>valid?</strong> 
+    - (<tt>Boolean</tt>) <strong>valid?</strong> 
   
 
   
@@ -512,15 +570,26 @@ if no errors were added otherwise false.
   </div>
 </div>
 <div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
   
+    <li>
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
 </div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-764
-765
 766
 767
 768
@@ -534,10 +603,12 @@ if no errors were added otherwise false.
 776
 777
 778
-779</pre>
+779
+780
+781</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/big_record/validations.rb', line 764</span>
+      <pre class="code"><span class="info file"># File 'lib/big_record/validations.rb', line 766</span>
 
 <span class='def def kw'>def</span> <span class='valid? fid id'>valid?</span>
   <span class='errors identifier id'>errors</span><span class='dot token'>.</span><span class='clear identifier id'>clear</span>
@@ -566,9 +637,9 @@ if no errors were added otherwise false.
 </div>
     
     <div id="footer">
-  Generated on Tue Dec  1 18:30:38 2009 by 
+  Generated on Fri Apr 30 12:48:46 2010 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool">yard</a>
-  0.4.0 (ruby-1.8.7).
+  0.5.4 (ruby-1.8.7).
 </div>
 
   </body>

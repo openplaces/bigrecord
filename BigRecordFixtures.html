@@ -2,7 +2,7 @@
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
-    <meta name="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="Content-Type" content="text/html; charset=utf-8" />
 <title>Class: BigRecordFixtures</title>
 <link rel="stylesheet" href="css/style.css" type="text/css" media="screen" charset="utf-8" />
 <link rel="stylesheet" href="css/common.css" type="text/css" media="screen" charset="utf-8" />
@@ -16,6 +16,10 @@
 
   </head>
   <body>
+    <script type="text/javascript" charset="utf-8">
+      if (window.top.frames.main) document.body.className = 'frames';
+    </script>
+    
     <div id="header">
       <div id="menu">
   
@@ -24,10 +28,12 @@
     
     <span class="title">BigRecordFixtures</span>
   
+  
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
 </div>
 
       <div id="search">
-  <a id="class_list_link" href="#">Namespace List</a>
+  <a id="class_list_link" href="#">Class List</a>
   <a id="method_list_link" href="#">Method List</a>
   <a id ="file_list_link" href="#">File List</a>
 </div>
@@ -46,12 +52,12 @@
   
     <dt class="r1">Inherits:</dt>
     <dd class="r1">
-      <span class="inheritName"><a title="YAML::Omap" href="YAML/Omap.html">YAML::Omap</a></span>
+      <span class="inheritName"><a href="YAML/Omap.html" title="YAML::Omap (class)">YAML::Omap</a></span>
       
         <ul class="fullTree">
-          <li><a title="Object" href="Object.html">Object</a></li>
+          <li><a href="Object.html" title="Object (class)">Object</a></li>
           
-            <li class="next"><a title="YAML::Omap" href="YAML/Omap.html">YAML::Omap</a></li>
+            <li class="next"><a href="YAML/Omap.html" title="YAML::Omap (class)">YAML::Omap</a></li>
           
             <li class="next">BigRecordFixtures</li>
           
@@ -65,6 +71,7 @@
     
   
     
+  
   
   
     <dt class="r2 last">Defined in:</dt>
@@ -319,10 +326,10 @@ fixtures are to be considered a code smell.
 </p>
 <h1>Transactional fixtures</h1>
 <p>
-TestCases can use begin<tt>rollback to isolate their changes to the
-database instead of having to delete</tt>insert for every test case. They
-can also turn off auto-instantiation of fixture data since the feature is
-costly and often unused.
+TestCases can use begin+rollback to isolate their changes to the database
+instead of having to delete+insert for every test case. They can also turn
+off auto-instantiation of fixture data since the feature is costly and
+often unused.
 </p>
 <pre class="code">
   <span class='class class kw'>class</span> <span class='FooTest constant id'>FooTest</span> <span class='lt op'>&lt;</span> <span class='Test constant id'>Test</span><span class='colon2 op'>::</span><span class='Unit constant id'>Unit</span><span class='colon2 op'>::</span><span class='TestCase constant id'>TestCase</span>
@@ -350,9 +357,9 @@ there and every case rolls back its changes.
 </p>
 <p>
 In order to use instantiated fixtures with preloaded data, set
-<tt>self.pre_loaded_fixtures</tt> to true. This will provide access to
-fixture data for every table that has been loaded through fixtures
-(depending on the value of <tt>use_instantiated_fixtures</tt>)
+<tt>self.pre_loaded_fixtures</tt> to true. This will provide access to fixture
+data for every table that has been loaded through fixtures (depending on
+the value of <tt>use_instantiated_fixtures</tt>)
 </p>
 <p>
 When <b>not</b> to use transactional fixtures:
@@ -601,8 +608,7 @@ the rescue:
 <h2>Support for YAML defaults</h2>
 <p>
 You probably already know how to use YAML to set and reuse defaults in your
-<tt>database.yml</tt> file,. You can use the same technique in your
-fixtures:
+<tt>database.yml</tt> file,. You can use the same technique in your fixtures:
 </p>
 <pre class="code">
   <span class='DEFAULTS constant id'>DEFAULTS</span><span class='colon op'>:</span> <span class='bitand op'>&amp;</span><span class='DEFAULTS constant id'>DEFAULTS</span>
@@ -625,19 +631,33 @@ Any fixture labeled &quot;DEFAULTS&quot; is safely ignored.
 </div>
 <div class="tags">
   
+</div><div id="subclasses">
+  <h2>Direct Known Subclasses</h2>
+  <p class="children"><a href="BigRecordFixtures/HabtmFixtures.html" title="BigRecordFixtures::HabtmFixtures (class)">BigRecordFixtures::HabtmFixtures</a></p>
 </div>
+<h2>Defined Under Namespace</h2>
+<p class="children">
+   
+    
+   
+    
+      <strong class="classes">Classes:</strong> <a href="BigRecordFixtures/HabtmFixtures.html" title="BigRecordFixtures::HabtmFixtures (class)">HabtmFixtures</a>
+    
+  
+</p>
+
   <h2>Constant Summary</h2>
   
     <dl class="constants">
       
-        <dt id="DEFAULT_FILTER_RE-constant ">DEFAULT_FILTER_RE =
-            <span class="summary_desc"></span>
+        <dt id="DEFAULT_FILTER_RE-constant" class="">DEFAULT_FILTER_RE =
+          
         </dt>
         <dd><pre class="code"><span class='regexp val'>/\.ya?ml$/</span>
 </pre></dd>
       
-        <dt id="all_cached_big_record_fixtures-classvariable ">@@all_cached_big_record_fixtures =
-            <span class="summary_desc"></span>
+        <dt id="all_cached_big_record_fixtures-classvariable" class="">@@all_cached_big_record_fixtures =
+          
         </dt>
         <dd><pre class="code"><span class='lbrace token'>{</span><span class='rbrace token'>}</span>
 </pre></dd>
@@ -650,13 +670,18 @@ Any fixture labeled &quot;DEFAULTS&quot; is safely ignored.
   
   
   
-  <h2>Attribute Summary</h2>
+  <h2>Instance Attribute Summary</h2>
   <ul class="summary">
     
       <li class="public ">
-  <span class="summary_signature"><a title="#table_name (instance method)" href="#table_name-instance_method">- (Object) <strong>table_name</strong> </a>
-  
+  <span class="summary_signature">
+    
+      <a href="#table_name-instance_method" title="#table_name (instance method)">- (Object) <strong>table_name</strong> </a>
+    
+
+    
   </span>
+  
   
     <span class="note title readonly">readonly</span>
     
@@ -666,10 +691,10 @@ Any fixture labeled &quot;DEFAULTS&quot; is safely ignored.
   
 
   
-    <span class="summary_desc">
-Returns the value of attribute <tt>table_name</tt>.
-
-</span>
+    <span class="summary_desc"><div class='inline'><p>
+Returns the value of attribute table_name.
+</p>
+</div></span>
   
 </li>
 
@@ -677,196 +702,267 @@ Returns the value of attribute <tt>table_name</tt>.
   </ul>
 
 
-  <h2>Method Summary</h2>
-  <ul class="summary">
-    
-      <li class="public ">
-  <span class="summary_signature"><a title="cache_fixtures (class method)" href="#cache_fixtures-class_method">+ (Object) <strong>cache_fixtures</strong>(connection, fixtures) </a>
   
+    <h2>Class Method Summary</h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#cache_fixtures-class_method" title="cache_fixtures (class method)">+ (Object) <strong>cache_fixtures</strong>(connection, fixtures) </a>
+    
+
+    
   </span>
+  
   
   
   
   
 
   
-    <span class="summary_desc"></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="cache_for_connection (class method)" href="#cache_for_connection-class_method">+ (Object) <strong>cache_for_connection</strong>(connection) </a>
-  
+      <a href="#cache_for_connection-class_method" title="cache_for_connection (class method)">+ (Object) <strong>cache_for_connection</strong>(connection) </a>
+    
+
+    
   </span>
+  
   
   
   
   
 
   
-    <span class="summary_desc"></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="cached_fixtures (class method)" href="#cached_fixtures-class_method">+ (Object) <strong>cached_fixtures</strong>(connection, keys_to_fetch = nil) </a>
-  
+      <a href="#cached_fixtures-class_method" title="cached_fixtures (class method)">+ (Object) <strong>cached_fixtures</strong>(connection, keys_to_fetch = nil) </a>
+    
+
+    
   </span>
+  
   
   
   
   
 
   
-    <span class="summary_desc"></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="create_fixtures (class method)" href="#create_fixtures-class_method">+ (Object) <strong>create_fixtures</strong>(fixtures_directory, table_names, class_names = {}) </a>
-  
+      <a href="#create_fixtures-class_method" title="create_fixtures (class method)">+ (Object) <strong>create_fixtures</strong>(fixtures_directory, table_names, class_names = {}) </a>
+    
+
+    
   </span>
+  
   
   
   
   
 
   
-    <span class="summary_desc"></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="fixture_is_cached? (class method)" href="#fixture_is_cached%3F-class_method">+ (Object) <strong>fixture_is_cached?</strong>(connection, table_name) </a>
-  
+      <a href="#fixture_is_cached%3F-class_method" title="fixture_is_cached? (class method)">+ (Boolean) <strong>fixture_is_cached?</strong>(connection, table_name) </a>
+    
+
+    
   </span>
+  
   
   
   
   
 
   
-    <span class="summary_desc"></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="identify (class method)" href="#identify-class_method">+ (Object) <strong>identify</strong>(label) </a>
-  
+      <a href="#identify-class_method" title="identify (class method)">+ (Object) <strong>identify</strong>(label) </a>
+    
+
+    
   </span>
+  
   
   
   
   
 
   
-    <span class="summary_desc">
+    <span class="summary_desc"><div class='inline'><p>
 Returns a consistent identifier for <tt>label</tt>.
-
-</span>
+</p>
+</div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="instantiate_all_loaded_fixtures (class method)" href="#instantiate_all_loaded_fixtures-class_method">+ (Object) <strong>instantiate_all_loaded_fixtures</strong>(object, load_instances = true) </a>
-  
+      <a href="#instantiate_all_loaded_fixtures-class_method" title="instantiate_all_loaded_fixtures (class method)">+ (Object) <strong>instantiate_all_loaded_fixtures</strong>(object, load_instances = true) </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc"></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="instantiate_fixtures (class method)" href="#instantiate_fixtures-class_method">+ (Object) <strong>instantiate_fixtures</strong>(object, table_name, fixtures, load_instances = true) </a>
-  
+      <a href="#instantiate_fixtures-class_method" title="instantiate_fixtures (class method)">+ (Object) <strong>instantiate_fixtures</strong>(object, table_name, fixtures, load_instances = true) </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc"></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="reset_cache (class method)" href="#reset_cache-class_method">+ (Object) <strong>reset_cache</strong>(connection = nil) </a>
-  
+      <a href="#reset_cache-class_method" title="reset_cache (class method)">+ (Object) <strong>reset_cache</strong>(connection = nil) </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc"></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
-    
-      <li class="public ">
-  <span class="summary_signature"><a title="#delete_existing_fixtures (instance method)" href="#delete_existing_fixtures-instance_method">- (Object) <strong>delete_existing_fixtures</strong> </a>
+      
+    </ul>
   
+    <h2>Instance Method Summary</h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#delete_existing_fixtures-instance_method" title="#delete_existing_fixtures (instance method)">- (Object) <strong>delete_existing_fixtures</strong> </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc"></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="#initialize (instance method)" href="#initialize-instance_method">- (BigRecordFixtures) <strong>initialize</strong>(connection, table_name, class_name, fixture_path, file_filter = DEFAULT_FILTER_RE) </a>
+      <a href="#initialize-instance_method" title="#initialize (instance method)">- (BigRecordFixtures) <strong>initialize</strong>(connection, table_name, class_name, fixture_path, file_filter = DEFAULT_FILTER_RE) </a>
+    
+
+    
+  </span>
   
+    <span class="note title constructor">constructor</span>
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+A new instance of BigRecordFixtures.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#insert_fixtures-instance_method" title="#insert_fixtures (instance method)">- (Object) <strong>insert_fixtures</strong> </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc">
-A new instance of <tt>BigRecordFixtures</tt>.
-
-</span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
-    
-      <li class="public ">
-  <span class="summary_signature"><a title="#insert_fixtures (instance method)" href="#insert_fixtures-instance_method">- (Object) <strong>insert_fixtures</strong> </a>
+      
+    </ul>
   
-  </span>
-  
-  
-  
-  
-
-  
-    <span class="summary_desc"></span>
-  
-</li>
-
-    
-  </ul>
 
 
   
@@ -874,48 +970,31 @@ A new instance of <tt>BigRecordFixtures</tt>.
   
   
   
-  <h3 class="inherited">Methods inherited from <a title="YAML::Omap" href="YAML/Omap.html">YAML::Omap</a></h3>
-  <p class="inherited"><a title="#keys" href="YAML/Omap.html#keys-instance_method">#keys</a>, <a title="#values" href="YAML/Omap.html#values-instance_method">#values</a></p>
-<div id="constructor_details">
+  
+  
+  <h3 class="inherited">Methods inherited from <a href="YAML/Omap.html" title="YAML::Omap (class)">YAML::Omap</a></h3>
+  <p class="inherited"><a href="YAML/Omap.html#keys-instance_method" title="YAML::Omap#keys (method)">#keys</a>, <a href="YAML/Omap.html#values-instance_method" title="YAML::Omap#values (method)">#values</a></p>
+<div id="constructor_details" class="method_details_list">
   <h2>Constructor Details</h2>
   
     <div class="method_details first">
   <p class="signature first" id="initialize-instance_method">
   
-    - (<tt><a title="BigRecordFixtures" href="">BigRecordFixtures</a></tt>) <strong>initialize</strong>(connection, table_name, class_name, fixture_path, file_filter = DEFAULT_FILTER_RE) 
+    - (<tt><a href="" title="BigRecordFixtures (class)">BigRecordFixtures</a></tt>) <strong>initialize</strong>(connection, table_name, class_name, fixture_path, file_filter = DEFAULT_FILTER_RE) 
   
 
   
 </p><div class="docstring">
   <div class="discussion">
     <p>
-A new instance of <tt>BigRecordFixtures</tt>
+A new instance of BigRecordFixtures
 </p>
 
 
   </div>
 </div>
 <div class="tags">
-  <h3>Returns:</h3>
-<ul class="return">
   
-    <li>
-      
-        <span class='type'>(<tt><a title="BigRecordFixtures" href="">BigRecordFixtures</a></tt>)</span>
-      
-      
-      
-      
-        &mdash;
-        
-a new instance of <tt>BigRecordFixtures</tt>
-
-
-      
-    </li>
-  
-</ul>
-
 </div><table class="source_code">
   <tr>
     <td>
@@ -952,8 +1031,8 @@ a new instance of <tt>BigRecordFixtures</tt>
   
 </div>
 
-  <div id="attr_details">
-    <h2>Attribute Details</h2>
+  <div id="instance_attr_details" class="attr_details">
+    <h2>Instance Attribute Details</h2>
     
       
       <span id=""></span>
@@ -961,14 +1040,14 @@ a new instance of <tt>BigRecordFixtures</tt>
       <div class="method_details first">
   <p class="signature first" id="table_name-instance_method">
   
-    - (<tt><a title="Object" href="Object.html">Object</a></tt>) <strong>table_name</strong>  <span class="extras">(readonly)</span>
+    - (<tt><a href="Object.html" title="Object (class)">Object</a></tt>) <strong>table_name</strong>  <span class="extras">(readonly)</span>
   
 
   
 </p><div class="docstring">
   <div class="discussion">
     <p>
-Returns the value of attribute <tt>table_name</tt>
+Returns the value of attribute table_name
 </p>
 
 
@@ -1001,13 +1080,14 @@ Returns the value of attribute <tt>table_name</tt>
   </div>
 
 
-  <div id="method_details">
-    <h2>Method Details</h2>
+  <div id="class_method_details" class="method_details_list">
+    <h2>Class Method Details</h2>
+    
     
       <div class="method_details first">
   <p class="signature first" id="cache_fixtures-class_method">
   
-    + (<tt><a title="Object" href="Object.html">Object</a></tt>) <strong>cache_fixtures</strong>(connection, fixtures) 
+    + (<tt><a href="Object.html" title="Object (class)">Object</a></tt>) <strong>cache_fixtures</strong>(connection, fixtures) 
   
 
   
@@ -1036,7 +1116,7 @@ Returns the value of attribute <tt>table_name</tt>
       <div class="method_details ">
   <p class="signature " id="cache_for_connection-class_method">
   
-    + (<tt><a title="Object" href="Object.html">Object</a></tt>) <strong>cache_for_connection</strong>(connection) 
+    + (<tt><a href="Object.html" title="Object (class)">Object</a></tt>) <strong>cache_for_connection</strong>(connection) 
   
 
   
@@ -1067,7 +1147,7 @@ Returns the value of attribute <tt>table_name</tt>
       <div class="method_details ">
   <p class="signature " id="cached_fixtures-class_method">
   
-    + (<tt><a title="Object" href="Object.html">Object</a></tt>) <strong>cached_fixtures</strong>(connection, keys_to_fetch = nil) 
+    + (<tt><a href="Object.html" title="Object (class)">Object</a></tt>) <strong>cached_fixtures</strong>(connection, keys_to_fetch = nil) 
   
 
   
@@ -1106,7 +1186,7 @@ Returns the value of attribute <tt>table_name</tt>
       <div class="method_details ">
   <p class="signature " id="create_fixtures-class_method">
   
-    + (<tt><a title="Object" href="Object.html">Object</a></tt>) <strong>create_fixtures</strong>(fixtures_directory, table_names, class_names = {}) 
+    + (<tt><a href="Object.html" title="Object (class)">Object</a></tt>) <strong>create_fixtures</strong>(fixtures_directory, table_names, class_names = {}) 
   
 
   
@@ -1199,11 +1279,32 @@ Returns the value of attribute <tt>table_name</tt>
       <div class="method_details ">
   <p class="signature " id="fixture_is_cached?-class_method">
   
-    + (<tt><a title="Object" href="Object.html">Object</a></tt>) <strong>fixture_is_cached?</strong>(connection, table_name) 
+    + (<tt>Boolean</tt>) <strong>fixture_is_cached?</strong>(connection, table_name) 
   
 
   
-</p><table class="source_code">
+</p><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
@@ -1228,7 +1329,7 @@ Returns the value of attribute <tt>table_name</tt>
       <div class="method_details ">
   <p class="signature " id="identify-class_method">
   
-    + (<tt><a title="Object" href="Object.html">Object</a></tt>) <strong>identify</strong>(label) 
+    + (<tt><a href="Object.html" title="Object (class)">Object</a></tt>) <strong>identify</strong>(label) 
   
 
   
@@ -1270,7 +1371,7 @@ the same OS, platform, and version of Ruby.
       <div class="method_details ">
   <p class="signature " id="instantiate_all_loaded_fixtures-class_method">
   
-    + (<tt><a title="Object" href="Object.html">Object</a></tt>) <strong>instantiate_all_loaded_fixtures</strong>(object, load_instances = true) 
+    + (<tt><a href="Object.html" title="Object (class)">Object</a></tt>) <strong>instantiate_all_loaded_fixtures</strong>(object, load_instances = true) 
   
 
   
@@ -1303,7 +1404,7 @@ the same OS, platform, and version of Ruby.
       <div class="method_details ">
   <p class="signature " id="instantiate_fixtures-class_method">
   
-    + (<tt><a title="Object" href="Object.html">Object</a></tt>) <strong>instantiate_fixtures</strong>(object, table_name, fixtures, load_instances = true) 
+    + (<tt><a href="Object.html" title="Object (class)">Object</a></tt>) <strong>instantiate_fixtures</strong>(object, table_name, fixtures, load_instances = true) 
   
 
   
@@ -1354,7 +1455,7 @@ the same OS, platform, and version of Ruby.
       <div class="method_details ">
   <p class="signature " id="reset_cache-class_method">
   
-    + (<tt><a title="Object" href="Object.html">Object</a></tt>) <strong>reset_cache</strong>(connection = nil) 
+    + (<tt><a href="Object.html" title="Object (class)">Object</a></tt>) <strong>reset_cache</strong>(connection = nil) 
   
 
   
@@ -1382,10 +1483,16 @@ the same OS, platform, and version of Ruby.
 </table>
 </div>
     
-      <div class="method_details ">
-  <p class="signature " id="delete_existing_fixtures-instance_method">
+  </div>
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+    
+    
+      <div class="method_details first">
+  <p class="signature first" id="delete_existing_fixtures-instance_method">
   
-    - (<tt><a title="Object" href="Object.html">Object</a></tt>) <strong>delete_existing_fixtures</strong> 
+    - (<tt><a href="Object.html" title="Object (class)">Object</a></tt>) <strong>delete_existing_fixtures</strong> 
   
 
   
@@ -1418,7 +1525,7 @@ the same OS, platform, and version of Ruby.
       <div class="method_details ">
   <p class="signature " id="insert_fixtures-instance_method">
   
-    - (<tt><a title="Object" href="Object.html">Object</a></tt>) <strong>insert_fixtures</strong> 
+    - (<tt><a href="Object.html" title="Object (class)">Object</a></tt>) <strong>insert_fixtures</strong> 
   
 
   
@@ -1611,9 +1718,9 @@ the same OS, platform, and version of Ruby.
 </div>
     
     <div id="footer">
-  Generated on Tue Dec  1 18:30:55 2009 by 
+  Generated on Fri Apr 30 12:48:46 2010 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool">yard</a>
-  0.4.0 (ruby-1.8.7).
+  0.5.4 (ruby-1.8.7).
 </div>
 
   </body>

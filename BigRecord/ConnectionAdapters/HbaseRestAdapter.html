@@ -2,7 +2,7 @@
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
-    <meta name="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="Content-Type" content="text/html; charset=utf-8" />
 <title>Class: BigRecord::ConnectionAdapters::HbaseRestAdapter</title>
 <link rel="stylesheet" href="../../css/style.css" type="text/css" media="screen" charset="utf-8" />
 <link rel="stylesheet" href="../../css/common.css" type="text/css" media="screen" charset="utf-8" />
@@ -16,18 +16,24 @@
 
   </head>
   <body>
+    <script type="text/javascript" charset="utf-8">
+      if (window.top.frames.main) document.body.className = 'frames';
+    </script>
+    
     <div id="header">
       <div id="menu">
   
     <a href="../../_index.html">Index (H)</a> &raquo; 
-    <a title="BigRecord" href="../../BigRecord.html">BigRecord</a> &raquo; <a title="ConnectionAdapters" href="../ConnectionAdapters.html">ConnectionAdapters</a>
+    <span class='title'><a href="../../BigRecord.html" title="BigRecord (module)">BigRecord</a></span> &raquo; <span class='title'><a href="../ConnectionAdapters.html" title="BigRecord::ConnectionAdapters (module)">ConnectionAdapters</a></span>
      &raquo; 
     <span class="title">HbaseRestAdapter</span>
   
+  
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
 </div>
 
       <div id="search">
-  <a id="class_list_link" href="#">Namespace List</a>
+  <a id="class_list_link" href="#">Class List</a>
   <a id="method_list_link" href="#">Method List</a>
   <a id ="file_list_link" href="#">File List</a>
 </div>
@@ -46,12 +52,12 @@
   
     <dt class="r1">Inherits:</dt>
     <dd class="r1">
-      <span class="inheritName"><a title="BigRecord::ConnectionAdapters::AbstractAdapter" href="AbstractAdapter.html">BigRecord::ConnectionAdapters::AbstractAdapter</a></span>
+      <span class="inheritName"><a href="AbstractAdapter.html" title="BigRecord::ConnectionAdapters::AbstractAdapter (class)">AbstractAdapter</a></span>
       
         <ul class="fullTree">
-          <li><a title="Object" href="../../Object.html">Object</a></li>
+          <li><a href="../../Object.html" title="Object (class)">Object</a></li>
           
-            <li class="next"><a title="BigRecord::ConnectionAdapters::AbstractAdapter" href="AbstractAdapter.html">BigRecord::ConnectionAdapters::AbstractAdapter</a></li>
+            <li class="next"><a href="AbstractAdapter.html" title="BigRecord::ConnectionAdapters::AbstractAdapter (class)">AbstractAdapter</a></li>
           
             <li class="next">BigRecord::ConnectionAdapters::HbaseRestAdapter</li>
           
@@ -67,6 +73,7 @@
     
   
   
+  
     <dt class="r2 last">Defined in:</dt>
     <dd class="r2 last">lib/big_record/connection_adapters/hbase_rest_adapter.rb</dd>
   
@@ -78,8 +85,8 @@
   
     <dl class="constants">
       
-        <dt id="LOST_CONNECTION_ERROR_MESSAGES-constant ">LOST_CONNECTION_ERROR_MESSAGES =
-            <span class="summary_desc"></span>
+        <dt id="LOST_CONNECTION_ERROR_MESSAGES-constant" class="">LOST_CONNECTION_ERROR_MESSAGES =
+          
         </dt>
         <dd><pre class="code"><span class='lbrack token'>[</span>
   <span class='string val'>&quot;Server shutdown in progress&quot;</span><span class='comma token'>,</span>
@@ -89,59 +96,99 @@
 <span class='rbrack token'>]</span>
 </pre></dd>
       
-        <dt id="TYPE_NULL-constant ">TYPE_NULL =
-            <span class="summary_desc">
-data types.
+        <dt id="TYPE_NULL-constant" class="">TYPE_NULL =
+          <div class="docstring">
+  <div class="discussion">
+    <p>
+data types
+</p>
 
-</span>
+
+  </div>
+</div>
+<div class="tags">
+  
+</div>
         </dt>
         <dd><pre class="code"><span class='integer val'>0x00</span>
 </pre></dd>
       
-        <dt id="TYPE_STRING-constant ">TYPE_STRING =
-            <span class="summary_desc"></span>
+        <dt id="TYPE_STRING-constant" class="">TYPE_STRING =
+          
         </dt>
         <dd><pre class="code"><span class='integer val'>0x01</span>
 </pre></dd>
       
-        <dt id="TYPE_BOOLEAN-constant ">TYPE_BOOLEAN =
-            <span class="summary_desc">
-utf-8 strings.
+        <dt id="TYPE_BOOLEAN-constant" class="">TYPE_BOOLEAN =
+          <div class="docstring">
+  <div class="discussion">
+    <p>
+utf-8 strings
+</p>
 
-</span>
+
+  </div>
+</div>
+<div class="tags">
+  
+</div>
         </dt>
         <dd><pre class="code"><span class='integer val'>0x04</span>
 </pre></dd>
       
-        <dt id="TYPE_BINARY-constant ">TYPE_BINARY =
-            <span class="summary_desc">
-delegate to YAML.
+        <dt id="TYPE_BINARY-constant" class="">TYPE_BINARY =
+          <div class="docstring">
+  <div class="discussion">
+    <p>
+delegate to YAML
+</p>
 
-</span>
+
+  </div>
+</div>
+<div class="tags">
+  
+</div>
         </dt>
         <dd><pre class="code"><span class='integer val'>0x07</span>
 </pre></dd>
       
-        <dt id="CHARSET-constant ">CHARSET =
-            <span class="summary_desc">
-string charset.
+        <dt id="CHARSET-constant" class="">CHARSET =
+          <div class="docstring">
+  <div class="discussion">
+    <p>
+string charset
+</p>
 
-</span>
+
+  </div>
+</div>
+<div class="tags">
+  
+</div>
         </dt>
         <dd><pre class="code"><span class='string val'>&quot;utf-8&quot;</span>
 </pre></dd>
       
-        <dt id="NULL-constant ">NULL =
-            <span class="summary_desc">
-utility constants.
+        <dt id="NULL-constant" class="">NULL =
+          <div class="docstring">
+  <div class="discussion">
+    <p>
+utility constants
+</p>
 
-</span>
+
+  </div>
+</div>
+<div class="tags">
+  
+</div>
         </dt>
         <dd><pre class="code"><span class='string val'>&quot;\000&quot;</span>
 </pre></dd>
       
-        <dt id="emulate_booleans-classvariable ">@@emulate_booleans =
-            <span class="summary_desc"></span>
+        <dt id="emulate_booleans-classvariable" class="">@@emulate_booleans =
+          
         </dt>
         <dd><pre class="code"><span class='true true kw'>true</span>
 </pre></dd>
@@ -163,490 +210,651 @@ utility constants.
   
   
 
-  <h2>Method Summary</h2>
-  <ul class="summary">
-    
-      <li class="public ">
-  <span class="summary_signature"><a title="#active? (instance method)" href="#active%3F-instance_method">- (Object) <strong>active?</strong> </a>
   
+    <h2>Instance Method Summary</h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#active%3F-instance_method" title="#active? (instance method)">- (Boolean) <strong>active?</strong> </a>
+    
+
+    
   </span>
+  
   
   
   
   
 
   
-    <span class="summary_desc">
+    <span class="summary_desc"><div class='inline'><p>
 CONNECTION MANAGEMENT ====================================.
-
-</span>
+</p>
+</div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="#adapter_name (instance method)" href="#adapter_name-instance_method">- (Object) <strong>adapter_name</strong> </a>
-  
+      <a href="#adapter_name-instance_method" title="#adapter_name (instance method)">- (Object) <strong>adapter_name</strong> </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc"></span>
+    <span class="summary_desc"><div class='inline'><p>
+:nodoc:.
+</p>
+</div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="#add_column_family (instance method)" href="#add_column_family-instance_method">- (Object) <strong>add_column_family</strong>(table_name, column_name, options = {}) </a>
-  
-    (also: #add_family)
-  
+      <a href="#add_column_family-instance_method" title="#add_column_family (instance method)">- (Object) <strong>add_column_family</strong>(table_name, column_name, options = {}) </a>
+    
+
+    
+      (also: #add_family)
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc"></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="#build_serialized_value (instance method)" href="#build_serialized_value-instance_method">- (Object) <strong>build_serialized_value</strong>(type, value) </a>
-  
+      <a href="#build_serialized_value-instance_method" title="#build_serialized_value (instance method)">- (Object) <strong>build_serialized_value</strong>(type, value) </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc">
+    <span class="summary_desc"><div class='inline'><p>
 Serialize an object in a given type.
-
-</span>
+</p>
+</div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="#columns_to_hbase_format (instance method)" href="#columns_to_hbase_format-instance_method">- (Object) <strong>columns_to_hbase_format</strong>(data = {}) </a>
-  
+      <a href="#columns_to_hbase_format-instance_method" title="#columns_to_hbase_format (instance method)">- (Object) <strong>columns_to_hbase_format</strong>(data = {}) </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc">
+    <span class="summary_desc"><div class='inline'><p>
 DATABASE STATEMENTS ======================================.
-
-</span>
+</p>
+</div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="#configuration (instance method)" href="#configuration-instance_method">- (Object) <strong>configuration</strong> </a>
-  
+      <a href="#configuration-instance_method" title="#configuration (instance method)">- (Object) <strong>configuration</strong> </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc"></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="#create_table (instance method)" href="#create_table-instance_method">- (Object) <strong>create_table</strong>(table_name, options = {}) </a>
-  
+      <a href="#create_table-instance_method" title="#create_table (instance method)">- (Object) <strong>create_table</strong>(table_name, options = {}) {|table_definition| ... }</a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc"></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="#delete (instance method)" href="#delete-instance_method">- (Object) <strong>delete</strong>(table_name, row, timestamp = nil) </a>
-  
+      <a href="#delete-instance_method" title="#delete (instance method)">- (Object) <strong>delete</strong>(table_name, row, timestamp = nil) </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc"></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="#deserialize (instance method)" href="#deserialize-instance_method">- (Object) <strong>deserialize</strong>(str) </a>
-  
+      <a href="#deserialize-instance_method" title="#deserialize (instance method)">- (Object) <strong>deserialize</strong>(str) </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc">
+    <span class="summary_desc"><div class='inline'><p>
 Deserialize the given string.
-
-</span>
+</p>
+</div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="#deserialize_with_header (instance method)" href="#deserialize_with_header-instance_method">- (Object) <strong>deserialize_with_header</strong>(data) </a>
-  
+      <a href="#deserialize_with_header-instance_method" title="#deserialize_with_header (instance method)">- (Object) <strong>deserialize_with_header</strong>(data) </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc">
+    <span class="summary_desc"><div class='inline'><p>
 Deserialize the given string assumed to be in the type header format.
-
-</span>
+</p>
+</div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="#disconnect! (instance method)" href="#disconnect%21-instance_method">- (Object) <strong>disconnect!</strong> </a>
-  
+      <a href="#disconnect%21-instance_method" title="#disconnect! (instance method)">- (Object) <strong>disconnect!</strong> </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc"></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="#drop_table (instance method)" href="#drop_table-instance_method">- (Object) <strong>drop_table</strong>(table_name) </a>
-  
+      <a href="#drop_table-instance_method" title="#drop_table (instance method)">- (Object) <strong>drop_table</strong>(table_name) </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc"></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="#get (instance method)" href="#get-instance_method">- (Object) <strong>get</strong>(table_name, row, column, options = {}) </a>
-  
+      <a href="#get-instance_method" title="#get (instance method)">- (Object) <strong>get</strong>(table_name, row, column, options = {}) </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc"></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="#get_all_schema_versions (instance method)" href="#get_all_schema_versions-instance_method">- (Object) <strong>get_all_schema_versions</strong> </a>
-  
+      <a href="#get_all_schema_versions-instance_method" title="#get_all_schema_versions (instance method)">- (Object) <strong>get_all_schema_versions</strong> </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc"></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="#get_columns (instance method)" href="#get_columns-instance_method">- (Object) <strong>get_columns</strong>(table_name, row, columns, options = {}) </a>
-  
+      <a href="#get_columns-instance_method" title="#get_columns (instance method)">- (Object) <strong>get_columns</strong>(table_name, row, columns, options = {}) </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc"></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="#get_columns_raw (instance method)" href="#get_columns_raw-instance_method">- (Object) <strong>get_columns_raw</strong>(table_name, row, columns = nil, options = {}) </a>
-  
+      <a href="#get_columns_raw-instance_method" title="#get_columns_raw (instance method)">- (Object) <strong>get_columns_raw</strong>(table_name, row, columns = nil, options = {}) </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc"></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="#get_consecutive_rows (instance method)" href="#get_consecutive_rows-instance_method">- (Object) <strong>get_consecutive_rows</strong>(table_name, start_row, limit, columns, stop_row = nil) </a>
-  
+      <a href="#get_consecutive_rows-instance_method" title="#get_consecutive_rows (instance method)">- (Object) <strong>get_consecutive_rows</strong>(table_name, start_row, limit, columns, stop_row = nil) </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc"></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="#get_consecutive_rows_raw (instance method)" href="#get_consecutive_rows_raw-instance_method">- (Object) <strong>get_consecutive_rows_raw</strong>(table_name, start_row, limit, columns, stop_row = nil) </a>
-  
+      <a href="#get_consecutive_rows_raw-instance_method" title="#get_consecutive_rows_raw (instance method)">- (Object) <strong>get_consecutive_rows_raw</strong>(table_name, start_row, limit, columns, stop_row = nil) </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc"></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="#get_raw (instance method)" href="#get_raw-instance_method">- (Object) <strong>get_raw</strong>(table_name, row, column, options = {}) </a>
-  
+      <a href="#get_raw-instance_method" title="#get_raw (instance method)">- (Object) <strong>get_raw</strong>(table_name, row, column, options = {}) </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc"></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="#initialize (instance method)" href="#initialize-instance_method">- (HbaseRestAdapter) <strong>initialize</strong>(connection, logger, connection_options, config) </a>
+      <a href="#initialize-instance_method" title="#initialize (instance method)">- (HbaseRestAdapter) <strong>initialize</strong>(connection, logger, connection_options, config) </a>
+    
+
+    
+  </span>
   
+    <span class="note title constructor">constructor</span>
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+A new instance of HbaseRestAdapter.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#initialize_schema_migrations_table-instance_method" title="#initialize_schema_migrations_table (instance method)">- (Object) <strong>initialize_schema_migrations_table</strong> </a>
+    
+
+    
   </span>
   
   
   
   
-
-  
-    <span class="summary_desc">
-A new instance of <tt>HbaseRestAdapter</tt>.
-
-</span>
-  
-</li>
-
-    
-      <li class="public ">
-  <span class="summary_signature"><a title="#initialize_schema_migrations_table (instance method)" href="#initialize_schema_migrations_table-instance_method">- (Object) <strong>initialize_schema_migrations_table</strong> </a>
-  
-  </span>
-  
-  
-  
   
 
   
-    <span class="summary_desc">
+    <span class="summary_desc"><div class='inline'><p>
 SCHEMA STATEMENTS ========================================.
-
-</span>
+</p>
+</div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="#modify_column_family (instance method)" href="#modify_column_family-instance_method">- (Object) <strong>modify_column_family</strong>(table_name, column_name, options = {}) </a>
-  
-    (also: #modify_family)
-  
+      <a href="#modify_column_family-instance_method" title="#modify_column_family (instance method)">- (Object) <strong>modify_column_family</strong>(table_name, column_name, options = {}) </a>
+    
+
+    
+      (also: #modify_family)
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc"></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="#reconnect! (instance method)" href="#reconnect%21-instance_method">- (Object) <strong>reconnect!</strong> </a>
-  
+      <a href="#reconnect%21-instance_method" title="#reconnect! (instance method)">- (Object) <strong>reconnect!</strong> </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc"></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="#remove_column_family (instance method)" href="#remove_column_family-instance_method">- (Object) <strong>remove_column_family</strong>(table_name, column_name) </a>
-  
-    (also: #remove_family)
-  
+      <a href="#remove_column_family-instance_method" title="#remove_column_family (instance method)">- (Object) <strong>remove_column_family</strong>(table_name, column_name) </a>
+    
+
+    
+      (also: #remove_family)
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc"></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="#serialize (instance method)" href="#serialize-instance_method">- (Object) <strong>serialize</strong>(value) </a>
-  
+      <a href="#serialize-instance_method" title="#serialize (instance method)">- (Object) <strong>serialize</strong>(value) </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc">
+    <span class="summary_desc"><div class='inline'><p>
 Serialize the given value.
-
-</span>
+</p>
+</div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="#supports_migrations? (instance method)" href="#supports_migrations%3F-instance_method">- (Object) <strong>supports_migrations?</strong> </a>
-  
+      <a href="#supports_migrations%3F-instance_method" title="#supports_migrations? (instance method)">- (Boolean) <strong>supports_migrations?</strong> </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc"></span>
+    <span class="summary_desc"><div class='inline'><p>
+:nodoc:.
+</p>
+</div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="#table_exists? (instance method)" href="#table_exists%3F-instance_method">- (Object) <strong>table_exists?</strong>(table_name) </a>
-  
+      <a href="#table_exists%3F-instance_method" title="#table_exists? (instance method)">- (Boolean) <strong>table_exists?</strong>(table_name) </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc"></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="#truncate_table (instance method)" href="#truncate_table-instance_method">- (Object) <strong>truncate_table</strong>(table_name) </a>
-  
+      <a href="#truncate_table-instance_method" title="#truncate_table (instance method)">- (Object) <strong>truncate_table</strong>(table_name) </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc"></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="#update (instance method)" href="#update-instance_method">- (Object) <strong>update</strong>(table_name, row, values, timestamp) </a>
-  
+      <a href="#update-instance_method" title="#update (instance method)">- (Object) <strong>update</strong>(table_name, row, values, timestamp) </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc"></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="#update_raw (instance method)" href="#update_raw-instance_method">- (Object) <strong>update_raw</strong>(table_name, row, values, timestamp) </a>
-  
+      <a href="#update_raw-instance_method" title="#update_raw (instance method)">- (Object) <strong>update_raw</strong>(table_name, row, values, timestamp) </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc"></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
-    
-  </ul>
+      
+    </ul>
+  
 
 
   
@@ -654,64 +862,51 @@ Serialize the given value.
   
   
   
-  <h3 class="inherited">Methods inherited from <a title="BigRecord::ConnectionAdapters::AbstractAdapter" href="AbstractAdapter.html">BigRecord::ConnectionAdapters::AbstractAdapter</a></h3>
-  <p class="inherited"><a title="#delete_all" href="AbstractAdapter.html#delete_all-instance_method">#delete_all</a>, <a title="#disable_referential_integrity" href="AbstractAdapter.html#disable_referential_integrity-instance_method">#disable_referential_integrity</a>, <a title="#prefetch_primary_key?" href="AbstractAdapter.html#prefetch_primary_key%3F-instance_method">#prefetch_primary_key?</a>, <a title="#quote_table_name" href="AbstractAdapter.html#quote_table_name-instance_method">#quote_table_name</a>, <a title="#raw_connection" href="AbstractAdapter.html#raw_connection-instance_method">#raw_connection</a>, <a title="#requires_reloading?" href="AbstractAdapter.html#requires_reloading%3F-instance_method">#requires_reloading?</a>, <a title="#reset_runtime" href="AbstractAdapter.html#reset_runtime-instance_method">#reset_runtime</a>, <a title="#supports_count_distinct?" href="AbstractAdapter.html#supports_count_distinct%3F-instance_method">#supports_count_distinct?</a>, <a title="#supports_ddl_transactions?" href="AbstractAdapter.html#supports_ddl_transactions%3F-instance_method">#supports_ddl_transactions?</a>, <a title="#verify!" href="AbstractAdapter.html#verify%21-instance_method">#verify!</a></p>
+  
+  
+  <h3 class="inherited">Methods inherited from <a href="AbstractAdapter.html" title="BigRecord::ConnectionAdapters::AbstractAdapter (class)">AbstractAdapter</a></h3>
+  <p class="inherited"><a href="AbstractAdapter.html#delete_all-instance_method" title="BigRecord::ConnectionAdapters::AbstractAdapter#delete_all (method)">#delete_all</a>, <a href="AbstractAdapter.html#disable_referential_integrity-instance_method" title="BigRecord::ConnectionAdapters::AbstractAdapter#disable_referential_integrity (method)">#disable_referential_integrity</a>, <a href="AbstractAdapter.html#prefetch_primary_key%3F-instance_method" title="BigRecord::ConnectionAdapters::AbstractAdapter#prefetch_primary_key? (method)">#prefetch_primary_key?</a>, <a href="AbstractAdapter.html#quote_table_name-instance_method" title="BigRecord::ConnectionAdapters::AbstractAdapter#quote_table_name (method)">#quote_table_name</a>, <a href="AbstractAdapter.html#raw_connection-instance_method" title="BigRecord::ConnectionAdapters::AbstractAdapter#raw_connection (method)">#raw_connection</a>, <a href="AbstractAdapter.html#requires_reloading%3F-instance_method" title="BigRecord::ConnectionAdapters::AbstractAdapter#requires_reloading? (method)">#requires_reloading?</a>, <a href="AbstractAdapter.html#reset_runtime-instance_method" title="BigRecord::ConnectionAdapters::AbstractAdapter#reset_runtime (method)">#reset_runtime</a>, <a href="AbstractAdapter.html#supports_count_distinct%3F-instance_method" title="BigRecord::ConnectionAdapters::AbstractAdapter#supports_count_distinct? (method)">#supports_count_distinct?</a>, <a href="AbstractAdapter.html#supports_ddl_transactions%3F-instance_method" title="BigRecord::ConnectionAdapters::AbstractAdapter#supports_ddl_transactions? (method)">#supports_ddl_transactions?</a>, <a href="AbstractAdapter.html#verify%21-instance_method" title="BigRecord::ConnectionAdapters::AbstractAdapter#verify! (method)">#verify!</a></p>
 
   
   
   
   
   
-  <h3 class="inherited">Methods included from <a title="BigRecord::ConnectionAdapters::Quoting" href="Quoting.html">BigRecord::ConnectionAdapters::Quoting</a></h3>
-  <p class="inherited"><a title="#quote" href="Quoting.html#quote-instance_method">#quote</a>, <a title="#quote_column_name" href="Quoting.html#quote_column_name-instance_method">#quote_column_name</a>, <a title="#quote_string" href="Quoting.html#quote_string-instance_method">#quote_string</a>, <a title="#quoted_date" href="Quoting.html#quoted_date-instance_method">#quoted_date</a>, <a title="#quoted_false" href="Quoting.html#quoted_false-instance_method">#quoted_false</a>, <a title="#quoted_true" href="Quoting.html#quoted_true-instance_method">#quoted_true</a></p>
+  
+  
+  <h3 class="inherited">Methods included from <a href="Quoting.html" title="BigRecord::ConnectionAdapters::Quoting (module)">Quoting</a></h3>
+  <p class="inherited"><a href="Quoting.html#quote-instance_method" title="BigRecord::ConnectionAdapters::Quoting#quote (method)">#quote</a>, <a href="Quoting.html#quote_column_name-instance_method" title="BigRecord::ConnectionAdapters::Quoting#quote_column_name (method)">#quote_column_name</a>, <a href="Quoting.html#quote_string-instance_method" title="BigRecord::ConnectionAdapters::Quoting#quote_string (method)">#quote_string</a>, <a href="Quoting.html#quoted_date-instance_method" title="BigRecord::ConnectionAdapters::Quoting#quoted_date (method)">#quoted_date</a>, <a href="Quoting.html#quoted_false-instance_method" title="BigRecord::ConnectionAdapters::Quoting#quoted_false (method)">#quoted_false</a>, <a href="Quoting.html#quoted_true-instance_method" title="BigRecord::ConnectionAdapters::Quoting#quoted_true (method)">#quoted_true</a></p>
 
   
   
   
   
   
-  <h3 class="inherited">Methods included from <a title="BigRecord::ConnectionAdapters::DatabaseStatements" href="DatabaseStatements.html">BigRecord::ConnectionAdapters::DatabaseStatements</a></h3>
-  <p class="inherited"><a title="#insert_fixture" href="DatabaseStatements.html#insert_fixture-instance_method">#insert_fixture</a></p>
-<div id="constructor_details">
+  
+  
+  <h3 class="inherited">Methods included from <a href="DatabaseStatements.html" title="BigRecord::ConnectionAdapters::DatabaseStatements (module)">DatabaseStatements</a></h3>
+  <p class="inherited"><a href="DatabaseStatements.html#insert_fixture-instance_method" title="BigRecord::ConnectionAdapters::DatabaseStatements#insert_fixture (method)">#insert_fixture</a></p>
+<div id="constructor_details" class="method_details_list">
   <h2>Constructor Details</h2>
   
     <div class="method_details first">
   <p class="signature first" id="initialize-instance_method">
   
-    - (<tt><a title="HbaseRestAdapter" href="">HbaseRestAdapter</a></tt>) <strong>initialize</strong>(connection, logger, connection_options, config) 
+    - (<tt><a href="" title="BigRecord::ConnectionAdapters::HbaseRestAdapter (class)">HbaseRestAdapter</a></tt>) <strong>initialize</strong>(connection, logger, connection_options, config) 
   
 
   
 </p><div class="docstring">
   <div class="discussion">
     <p>
-A new instance of <tt>HbaseRestAdapter</tt>
+A new instance of HbaseRestAdapter
 </p>
 
 
   </div>
 </div>
 <div class="tags">
-  <h3>Returns:</h3>
-<ul class="return">
   
-    <li>
-      
-        <span class='type'>(<tt><a title="HbaseRestAdapter" href="">HbaseRestAdapter</a></tt>)</span>
-      
-      
-      
-      
-        &mdash;
-        
-a new instance of <tt>HbaseRestAdapter</tt>
-
-
-      
-    </li>
-  
-</ul>
-
 </div><table class="source_code">
   <tr>
     <td>
@@ -743,13 +938,14 @@ a new instance of <tt>HbaseRestAdapter</tt>
 </div>
 
 
-  <div id="method_details">
-    <h2>Method Details</h2>
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+    
     
       <div class="method_details first">
   <p class="signature first" id="active?-instance_method">
   
-    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>active?</strong> 
+    - (<tt>Boolean</tt>) <strong>active?</strong> 
   
 
   
@@ -763,7 +959,20 @@ CONNECTION MANAGEMENT ====================================
   </div>
 </div>
 <div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
   
+    <li>
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
 </div><table class="source_code">
   <tr>
     <td>
@@ -789,11 +998,22 @@ CONNECTION MANAGEMENT ====================================
       <div class="method_details ">
   <p class="signature " id="adapter_name-instance_method">
   
-    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>adapter_name</strong> 
+    - (<tt><a href="../../Object.html" title="Object (class)">Object</a></tt>) <strong>adapter_name</strong> 
   
 
   
-</p><table class="source_code">
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+:nodoc:
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
@@ -818,12 +1038,12 @@ CONNECTION MANAGEMENT ====================================
       <div class="method_details ">
   <p class="signature " id="add_column_family-instance_method">
   
-    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>add_column_family</strong>(table_name, column_name, options = {}) 
+    - (<tt><a href="../../Object.html" title="Object (class)">Object</a></tt>) <strong>add_column_family</strong>(table_name, column_name, options = {}) 
   
 
   
     <span class="aliases">Also known as:
-    <span class="names">add_family</span>
+    <span class="names"><span id='add_family-instance_method'>add_family</span></span>
     </span>
   
 </p><table class="source_code">
@@ -849,7 +1069,7 @@ CONNECTION MANAGEMENT ====================================
       <div class="method_details ">
   <p class="signature " id="build_serialized_value-instance_method">
   
-    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>build_serialized_value</strong>(type, value) 
+    - (<tt><a href="../../Object.html" title="Object (class)">Object</a></tt>) <strong>build_serialized_value</strong>(type, value) 
   
 
   
@@ -889,7 +1109,7 @@ Serialize an object in a given type
       <div class="method_details ">
   <p class="signature " id="columns_to_hbase_format-instance_method">
   
-    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>columns_to_hbase_format</strong>(data = {}) 
+    - (<tt><a href="../../Object.html" title="Object (class)">Object</a></tt>) <strong>columns_to_hbase_format</strong>(data = {}) 
   
 
   
@@ -933,7 +1153,7 @@ DATABASE STATEMENTS ======================================
       <div class="method_details ">
   <p class="signature " id="configuration-instance_method">
   
-    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>configuration</strong> 
+    - (<tt><a href="../../Object.html" title="Object (class)">Object</a></tt>) <strong>configuration</strong> 
   
 
   
@@ -962,7 +1182,7 @@ DATABASE STATEMENTS ======================================
       <div class="method_details ">
   <p class="signature " id="create_table-instance_method">
   
-    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>create_table</strong>(table_name, options = {}) 
+    - (<tt><a href="../../Object.html" title="Object (class)">Object</a></tt>) <strong>create_table</strong>(table_name, options = {}) {|table_definition| ... }
   
 
   
@@ -1036,7 +1256,7 @@ DATABASE STATEMENTS ======================================
       <div class="method_details ">
   <p class="signature " id="delete-instance_method">
   
-    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>delete</strong>(table_name, row, timestamp = nil) 
+    - (<tt><a href="../../Object.html" title="Object (class)">Object</a></tt>) <strong>delete</strong>(table_name, row, timestamp = nil) 
   
 
   
@@ -1075,7 +1295,7 @@ DATABASE STATEMENTS ======================================
       <div class="method_details ">
   <p class="signature " id="deserialize-instance_method">
   
-    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>deserialize</strong>(str) 
+    - (<tt><a href="../../Object.html" title="Object (class)">Object</a></tt>) <strong>deserialize</strong>(str) 
   
 
   
@@ -1134,7 +1354,7 @@ format and the type header format.
       <div class="method_details ">
   <p class="signature " id="deserialize_with_header-instance_method">
   
-    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>deserialize_with_header</strong>(data) 
+    - (<tt><a href="../../Object.html" title="Object (class)">Object</a></tt>) <strong>deserialize_with_header</strong>(data) 
   
 
   
@@ -1194,7 +1414,7 @@ Deserialize the given string assumed to be in the type header format.
       <div class="method_details ">
   <p class="signature " id="disconnect!-instance_method">
   
-    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>disconnect!</strong> 
+    - (<tt><a href="../../Object.html" title="Object (class)">Object</a></tt>) <strong>disconnect!</strong> 
   
 
   
@@ -1221,7 +1441,7 @@ Deserialize the given string assumed to be in the type header format.
       <div class="method_details ">
   <p class="signature " id="drop_table-instance_method">
   
-    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>drop_table</strong>(table_name) 
+    - (<tt><a href="../../Object.html" title="Object (class)">Object</a></tt>) <strong>drop_table</strong>(table_name) 
   
 
   
@@ -1258,7 +1478,7 @@ Deserialize the given string assumed to be in the type header format.
       <div class="method_details ">
   <p class="signature " id="get-instance_method">
   
-    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>get</strong>(table_name, row, column, options = {}) 
+    - (<tt><a href="../../Object.html" title="Object (class)">Object</a></tt>) <strong>get</strong>(table_name, row, column, options = {}) 
   
 
   
@@ -1301,7 +1521,7 @@ Deserialize the given string assumed to be in the type header format.
       <div class="method_details ">
   <p class="signature " id="get_all_schema_versions-instance_method">
   
-    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>get_all_schema_versions</strong> 
+    - (<tt><a href="../../Object.html" title="Object (class)">Object</a></tt>) <strong>get_all_schema_versions</strong> 
   
 
   
@@ -1334,7 +1554,7 @@ Deserialize the given string assumed to be in the type header format.
       <div class="method_details ">
   <p class="signature " id="get_columns-instance_method">
   
-    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>get_columns</strong>(table_name, row, columns, options = {}) 
+    - (<tt><a href="../../Object.html" title="Object (class)">Object</a></tt>) <strong>get_columns</strong>(table_name, row, columns, options = {}) 
   
 
   
@@ -1395,7 +1615,7 @@ Deserialize the given string assumed to be in the type header format.
       <div class="method_details ">
   <p class="signature " id="get_columns_raw-instance_method">
   
-    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>get_columns_raw</strong>(table_name, row, columns = nil, options = {}) 
+    - (<tt><a href="../../Object.html" title="Object (class)">Object</a></tt>) <strong>get_columns_raw</strong>(table_name, row, columns = nil, options = {}) 
   
 
   
@@ -1444,7 +1664,7 @@ Deserialize the given string assumed to be in the type header format.
       <div class="method_details ">
   <p class="signature " id="get_consecutive_rows-instance_method">
   
-    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>get_consecutive_rows</strong>(table_name, start_row, limit, columns, stop_row = nil) 
+    - (<tt><a href="../../Object.html" title="Object (class)">Object</a></tt>) <strong>get_consecutive_rows</strong>(table_name, start_row, limit, columns, stop_row = nil) 
   
 
   
@@ -1505,7 +1725,7 @@ Deserialize the given string assumed to be in the type header format.
       <div class="method_details ">
   <p class="signature " id="get_consecutive_rows_raw-instance_method">
   
-    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>get_consecutive_rows_raw</strong>(table_name, start_row, limit, columns, stop_row = nil) 
+    - (<tt><a href="../../Object.html" title="Object (class)">Object</a></tt>) <strong>get_consecutive_rows_raw</strong>(table_name, start_row, limit, columns, stop_row = nil) 
   
 
   
@@ -1532,7 +1752,7 @@ Deserialize the given string assumed to be in the type header format.
 <span class='def def kw'>def</span> <span class='get_consecutive_rows_raw identifier id'>get_consecutive_rows_raw</span><span class='lparen token'>(</span><span class='table_name identifier id'>table_name</span><span class='comma token'>,</span> <span class='start_row identifier id'>start_row</span><span class='comma token'>,</span> <span class='limit identifier id'>limit</span><span class='comma token'>,</span> <span class='columns identifier id'>columns</span><span class='comma token'>,</span> <span class='stop_row identifier id'>stop_row</span> <span class='assign token'>=</span> <span class='nil nil kw'>nil</span><span class='rparen token'>)</span>
   <span class='result identifier id'>result</span> <span class='assign token'>=</span> <span class='nil nil kw'>nil</span>
   <span class='log identifier id'>log</span> <span class='dstring node'>&quot;SCAN (#{columns.join(&quot;, &quot;)}) FROM #{table_name} WHERE START_ROW=#{start_row} AND STOP_ROW=#{stop_row} LIMIT=#{limit};&quot;</span> <span class='do do kw'>do</span>
-    <span class='options identifier id'>options</span> <span class='assign token'>=</span> <span class='lbrace token'>{</span><span class='symbol val'>:start_row</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='start_row identifier id'>start_row</span><span class='comma token'>,</span> <span class='symbol val'>:end_row</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='stop_row identifier id'>stop_row</span><span class='comma token'>,</span> <span class='symbol val'>:columns</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='columns identifier id'>columns</span><span class='rbrace token'>}</span>
+    <span class='options identifier id'>options</span> <span class='assign token'>=</span> <span class='lbrace token'>{</span><span class='symbol val'>:start_row</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='start_row identifier id'>start_row</span><span class='comma token'>,</span> <span class='symbol val'>:end_row</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='stop_row identifier id'>stop_row</span><span class='comma token'>,</span> <span class='symbol val'>:columns</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='columns identifier id'>columns</span><span class='comma token'>,</span> <span class='symbol val'>:batch</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='integer val'>200</span><span class='rbrace token'>}</span>
     <span class='scanner identifier id'>scanner</span> <span class='assign token'>=</span> <span class='@connection ivar id'>@connection</span><span class='dot token'>.</span><span class='open_scanner identifier id'>open_scanner</span><span class='lparen token'>(</span><span class='table_name identifier id'>table_name</span><span class='comma token'>,</span> <span class='options identifier id'>options</span><span class='rparen token'>)</span>
     <span class='result identifier id'>result</span> <span class='assign token'>=</span> <span class='@connection ivar id'>@connection</span><span class='dot token'>.</span><span class='get_rows identifier id'>get_rows</span><span class='lparen token'>(</span><span class='scanner identifier id'>scanner</span><span class='comma token'>,</span> <span class='limit identifier id'>limit</span><span class='rparen token'>)</span>
     <span class='@connection ivar id'>@connection</span><span class='dot token'>.</span><span class='close_scanner identifier id'>close_scanner</span><span class='lparen token'>(</span><span class='scanner identifier id'>scanner</span><span class='rparen token'>)</span>
@@ -1548,7 +1768,7 @@ Deserialize the given string assumed to be in the type header format.
       <div class="method_details ">
   <p class="signature " id="get_raw-instance_method">
   
-    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>get_raw</strong>(table_name, row, column, options = {}) 
+    - (<tt><a href="../../Object.html" title="Object (class)">Object</a></tt>) <strong>get_raw</strong>(table_name, row, column, options = {}) 
   
 
   
@@ -1591,7 +1811,7 @@ Deserialize the given string assumed to be in the type header format.
       <div class="method_details ">
   <p class="signature " id="initialize_schema_migrations_table-instance_method">
   
-    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>initialize_schema_migrations_table</strong> 
+    - (<tt><a href="../../Object.html" title="Object (class)">Object</a></tt>) <strong>initialize_schema_migrations_table</strong> 
   
 
   
@@ -1643,12 +1863,12 @@ SCHEMA STATEMENTS ========================================
       <div class="method_details ">
   <p class="signature " id="modify_column_family-instance_method">
   
-    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>modify_column_family</strong>(table_name, column_name, options = {}) 
+    - (<tt><a href="../../Object.html" title="Object (class)">Object</a></tt>) <strong>modify_column_family</strong>(table_name, column_name, options = {}) 
   
 
   
     <span class="aliases">Also known as:
-    <span class="names">modify_family</span>
+    <span class="names"><span id='modify_family-instance_method'>modify_family</span></span>
     </span>
   
 </p><table class="source_code">
@@ -1674,7 +1894,7 @@ SCHEMA STATEMENTS ========================================
       <div class="method_details ">
   <p class="signature " id="reconnect!-instance_method">
   
-    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>reconnect!</strong> 
+    - (<tt><a href="../../Object.html" title="Object (class)">Object</a></tt>) <strong>reconnect!</strong> 
   
 
   
@@ -1701,12 +1921,12 @@ SCHEMA STATEMENTS ========================================
       <div class="method_details ">
   <p class="signature " id="remove_column_family-instance_method">
   
-    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>remove_column_family</strong>(table_name, column_name) 
+    - (<tt><a href="../../Object.html" title="Object (class)">Object</a></tt>) <strong>remove_column_family</strong>(table_name, column_name) 
   
 
   
     <span class="aliases">Also known as:
-    <span class="names">remove_family</span>
+    <span class="names"><span id='remove_family-instance_method'>remove_family</span></span>
     </span>
   
 </p><table class="source_code">
@@ -1732,7 +1952,7 @@ SCHEMA STATEMENTS ========================================
       <div class="method_details ">
   <p class="signature " id="serialize-instance_method">
   
-    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>serialize</strong>(value) 
+    - (<tt><a href="../../Object.html" title="Object (class)">Object</a></tt>) <strong>serialize</strong>(value) 
   
 
   
@@ -1780,11 +2000,35 @@ Serialize the given value
       <div class="method_details ">
   <p class="signature " id="supports_migrations?-instance_method">
   
-    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>supports_migrations?</strong> 
+    - (<tt>Boolean</tt>) <strong>supports_migrations?</strong> 
   
 
   
-</p><table class="source_code">
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+:nodoc:
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
@@ -1809,11 +2053,32 @@ Serialize the given value
       <div class="method_details ">
   <p class="signature " id="table_exists?-instance_method">
   
-    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>table_exists?</strong>(table_name) 
+    - (<tt>Boolean</tt>) <strong>table_exists?</strong>(table_name) 
   
 
   
-</p><table class="source_code">
+</p><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
@@ -1842,7 +2107,7 @@ Serialize the given value
       <div class="method_details ">
   <p class="signature " id="truncate_table-instance_method">
   
-    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>truncate_table</strong>(table_name) 
+    - (<tt><a href="../../Object.html" title="Object (class)">Object</a></tt>) <strong>truncate_table</strong>(table_name) 
   
 
   
@@ -1869,7 +2134,7 @@ Serialize the given value
       <div class="method_details ">
   <p class="signature " id="update-instance_method">
   
-    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>update</strong>(table_name, row, values, timestamp) 
+    - (<tt><a href="../../Object.html" title="Object (class)">Object</a></tt>) <strong>update</strong>(table_name, row, values, timestamp) 
   
 
   
@@ -1906,7 +2171,7 @@ Serialize the given value
       <div class="method_details ">
   <p class="signature " id="update_raw-instance_method">
   
-    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>update_raw</strong>(table_name, row, values, timestamp) 
+    - (<tt><a href="../../Object.html" title="Object (class)">Object</a></tt>) <strong>update_raw</strong>(table_name, row, values, timestamp) 
   
 
   
@@ -1953,9 +2218,9 @@ Serialize the given value
 </div>
     
     <div id="footer">
-  Generated on Tue Dec  1 18:30:52 2009 by 
+  Generated on Fri Apr 30 12:48:48 2010 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool">yard</a>
-  0.4.0 (ruby-1.8.7).
+  0.5.4 (ruby-1.8.7).
 </div>
 
   </body>

@@ -2,7 +2,7 @@
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
-    <meta name="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="Content-Type" content="text/html; charset=utf-8" />
 <title>Class: BigRecord::ArAssociations::AssociationCollection</title>
 <link rel="stylesheet" href="../../css/style.css" type="text/css" media="screen" charset="utf-8" />
 <link rel="stylesheet" href="../../css/common.css" type="text/css" media="screen" charset="utf-8" />
@@ -16,18 +16,24 @@
 
   </head>
   <body>
+    <script type="text/javascript" charset="utf-8">
+      if (window.top.frames.main) document.body.className = 'frames';
+    </script>
+    
     <div id="header">
       <div id="menu">
   
     <a href="../../_index.html">Index (A)</a> &raquo; 
-    <a title="BigRecord" href="../../BigRecord.html">BigRecord</a> &raquo; <a title="ArAssociations" href="../ArAssociations.html">ArAssociations</a>
+    <span class='title'><a href="../../BigRecord.html" title="BigRecord (module)">BigRecord</a></span> &raquo; <span class='title'><a href="../ArAssociations.html" title="BigRecord::ArAssociations (module)">ArAssociations</a></span>
      &raquo; 
     <span class="title">AssociationCollection</span>
   
+  
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
 </div>
 
       <div id="search">
-  <a id="class_list_link" href="#">Namespace List</a>
+  <a id="class_list_link" href="#">Class List</a>
   <a id="method_list_link" href="#">Method List</a>
   <a id ="file_list_link" href="#">File List</a>
 </div>
@@ -46,12 +52,12 @@
   
     <dt class="r1">Inherits:</dt>
     <dd class="r1">
-      <span class="inheritName"><a title="BigRecord::ArAssociations::AssociationProxy" href="AssociationProxy.html">BigRecord::ArAssociations::AssociationProxy</a></span>
+      <span class="inheritName"><a href="AssociationProxy.html" title="BigRecord::ArAssociations::AssociationProxy (class)">AssociationProxy</a></span>
       
         <ul class="fullTree">
-          <li><a title="Object" href="../../Object.html">Object</a></li>
+          <li><a href="../../Object.html" title="Object (class)">Object</a></li>
           
-            <li class="next"><a title="BigRecord::ArAssociations::AssociationProxy" href="AssociationProxy.html">BigRecord::ArAssociations::AssociationProxy</a></li>
+            <li class="next"><a href="AssociationProxy.html" title="BigRecord::ArAssociations::AssociationProxy (class)">AssociationProxy</a></li>
           
             <li class="next">BigRecord::ArAssociations::AssociationCollection</li>
           
@@ -67,12 +73,28 @@
     
   
   
+  
     <dt class="r2 last">Defined in:</dt>
     <dd class="r2 last">lib/big_record/ar_associations/association_collection.rb</dd>
   
 </dl>
 <div class="clear"></div>
 
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    <p>
+:nodoc:
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><div id="subclasses">
+  <h2>Direct Known Subclasses</h2>
+  <p class="children"><a href="HasAndBelongsToManyAssociation.html" title="BigRecord::ArAssociations::HasAndBelongsToManyAssociation (class)">HasAndBelongsToManyAssociation</a>, <a href="HasManyAssociation.html" title="BigRecord::ArAssociations::HasManyAssociation (class)">HasManyAssociation</a></p>
+</div>
 
 
   
@@ -80,232 +102,300 @@
   
   
 
-  <h2>Method Summary</h2>
-  <ul class="summary">
+  
+    <h2>Instance Method Summary</h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="#<< (instance method)" href="#%3C%3C-instance_method">- (Object) <strong><<</strong>(*records) </a>
-  
-    (also: #push)
-  
+      <a href="#%3C%3C-instance_method" title="#&lt;&lt; (instance method)">- (Object) <strong>&lt;&lt;</strong>(*records) </a>
+    
+
+    
+      (also: #push)
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc">
+    <span class="summary_desc"><div class='inline'><p>
 Add <tt>records</tt> to this association.
-
-</span>
+</p>
+</div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="#clear (instance method)" href="#clear-instance_method">- (Object) <strong>clear</strong> </a>
-  
+      <a href="#clear-instance_method" title="#clear (instance method)">- (Object) <strong>clear</strong> </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc">
+    <span class="summary_desc"><div class='inline'><p>
 Removes all records from this association.
-
-</span>
+</p>
+</div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="#create (instance method)" href="#create-instance_method">- (Object) <strong>create</strong>(attributes = {}) </a>
-  
+      <a href="#create-instance_method" title="#create (instance method)">- (Object) <strong>create</strong>(attributes = {}) </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc"></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="#delete (instance method)" href="#delete-instance_method">- (Object) <strong>delete</strong>(*records) </a>
-  
+      <a href="#delete-instance_method" title="#delete (instance method)">- (Object) <strong>delete</strong>(*records) </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc">
+    <span class="summary_desc"><div class='inline'><p>
 Remove <tt>records</tt> from this association.
-
-</span>
+</p>
+</div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="#destroy_all (instance method)" href="#destroy_all-instance_method">- (Object) <strong>destroy_all</strong> </a>
-  
+      <a href="#destroy_all-instance_method" title="#destroy_all (instance method)">- (Object) <strong>destroy_all</strong> </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc"></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="#empty? (instance method)" href="#empty%3F-instance_method">- (Object) <strong>empty?</strong> </a>
-  
+      <a href="#empty%3F-instance_method" title="#empty? (instance method)">- (Boolean) <strong>empty?</strong> </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc"></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="#length (instance method)" href="#length-instance_method">- (Object) <strong>length</strong> </a>
-  
+      <a href="#length-instance_method" title="#length (instance method)">- (Object) <strong>length</strong> </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc">
+    <span class="summary_desc"><div class='inline'><p>
 Returns the size of the collection by loading it and calling size on the
 array.
-
-</span>
+</p>
+</div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="#replace (instance method)" href="#replace-instance_method">- (Object) <strong>replace</strong>(other_array) </a>
-  
+      <a href="#replace-instance_method" title="#replace (instance method)">- (Object) <strong>replace</strong>(other_array) </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc">
+    <span class="summary_desc"><div class='inline'><p>
 Replace this collection with <tt>other_array</tt> This will perform a diff
 and delete/add only records that have changed.
-
-</span>
+</p>
+</div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="#reset (instance method)" href="#reset-instance_method">- (Object) <strong>reset</strong> </a>
-  
+      <a href="#reset-instance_method" title="#reset (instance method)">- (Object) <strong>reset</strong> </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc"></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="#size (instance method)" href="#size-instance_method">- (Object) <strong>size</strong> </a>
-  
+      <a href="#size-instance_method" title="#size (instance method)">- (Object) <strong>size</strong> </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc">
+    <span class="summary_desc"><div class='inline'><p>
 Returns the size of the collection by executing a SELECT COUNT(*) query if
 the collection hasn&#8217;t been loaded and calling collection.size if it
 has.
-
-</span>
+</p>
+</div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="#sum (instance method)" href="#sum-instance_method">- (Object) <strong>sum</strong>(*args, &amp;block) </a>
-  
+      <a href="#sum-instance_method" title="#sum (instance method)">- (Object) <strong>sum</strong>(*args, &amp;block) </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc">
+    <span class="summary_desc"><div class='inline'><p>
 Calculate sum using SQL, not Enumerable.
-
-</span>
+</p>
+</div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="#to_ary (instance method)" href="#to_ary-instance_method">- (Object) <strong>to_ary</strong> </a>
-  
+      <a href="#to_ary-instance_method" title="#to_ary (instance method)">- (Object) <strong>to_ary</strong> </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc"></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="#uniq (instance method)" href="#uniq-instance_method">- (Object) <strong>uniq</strong>(collection = self) </a>
-  
+      <a href="#uniq-instance_method" title="#uniq (instance method)">- (Object) <strong>uniq</strong>(collection = self) </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc"></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
-    
-  </ul>
+      
+    </ul>
+  
 
 
   
@@ -313,38 +403,41 @@ Calculate sum using SQL, not Enumerable.
   
   
   
-  <h3 class="inherited">Methods inherited from <a title="BigRecord::ArAssociations::AssociationProxy" href="AssociationProxy.html">BigRecord::ArAssociations::AssociationProxy</a></h3>
-  <p class="inherited"><a title="#===" href="AssociationProxy.html#%3D%3D%3D-instance_method">#===</a>, <a title="#aliased_table_name" href="AssociationProxy.html#aliased_table_name-instance_method">#aliased_table_name</a>, <a title="#conditions" href="AssociationProxy.html#conditions-instance_method">#conditions</a>, <a title="#dependent?" href="AssociationProxy.html#dependent%3F-instance_method">#dependent?</a>, <a title="#extract_options_from_args!" href="AssociationProxy.html#extract_options_from_args%21-instance_method">#extract_options_from_args!</a>, <a title="#flatten_deeper" href="AssociationProxy.html#flatten_deeper-instance_method">#flatten_deeper</a>, <a title="#foreign_key_present" href="AssociationProxy.html#foreign_key_present-instance_method">#foreign_key_present</a>, <a title="#initialize" href="AssociationProxy.html#initialize-instance_method">#initialize</a>, <a title="#interpolate_sql" href="AssociationProxy.html#interpolate_sql-instance_method">#interpolate_sql</a>, <a title="#interpolate_sql_options!" href="AssociationProxy.html#interpolate_sql_options%21-instance_method">#interpolate_sql_options!</a>, <a title="#load_target" href="AssociationProxy.html#load_target-instance_method">#load_target</a>, <a title="#loaded" href="AssociationProxy.html#loaded-instance_method">#loaded</a>, <a title="#loaded?" href="AssociationProxy.html#loaded%3F-instance_method">#loaded?</a>, <a title="#merge_options_from_reflection!" href="AssociationProxy.html#merge_options_from_reflection%21-instance_method">#merge_options_from_reflection!</a>, <a title="#method_missing" href="AssociationProxy.html#method_missing-instance_method">#method_missing</a>, <a title="#proxy_owner" href="AssociationProxy.html#proxy_owner-instance_method">#proxy_owner</a>, <a title="#proxy_reflection" href="AssociationProxy.html#proxy_reflection-instance_method">#proxy_reflection</a>, <a title="#proxy_target" href="AssociationProxy.html#proxy_target-instance_method">#proxy_target</a>, <a title="#quoted_record_ids" href="AssociationProxy.html#quoted_record_ids-instance_method">#quoted_record_ids</a>, <a title="#raise_on_type_mismatch" href="AssociationProxy.html#raise_on_type_mismatch-instance_method">#raise_on_type_mismatch</a>, <a title="#reload" href="AssociationProxy.html#reload-instance_method">#reload</a>, <a title="#respond_to?" href="AssociationProxy.html#respond_to%3F-instance_method">#respond_to?</a>, <a title="#sanitize_sql" href="AssociationProxy.html#sanitize_sql-instance_method">#sanitize_sql</a>, <a title="#set_belongs_to_association_for" href="AssociationProxy.html#set_belongs_to_association_for-instance_method">#set_belongs_to_association_for</a>, <a title="#target" href="AssociationProxy.html#target-instance_method">#target</a>, <a title="#target=" href="AssociationProxy.html#target%3D-instance_method">#target=</a></p>
-<div id="constructor_details">
+  
+  
+  <h3 class="inherited">Methods inherited from <a href="AssociationProxy.html" title="BigRecord::ArAssociations::AssociationProxy (class)">AssociationProxy</a></h3>
+  <p class="inherited"><a href="AssociationProxy.html#%3D%3D%3D-instance_method" title="BigRecord::ArAssociations::AssociationProxy#=== (method)">#===</a>, <a href="AssociationProxy.html#aliased_table_name-instance_method" title="BigRecord::ArAssociations::AssociationProxy#aliased_table_name (method)">#aliased_table_name</a>, <a href="AssociationProxy.html#conditions-instance_method" title="BigRecord::ArAssociations::AssociationProxy#conditions (method)">#conditions</a>, <a href="AssociationProxy.html#initialize-instance_method" title="BigRecord::ArAssociations::AssociationProxy#initialize (method)">#initialize</a>, <a href="AssociationProxy.html#loaded-instance_method" title="BigRecord::ArAssociations::AssociationProxy#loaded (method)">#loaded</a>, <a href="AssociationProxy.html#loaded%3F-instance_method" title="BigRecord::ArAssociations::AssociationProxy#loaded? (method)">#loaded?</a>, <a href="AssociationProxy.html#proxy_owner-instance_method" title="BigRecord::ArAssociations::AssociationProxy#proxy_owner (method)">#proxy_owner</a>, <a href="AssociationProxy.html#proxy_reflection-instance_method" title="BigRecord::ArAssociations::AssociationProxy#proxy_reflection (method)">#proxy_reflection</a>, <a href="AssociationProxy.html#proxy_target-instance_method" title="BigRecord::ArAssociations::AssociationProxy#proxy_target (method)">#proxy_target</a>, <a href="AssociationProxy.html#reload-instance_method" title="BigRecord::ArAssociations::AssociationProxy#reload (method)">#reload</a>, <a href="AssociationProxy.html#respond_to%3F-instance_method" title="BigRecord::ArAssociations::AssociationProxy#respond_to? (method)">#respond_to?</a>, <a href="AssociationProxy.html#target-instance_method" title="BigRecord::ArAssociations::AssociationProxy#target (method)">#target</a>, <a href="AssociationProxy.html#target%3D-instance_method" title="BigRecord::ArAssociations::AssociationProxy#target= (method)">#target=</a></p>
+<div id="constructor_details" class="method_details_list">
   <h2>Constructor Details</h2>
   
-    <p class="notice">This class inherits a constructor from <a title="BigRecord::ArAssociations::AssociationProxy" href="AssociationProxy.html#initialize-instance_method">BigRecord::ArAssociations::AssociationProxy</a></p>
+    <p class="notice">This class inherits a constructor from <a href="AssociationProxy.html#initialize-instance_method" title="BigRecord::ArAssociations::AssociationProxy#initialize (method)">BigRecord::ArAssociations::AssociationProxy</a></p>
   
 </div>
-<div id="method_missing_details">
+<div id="method_missing_details" class="method_details_list">
   <h2>Dynamic Method Handling</h2>
   <p class="notice super">
     This class handles dynamic methods through the <tt>method_missing</tt> method
     
-      in the class <a title="BigRecord::ArAssociations::AssociationProxy" href="AssociationProxy.html#method_missing-instance_method">BigRecord::ArAssociations::AssociationProxy</a>
+      in the class <a href="AssociationProxy.html#method_missing-instance_method" title="BigRecord::ArAssociations::AssociationProxy#method_missing (method)">BigRecord::ArAssociations::AssociationProxy</a>
     
   </p>
   
 </div>
 
 
-  <div id="method_details">
-    <h2>Method Details</h2>
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+    
     
       <div class="method_details first">
   <p class="signature first" id="<<-instance_method">
   
-    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong><<</strong>(*records) 
+    - (<tt><a href="../../Object.html" title="Object (class)">Object</a></tt>) <strong>&lt;&lt;</strong>(*records) 
   
 
   
     <span class="aliases">Also known as:
-    <span class="names">push</span>
+    <span class="names"><span id='push-instance_method'>push</span></span>
     </span>
   
 </p><div class="docstring">
@@ -413,7 +506,7 @@ each record, <tt>push</tt> and <tt>concat</tt> behave identically.
       <div class="method_details ">
   <p class="signature " id="clear-instance_method">
   
-    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>clear</strong> 
+    - (<tt><a href="../../Object.html" title="Object (class)">Object</a></tt>) <strong>clear</strong> 
   
 
   
@@ -470,7 +563,7 @@ calls may be chained.
       <div class="method_details ">
   <p class="signature " id="create-instance_method">
   
-    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>create</strong>(attributes = {}) 
+    - (<tt><a href="../../Object.html" title="Object (class)">Object</a></tt>) <strong>create</strong>(attributes = {}) 
   
 
   
@@ -513,7 +606,7 @@ calls may be chained.
       <div class="method_details ">
   <p class="signature " id="delete-instance_method">
   
-    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>delete</strong>(*records) 
+    - (<tt><a href="../../Object.html" title="Object (class)">Object</a></tt>) <strong>delete</strong>(*records) 
   
 
   
@@ -580,7 +673,7 @@ Remove <tt>records</tt> from this association. Does not destroy
       <div class="method_details ">
   <p class="signature " id="destroy_all-instance_method">
   
-    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>destroy_all</strong> 
+    - (<tt><a href="../../Object.html" title="Object (class)">Object</a></tt>) <strong>destroy_all</strong> 
   
 
   
@@ -619,11 +712,32 @@ Remove <tt>records</tt> from this association. Does not destroy
       <div class="method_details ">
   <p class="signature " id="empty?-instance_method">
   
-    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>empty?</strong> 
+    - (<tt>Boolean</tt>) <strong>empty?</strong> 
   
 
   
-</p><table class="source_code">
+</p><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
@@ -648,7 +762,7 @@ Remove <tt>records</tt> from this association. Does not destroy
       <div class="method_details ">
   <p class="signature " id="length-instance_method">
   
-    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>length</strong> 
+    - (<tt><a href="../../Object.html" title="Object (class)">Object</a></tt>) <strong>length</strong> 
   
 
   
@@ -690,7 +804,7 @@ empty, use collection.length.zero? instead of collection.empty?
       <div class="method_details ">
   <p class="signature " id="replace-instance_method">
   
-    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>replace</strong>(other_array) 
+    - (<tt><a href="../../Object.html" title="Object (class)">Object</a></tt>) <strong>replace</strong>(other_array) 
   
 
   
@@ -751,7 +865,7 @@ and delete/add only records that have changed.
       <div class="method_details ">
   <p class="signature " id="reset-instance_method">
   
-    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>reset</strong> 
+    - (<tt><a href="../../Object.html" title="Object (class)">Object</a></tt>) <strong>reset</strong> 
   
 
   
@@ -782,7 +896,7 @@ and delete/add only records that have changed.
       <div class="method_details ">
   <p class="signature " id="size-instance_method">
   
-    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>size</strong> 
+    - (<tt><a href="../../Object.html" title="Object (class)">Object</a></tt>) <strong>size</strong> 
   
 
   
@@ -840,7 +954,7 @@ it&#8217;ll take one less SELECT query if you use length.
       <div class="method_details ">
   <p class="signature " id="sum-instance_method">
   
-    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>sum</strong>(*args, &amp;block) 
+    - (<tt><a href="../../Object.html" title="Object (class)">Object</a></tt>) <strong>sum</strong>(*args, &amp;block) 
   
 
   
@@ -880,7 +994,7 @@ Calculate sum using SQL, not Enumerable
       <div class="method_details ">
   <p class="signature " id="to_ary-instance_method">
   
-    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>to_ary</strong> 
+    - (<tt><a href="../../Object.html" title="Object (class)">Object</a></tt>) <strong>to_ary</strong> 
   
 
   
@@ -911,7 +1025,7 @@ Calculate sum using SQL, not Enumerable
       <div class="method_details ">
   <p class="signature " id="uniq-instance_method">
   
-    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>uniq</strong>(collection = self) 
+    - (<tt><a href="../../Object.html" title="Object (class)">Object</a></tt>) <strong>uniq</strong>(collection = self) 
   
 
   
@@ -956,9 +1070,9 @@ Calculate sum using SQL, not Enumerable
 </div>
     
     <div id="footer">
-  Generated on Tue Dec  1 18:30:39 2009 by 
+  Generated on Fri Apr 30 12:48:51 2010 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool">yard</a>
-  0.4.0 (ruby-1.8.7).
+  0.5.4 (ruby-1.8.7).
 </div>
 
   </body>

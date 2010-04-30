@@ -2,7 +2,7 @@
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
-    <meta name="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="Content-Type" content="text/html; charset=utf-8" />
 <title>Module: BigRecord::ArAssociations::ClassMethods</title>
 <link rel="stylesheet" href="../../css/style.css" type="text/css" media="screen" charset="utf-8" />
 <link rel="stylesheet" href="../../css/common.css" type="text/css" media="screen" charset="utf-8" />
@@ -16,18 +16,24 @@
 
   </head>
   <body>
+    <script type="text/javascript" charset="utf-8">
+      if (window.top.frames.main) document.body.className = 'frames';
+    </script>
+    
     <div id="header">
       <div id="menu">
   
     <a href="../../_index.html">Index (C)</a> &raquo; 
-    <a title="BigRecord" href="../../BigRecord.html">BigRecord</a> &raquo; <a title="ArAssociations" href="../ArAssociations.html">ArAssociations</a>
+    <span class='title'><a href="../../BigRecord.html" title="BigRecord (module)">BigRecord</a></span> &raquo; <span class='title'><a href="../ArAssociations.html" title="BigRecord::ArAssociations (module)">ArAssociations</a></span>
      &raquo; 
     <span class="title">ClassMethods</span>
   
+  
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
 </div>
 
       <div id="search">
-  <a id="class_list_link" href="#">Namespace List</a>
+  <a id="class_list_link" href="#">Class List</a>
   <a id="method_list_link" href="#">Method List</a>
   <a id ="file_list_link" href="#">File List</a>
 </div>
@@ -48,6 +54,7 @@
     
   
     
+  
   
   
     <dt class="r1 last">Defined in:</dt>
@@ -406,27 +413,27 @@ first go. Example:
 <p>
 Eager loading is a way to find objects of a certain class and a number of
 named associations along with it in a single SQL call. This is one of the
-easiest ways of to prevent the dreaded 1&lt;tt&gt;N problem in which
-fetching 100 posts that each needs to display their author triggers 101
-database queries. Through the use of eager loading, the 101 queries can be
-reduced to 1. Example:
+easiest ways of to prevent the dreaded 1+N problem in which fetching 100
+posts that each needs to display their author triggers 101 database
+queries. Through the use of eager loading, the 101 queries can be reduced
+to 1. Example:
 </p>
 <pre class="code">
-  <span class='c identifier id'>c</span><span class='l identifier id'>l</span><span class='a identifier id'>a</span><span class='s identifier id'>s</span><span class='s identifier id'>s</span> <span class='P constant id'>P</span><span class='o identifier id'>o</span><span class='s identifier id'>s</span><span class='t identifier id'>t</span> <span class='lt op'>&lt;</span> <span class='B constant id'>B</span><span class='i identifier id'>i</span><span class='g identifier id'>g</span><span class='R constant id'>R</span><span class='e identifier id'>e</span><span class='c identifier id'>c</span><span class='o identifier id'>o</span><span class='r identifier id'>r</span><span class='d identifier id'>d</span><span class='symbol val'>:</span><span class='symbol val'>:</span><span class='B constant id'>B</span><span class='a identifier id'>a</span><span class='s identifier id'>s</span><span class='e identifier id'>e</span>
-    <span class='b identifier id'>b</span><span class='e identifier id'>e</span><span class='l identifier id'>l</span><span class='o identifier id'>o</span><span class='n identifier id'>n</span><span class='g identifier id'>g</span><span class='s identifier id'>s</span><span class='_ identifier id'>_</span><span class='t identifier id'>t</span><span class='o identifier id'>o</span> <span class='symbol val'>:</span><span class='a identifier id'>a</span><span class='u identifier id'>u</span><span class='t identifier id'>t</span><span class='h identifier id'>h</span><span class='o identifier id'>o</span><span class='r identifier id'>r</span>
-    <span class='h identifier id'>h</span><span class='a identifier id'>a</span><span class='s identifier id'>s</span><span class='_ identifier id'>_</span><span class='m identifier id'>m</span><span class='a identifier id'>a</span><span class='n identifier id'>n</span><span class='y identifier id'>y</span>   <span class='symbol val'>:</span><span class='c identifier id'>c</span><span class='o identifier id'>o</span><span class='m identifier id'>m</span><span class='m identifier id'>m</span><span class='e identifier id'>e</span><span class='n identifier id'>n</span><span class='t identifier id'>t</span><span class='s identifier id'>s</span>
-  <span class='e identifier id'>e</span><span class='n identifier id'>n</span><span class='d identifier id'>d</span>
+  <span class='class class kw'>class</span> <span class='Post constant id'>Post</span> <span class='lt op'>&lt;</span> <span class='BigRecord constant id'>BigRecord</span><span class='colon2 op'>::</span><span class='Base constant id'>Base</span>
+    <span class='belongs_to identifier id'>belongs_to</span> <span class='symbol val'>:author</span>
+    <span class='has_many identifier id'>has_many</span>   <span class='symbol val'>:comments</span>
+  <span class='end end kw'>end</span>
 </pre>
 <p>
 Consider the following loop using the class above:
 </p>
 <pre class="code">
-  <span class='f identifier id'>f</span><span class='o identifier id'>o</span><span class='r identifier id'>r</span> <span class='p identifier id'>p</span><span class='o identifier id'>o</span><span class='s identifier id'>s</span><span class='t identifier id'>t</span> <span class='i identifier id'>i</span><span class='n identifier id'>n</span> <span class='P constant id'>P</span><span class='o identifier id'>o</span><span class='s identifier id'>s</span><span class='t identifier id'>t</span><span class='dot token'>.</span><span class='f identifier id'>f</span><span class='i identifier id'>i</span><span class='n identifier id'>n</span><span class='d identifier id'>d</span><span class='lparen token'>(</span><span class='symbol val'>:</span><span class='a identifier id'>a</span><span class='l identifier id'>l</span><span class='l identifier id'>l</span><span class='rparen token'>)</span>
-    <span class='p identifier id'>p</span><span class='u identifier id'>u</span><span class='t identifier id'>t</span><span class='s identifier id'>s</span> <span class='string val'>&quot;Post:            &quot;</span> <span class='lt op'>&lt;</span><span class='regexp val'>/tt&gt; post.title
-    puts &quot;Written by:      &quot; + post.author.name
-    puts &quot;Last comment on: &quot; + post.comments.first.created_on
-  end
-</span></pre>
+  <span class='for for kw'>for</span> <span class='post identifier id'>post</span> <span class='in in kw'>in</span> <span class='Post constant id'>Post</span><span class='dot token'>.</span><span class='find identifier id'>find</span><span class='lparen token'>(</span><span class='symbol val'>:all</span><span class='rparen token'>)</span>
+    <span class='puts identifier id'>puts</span> <span class='string val'>&quot;Post:            &quot;</span> <span class='plus op'>+</span> <span class='post identifier id'>post</span><span class='dot token'>.</span><span class='title identifier id'>title</span>
+    <span class='puts identifier id'>puts</span> <span class='string val'>&quot;Written by:      &quot;</span> <span class='plus op'>+</span> <span class='post identifier id'>post</span><span class='dot token'>.</span><span class='author identifier id'>author</span><span class='dot token'>.</span><span class='name identifier id'>name</span>
+    <span class='puts identifier id'>puts</span> <span class='string val'>&quot;Last comment on: &quot;</span> <span class='plus op'>+</span> <span class='post identifier id'>post</span><span class='dot token'>.</span><span class='comments identifier id'>comments</span><span class='dot token'>.</span><span class='first identifier id'>first</span><span class='dot token'>.</span><span class='created_on identifier id'>created_on</span>
+  <span class='end end kw'>end</span>
+</pre>
 <p>
 To iterate over these one hundred posts, we&#8217;ll generate 201 database
 queries. Let&#8217;s first just optimize it for retrieving the author:
@@ -481,7 +488,7 @@ the actual model exists.
 BigRecord uses table aliasing in the case that a table is referenced
 multiple times in a join. If a table is referenced only once, the standard
 table name is used. The second time, the table is aliased as
-#{reflection_name}_#{parent_table_name}. Indexes are appended for any more
+#<tt>reflection_name}_#{parent_table_name</tt>. Indexes are appended for any more
 successive uses of the table name.
 </p>
 <pre class="code">
@@ -597,102 +604,126 @@ makes more complex cases than the simple and guessable ones possible.
     
    
     
-      <strong class="classes">Classes:</strong> <a title="JoinDependency" href="ClassMethods/JoinDependency.html">JoinDependency</a>
+      <strong class="classes">Classes:</strong> <a href="ClassMethods/JoinDependency.html" title="BigRecord::ArAssociations::ClassMethods::JoinDependency (class)">JoinDependency</a>
     
   
 </p>
 
 
 
-  <h2>Method Summary</h2>
-  <ul class="summary">
-    
-      <li class="public ">
-  <span class="summary_signature"><a title="#belongs_to (instance method)" href="#belongs_to-instance_method">- (Object) <strong>belongs_to</strong>(association_id, options = {}) </a>
   
+    <h2>Instance Method Summary</h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#belongs_to-instance_method" title="#belongs_to (instance method)">- (Object) <strong>belongs_to</strong>(association_id, options = {}) </a>
+    
+
+    
   </span>
+  
   
   
   
   
 
   
-    <span class="summary_desc">
+    <span class="summary_desc"><div class='inline'><p>
 Adds the following methods for retrieval and query for a single associated
 object that this object holds an id to.
-
-</span>
+</p>
+</div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="#has_and_belongs_to_many (instance method)" href="#has_and_belongs_to_many-instance_method">- (Object) <strong>has_and_belongs_to_many</strong>(association_id, options = {}, &amp;extension) </a>
-  
+      <a href="#has_and_belongs_to_many-instance_method" title="#has_and_belongs_to_many (instance method)">- (Object) <strong>has_and_belongs_to_many</strong>(association_id, options = {}, &amp;extension) </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc">
+    <span class="summary_desc"><div class='inline'><p>
 Associates two classes via an intermediate join table.
-
-</span>
+</p>
+</div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="#has_many (instance method)" href="#has_many-instance_method">- (Object) <strong>has_many</strong>(association_id, options = {}, &amp;extension) </a>
-  
+      <a href="#has_many-instance_method" title="#has_many (instance method)">- (Object) <strong>has_many</strong>(association_id, options = {}, &amp;extension) </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc">
+    <span class="summary_desc"><div class='inline'><p>
 Adds the following methods for retrieval and query of collections of
 associated objects.
-
-</span>
+</p>
+</div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="#has_one (instance method)" href="#has_one-instance_method">- (Object) <strong>has_one</strong>(association_id, options = {}) </a>
-  
+      <a href="#has_one-instance_method" title="#has_one (instance method)">- (Object) <strong>has_one</strong>(association_id, options = {}) </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc">
+    <span class="summary_desc"><div class='inline'><p>
 Adds the following methods for retrieval and query of a single associated
 object.
-
-</span>
+</p>
+</div></span>
   
 </li>
 
+      
+    </ul>
+  
+
+
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
     
-  </ul>
-
-
-
-  <div id="method_details">
-    <h2>Method Details</h2>
     
       <div class="method_details first">
   <p class="signature first" id="belongs_to-instance_method">
   
-    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>belongs_to</strong>(association_id, options = {}) 
+    - (<tt><a href="../../Object.html" title="Object (class)">Object</a></tt>) <strong>belongs_to</strong>(association_id, options = {}) 
   
 
   
@@ -922,7 +953,7 @@ Option examples:
       <div class="method_details ">
   <p class="signature " id="has_and_belongs_to_many-instance_method">
   
-    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>has_and_belongs_to_many</strong>(association_id, options = {}, &amp;extension) 
+    - (<tt><a href="../../Object.html" title="Object (class)">Object</a></tt>) <strong>has_and_belongs_to_many</strong>(association_id, options = {}, &amp;extension) 
   
 
   
@@ -1218,7 +1249,7 @@ Option examples:
       <div class="method_details ">
   <p class="signature " id="has_many-instance_method">
   
-    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>has_many</strong>(association_id, options = {}, &amp;extension) 
+    - (<tt><a href="../../Object.html" title="Object (class)">Object</a></tt>) <strong>has_many</strong>(association_id, options = {}, &amp;extension) 
   
 
   
@@ -1397,9 +1428,9 @@ on multiple tables. Note: When this option is used,
 
 </li>
 <li><tt>:counter_sql</tt> - specify a complete SQL statement to fetch the size
-of the association. If <tt>:finder_sql</tt> is specified but
-<tt>:counter_sql</tt>, <tt>:counter_sql</tt> will be generated by replacing
-SELECT &#8230; FROM with SELECT COUNT(*) FROM.
+of the association. If <tt>:finder_sql</tt> is specified but <tt>:counter_sql</tt>,
+<tt>:counter_sql</tt> will be generated by replacing SELECT &#8230; FROM with
+SELECT COUNT(*) FROM.
 
 </li>
 <li><tt>:extend</tt> - specify a named module for extending the proxy, see
@@ -1440,9 +1471,8 @@ association.
 <li><tt>:source</tt>: Specifies the source association name used by
 <tt>has_many :through</tt> queries. Only use it if the name cannot be
 inferred from the association. <tt>has_many :subscribers, :through =&gt;
-:subscriptions</tt> will look for either <tt>:subscribers</tt> or
-<tt>:subscriber</tt> on <tt>Subscription</tt>, unless a <tt>:source</tt> is
-given.
+:subscriptions</tt> will look for either <tt>:subscribers</tt> or <tt>:subscriber</tt> on
+<tt>Subscription</tt>, unless a <tt>:source</tt> is given.
 
 </li>
 <li><tt>:source_type</tt>: Specifies type of the source association used by
@@ -1467,11 +1497,11 @@ Option examples:
   <span class='has_many identifier id'>has_many</span> <span class='symbol val'>:tags</span><span class='comma token'>,</span> <span class='symbol val'>:as</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='symbol val'>:taggable</span>
   <span class='has_many identifier id'>has_many</span> <span class='symbol val'>:subscribers</span><span class='comma token'>,</span> <span class='symbol val'>:through</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='symbol val'>:subscriptions</span><span class='comma token'>,</span> <span class='symbol val'>:source</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='symbol val'>:user</span>
   <span class='has_many identifier id'>has_many</span> <span class='symbol val'>:subscribers</span><span class='comma token'>,</span> <span class='symbol val'>:class_name</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>&quot;Person&quot;</span><span class='comma token'>,</span> <span class='symbol val'>:finder_sql</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span>
-      <span class='string val'>'SELECT DISTINCT people.* '</span> <span class='lt op'>&lt;</span><span class='tt identifier id'>tt</span><span class='gt op'>&gt;</span>
-      <span class='string val'>'FROM people p, post_subscriptions ps '</span> <span class='lt op'>&lt;</span><span class='dregexp node'>/tt&gt;
-      'WHERE ps.post_id = #{id} AND ps.person_id = p.id ' +
-      'ORDER BY p.first_name'
-</span></pre>
+      <span class='string val'>'SELECT DISTINCT people.* '</span> <span class='plus op'>+</span>
+      <span class='string val'>'FROM people p, post_subscriptions ps '</span> <span class='plus op'>+</span>
+      <span class='string val'>'WHERE ps.post_id = #{id} AND ps.person_id = p.id '</span> <span class='plus op'>+</span>
+      <span class='string val'>'ORDER BY p.first_name'</span>
+</pre>
 
 
   </div>
@@ -1523,7 +1553,7 @@ Option examples:
       <div class="method_details ">
   <p class="signature " id="has_one-instance_method">
   
-    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>has_one</strong>(association_id, options = {}) 
+    - (<tt><a href="../../Object.html" title="Object (class)">Object</a></tt>) <strong>has_one</strong>(association_id, options = {}) 
   
 
   
@@ -1698,9 +1728,9 @@ Option examples:
 </div>
     
     <div id="footer">
-  Generated on Tue Dec  1 18:30:48 2009 by 
+  Generated on Fri Apr 30 12:48:39 2010 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool">yard</a>
-  0.4.0 (ruby-1.8.7).
+  0.5.4 (ruby-1.8.7).
 </div>
 
   </body>

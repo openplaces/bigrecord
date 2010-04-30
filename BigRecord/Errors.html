@@ -2,7 +2,7 @@
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
-    <meta name="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="Content-Type" content="text/html; charset=utf-8" />
 <title>Class: BigRecord::Errors</title>
 <link rel="stylesheet" href="../css/style.css" type="text/css" media="screen" charset="utf-8" />
 <link rel="stylesheet" href="../css/common.css" type="text/css" media="screen" charset="utf-8" />
@@ -16,18 +16,24 @@
 
   </head>
   <body>
+    <script type="text/javascript" charset="utf-8">
+      if (window.top.frames.main) document.body.className = 'frames';
+    </script>
+    
     <div id="header">
       <div id="menu">
   
     <a href="../_index.html">Index (E)</a> &raquo; 
-    <a title="BigRecord" href="../BigRecord.html">BigRecord</a>
+    <span class='title'><a href="../BigRecord.html" title="BigRecord (module)">BigRecord</a></span>
      &raquo; 
     <span class="title">Errors</span>
   
+  
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
 </div>
 
       <div id="search">
-  <a id="class_list_link" href="#">Namespace List</a>
+  <a id="class_list_link" href="#">Class List</a>
   <a id="method_list_link" href="#">Method List</a>
   <a id ="file_list_link" href="#">File List</a>
 </div>
@@ -46,7 +52,15 @@
   
     <dt class="r1">Inherits:</dt>
     <dd class="r1">
-      <span class="inheritName"><a title="Object" href="../Object.html">Object</a></span>
+      <span class="inheritName"><a href="../Object.html" title="Object (class)">Object</a></span>
+      
+        <ul class="fullTree">
+          <li><a href="../Object.html" title="Object (class)">Object</a></li>
+          
+            <li class="next">BigRecord::Errors</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
       
       </dd>
     
@@ -59,6 +73,7 @@
       <dd class="r2">Enumerable</dd>
       
     
+  
   
   
     <dt class="r1 last">Defined in:</dt>
@@ -85,8 +100,8 @@ See usage example in Validations.
   
     <dl class="constants">
       
-        <dt id="default_error_messages-classvariable ">@@default_error_messages =
-            <span class="summary_desc"></span>
+        <dt id="default_error_messages-classvariable" class="">@@default_error_messages =
+          
         </dt>
         <dd><pre class="code"><span class='lbrace token'>{</span>
   <span class='symbol val'>:inclusion</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>&quot;is not included in the list&quot;</span><span class='comma token'>,</span>
@@ -110,335 +125,396 @@ See usage example in Validations.
 
   
 
-  <h2>Method Summary</h2>
-  <ul class="summary">
-    
-      <li class="public ">
-  <span class="summary_signature"><a title="#add (instance method)" href="#add-instance_method">- (Object) <strong>add</strong>(attribute, msg = @@default_error_messages[:invalid]) </a>
   
+    <h2>Instance Method Summary</h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#add-instance_method" title="#add (instance method)">- (Object) <strong>add</strong>(attribute, msg = @@default_error_messages[:invalid]) </a>
+    
+
+    
   </span>
+  
   
   
   
   
 
   
-    <span class="summary_desc">
+    <span class="summary_desc"><div class='inline'><p>
 Adds an error message (<tt>msg</tt>) to the <tt>attribute</tt>, which will
 be returned on a call to <tt>on(attribute)</tt> for the same attribute and
 ensure that this error object returns false when asked if <tt>empty?</tt>.
-
-</span>
+</p>
+</div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="#add_on_blank (instance method)" href="#add_on_blank-instance_method">- (Object) <strong>add_on_blank</strong>(attributes, msg = @@default_error_messages[:blank]) </a>
-  
+      <a href="#add_on_blank-instance_method" title="#add_on_blank (instance method)">- (Object) <strong>add_on_blank</strong>(attributes, msg = @@default_error_messages[:blank]) </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc">
+    <span class="summary_desc"><div class='inline'><p>
 Will add an error message to each of the attributes in <tt>attributes</tt>
 that is blank (using Object#blank?).
-
-</span>
+</p>
+</div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="#add_on_empty (instance method)" href="#add_on_empty-instance_method">- (Object) <strong>add_on_empty</strong>(attributes, msg = @@default_error_messages[:empty]) </a>
-  
+      <a href="#add_on_empty-instance_method" title="#add_on_empty (instance method)">- (Object) <strong>add_on_empty</strong>(attributes, msg = @@default_error_messages[:empty]) </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc">
+    <span class="summary_desc"><div class='inline'><p>
 Will add an error message to each of the attributes in <tt>attributes</tt>
 that is empty.
-
-</span>
+</p>
+</div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="#add_to_base (instance method)" href="#add_to_base-instance_method">- (Object) <strong>add_to_base</strong>(msg) </a>
-  
+      <a href="#add_to_base-instance_method" title="#add_to_base (instance method)">- (Object) <strong>add_to_base</strong>(msg) </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc">
+    <span class="summary_desc"><div class='inline'><p>
 Adds an error to the base object instead of any particular attribute.
-
-</span>
+</p>
+</div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="#clear (instance method)" href="#clear-instance_method">- (Object) <strong>clear</strong> </a>
-  
+      <a href="#clear-instance_method" title="#clear (instance method)">- (Object) <strong>clear</strong> </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc">
+    <span class="summary_desc"><div class='inline'><p>
 Removes all the errors that have been added.
-
-</span>
+</p>
+</div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="#each (instance method)" href="#each-instance_method">- (Object) <strong>each</strong> </a>
-  
+      <a href="#each-instance_method" title="#each (instance method)">- (Object) <strong>each</strong> </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc">
+    <span class="summary_desc"><div class='inline'><p>
 Yields each attribute and associated message per error added.
-
-</span>
+</p>
+</div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="#each_full (instance method)" href="#each_full-instance_method">- (Object) <strong>each_full</strong> </a>
-  
+      <a href="#each_full-instance_method" title="#each_full (instance method)">- (Object) <strong>each_full</strong> </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc">
+    <span class="summary_desc"><div class='inline'><p>
 Yields each full error message added.
-
-</span>
+</p>
+</div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="#empty? (instance method)" href="#empty%3F-instance_method">- (Object) <strong>empty?</strong> </a>
-  
+      <a href="#empty%3F-instance_method" title="#empty? (instance method)">- (Boolean) <strong>empty?</strong> </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc">
+    <span class="summary_desc"><div class='inline'><p>
 Returns true if no errors have been added.
-
-</span>
+</p>
+</div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="#full_messages (instance method)" href="#full_messages-instance_method">- (Object) <strong>full_messages</strong> </a>
-  
+      <a href="#full_messages-instance_method" title="#full_messages (instance method)">- (Object) <strong>full_messages</strong> </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc">
+    <span class="summary_desc"><div class='inline'><p>
 Returns all the full error messages in an array.
-
-</span>
+</p>
+</div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="#initialize (instance method)" href="#initialize-instance_method">- (Errors) <strong>initialize</strong>(base) </a>
+      <a href="#initialize-instance_method" title="#initialize (instance method)">- (Errors) <strong>initialize</strong>(base) </a>
+    
+
+    
+  </span>
   
+    <span class="note title constructor">constructor</span>
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+:nodoc:.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#invalid%3F-instance_method" title="#invalid? (instance method)">- (Boolean) <strong>invalid?</strong>(attribute) </a>
+    
+
+    
   </span>
   
   
   
   
-
-  
-    <span class="summary_desc">
-A new instance of <tt>Errors</tt>.
-
-</span>
-  
-</li>
-
-    
-      <li class="public ">
-  <span class="summary_signature"><a title="#invalid? (instance method)" href="#invalid%3F-instance_method">- (Object) <strong>invalid?</strong>(attribute) </a>
-  
-  </span>
-  
-  
-  
   
 
   
-    <span class="summary_desc">
+    <span class="summary_desc"><div class='inline'><p>
 Returns true if the specified <tt>attribute</tt> has errors associated with
 it.
-
-</span>
+</p>
+</div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="#on (instance method)" href="#on-instance_method">- (Object) <strong>on</strong>(attribute) </a>
-  
-    (also: #[])
-  
+      <a href="#on-instance_method" title="#on (instance method)">- (Object) <strong>on</strong>(attribute) </a>
+    
+
+    
+      (also: #[])
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc"><ul>
+    <span class="summary_desc"><div class='inline'><ul>
 <li>Returns nil, if no errors are associated with the specified
 <tt>attribute</tt>.
 
 </li>
 </ul>
-</span>
+</div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="#on_base (instance method)" href="#on_base-instance_method">- (Object) <strong>on_base</strong> </a>
-  
+      <a href="#on_base-instance_method" title="#on_base (instance method)">- (Object) <strong>on_base</strong> </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc">
+    <span class="summary_desc"><div class='inline'><p>
 Returns errors assigned to base object through add_to_base according to the
 normal rules of on(attribute).
-
-</span>
+</p>
+</div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="#size (instance method)" href="#size-instance_method">- (Object) <strong>size</strong> </a>
-  
-    (also: #length, #count)
-  
+      <a href="#size-instance_method" title="#size (instance method)">- (Object) <strong>size</strong> </a>
+    
+
+    
+      (also: #length, #count)
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc">
+    <span class="summary_desc"><div class='inline'><p>
 Returns the total number of errors added.
-
-</span>
+</p>
+</div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="#to_xml (instance method)" href="#to_xml-instance_method">- (Object) <strong>to_xml</strong>(options = {}) </a>
-  
+      <a href="#to_xml-instance_method" title="#to_xml (instance method)">- (Object) <strong>to_xml</strong>(options = {}) </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc">
+    <span class="summary_desc"><div class='inline'><p>
 Return an XML representation of this error object.
-
-</span>
+</p>
+</div></span>
   
 </li>
 
-    
-  </ul>
+      
+    </ul>
+  
 
 
-  <div id="constructor_details">
+  <div id="constructor_details" class="method_details_list">
   <h2>Constructor Details</h2>
   
     <div class="method_details first">
   <p class="signature first" id="initialize-instance_method">
   
-    - (<tt><a title="Errors" href="">Errors</a></tt>) <strong>initialize</strong>(base) 
+    - (<tt><a href="" title="BigRecord::Errors (class)">Errors</a></tt>) <strong>initialize</strong>(base) 
   
 
   
 </p><div class="docstring">
   <div class="discussion">
     <p>
-A new instance of <tt>Errors</tt>
+:nodoc:
 </p>
 
 
   </div>
 </div>
 <div class="tags">
-  <h3>Returns:</h3>
-<ul class="return">
   
-    <li>
-      
-        <span class='type'>(<tt><a title="Errors" href="">Errors</a></tt>)</span>
-      
-      
-      
-      
-        &mdash;
-        
-a new instance of <tt>Errors</tt>
-
-
-      
-    </li>
-  
-</ul>
-
 </div><table class="source_code">
   <tr>
     <td>
@@ -464,13 +540,14 @@ a new instance of <tt>Errors</tt>
 </div>
 
 
-  <div id="method_details">
-    <h2>Method Details</h2>
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+    
     
       <div class="method_details first">
   <p class="signature first" id="add-instance_method">
   
-    - (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>add</strong>(attribute, msg = @@default_error_messages[:invalid]) 
+    - (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>add</strong>(attribute, msg = @@default_error_messages[:invalid]) 
   
 
   
@@ -517,7 +594,7 @@ case an array will be returned on a call to <tt>on(attribute)</tt>. If no
       <div class="method_details ">
   <p class="signature " id="add_on_blank-instance_method">
   
-    - (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>add_on_blank</strong>(attributes, msg = @@default_error_messages[:blank]) 
+    - (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>add_on_blank</strong>(attributes, msg = @@default_error_messages[:blank]) 
   
 
   
@@ -564,7 +641,7 @@ that is blank (using Object#blank?).
       <div class="method_details ">
   <p class="signature " id="add_on_empty-instance_method">
   
-    - (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>add_on_empty</strong>(attributes, msg = @@default_error_messages[:empty]) 
+    - (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>add_on_empty</strong>(attributes, msg = @@default_error_messages[:empty]) 
   
 
   
@@ -613,7 +690,7 @@ that is empty.
       <div class="method_details ">
   <p class="signature " id="add_to_base-instance_method">
   
-    - (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>add_to_base</strong>(msg) 
+    - (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>add_to_base</strong>(msg) 
   
 
   
@@ -657,7 +734,7 @@ be complete sentences.
       <div class="method_details ">
   <p class="signature " id="clear-instance_method">
   
-    - (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>clear</strong> 
+    - (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>clear</strong> 
   
 
   
@@ -697,7 +774,7 @@ Removes all the errors that have been added.
       <div class="method_details ">
   <p class="signature " id="each-instance_method">
   
-    - (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>each</strong> 
+    - (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>each</strong> 
   
 
   
@@ -737,7 +814,7 @@ Yields each attribute and associated message per error added.
       <div class="method_details ">
   <p class="signature " id="each_full-instance_method">
   
-    - (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>each_full</strong> 
+    - (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>each_full</strong> 
   
 
   
@@ -780,7 +857,7 @@ empty&quot;.
       <div class="method_details ">
   <p class="signature " id="empty?-instance_method">
   
-    - (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>empty?</strong> 
+    - (<tt>Boolean</tt>) <strong>empty?</strong> 
   
 
   
@@ -794,7 +871,20 @@ Returns true if no errors have been added.
   </div>
 </div>
 <div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
   
+    <li>
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
 </div><table class="source_code">
   <tr>
     <td>
@@ -820,7 +910,7 @@ Returns true if no errors have been added.
       <div class="method_details ">
   <p class="signature " id="full_messages-instance_method">
   
-    - (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>full_messages</strong> 
+    - (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>full_messages</strong> 
   
 
   
@@ -886,7 +976,7 @@ Returns all the full error messages in an array.
       <div class="method_details ">
   <p class="signature " id="invalid?-instance_method">
   
-    - (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>invalid?</strong>(attribute) 
+    - (<tt>Boolean</tt>) <strong>invalid?</strong>(attribute) 
   
 
   
@@ -901,7 +991,20 @@ it.
   </div>
 </div>
 <div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
   
+    <li>
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
 </div><table class="source_code">
   <tr>
     <td>
@@ -927,12 +1030,12 @@ it.
       <div class="method_details ">
   <p class="signature " id="on-instance_method">
   
-    - (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>on</strong>(attribute) 
+    - (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>on</strong>(attribute) 
   
 
   
     <span class="aliases">Also known as:
-    <span class="names">[]</span>
+    <span class="names"><span id='[]-instance_method'>[]</span></span>
     </span>
   
 </p><div class="docstring">
@@ -986,7 +1089,7 @@ with the specified <tt>attribute</tt>.
       <div class="method_details ">
   <p class="signature " id="on_base-instance_method">
   
-    - (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>on_base</strong> 
+    - (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>on_base</strong> 
   
 
   
@@ -1027,12 +1130,12 @@ normal rules of on(attribute).
       <div class="method_details ">
   <p class="signature " id="size-instance_method">
   
-    - (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>size</strong> 
+    - (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>size</strong> 
   
 
   
     <span class="aliases">Also known as:
-    <span class="names">length, count</span>
+    <span class="names"><span id='length-instance_method'>length</span>, <span id='count-instance_method'>count</span></span>
     </span>
   
 </p><div class="docstring">
@@ -1072,7 +1175,7 @@ attribute will be counted as such with this as well.
       <div class="method_details ">
   <p class="signature " id="to_xml-instance_method">
   
-    - (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>to_xml</strong>(options = {}) 
+    - (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>to_xml</strong>(options = {}) 
   
 
   
@@ -1128,9 +1231,9 @@ Return an XML representation of this error object.
 </div>
     
     <div id="footer">
-  Generated on Tue Dec  1 18:30:47 2009 by 
+  Generated on Fri Apr 30 12:48:14 2010 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool">yard</a>
-  0.4.0 (ruby-1.8.7).
+  0.5.4 (ruby-1.8.7).
 </div>
 
   </body>

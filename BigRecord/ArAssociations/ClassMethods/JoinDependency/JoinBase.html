@@ -2,7 +2,7 @@
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
-    <meta name="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="Content-Type" content="text/html; charset=utf-8" />
 <title>Class: BigRecord::ArAssociations::ClassMethods::JoinDependency::JoinBase</title>
 <link rel="stylesheet" href="../../../../css/style.css" type="text/css" media="screen" charset="utf-8" />
 <link rel="stylesheet" href="../../../../css/common.css" type="text/css" media="screen" charset="utf-8" />
@@ -16,18 +16,24 @@
 
   </head>
   <body>
+    <script type="text/javascript" charset="utf-8">
+      if (window.top.frames.main) document.body.className = 'frames';
+    </script>
+    
     <div id="header">
       <div id="menu">
   
     <a href="../../../../_index.html">Index (J)</a> &raquo; 
-    <a title="BigRecord" href="../../../../BigRecord.html">BigRecord</a> &raquo; <a title="ArAssociations" href="../../../ArAssociations.html">ArAssociations</a> &raquo; <a title="ClassMethods" href="../../ClassMethods.html">ClassMethods</a> &raquo; <a title="JoinDependency" href="../JoinDependency.html">JoinDependency</a>
+    <span class='title'><a href="../../../../BigRecord.html" title="BigRecord (module)">BigRecord</a></span> &raquo; <span class='title'><a href="../../../ArAssociations.html" title="BigRecord::ArAssociations (module)">ArAssociations</a></span> &raquo; <span class='title'><a href="../../ClassMethods.html" title="BigRecord::ArAssociations::ClassMethods (module)">ClassMethods</a></span> &raquo; <span class='title'><a href="../JoinDependency.html" title="BigRecord::ArAssociations::ClassMethods::JoinDependency (class)">JoinDependency</a></span>
      &raquo; 
     <span class="title">JoinBase</span>
   
+  
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
 </div>
 
       <div id="search">
-  <a id="class_list_link" href="#">Namespace List</a>
+  <a id="class_list_link" href="#">Class List</a>
   <a id="method_list_link" href="#">Method List</a>
   <a id ="file_list_link" href="#">File List</a>
 </div>
@@ -46,7 +52,15 @@
   
     <dt class="r1">Inherits:</dt>
     <dd class="r1">
-      <span class="inheritName"><a title="Object" href="../../../../Object.html">Object</a></span>
+      <span class="inheritName"><a href="../../../../Object.html" title="Object (class)">Object</a></span>
+      
+        <ul class="fullTree">
+          <li><a href="../../../../Object.html" title="Object (class)">Object</a></li>
+          
+            <li class="next">BigRecord::ArAssociations::ClassMethods::JoinDependency::JoinBase</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
       
       </dd>
     
@@ -57,230 +71,282 @@
     
   
   
+  
     <dt class="r2 last">Defined in:</dt>
     <dd class="r2 last">lib/big_record/ar_associations.rb</dd>
   
 </dl>
 <div class="clear"></div>
 
-
-
-  <h2>Attribute Summary</h2>
-  <ul class="summary">
-    
-      <li class="public ">
-  <span class="summary_signature"><a title="#active_record (instance method)" href="#active_record-instance_method">- (Object) <strong>active_record</strong> </a>
-  
-  </span>
-  
-    <span class="note title readonly">readonly</span>
-    
-  
-  
-  
-  
-
-  
-    <span class="summary_desc">
-Returns the value of attribute <tt>active_record</tt>.
-
-</span>
-  
-</li>
-
-    
-      <li class="public ">
-  <span class="summary_signature"><a title="#table_joins (instance method)" href="#table_joins-instance_method">- (Object) <strong>table_joins</strong> </a>
-  
-  </span>
-  
-    <span class="note title readonly">readonly</span>
-    
-  
-  
-  
-  
-
-  
-    <span class="summary_desc">
-Returns the value of attribute <tt>table_joins</tt>.
-
-</span>
-  
-</li>
-
-    
-  </ul>
-
-
-  <h2>Method Summary</h2>
-  <ul class="summary">
-    
-      <li class="public ">
-  <span class="summary_signature"><a title="#aliased_prefix (instance method)" href="#aliased_prefix-instance_method">- (Object) <strong>aliased_prefix</strong> </a>
-  
-  </span>
-  
-  
-  
-  
-
-  
-    <span class="summary_desc"></span>
-  
-</li>
-
-    
-      <li class="public ">
-  <span class="summary_signature"><a title="#aliased_primary_key (instance method)" href="#aliased_primary_key-instance_method">- (Object) <strong>aliased_primary_key</strong> </a>
-  
-  </span>
-  
-  
-  
-  
-
-  
-    <span class="summary_desc"></span>
-  
-</li>
-
-    
-      <li class="public ">
-  <span class="summary_signature"><a title="#aliased_table_name (instance method)" href="#aliased_table_name-instance_method">- (Object) <strong>aliased_table_name</strong> </a>
-  
-  </span>
-  
-  
-  
-  
-
-  
-    <span class="summary_desc"></span>
-  
-</li>
-
-    
-      <li class="public ">
-  <span class="summary_signature"><a title="#column_names_with_alias (instance method)" href="#column_names_with_alias-instance_method">- (Object) <strong>column_names_with_alias</strong> </a>
-  
-  </span>
-  
-  
-  
-  
-
-  
-    <span class="summary_desc"></span>
-  
-</li>
-
-    
-      <li class="public ">
-  <span class="summary_signature"><a title="#extract_record (instance method)" href="#extract_record-instance_method">- (Object) <strong>extract_record</strong>(row) </a>
-  
-  </span>
-  
-  
-  
-  
-
-  
-    <span class="summary_desc"></span>
-  
-</li>
-
-    
-      <li class="public ">
-  <span class="summary_signature"><a title="#initialize (instance method)" href="#initialize-instance_method">- (JoinBase) <strong>initialize</strong>(active_record, joins = nil) </a>
-  
-  </span>
-  
-  
-  
-  
-
-  
-    <span class="summary_desc">
-A new instance of <tt>JoinBase</tt>.
-
-</span>
-  
-</li>
-
-    
-      <li class="public ">
-  <span class="summary_signature"><a title="#instantiate (instance method)" href="#instantiate-instance_method">- (Object) <strong>instantiate</strong>(row) </a>
-  
-  </span>
-  
-  
-  
-  
-
-  
-    <span class="summary_desc"></span>
-  
-</li>
-
-    
-      <li class="public ">
-  <span class="summary_signature"><a title="#record_id (instance method)" href="#record_id-instance_method">- (Object) <strong>record_id</strong>(row) </a>
-  
-  </span>
-  
-  
-  
-  
-
-  
-    <span class="summary_desc"></span>
-  
-</li>
-
-    
-  </ul>
-
-<div id="constructor_details">
-  <h2>Constructor Details</h2>
-  
-    <div class="method_details first">
-  <p class="signature first" id="initialize-instance_method">
-  
-    - (<tt><a title="JoinBase" href="">JoinBase</a></tt>) <strong>initialize</strong>(active_record, joins = nil) 
-  
-
-  
-</p><div class="docstring">
+<h2>Overview</h2><div class="docstring">
   <div class="discussion">
     <p>
-A new instance of <tt>JoinBase</tt>
+:nodoc:
 </p>
 
 
   </div>
 </div>
 <div class="tags">
-  <h3>Returns:</h3>
-<ul class="return">
   
-    <li>
-      
-        <span class='type'>(<tt><a title="JoinBase" href="">JoinBase</a></tt>)</span>
-      
-      
-      
-      
-        &mdash;
-        
-a new instance of <tt>JoinBase</tt>
+</div><div id="subclasses">
+  <h2>Direct Known Subclasses</h2>
+  <p class="children"><a href="JoinAssociation.html" title="BigRecord::ArAssociations::ClassMethods::JoinDependency::JoinAssociation (class)">JoinAssociation</a></p>
+</div>
 
 
-      
-    </li>
+  <h2>Instance Attribute Summary</h2>
+  <ul class="summary">
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#active_record-instance_method" title="#active_record (instance method)">- (Object) <strong>active_record</strong> </a>
+    
+
+    
+  </span>
   
-</ul>
+  
+    <span class="note title readonly">readonly</span>
+    
+  
+  
+  
+  
 
+  
+    <span class="summary_desc"><div class='inline'><p>
+Returns the value of attribute active_record.
+</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#table_joins-instance_method" title="#table_joins (instance method)">- (Object) <strong>table_joins</strong> </a>
+    
+
+    
+  </span>
+  
+  
+    <span class="note title readonly">readonly</span>
+    
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Returns the value of attribute table_joins.
+</p>
+</div></span>
+  
+</li>
+
+    
+  </ul>
+
+
+  
+    <h2>Instance Method Summary</h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#aliased_prefix-instance_method" title="#aliased_prefix (instance method)">- (Object) <strong>aliased_prefix</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#aliased_primary_key-instance_method" title="#aliased_primary_key (instance method)">- (Object) <strong>aliased_primary_key</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#aliased_table_name-instance_method" title="#aliased_table_name (instance method)">- (Object) <strong>aliased_table_name</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#column_names_with_alias-instance_method" title="#column_names_with_alias (instance method)">- (Object) <strong>column_names_with_alias</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#extract_record-instance_method" title="#extract_record (instance method)">- (Object) <strong>extract_record</strong>(row) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#initialize-instance_method" title="#initialize (instance method)">- (JoinBase) <strong>initialize</strong>(active_record, joins = nil) </a>
+    
+
+    
+  </span>
+  
+    <span class="note title constructor">constructor</span>
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+A new instance of JoinBase.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#instantiate-instance_method" title="#instantiate (instance method)">- (Object) <strong>instantiate</strong>(row) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#record_id-instance_method" title="#record_id (instance method)">- (Object) <strong>record_id</strong>(row) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+<div id="constructor_details" class="method_details_list">
+  <h2>Constructor Details</h2>
+  
+    <div class="method_details first">
+  <p class="signature first" id="initialize-instance_method">
+  
+    - (<tt><a href="" title="BigRecord::ArAssociations::ClassMethods::JoinDependency::JoinBase (class)">JoinBase</a></tt>) <strong>initialize</strong>(active_record, joins = nil) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+A new instance of JoinBase
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
 </div><table class="source_code">
   <tr>
     <td>
@@ -309,8 +375,8 @@ a new instance of <tt>JoinBase</tt>
   
 </div>
 
-  <div id="attr_details">
-    <h2>Attribute Details</h2>
+  <div id="instance_attr_details" class="attr_details">
+    <h2>Instance Attribute Details</h2>
     
       
       <span id=""></span>
@@ -318,14 +384,14 @@ a new instance of <tt>JoinBase</tt>
       <div class="method_details first">
   <p class="signature first" id="active_record-instance_method">
   
-    - (<tt><a title="Object" href="../../../../Object.html">Object</a></tt>) <strong>active_record</strong>  <span class="extras">(readonly)</span>
+    - (<tt><a href="../../../../Object.html" title="Object (class)">Object</a></tt>) <strong>active_record</strong>  <span class="extras">(readonly)</span>
   
 
   
 </p><div class="docstring">
   <div class="discussion">
     <p>
-Returns the value of attribute <tt>active_record</tt>
+Returns the value of attribute active_record
 </p>
 
 
@@ -361,14 +427,14 @@ Returns the value of attribute <tt>active_record</tt>
       <div class="method_details ">
   <p class="signature " id="table_joins-instance_method">
   
-    - (<tt><a title="Object" href="../../../../Object.html">Object</a></tt>) <strong>table_joins</strong>  <span class="extras">(readonly)</span>
+    - (<tt><a href="../../../../Object.html" title="Object (class)">Object</a></tt>) <strong>table_joins</strong>  <span class="extras">(readonly)</span>
   
 
   
 </p><div class="docstring">
   <div class="discussion">
     <p>
-Returns the value of attribute <tt>table_joins</tt>
+Returns the value of attribute table_joins
 </p>
 
 
@@ -401,13 +467,14 @@ Returns the value of attribute <tt>table_joins</tt>
   </div>
 
 
-  <div id="method_details">
-    <h2>Method Details</h2>
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+    
     
       <div class="method_details first">
   <p class="signature first" id="aliased_prefix-instance_method">
   
-    - (<tt><a title="Object" href="../../../../Object.html">Object</a></tt>) <strong>aliased_prefix</strong> 
+    - (<tt><a href="../../../../Object.html" title="Object (class)">Object</a></tt>) <strong>aliased_prefix</strong> 
   
 
   
@@ -436,7 +503,7 @@ Returns the value of attribute <tt>table_joins</tt>
       <div class="method_details ">
   <p class="signature " id="aliased_primary_key-instance_method">
   
-    - (<tt><a title="Object" href="../../../../Object.html">Object</a></tt>) <strong>aliased_primary_key</strong> 
+    - (<tt><a href="../../../../Object.html" title="Object (class)">Object</a></tt>) <strong>aliased_primary_key</strong> 
   
 
   
@@ -465,7 +532,7 @@ Returns the value of attribute <tt>table_joins</tt>
       <div class="method_details ">
   <p class="signature " id="aliased_table_name-instance_method">
   
-    - (<tt><a title="Object" href="../../../../Object.html">Object</a></tt>) <strong>aliased_table_name</strong> 
+    - (<tt><a href="../../../../Object.html" title="Object (class)">Object</a></tt>) <strong>aliased_table_name</strong> 
   
 
   
@@ -494,7 +561,7 @@ Returns the value of attribute <tt>table_joins</tt>
       <div class="method_details ">
   <p class="signature " id="column_names_with_alias-instance_method">
   
-    - (<tt><a title="Object" href="../../../../Object.html">Object</a></tt>) <strong>column_names_with_alias</strong> 
+    - (<tt><a href="../../../../Object.html" title="Object (class)">Object</a></tt>) <strong>column_names_with_alias</strong> 
   
 
   
@@ -535,7 +602,7 @@ Returns the value of attribute <tt>table_joins</tt>
       <div class="method_details ">
   <p class="signature " id="extract_record-instance_method">
   
-    - (<tt><a title="Object" href="../../../../Object.html">Object</a></tt>) <strong>extract_record</strong>(row) 
+    - (<tt><a href="../../../../Object.html" title="Object (class)">Object</a></tt>) <strong>extract_record</strong>(row) 
   
 
   
@@ -564,7 +631,7 @@ Returns the value of attribute <tt>table_joins</tt>
       <div class="method_details ">
   <p class="signature " id="instantiate-instance_method">
   
-    - (<tt><a title="Object" href="../../../../Object.html">Object</a></tt>) <strong>instantiate</strong>(row) 
+    - (<tt><a href="../../../../Object.html" title="Object (class)">Object</a></tt>) <strong>instantiate</strong>(row) 
   
 
   
@@ -593,7 +660,7 @@ Returns the value of attribute <tt>table_joins</tt>
       <div class="method_details ">
   <p class="signature " id="record_id-instance_method">
   
-    - (<tt><a title="Object" href="../../../../Object.html">Object</a></tt>) <strong>record_id</strong>(row) 
+    - (<tt><a href="../../../../Object.html" title="Object (class)">Object</a></tt>) <strong>record_id</strong>(row) 
   
 
   
@@ -624,9 +691,9 @@ Returns the value of attribute <tt>table_joins</tt>
 </div>
     
     <div id="footer">
-  Generated on Tue Dec  1 18:30:39 2009 by 
+  Generated on Fri Apr 30 12:48:21 2010 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool">yard</a>
-  0.4.0 (ruby-1.8.7).
+  0.5.4 (ruby-1.8.7).
 </div>
 
   </body>

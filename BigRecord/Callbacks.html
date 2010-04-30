@@ -2,7 +2,7 @@
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
-    <meta name="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="Content-Type" content="text/html; charset=utf-8" />
 <title>Module: BigRecord::Callbacks</title>
 <link rel="stylesheet" href="../css/style.css" type="text/css" media="screen" charset="utf-8" />
 <link rel="stylesheet" href="../css/common.css" type="text/css" media="screen" charset="utf-8" />
@@ -16,18 +16,24 @@
 
   </head>
   <body>
+    <script type="text/javascript" charset="utf-8">
+      if (window.top.frames.main) document.body.className = 'frames';
+    </script>
+    
     <div id="header">
       <div id="menu">
   
     <a href="../_index.html">Index (C)</a> &raquo; 
-    <a title="BigRecord" href="../BigRecord.html">BigRecord</a>
+    <span class='title'><a href="../BigRecord.html" title="BigRecord (module)">BigRecord</a></span>
      &raquo; 
     <span class="title">Callbacks</span>
   
+  
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
 </div>
 
       <div id="search">
-  <a id="class_list_link" href="#">Namespace List</a>
+  <a id="class_list_link" href="#">Class List</a>
   <a id="method_list_link" href="#">Method List</a>
   <a id ="file_list_link" href="#">File List</a>
 </div>
@@ -48,6 +54,7 @@
     
   
     
+  
   
   
     <dt class="r1 last">Defined in:</dt>
@@ -259,7 +266,7 @@ will then be evaluated within the binding of the callback. Example:
   <span class='end end kw'>end</span>
 </pre>
 <p>
-Notice that single plings (&#8217;) are used so the #{id} part isn&#8217;t
+Notice that single plings (&#8217;) are used so the #<tt>id</tt> part isn&#8217;t
 evaluated until the callback is triggered. Also note that these inline
 callbacks can be stacked just like the regular ones:
 </p>
@@ -303,7 +310,7 @@ model, which are called last.
 <p class="children">
    
     
-      <strong class="modules">Modules:</strong> <a title="ClassMethods" href="Callbacks/ClassMethods.html">ClassMethods</a>
+      <strong class="modules">Modules:</strong> <a href="Callbacks/ClassMethods.html" title="BigRecord::Callbacks::ClassMethods (module)">ClassMethods</a>
     
    
     
@@ -314,8 +321,8 @@ model, which are called last.
   
     <dl class="constants">
       
-        <dt id="CALLBACKS-constant ">CALLBACKS =
-            <span class="summary_desc"></span>
+        <dt id="CALLBACKS-constant" class="">CALLBACKS =
+          
         </dt>
         <dd><pre class="code"><span class='dstring node'>%w(
   after_find after_initialize before_save after_save before_create after_create before_update after_update before_validation
@@ -329,399 +336,535 @@ model, which are called last.
 
 
 
-  <h2>Method Summary</h2>
-  <ul class="summary">
-    
-      <li class="public ">
-  <span class="summary_signature"><a title="included (class method)" href="#included-class_method">+ (Object) <strong>included</strong>(base) </a>
   
+    <h2>Class Method Summary</h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#included-class_method" title="included (class method)">+ (Object) <strong>included</strong>(base) </a>
+    
+
+    
   </span>
+  
   
   
   
   
 
   
-    <span class="summary_desc"></span>
+    <span class="summary_desc"><div class='inline'><p>
+:nodoc:.
+</p>
+</div></span>
   
 </li>
 
-    
-      <li class="public ">
-  <span class="summary_signature"><a title="#after_create (instance method)" href="#after_create-instance_method">- (Object) <strong>after_create</strong> </a>
+      
+    </ul>
   
+    <h2>Instance Method Summary</h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#after_create-instance_method" title="#after_create (instance method)">- (Object) <strong>after_create</strong> </a>
+    
+
+    
   </span>
+  
   
   
   
   
 
   
-    <span class="summary_desc">
+    <span class="summary_desc"><div class='inline'><p>
 Is called <em>after</em> Base.save on new objects that haven&#8217;t been
 saved yet (no record exists).
-
-</span>
+</p>
+</div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="#after_destroy (instance method)" href="#after_destroy-instance_method">- (Object) <strong>after_destroy</strong> </a>
-  
+      <a href="#after_destroy-instance_method" title="#after_destroy (instance method)">- (Object) <strong>after_destroy</strong> </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc">
+    <span class="summary_desc"><div class='inline'><p>
 Is called <em>after</em> Base.destroy (and all the attributes have been
 frozen).
-
-</span>
+</p>
+</div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="#after_save (instance method)" href="#after_save-instance_method">- (Object) <strong>after_save</strong> </a>
-  
+      <a href="#after_save-instance_method" title="#after_save (instance method)">- (Object) <strong>after_save</strong> </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc">
+    <span class="summary_desc"><div class='inline'><p>
 Is called <em>after</em> Base.save (regardless of whether it&#8217;s a
 create or update save).
-
-</span>
+</p>
+</div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="#after_update (instance method)" href="#after_update-instance_method">- (Object) <strong>after_update</strong> </a>
-  
+      <a href="#after_update-instance_method" title="#after_update (instance method)">- (Object) <strong>after_update</strong> </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc">
+    <span class="summary_desc"><div class='inline'><p>
 Is called <em>after</em> Base.save on existing objects that have a record.
-
-</span>
+</p>
+</div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="#after_validation (instance method)" href="#after_validation-instance_method">- (Object) <strong>after_validation</strong> </a>
-  
+      <a href="#after_validation-instance_method" title="#after_validation (instance method)">- (Object) <strong>after_validation</strong> </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc">
+    <span class="summary_desc"><div class='inline'><p>
 Is called <em>after</em> Validations.validate (which is part of the
 Base.save call).
-
-</span>
+</p>
+</div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="#after_validation_on_create (instance method)" href="#after_validation_on_create-instance_method">- (Object) <strong>after_validation_on_create</strong> </a>
-  
+      <a href="#after_validation_on_create-instance_method" title="#after_validation_on_create (instance method)">- (Object) <strong>after_validation_on_create</strong> </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc">
+    <span class="summary_desc"><div class='inline'><p>
 Is called <em>after</em> Validations.validate (which is part of the
 Base.save call) on new objects that haven&#8217;t been saved yet (no record
 exists).
-
-</span>
+</p>
+</div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="#after_validation_on_update (instance method)" href="#after_validation_on_update-instance_method">- (Object) <strong>after_validation_on_update</strong> </a>
-  
+      <a href="#after_validation_on_update-instance_method" title="#after_validation_on_update (instance method)">- (Object) <strong>after_validation_on_update</strong> </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc">
+    <span class="summary_desc"><div class='inline'><p>
 Is called <em>after</em> Validations.validate (which is part of the
 Base.save call) on existing objects that have a record.
-
-</span>
+</p>
+</div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="#before_create (instance method)" href="#before_create-instance_method">- (Object) <strong>before_create</strong> </a>
-  
+      <a href="#before_create-instance_method" title="#before_create (instance method)">- (Object) <strong>before_create</strong> </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc">
+    <span class="summary_desc"><div class='inline'><p>
 Is called <em>before</em> Base.save on new objects that haven&#8217;t been
 saved yet (no record exists).
-
-</span>
+</p>
+</div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="#before_destroy (instance method)" href="#before_destroy-instance_method">- (Object) <strong>before_destroy</strong> </a>
-  
+      <a href="#before_destroy-instance_method" title="#before_destroy (instance method)">- (Object) <strong>before_destroy</strong> </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc">
+    <span class="summary_desc"><div class='inline'><p>
 Is called <em>before</em> Base.destroy.
-
-</span>
+</p>
+</div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="#before_save (instance method)" href="#before_save-instance_method">- (Object) <strong>before_save</strong> </a>
-  
+      <a href="#before_save-instance_method" title="#before_save (instance method)">- (Object) <strong>before_save</strong> </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc">
+    <span class="summary_desc"><div class='inline'><p>
 Is called <em>before</em> Base.save (regardless of whether it&#8217;s a
 create or update save).
-
-</span>
+</p>
+</div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="#before_update (instance method)" href="#before_update-instance_method">- (Object) <strong>before_update</strong> </a>
-  
+      <a href="#before_update-instance_method" title="#before_update (instance method)">- (Object) <strong>before_update</strong> </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc">
+    <span class="summary_desc"><div class='inline'><p>
 Is called <em>before</em> Base.save on existing objects that have a record.
-
-</span>
+</p>
+</div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="#before_validation (instance method)" href="#before_validation-instance_method">- (Object) <strong>before_validation</strong> </a>
-  
+      <a href="#before_validation-instance_method" title="#before_validation (instance method)">- (Object) <strong>before_validation</strong> </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc">
+    <span class="summary_desc"><div class='inline'><p>
 Is called <em>before</em> Validations.validate (which is part of the
 Base.save call).
-
-</span>
+</p>
+</div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="#before_validation_on_create (instance method)" href="#before_validation_on_create-instance_method">- (Object) <strong>before_validation_on_create</strong> </a>
-  
+      <a href="#before_validation_on_create-instance_method" title="#before_validation_on_create (instance method)">- (Object) <strong>before_validation_on_create</strong> </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc">
+    <span class="summary_desc"><div class='inline'><p>
 Is called <em>before</em> Validations.validate (which is part of the
 Base.save call) on new objects that haven&#8217;t been saved yet (no record
 exists).
-
-</span>
+</p>
+</div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="#before_validation_on_update (instance method)" href="#before_validation_on_update-instance_method">- (Object) <strong>before_validation_on_update</strong> </a>
-  
+      <a href="#before_validation_on_update-instance_method" title="#before_validation_on_update (instance method)">- (Object) <strong>before_validation_on_update</strong> </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc">
+    <span class="summary_desc"><div class='inline'><p>
 Is called <em>before</em> Validations.validate (which is part of the
 Base.save call) on existing objects that have a record.
-
-</span>
+</p>
+</div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="#create_or_update_with_callbacks (instance method)" href="#create_or_update_with_callbacks-instance_method">- (Object) <strong>create_or_update_with_callbacks</strong> </a>
-  
+      <a href="#create_or_update_with_callbacks-instance_method" title="#create_or_update_with_callbacks (instance method)">- (Object) <strong>create_or_update_with_callbacks</strong> </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc"></span>
+    <span class="summary_desc"><div class='inline'><p>
+:nodoc:.
+</p>
+</div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="#create_with_callbacks (instance method)" href="#create_with_callbacks-instance_method">- (Object) <strong>create_with_callbacks</strong> </a>
-  
+      <a href="#create_with_callbacks-instance_method" title="#create_with_callbacks (instance method)">- (Object) <strong>create_with_callbacks</strong> </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc"></span>
+    <span class="summary_desc"><div class='inline'><p>
+:nodoc:.
+</p>
+</div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="#destroy_with_callbacks (instance method)" href="#destroy_with_callbacks-instance_method">- (Object) <strong>destroy_with_callbacks</strong> </a>
-  
+      <a href="#destroy_with_callbacks-instance_method" title="#destroy_with_callbacks (instance method)">- (Object) <strong>destroy_with_callbacks</strong> </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc"></span>
+    <span class="summary_desc"><div class='inline'><p>
+:nodoc:.
+</p>
+</div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="#initialize_with_callbacks (instance method)" href="#initialize_with_callbacks-instance_method">- (Object) <strong>initialize_with_callbacks</strong>(attributes = nil) </a>
-  
+      <a href="#initialize_with_callbacks-instance_method" title="#initialize_with_callbacks (instance method)">- (Object) <strong>initialize_with_callbacks</strong>(attributes = nil) </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc">
+    <span class="summary_desc"><div class='inline'><p>
 Is called after the object has been instantiated by a call to Base.new.
-
-</span>
+</p>
+</div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="#update_with_callbacks (instance method)" href="#update_with_callbacks-instance_method">- (Object) <strong>update_with_callbacks</strong> </a>
-  
+      <a href="#update_with_callbacks-instance_method" title="#update_with_callbacks (instance method)">- (Object) <strong>update_with_callbacks</strong> </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc"></span>
+    <span class="summary_desc"><div class='inline'><p>
+:nodoc:.
+</p>
+</div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="#valid_with_callbacks? (instance method)" href="#valid_with_callbacks%3F-instance_method">- (Object) <strong>valid_with_callbacks?</strong> </a>
-  
+      <a href="#valid_with_callbacks%3F-instance_method" title="#valid_with_callbacks? (instance method)">- (Boolean) <strong>valid_with_callbacks?</strong> </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc"></span>
+    <span class="summary_desc"><div class='inline'><p>
+:nodoc:.
+</p>
+</div></span>
   
 </li>
 
+      
+    </ul>
+  
+
+
+
+  <div id="class_method_details" class="method_details_list">
+    <h2>Class Method Details</h2>
     
-  </ul>
-
-
-
-  <div id="method_details">
-    <h2>Method Details</h2>
     
       <div class="method_details first">
   <p class="signature first" id="included-class_method">
   
-    + (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>included</strong>(base) 
+    + (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>included</strong>(base) 
   
 
   
 </p><div class="docstring">
   <div class="discussion">
-    
+    <p>
+:nodoc:
+</p>
+
 
   </div>
 </div>
@@ -777,10 +920,16 @@ Is called after the object has been instantiated by a call to Base.new.
 </table>
 </div>
     
-      <div class="method_details ">
-  <p class="signature " id="after_create-instance_method">
+  </div>
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+    
+    
+      <div class="method_details first">
+  <p class="signature first" id="after_create-instance_method">
   
-    - (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>after_create</strong> 
+    - (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>after_create</strong> 
   
 
   
@@ -817,7 +966,7 @@ saved yet (no record exists).
       <div class="method_details ">
   <p class="signature " id="after_destroy-instance_method">
   
-    - (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>after_destroy</strong> 
+    - (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>after_destroy</strong> 
   
 
   
@@ -859,7 +1008,7 @@ frozen).
       <div class="method_details ">
   <p class="signature " id="after_save-instance_method">
   
-    - (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>after_save</strong> 
+    - (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>after_save</strong> 
   
 
   
@@ -901,7 +1050,7 @@ create or update save).
       <div class="method_details ">
   <p class="signature " id="after_update-instance_method">
   
-    - (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>after_update</strong> 
+    - (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>after_update</strong> 
   
 
   
@@ -937,7 +1086,7 @@ Is called <em>after</em> Base.save on existing objects that have a record.
       <div class="method_details ">
   <p class="signature " id="after_validation-instance_method">
   
-    - (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>after_validation</strong> 
+    - (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>after_validation</strong> 
   
 
   
@@ -974,7 +1123,7 @@ Base.save call).
       <div class="method_details ">
   <p class="signature " id="after_validation_on_create-instance_method">
   
-    - (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>after_validation_on_create</strong> 
+    - (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>after_validation_on_create</strong> 
   
 
   
@@ -1012,7 +1161,7 @@ exists).
       <div class="method_details ">
   <p class="signature " id="after_validation_on_update-instance_method">
   
-    - (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>after_validation_on_update</strong> 
+    - (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>after_validation_on_update</strong> 
   
 
   
@@ -1049,7 +1198,7 @@ Base.save call) on existing objects that have a record.
       <div class="method_details ">
   <p class="signature " id="before_create-instance_method">
   
-    - (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>before_create</strong> 
+    - (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>before_create</strong> 
   
 
   
@@ -1086,7 +1235,7 @@ saved yet (no record exists).
       <div class="method_details ">
   <p class="signature " id="before_destroy-instance_method">
   
-    - (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>before_destroy</strong> 
+    - (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>before_destroy</strong> 
   
 
   
@@ -1126,7 +1275,7 @@ records first, use the _:dependent_ option on your associations.
       <div class="method_details ">
   <p class="signature " id="before_save-instance_method">
   
-    - (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>before_save</strong> 
+    - (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>before_save</strong> 
   
 
   
@@ -1163,7 +1312,7 @@ create or update save).
       <div class="method_details ">
   <p class="signature " id="before_update-instance_method">
   
-    - (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>before_update</strong> 
+    - (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>before_update</strong> 
   
 
   
@@ -1199,7 +1348,7 @@ Is called <em>before</em> Base.save on existing objects that have a record.
       <div class="method_details ">
   <p class="signature " id="before_validation-instance_method">
   
-    - (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>before_validation</strong> 
+    - (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>before_validation</strong> 
   
 
   
@@ -1236,7 +1385,7 @@ Base.save call).
       <div class="method_details ">
   <p class="signature " id="before_validation_on_create-instance_method">
   
-    - (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>before_validation_on_create</strong> 
+    - (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>before_validation_on_create</strong> 
   
 
   
@@ -1274,7 +1423,7 @@ exists).
       <div class="method_details ">
   <p class="signature " id="before_validation_on_update-instance_method">
   
-    - (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>before_validation_on_update</strong> 
+    - (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>before_validation_on_update</strong> 
   
 
   
@@ -1311,11 +1460,22 @@ Base.save call) on existing objects that have a record.
       <div class="method_details ">
   <p class="signature " id="create_or_update_with_callbacks-instance_method">
   
-    - (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>create_or_update_with_callbacks</strong> 
+    - (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>create_or_update_with_callbacks</strong> 
   
 
   
-</p><table class="source_code">
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+:nodoc:
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
@@ -1346,11 +1506,22 @@ Base.save call) on existing objects that have a record.
       <div class="method_details ">
   <p class="signature " id="create_with_callbacks-instance_method">
   
-    - (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>create_with_callbacks</strong> 
+    - (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>create_with_callbacks</strong> 
   
 
   
-</p><table class="source_code">
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+:nodoc:
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
@@ -1381,11 +1552,22 @@ Base.save call) on existing objects that have a record.
       <div class="method_details ">
   <p class="signature " id="destroy_with_callbacks-instance_method">
   
-    - (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>destroy_with_callbacks</strong> 
+    - (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>destroy_with_callbacks</strong> 
   
 
   
-</p><table class="source_code">
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+:nodoc:
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
@@ -1416,7 +1598,7 @@ Base.save call) on existing objects that have a record.
       <div class="method_details ">
   <p class="signature " id="initialize_with_callbacks-instance_method">
   
-    - (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>initialize_with_callbacks</strong>(attributes = nil) 
+    - (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>initialize_with_callbacks</strong>(attributes = nil) 
   
 
   
@@ -1463,11 +1645,22 @@ after_initialize() end
       <div class="method_details ">
   <p class="signature " id="update_with_callbacks-instance_method">
   
-    - (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>update_with_callbacks</strong> 
+    - (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>update_with_callbacks</strong> 
   
 
   
-</p><table class="source_code">
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+:nodoc:
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
@@ -1498,11 +1691,35 @@ after_initialize() end
       <div class="method_details ">
   <p class="signature " id="valid_with_callbacks?-instance_method">
   
-    - (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>valid_with_callbacks?</strong> 
+    - (<tt>Boolean</tt>) <strong>valid_with_callbacks?</strong> 
   
 
   
-</p><table class="source_code">
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+:nodoc:
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
@@ -1547,9 +1764,9 @@ after_initialize() end
 </div>
     
     <div id="footer">
-  Generated on Tue Dec  1 18:30:34 2009 by 
+  Generated on Fri Apr 30 12:48:53 2010 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool">yard</a>
-  0.4.0 (ruby-1.8.7).
+  0.5.4 (ruby-1.8.7).
 </div>
 
   </body>

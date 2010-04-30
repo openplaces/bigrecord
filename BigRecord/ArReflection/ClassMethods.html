@@ -2,7 +2,7 @@
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
-    <meta name="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="Content-Type" content="text/html; charset=utf-8" />
 <title>Module: BigRecord::ArReflection::ClassMethods</title>
 <link rel="stylesheet" href="../../css/style.css" type="text/css" media="screen" charset="utf-8" />
 <link rel="stylesheet" href="../../css/common.css" type="text/css" media="screen" charset="utf-8" />
@@ -16,18 +16,24 @@
 
   </head>
   <body>
+    <script type="text/javascript" charset="utf-8">
+      if (window.top.frames.main) document.body.className = 'frames';
+    </script>
+    
     <div id="header">
       <div id="menu">
   
     <a href="../../_index.html">Index (C)</a> &raquo; 
-    <a title="BigRecord" href="../../BigRecord.html">BigRecord</a> &raquo; <a title="ArReflection" href="../ArReflection.html">ArReflection</a>
+    <span class='title'><a href="../../BigRecord.html" title="BigRecord (module)">BigRecord</a></span> &raquo; <span class='title'><a href="../ArReflection.html" title="BigRecord::ArReflection (module)">ArReflection</a></span>
      &raquo; 
     <span class="title">ClassMethods</span>
   
+  
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
 </div>
 
       <div id="search">
-  <a id="class_list_link" href="#">Namespace List</a>
+  <a id="class_list_link" href="#">Class List</a>
   <a id="method_list_link" href="#">Method List</a>
   <a id ="file_list_link" href="#">File List</a>
 </div>
@@ -48,6 +54,7 @@
     
   
     
+  
   
   
     <dt class="r1 last">Defined in:</dt>
@@ -78,130 +85,164 @@ AssociationReflection classes in the abstract MacroReflection class.
 </div>
 
 
-  <h2>Method Summary</h2>
-  <ul class="summary">
-    
-      <li class="public ">
-  <span class="summary_signature"><a title="#create_reflection (instance method)" href="#create_reflection-instance_method">- (Object) <strong>create_reflection</strong>(macro, name, options, big_record) </a>
   
+    <h2>Instance Method Summary</h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#create_reflection-instance_method" title="#create_reflection (instance method)">- (Object) <strong>create_reflection</strong>(macro, name, options, big_record) </a>
+    
+
+    
   </span>
+  
   
   
   
   
 
   
-    <span class="summary_desc"></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="#reflect_on_aggregation (instance method)" href="#reflect_on_aggregation-instance_method">- (Object) <strong>reflect_on_aggregation</strong>(aggregation) </a>
-  
+      <a href="#reflect_on_aggregation-instance_method" title="#reflect_on_aggregation (instance method)">- (Object) <strong>reflect_on_aggregation</strong>(aggregation) </a>
+    
+
+    
   </span>
+  
   
   
   
   
 
   
-    <span class="summary_desc">
+    <span class="summary_desc"><div class='inline'><p>
 Returns the AggregateReflection object for the named <tt>aggregation</tt>
 (use the symbol).
-
-</span>
+</p>
+</div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="#reflect_on_all_aggregations (instance method)" href="#reflect_on_all_aggregations-instance_method">- (Object) <strong>reflect_on_all_aggregations</strong> </a>
-  
+      <a href="#reflect_on_all_aggregations-instance_method" title="#reflect_on_all_aggregations (instance method)">- (Object) <strong>reflect_on_all_aggregations</strong> </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc">
+    <span class="summary_desc"><div class='inline'><p>
 Returns an array of AggregateReflection objects for all the aggregations in
 the class.
-
-</span>
+</p>
+</div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="#reflect_on_all_associations (instance method)" href="#reflect_on_all_associations-instance_method">- (Object) <strong>reflect_on_all_associations</strong>(macro = nil) </a>
-  
+      <a href="#reflect_on_all_associations-instance_method" title="#reflect_on_all_associations (instance method)">- (Object) <strong>reflect_on_all_associations</strong>(macro = nil) </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc">
+    <span class="summary_desc"><div class='inline'><p>
 Returns an array of AssociationReflection objects for all the aggregations
 in the class.
-
-</span>
+</p>
+</div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="#reflect_on_association (instance method)" href="#reflect_on_association-instance_method">- (Object) <strong>reflect_on_association</strong>(association) </a>
-  
+      <a href="#reflect_on_association-instance_method" title="#reflect_on_association (instance method)">- (Object) <strong>reflect_on_association</strong>(association) </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc">
+    <span class="summary_desc"><div class='inline'><p>
 Returns the AssociationReflection object for the named <tt>aggregation</tt>
 (use the symbol).
-
-</span>
+</p>
+</div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="#reflections (instance method)" href="#reflections-instance_method">- (Object) <strong>reflections</strong> </a>
-  
+      <a href="#reflections-instance_method" title="#reflections (instance method)">- (Object) <strong>reflections</strong> </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc">
+    <span class="summary_desc"><div class='inline'><p>
 Returns a hash containing all AssociationReflection objects for the current
 class Example:.
-
-</span>
+</p>
+</div></span>
   
 </li>
 
+      
+    </ul>
+  
+
+
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
     
-  </ul>
-
-
-
-  <div id="method_details">
-    <h2>Method Details</h2>
     
       <div class="method_details first">
   <p class="signature first" id="create_reflection-instance_method">
   
-    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>create_reflection</strong>(macro, name, options, big_record) 
+    - (<tt><a href="../../Object.html" title="Object (class)">Object</a></tt>) <strong>create_reflection</strong>(macro, name, options, big_record) 
   
 
   
@@ -244,7 +285,7 @@ class Example:.
       <div class="method_details ">
   <p class="signature " id="reflect_on_aggregation-instance_method">
   
-    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>reflect_on_aggregation</strong>(aggregation) 
+    - (<tt><a href="../../Object.html" title="Object (class)">Object</a></tt>) <strong>reflect_on_aggregation</strong>(aggregation) 
   
 
   
@@ -288,7 +329,7 @@ Returns the AggregateReflection object for the named <tt>aggregation</tt>
       <div class="method_details ">
   <p class="signature " id="reflect_on_all_aggregations-instance_method">
   
-    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>reflect_on_all_aggregations</strong> 
+    - (<tt><a href="../../Object.html" title="Object (class)">Object</a></tt>) <strong>reflect_on_all_aggregations</strong> 
   
 
   
@@ -329,7 +370,7 @@ the class.
       <div class="method_details ">
   <p class="signature " id="reflect_on_all_associations-instance_method">
   
-    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>reflect_on_all_associations</strong>(macro = nil) 
+    - (<tt><a href="../../Object.html" title="Object (class)">Object</a></tt>) <strong>reflect_on_all_associations</strong>(macro = nil) 
   
 
   
@@ -378,7 +419,7 @@ parameter. Example:
       <div class="method_details ">
   <p class="signature " id="reflect_on_association-instance_method">
   
-    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>reflect_on_association</strong>(association) 
+    - (<tt><a href="../../Object.html" title="Object (class)">Object</a></tt>) <strong>reflect_on_association</strong>(association) 
   
 
   
@@ -423,7 +464,7 @@ Returns the AssociationReflection object for the named <tt>aggregation</tt>
       <div class="method_details ">
   <p class="signature " id="reflections-instance_method">
   
-    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>reflections</strong> 
+    - (<tt><a href="../../Object.html" title="Object (class)">Object</a></tt>) <strong>reflections</strong> 
   
 
   
@@ -470,9 +511,9 @@ class Example:
 </div>
     
     <div id="footer">
-  Generated on Tue Dec  1 18:30:32 2009 by 
+  Generated on Fri Apr 30 12:48:07 2010 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool">yard</a>
-  0.4.0 (ruby-1.8.7).
+  0.5.4 (ruby-1.8.7).
 </div>
 
   </body>

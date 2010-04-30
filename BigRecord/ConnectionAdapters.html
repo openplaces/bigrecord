@@ -2,7 +2,7 @@
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
-    <meta name="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="Content-Type" content="text/html; charset=utf-8" />
 <title>Module: BigRecord::ConnectionAdapters</title>
 <link rel="stylesheet" href="../css/style.css" type="text/css" media="screen" charset="utf-8" />
 <link rel="stylesheet" href="../css/common.css" type="text/css" media="screen" charset="utf-8" />
@@ -16,18 +16,24 @@
 
   </head>
   <body>
+    <script type="text/javascript" charset="utf-8">
+      if (window.top.frames.main) document.body.className = 'frames';
+    </script>
+    
     <div id="header">
       <div id="menu">
   
     <a href="../_index.html">Index (C)</a> &raquo; 
-    <a title="BigRecord" href="../BigRecord.html">BigRecord</a>
+    <span class='title'><a href="../BigRecord.html" title="BigRecord (module)">BigRecord</a></span>
      &raquo; 
     <span class="title">ConnectionAdapters</span>
   
+  
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
 </div>
 
       <div id="search">
-  <a id="class_list_link" href="#">Namespace List</a>
+  <a id="class_list_link" href="#">Class List</a>
   <a id="method_list_link" href="#">Method List</a>
   <a id ="file_list_link" href="#">File List</a>
 </div>
@@ -50,9 +56,10 @@
     
   
   
+  
     <dt class="r1 last">Defined in:</dt>
-    <dd class="r1 last">lib/big_record/connection_adapters/abstract_adapter.rb<span class="defines">,<br />
-  lib/big_record/connection_adapters/view.rb,<br /> lib/big_record/connection_adapters/column.rb,<br /> lib/big_record/connection_adapters/hbase_adapter.rb,<br /> lib/big_record/connection_adapters/abstract/quoting.rb,<br /> lib/big_record/connection_adapters/hbase_rest_adapter.rb,<br /> lib/big_record/connection_adapters/abstract/database_statements.rb</span>
+    <dd class="r1 last">lib/big_record/connection_adapters/column.rb<span class="defines">,<br />
+  lib/big_record/connection_adapters/view.rb,<br /> lib/big_record/connection_adapters/hbase_adapter.rb,<br /> lib/big_record/connection_adapters/abstract_adapter.rb,<br /> lib/big_record/connection_adapters/abstract/quoting.rb,<br /> lib/big_record/connection_adapters/cassandra_adapter.rb,<br /> lib/big_record/connection_adapters/hbase_rest_adapter.rb,<br /> lib/big_record/connection_adapters/abstract/database_statements.rb</span>
 </dd>
   
 </dl>
@@ -61,7 +68,7 @@
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
     <p>
-module ConnectionAdapters
+:nodoc:
 </p>
 
 
@@ -73,11 +80,11 @@ module ConnectionAdapters
 <p class="children">
    
     
-      <strong class="modules">Modules:</strong> <a title="DatabaseStatements" href="ConnectionAdapters/DatabaseStatements.html">DatabaseStatements</a>, <a title="Quoting" href="ConnectionAdapters/Quoting.html">Quoting</a>
+      <strong class="modules">Modules:</strong> <a href="ConnectionAdapters/DatabaseStatements.html" title="BigRecord::ConnectionAdapters::DatabaseStatements (module)">DatabaseStatements</a>, <a href="ConnectionAdapters/Quoting.html" title="BigRecord::ConnectionAdapters::Quoting (module)">Quoting</a>
     
    
     
-      <strong class="classes">Classes:</strong> <a title="AbstractAdapter" href="ConnectionAdapters/AbstractAdapter.html">AbstractAdapter</a>, <a title="Column" href="ConnectionAdapters/Column.html">Column</a>, <a title="HbaseAdapter" href="ConnectionAdapters/HbaseAdapter.html">HbaseAdapter</a>, <a title="HbaseAdapterTable" href="ConnectionAdapters/HbaseAdapterTable.html">HbaseAdapterTable</a>, <a title="HbaseRestAdapter" href="ConnectionAdapters/HbaseRestAdapter.html">HbaseRestAdapter</a>, <a title="HbaseRestAdapterTable" href="ConnectionAdapters/HbaseRestAdapterTable.html">HbaseRestAdapterTable</a>, <a title="View" href="ConnectionAdapters/View.html">View</a>
+      <strong class="classes">Classes:</strong> <a href="ConnectionAdapters/AbstractAdapter.html" title="BigRecord::ConnectionAdapters::AbstractAdapter (class)">AbstractAdapter</a>, <a href="ConnectionAdapters/CassandraAdapter.html" title="BigRecord::ConnectionAdapters::CassandraAdapter (class)">CassandraAdapter</a>, <a href="ConnectionAdapters/Column.html" title="BigRecord::ConnectionAdapters::Column (class)">Column</a>, <a href="ConnectionAdapters/HbaseAdapter.html" title="BigRecord::ConnectionAdapters::HbaseAdapter (class)">HbaseAdapter</a>, <a href="ConnectionAdapters/HbaseAdapterTable.html" title="BigRecord::ConnectionAdapters::HbaseAdapterTable (class)">HbaseAdapterTable</a>, <a href="ConnectionAdapters/HbaseRestAdapter.html" title="BigRecord::ConnectionAdapters::HbaseRestAdapter (class)">HbaseRestAdapter</a>, <a href="ConnectionAdapters/HbaseRestAdapterTable.html" title="BigRecord::ConnectionAdapters::HbaseRestAdapterTable (class)">HbaseRestAdapterTable</a>, <a href="ConnectionAdapters/View.html" title="BigRecord::ConnectionAdapters::View (class)">View</a>
     
   
 </p>
@@ -89,9 +96,9 @@ module ConnectionAdapters
 </div>
     
     <div id="footer">
-  Generated on Tue Dec  1 18:30:37 2009 by 
+  Generated on Fri Apr 30 12:48:43 2010 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool">yard</a>
-  0.4.0 (ruby-1.8.7).
+  0.5.4 (ruby-1.8.7).
 </div>
 
   </body>

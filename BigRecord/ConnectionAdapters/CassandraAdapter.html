@@ -1,0 +1,1642 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta name="Content-Type" content="text/html; charset=utf-8" />
+<title>Class: BigRecord::ConnectionAdapters::CassandraAdapter</title>
+<link rel="stylesheet" href="../../css/style.css" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="../../css/common.css" type="text/css" media="screen" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  relpath = '../..';
+  if (relpath != '') relpath += '/';
+</script>
+<script type="text/javascript" charset="utf-8" src="../../js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="../../js/app.js"></script>
+
+  </head>
+  <body>
+    <script type="text/javascript" charset="utf-8">
+      if (window.top.frames.main) document.body.className = 'frames';
+    </script>
+    
+    <div id="header">
+      <div id="menu">
+  
+    <a href="../../_index.html">Index (C)</a> &raquo; 
+    <span class='title'><a href="../../BigRecord.html" title="BigRecord (module)">BigRecord</a></span> &raquo; <span class='title'><a href="../ConnectionAdapters.html" title="BigRecord::ConnectionAdapters (module)">ConnectionAdapters</a></span>
+     &raquo; 
+    <span class="title">CassandraAdapter</span>
+  
+  
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  <a id="class_list_link" href="#">Class List</a>
+  <a id="method_list_link" href="#">Method List</a>
+  <a id ="file_list_link" href="#">File List</a>
+</div>
+
+      <div class="clear"></div>
+    </div>
+    
+    <iframe id="search_frame"></iframe>
+    
+    <div id="content"><h1>Class: BigRecord::ConnectionAdapters::CassandraAdapter 
+  
+  
+</h1>
+
+<dl class="box">
+  
+    <dt class="r1">Inherits:</dt>
+    <dd class="r1">
+      <span class="inheritName"><a href="AbstractAdapter.html" title="BigRecord::ConnectionAdapters::AbstractAdapter (class)">AbstractAdapter</a></span>
+      
+        <ul class="fullTree">
+          <li><a href="../../Object.html" title="Object (class)">Object</a></li>
+          
+            <li class="next"><a href="AbstractAdapter.html" title="BigRecord::ConnectionAdapters::AbstractAdapter (class)">AbstractAdapter</a></li>
+          
+            <li class="next">BigRecord::ConnectionAdapters::CassandraAdapter</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+      </dd>
+    
+  
+  
+    
+  
+    
+  
+  
+  
+    <dt class="r2 last">Defined in:</dt>
+    <dd class="r2 last">lib/big_record/connection_adapters/cassandra_adapter.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+
+  <h2>Constant Summary</h2>
+  
+    <dl class="constants">
+      
+        <dt id="LOST_CONNECTION_ERROR_MESSAGES-constant" class="">LOST_CONNECTION_ERROR_MESSAGES =
+          
+        </dt>
+        <dd><pre class="code"><span class='lbrack token'>[</span>
+  <span class='string val'>&quot;Server shutdown in progress&quot;</span><span class='comma token'>,</span>
+  <span class='string val'>&quot;Broken pipe&quot;</span><span class='comma token'>,</span>
+  <span class='string val'>&quot;Lost connection to HBase server during query&quot;</span><span class='comma token'>,</span>
+  <span class='string val'>&quot;HBase server has gone away&quot;</span>
+<span class='rbrack token'>]</span>
+</pre></dd>
+      
+        <dt id="TYPE_NULL-constant" class="">TYPE_NULL =
+          <div class="docstring">
+  <div class="discussion">
+    <p>
+data types
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div>
+        </dt>
+        <dd><pre class="code"><span class='integer val'>0x00</span>
+</pre></dd>
+      
+        <dt id="TYPE_STRING-constant" class="">TYPE_STRING =
+          
+        </dt>
+        <dd><pre class="code"><span class='integer val'>0x01</span>
+</pre></dd>
+      
+        <dt id="TYPE_BOOLEAN-constant" class="">TYPE_BOOLEAN =
+          <div class="docstring">
+  <div class="discussion">
+    <p>
+utf-8 strings
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div>
+        </dt>
+        <dd><pre class="code"><span class='integer val'>0x04</span>
+</pre></dd>
+      
+        <dt id="TYPE_BINARY-constant" class="">TYPE_BINARY =
+          <div class="docstring">
+  <div class="discussion">
+    <p>
+delegate to YAML
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div>
+        </dt>
+        <dd><pre class="code"><span class='integer val'>0x07</span>
+</pre></dd>
+      
+        <dt id="CHARSET-constant" class="">CHARSET =
+          <div class="docstring">
+  <div class="discussion">
+    <p>
+string charset
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div>
+        </dt>
+        <dd><pre class="code"><span class='string val'>&quot;utf-8&quot;</span>
+</pre></dd>
+      
+        <dt id="NULL-constant" class="">NULL =
+          <div class="docstring">
+  <div class="discussion">
+    <p>
+utility constants
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div>
+        </dt>
+        <dd><pre class="code"><span class='string val'>&quot;\000&quot;</span>
+</pre></dd>
+      
+        <dt id="emulate_booleans-classvariable" class="">@@emulate_booleans =
+          
+        </dt>
+        <dd><pre class="code"><span class='true true kw'>true</span>
+</pre></dd>
+      
+    </dl>
+  
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <h2>Instance Method Summary</h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#adapter_name-instance_method" title="#adapter_name (instance method)">- (Object) <strong>adapter_name</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+:nodoc:.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#build_serialized_value-instance_method" title="#build_serialized_value (instance method)">- (Object) <strong>build_serialized_value</strong>(type, value) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Serialize an object in a given type.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#configuration-instance_method" title="#configuration (instance method)">- (Object) <strong>configuration</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#delete-instance_method" title="#delete (instance method)">- (Object) <strong>delete</strong>(table_name, row) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#delete_all-instance_method" title="#delete_all (instance method)">- (Object) <strong>delete_all</strong>(table_name) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#deserialize-instance_method" title="#deserialize (instance method)">- (Object) <strong>deserialize</strong>(str) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Deserialize the given string.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#deserialize_with_header-instance_method" title="#deserialize_with_header (instance method)">- (Object) <strong>deserialize_with_header</strong>(data) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Deserialize the given string assumed to be in the type header format.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#disconnect%21-instance_method" title="#disconnect! (instance method)">- (Object) <strong>disconnect!</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+CONNECTION MANAGEMENT ====================================.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#get-instance_method" title="#get (instance method)">- (Object) <strong>get</strong>(table_name, row, column, options = {}) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#get_columns-instance_method" title="#get_columns (instance method)">- (Object) <strong>get_columns</strong>(table_name, row, columns, options = {}) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#get_columns_raw-instance_method" title="#get_columns_raw (instance method)">- (Object) <strong>get_columns_raw</strong>(table_name, row, columns, options = {}) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#get_consecutive_rows-instance_method" title="#get_consecutive_rows (instance method)">- (Object) <strong>get_consecutive_rows</strong>(table_name, start_row, limit, columns, stop_row = nil) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#get_consecutive_rows_raw-instance_method" title="#get_consecutive_rows_raw (instance method)">- (Object) <strong>get_consecutive_rows_raw</strong>(table_name, start_row, limit, columns, stop_row = nil) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#get_raw-instance_method" title="#get_raw (instance method)">- (Object) <strong>get_raw</strong>(table_name, row, column, options = {}) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#initialize-instance_method" title="#initialize (instance method)">- (CassandraAdapter) <strong>initialize</strong>(connection, logger, connection_options, config) </a>
+    
+
+    
+  </span>
+  
+    <span class="note title constructor">constructor</span>
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+A new instance of CassandraAdapter.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#serialize-instance_method" title="#serialize (instance method)">- (Object) <strong>serialize</strong>(value) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Serialize the given value.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#supports_migrations%3F-instance_method" title="#supports_migrations? (instance method)">- (Boolean) <strong>supports_migrations?</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+:nodoc:.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#update-instance_method" title="#update (instance method)">- (Object) <strong>update</strong>(table_name, row, values, timestamp) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#update_raw-instance_method" title="#update_raw (instance method)">- (Object) <strong>update_raw</strong>(table_name, row, values, timestamp) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+DATABASE STATEMENTS ======================================.
+</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods inherited from <a href="AbstractAdapter.html" title="BigRecord::ConnectionAdapters::AbstractAdapter (class)">AbstractAdapter</a></h3>
+  <p class="inherited"><a href="AbstractAdapter.html#active%3F-instance_method" title="BigRecord::ConnectionAdapters::AbstractAdapter#active? (method)">#active?</a>, <a href="AbstractAdapter.html#create_table-instance_method" title="BigRecord::ConnectionAdapters::AbstractAdapter#create_table (method)">#create_table</a>, <a href="AbstractAdapter.html#disable_referential_integrity-instance_method" title="BigRecord::ConnectionAdapters::AbstractAdapter#disable_referential_integrity (method)">#disable_referential_integrity</a>, <a href="AbstractAdapter.html#drop_table-instance_method" title="BigRecord::ConnectionAdapters::AbstractAdapter#drop_table (method)">#drop_table</a>, <a href="AbstractAdapter.html#prefetch_primary_key%3F-instance_method" title="BigRecord::ConnectionAdapters::AbstractAdapter#prefetch_primary_key? (method)">#prefetch_primary_key?</a>, <a href="AbstractAdapter.html#quote_table_name-instance_method" title="BigRecord::ConnectionAdapters::AbstractAdapter#quote_table_name (method)">#quote_table_name</a>, <a href="AbstractAdapter.html#raw_connection-instance_method" title="BigRecord::ConnectionAdapters::AbstractAdapter#raw_connection (method)">#raw_connection</a>, <a href="AbstractAdapter.html#reconnect%21-instance_method" title="BigRecord::ConnectionAdapters::AbstractAdapter#reconnect! (method)">#reconnect!</a>, <a href="AbstractAdapter.html#requires_reloading%3F-instance_method" title="BigRecord::ConnectionAdapters::AbstractAdapter#requires_reloading? (method)">#requires_reloading?</a>, <a href="AbstractAdapter.html#reset_runtime-instance_method" title="BigRecord::ConnectionAdapters::AbstractAdapter#reset_runtime (method)">#reset_runtime</a>, <a href="AbstractAdapter.html#supports_count_distinct%3F-instance_method" title="BigRecord::ConnectionAdapters::AbstractAdapter#supports_count_distinct? (method)">#supports_count_distinct?</a>, <a href="AbstractAdapter.html#supports_ddl_transactions%3F-instance_method" title="BigRecord::ConnectionAdapters::AbstractAdapter#supports_ddl_transactions? (method)">#supports_ddl_transactions?</a>, <a href="AbstractAdapter.html#table_exists%3F-instance_method" title="BigRecord::ConnectionAdapters::AbstractAdapter#table_exists? (method)">#table_exists?</a>, <a href="AbstractAdapter.html#verify%21-instance_method" title="BigRecord::ConnectionAdapters::AbstractAdapter#verify! (method)">#verify!</a></p>
+
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods included from <a href="Quoting.html" title="BigRecord::ConnectionAdapters::Quoting (module)">Quoting</a></h3>
+  <p class="inherited"><a href="Quoting.html#quote-instance_method" title="BigRecord::ConnectionAdapters::Quoting#quote (method)">#quote</a>, <a href="Quoting.html#quote_column_name-instance_method" title="BigRecord::ConnectionAdapters::Quoting#quote_column_name (method)">#quote_column_name</a>, <a href="Quoting.html#quote_string-instance_method" title="BigRecord::ConnectionAdapters::Quoting#quote_string (method)">#quote_string</a>, <a href="Quoting.html#quoted_date-instance_method" title="BigRecord::ConnectionAdapters::Quoting#quoted_date (method)">#quoted_date</a>, <a href="Quoting.html#quoted_false-instance_method" title="BigRecord::ConnectionAdapters::Quoting#quoted_false (method)">#quoted_false</a>, <a href="Quoting.html#quoted_true-instance_method" title="BigRecord::ConnectionAdapters::Quoting#quoted_true (method)">#quoted_true</a></p>
+
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods included from <a href="DatabaseStatements.html" title="BigRecord::ConnectionAdapters::DatabaseStatements (module)">DatabaseStatements</a></h3>
+  <p class="inherited"><a href="DatabaseStatements.html#insert_fixture-instance_method" title="BigRecord::ConnectionAdapters::DatabaseStatements#insert_fixture (method)">#insert_fixture</a></p>
+<div id="constructor_details" class="method_details_list">
+  <h2>Constructor Details</h2>
+  
+    <div class="method_details first">
+  <p class="signature first" id="initialize-instance_method">
+  
+    - (<tt><a href="" title="BigRecord::ConnectionAdapters::CassandraAdapter (class)">CassandraAdapter</a></tt>) <strong>initialize</strong>(connection, logger, connection_options, config) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+A new instance of CassandraAdapter
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+42
+43
+44
+45</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/cassandra_adapter.rb', line 42</span>
+
+<span class='def def kw'>def</span> <span class='initialize identifier id'>initialize</span><span class='lparen token'>(</span><span class='connection identifier id'>connection</span><span class='comma token'>,</span> <span class='logger identifier id'>logger</span><span class='comma token'>,</span> <span class='connection_options identifier id'>connection_options</span><span class='comma token'>,</span> <span class='config identifier id'>config</span><span class='rparen token'>)</span>
+  <span class='super super kw'>super</span><span class='lparen token'>(</span><span class='connection identifier id'>connection</span><span class='comma token'>,</span> <span class='logger identifier id'>logger</span><span class='rparen token'>)</span>
+  <span class='@connection_options ivar id'>@connection_options</span><span class='comma token'>,</span> <span class='@config ivar id'>@config</span> <span class='assign token'>=</span> <span class='connection_options identifier id'>connection_options</span><span class='comma token'>,</span> <span class='config identifier id'>config</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+  
+</div>
+
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+    
+    
+      <div class="method_details first">
+  <p class="signature first" id="adapter_name-instance_method">
+  
+    - (<tt><a href="../../Object.html" title="Object (class)">Object</a></tt>) <strong>adapter_name</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+:nodoc:
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+51
+52
+53</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/cassandra_adapter.rb', line 51</span>
+
+<span class='def def kw'>def</span> <span class='adapter_name identifier id'>adapter_name</span> 
+  <span class='string val'>'Cassandra'</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="build_serialized_value-instance_method">
+  
+    - (<tt><a href="../../Object.html" title="Object (class)">Object</a></tt>) <strong>build_serialized_value</strong>(type, value) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Serialize an object in a given type
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+233
+234
+235</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/cassandra_adapter.rb', line 233</span>
+
+<span class='def def kw'>def</span> <span class='build_serialized_value identifier id'>build_serialized_value</span><span class='lparen token'>(</span><span class='type identifier id'>type</span><span class='comma token'>,</span> <span class='value identifier id'>value</span><span class='rparen token'>)</span>
+  <span class='type identifier id'>type</span><span class='dot token'>.</span><span class='chr identifier id'>chr</span> <span class='plus op'>+</span> <span class='value identifier id'>value</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="configuration-instance_method">
+  
+    - (<tt><a href="../../Object.html" title="Object (class)">Object</a></tt>) <strong>configuration</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+47
+48
+49</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/cassandra_adapter.rb', line 47</span>
+
+<span class='def def kw'>def</span> <span class='configuration identifier id'>configuration</span>
+  <span class='@config ivar id'>@config</span><span class='dot token'>.</span><span class='clone identifier id'>clone</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="delete-instance_method">
+  
+    - (<tt><a href="../../Object.html" title="Object (class)">Object</a></tt>) <strong>delete</strong>(table_name, row) 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+209
+210
+211
+212
+213
+214
+215</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/cassandra_adapter.rb', line 209</span>
+
+<span class='def def kw'>def</span> <span class='delete identifier id'>delete</span><span class='lparen token'>(</span><span class='table_name identifier id'>table_name</span><span class='comma token'>,</span> <span class='row identifier id'>row</span><span class='rparen token'>)</span>
+  <span class='result identifier id'>result</span> <span class='assign token'>=</span> <span class='nil nil kw'>nil</span>
+  <span class='log identifier id'>log</span> <span class='dstring node'>&quot;DELETE FROM #{table_name} WHERE ROW=#{row};&quot;</span> <span class='do do kw'>do</span>
+    <span class='result identifier id'>result</span> <span class='assign token'>=</span> <span class='@connection ivar id'>@connection</span><span class='dot token'>.</span><span class='remove identifier id'>remove</span><span class='lparen token'>(</span><span class='table_name identifier id'>table_name</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span><span class='comma token'>,</span> <span class='row identifier id'>row</span><span class='comma token'>,</span> <span class='lbrace token'>{</span><span class='symbol val'>:consistency</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='Cassandra constant id'>Cassandra</span><span class='colon2 op'>::</span><span class='Consistency constant id'>Consistency</span><span class='colon2 op'>::</span><span class='QUORUM constant id'>QUORUM</span><span class='rbrace token'>}</span><span class='rparen token'>)</span>
+  <span class='end end kw'>end</span>
+  <span class='result identifier id'>result</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="delete_all-instance_method">
+  
+    - (<tt><a href="../../Object.html" title="Object (class)">Object</a></tt>) <strong>delete_all</strong>(table_name) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Raises:</h3>
+<ul class="raise">
+  
+    <li>
+      
+        <span class='type'>(<tt>NotImplementedError</tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+217
+218
+219</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/cassandra_adapter.rb', line 217</span>
+
+<span class='def def kw'>def</span> <span class='delete_all identifier id'>delete_all</span><span class='lparen token'>(</span><span class='table_name identifier id'>table_name</span><span class='rparen token'>)</span>
+  <span class='raise identifier id'>raise</span> <span class='NotImplementedError constant id'>NotImplementedError</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="deserialize-instance_method">
+  
+    - (<tt><a href="../../Object.html" title="Object (class)">Object</a></tt>) <strong>deserialize</strong>(str) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Deserialize the given string. This method supports both the pure YAML
+format and the type header format.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/cassandra_adapter.rb', line 239</span>
+
+<span class='def def kw'>def</span> <span class='deserialize identifier id'>deserialize</span><span class='lparen token'>(</span><span class='str identifier id'>str</span><span class='rparen token'>)</span>
+  <span class='return return kw'>return</span> <span class='unless unless_mod kw'>unless</span> <span class='str identifier id'>str</span>
+
+  <span class='comment val'># stay compatible with the old serialization code</span>
+  <span class='comment val'># YAML documents start with &quot;--- &quot; so if we find that sequence at the beginning we</span>
+  <span class='comment val'># consider it as a serialized YAML value, else it's the new format with the type header</span>
+  <span class='if if kw'>if</span> <span class='str identifier id'>str</span><span class='lbrack token'>[</span><span class='integer val'>0</span><span class='dot2 op'>..</span><span class='integer val'>3</span><span class='rbrack token'>]</span> <span class='eq op'>==</span> <span class='string val'>&quot;--- &quot;</span>
+    <span class='YAML constant id'>YAML</span><span class='colon2 op'>::</span><span class='load identifier id'>load</span><span class='lparen token'>(</span><span class='str identifier id'>str</span><span class='rparen token'>)</span> <span class='if if_mod kw'>if</span> <span class='str identifier id'>str</span>
+  <span class='else else kw'>else</span>
+    <span class='deserialize_with_header identifier id'>deserialize_with_header</span><span class='lparen token'>(</span><span class='str identifier id'>str</span><span class='rparen token'>)</span>
+  <span class='end end kw'>end</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="deserialize_with_header-instance_method">
+  
+    - (<tt><a href="../../Object.html" title="Object (class)">Object</a></tt>) <strong>deserialize_with_header</strong>(data) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Deserialize the given string assumed to be in the type header format.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/cassandra_adapter.rb', line 253</span>
+
+<span class='def def kw'>def</span> <span class='deserialize_with_header identifier id'>deserialize_with_header</span><span class='lparen token'>(</span><span class='data identifier id'>data</span><span class='rparen token'>)</span>
+  <span class='return return kw'>return</span> <span class='unless unless_mod kw'>unless</span> <span class='data identifier id'>data</span> <span class='and and kw'>and</span> <span class='data identifier id'>data</span><span class='dot token'>.</span><span class='size identifier id'>size</span> <span class='geq op'>&gt;=</span> <span class='integer val'>2</span>
+
+  <span class='comment val'># the type of the data is encoded in the first byte</span>
+  <span class='type identifier id'>type</span> <span class='assign token'>=</span> <span class='data identifier id'>data</span><span class='lbrack token'>[</span><span class='integer val'>0</span><span class='rbrack token'>]</span><span class='semicolon token'>;</span>
+
+  <span class='case case kw'>case</span> <span class='type identifier id'>type</span>
+  <span class='when when kw'>when</span> <span class='TYPE_NULL constant id'>TYPE_NULL</span> <span class='then then kw'>then</span> <span class='nil nil kw'>nil</span>
+  <span class='when when kw'>when</span> <span class='TYPE_STRING constant id'>TYPE_STRING</span> <span class='then then kw'>then</span> <span class='data identifier id'>data</span><span class='lbrack token'>[</span><span class='float val'>1</span><span class='dot2 op'>..</span><span class='integer val'>-1</span><span class='rbrack token'>]</span>
+  <span class='when when kw'>when</span> <span class='TYPE_BINARY constant id'>TYPE_BINARY</span> <span class='then then kw'>then</span> <span class='data identifier id'>data</span><span class='lbrack token'>[</span><span class='float val'>1</span><span class='dot2 op'>..</span><span class='integer val'>-1</span><span class='rbrack token'>]</span>
+  <span class='else else kw'>else</span> <span class='data identifier id'>data</span>
+  <span class='end end kw'>end</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="disconnect!-instance_method">
+  
+    - (<tt><a href="../../Object.html" title="Object (class)">Object</a></tt>) <strong>disconnect!</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+CONNECTION MANAGEMENT ====================================
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+61
+62
+63
+64</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/cassandra_adapter.rb', line 61</span>
+
+<span class='def def kw'>def</span> <span class='disconnect! fid id'>disconnect!</span>
+  <span class='@connection ivar id'>@connection</span><span class='dot token'>.</span><span class='disconnect! fid id'>disconnect!</span>
+  <span class='super super kw'>super</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="get-instance_method">
+  
+    - (<tt><a href="../../Object.html" title="Object (class)">Object</a></tt>) <strong>get</strong>(table_name, row, column, options = {}) 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/cassandra_adapter.rb', line 93</span>
+
+<span class='def def kw'>def</span> <span class='get identifier id'>get</span><span class='lparen token'>(</span><span class='table_name identifier id'>table_name</span><span class='comma token'>,</span> <span class='row identifier id'>row</span><span class='comma token'>,</span> <span class='column identifier id'>column</span><span class='comma token'>,</span> <span class='options identifier id'>options</span><span class='assign token'>=</span><span class='lbrace token'>{</span><span class='rbrace token'>}</span><span class='rparen token'>)</span>
+  <span class='serialized_result identifier id'>serialized_result</span> <span class='assign token'>=</span> <span class='get_raw identifier id'>get_raw</span><span class='lparen token'>(</span><span class='table_name identifier id'>table_name</span><span class='comma token'>,</span> <span class='row identifier id'>row</span><span class='comma token'>,</span> <span class='column identifier id'>column</span><span class='comma token'>,</span> <span class='options identifier id'>options</span><span class='rparen token'>)</span>
+  <span class='result identifier id'>result</span> <span class='assign token'>=</span> <span class='nil nil kw'>nil</span>
+  <span class='if if kw'>if</span> <span class='serialized_result identifier id'>serialized_result</span><span class='dot token'>.</span><span class='is_a? fid id'>is_a?</span><span class='lparen token'>(</span><span class='Array constant id'>Array</span><span class='rparen token'>)</span>
+    <span class='result identifier id'>result</span> <span class='assign token'>=</span> <span class='serialized_result identifier id'>serialized_result</span><span class='dot token'>.</span><span class='collect identifier id'>collect</span><span class='lbrace token'>{</span><span class='bitor op'>|</span><span class='e identifier id'>e</span><span class='bitor op'>|</span> <span class='deserialize identifier id'>deserialize</span><span class='lparen token'>(</span><span class='e identifier id'>e</span><span class='rparen token'>)</span><span class='rbrace token'>}</span>
+  <span class='else else kw'>else</span>
+    <span class='result identifier id'>result</span> <span class='assign token'>=</span> <span class='deserialize identifier id'>deserialize</span><span class='lparen token'>(</span><span class='serialized_result identifier id'>serialized_result</span><span class='rparen token'>)</span>
+  <span class='end end kw'>end</span>
+  <span class='result identifier id'>result</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="get_columns-instance_method">
+  
+    - (<tt><a href="../../Object.html" title="Object (class)">Object</a></tt>) <strong>get_columns</strong>(table_name, row, columns, options = {}) 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/cassandra_adapter.rb', line 139</span>
+
+<span class='def def kw'>def</span> <span class='get_columns identifier id'>get_columns</span><span class='lparen token'>(</span><span class='table_name identifier id'>table_name</span><span class='comma token'>,</span> <span class='row identifier id'>row</span><span class='comma token'>,</span> <span class='columns identifier id'>columns</span><span class='comma token'>,</span> <span class='options identifier id'>options</span><span class='assign token'>=</span><span class='lbrace token'>{</span><span class='rbrace token'>}</span><span class='rparen token'>)</span>
+  <span class='row_cols identifier id'>row_cols</span> <span class='assign token'>=</span> <span class='get_columns_raw identifier id'>get_columns_raw</span><span class='lparen token'>(</span><span class='table_name identifier id'>table_name</span><span class='comma token'>,</span> <span class='row identifier id'>row</span><span class='comma token'>,</span> <span class='columns identifier id'>columns</span><span class='comma token'>,</span> <span class='options identifier id'>options</span><span class='rparen token'>)</span>
+  <span class='return return kw'>return</span> <span class='nil nil kw'>nil</span> <span class='unless unless_mod kw'>unless</span> <span class='row_cols identifier id'>row_cols</span> <span class='andop op'>&amp;&amp;</span> <span class='notop op'>!</span><span class='row_cols identifier id'>row_cols</span><span class='dot token'>.</span><span class='empty? fid id'>empty?</span>
+
+  <span class='result identifier id'>result</span> <span class='assign token'>=</span> <span class='lbrace token'>{</span><span class='rbrace token'>}</span>
+  <span class='row_cols identifier id'>row_cols</span><span class='dot token'>.</span><span class='each identifier id'>each</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='key identifier id'>key</span><span class='comma token'>,</span><span class='value identifier id'>value</span><span class='bitor op'>|</span>
+    <span class='begin begin kw'>begin</span>
+      <span class='result identifier id'>result</span><span class='lbrack token'>[</span><span class='key identifier id'>key</span><span class='rbrack token'>]</span> <span class='assign token'>=</span>
+      <span class='if if kw'>if</span> <span class='key identifier id'>key</span> <span class='eq op'>==</span> <span class='string val'>'id'</span>
+        <span class='value identifier id'>value</span>
+      <span class='else else kw'>else</span>
+        <span class='deserialize identifier id'>deserialize</span><span class='lparen token'>(</span><span class='value identifier id'>value</span><span class='rparen token'>)</span>
+      <span class='end end kw'>end</span>
+    <span class='rescue rescue kw'>rescue</span> <span class='Exception constant id'>Exception</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='e identifier id'>e</span>
+      <span class='puts identifier id'>puts</span> <span class='dstring node'>&quot;Could not load column value #{key} for row=#{row.name}&quot;</span>
+    <span class='end end kw'>end</span>
+  <span class='end end kw'>end</span>
+  <span class='result identifier id'>result</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="get_columns_raw-instance_method">
+  
+    - (<tt><a href="../../Object.html" title="Object (class)">Object</a></tt>) <strong>get_columns_raw</strong>(table_name, row, columns, options = {}) 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/cassandra_adapter.rb', line 104</span>
+
+<span class='def def kw'>def</span> <span class='get_columns_raw identifier id'>get_columns_raw</span><span class='lparen token'>(</span><span class='table_name identifier id'>table_name</span><span class='comma token'>,</span> <span class='row identifier id'>row</span><span class='comma token'>,</span> <span class='columns identifier id'>columns</span><span class='comma token'>,</span> <span class='options identifier id'>options</span><span class='assign token'>=</span><span class='lbrace token'>{</span><span class='rbrace token'>}</span><span class='rparen token'>)</span>
+  <span class='result identifier id'>result</span> <span class='assign token'>=</span> <span class='lbrace token'>{</span><span class='rbrace token'>}</span>
+  
+  <span class='log identifier id'>log</span> <span class='dstring node'>&quot;SELECT (#{columns.join(&quot;, &quot;)}) FROM #{table_name} WHERE ROW=#{row};&quot;</span> <span class='do do kw'>do</span>
+    <span class='requested_columns identifier id'>requested_columns</span> <span class='assign token'>=</span> <span class='columns_to_cassandra_format identifier id'>columns_to_cassandra_format</span><span class='lparen token'>(</span><span class='columns identifier id'>columns</span><span class='rparen token'>)</span>
+    <span class='super_columns identifier id'>super_columns</span> <span class='assign token'>=</span> <span class='requested_columns identifier id'>requested_columns</span><span class='dot token'>.</span><span class='keys identifier id'>keys</span>
+
+    <span class='if if kw'>if</span> <span class='super_columns identifier id'>super_columns</span><span class='dot token'>.</span><span class='size identifier id'>size</span> <span class='eq op'>==</span> <span class='integer val'>1</span> <span class='andop op'>&amp;&amp;</span> <span class='requested_columns identifier id'>requested_columns</span><span class='lbrack token'>[</span><span class='super_columns identifier id'>super_columns</span><span class='dot token'>.</span><span class='first identifier id'>first</span><span class='rbrack token'>]</span><span class='dot token'>.</span><span class='size identifier id'>size</span> <span class='gt op'>&gt;</span> <span class='integer val'>0</span>
+      <span class='column_names identifier id'>column_names</span> <span class='assign token'>=</span> <span class='requested_columns identifier id'>requested_columns</span><span class='lbrack token'>[</span><span class='super_columns identifier id'>super_columns</span><span class='dot token'>.</span><span class='first identifier id'>first</span><span class='rbrack token'>]</span>
+
+      <span class='values identifier id'>values</span> <span class='assign token'>=</span> <span class='@connection ivar id'>@connection</span><span class='dot token'>.</span><span class='get_columns identifier id'>get_columns</span><span class='lparen token'>(</span><span class='table_name identifier id'>table_name</span><span class='comma token'>,</span> <span class='row identifier id'>row</span><span class='comma token'>,</span> <span class='super_columns identifier id'>super_columns</span><span class='dot token'>.</span><span class='first identifier id'>first</span><span class='comma token'>,</span> <span class='column_names identifier id'>column_names</span><span class='rparen token'>)</span>
+
+      <span class='result identifier id'>result</span><span class='lbrack token'>[</span><span class='string val'>&quot;id&quot;</span><span class='rbrack token'>]</span> <span class='assign token'>=</span> <span class='row identifier id'>row</span> <span class='if if_mod kw'>if</span> <span class='values identifier id'>values</span> <span class='andop op'>&amp;&amp;</span> <span class='values identifier id'>values</span><span class='dot token'>.</span><span class='compact identifier id'>compact</span><span class='dot token'>.</span><span class='size identifier id'>size</span> <span class='gt op'>&gt;</span> <span class='integer val'>0</span>
+      <span class='column_names identifier id'>column_names</span><span class='dot token'>.</span><span class='each_index identifier id'>each_index</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='id identifier id'>id</span><span class='bitor op'>|</span>
+        <span class='full_key identifier id'>full_key</span> <span class='assign token'>=</span> <span class='super_columns identifier id'>super_columns</span><span class='dot token'>.</span><span class='first identifier id'>first</span> <span class='plus op'>+</span> <span class='string val'>&quot;:&quot;</span> <span class='plus op'>+</span> <span class='column_names identifier id'>column_names</span><span class='lbrack token'>[</span><span class='id identifier id'>id</span><span class='rbrack token'>]</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span>
+        <span class='result identifier id'>result</span><span class='lbrack token'>[</span><span class='full_key identifier id'>full_key</span><span class='rbrack token'>]</span> <span class='assign token'>=</span> <span class='values identifier id'>values</span><span class='lbrack token'>[</span><span class='id identifier id'>id</span><span class='rbrack token'>]</span> <span class='unless unless_mod kw'>unless</span> <span class='values identifier id'>values</span><span class='lbrack token'>[</span><span class='id identifier id'>id</span><span class='rbrack token'>]</span><span class='dot token'>.</span><span class='nil? fid id'>nil?</span>
+      <span class='end end kw'>end</span>
+    <span class='else else kw'>else</span>
+      <span class='values identifier id'>values</span> <span class='assign token'>=</span> <span class='@connection ivar id'>@connection</span><span class='dot token'>.</span><span class='get_columns identifier id'>get_columns</span><span class='lparen token'>(</span><span class='table_name identifier id'>table_name</span><span class='comma token'>,</span> <span class='row identifier id'>row</span><span class='comma token'>,</span> <span class='super_columns identifier id'>super_columns</span><span class='rparen token'>)</span>
+      <span class='result identifier id'>result</span><span class='lbrack token'>[</span><span class='string val'>&quot;id&quot;</span><span class='rbrack token'>]</span> <span class='assign token'>=</span> <span class='row identifier id'>row</span> <span class='if if_mod kw'>if</span> <span class='values identifier id'>values</span> <span class='andop op'>&amp;&amp;</span> <span class='values identifier id'>values</span><span class='dot token'>.</span><span class='compact identifier id'>compact</span><span class='dot token'>.</span><span class='size identifier id'>size</span> <span class='gt op'>&gt;</span> <span class='integer val'>0</span>
+      <span class='super_columns identifier id'>super_columns</span><span class='dot token'>.</span><span class='each_index identifier id'>each_index</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='id identifier id'>id</span><span class='bitor op'>|</span>
+        <span class='next next kw'>next</span> <span class='if if_mod kw'>if</span> <span class='values identifier id'>values</span><span class='lbrack token'>[</span><span class='id identifier id'>id</span><span class='rbrack token'>]</span><span class='dot token'>.</span><span class='nil? fid id'>nil?</span>
+        
+        <span class='values identifier id'>values</span><span class='lbrack token'>[</span><span class='id identifier id'>id</span><span class='rbrack token'>]</span><span class='dot token'>.</span><span class='each identifier id'>each</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='column_name identifier id'>column_name</span><span class='comma token'>,</span> <span class='value identifier id'>value</span><span class='bitor op'>|</span>
+          <span class='next next kw'>next</span> <span class='if if_mod kw'>if</span> <span class='value identifier id'>value</span><span class='dot token'>.</span><span class='nil? fid id'>nil?</span>
+          
+          <span class='full_key identifier id'>full_key</span> <span class='assign token'>=</span> <span class='super_columns identifier id'>super_columns</span><span class='lbrack token'>[</span><span class='id identifier id'>id</span><span class='rbrack token'>]</span> <span class='plus op'>+</span> <span class='string val'>&quot;:&quot;</span> <span class='plus op'>+</span> <span class='column_name identifier id'>column_name</span>
+          <span class='result identifier id'>result</span><span class='lbrack token'>[</span><span class='full_key identifier id'>full_key</span><span class='rbrack token'>]</span> <span class='assign token'>=</span> <span class='value identifier id'>value</span>
+        <span class='end end kw'>end</span>
+      <span class='end end kw'>end</span>
+    <span class='end end kw'>end</span>
+  <span class='end end kw'>end</span>
+  <span class='result identifier id'>result</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="get_consecutive_rows-instance_method">
+  
+    - (<tt><a href="../../Object.html" title="Object (class)">Object</a></tt>) <strong>get_consecutive_rows</strong>(table_name, start_row, limit, columns, stop_row = nil) 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/cassandra_adapter.rb', line 192</span>
+
+<span class='def def kw'>def</span> <span class='get_consecutive_rows identifier id'>get_consecutive_rows</span><span class='lparen token'>(</span><span class='table_name identifier id'>table_name</span><span class='comma token'>,</span> <span class='start_row identifier id'>start_row</span><span class='comma token'>,</span> <span class='limit identifier id'>limit</span><span class='comma token'>,</span> <span class='columns identifier id'>columns</span><span class='comma token'>,</span> <span class='stop_row identifier id'>stop_row</span> <span class='assign token'>=</span> <span class='nil nil kw'>nil</span><span class='rparen token'>)</span>
+  <span class='rows identifier id'>rows</span> <span class='assign token'>=</span> <span class='get_consecutive_rows_raw identifier id'>get_consecutive_rows_raw</span><span class='lparen token'>(</span><span class='table_name identifier id'>table_name</span><span class='comma token'>,</span> <span class='start_row identifier id'>start_row</span><span class='comma token'>,</span> <span class='limit identifier id'>limit</span><span class='comma token'>,</span> <span class='columns identifier id'>columns</span><span class='comma token'>,</span> <span class='stop_row identifier id'>stop_row</span><span class='rparen token'>)</span>
+
+  <span class='result identifier id'>result</span> <span class='assign token'>=</span> <span class='rows identifier id'>rows</span><span class='dot token'>.</span><span class='collect identifier id'>collect</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='row identifier id'>row</span><span class='bitor op'>|</span>
+    <span class='cols identifier id'>cols</span> <span class='assign token'>=</span> <span class='lbrace token'>{</span><span class='rbrace token'>}</span>
+    <span class='row identifier id'>row</span><span class='dot token'>.</span><span class='each identifier id'>each</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='key identifier id'>key</span><span class='comma token'>,</span><span class='value identifier id'>value</span><span class='bitor op'>|</span>
+      <span class='begin begin kw'>begin</span>
+        <span class='cols identifier id'>cols</span><span class='lbrack token'>[</span><span class='key identifier id'>key</span><span class='rbrack token'>]</span> <span class='assign token'>=</span> <span class='lparen token'>(</span><span class='key identifier id'>key</span> <span class='eq op'>==</span> <span class='string val'>&quot;id&quot;</span><span class='rparen token'>)</span> <span class='question op'>?</span> <span class='value identifier id'>value</span> <span class='colon op'>:</span> <span class='deserialize identifier id'>deserialize</span><span class='lparen token'>(</span><span class='value identifier id'>value</span><span class='rparen token'>)</span>
+      <span class='rescue rescue kw'>rescue</span> <span class='Exception constant id'>Exception</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='e identifier id'>e</span>
+        <span class='puts identifier id'>puts</span> <span class='dstring node'>&quot;Could not load column value #{key} for row=#{row.name}&quot;</span>
+      <span class='end end kw'>end</span>
+    <span class='end end kw'>end</span>
+    <span class='cols identifier id'>cols</span>
+  <span class='end end kw'>end</span>
+  <span class='result identifier id'>result</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="get_consecutive_rows_raw-instance_method">
+  
+    - (<tt><a href="../../Object.html" title="Object (class)">Object</a></tt>) <strong>get_consecutive_rows_raw</strong>(table_name, start_row, limit, columns, stop_row = nil) 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/cassandra_adapter.rb', line 159</span>
+
+<span class='def def kw'>def</span> <span class='get_consecutive_rows_raw identifier id'>get_consecutive_rows_raw</span><span class='lparen token'>(</span><span class='table_name identifier id'>table_name</span><span class='comma token'>,</span> <span class='start_row identifier id'>start_row</span><span class='comma token'>,</span> <span class='limit identifier id'>limit</span><span class='comma token'>,</span> <span class='columns identifier id'>columns</span><span class='comma token'>,</span> <span class='stop_row identifier id'>stop_row</span> <span class='assign token'>=</span> <span class='nil nil kw'>nil</span><span class='rparen token'>)</span>
+  <span class='result identifier id'>result</span> <span class='assign token'>=</span> <span class='lbrack token'>[</span><span class='rbrack token'>]</span>
+  <span class='log identifier id'>log</span> <span class='dstring node'>&quot;SCAN (#{columns.join(&quot;, &quot;)}) FROM #{table_name} WHERE START_ROW=#{start_row} AND STOP_ROW=#{stop_row} LIMIT=#{limit};&quot;</span> <span class='do do kw'>do</span>
+    <span class='options identifier id'>options</span> <span class='assign token'>=</span> <span class='lbrace token'>{</span><span class='rbrace token'>}</span>
+    <span class='options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:start</span><span class='rbrack token'>]</span> <span class='assign token'>=</span> <span class='start_row identifier id'>start_row</span> <span class='if if_mod kw'>if</span> <span class='start_row identifier id'>start_row</span>
+    <span class='options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:finish</span><span class='rbrack token'>]</span> <span class='assign token'>=</span> <span class='stop_row identifier id'>stop_row</span> <span class='if if_mod kw'>if</span> <span class='stop_row identifier id'>stop_row</span>
+    <span class='options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:count</span><span class='rbrack token'>]</span> <span class='assign token'>=</span> <span class='limit identifier id'>limit</span> <span class='if if_mod kw'>if</span> <span class='limit identifier id'>limit</span>
+
+    <span class='keys identifier id'>keys</span> <span class='assign token'>=</span> <span class='@connection ivar id'>@connection</span><span class='dot token'>.</span><span class='get_range identifier id'>get_range</span><span class='lparen token'>(</span><span class='table_name identifier id'>table_name</span><span class='comma token'>,</span> <span class='options identifier id'>options</span><span class='rparen token'>)</span>
+
+    <span class='comment val'># This will be refactored. Don't make fun of me yet.</span>
+    <span class='if if kw'>if</span> <span class='notop op'>!</span><span class='keys identifier id'>keys</span><span class='dot token'>.</span><span class='empty? fid id'>empty?</span>
+      <span class='keys identifier id'>keys</span><span class='dot token'>.</span><span class='each identifier id'>each</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='key identifier id'>key</span><span class='bitor op'>|</span>
+        <span class='row identifier id'>row</span> <span class='assign token'>=</span> <span class='lbrace token'>{</span><span class='rbrace token'>}</span>
+        <span class='row identifier id'>row</span><span class='lbrack token'>[</span><span class='string val'>&quot;id&quot;</span><span class='rbrack token'>]</span> <span class='assign token'>=</span> <span class='key identifier id'>key</span><span class='dot token'>.</span><span class='key identifier id'>key</span>
+
+        <span class='key identifier id'>key</span><span class='dot token'>.</span><span class='columns identifier id'>columns</span><span class='dot token'>.</span><span class='each identifier id'>each</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='s_col identifier id'>s_col</span><span class='bitor op'>|</span>
+          <span class='super_column identifier id'>super_column</span> <span class='assign token'>=</span> <span class='s_col identifier id'>s_col</span><span class='dot token'>.</span><span class='super_column identifier id'>super_column</span>
+          <span class='super_column_name identifier id'>super_column_name</span> <span class='assign token'>=</span> <span class='super_column identifier id'>super_column</span><span class='dot token'>.</span><span class='name identifier id'>name</span>
+
+          <span class='super_column identifier id'>super_column</span><span class='dot token'>.</span><span class='columns identifier id'>columns</span><span class='dot token'>.</span><span class='each identifier id'>each</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='column identifier id'>column</span><span class='bitor op'>|</span>
+            <span class='full_key identifier id'>full_key</span> <span class='assign token'>=</span> <span class='super_column_name identifier id'>super_column_name</span> <span class='plus op'>+</span> <span class='string val'>&quot;:&quot;</span> <span class='plus op'>+</span> <span class='column identifier id'>column</span><span class='dot token'>.</span><span class='name identifier id'>name</span>
+            <span class='row identifier id'>row</span><span class='lbrack token'>[</span><span class='full_key identifier id'>full_key</span><span class='rbrack token'>]</span> <span class='assign token'>=</span> <span class='column identifier id'>column</span><span class='dot token'>.</span><span class='value identifier id'>value</span>
+          <span class='end end kw'>end</span>
+        <span class='end end kw'>end</span>
+
+        <span class='result identifier id'>result</span> <span class='lshft op'>&lt;&lt;</span> <span class='row identifier id'>row</span> <span class='if if_mod kw'>if</span> <span class='row identifier id'>row</span><span class='dot token'>.</span><span class='keys identifier id'>keys</span><span class='dot token'>.</span><span class='size identifier id'>size</span> <span class='gt op'>&gt;</span> <span class='integer val'>1</span>
+      <span class='end end kw'>end</span>
+    <span class='end end kw'>end</span>
+  <span class='end end kw'>end</span>
+  <span class='result identifier id'>result</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="get_raw-instance_method">
+  
+    - (<tt><a href="../../Object.html" title="Object (class)">Object</a></tt>) <strong>get_raw</strong>(table_name, row, column, options = {}) 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+84
+85
+86
+87
+88
+89
+90
+91</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/cassandra_adapter.rb', line 84</span>
+
+<span class='def def kw'>def</span> <span class='get_raw identifier id'>get_raw</span><span class='lparen token'>(</span><span class='table_name identifier id'>table_name</span><span class='comma token'>,</span> <span class='row identifier id'>row</span><span class='comma token'>,</span> <span class='column identifier id'>column</span><span class='comma token'>,</span> <span class='options identifier id'>options</span><span class='assign token'>=</span><span class='lbrace token'>{</span><span class='rbrace token'>}</span><span class='rparen token'>)</span>
+  <span class='result identifier id'>result</span> <span class='assign token'>=</span> <span class='nil nil kw'>nil</span>
+  <span class='log identifier id'>log</span> <span class='dstring node'>&quot;SELECT (#{column}) FROM #{table_name} WHERE ROW=#{row};&quot;</span> <span class='do do kw'>do</span>
+    <span class='super_column identifier id'>super_column</span><span class='comma token'>,</span> <span class='name identifier id'>name</span> <span class='assign token'>=</span> <span class='column identifier id'>column</span><span class='dot token'>.</span><span class='split identifier id'>split</span><span class='lparen token'>(</span><span class='string val'>&quot;:&quot;</span><span class='rparen token'>)</span>
+    <span class='result identifier id'>result</span> <span class='assign token'>=</span> <span class='@connection ivar id'>@connection</span><span class='dot token'>.</span><span class='get identifier id'>get</span><span class='lparen token'>(</span><span class='table_name identifier id'>table_name</span><span class='comma token'>,</span> <span class='row identifier id'>row</span><span class='comma token'>,</span> <span class='super_column identifier id'>super_column</span><span class='comma token'>,</span> <span class='name identifier id'>name</span><span class='rparen token'>)</span>
+  <span class='end end kw'>end</span>
+  <span class='result identifier id'>result</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="serialize-instance_method">
+  
+    - (<tt><a href="../../Object.html" title="Object (class)">Object</a></tt>) <strong>serialize</strong>(value) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Serialize the given value
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+224
+225
+226
+227
+228
+229
+230</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/cassandra_adapter.rb', line 224</span>
+
+<span class='def def kw'>def</span> <span class='serialize identifier id'>serialize</span><span class='lparen token'>(</span><span class='value identifier id'>value</span><span class='rparen token'>)</span>
+  <span class='case case kw'>case</span> <span class='value identifier id'>value</span>
+  <span class='when when kw'>when</span> <span class='NilClass constant id'>NilClass</span> <span class='then then kw'>then</span> <span class='NULL constant id'>NULL</span>
+  <span class='when when kw'>when</span> <span class='String constant id'>String</span> <span class='then then kw'>then</span> <span class='build_serialized_value identifier id'>build_serialized_value</span><span class='lparen token'>(</span><span class='TYPE_STRING constant id'>TYPE_STRING</span><span class='comma token'>,</span> <span class='value identifier id'>value</span><span class='rparen token'>)</span>
+  <span class='else else kw'>else</span> <span class='value identifier id'>value</span><span class='dot token'>.</span><span class='to_yaml identifier id'>to_yaml</span>
+  <span class='end end kw'>end</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="supports_migrations?-instance_method">
+  
+    - (<tt>Boolean</tt>) <strong>supports_migrations?</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+:nodoc:
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+55
+56
+57</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/cassandra_adapter.rb', line 55</span>
+
+<span class='def def kw'>def</span> <span class='supports_migrations? fid id'>supports_migrations?</span> 
+  <span class='false false kw'>false</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="update-instance_method">
+  
+    - (<tt><a href="../../Object.html" title="Object (class)">Object</a></tt>) <strong>update</strong>(table_name, row, values, timestamp) 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+76
+77
+78
+79
+80
+81
+82</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/cassandra_adapter.rb', line 76</span>
+
+<span class='def def kw'>def</span> <span class='update identifier id'>update</span><span class='lparen token'>(</span><span class='table_name identifier id'>table_name</span><span class='comma token'>,</span> <span class='row identifier id'>row</span><span class='comma token'>,</span> <span class='values identifier id'>values</span><span class='comma token'>,</span> <span class='timestamp identifier id'>timestamp</span><span class='rparen token'>)</span>
+  <span class='serialized_collection identifier id'>serialized_collection</span> <span class='assign token'>=</span> <span class='lbrace token'>{</span><span class='rbrace token'>}</span>
+  <span class='values identifier id'>values</span><span class='dot token'>.</span><span class='each identifier id'>each</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='column identifier id'>column</span><span class='comma token'>,</span> <span class='value identifier id'>value</span><span class='bitor op'>|</span>
+    <span class='serialized_collection identifier id'>serialized_collection</span><span class='lbrack token'>[</span><span class='column identifier id'>column</span><span class='rbrack token'>]</span> <span class='assign token'>=</span> <span class='serialize identifier id'>serialize</span><span class='lparen token'>(</span><span class='value identifier id'>value</span><span class='rparen token'>)</span>
+  <span class='end end kw'>end</span>
+  <span class='update_raw identifier id'>update_raw</span><span class='lparen token'>(</span><span class='table_name identifier id'>table_name</span><span class='comma token'>,</span> <span class='row identifier id'>row</span><span class='comma token'>,</span> <span class='serialized_collection identifier id'>serialized_collection</span><span class='comma token'>,</span> <span class='timestamp identifier id'>timestamp</span><span class='rparen token'>)</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="update_raw-instance_method">
+  
+    - (<tt><a href="../../Object.html" title="Object (class)">Object</a></tt>) <strong>update_raw</strong>(table_name, row, values, timestamp) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+DATABASE STATEMENTS ======================================
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+68
+69
+70
+71
+72
+73
+74</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/cassandra_adapter.rb', line 68</span>
+
+<span class='def def kw'>def</span> <span class='update_raw identifier id'>update_raw</span><span class='lparen token'>(</span><span class='table_name identifier id'>table_name</span><span class='comma token'>,</span> <span class='row identifier id'>row</span><span class='comma token'>,</span> <span class='values identifier id'>values</span><span class='comma token'>,</span> <span class='timestamp identifier id'>timestamp</span><span class='rparen token'>)</span>
+  <span class='result identifier id'>result</span> <span class='assign token'>=</span> <span class='nil nil kw'>nil</span>
+  <span class='log identifier id'>log</span> <span class='dstring node'>&quot;UPDATE #{table_name} SET #{values.inspect if values} WHERE ROW=#{row};&quot;</span> <span class='do do kw'>do</span>
+    <span class='result identifier id'>result</span> <span class='assign token'>=</span> <span class='@connection ivar id'>@connection</span><span class='dot token'>.</span><span class='insert identifier id'>insert</span><span class='lparen token'>(</span><span class='table_name identifier id'>table_name</span><span class='comma token'>,</span> <span class='row identifier id'>row</span><span class='comma token'>,</span> <span class='data_to_cassandra_format identifier id'>data_to_cassandra_format</span><span class='lparen token'>(</span><span class='values identifier id'>values</span><span class='rparen token'>)</span><span class='comma token'>,</span> <span class='lbrace token'>{</span><span class='symbol val'>:consistency</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='Cassandra constant id'>Cassandra</span><span class='colon2 op'>::</span><span class='Consistency constant id'>Consistency</span><span class='colon2 op'>::</span><span class='QUORUM constant id'>QUORUM</span><span class='rbrace token'>}</span><span class='rparen token'>)</span>
+  <span class='end end kw'>end</span>
+  <span class='result identifier id'>result</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+    
+    <div id="footer">
+  Generated on Fri Apr 30 12:48:18 2010 by 
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool">yard</a>
+  0.5.4 (ruby-1.8.7).
+</div>
+
+  </body>
+</html>

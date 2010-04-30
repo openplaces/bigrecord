@@ -2,7 +2,7 @@
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
-    <meta name="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="Content-Type" content="text/html; charset=utf-8" />
 <title>Module: BigRecord::BrAssociations::CachedItemProxy</title>
 <link rel="stylesheet" href="../../css/style.css" type="text/css" media="screen" charset="utf-8" />
 <link rel="stylesheet" href="../../css/common.css" type="text/css" media="screen" charset="utf-8" />
@@ -16,18 +16,24 @@
 
   </head>
   <body>
+    <script type="text/javascript" charset="utf-8">
+      if (window.top.frames.main) document.body.className = 'frames';
+    </script>
+    
     <div id="header">
       <div id="menu">
   
     <a href="../../_index.html">Index (C)</a> &raquo; 
-    <a title="BigRecord" href="../../BigRecord.html">BigRecord</a> &raquo; <a title="BrAssociations" href="../BrAssociations.html">BrAssociations</a>
+    <span class='title'><a href="../../BigRecord.html" title="BigRecord (module)">BigRecord</a></span> &raquo; <span class='title'><a href="../BrAssociations.html" title="BigRecord::BrAssociations (module)">BrAssociations</a></span>
      &raquo; 
     <span class="title">CachedItemProxy</span>
   
+  
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
 </div>
 
       <div id="search">
-  <a id="class_list_link" href="#">Namespace List</a>
+  <a id="class_list_link" href="#">Class List</a>
   <a id="method_list_link" href="#">Method List</a>
   <a id ="file_list_link" href="#">File List</a>
 </div>
@@ -50,19 +56,31 @@
     
   
   
+  
     <dt class="r1 last">Defined in:</dt>
     <dd class="r1 last">lib/big_record/br_associations/cached_item_proxy.rb</dd>
   
 </dl>
 <div class="clear"></div>
 
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    <p>
+:nodoc:
+</p>
 
+
+  </div>
+</div>
+<div class="tags">
+  
+</div>
   <h2>Constant Summary</h2>
   
     <dl class="constants">
       
-        <dt id="CACHE_ATTRIBUTE-constant ">CACHE_ATTRIBUTE =
-            <span class="summary_desc"></span>
+        <dt id="CACHE_ATTRIBUTE-constant" class="">CACHE_ATTRIBUTE =
+          
         </dt>
         <dd><pre class="code"><span class='string val'>&quot;attribute:associations_cache&quot;</span>
 </pre></dd>
@@ -71,13 +89,18 @@
   
 
 
-  <h2>Attribute Summary</h2>
+  <h2>Instance Attribute Summary</h2>
   <ul class="summary">
     
       <li class="public ">
-  <span class="summary_signature"><a title="#reflection (instance method)" href="#reflection-instance_method">- (Object) <strong>reflection</strong> </a>
-  
+  <span class="summary_signature">
+    
+      <a href="#reflection-instance_method" title="#reflection (instance method)">- (Object) <strong>reflection</strong> </a>
+    
+
+    
   </span>
+  
   
     <span class="note title readonly">readonly</span>
     
@@ -87,10 +110,10 @@
   
 
   
-    <span class="summary_desc">
-Returns the value of attribute <tt>reflection</tt>.
-
-</span>
+    <span class="summary_desc"><div class='inline'><p>
+Returns the value of attribute reflection.
+</p>
+</div></span>
   
 </li>
 
@@ -98,251 +121,329 @@ Returns the value of attribute <tt>reflection</tt>.
   </ul>
 
 
-  <h2>Method Summary</h2>
-  <ul class="summary">
-    
-      <li class="public ">
-  <span class="summary_signature"><a title="#=== (instance method)" href="#%3D%3D%3D-instance_method">- (Object) <strong>===</strong>(other) </a>
   
+    <h2>Instance Method Summary</h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#%3D%3D%3D-instance_method" title="#=== (instance method)">- (Object) <strong>===</strong>(other) </a>
+    
+
+    
   </span>
+  
   
   
   
   
 
   
-    <span class="summary_desc">
+    <span class="summary_desc"><div class='inline'><p>
 Explicitly proxy === because the instance method removal above
 doesn&#8217;t catch it.
-
-</span>
+</p>
+</div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="#aliased_table_name (instance method)" href="#aliased_table_name-instance_method">- (Object) <strong>aliased_table_name</strong> </a>
-  
+      <a href="#aliased_table_name-instance_method" title="#aliased_table_name (instance method)">- (Object) <strong>aliased_table_name</strong> </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc"></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="#find_target (instance method)" href="#find_target-instance_method">- (Object) <strong>find_target</strong> </a>
-  
+      <a href="#find_target-instance_method" title="#find_target (instance method)">- (Object) <strong>find_target</strong> </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc"></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="#load_target (instance method)" href="#load_target-instance_method">- (Object) <strong>load_target</strong> </a>
-  
+      <a href="#load_target-instance_method" title="#load_target (instance method)">- (Object) <strong>load_target</strong> </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc">
+    <span class="summary_desc"><div class='inline'><p>
 private.
-
-</span>
+</p>
+</div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="#loaded (instance method)" href="#loaded-instance_method">- (Object) <strong>loaded</strong> </a>
-  
+      <a href="#loaded-instance_method" title="#loaded (instance method)">- (Object) <strong>loaded</strong> </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc"></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="#loaded? (instance method)" href="#loaded%3F-instance_method">- (Object) <strong>loaded?</strong> </a>
-  
+      <a href="#loaded%3F-instance_method" title="#loaded? (instance method)">- (Boolean) <strong>loaded?</strong> </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc"></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="#proxy_cache (instance method)" href="#proxy_cache-instance_method">- (Object) <strong>proxy_cache</strong> </a>
-  
+      <a href="#proxy_cache-instance_method" title="#proxy_cache (instance method)">- (Object) <strong>proxy_cache</strong> </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc">
+    <span class="summary_desc"><div class='inline'><p>
 delegate :to_param, :to =&gt; :proxy_target.
-
-</span>
+</p>
+</div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="#proxy_owner (instance method)" href="#proxy_owner-instance_method">- (Object) <strong>proxy_owner</strong> </a>
-  
+      <a href="#proxy_owner-instance_method" title="#proxy_owner (instance method)">- (Object) <strong>proxy_owner</strong> </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc"></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="#proxy_reflection (instance method)" href="#proxy_reflection-instance_method">- (Object) <strong>proxy_reflection</strong> </a>
-  
+      <a href="#proxy_reflection-instance_method" title="#proxy_reflection (instance method)">- (Object) <strong>proxy_reflection</strong> </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc"></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="#proxy_target (instance method)" href="#proxy_target-instance_method">- (Object) <strong>proxy_target</strong> </a>
-  
+      <a href="#proxy_target-instance_method" title="#proxy_target (instance method)">- (Object) <strong>proxy_target</strong> </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc"></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="#reload (instance method)" href="#reload-instance_method">- (Object) <strong>reload</strong> </a>
-  
+      <a href="#reload-instance_method" title="#reload (instance method)">- (Object) <strong>reload</strong> </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc"></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="#reset (instance method)" href="#reset-instance_method">- (Object) <strong>reset</strong> </a>
-  
+      <a href="#reset-instance_method" title="#reset (instance method)">- (Object) <strong>reset</strong> </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc"></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="#respond_to? (instance method)" href="#respond_to%3F-instance_method">- (Object) <strong>respond_to?</strong>(symbol, include_priv = false) </a>
-  
-    (also: #proxy_respond_to?)
-  
+      <a href="#respond_to%3F-instance_method" title="#respond_to? (instance method)">- (Boolean) <strong>respond_to?</strong>(symbol, include_priv = false) </a>
+    
+
+    
+      (also: #proxy_respond_to?)
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc"></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="#target (instance method)" href="#target-instance_method">- (Object) <strong>target</strong> </a>
-  
+      <a href="#target-instance_method" title="#target (instance method)">- (Object) <strong>target</strong> </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc"></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="#target= (instance method)" href="#target%3D-instance_method">- (Object) <strong>target=</strong>(target) </a>
-  
+      <a href="#target%3D-instance_method" title="#target= (instance method)">- (Object) <strong>target</strong>(target) </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc"></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
-    
-  </ul>
+      
+    </ul>
+  
 
 
-  <div id="attr_details">
-    <h2>Attribute Details</h2>
+  <div id="instance_attr_details" class="attr_details">
+    <h2>Instance Attribute Details</h2>
     
       
       <span id=""></span>
@@ -350,14 +451,14 @@ delegate :to_param, :to =&gt; :proxy_target.
       <div class="method_details first">
   <p class="signature first" id="reflection-instance_method">
   
-    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>reflection</strong>  <span class="extras">(readonly)</span>
+    - (<tt><a href="../../Object.html" title="Object (class)">Object</a></tt>) <strong>reflection</strong>  <span class="extras">(readonly)</span>
   
 
   
 </p><div class="docstring">
   <div class="discussion">
     <p>
-Returns the value of attribute <tt>reflection</tt>
+Returns the value of attribute reflection
 </p>
 
 
@@ -390,13 +491,14 @@ Returns the value of attribute <tt>reflection</tt>
   </div>
 
 
-  <div id="method_details">
-    <h2>Method Details</h2>
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+    
     
       <div class="method_details first">
   <p class="signature first" id="===-instance_method">
   
-    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>===</strong>(other) 
+    - (<tt><a href="../../Object.html" title="Object (class)">Object</a></tt>) <strong>===</strong>(other) 
   
 
   
@@ -439,7 +541,7 @@ doesn&#8217;t catch it.
       <div class="method_details ">
   <p class="signature " id="aliased_table_name-instance_method">
   
-    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>aliased_table_name</strong> 
+    - (<tt><a href="../../Object.html" title="Object (class)">Object</a></tt>) <strong>aliased_table_name</strong> 
   
 
   
@@ -468,7 +570,7 @@ doesn&#8217;t catch it.
       <div class="method_details ">
   <p class="signature " id="find_target-instance_method">
   
-    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>find_target</strong> 
+    - (<tt><a href="../../Object.html" title="Object (class)">Object</a></tt>) <strong>find_target</strong> 
   
 
   
@@ -497,7 +599,7 @@ doesn&#8217;t catch it.
       <div class="method_details ">
   <p class="signature " id="load_target-instance_method">
   
-    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>load_target</strong> 
+    - (<tt><a href="../../Object.html" title="Object (class)">Object</a></tt>) <strong>load_target</strong> 
   
 
   
@@ -576,7 +678,7 @@ private
       <div class="method_details ">
   <p class="signature " id="loaded-instance_method">
   
-    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>loaded</strong> 
+    - (<tt><a href="../../Object.html" title="Object (class)">Object</a></tt>) <strong>loaded</strong> 
   
 
   
@@ -605,11 +707,32 @@ private
       <div class="method_details ">
   <p class="signature " id="loaded?-instance_method">
   
-    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>loaded?</strong> 
+    - (<tt>Boolean</tt>) <strong>loaded?</strong> 
   
 
   
-</p><table class="source_code">
+</p><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
@@ -634,7 +757,7 @@ private
       <div class="method_details ">
   <p class="signature " id="proxy_cache-instance_method">
   
-    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>proxy_cache</strong> 
+    - (<tt><a href="../../Object.html" title="Object (class)">Object</a></tt>) <strong>proxy_cache</strong> 
   
 
   
@@ -679,7 +802,7 @@ delegate :to_param, :to =&gt; :proxy_target
       <div class="method_details ">
   <p class="signature " id="proxy_owner-instance_method">
   
-    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>proxy_owner</strong> 
+    - (<tt><a href="../../Object.html" title="Object (class)">Object</a></tt>) <strong>proxy_owner</strong> 
   
 
   
@@ -708,7 +831,7 @@ delegate :to_param, :to =&gt; :proxy_target
       <div class="method_details ">
   <p class="signature " id="proxy_reflection-instance_method">
   
-    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>proxy_reflection</strong> 
+    - (<tt><a href="../../Object.html" title="Object (class)">Object</a></tt>) <strong>proxy_reflection</strong> 
   
 
   
@@ -737,7 +860,7 @@ delegate :to_param, :to =&gt; :proxy_target
       <div class="method_details ">
   <p class="signature " id="proxy_target-instance_method">
   
-    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>proxy_target</strong> 
+    - (<tt><a href="../../Object.html" title="Object (class)">Object</a></tt>) <strong>proxy_target</strong> 
   
 
   
@@ -766,7 +889,7 @@ delegate :to_param, :to =&gt; :proxy_target
       <div class="method_details ">
   <p class="signature " id="reload-instance_method">
   
-    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>reload</strong> 
+    - (<tt><a href="../../Object.html" title="Object (class)">Object</a></tt>) <strong>reload</strong> 
   
 
   
@@ -797,7 +920,7 @@ delegate :to_param, :to =&gt; :proxy_target
       <div class="method_details ">
   <p class="signature " id="reset-instance_method">
   
-    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>reset</strong> 
+    - (<tt><a href="../../Object.html" title="Object (class)">Object</a></tt>) <strong>reset</strong> 
   
 
   
@@ -828,15 +951,36 @@ delegate :to_param, :to =&gt; :proxy_target
       <div class="method_details ">
   <p class="signature " id="respond_to?-instance_method">
   
-    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>respond_to?</strong>(symbol, include_priv = false) 
+    - (<tt>Boolean</tt>) <strong>respond_to?</strong>(symbol, include_priv = false) 
   
 
   
     <span class="aliases">Also known as:
-    <span class="names">proxy_respond_to?</span>
+    <span class="names"><span id='proxy_respond_to?-instance_method'>proxy_respond_to?</span></span>
     </span>
   
-</p><table class="source_code">
+</p><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
@@ -861,7 +1005,7 @@ delegate :to_param, :to =&gt; :proxy_target
       <div class="method_details ">
   <p class="signature " id="target-instance_method">
   
-    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>target</strong> 
+    - (<tt><a href="../../Object.html" title="Object (class)">Object</a></tt>) <strong>target</strong> 
   
 
   
@@ -890,7 +1034,7 @@ delegate :to_param, :to =&gt; :proxy_target
       <div class="method_details ">
   <p class="signature " id="target=-instance_method">
   
-    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>target=</strong>(target) 
+    - (<tt><a href="../../Object.html" title="Object (class)">Object</a></tt>) <strong>target=</strong>(target) 
   
 
   
@@ -923,9 +1067,9 @@ delegate :to_param, :to =&gt; :proxy_target
 </div>
     
     <div id="footer">
-  Generated on Tue Dec  1 18:30:45 2009 by 
+  Generated on Fri Apr 30 12:48:36 2010 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool">yard</a>
-  0.4.0 (ruby-1.8.7).
+  0.5.4 (ruby-1.8.7).
 </div>
 
   </body>

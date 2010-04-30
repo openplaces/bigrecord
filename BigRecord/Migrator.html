@@ -2,7 +2,7 @@
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
-    <meta name="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="Content-Type" content="text/html; charset=utf-8" />
 <title>Class: BigRecord::Migrator</title>
 <link rel="stylesheet" href="../css/style.css" type="text/css" media="screen" charset="utf-8" />
 <link rel="stylesheet" href="../css/common.css" type="text/css" media="screen" charset="utf-8" />
@@ -16,18 +16,24 @@
 
   </head>
   <body>
+    <script type="text/javascript" charset="utf-8">
+      if (window.top.frames.main) document.body.className = 'frames';
+    </script>
+    
     <div id="header">
       <div id="menu">
   
     <a href="../_index.html">Index (M)</a> &raquo; 
-    <a title="BigRecord" href="../BigRecord.html">BigRecord</a>
+    <span class='title'><a href="../BigRecord.html" title="BigRecord (module)">BigRecord</a></span>
      &raquo; 
     <span class="title">Migrator</span>
   
+  
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
 </div>
 
       <div id="search">
-  <a id="class_list_link" href="#">Namespace List</a>
+  <a id="class_list_link" href="#">Class List</a>
   <a id="method_list_link" href="#">Method List</a>
   <a id ="file_list_link" href="#">File List</a>
 </div>
@@ -46,7 +52,15 @@
   
     <dt class="r1">Inherits:</dt>
     <dd class="r1">
-      <span class="inheritName"><a title="Object" href="../Object.html">Object</a></span>
+      <span class="inheritName"><a href="../Object.html" title="Object (class)">Object</a></span>
+      
+        <ul class="fullTree">
+          <li><a href="../Object.html" title="Object (class)">Object</a></li>
+          
+            <li class="next">BigRecord::Migrator</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
       
       </dd>
     
@@ -57,318 +71,407 @@
     
   
   
+  
     <dt class="r2 last">Defined in:</dt>
     <dd class="r2 last">lib/big_record/migration.rb</dd>
   
 </dl>
 <div class="clear"></div>
 
-
-
-
-  <h2>Method Summary</h2>
-  <ul class="summary">
-    
-      <li class="public ">
-  <span class="summary_signature"><a title="current_version (class method)" href="#current_version-class_method">+ (Object) <strong>current_version</strong> </a>
-  
-  </span>
-  
-  
-  
-  
-
-  
-    <span class="summary_desc"></span>
-  
-</li>
-
-    
-      <li class="public ">
-  <span class="summary_signature"><a title="down (class method)" href="#down-class_method">+ (Object) <strong>down</strong>(migrations_path, target_version = nil) </a>
-  
-  </span>
-  
-  
-  
-  
-
-  
-    <span class="summary_desc"></span>
-  
-</li>
-
-    
-      <li class="public ">
-  <span class="summary_signature"><a title="get_all_versions (class method)" href="#get_all_versions-class_method">+ (Object) <strong>get_all_versions</strong> </a>
-  
-  </span>
-  
-  
-  
-  
-
-  
-    <span class="summary_desc"></span>
-  
-</li>
-
-    
-      <li class="public ">
-  <span class="summary_signature"><a title="migrate (class method)" href="#migrate-class_method">+ (Object) <strong>migrate</strong>(migrations_path, target_version = nil) </a>
-  
-  </span>
-  
-  
-  
-  
-
-  
-    <span class="summary_desc"></span>
-  
-</li>
-
-    
-      <li class="public ">
-  <span class="summary_signature"><a title="proper_table_name (class method)" href="#proper_table_name-class_method">+ (Object) <strong>proper_table_name</strong>(name) </a>
-  
-  </span>
-  
-  
-  
-  
-
-  
-    <span class="summary_desc"></span>
-  
-</li>
-
-    
-      <li class="public ">
-  <span class="summary_signature"><a title="rollback (class method)" href="#rollback-class_method">+ (Object) <strong>rollback</strong>(migrations_path, steps = 1) </a>
-  
-  </span>
-  
-  
-  
-  
-
-  
-    <span class="summary_desc"></span>
-  
-</li>
-
-    
-      <li class="public ">
-  <span class="summary_signature"><a title="run (class method)" href="#run-class_method">+ (Object) <strong>run</strong>(direction, migrations_path, target_version) </a>
-  
-  </span>
-  
-  
-  
-  
-
-  
-    <span class="summary_desc"></span>
-  
-</li>
-
-    
-      <li class="public ">
-  <span class="summary_signature"><a title="schema_migrations_table_name (class method)" href="#schema_migrations_table_name-class_method">+ (Object) <strong>schema_migrations_table_name</strong> </a>
-  
-  </span>
-  
-  
-  
-  
-
-  
-    <span class="summary_desc"></span>
-  
-</li>
-
-    
-      <li class="public ">
-  <span class="summary_signature"><a title="up (class method)" href="#up-class_method">+ (Object) <strong>up</strong>(migrations_path, target_version = nil) </a>
-  
-  </span>
-  
-  
-  
-  
-
-  
-    <span class="summary_desc"></span>
-  
-</li>
-
-    
-      <li class="public ">
-  <span class="summary_signature"><a title="#current_migration (instance method)" href="#current_migration-instance_method">- (Object) <strong>current_migration</strong> </a>
-  
-  </span>
-  
-  
-  
-  
-
-  
-    <span class="summary_desc"></span>
-  
-</li>
-
-    
-      <li class="public ">
-  <span class="summary_signature"><a title="#current_version (instance method)" href="#current_version-instance_method">- (Object) <strong>current_version</strong> </a>
-  
-  </span>
-  
-  
-  
-  
-
-  
-    <span class="summary_desc"></span>
-  
-</li>
-
-    
-      <li class="public ">
-  <span class="summary_signature"><a title="#initialize (instance method)" href="#initialize-instance_method">- (Migrator) <strong>initialize</strong>(direction, migrations_path, target_version = nil) </a>
-  
-  </span>
-  
-  
-  
-  
-
-  
-    <span class="summary_desc">
-A new instance of <tt>Migrator</tt>.
-
-</span>
-  
-</li>
-
-    
-      <li class="public ">
-  <span class="summary_signature"><a title="#migrate (instance method)" href="#migrate-instance_method">- (Object) <strong>migrate</strong> </a>
-  
-  </span>
-  
-  
-  
-  
-
-  
-    <span class="summary_desc"></span>
-  
-</li>
-
-    
-      <li class="public ">
-  <span class="summary_signature"><a title="#migrated (instance method)" href="#migrated-instance_method">- (Object) <strong>migrated</strong> </a>
-  
-  </span>
-  
-  
-  
-  
-
-  
-    <span class="summary_desc"></span>
-  
-</li>
-
-    
-      <li class="public ">
-  <span class="summary_signature"><a title="#migrations (instance method)" href="#migrations-instance_method">- (Object) <strong>migrations</strong> </a>
-  
-  </span>
-  
-  
-  
-  
-
-  
-    <span class="summary_desc"></span>
-  
-</li>
-
-    
-      <li class="public ">
-  <span class="summary_signature"><a title="#pending_migrations (instance method)" href="#pending_migrations-instance_method">- (Object) <strong>pending_migrations</strong> </a>
-  
-  </span>
-  
-  
-  
-  
-
-  
-    <span class="summary_desc"></span>
-  
-</li>
-
-    
-      <li class="public ">
-  <span class="summary_signature"><a title="#run (instance method)" href="#run-instance_method">- (Object) <strong>run</strong> </a>
-  
-  </span>
-  
-  
-  
-  
-
-  
-    <span class="summary_desc"></span>
-  
-</li>
-
-    
-  </ul>
-
-<div id="constructor_details">
-  <h2>Constructor Details</h2>
-  
-    <div class="method_details first">
-  <p class="signature first" id="initialize-instance_method">
-  
-    - (<tt><a title="Migrator" href="">Migrator</a></tt>) <strong>initialize</strong>(direction, migrations_path, target_version = nil) 
-  
-
-  
-</p><div class="docstring">
+<h2>Overview</h2><div class="docstring">
   <div class="discussion">
     <p>
-A new instance of <tt>Migrator</tt>
+:nodoc:
 </p>
 
 
   </div>
 </div>
 <div class="tags">
-  <h3>Returns:</h3>
-<ul class="return">
   
-    <li>
-      
-        <span class='type'>(<tt><a title="Migrator" href="">Migrator</a></tt>)</span>
-      
-      
-      
-      
-        &mdash;
-        
-a new instance of <tt>Migrator</tt>
+</div>
 
 
-      
-    </li>
   
-</ul>
-<h3>Raises:</h3>
+    <h2>Class Method Summary</h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#current_version-class_method" title="current_version (class method)">+ (Object) <strong>current_version</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#down-class_method" title="down (class method)">+ (Object) <strong>down</strong>(migrations_path, target_version = nil) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#get_all_versions-class_method" title="get_all_versions (class method)">+ (Object) <strong>get_all_versions</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#migrate-class_method" title="migrate (class method)">+ (Object) <strong>migrate</strong>(migrations_path, target_version = nil) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#proper_table_name-class_method" title="proper_table_name (class method)">+ (Object) <strong>proper_table_name</strong>(name) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#rollback-class_method" title="rollback (class method)">+ (Object) <strong>rollback</strong>(migrations_path, steps = 1) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#run-class_method" title="run (class method)">+ (Object) <strong>run</strong>(direction, migrations_path, target_version) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#schema_migrations_table_name-class_method" title="schema_migrations_table_name (class method)">+ (Object) <strong>schema_migrations_table_name</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#up-class_method" title="up (class method)">+ (Object) <strong>up</strong>(migrations_path, target_version = nil) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+    </ul>
+  
+    <h2>Instance Method Summary</h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#current_migration-instance_method" title="#current_migration (instance method)">- (Object) <strong>current_migration</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#current_version-instance_method" title="#current_version (instance method)">- (Object) <strong>current_version</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#initialize-instance_method" title="#initialize (instance method)">- (Migrator) <strong>initialize</strong>(direction, migrations_path, target_version = nil) </a>
+    
+
+    
+  </span>
+  
+    <span class="note title constructor">constructor</span>
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+A new instance of Migrator.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#migrate-instance_method" title="#migrate (instance method)">- (Object) <strong>migrate</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#migrated-instance_method" title="#migrated (instance method)">- (Object) <strong>migrated</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#migrations-instance_method" title="#migrations (instance method)">- (Object) <strong>migrations</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#pending_migrations-instance_method" title="#pending_migrations (instance method)">- (Object) <strong>pending_migrations</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#run-instance_method" title="#run (instance method)">- (Object) <strong>run</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+<div id="constructor_details" class="method_details_list">
+  <h2>Constructor Details</h2>
+  
+    <div class="method_details first">
+  <p class="signature first" id="initialize-instance_method">
+  
+    - (<tt><a href="" title="BigRecord::Migrator (class)">Migrator</a></tt>) <strong>initialize</strong>(direction, migrations_path, target_version = nil) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+A new instance of Migrator
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Raises:</h3>
 <ul class="raise">
   
     <li>
@@ -411,13 +514,14 @@ a new instance of <tt>Migrator</tt>
 </div>
 
 
-  <div id="method_details">
-    <h2>Method Details</h2>
+  <div id="class_method_details" class="method_details_list">
+    <h2>Class Method Details</h2>
+    
     
       <div class="method_details first">
   <p class="signature first" id="current_version-class_method">
   
-    + (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>current_version</strong> 
+    + (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>current_version</strong> 
   
 
   
@@ -456,7 +560,7 @@ a new instance of <tt>Migrator</tt>
       <div class="method_details ">
   <p class="signature " id="down-class_method">
   
-    + (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>down</strong>(migrations_path, target_version = nil) 
+    + (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>down</strong>(migrations_path, target_version = nil) 
   
 
   
@@ -485,7 +589,7 @@ a new instance of <tt>Migrator</tt>
       <div class="method_details ">
   <p class="signature " id="get_all_versions-class_method">
   
-    + (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>get_all_versions</strong> 
+    + (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>get_all_versions</strong> 
   
 
   
@@ -514,7 +618,7 @@ a new instance of <tt>Migrator</tt>
       <div class="method_details ">
   <p class="signature " id="migrate-class_method">
   
-    + (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>migrate</strong>(migrations_path, target_version = nil) 
+    + (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>migrate</strong>(migrations_path, target_version = nil) 
   
 
   
@@ -551,7 +655,7 @@ a new instance of <tt>Migrator</tt>
       <div class="method_details ">
   <p class="signature " id="proper_table_name-class_method">
   
-    + (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>proper_table_name</strong>(name) 
+    + (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>proper_table_name</strong>(name) 
   
 
   
@@ -582,7 +686,7 @@ a new instance of <tt>Migrator</tt>
       <div class="method_details ">
   <p class="signature " id="rollback-class_method">
   
-    + (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>rollback</strong>(migrations_path, steps = 1) 
+    + (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>rollback</strong>(migrations_path, steps = 1) 
   
 
   
@@ -623,7 +727,7 @@ a new instance of <tt>Migrator</tt>
       <div class="method_details ">
   <p class="signature " id="run-class_method">
   
-    + (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>run</strong>(direction, migrations_path, target_version) 
+    + (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>run</strong>(direction, migrations_path, target_version) 
   
 
   
@@ -652,7 +756,7 @@ a new instance of <tt>Migrator</tt>
       <div class="method_details ">
   <p class="signature " id="schema_migrations_table_name-class_method">
   
-    + (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>schema_migrations_table_name</strong> 
+    + (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>schema_migrations_table_name</strong> 
   
 
   
@@ -681,7 +785,7 @@ a new instance of <tt>Migrator</tt>
       <div class="method_details ">
   <p class="signature " id="up-class_method">
   
-    + (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>up</strong>(migrations_path, target_version = nil) 
+    + (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>up</strong>(migrations_path, target_version = nil) 
   
 
   
@@ -707,10 +811,16 @@ a new instance of <tt>Migrator</tt>
 </table>
 </div>
     
-      <div class="method_details ">
-  <p class="signature " id="current_migration-instance_method">
+  </div>
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+    
+    
+      <div class="method_details first">
+  <p class="signature first" id="current_migration-instance_method">
   
-    - (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>current_migration</strong> 
+    - (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>current_migration</strong> 
   
 
   
@@ -739,7 +849,7 @@ a new instance of <tt>Migrator</tt>
       <div class="method_details ">
   <p class="signature " id="current_version-instance_method">
   
-    - (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>current_version</strong> 
+    - (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>current_version</strong> 
   
 
   
@@ -768,7 +878,7 @@ a new instance of <tt>Migrator</tt>
       <div class="method_details ">
   <p class="signature " id="migrate-instance_method">
   
-    - (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>migrate</strong> 
+    - (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>migrate</strong> 
   
 
   
@@ -867,7 +977,7 @@ a new instance of <tt>Migrator</tt>
       <div class="method_details ">
   <p class="signature " id="migrated-instance_method">
   
-    - (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>migrated</strong> 
+    - (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>migrated</strong> 
   
 
   
@@ -896,7 +1006,7 @@ a new instance of <tt>Migrator</tt>
       <div class="method_details ">
   <p class="signature " id="migrations-instance_method">
   
-    - (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>migrations</strong> 
+    - (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>migrations</strong> 
   
 
   
@@ -977,7 +1087,7 @@ a new instance of <tt>Migrator</tt>
       <div class="method_details ">
   <p class="signature " id="pending_migrations-instance_method">
   
-    - (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>pending_migrations</strong> 
+    - (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>pending_migrations</strong> 
   
 
   
@@ -1008,7 +1118,7 @@ a new instance of <tt>Migrator</tt>
       <div class="method_details ">
   <p class="signature " id="run-instance_method">
   
-    - (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>run</strong> 
+    - (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>run</strong> 
   
 
   
@@ -1024,7 +1134,7 @@ a new instance of <tt>Migrator</tt>
   
     <li>
       
-        <span class='type'>(<tt><a title="UnknownMigrationVersionError" href="UnknownMigrationVersionError.html">UnknownMigrationVersionError</a></tt>)</span>
+        <span class='type'>(<tt><a href="UnknownMigrationVersionError.html" title="BigRecord::UnknownMigrationVersionError (class)">UnknownMigrationVersionError</a></tt>)</span>
       
       
       
@@ -1070,9 +1180,9 @@ a new instance of <tt>Migrator</tt>
 </div>
     
     <div id="footer">
-  Generated on Tue Dec  1 18:30:49 2009 by 
+  Generated on Fri Apr 30 12:48:20 2010 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool">yard</a>
-  0.4.0 (ruby-1.8.7).
+  0.5.4 (ruby-1.8.7).
 </div>
 
   </body>

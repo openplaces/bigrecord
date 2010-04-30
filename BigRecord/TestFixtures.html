@@ -2,7 +2,7 @@
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
-    <meta name="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="Content-Type" content="text/html; charset=utf-8" />
 <title>Module: BigRecord::TestFixtures</title>
 <link rel="stylesheet" href="../css/style.css" type="text/css" media="screen" charset="utf-8" />
 <link rel="stylesheet" href="../css/common.css" type="text/css" media="screen" charset="utf-8" />
@@ -16,18 +16,24 @@
 
   </head>
   <body>
+    <script type="text/javascript" charset="utf-8">
+      if (window.top.frames.main) document.body.className = 'frames';
+    </script>
+    
     <div id="header">
       <div id="menu">
   
     <a href="../_index.html">Index (T)</a> &raquo; 
-    <a title="BigRecord" href="../BigRecord.html">BigRecord</a>
+    <span class='title'><a href="../BigRecord.html" title="BigRecord (module)">BigRecord</a></span>
      &raquo; 
     <span class="title">TestFixtures</span>
   
+  
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
 </div>
 
       <div id="search">
-  <a id="class_list_link" href="#">Namespace List</a>
+  <a id="class_list_link" href="#">Class List</a>
   <a id="method_list_link" href="#">Method List</a>
   <a id ="file_list_link" href="#">File List</a>
 </div>
@@ -50,6 +56,7 @@
     
   
   
+  
     <dt class="r1 last">Defined in:</dt>
     <dd class="r1 last">lib/big_record/fixtures.rb</dd>
   
@@ -60,7 +67,7 @@
 <p class="children">
    
     
-      <strong class="modules">Modules:</strong> <a title="ClassMethods" href="TestFixtures/ClassMethods.html">ClassMethods</a>
+      <strong class="modules">Modules:</strong> <a href="TestFixtures/ClassMethods.html" title="BigRecord::TestFixtures::ClassMethods (module)">ClassMethods</a>
     
    
     
@@ -71,11 +78,20 @@
   
     <dl class="constants">
       
-        <dt id="required_bigrecord_fixture_classes-classvariable ">@@required_bigrecord_fixture_classes =
-            <span class="summary_desc">
-for pre_loaded_fixtures, only require the classes once.
+        <dt id="required_bigrecord_fixture_classes-classvariable" class="">@@required_bigrecord_fixture_classes =
+          <div class="docstring">
+  <div class="discussion">
+    <p>
+for pre_loaded_fixtures, only require the classes once. huge speed
+improvement
+</p>
 
-</span>
+
+  </div>
+</div>
+<div class="tags">
+  
+</div>
         </dt>
         <dd><pre class="code"><span class='false false kw'>false</span>
 </pre></dd>
@@ -85,95 +101,130 @@ for pre_loaded_fixtures, only require the classes once.
 
 
 
-  <h2>Method Summary</h2>
-  <ul class="summary">
-    
-      <li class="public ">
-  <span class="summary_signature"><a title="included (class method)" href="#included-class_method">+ (Object) <strong>included</strong>(base) </a>
   
+    <h2>Class Method Summary</h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#included-class_method" title="included (class method)">+ (Object) <strong>included</strong>(base) </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc"></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="method_added (class method)" href="#method_added-class_method">+ (Object) <strong>method_added</strong>(method) </a>
-  
+      <a href="#method_added-class_method" title="method_added (class method)">+ (Object) <strong>method_added</strong>(method) </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc"></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
-    
-      <li class="public ">
-  <span class="summary_signature"><a title="#run_in_transaction? (instance method)" href="#run_in_transaction%3F-instance_method">- (Object) <strong>run_in_transaction?</strong> </a>
+      
+    </ul>
   
+    <h2>Instance Method Summary</h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#run_in_transaction%3F-instance_method" title="#run_in_transaction? (instance method)">- (Boolean) <strong>run_in_transaction?</strong> </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc"></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="#setup_bigrecord_fixtures (instance method)" href="#setup_bigrecord_fixtures-instance_method">- (Object) <strong>setup_bigrecord_fixtures</strong> </a>
-  
+      <a href="#setup_bigrecord_fixtures-instance_method" title="#setup_bigrecord_fixtures (instance method)">- (Object) <strong>setup_bigrecord_fixtures</strong> </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc"></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="#teardown_bigrecord_fixtures (instance method)" href="#teardown_bigrecord_fixtures-instance_method">- (Object) <strong>teardown_bigrecord_fixtures</strong> </a>
-  
+      <a href="#teardown_bigrecord_fixtures-instance_method" title="#teardown_bigrecord_fixtures (instance method)">- (Object) <strong>teardown_bigrecord_fixtures</strong> </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc"></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
+      
+    </ul>
+  
+
+
+
+  <div id="class_method_details" class="method_details_list">
+    <h2>Class Method Details</h2>
     
-  </ul>
-
-
-
-  <div id="method_details">
-    <h2>Method Details</h2>
     
       <div class="method_details first">
   <p class="signature first" id="included-class_method">
   
-    + (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>included</strong>(base) 
+    + (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>included</strong>(base) 
   
 
   
@@ -248,7 +299,7 @@ for pre_loaded_fixtures, only require the classes once.
       <div class="method_details ">
   <p class="signature " id="method_added-class_method">
   
-    + (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>method_added</strong>(method) 
+    + (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>method_added</strong>(method) 
   
 
   
@@ -326,14 +377,41 @@ for pre_loaded_fixtures, only require the classes once.
 </table>
 </div>
     
-      <div class="method_details ">
-  <p class="signature " id="run_in_transaction?-instance_method">
+  </div>
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+    
+    
+      <div class="method_details first">
+  <p class="signature first" id="run_in_transaction?-instance_method">
   
-    - (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>run_in_transaction?</strong> 
+    - (<tt>Boolean</tt>) <strong>run_in_transaction?</strong> 
   
 
   
-</p><table class="source_code">
+</p><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
@@ -360,7 +438,7 @@ for pre_loaded_fixtures, only require the classes once.
       <div class="method_details ">
   <p class="signature " id="setup_bigrecord_fixtures-instance_method">
   
-    - (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>setup_bigrecord_fixtures</strong> 
+    - (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>setup_bigrecord_fixtures</strong> 
   
 
   
@@ -419,7 +497,7 @@ for pre_loaded_fixtures, only require the classes once.
       <div class="method_details ">
   <p class="signature " id="teardown_bigrecord_fixtures-instance_method">
   
-    - (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>teardown_bigrecord_fixtures</strong> 
+    - (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>teardown_bigrecord_fixtures</strong> 
   
 
   
@@ -466,9 +544,9 @@ for pre_loaded_fixtures, only require the classes once.
 </div>
     
     <div id="footer">
-  Generated on Tue Dec  1 18:30:44 2009 by 
+  Generated on Fri Apr 30 12:48:16 2010 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool">yard</a>
-  0.4.0 (ruby-1.8.7).
+  0.5.4 (ruby-1.8.7).
 </div>
 
   </body>

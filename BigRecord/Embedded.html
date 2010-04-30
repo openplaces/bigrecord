@@ -2,7 +2,7 @@
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
-    <meta name="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="Content-Type" content="text/html; charset=utf-8" />
 <title>Class: BigRecord::Embedded</title>
 <link rel="stylesheet" href="../css/style.css" type="text/css" media="screen" charset="utf-8" />
 <link rel="stylesheet" href="../css/common.css" type="text/css" media="screen" charset="utf-8" />
@@ -16,18 +16,24 @@
 
   </head>
   <body>
+    <script type="text/javascript" charset="utf-8">
+      if (window.top.frames.main) document.body.className = 'frames';
+    </script>
+    
     <div id="header">
       <div id="menu">
   
     <a href="../_index.html">Index (E)</a> &raquo; 
-    <a title="BigRecord" href="../BigRecord.html">BigRecord</a>
+    <span class='title'><a href="../BigRecord.html" title="BigRecord (module)">BigRecord</a></span>
      &raquo; 
     <span class="title">Embedded</span>
   
+  
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
 </div>
 
       <div id="search">
-  <a id="class_list_link" href="#">Namespace List</a>
+  <a id="class_list_link" href="#">Class List</a>
   <a id="method_list_link" href="#">Method List</a>
   <a id ="file_list_link" href="#">File List</a>
 </div>
@@ -46,12 +52,12 @@
   
     <dt class="r1">Inherits:</dt>
     <dd class="r1">
-      <span class="inheritName"><a title="BigRecord::AbstractBase" href="AbstractBase.html">BigRecord::AbstractBase</a></span>
+      <span class="inheritName"><a href="Model.html" title="BigRecord::Model (class)">Model</a></span>
       
         <ul class="fullTree">
-          <li><a title="Object" href="../Object.html">Object</a></li>
+          <li><a href="../Object.html" title="Object (class)">Object</a></li>
           
-            <li class="next"><a title="BigRecord::AbstractBase" href="AbstractBase.html">BigRecord::AbstractBase</a></li>
+            <li class="next"><a href="Model.html" title="BigRecord::Model (class)">Model</a></li>
           
             <li class="next">BigRecord::Embedded</li>
           
@@ -67,6 +73,7 @@
     
   
   
+  
     <dt class="r2 last">Defined in:</dt>
     <dd class="r2 last">lib/big_record/embedded.rb</dd>
   
@@ -79,12 +86,12 @@
 <p>
 Since a single column in a column-oriented database is perfectly suited to
 handle large amounts of data, BigRecord gives you the option to store
-entire records within a single column of another <tt><a title="BigRecord::Base" href="Base.html">BigRecord::Base</a></tt> record.
+entire records within a single column of another <tt><a href="Base.html" title="BigRecord::Base (class)">BigRecord::Base</a></tt> record.
 </p>
 <p>
 These are known as Embedded records, and they behave similarly to
-<tt><a title="BigRecord::Base" href="Base.html">BigRecord::Base</a></tt> objects, except that their data is physically stored
-within another <tt><a title="BigRecord::Base" href="Base.html">BigRecord::Base</a></tt> record, and they don&#8217;t exist unless
+<tt><a href="Base.html" title="BigRecord::Base (class)">BigRecord::Base</a></tt> objects, except that their data is physically stored
+within another <tt><a href="Base.html" title="BigRecord::Base (class)">BigRecord::Base</a></tt> record, and they don&#8217;t exist unless
 associated with one. Furthermore, they don&#8217;t possess any find or
 querying functionality.
 </p>
@@ -252,218 +259,297 @@ WebLink record available with it.
   
   
   
-  <h3 class="inherited">Constants inherited from <a title="BigRecord::AbstractBase" href="AbstractBase.html">BigRecord::AbstractBase</a></h3>
-  <p class="inherited"><a title="ID_FIELD_SEPARATOR" href="AbstractBase.html#ID_FIELD_SEPARATOR-constant">ID_FIELD_SEPARATOR</a>, <a title="ID_WHITE_SPACE_CHAR" href="AbstractBase.html#ID_WHITE_SPACE_CHAR-constant">ID_WHITE_SPACE_CHAR</a></p>
+  <h3 class="inherited">Constants inherited from <a href="Model.html" title="BigRecord::Model (class)">Model</a></h3>
+  <p class="inherited"><a href="Model.html#ID_FIELD_SEPARATOR-constant" title="BigRecord::Model::ID_FIELD_SEPARATOR (constant)">ID_FIELD_SEPARATOR</a>, <a href="Model.html#ID_WHITE_SPACE_CHAR-constant" title="BigRecord::Model::ID_WHITE_SPACE_CHAR (constant)">ID_WHITE_SPACE_CHAR</a></p>
 
 
-  <h2>Method Summary</h2>
-  <ul class="summary">
-    
-      <li class="public ">
-  <span class="summary_signature"><a title="base_class (class method)" href="#base_class-class_method">+ (Object) <strong>base_class</strong> </a>
   
+    <h2>Class Method Summary</h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#base_class-class_method" title="base_class (class method)">+ (Object) <strong>base_class</strong> </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc"></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="connection (class method)" href="#connection-class_method">+ (Object) <strong>connection</strong> </a>
-  
+      <a href="#connection-class_method" title="connection (class method)">+ (Object) <strong>connection</strong> </a>
+    
+
+    
   </span>
+  
   
   
   
   
 
   
-    <span class="summary_desc">
+    <span class="summary_desc"><div class='inline'><p>
 Borrow the default connection of BigRecord.
-
-</span>
+</p>
+</div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="default_columns (class method)" href="#default_columns-class_method">+ (Object) <strong>default_columns</strong> </a>
-  
+      <a href="#default_columns-class_method" title="default_columns (class method)">+ (Object) <strong>default_columns</strong> </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc"></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="hide_to_users (class method)" href="#hide_to_users-class_method">+ (Object) <strong>hide_to_users</strong> </a>
-  
+      <a href="#hide_to_users-class_method" title="hide_to_users (class method)">+ (Object) <strong>hide_to_users</strong> </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc"></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="inherited (class method)" href="#inherited-class_method">+ (Object) <strong>inherited</strong>(child) </a>
-  
+      <a href="#inherited-class_method" title="inherited (class method)">+ (Object) <strong>inherited</strong>(child) </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc"></span>
+    <span class="summary_desc"><div class='inline'><p>
+:nodoc:.
+</p>
+</div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="pretty_name (class method)" href="#pretty_name-class_method">+ (Object) <strong>pretty_name</strong> </a>
-  
+      <a href="#pretty_name-class_method" title="pretty_name (class method)">+ (Object) <strong>pretty_name</strong> </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc">
+    <span class="summary_desc"><div class='inline'><p>
 Class attribute that holds the name of the embedded type for dispaly.
-
-</span>
+</p>
+</div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="primary_key (class method)" href="#primary_key-class_method">+ (Object) <strong>primary_key</strong> </a>
-  
+      <a href="#primary_key-class_method" title="primary_key (class method)">+ (Object) <strong>primary_key</strong> </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc"></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="set_pretty_name (class method)" href="#set_pretty_name-class_method">+ (Object) <strong>set_pretty_name</strong>(new_name) </a>
-  
+      <a href="#set_pretty_name-class_method" title="set_pretty_name (class method)">+ (Object) <strong>set_pretty_name</strong>(new_name) </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc"></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="show_to_users? (class method)" href="#show_to_users%3F-class_method">+ (Object) <strong>show_to_users?</strong> </a>
-  
+      <a href="#show_to_users%3F-class_method" title="show_to_users? (class method)">+ (Boolean) <strong>show_to_users?</strong> </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc"></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="store_primary_key? (class method)" href="#store_primary_key%3F-class_method">+ (Object) <strong>store_primary_key?</strong> </a>
-  
+      <a href="#store_primary_key%3F-class_method" title="store_primary_key? (class method)">+ (Boolean) <strong>store_primary_key?</strong> </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc"></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
-    
-      <li class="public ">
-  <span class="summary_signature"><a title="#connection (instance method)" href="#connection-instance_method">- (Object) <strong>connection</strong> </a>
+      
+    </ul>
   
+    <h2>Instance Method Summary</h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#connection-instance_method" title="#connection (instance method)">- (Object) <strong>connection</strong> </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc"></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="#id (instance method)" href="#id-instance_method">- (Object) <strong>id</strong> </a>
-  
+      <a href="#id-instance_method" title="#id (instance method)">- (Object) <strong>id</strong> </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc"></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="#initialize (instance method)" href="#initialize-instance_method">- (Embedded) <strong>initialize</strong>(attrs = nil) </a>
-  
+      <a href="#initialize-instance_method" title="#initialize (instance method)">- (Embedded) <strong>initialize</strong>(attrs = nil) </a>
+    
+
+    
   </span>
   
+    <span class="note title constructor">constructor</span>
+  
+  
   
   
   
 
   
-    <span class="summary_desc">
-A new instance of <tt>Embedded</tt>.
-
-</span>
+    <span class="summary_desc"><div class='inline'><p>
+A new instance of Embedded.
+</p>
+</div></span>
   
 </li>
 
-    
-  </ul>
+      
+    </ul>
+  
 
 
   
@@ -471,48 +557,31 @@ A new instance of <tt>Embedded</tt>.
   
   
   
-  <h3 class="inherited">Methods inherited from <a title="BigRecord::AbstractBase" href="AbstractBase.html">BigRecord::AbstractBase</a></h3>
-  <p class="inherited"><a title="#==" href="AbstractBase.html#%3D%3D-instance_method">#==</a>, <a title="===" href="AbstractBase.html#%3D%3D%3D-class_method">===</a>, <a title="#[]" href="AbstractBase.html#%5B%5D-instance_method">#[]</a>, <a title="#[]=" href="AbstractBase.html#%5B%5D%3D-instance_method">#[]=</a>, <a title="accessible_attributes" href="AbstractBase.html#accessible_attributes-class_method">accessible_attributes</a>, <a title="alias_attribute" href="AbstractBase.html#alias_attribute-class_method">alias_attribute</a>, <a title="#all_attributes_loaded=" href="AbstractBase.html#all_attributes_loaded%3D-instance_method">#all_attributes_loaded=</a>, <a title="#all_attributes_loaded?" href="AbstractBase.html#all_attributes_loaded%3F-instance_method">#all_attributes_loaded?</a>, <a title="#assign_multiparameter_attributes" href="AbstractBase.html#assign_multiparameter_attributes-instance_method">#assign_multiparameter_attributes</a>, <a title="attr_accessible" href="AbstractBase.html#attr_accessible-class_method">attr_accessible</a>, <a title="attr_create_accessible" href="AbstractBase.html#attr_create_accessible-class_method">attr_create_accessible</a>, <a title="attr_protected" href="AbstractBase.html#attr_protected-class_method">attr_protected</a>, <a title="attr_readonly" href="AbstractBase.html#attr_readonly-class_method">attr_readonly</a>, <a title="#attribute=" href="AbstractBase.html#attribute%3D-instance_method">#attribute=</a>, <a title="#attribute?" href="AbstractBase.html#attribute%3F-instance_method">#attribute?</a>, <a title="#attribute_before_type_cast" href="AbstractBase.html#attribute_before_type_cast-instance_method">#attribute_before_type_cast</a>, <a title="#attribute_for_inspect" href="AbstractBase.html#attribute_for_inspect-instance_method">#attribute_for_inspect</a>, <a title="#attribute_names" href="AbstractBase.html#attribute_names-instance_method">#attribute_names</a>, <a title="#attribute_present?" href="AbstractBase.html#attribute_present%3F-instance_method">#attribute_present?</a>, <a title="#attributes" href="AbstractBase.html#attributes-instance_method">#attributes</a>, <a title="#attributes=" href="AbstractBase.html#attributes%3D-instance_method">#attributes=</a>, <a title="#attributes_from_column_definition" href="AbstractBase.html#attributes_from_column_definition-instance_method">#attributes_from_column_definition</a>, <a title="#attributes_protected_by_default" href="AbstractBase.html#attributes_protected_by_default-instance_method">#attributes_protected_by_default</a>, <a title="benchmark" href="AbstractBase.html#benchmark-class_method">benchmark</a>, <a title="#clone_in_persistence_format" href="AbstractBase.html#clone_in_persistence_format-instance_method">#clone_in_persistence_format</a>, <a title="column" href="AbstractBase.html#column-class_method">column</a>, <a title="#column_for_attribute" href="AbstractBase.html#column_for_attribute-instance_method">#column_for_attribute</a>, <a title="column_methods_hash" href="AbstractBase.html#column_methods_hash-class_method">column_methods_hash</a>, <a title="column_names" href="AbstractBase.html#column_names-class_method">column_names</a>, <a title="columns" href="AbstractBase.html#columns-class_method">columns</a>, <a title="columns_hash" href="AbstractBase.html#columns_hash-class_method">columns_hash</a>, <a title="compute_type" href="AbstractBase.html#compute_type-class_method">compute_type</a>, <a title="content_columns" href="AbstractBase.html#content_columns-class_method">content_columns</a>, <a title="#convert_number_column_value" href="AbstractBase.html#convert_number_column_value-instance_method">#convert_number_column_value</a>, <a title="#create" href="AbstractBase.html#create-instance_method">#create</a>, <a title="create_accessible_attributes" href="AbstractBase.html#create_accessible_attributes-class_method">create_accessible_attributes</a>, <a title="create_column" href="AbstractBase.html#create_column-class_method">create_column</a>, <a title="#create_or_update" href="AbstractBase.html#create_or_update-instance_method">#create_or_update</a>, <a title="default_views" href="AbstractBase.html#default_views-class_method">default_views</a>, <a title="#define_question_method" href="AbstractBase.html#define_question_method-instance_method">#define_question_method</a>, <a title="#define_read_method" href="AbstractBase.html#define_read_method-instance_method">#define_read_method</a>, <a title="#define_read_methods" href="AbstractBase.html#define_read_methods-instance_method">#define_read_methods</a>, <a title="#deserialize" href="AbstractBase.html#deserialize-instance_method">#deserialize</a>, <a title="#destroy" href="AbstractBase.html#destroy-instance_method">#destroy</a>, <a title="#eql?" href="AbstractBase.html#eql%3F-instance_method">#eql?</a>, <a title="#evaluate_read_method" href="AbstractBase.html#evaluate_read_method-instance_method">#evaluate_read_method</a>, <a title="#execute_callstack_for_multiparameter_attributes" href="AbstractBase.html#execute_callstack_for_multiparameter_attributes-instance_method">#execute_callstack_for_multiparameter_attributes</a>, <a title="#extract_callstack_for_multiparameter_attributes" href="AbstractBase.html#extract_callstack_for_multiparameter_attributes-instance_method">#extract_callstack_for_multiparameter_attributes</a>, <a title="#find_parameter_position" href="AbstractBase.html#find_parameter_position-instance_method">#find_parameter_position</a>, <a title="#freeze" href="AbstractBase.html#freeze-instance_method">#freeze</a>, <a title="#frozen?" href="AbstractBase.html#frozen%3F-instance_method">#frozen?</a>, <a title="#generate_new_id" href="AbstractBase.html#generate_new_id-instance_method">#generate_new_id</a>, <a title="#has_attribute?" href="AbstractBase.html#has_attribute%3F-instance_method">#has_attribute?</a>, <a title="#hash" href="AbstractBase.html#hash-instance_method">#hash</a>, <a title="#human_attribute_name" href="AbstractBase.html#human_attribute_name-instance_method">#human_attribute_name</a>, <a title="human_attribute_name" href="AbstractBase.html#human_attribute_name-class_method">human_attribute_name</a>, <a title="#id=" href="AbstractBase.html#id%3D-instance_method">#id=</a>, <a title="#inspect" href="AbstractBase.html#inspect-instance_method">#inspect</a>, <a title="instantiate" href="AbstractBase.html#instantiate-class_method">instantiate</a>, <a title="invalidate_columns" href="AbstractBase.html#invalidate_columns-class_method">invalidate_columns</a>, <a title="invalidate_views" href="AbstractBase.html#invalidate_views-class_method">invalidate_views</a>, <a title="#log_protected_attribute_removal" href="AbstractBase.html#log_protected_attribute_removal-instance_method">#log_protected_attribute_removal</a>, <a title="#method_missing" href="AbstractBase.html#method_missing-instance_method">#method_missing</a>, <a title="#new_record?" href="AbstractBase.html#new_record%3F-instance_method">#new_record?</a>, <a title="#preinitialize" href="AbstractBase.html#preinitialize-instance_method">#preinitialize</a>, <a title="protected_attributes" href="AbstractBase.html#protected_attributes-class_method">protected_attributes</a>, <a title="quote_value" href="AbstractBase.html#quote_value-class_method">quote_value</a>, <a title="#quote_value" href="AbstractBase.html#quote_value-instance_method">#quote_value</a>, <a title="#quoted_id" href="AbstractBase.html#quoted_id-instance_method">#quoted_id</a>, <a title="#read_attribute" href="AbstractBase.html#read_attribute-instance_method">#read_attribute</a>, <a title="#read_attribute_before_type_cast" href="AbstractBase.html#read_attribute_before_type_cast-instance_method">#read_attribute_before_type_cast</a>, <a title="read_methods" href="AbstractBase.html#read_methods-class_method">read_methods</a>, <a title="#readonly!" href="AbstractBase.html#readonly%21-instance_method">#readonly!</a>, <a title="#readonly?" href="AbstractBase.html#readonly%3F-instance_method">#readonly?</a>, <a title="readonly_attributes" href="AbstractBase.html#readonly_attributes-class_method">readonly_attributes</a>, <a title="#reload" href="AbstractBase.html#reload-instance_method">#reload</a>, <a title="#remove_attributes_protected_from_mass_assignment" href="AbstractBase.html#remove_attributes_protected_from_mass_assignment-instance_method">#remove_attributes_protected_from_mass_assignment</a>, <a title="#remove_readonly_attributes" href="AbstractBase.html#remove_readonly_attributes-instance_method">#remove_readonly_attributes</a>, <a title="reset_subclasses" href="AbstractBase.html#reset_subclasses-class_method">reset_subclasses</a>, <a title="#respond_to?" href="AbstractBase.html#respond_to%3F-instance_method">#respond_to?</a>, <a title="#safe_attributes=" href="AbstractBase.html#safe_attributes%3D-instance_method">#safe_attributes=</a>, <a title="#save" href="AbstractBase.html#save-instance_method">#save</a>, <a title="#save!" href="AbstractBase.html#save%21-instance_method">#save!</a>, <a title="silence" href="AbstractBase.html#silence-class_method">silence</a>, <a title="subclasses" href="AbstractBase.html#subclasses-class_method">subclasses</a>, <a title="#to_s" href="AbstractBase.html#to_s-instance_method">#to_s</a>, <a title="#type_cast_attribute_value" href="AbstractBase.html#type_cast_attribute_value-instance_method">#type_cast_attribute_value</a>, <a title="undecorated_table_name" href="AbstractBase.html#undecorated_table_name-class_method">undecorated_table_name</a>, <a title="#update" href="AbstractBase.html#update-instance_method">#update</a>, <a title="#update_attribute" href="AbstractBase.html#update_attribute-instance_method">#update_attribute</a>, <a title="#update_attributes" href="AbstractBase.html#update_attributes-instance_method">#update_attributes</a>, <a title="#update_attributes!" href="AbstractBase.html#update_attributes%21-instance_method">#update_attributes!</a>, <a title="#update_bigrecord" href="AbstractBase.html#update_bigrecord-instance_method">#update_bigrecord</a>, <a title="#validate_attribute_type" href="AbstractBase.html#validate_attribute_type-instance_method">#validate_attribute_type</a>, <a title="#validate_attributes_schema" href="AbstractBase.html#validate_attributes_schema-instance_method">#validate_attributes_schema</a>, <a title="#write_attribute" href="AbstractBase.html#write_attribute-instance_method">#write_attribute</a></p>
-<div id="constructor_details">
+  
+  
+  <h3 class="inherited">Methods inherited from <a href="Model.html" title="BigRecord::Model (class)">Model</a></h3>
+  <p class="inherited"><a href="Model.html#%3D%3D-instance_method" title="BigRecord::Model#== (method)">#==</a>, <a href="Model.html#%3D%3D%3D-class_method" title="BigRecord::Model.=== (method)">===</a>, <a href="Model.html#%5B%5D-instance_method" title="BigRecord::Model#[] (method)">#[]</a>, <a href="Model.html#%5B%5D%3D-instance_method" title="BigRecord::Model#[]= (method)">#[]=</a>, <a href="Model.html#accessible_attributes-class_method" title="BigRecord::Model.accessible_attributes (method)">accessible_attributes</a>, <a href="Model.html#alias_attribute-class_method" title="BigRecord::Model.alias_attribute (method)">alias_attribute</a>, <a href="Model.html#all_attributes_loaded%3D-instance_method" title="BigRecord::Model#all_attributes_loaded= (method)">#all_attributes_loaded=</a>, <a href="Model.html#all_attributes_loaded%3F-instance_method" title="BigRecord::Model#all_attributes_loaded? (method)">#all_attributes_loaded?</a>, <a href="Model.html#attr_accessible-class_method" title="BigRecord::Model.attr_accessible (method)">attr_accessible</a>, <a href="Model.html#attr_create_accessible-class_method" title="BigRecord::Model.attr_create_accessible (method)">attr_create_accessible</a>, <a href="Model.html#attr_protected-class_method" title="BigRecord::Model.attr_protected (method)">attr_protected</a>, <a href="Model.html#attr_readonly-class_method" title="BigRecord::Model.attr_readonly (method)">attr_readonly</a>, <a href="Model.html#attribute_for_inspect-instance_method" title="BigRecord::Model#attribute_for_inspect (method)">#attribute_for_inspect</a>, <a href="Model.html#attribute_names-instance_method" title="BigRecord::Model#attribute_names (method)">#attribute_names</a>, <a href="Model.html#attribute_present%3F-instance_method" title="BigRecord::Model#attribute_present? (method)">#attribute_present?</a>, <a href="Model.html#attributes-instance_method" title="BigRecord::Model#attributes (method)">#attributes</a>, <a href="Model.html#attributes%3D-instance_method" title="BigRecord::Model#attributes= (method)">#attributes=</a>, <a href="Model.html#benchmark-class_method" title="BigRecord::Model.benchmark (method)">benchmark</a>, <a href="Model.html#column-class_method" title="BigRecord::Model.column (method)">column</a>, <a href="Model.html#column_for_attribute-instance_method" title="BigRecord::Model#column_for_attribute (method)">#column_for_attribute</a>, <a href="Model.html#column_methods_hash-class_method" title="BigRecord::Model.column_methods_hash (method)">column_methods_hash</a>, <a href="Model.html#column_names-class_method" title="BigRecord::Model.column_names (method)">column_names</a>, <a href="Model.html#columns-class_method" title="BigRecord::Model.columns (method)">columns</a>, <a href="Model.html#columns_hash-class_method" title="BigRecord::Model.columns_hash (method)">columns_hash</a>, <a href="Model.html#content_columns-class_method" title="BigRecord::Model.content_columns (method)">content_columns</a>, <a href="Model.html#create_accessible_attributes-class_method" title="BigRecord::Model.create_accessible_attributes (method)">create_accessible_attributes</a>, <a href="Model.html#default_column_prefix-class_method" title="BigRecord::Model.default_column_prefix (method)">default_column_prefix</a>, <a href="Model.html#deserialize-instance_method" title="BigRecord::Model#deserialize (method)">#deserialize</a>, <a href="Model.html#destroy-instance_method" title="BigRecord::Model#destroy (method)">#destroy</a>, <a href="Model.html#eql%3F-instance_method" title="BigRecord::Model#eql? (method)">#eql?</a>, <a href="Model.html#freeze-instance_method" title="BigRecord::Model#freeze (method)">#freeze</a>, <a href="Model.html#frozen%3F-instance_method" title="BigRecord::Model#frozen? (method)">#frozen?</a>, <a href="Model.html#has_attribute%3F-instance_method" title="BigRecord::Model#has_attribute? (method)">#has_attribute?</a>, <a href="Model.html#hash-instance_method" title="BigRecord::Model#hash (method)">#hash</a>, <a href="Model.html#human_attribute_name-class_method" title="BigRecord::Model.human_attribute_name (method)">human_attribute_name</a>, <a href="Model.html#human_attribute_name-instance_method" title="BigRecord::Model#human_attribute_name (method)">#human_attribute_name</a>, <a href="Model.html#id%3D-instance_method" title="BigRecord::Model#id= (method)">#id=</a>, <a href="Model.html#inspect-instance_method" title="BigRecord::Model#inspect (method)">#inspect</a>, <a href="Model.html#instantiate-class_method" title="BigRecord::Model.instantiate (method)">instantiate</a>, <a href="Model.html#new_record%3F-instance_method" title="BigRecord::Model#new_record? (method)">#new_record?</a>, <a href="Model.html#preinitialize-instance_method" title="BigRecord::Model#preinitialize (method)">#preinitialize</a>, <a href="Model.html#protected_attributes-class_method" title="BigRecord::Model.protected_attributes (method)">protected_attributes</a>, <a href="Model.html#quote_value-class_method" title="BigRecord::Model.quote_value (method)">quote_value</a>, <a href="Model.html#quoted_id-instance_method" title="BigRecord::Model#quoted_id (method)">#quoted_id</a>, <a href="Model.html#read_methods-class_method" title="BigRecord::Model.read_methods (method)">read_methods</a>, <a href="Model.html#readonly%21-instance_method" title="BigRecord::Model#readonly! (method)">#readonly!</a>, <a href="Model.html#readonly%3F-instance_method" title="BigRecord::Model#readonly? (method)">#readonly?</a>, <a href="Model.html#readonly_attributes-class_method" title="BigRecord::Model.readonly_attributes (method)">readonly_attributes</a>, <a href="Model.html#reload-instance_method" title="BigRecord::Model#reload (method)">#reload</a>, <a href="Model.html#reset_subclasses-class_method" title="BigRecord::Model.reset_subclasses (method)">reset_subclasses</a>, <a href="Model.html#respond_to%3F-instance_method" title="BigRecord::Model#respond_to? (method)">#respond_to?</a>, <a href="Model.html#safe_attributes%3D-instance_method" title="BigRecord::Model#safe_attributes= (method)">#safe_attributes=</a>, <a href="Model.html#save-instance_method" title="BigRecord::Model#save (method)">#save</a>, <a href="Model.html#save%21-instance_method" title="BigRecord::Model#save! (method)">#save!</a>, <a href="Model.html#silence-class_method" title="BigRecord::Model.silence (method)">silence</a>, <a href="Model.html#to_s-instance_method" title="BigRecord::Model#to_s (method)">#to_s</a>, <a href="Model.html#undecorated_table_name-class_method" title="BigRecord::Model.undecorated_table_name (method)">undecorated_table_name</a>, <a href="Model.html#update_attribute-instance_method" title="BigRecord::Model#update_attribute (method)">#update_attribute</a>, <a href="Model.html#update_attributes-instance_method" title="BigRecord::Model#update_attributes (method)">#update_attributes</a>, <a href="Model.html#update_attributes%21-instance_method" title="BigRecord::Model#update_attributes! (method)">#update_attributes!</a></p>
+<div id="constructor_details" class="method_details_list">
   <h2>Constructor Details</h2>
   
     <div class="method_details first">
   <p class="signature first" id="initialize-instance_method">
   
-    - (<tt><a title="Embedded" href="">Embedded</a></tt>) <strong>initialize</strong>(attrs = nil) 
+    - (<tt><a href="" title="BigRecord::Embedded (class)">Embedded</a></tt>) <strong>initialize</strong>(attrs = nil) 
   
 
   
 </p><div class="docstring">
   <div class="discussion">
     <p>
-A new instance of <tt>Embedded</tt>
+A new instance of Embedded
 </p>
 
 
   </div>
 </div>
 <div class="tags">
-  <h3>Returns:</h3>
-<ul class="return">
   
-    <li>
-      
-        <span class='type'>(<tt><a title="Embedded" href="">Embedded</a></tt>)</span>
-      
-      
-      
-      
-        &mdash;
-        
-a new instance of <tt>Embedded</tt>
-
-
-      
-    </li>
-  
-</ul>
-
 </div><table class="source_code">
   <tr>
     <td>
@@ -542,25 +611,26 @@ a new instance of <tt>Embedded</tt>
 </div>
   
 </div>
-<div id="method_missing_details">
+<div id="method_missing_details" class="method_details_list">
   <h2>Dynamic Method Handling</h2>
   <p class="notice super">
     This class handles dynamic methods through the <tt>method_missing</tt> method
     
-      in the class <a title="BigRecord::AbstractBase" href="AbstractBase.html#method_missing-instance_method">BigRecord::AbstractBase</a>
+      in the class <a href="Model.html#method_missing-instance_method" title="BigRecord::Model#method_missing (method)">BigRecord::Model</a>
     
   </p>
   
 </div>
 
 
-  <div id="method_details">
-    <h2>Method Details</h2>
+  <div id="class_method_details" class="method_details_list">
+    <h2>Class Method Details</h2>
+    
     
       <div class="method_details first">
   <p class="signature first" id="base_class-class_method">
   
-    + (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>base_class</strong> 
+    + (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>base_class</strong> 
   
 
   
@@ -589,7 +659,7 @@ a new instance of <tt>Embedded</tt>
       <div class="method_details ">
   <p class="signature " id="connection-class_method">
   
-    + (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>connection</strong> 
+    + (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>connection</strong> 
   
 
   
@@ -629,7 +699,7 @@ Borrow the default connection of BigRecord
       <div class="method_details ">
   <p class="signature " id="default_columns-class_method">
   
-    + (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>default_columns</strong> 
+    + (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>default_columns</strong> 
   
 
   
@@ -658,7 +728,7 @@ Borrow the default connection of BigRecord
       <div class="method_details ">
   <p class="signature " id="hide_to_users-class_method">
   
-    + (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>hide_to_users</strong> 
+    + (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>hide_to_users</strong> 
   
 
   
@@ -687,13 +757,16 @@ Borrow the default connection of BigRecord
       <div class="method_details ">
   <p class="signature " id="inherited-class_method">
   
-    + (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>inherited</strong>(child) 
+    + (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>inherited</strong>(child) 
   
 
   
 </p><div class="docstring">
   <div class="discussion">
-    
+    <p>
+:nodoc:
+</p>
+
 
   </div>
 </div>
@@ -726,7 +799,7 @@ Borrow the default connection of BigRecord
       <div class="method_details ">
   <p class="signature " id="pretty_name-class_method">
   
-    + (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>pretty_name</strong> 
+    + (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>pretty_name</strong> 
   
 
   
@@ -766,7 +839,7 @@ Class attribute that holds the name of the embedded type for dispaly
       <div class="method_details ">
   <p class="signature " id="primary_key-class_method">
   
-    + (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>primary_key</strong> 
+    + (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>primary_key</strong> 
   
 
   
@@ -795,7 +868,7 @@ Class attribute that holds the name of the embedded type for dispaly
       <div class="method_details ">
   <p class="signature " id="set_pretty_name-class_method">
   
-    + (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>set_pretty_name</strong>(new_name) 
+    + (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>set_pretty_name</strong>(new_name) 
   
 
   
@@ -824,11 +897,32 @@ Class attribute that holds the name of the embedded type for dispaly
       <div class="method_details ">
   <p class="signature " id="show_to_users?-class_method">
   
-    + (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>show_to_users?</strong> 
+    + (<tt>Boolean</tt>) <strong>show_to_users?</strong> 
   
 
   
-</p><table class="source_code">
+</p><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
@@ -853,11 +947,32 @@ Class attribute that holds the name of the embedded type for dispaly
       <div class="method_details ">
   <p class="signature " id="store_primary_key?-class_method">
   
-    + (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>store_primary_key?</strong> 
+    + (<tt>Boolean</tt>) <strong>store_primary_key?</strong> 
   
 
   
-</p><table class="source_code">
+</p><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
@@ -879,10 +994,16 @@ Class attribute that holds the name of the embedded type for dispaly
 </table>
 </div>
     
-      <div class="method_details ">
-  <p class="signature " id="connection-instance_method">
+  </div>
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+    
+    
+      <div class="method_details first">
+  <p class="signature first" id="connection-instance_method">
   
-    - (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>connection</strong> 
+    - (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>connection</strong> 
   
 
   
@@ -911,7 +1032,7 @@ Class attribute that holds the name of the embedded type for dispaly
       <div class="method_details ">
   <p class="signature " id="id-instance_method">
   
-    - (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>id</strong> 
+    - (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>id</strong> 
   
 
   
@@ -942,9 +1063,9 @@ Class attribute that holds the name of the embedded type for dispaly
 </div>
     
     <div id="footer">
-  Generated on Tue Dec  1 18:30:45 2009 by 
+  Generated on Fri Apr 30 12:48:19 2010 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool">yard</a>
-  0.4.0 (ruby-1.8.7).
+  0.5.4 (ruby-1.8.7).
 </div>
 
   </body>

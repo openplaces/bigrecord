@@ -2,7 +2,7 @@
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
-    <meta name="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="Content-Type" content="text/html; charset=utf-8" />
 <title>Class: BigRecord::ConnectionAdapters::AbstractAdapter</title>
 <link rel="stylesheet" href="../../css/style.css" type="text/css" media="screen" charset="utf-8" />
 <link rel="stylesheet" href="../../css/common.css" type="text/css" media="screen" charset="utf-8" />
@@ -16,18 +16,24 @@
 
   </head>
   <body>
+    <script type="text/javascript" charset="utf-8">
+      if (window.top.frames.main) document.body.className = 'frames';
+    </script>
+    
     <div id="header">
       <div id="menu">
   
     <a href="../../_index.html">Index (A)</a> &raquo; 
-    <a title="BigRecord" href="../../BigRecord.html">BigRecord</a> &raquo; <a title="ConnectionAdapters" href="../ConnectionAdapters.html">ConnectionAdapters</a>
+    <span class='title'><a href="../../BigRecord.html" title="BigRecord (module)">BigRecord</a></span> &raquo; <span class='title'><a href="../ConnectionAdapters.html" title="BigRecord::ConnectionAdapters (module)">ConnectionAdapters</a></span>
      &raquo; 
     <span class="title">AbstractAdapter</span>
   
+  
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
 </div>
 
       <div id="search">
-  <a id="class_list_link" href="#">Namespace List</a>
+  <a id="class_list_link" href="#">Class List</a>
   <a id="method_list_link" href="#">Method List</a>
   <a id ="file_list_link" href="#">File List</a>
 </div>
@@ -46,7 +52,15 @@
   
     <dt class="r1">Inherits:</dt>
     <dd class="r1">
-      <span class="inheritName"><a title="Object" href="../../Object.html">Object</a></span>
+      <span class="inheritName"><a href="../../Object.html" title="Object (class)">Object</a></span>
+      
+        <ul class="fullTree">
+          <li><a href="../../Object.html" title="Object (class)">Object</a></li>
+          
+            <li class="next">BigRecord::ConnectionAdapters::AbstractAdapter</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
       
       </dd>
     
@@ -56,9 +70,10 @@
   
     
       <dt class="r2">Includes:</dt>
-      <dd class="r2"><a title="BigRecord::ConnectionAdapters::DatabaseStatements" href="DatabaseStatements.html">BigRecord::ConnectionAdapters::DatabaseStatements</a>, <a title="BigRecord::ConnectionAdapters::Quoting" href="Quoting.html">BigRecord::ConnectionAdapters::Quoting</a></dd>
+      <dd class="r2"><a href="DatabaseStatements.html" title="BigRecord::ConnectionAdapters::DatabaseStatements (module)">DatabaseStatements</a>, <a href="Quoting.html" title="BigRecord::ConnectionAdapters::Quoting (module)">Quoting</a></dd>
       
     
+  
   
   
     <dt class="r1 last">Defined in:</dt>
@@ -72,7 +87,7 @@
     <p>
 All the concrete database adapters follow the interface laid down in this
 class. You can use this interface directly by borrowing the database
-connection from the Base with BigRecord::Base.connection
+connection from the Base with Base.connection.
 </p>
 <p>
 Most of the methods in the adapter are useful during migrations. Most
@@ -87,13 +102,17 @@ SchemaStatements#remove_column are very useful.
 </div>
 <div class="tags">
   
+</div><div id="subclasses">
+  <h2>Direct Known Subclasses</h2>
+  <p class="children"><a href="CassandraAdapter.html" title="BigRecord::ConnectionAdapters::CassandraAdapter (class)">CassandraAdapter</a>, <a href="HbaseAdapter.html" title="BigRecord::ConnectionAdapters::HbaseAdapter (class)">HbaseAdapter</a>, <a href="HbaseRestAdapter.html" title="BigRecord::ConnectionAdapters::HbaseRestAdapter (class)">HbaseRestAdapter</a></p>
 </div>
+
   <h2>Constant Summary</h2>
   
     <dl class="constants">
       
-        <dt id="row_even-classvariable ">@@row_even =
-            <span class="summary_desc"></span>
+        <dt id="row_even-classvariable" class="">@@row_even =
+          
         </dt>
         <dd><pre class="code"><span class='true true kw'>true</span>
 </pre></dd>
@@ -111,482 +130,629 @@ SchemaStatements#remove_column are very useful.
   
   
 
-  <h2>Method Summary</h2>
-  <ul class="summary">
-    
-      <li class="public ">
-  <span class="summary_signature"><a title="#active? (instance method)" href="#active%3F-instance_method">- (Object) <strong>active?</strong> </a>
   
+    <h2>Instance Method Summary</h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#active%3F-instance_method" title="#active? (instance method)">- (Boolean) <strong>active?</strong> </a>
+    
+
+    
   </span>
+  
   
   
   
   
 
   
-    <span class="summary_desc">
+    <span class="summary_desc"><div class='inline'><p>
 Is this connection active and ready to perform queries?.
-
-</span>
+</p>
+</div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="#adapter_name (instance method)" href="#adapter_name-instance_method">- (Object) <strong>adapter_name</strong> </a>
-  
+      <a href="#adapter_name-instance_method" title="#adapter_name (instance method)">- (Object) <strong>adapter_name</strong> </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc">
+    <span class="summary_desc"><div class='inline'><p>
 Returns the human-readable name of the adapter.
-
-</span>
+</p>
+</div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="#create_table (instance method)" href="#create_table-instance_method">- (Object) <strong>create_table</strong>(table_name, column_families) </a>
-  
+      <a href="#create_table-instance_method" title="#create_table (instance method)">- (Object) <strong>create_table</strong>(table_name, column_families) </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc"></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="#delete (instance method)" href="#delete-instance_method">- (Object) <strong>delete</strong>(table_name, row) </a>
-  
+      <a href="#delete-instance_method" title="#delete (instance method)">- (Object) <strong>delete</strong>(table_name, row) </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc"></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="#delete_all (instance method)" href="#delete_all-instance_method">- (Object) <strong>delete_all</strong>(table_name) </a>
-  
+      <a href="#delete_all-instance_method" title="#delete_all (instance method)">- (Object) <strong>delete_all</strong>(table_name) </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc"></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="#disable_referential_integrity (instance method)" href="#disable_referential_integrity-instance_method">- (Object) <strong>disable_referential_integrity</strong>(&amp;block) </a>
-  
+      <a href="#disable_referential_integrity-instance_method" title="#disable_referential_integrity (instance method)">- (Object) <strong>disable_referential_integrity</strong>(&amp;block) </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc">
-Override to turn off referential integrity while executing
-<tt>&amp;block</tt>.
-
-</span>
+    <span class="summary_desc"><div class='inline'><p>
+Override to turn off referential integrity while executing <tt>&amp;amp;block</tt>.
+</p>
+</div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="#disconnect! (instance method)" href="#disconnect%21-instance_method">- (Object) <strong>disconnect!</strong> </a>
-  
+      <a href="#disconnect%21-instance_method" title="#disconnect! (instance method)">- (Object) <strong>disconnect!</strong> </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc">
+    <span class="summary_desc"><div class='inline'><p>
 Close this connection.
-
-</span>
+</p>
+</div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="#drop_table (instance method)" href="#drop_table-instance_method">- (Object) <strong>drop_table</strong>(table_name) </a>
-  
+      <a href="#drop_table-instance_method" title="#drop_table (instance method)">- (Object) <strong>drop_table</strong>(table_name) </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc"></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="#get (instance method)" href="#get-instance_method">- (Object) <strong>get</strong>(table_name, row, column, options = {}) </a>
-  
+      <a href="#get-instance_method" title="#get (instance method)">- (Object) <strong>get</strong>(table_name, row, column, options = {}) </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc"></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="#get_columns (instance method)" href="#get_columns-instance_method">- (Object) <strong>get_columns</strong>(table_name, row, columns, options = {}) </a>
-  
+      <a href="#get_columns-instance_method" title="#get_columns (instance method)">- (Object) <strong>get_columns</strong>(table_name, row, columns, options = {}) </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc"></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="#get_columns_raw (instance method)" href="#get_columns_raw-instance_method">- (Object) <strong>get_columns_raw</strong>(table_name, row, columns, options = {}) </a>
-  
+      <a href="#get_columns_raw-instance_method" title="#get_columns_raw (instance method)">- (Object) <strong>get_columns_raw</strong>(table_name, row, columns, options = {}) </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc"></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="#get_consecutive_rows (instance method)" href="#get_consecutive_rows-instance_method">- (Object) <strong>get_consecutive_rows</strong>(table_name, start_row, limit, columns, stop_row = nil) </a>
-  
+      <a href="#get_consecutive_rows-instance_method" title="#get_consecutive_rows (instance method)">- (Object) <strong>get_consecutive_rows</strong>(table_name, start_row, limit, columns, stop_row = nil) </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc"></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="#get_consecutive_rows_raw (instance method)" href="#get_consecutive_rows_raw-instance_method">- (Object) <strong>get_consecutive_rows_raw</strong>(table_name, start_row, limit, columns, stop_row = nil) </a>
-  
+      <a href="#get_consecutive_rows_raw-instance_method" title="#get_consecutive_rows_raw (instance method)">- (Object) <strong>get_consecutive_rows_raw</strong>(table_name, start_row, limit, columns, stop_row = nil) </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc"></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="#get_raw (instance method)" href="#get_raw-instance_method">- (Object) <strong>get_raw</strong>(table_name, row, column, options = {}) </a>
-  
+      <a href="#get_raw-instance_method" title="#get_raw (instance method)">- (Object) <strong>get_raw</strong>(table_name, row, column, options = {}) </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc"></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="#initialize (instance method)" href="#initialize-instance_method">- (AbstractAdapter) <strong>initialize</strong>(connection, logger = nil) </a>
+      <a href="#initialize-instance_method" title="#initialize (instance method)">- (AbstractAdapter) <strong>initialize</strong>(connection, logger = nil) </a>
+    
+
+    
+  </span>
   
+    <span class="note title constructor">constructor</span>
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+:nodoc:.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#prefetch_primary_key%3F-instance_method" title="#prefetch_primary_key? (instance method)">- (Boolean) <strong>prefetch_primary_key?</strong>(table_name = nil) </a>
+    
+
+    
   </span>
   
   
   
   
-
-  
-    <span class="summary_desc">
-A new instance of <tt>AbstractAdapter</tt>.
-
-</span>
-  
-</li>
-
-    
-      <li class="public ">
-  <span class="summary_signature"><a title="#prefetch_primary_key? (instance method)" href="#prefetch_primary_key%3F-instance_method">- (Object) <strong>prefetch_primary_key?</strong>(table_name = nil) </a>
-  
-  </span>
-  
-  
-  
   
 
   
-    <span class="summary_desc">
+    <span class="summary_desc"><div class='inline'><p>
 Should primary key values be selected from their corresponding sequence
 before the insert statement? If true, next_sequence_value is called before
 each insert to set the record&#8217;s primary key.
-
-</span>
+</p>
+</div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="#quote_table_name (instance method)" href="#quote_table_name-instance_method">- (Object) <strong>quote_table_name</strong>(name) </a>
-  
+      <a href="#quote_table_name-instance_method" title="#quote_table_name (instance method)">- (Object) <strong>quote_table_name</strong>(name) </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc">
+    <span class="summary_desc"><div class='inline'><p>
 Override to return the quoted table name if the database needs it.
-
-</span>
+</p>
+</div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="#raw_connection (instance method)" href="#raw_connection-instance_method">- (Object) <strong>raw_connection</strong> </a>
-  
+      <a href="#raw_connection-instance_method" title="#raw_connection (instance method)">- (Object) <strong>raw_connection</strong> </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc">
+    <span class="summary_desc"><div class='inline'><p>
 Provides access to the underlying database connection.
-
-</span>
+</p>
+</div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="#reconnect! (instance method)" href="#reconnect%21-instance_method">- (Object) <strong>reconnect!</strong> </a>
-  
+      <a href="#reconnect%21-instance_method" title="#reconnect! (instance method)">- (Object) <strong>reconnect!</strong> </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc">
+    <span class="summary_desc"><div class='inline'><p>
 Close this connection and open a new one in its place.
-
-</span>
+</p>
+</div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="#requires_reloading? (instance method)" href="#requires_reloading%3F-instance_method">- (Object) <strong>requires_reloading?</strong> </a>
-  
+      <a href="#requires_reloading%3F-instance_method" title="#requires_reloading? (instance method)">- (Boolean) <strong>requires_reloading?</strong> </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc">
+    <span class="summary_desc"><div class='inline'><p>
 Returns true if its safe to reload the connection between requests for
 development mode.
-
-</span>
+</p>
+</div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="#reset_runtime (instance method)" href="#reset_runtime-instance_method">- (Object) <strong>reset_runtime</strong> </a>
-  
+      <a href="#reset_runtime-instance_method" title="#reset_runtime (instance method)">- (Object) <strong>reset_runtime</strong> </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc"></span>
+    <span class="summary_desc"><div class='inline'><p>
+:nodoc:.
+</p>
+</div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="#supports_count_distinct? (instance method)" href="#supports_count_distinct%3F-instance_method">- (Object) <strong>supports_count_distinct?</strong> </a>
-  
+      <a href="#supports_count_distinct%3F-instance_method" title="#supports_count_distinct? (instance method)">- (Boolean) <strong>supports_count_distinct?</strong> </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc">
+    <span class="summary_desc"><div class='inline'><p>
 Does this adapter support using DISTINCT within COUNT? This is
 <tt>true</tt> for all adapters except sqlite.
-
-</span>
+</p>
+</div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="#supports_ddl_transactions? (instance method)" href="#supports_ddl_transactions%3F-instance_method">- (Object) <strong>supports_ddl_transactions?</strong> </a>
-  
+      <a href="#supports_ddl_transactions%3F-instance_method" title="#supports_ddl_transactions? (instance method)">- (Boolean) <strong>supports_ddl_transactions?</strong> </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc"></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="#supports_migrations? (instance method)" href="#supports_migrations%3F-instance_method">- (Object) <strong>supports_migrations?</strong> </a>
-  
+      <a href="#supports_migrations%3F-instance_method" title="#supports_migrations? (instance method)">- (Boolean) <strong>supports_migrations?</strong> </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc">
+    <span class="summary_desc"><div class='inline'><p>
 Does this adapter support migrations? Backend specific, as the abstract
 adapter always returns <tt>false</tt>.
-
-</span>
+</p>
+</div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="#table_exists? (instance method)" href="#table_exists%3F-instance_method">- (Object) <strong>table_exists?</strong>(table_name) </a>
-  
+      <a href="#table_exists%3F-instance_method" title="#table_exists? (instance method)">- (Boolean) <strong>table_exists?</strong>(table_name) </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc">
+    <span class="summary_desc"><div class='inline'><p>
 SCHEMA STATEMENTS ========================================.
-
-</span>
+</p>
+</div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="#update (instance method)" href="#update-instance_method">- (Object) <strong>update</strong>(table_name, row, values, timestamp) </a>
-  
+      <a href="#update-instance_method" title="#update (instance method)">- (Object) <strong>update</strong>(table_name, row, values, timestamp) </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc"></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="#update_raw (instance method)" href="#update_raw-instance_method">- (Object) <strong>update_raw</strong>(table_name, row, values, timestamp) </a>
-  
+      <a href="#update_raw-instance_method" title="#update_raw (instance method)">- (Object) <strong>update_raw</strong>(table_name, row, values, timestamp) </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc">
+    <span class="summary_desc"><div class='inline'><p>
 DATABASE STATEMENTS ======================================.
-
-</span>
+</p>
+</div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="#verify! (instance method)" href="#verify%21-instance_method">- (Object) <strong>verify!</strong>(timeout) </a>
-  
+      <a href="#verify%21-instance_method" title="#verify! (instance method)">- (Object) <strong>verify!</strong>(timeout) </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc">
-Lazily verify this connection, calling <tt>active?</tt> only if it
-hasn&#8217;t been called for <tt>timeout</tt> seconds.
-
-</span>
+    <span class="summary_desc"><div class='inline'><p>
+Lazily verify this connection, calling <tt>active?</tt> only if it hasn&#8217;t
+been called for <tt>timeout</tt> seconds.
+</p>
+</div></span>
   
 </li>
 
-    
-  </ul>
+      
+    </ul>
+  
 
 
   
@@ -594,56 +760,41 @@ hasn&#8217;t been called for <tt>timeout</tt> seconds.
   
   
   
-  <h3 class="inherited">Methods included from <a title="BigRecord::ConnectionAdapters::Quoting" href="Quoting.html">BigRecord::ConnectionAdapters::Quoting</a></h3>
-  <p class="inherited"><a title="#quote" href="Quoting.html#quote-instance_method">#quote</a>, <a title="#quote_column_name" href="Quoting.html#quote_column_name-instance_method">#quote_column_name</a>, <a title="#quote_string" href="Quoting.html#quote_string-instance_method">#quote_string</a>, <a title="#quoted_date" href="Quoting.html#quoted_date-instance_method">#quoted_date</a>, <a title="#quoted_false" href="Quoting.html#quoted_false-instance_method">#quoted_false</a>, <a title="#quoted_true" href="Quoting.html#quoted_true-instance_method">#quoted_true</a></p>
+  
+  
+  <h3 class="inherited">Methods included from <a href="Quoting.html" title="BigRecord::ConnectionAdapters::Quoting (module)">Quoting</a></h3>
+  <p class="inherited"><a href="Quoting.html#quote-instance_method" title="BigRecord::ConnectionAdapters::Quoting#quote (method)">#quote</a>, <a href="Quoting.html#quote_column_name-instance_method" title="BigRecord::ConnectionAdapters::Quoting#quote_column_name (method)">#quote_column_name</a>, <a href="Quoting.html#quote_string-instance_method" title="BigRecord::ConnectionAdapters::Quoting#quote_string (method)">#quote_string</a>, <a href="Quoting.html#quoted_date-instance_method" title="BigRecord::ConnectionAdapters::Quoting#quoted_date (method)">#quoted_date</a>, <a href="Quoting.html#quoted_false-instance_method" title="BigRecord::ConnectionAdapters::Quoting#quoted_false (method)">#quoted_false</a>, <a href="Quoting.html#quoted_true-instance_method" title="BigRecord::ConnectionAdapters::Quoting#quoted_true (method)">#quoted_true</a></p>
 
   
   
   
   
   
-  <h3 class="inherited">Methods included from <a title="BigRecord::ConnectionAdapters::DatabaseStatements" href="DatabaseStatements.html">BigRecord::ConnectionAdapters::DatabaseStatements</a></h3>
-  <p class="inherited"><a title="#insert_fixture" href="DatabaseStatements.html#insert_fixture-instance_method">#insert_fixture</a></p>
-<div id="constructor_details">
+  
+  
+  <h3 class="inherited">Methods included from <a href="DatabaseStatements.html" title="BigRecord::ConnectionAdapters::DatabaseStatements (module)">DatabaseStatements</a></h3>
+  <p class="inherited"><a href="DatabaseStatements.html#insert_fixture-instance_method" title="BigRecord::ConnectionAdapters::DatabaseStatements#insert_fixture (method)">#insert_fixture</a></p>
+<div id="constructor_details" class="method_details_list">
   <h2>Constructor Details</h2>
   
     <div class="method_details first">
   <p class="signature first" id="initialize-instance_method">
   
-    - (<tt><a title="AbstractAdapter" href="">AbstractAdapter</a></tt>) <strong>initialize</strong>(connection, logger = nil) 
+    - (<tt><a href="" title="BigRecord::ConnectionAdapters::AbstractAdapter (class)">AbstractAdapter</a></tt>) <strong>initialize</strong>(connection, logger = nil) 
   
 
   
 </p><div class="docstring">
   <div class="discussion">
     <p>
-A new instance of <tt>AbstractAdapter</tt>
+:nodoc:
 </p>
 
 
   </div>
 </div>
 <div class="tags">
-  <h3>Returns:</h3>
-<ul class="return">
   
-    <li>
-      
-        <span class='type'>(<tt><a title="AbstractAdapter" href="">AbstractAdapter</a></tt>)</span>
-      
-      
-      
-      
-        &mdash;
-        
-a new instance of <tt>AbstractAdapter</tt>
-
-
-      
-    </li>
-  
-</ul>
-
 </div><table class="source_code">
   <tr>
     <td>
@@ -673,13 +824,14 @@ a new instance of <tt>AbstractAdapter</tt>
 </div>
 
 
-  <div id="method_details">
-    <h2>Method Details</h2>
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+    
     
       <div class="method_details first">
   <p class="signature first" id="active?-instance_method">
   
-    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>active?</strong> 
+    - (<tt>Boolean</tt>) <strong>active?</strong> 
   
 
   
@@ -693,7 +845,20 @@ Is this connection active and ready to perform queries?
   </div>
 </div>
 <div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
   
+    <li>
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
 </div><table class="source_code">
   <tr>
     <td>
@@ -719,7 +884,7 @@ Is this connection active and ready to perform queries?
       <div class="method_details ">
   <p class="signature " id="adapter_name-instance_method">
   
-    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>adapter_name</strong> 
+    - (<tt><a href="../../Object.html" title="Object (class)">Object</a></tt>) <strong>adapter_name</strong> 
   
 
   
@@ -760,7 +925,7 @@ always use downcase if needed.
       <div class="method_details ">
   <p class="signature " id="create_table-instance_method">
   
-    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>create_table</strong>(table_name, column_families) 
+    - (<tt><a href="../../Object.html" title="Object (class)">Object</a></tt>) <strong>create_table</strong>(table_name, column_families) 
   
 
   
@@ -810,7 +975,7 @@ always use downcase if needed.
       <div class="method_details ">
   <p class="signature " id="delete-instance_method">
   
-    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>delete</strong>(table_name, row) 
+    - (<tt><a href="../../Object.html" title="Object (class)">Object</a></tt>) <strong>delete</strong>(table_name, row) 
   
 
   
@@ -860,7 +1025,7 @@ always use downcase if needed.
       <div class="method_details ">
   <p class="signature " id="delete_all-instance_method">
   
-    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>delete_all</strong>(table_name) 
+    - (<tt><a href="../../Object.html" title="Object (class)">Object</a></tt>) <strong>delete_all</strong>(table_name) 
   
 
   
@@ -910,15 +1075,14 @@ always use downcase if needed.
       <div class="method_details ">
   <p class="signature " id="disable_referential_integrity-instance_method">
   
-    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>disable_referential_integrity</strong>(&amp;block) 
+    - (<tt><a href="../../Object.html" title="Object (class)">Object</a></tt>) <strong>disable_referential_integrity</strong>(&amp;block) 
   
 
   
 </p><div class="docstring">
   <div class="discussion">
     <p>
-Override to turn off referential integrity while executing
-<tt>&amp;block</tt>
+Override to turn off referential integrity while executing <tt>&amp;amp;block</tt>
 </p>
 
 
@@ -951,7 +1115,7 @@ Override to turn off referential integrity while executing
       <div class="method_details ">
   <p class="signature " id="disconnect!-instance_method">
   
-    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>disconnect!</strong> 
+    - (<tt><a href="../../Object.html" title="Object (class)">Object</a></tt>) <strong>disconnect!</strong> 
   
 
   
@@ -991,7 +1155,7 @@ Close this connection
       <div class="method_details ">
   <p class="signature " id="drop_table-instance_method">
   
-    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>drop_table</strong>(table_name) 
+    - (<tt><a href="../../Object.html" title="Object (class)">Object</a></tt>) <strong>drop_table</strong>(table_name) 
   
 
   
@@ -1041,7 +1205,7 @@ Close this connection
       <div class="method_details ">
   <p class="signature " id="get-instance_method">
   
-    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>get</strong>(table_name, row, column, options = {}) 
+    - (<tt><a href="../../Object.html" title="Object (class)">Object</a></tt>) <strong>get</strong>(table_name, row, column, options = {}) 
   
 
   
@@ -1091,7 +1255,7 @@ Close this connection
       <div class="method_details ">
   <p class="signature " id="get_columns-instance_method">
   
-    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>get_columns</strong>(table_name, row, columns, options = {}) 
+    - (<tt><a href="../../Object.html" title="Object (class)">Object</a></tt>) <strong>get_columns</strong>(table_name, row, columns, options = {}) 
   
 
   
@@ -1141,7 +1305,7 @@ Close this connection
       <div class="method_details ">
   <p class="signature " id="get_columns_raw-instance_method">
   
-    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>get_columns_raw</strong>(table_name, row, columns, options = {}) 
+    - (<tt><a href="../../Object.html" title="Object (class)">Object</a></tt>) <strong>get_columns_raw</strong>(table_name, row, columns, options = {}) 
   
 
   
@@ -1191,7 +1355,7 @@ Close this connection
       <div class="method_details ">
   <p class="signature " id="get_consecutive_rows-instance_method">
   
-    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>get_consecutive_rows</strong>(table_name, start_row, limit, columns, stop_row = nil) 
+    - (<tt><a href="../../Object.html" title="Object (class)">Object</a></tt>) <strong>get_consecutive_rows</strong>(table_name, start_row, limit, columns, stop_row = nil) 
   
 
   
@@ -1241,7 +1405,7 @@ Close this connection
       <div class="method_details ">
   <p class="signature " id="get_consecutive_rows_raw-instance_method">
   
-    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>get_consecutive_rows_raw</strong>(table_name, start_row, limit, columns, stop_row = nil) 
+    - (<tt><a href="../../Object.html" title="Object (class)">Object</a></tt>) <strong>get_consecutive_rows_raw</strong>(table_name, start_row, limit, columns, stop_row = nil) 
   
 
   
@@ -1291,7 +1455,7 @@ Close this connection
       <div class="method_details ">
   <p class="signature " id="get_raw-instance_method">
   
-    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>get_raw</strong>(table_name, row, column, options = {}) 
+    - (<tt><a href="../../Object.html" title="Object (class)">Object</a></tt>) <strong>get_raw</strong>(table_name, row, column, options = {}) 
   
 
   
@@ -1341,7 +1505,7 @@ Close this connection
       <div class="method_details ">
   <p class="signature " id="prefetch_primary_key?-instance_method">
   
-    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>prefetch_primary_key?</strong>(table_name = nil) 
+    - (<tt>Boolean</tt>) <strong>prefetch_primary_key?</strong>(table_name = nil) 
   
 
   
@@ -1358,7 +1522,20 @@ adapters but Firebird.
   </div>
 </div>
 <div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
   
+    <li>
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
 </div><table class="source_code">
   <tr>
     <td>
@@ -1384,7 +1561,7 @@ adapters but Firebird.
       <div class="method_details ">
   <p class="signature " id="quote_table_name-instance_method">
   
-    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>quote_table_name</strong>(name) 
+    - (<tt><a href="../../Object.html" title="Object (class)">Object</a></tt>) <strong>quote_table_name</strong>(name) 
   
 
   
@@ -1424,7 +1601,7 @@ Override to return the quoted table name if the database needs it
       <div class="method_details ">
   <p class="signature " id="raw_connection-instance_method">
   
-    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>raw_connection</strong> 
+    - (<tt><a href="../../Object.html" title="Object (class)">Object</a></tt>) <strong>raw_connection</strong> 
   
 
   
@@ -1465,7 +1642,7 @@ need to call a proprietary method such as postgresql&#8217;s lo_* methods
       <div class="method_details ">
   <p class="signature " id="reconnect!-instance_method">
   
-    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>reconnect!</strong> 
+    - (<tt><a href="../../Object.html" title="Object (class)">Object</a></tt>) <strong>reconnect!</strong> 
   
 
   
@@ -1505,7 +1682,7 @@ Close this connection and open a new one in its place.
       <div class="method_details ">
   <p class="signature " id="requires_reloading?-instance_method">
   
-    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>requires_reloading?</strong> 
+    - (<tt>Boolean</tt>) <strong>requires_reloading?</strong> 
   
 
   
@@ -1521,7 +1698,20 @@ necessary for any adapters except SQLite.
   </div>
 </div>
 <div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
   
+    <li>
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
 </div><table class="source_code">
   <tr>
     <td>
@@ -1547,11 +1737,22 @@ necessary for any adapters except SQLite.
       <div class="method_details ">
   <p class="signature " id="reset_runtime-instance_method">
   
-    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>reset_runtime</strong> 
+    - (<tt><a href="../../Object.html" title="Object (class)">Object</a></tt>) <strong>reset_runtime</strong> 
   
 
   
-</p><table class="source_code">
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+:nodoc:
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
@@ -1578,7 +1779,7 @@ necessary for any adapters except SQLite.
       <div class="method_details ">
   <p class="signature " id="supports_count_distinct?-instance_method">
   
-    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>supports_count_distinct?</strong> 
+    - (<tt>Boolean</tt>) <strong>supports_count_distinct?</strong> 
   
 
   
@@ -1593,7 +1794,20 @@ Does this adapter support using DISTINCT within COUNT? This is
   </div>
 </div>
 <div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
   
+    <li>
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
 </div><table class="source_code">
   <tr>
     <td>
@@ -1619,11 +1833,32 @@ Does this adapter support using DISTINCT within COUNT? This is
       <div class="method_details ">
   <p class="signature " id="supports_ddl_transactions?-instance_method">
   
-    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>supports_ddl_transactions?</strong> 
+    - (<tt>Boolean</tt>) <strong>supports_ddl_transactions?</strong> 
   
 
   
-</p><table class="source_code">
+</p><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
@@ -1648,7 +1883,7 @@ Does this adapter support using DISTINCT within COUNT? This is
       <div class="method_details ">
   <p class="signature " id="supports_migrations?-instance_method">
   
-    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>supports_migrations?</strong> 
+    - (<tt>Boolean</tt>) <strong>supports_migrations?</strong> 
   
 
   
@@ -1663,7 +1898,20 @@ adapter always returns <tt>false</tt>.
   </div>
 </div>
 <div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
   
+    <li>
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
 </div><table class="source_code">
   <tr>
     <td>
@@ -1689,7 +1937,7 @@ adapter always returns <tt>false</tt>.
       <div class="method_details ">
   <p class="signature " id="table_exists?-instance_method">
   
-    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>table_exists?</strong>(table_name) 
+    - (<tt>Boolean</tt>) <strong>table_exists?</strong>(table_name) 
   
 
   
@@ -1703,7 +1951,20 @@ SCHEMA STATEMENTS ========================================
   </div>
 </div>
 <div class="tags">
-  <h3>Raises:</h3>
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+<h3>Raises:</h3>
 <ul class="raise">
   
     <li>
@@ -1742,7 +2003,7 @@ SCHEMA STATEMENTS ========================================
       <div class="method_details ">
   <p class="signature " id="update-instance_method">
   
-    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>update</strong>(table_name, row, values, timestamp) 
+    - (<tt><a href="../../Object.html" title="Object (class)">Object</a></tt>) <strong>update</strong>(table_name, row, values, timestamp) 
   
 
   
@@ -1792,7 +2053,7 @@ SCHEMA STATEMENTS ========================================
       <div class="method_details ">
   <p class="signature " id="update_raw-instance_method">
   
-    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>update_raw</strong>(table_name, row, values, timestamp) 
+    - (<tt><a href="../../Object.html" title="Object (class)">Object</a></tt>) <strong>update_raw</strong>(table_name, row, values, timestamp) 
   
 
   
@@ -1845,15 +2106,15 @@ DATABASE STATEMENTS ======================================
       <div class="method_details ">
   <p class="signature " id="verify!-instance_method">
   
-    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>verify!</strong>(timeout) 
+    - (<tt><a href="../../Object.html" title="Object (class)">Object</a></tt>) <strong>verify!</strong>(timeout) 
   
 
   
 </p><div class="docstring">
   <div class="discussion">
     <p>
-Lazily verify this connection, calling <tt>active?</tt> only if it
-hasn&#8217;t been called for <tt>timeout</tt> seconds.
+Lazily verify this connection, calling <tt>active?</tt> only if it hasn&#8217;t
+been called for <tt>timeout</tt> seconds.
 </p>
 
 
@@ -1896,9 +2157,9 @@ hasn&#8217;t been called for <tt>timeout</tt> seconds.
 </div>
     
     <div id="footer">
-  Generated on Tue Dec  1 18:30:34 2009 by 
+  Generated on Fri Apr 30 12:48:38 2010 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool">yard</a>
-  0.4.0 (ruby-1.8.7).
+  0.5.4 (ruby-1.8.7).
 </div>
 
   </body>

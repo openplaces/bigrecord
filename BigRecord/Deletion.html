@@ -2,7 +2,7 @@
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
-    <meta name="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="Content-Type" content="text/html; charset=utf-8" />
 <title>Module: BigRecord::Deletion</title>
 <link rel="stylesheet" href="../css/style.css" type="text/css" media="screen" charset="utf-8" />
 <link rel="stylesheet" href="../css/common.css" type="text/css" media="screen" charset="utf-8" />
@@ -16,18 +16,24 @@
 
   </head>
   <body>
+    <script type="text/javascript" charset="utf-8">
+      if (window.top.frames.main) document.body.className = 'frames';
+    </script>
+    
     <div id="header">
       <div id="menu">
   
     <a href="../_index.html">Index (D)</a> &raquo; 
-    <a title="BigRecord" href="../BigRecord.html">BigRecord</a>
+    <span class='title'><a href="../BigRecord.html" title="BigRecord (module)">BigRecord</a></span>
      &raquo; 
     <span class="title">Deletion</span>
   
+  
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
 </div>
 
       <div id="search">
-  <a id="class_list_link" href="#">Namespace List</a>
+  <a id="class_list_link" href="#">Class List</a>
   <a id="method_list_link" href="#">Method List</a>
   <a id ="file_list_link" href="#">File List</a>
 </div>
@@ -50,6 +56,7 @@
     
   
   
+  
     <dt class="r1 last">Defined in:</dt>
     <dd class="r1 last">lib/big_record/deletion.rb</dd>
   
@@ -60,7 +67,7 @@
 <p class="children">
    
     
-      <strong class="modules">Modules:</strong> <a title="ClassMethods" href="Deletion/ClassMethods.html">ClassMethods</a>
+      <strong class="modules">Modules:</strong> <a href="Deletion/ClassMethods.html" title="BigRecord::Deletion::ClassMethods (module)">ClassMethods</a>
     
    
     
@@ -69,60 +76,86 @@
 
 
 
-  <h2>Method Summary</h2>
-  <ul class="summary">
-    
-      <li class="public ">
-  <span class="summary_signature"><a title="included (class method)" href="#included-class_method">+ (Object) <strong>included</strong>(base) </a>
   
+    <h2>Class Method Summary</h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#included-class_method" title="included (class method)">+ (Object) <strong>included</strong>(base) </a>
+    
+
+    
   </span>
+  
   
   
   
   
 
   
-    <span class="summary_desc"></span>
+    <span class="summary_desc"><div class='inline'><p>
+:nodoc:.
+</p>
+</div></span>
   
 </li>
 
-    
-      <li class="public ">
-  <span class="summary_signature"><a title="#destroy_without_callbacks_with_flag_deleted (instance method)" href="#destroy_without_callbacks_with_flag_deleted-instance_method">- (Object) <strong>destroy_without_callbacks_with_flag_deleted</strong> </a>
+      
+    </ul>
   
+    <h2>Instance Method Summary</h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#destroy_without_callbacks_with_flag_deleted-instance_method" title="#destroy_without_callbacks_with_flag_deleted (instance method)">- (Object) <strong>destroy_without_callbacks_with_flag_deleted</strong> </a>
+    
+
+    
   </span>
+  
   
   
   
   
 
   
-    <span class="summary_desc">
+    <span class="summary_desc"><div class='inline'><p>
 Flag the record as &quot;deleted&quot; if it responds to
 &quot;deleted&quot;, else destroy it.
-
-</span>
+</p>
+</div></span>
   
 </li>
 
+      
+    </ul>
+  
+
+
+
+  <div id="class_method_details" class="method_details_list">
+    <h2>Class Method Details</h2>
     
-  </ul>
-
-
-
-  <div id="method_details">
-    <h2>Method Details</h2>
     
       <div class="method_details first">
   <p class="signature first" id="included-class_method">
   
-    + (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>included</strong>(base) 
+    + (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>included</strong>(base) 
   
 
   
 </p><div class="docstring">
   <div class="discussion">
-    
+    <p>
+:nodoc:
+</p>
+
 
   </div>
 </div>
@@ -168,10 +201,16 @@ Flag the record as &quot;deleted&quot; if it responds to
 </table>
 </div>
     
-      <div class="method_details ">
-  <p class="signature " id="destroy_without_callbacks_with_flag_deleted-instance_method">
+  </div>
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+    
+    
+      <div class="method_details first">
+  <p class="signature first" id="destroy_without_callbacks_with_flag_deleted-instance_method">
   
-    - (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>destroy_without_callbacks_with_flag_deleted</strong> 
+    - (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>destroy_without_callbacks_with_flag_deleted</strong> 
   
 
   
@@ -242,9 +281,9 @@ Flag the record as &quot;deleted&quot; if it responds to
 </div>
     
     <div id="footer">
-  Generated on Tue Dec  1 18:30:45 2009 by 
+  Generated on Fri Apr 30 12:48:31 2010 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool">yard</a>
-  0.4.0 (ruby-1.8.7).
+  0.5.4 (ruby-1.8.7).
 </div>
 
   </body>

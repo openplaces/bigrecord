@@ -2,7 +2,7 @@
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
-    <meta name="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="Content-Type" content="text/html; charset=utf-8" />
 <title>Class: BigRecord::Migration</title>
 <link rel="stylesheet" href="../css/style.css" type="text/css" media="screen" charset="utf-8" />
 <link rel="stylesheet" href="../css/common.css" type="text/css" media="screen" charset="utf-8" />
@@ -16,18 +16,24 @@
 
   </head>
   <body>
+    <script type="text/javascript" charset="utf-8">
+      if (window.top.frames.main) document.body.className = 'frames';
+    </script>
+    
     <div id="header">
       <div id="menu">
   
     <a href="../_index.html">Index (M)</a> &raquo; 
-    <a title="BigRecord" href="../BigRecord.html">BigRecord</a>
+    <span class='title'><a href="../BigRecord.html" title="BigRecord (module)">BigRecord</a></span>
      &raquo; 
     <span class="title">Migration</span>
   
+  
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
 </div>
 
       <div id="search">
-  <a id="class_list_link" href="#">Namespace List</a>
+  <a id="class_list_link" href="#">Class List</a>
   <a id="method_list_link" href="#">Method List</a>
   <a id ="file_list_link" href="#">File List</a>
 </div>
@@ -46,7 +52,15 @@
   
     <dt class="r1">Inherits:</dt>
     <dd class="r1">
-      <span class="inheritName"><a title="Object" href="../Object.html">Object</a></span>
+      <span class="inheritName"><a href="../Object.html" title="Object (class)">Object</a></span>
+      
+        <ul class="fullTree">
+          <li><a href="../Object.html" title="Object (class)">Object</a></li>
+          
+            <li class="next">BigRecord::Migration</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
       
       </dd>
     
@@ -55,6 +69,7 @@
     
   
     
+  
   
   
     <dt class="r2 last">Defined in:</dt>
@@ -135,8 +150,8 @@ to the latest version:
   
     <dl class="constants">
       
-        <dt id="verbose-classvariable ">@@verbose =
-            <span class="summary_desc"></span>
+        <dt id="verbose-classvariable" class="">@@verbose =
+          
         </dt>
         <dd><pre class="code"><span class='true true kw'>true</span>
 </pre></dd>
@@ -146,192 +161,257 @@ to the latest version:
 
 
 
-  <h2>Method Summary</h2>
-  <ul class="summary">
-    
-      <li class="public ">
-  <span class="summary_signature"><a title="announce (class method)" href="#announce-class_method">+ (Object) <strong>announce</strong>(message) </a>
   
+    <h2>Class Method Summary</h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#announce-class_method" title="announce (class method)">+ (Object) <strong>announce</strong>(message) </a>
+    
+
+    
   </span>
+  
   
   
   
   
 
   
-    <span class="summary_desc"></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="connection (class method)" href="#connection-class_method">+ (Object) <strong>connection</strong> </a>
-  
+      <a href="#connection-class_method" title="connection (class method)">+ (Object) <strong>connection</strong> </a>
+    
+
+    
   </span>
+  
   
   
   
   
 
   
-    <span class="summary_desc"></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="down_with_benchmarks (class method)" href="#down_with_benchmarks-class_method">+ (Object) <strong>down_with_benchmarks</strong> </a>
-  
+      <a href="#down_with_benchmarks-class_method" title="down_with_benchmarks (class method)">+ (Object) <strong>down_with_benchmarks</strong> </a>
+    
+
+    
   </span>
+  
   
   
   
   
 
   
-    <span class="summary_desc"></span>
+    <span class="summary_desc"><div class='inline'><p>
+:nodoc:.
+</p>
+</div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="method_missing (class method)" href="#method_missing-class_method">+ (Object) <strong>method_missing</strong>(method, *arguments, &amp;block) </a>
-  
+      <a href="#method_missing-class_method" title="method_missing (class method)">+ (Object) <strong>method_missing</strong>(method, *arguments, &amp;block) </a>
+    
+
+    
   </span>
+  
   
   
   
   
 
   
-    <span class="summary_desc"></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="migrate (class method)" href="#migrate-class_method">+ (Object) <strong>migrate</strong>(direction) </a>
-  
+      <a href="#migrate-class_method" title="migrate (class method)">+ (Object) <strong>migrate</strong>(direction) </a>
+    
+
+    
   </span>
+  
   
   
   
   
 
   
-    <span class="summary_desc">
+    <span class="summary_desc"><div class='inline'><p>
 Execute this migration in the named direction.
-
-</span>
+</p>
+</div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="say (class method)" href="#say-class_method">+ (Object) <strong>say</strong>(message, subitem = false) </a>
-  
+      <a href="#say-class_method" title="say (class method)">+ (Object) <strong>say</strong>(message, subitem = false) </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc"></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="say_with_time (class method)" href="#say_with_time-class_method">+ (Object) <strong>say_with_time</strong>(message) </a>
-  
+      <a href="#say_with_time-class_method" title="say_with_time (class method)">+ (Object) <strong>say_with_time</strong>(message) </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc"></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="singleton_method_added (class method)" href="#singleton_method_added-class_method">+ (Object) <strong>singleton_method_added</strong>(sym) </a>
-  
+      <a href="#singleton_method_added-class_method" title="singleton_method_added (class method)">+ (Object) <strong>singleton_method_added</strong>(sym) </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc">
+    <span class="summary_desc"><div class='inline'><p>
 Because the method added may do an alias_method, it can be invoked
 recursively.
-
-</span>
+</p>
+</div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="suppress_messages (class method)" href="#suppress_messages-class_method">+ (Object) <strong>suppress_messages</strong> </a>
-  
+      <a href="#suppress_messages-class_method" title="suppress_messages (class method)">+ (Object) <strong>suppress_messages</strong> </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc"></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="up_with_benchmarks (class method)" href="#up_with_benchmarks-class_method">+ (Object) <strong>up_with_benchmarks</strong> </a>
-  
+      <a href="#up_with_benchmarks-class_method" title="up_with_benchmarks (class method)">+ (Object) <strong>up_with_benchmarks</strong> </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc"></span>
+    <span class="summary_desc"><div class='inline'><p>
+:nodoc:.
+</p>
+</div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="write (class method)" href="#write-class_method">+ (Object) <strong>write</strong>(text = &quot;&quot;) </a>
-  
+      <a href="#write-class_method" title="write (class method)">+ (Object) <strong>write</strong>(text = &quot;&quot;) </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc"></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
+      
+    </ul>
+  
+
+
+
+  <div id="class_method_details" class="method_details_list">
+    <h2>Class Method Details</h2>
     
-  </ul>
-
-
-
-  <div id="method_details">
-    <h2>Method Details</h2>
     
       <div class="method_details first">
   <p class="signature first" id="announce-class_method">
   
-    + (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>announce</strong>(message) 
+    + (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>announce</strong>(message) 
   
 
   
@@ -364,7 +444,7 @@ recursively.
       <div class="method_details ">
   <p class="signature " id="connection-class_method">
   
-    + (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>connection</strong> 
+    + (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>connection</strong> 
   
 
   
@@ -393,11 +473,22 @@ recursively.
       <div class="method_details ">
   <p class="signature " id="down_with_benchmarks-class_method">
   
-    + (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>down_with_benchmarks</strong> 
+    + (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>down_with_benchmarks</strong> 
   
 
   
-</p><table class="source_code">
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+:nodoc:
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
@@ -422,7 +513,7 @@ recursively.
       <div class="method_details ">
   <p class="signature " id="method_missing-class_method">
   
-    + (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>method_missing</strong>(method, *arguments, &amp;block) 
+    + (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>method_missing</strong>(method, *arguments, &amp;block) 
   
 
   
@@ -465,7 +556,7 @@ recursively.
       <div class="method_details ">
   <p class="signature " id="migrate-class_method">
   
-    + (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>migrate</strong>(direction) 
+    + (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>migrate</strong>(direction) 
   
 
   
@@ -535,7 +626,7 @@ Execute this migration in the named direction
       <div class="method_details ">
   <p class="signature " id="say-class_method">
   
-    + (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>say</strong>(message, subitem = false) 
+    + (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>say</strong>(message, subitem = false) 
   
 
   
@@ -564,7 +655,7 @@ Execute this migration in the named direction
       <div class="method_details ">
   <p class="signature " id="say_with_time-class_method">
   
-    + (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>say_with_time</strong>(message) 
+    + (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>say_with_time</strong>(message) 
   
 
   
@@ -603,7 +694,7 @@ Execute this migration in the named direction
       <div class="method_details ">
   <p class="signature " id="singleton_method_added-class_method">
   
-    + (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>singleton_method_added</strong>(sym) 
+    + (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>singleton_method_added</strong>(sym) 
   
 
   
@@ -667,7 +758,7 @@ is safe for the call to proceed.
       <div class="method_details ">
   <p class="signature " id="suppress_messages-class_method">
   
-    + (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>suppress_messages</strong> 
+    + (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>suppress_messages</strong> 
   
 
   
@@ -702,11 +793,22 @@ is safe for the call to proceed.
       <div class="method_details ">
   <p class="signature " id="up_with_benchmarks-class_method">
   
-    + (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>up_with_benchmarks</strong> 
+    + (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>up_with_benchmarks</strong> 
   
 
   
-</p><table class="source_code">
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+:nodoc:
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
@@ -731,7 +833,7 @@ is safe for the call to proceed.
       <div class="method_details ">
   <p class="signature " id="write-class_method">
   
-    + (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>write</strong>(text = &quot;&quot;) 
+    + (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>write</strong>(text = &quot;&quot;) 
   
 
   
@@ -762,9 +864,9 @@ is safe for the call to proceed.
 </div>
     
     <div id="footer">
-  Generated on Tue Dec  1 18:30:49 2009 by 
+  Generated on Fri Apr 30 12:48:21 2010 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool">yard</a>
-  0.4.0 (ruby-1.8.7).
+  0.5.4 (ruby-1.8.7).
 </div>
 
   </body>

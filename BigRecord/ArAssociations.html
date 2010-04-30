@@ -2,7 +2,7 @@
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
-    <meta name="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="Content-Type" content="text/html; charset=utf-8" />
 <title>Module: BigRecord::ArAssociations</title>
 <link rel="stylesheet" href="../css/style.css" type="text/css" media="screen" charset="utf-8" />
 <link rel="stylesheet" href="../css/common.css" type="text/css" media="screen" charset="utf-8" />
@@ -16,18 +16,24 @@
 
   </head>
   <body>
+    <script type="text/javascript" charset="utf-8">
+      if (window.top.frames.main) document.body.className = 'frames';
+    </script>
+    
     <div id="header">
       <div id="menu">
   
     <a href="../_index.html">Index (A)</a> &raquo; 
-    <a title="BigRecord" href="../BigRecord.html">BigRecord</a>
+    <span class='title'><a href="../BigRecord.html" title="BigRecord (module)">BigRecord</a></span>
      &raquo; 
     <span class="title">ArAssociations</span>
   
+  
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
 </div>
 
       <div id="search">
-  <a id="class_list_link" href="#">Namespace List</a>
+  <a id="class_list_link" href="#">Class List</a>
   <a id="method_list_link" href="#">Method List</a>
   <a id ="file_list_link" href="#">File List</a>
 </div>
@@ -50,6 +56,7 @@
     
   
   
+  
     <dt class="r1 last">Defined in:</dt>
     <dd class="r1 last">lib/big_record/ar_associations.rb<span class="defines">,<br />
   lib/big_record/ar_associations/association_proxy.rb,<br /> lib/big_record/ar_associations/has_one_association.rb,<br /> lib/big_record/ar_associations/has_many_association.rb,<br /> lib/big_record/ar_associations/association_collection.rb,<br /> lib/big_record/ar_associations/belongs_to_association.rb,<br /> lib/big_record/ar_associations/belongs_to_many_association.rb,<br /> lib/big_record/ar_associations/has_and_belongs_to_many_association.rb</span>
@@ -58,68 +65,99 @@
 </dl>
 <div class="clear"></div>
 
-<h2>Defined Under Namespace</h2>
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    <p>
+:nodoc:
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><h2>Defined Under Namespace</h2>
 <p class="children">
    
     
-      <strong class="modules">Modules:</strong> <a title="ClassMethods" href="ArAssociations/ClassMethods.html">ClassMethods</a>
+      <strong class="modules">Modules:</strong> <a href="ArAssociations/ClassMethods.html" title="BigRecord::ArAssociations::ClassMethods (module)">ClassMethods</a>
     
    
     
-      <strong class="classes">Classes:</strong> <a title="AssociationCollection" href="ArAssociations/AssociationCollection.html">AssociationCollection</a>, <a title="AssociationProxy" href="ArAssociations/AssociationProxy.html">AssociationProxy</a>, <a title="BelongsToAssociation" href="ArAssociations/BelongsToAssociation.html">BelongsToAssociation</a>, <a title="BelongsToManyAssociation" href="ArAssociations/BelongsToManyAssociation.html">BelongsToManyAssociation</a>, <a title="HasAndBelongsToManyAssociation" href="ArAssociations/HasAndBelongsToManyAssociation.html">HasAndBelongsToManyAssociation</a>, <a title="HasManyAssociation" href="ArAssociations/HasManyAssociation.html">HasManyAssociation</a>, <a title="HasOneAssociation" href="ArAssociations/HasOneAssociation.html">HasOneAssociation</a>
+      <strong class="classes">Classes:</strong> <a href="ArAssociations/AssociationCollection.html" title="BigRecord::ArAssociations::AssociationCollection (class)">AssociationCollection</a>, <a href="ArAssociations/AssociationProxy.html" title="BigRecord::ArAssociations::AssociationProxy (class)">AssociationProxy</a>, <a href="ArAssociations/BelongsToAssociation.html" title="BigRecord::ArAssociations::BelongsToAssociation (class)">BelongsToAssociation</a>, <a href="ArAssociations/BelongsToManyAssociation.html" title="BigRecord::ArAssociations::BelongsToManyAssociation (class)">BelongsToManyAssociation</a>, <a href="ArAssociations/HasAndBelongsToManyAssociation.html" title="BigRecord::ArAssociations::HasAndBelongsToManyAssociation (class)">HasAndBelongsToManyAssociation</a>, <a href="ArAssociations/HasManyAssociation.html" title="BigRecord::ArAssociations::HasManyAssociation (class)">HasManyAssociation</a>, <a href="ArAssociations/HasOneAssociation.html" title="BigRecord::ArAssociations::HasOneAssociation (class)">HasOneAssociation</a>
     
   
 </p>
 
 
 
-  <h2>Method Summary</h2>
-  <ul class="summary">
-    
-      <li class="public ">
-  <span class="summary_signature"><a title="included (class method)" href="#included-class_method">+ (Object) <strong>included</strong>(base) </a>
   
+    <h2>Class Method Summary</h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#included-class_method" title="included (class method)">+ (Object) <strong>included</strong>(base) </a>
+    
+
+    
   </span>
+  
   
   
   
   
 
   
-    <span class="summary_desc"></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
-    
-      <li class="public ">
-  <span class="summary_signature"><a title="#clear_association_cache (instance method)" href="#clear_association_cache-instance_method">- (Object) <strong>clear_association_cache</strong> </a>
+      
+    </ul>
   
+    <h2>Instance Method Summary</h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#clear_association_cache-instance_method" title="#clear_association_cache (instance method)">- (Object) <strong>clear_association_cache</strong> </a>
+    
+
+    
   </span>
+  
   
   
   
   
 
   
-    <span class="summary_desc">
+    <span class="summary_desc"><div class='inline'><p>
 Clears out the association cache.
-
-</span>
+</p>
+</div></span>
   
 </li>
 
+      
+    </ul>
+  
+
+
+
+  <div id="class_method_details" class="method_details_list">
+    <h2>Class Method Details</h2>
     
-  </ul>
-
-
-
-  <div id="method_details">
-    <h2>Method Details</h2>
     
       <div class="method_details first">
   <p class="signature first" id="included-class_method">
   
-    + (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>included</strong>(base) 
+    + (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>included</strong>(base) 
   
 
   
@@ -153,10 +191,16 @@ Clears out the association cache.
 </table>
 </div>
     
-      <div class="method_details ">
-  <p class="signature " id="clear_association_cache-instance_method">
+  </div>
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+    
+    
+      <div class="method_details first">
+  <p class="signature first" id="clear_association_cache-instance_method">
   
-    - (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>clear_association_cache</strong> 
+    - (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>clear_association_cache</strong> 
   
 
   
@@ -202,9 +246,9 @@ Clears out the association cache
 </div>
     
     <div id="footer">
-  Generated on Tue Dec  1 18:30:55 2009 by 
+  Generated on Fri Apr 30 12:48:52 2010 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool">yard</a>
-  0.4.0 (ruby-1.8.7).
+  0.5.4 (ruby-1.8.7).
 </div>
 
   </body>

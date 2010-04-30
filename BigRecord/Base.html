@@ -2,7 +2,7 @@
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
-    <meta name="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="Content-Type" content="text/html; charset=utf-8" />
 <title>Class: BigRecord::Base</title>
 <link rel="stylesheet" href="../css/style.css" type="text/css" media="screen" charset="utf-8" />
 <link rel="stylesheet" href="../css/common.css" type="text/css" media="screen" charset="utf-8" />
@@ -16,18 +16,24 @@
 
   </head>
   <body>
+    <script type="text/javascript" charset="utf-8">
+      if (window.top.frames.main) document.body.className = 'frames';
+    </script>
+    
     <div id="header">
       <div id="menu">
   
     <a href="../_index.html">Index (B)</a> &raquo; 
-    <a title="BigRecord" href="../BigRecord.html">BigRecord</a>
+    <span class='title'><a href="../BigRecord.html" title="BigRecord (module)">BigRecord</a></span>
      &raquo; 
     <span class="title">Base</span>
   
+  
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
 </div>
 
       <div id="search">
-  <a id="class_list_link" href="#">Namespace List</a>
+  <a id="class_list_link" href="#">Class List</a>
   <a id="method_list_link" href="#">Method List</a>
   <a id ="file_list_link" href="#">File List</a>
 </div>
@@ -46,12 +52,12 @@
   
     <dt class="r1">Inherits:</dt>
     <dd class="r1">
-      <span class="inheritName"><a title="BigRecord::AbstractBase" href="AbstractBase.html">BigRecord::AbstractBase</a></span>
+      <span class="inheritName"><a href="Model.html" title="BigRecord::Model (class)">Model</a></span>
       
         <ul class="fullTree">
-          <li><a title="Object" href="../Object.html">Object</a></li>
+          <li><a href="../Object.html" title="Object (class)">Object</a></li>
           
-            <li class="next"><a title="BigRecord::AbstractBase" href="AbstractBase.html">BigRecord::AbstractBase</a></li>
+            <li class="next"><a href="Model.html" title="BigRecord::Model (class)">Model</a></li>
           
             <li class="next">BigRecord::Base</li>
           
@@ -67,46 +73,74 @@
     
   
   
+  
     <dt class="r2 last">Defined in:</dt>
     <dd class="r2 last">lib/big_record/base.rb<span class="defines">,<br />
-  lib/big_record/connection_adapters/hbase_adapter.rb,<br /> lib/big_record/connection_adapters/hbase_rest_adapter.rb,<br /> lib/big_record/connection_adapters/abstract/connection_specification.rb</span>
+  lib/big_record/connection_adapters/hbase_adapter.rb,<br /> lib/big_record/connection_adapters/cassandra_adapter.rb,<br /> lib/big_record/connection_adapters/hbase_rest_adapter.rb,<br /> lib/big_record/connection_adapters/abstract/connection_specification.rb</span>
 </dd>
   
 </dl>
 <div class="clear"></div>
 
+<h2>Defined Under Namespace</h2>
+<p class="children">
+   
+    
+   
+    
+      <strong class="classes">Classes:</strong> <a href="Base/ConnectionSpecification.html" title="BigRecord::Base::ConnectionSpecification (class)">ConnectionSpecification</a>
+    
+  
+</p>
 
   <h2>Constant Summary</h2>
   
     <dl class="constants">
       
-        <dt id="VALID_FIND_OPTIONS-constant ">VALID_FIND_OPTIONS =
-            <span class="summary_desc"></span>
+        <dt id="VALID_FIND_OPTIONS-constant" class="">VALID_FIND_OPTIONS =
+          
         </dt>
         <dd><pre class="code"><span class='lbrack token'>[</span><span class='symbol val'>:limit</span><span class='comma token'>,</span> <span class='symbol val'>:offset</span><span class='comma token'>,</span> <span class='symbol val'>:include</span><span class='comma token'>,</span> <span class='symbol val'>:view</span><span class='comma token'>,</span> <span class='symbol val'>:versions</span><span class='comma token'>,</span> <span class='symbol val'>:timestamp</span><span class='comma token'>,</span>
 <span class='symbol val'>:include_deleted</span><span class='comma token'>,</span> <span class='symbol val'>:force_reload</span><span class='comma token'>,</span> <span class='symbol val'>:columns</span><span class='comma token'>,</span> <span class='symbol val'>:stop_row</span><span class='rbrack token'>]</span>
 </pre></dd>
       
-        <dt id="verification_timeout-classvariable ">@@verification_timeout =
-            <span class="summary_desc"></span>
+        <dt id="verification_timeout-classvariable" class="">@@verification_timeout =
+          
         </dt>
         <dd><pre class="code"><span class='integer val'>0</span>
 </pre></dd>
       
-        <dt id="defined_connections-classvariable ">@@defined_connections =
-            <span class="summary_desc">
-The class -&gt; [adapter_method, config] map.
+        <dt id="defined_connections-classvariable" class="">@@defined_connections =
+          <div class="docstring">
+  <div class="discussion">
+    <p>
+The class -&gt; [adapter_method, config] map
+</p>
 
-</span>
+
+  </div>
+</div>
+<div class="tags">
+  
+</div>
         </dt>
         <dd><pre class="code"><span class='lbrace token'>{</span><span class='rbrace token'>}</span>
 </pre></dd>
       
-        <dt id="active_connections-classvariable ">@@active_connections =
-            <span class="summary_desc">
-The class -&gt; thread id -&gt; adapter cache.
+        <dt id="active_connections-classvariable" class="">@@active_connections =
+          <div class="docstring">
+  <div class="discussion">
+    <p>
+The class -&gt; thread id -&gt; adapter cache. (class -&gt; adapter if not
+allow_concurrency)
+</p>
 
-</span>
+
+  </div>
+</div>
+<div class="tags">
+  
+</div>
         </dt>
         <dd><pre class="code"><span class='lbrace token'>{</span><span class='rbrace token'>}</span>
 </pre></dd>
@@ -119,17 +153,22 @@ The class -&gt; thread id -&gt; adapter cache.
   
   
   
-  <h3 class="inherited">Constants inherited from <a title="BigRecord::AbstractBase" href="AbstractBase.html">BigRecord::AbstractBase</a></h3>
-  <p class="inherited"><a title="ID_FIELD_SEPARATOR" href="AbstractBase.html#ID_FIELD_SEPARATOR-constant">ID_FIELD_SEPARATOR</a>, <a title="ID_WHITE_SPACE_CHAR" href="AbstractBase.html#ID_WHITE_SPACE_CHAR-constant">ID_WHITE_SPACE_CHAR</a></p>
+  <h3 class="inherited">Constants inherited from <a href="Model.html" title="BigRecord::Model (class)">Model</a></h3>
+  <p class="inherited"><a href="Model.html#ID_FIELD_SEPARATOR-constant" title="BigRecord::Model::ID_FIELD_SEPARATOR (constant)">ID_FIELD_SEPARATOR</a>, <a href="Model.html#ID_WHITE_SPACE_CHAR-constant" title="BigRecord::Model::ID_WHITE_SPACE_CHAR (constant)">ID_WHITE_SPACE_CHAR</a></p>
 
-  <h2>Attribute Summary</h2>
+  <h2>Instance Attribute Summary</h2>
   <ul class="summary">
     
       <li class="public ">
-  <span class="summary_signature"><a title="#modified_attributes (instance method)" href="#modified_attributes-instance_method">- (Object) <strong>modified_attributes</strong> </a>
-  
+  <span class="summary_signature">
+    
+      <a href="#modified_attributes-instance_method" title="#modified_attributes (instance method)">- (Object) <strong>modified_attributes</strong> </a>
+    
+
+    
   </span>
   
+  
     
     
   
@@ -138,10 +177,10 @@ The class -&gt; thread id -&gt; adapter cache.
   
 
   
-    <span class="summary_desc">
-Returns the value of attribute <tt>modified_attributes</tt>.
-
-</span>
+    <span class="summary_desc"><div class='inline'><p>
+Returns the value of attribute modified_attributes.
+</p>
+</div></span>
   
 </li>
 
@@ -149,1064 +188,1392 @@ Returns the value of attribute <tt>modified_attributes</tt>.
   </ul>
 
 
-  <h2>Method Summary</h2>
-  <ul class="summary">
-    
-      <li class="public ">
-  <span class="summary_signature"><a title="active_connection_name (class method)" href="#active_connection_name-class_method">+ (Object) <strong>active_connection_name</strong> </a>
   
+    <h2>Class Method Summary</h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#active_connection_name-class_method" title="active_connection_name (class method)">+ (Object) <strong>active_connection_name</strong> </a>
+    
+
+    
   </span>
+  
   
   
   
   
 
   
-    <span class="summary_desc"></span>
+    <span class="summary_desc"><div class='inline'><p>
+:nodoc:.
+</p>
+</div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="all (class method)" href="#all-class_method">+ (Object) <strong>all</strong> </a>
-  
+      <a href="#allow_concurrency%3D-class_method" title="allow_concurrency= (class method)">+ (Object) <strong>allow_concurrency</strong>(threaded) </a>
+    
+
+    
   </span>
   
   
   
   
-
-  
-    <span class="summary_desc">
-Returns all records for the model by invoking find(:all).
-
-</span>
-  
-</li>
-
-    
-      <li class="public ">
-  <span class="summary_signature"><a title="allow_concurrency= (class method)" href="#allow_concurrency%3D-class_method">+ (Object) <strong>allow_concurrency=</strong>(threaded) </a>
-  
-  </span>
-  
-  
-  
   
 
   
-    <span class="summary_desc">
+    <span class="summary_desc"><div class='inline'><p>
 set concurrency support flag (not thread safe, like most of the methods in
 this file).
-
-</span>
+</p>
+</div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="base_class (class method)" href="#base_class-class_method">+ (Class) <strong>base_class</strong> </a>
-  
+      <a href="#base_class-class_method" title="base_class (class method)">+ (Class) <strong>base_class</strong> </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc">
+    <span class="summary_desc"><div class='inline'><p>
 The base class which inherits BigRecord::Base directly.
-
-</span>
+</p>
+</div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="clear_active_connection_name (class method)" href="#clear_active_connection_name-class_method">+ (Object) <strong>clear_active_connection_name</strong> </a>
-  
+      <a href="#cassandra_connection-class_method" title="cassandra_connection (class method)">+ (Object) <strong>cassandra_connection</strong>(config) </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc"></span>
+    <span class="summary_desc"><div class='inline'><p>
+:nodoc:.
+</p>
+</div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="clear_active_connections! (class method)" href="#clear_active_connections%21-class_method">+ (Object) <strong>clear_active_connections!</strong> </a>
-  
+      <a href="#clear_active_connection_name-class_method" title="clear_active_connection_name (class method)">+ (Object) <strong>clear_active_connection_name</strong> </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc">
+    <span class="summary_desc"><div class='inline'><p>
+:nodoc:.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#clear_active_connections%21-class_method" title="clear_active_connections! (class method)">+ (Object) <strong>clear_active_connections!</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
 Clears the cache which maps classes to connections.
-
-</span>
+</p>
+</div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="clear_reloadable_connections! (class method)" href="#clear_reloadable_connections%21-class_method">+ (Object) <strong>clear_reloadable_connections!</strong> </a>
-  
+      <a href="#clear_reloadable_connections%21-class_method" title="clear_reloadable_connections! (class method)">+ (Object) <strong>clear_reloadable_connections!</strong> </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc">
+    <span class="summary_desc"><div class='inline'><p>
 Clears the cache which maps classes.
-
-</span>
+</p>
+</div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="column (class method)" href="#column-class_method">+ (Object) <strong>column</strong>(name, type, options = {}) </a>
-  
+      <a href="#columns_to_find-class_method" title="columns_to_find (class method)">+ (Object) <strong>columns_to_find</strong>(options = {}) </a>
+    
+
+    
   </span>
   
   
   
   
-
-  
-    <span class="summary_desc"></span>
-  
-</li>
-
-    
-      <li class="public ">
-  <span class="summary_signature"><a title="columns_to_find (class method)" href="#columns_to_find-class_method">+ (Object) <strong>columns_to_find</strong>(options = {}) </a>
-  
-  </span>
-  
-  
-  
   
 
   
-    <span class="summary_desc">
+    <span class="summary_desc"><div class='inline'><p>
 Return the list of fully qualified column names, i.e.
-
-</span>
+</p>
+</div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="connected? (class method)" href="#connected%3F-class_method">+ (Object) <strong>connected?</strong> </a>
-  
+      <a href="#connected%3F-class_method" title="connected? (class method)">+ (Boolean) <strong>connected?</strong> </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc">
+    <span class="summary_desc"><div class='inline'><p>
 Returns true if a connection that&#8217;s accessible to this class have
 already been opened.
-
-</span>
+</p>
+</div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="connection (class method)" href="#connection-class_method">+ (Object) <strong>connection</strong> </a>
-  
+      <a href="#connection-class_method" title="connection (class method)">+ (Object) <strong>connection</strong> </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc">
+    <span class="summary_desc"><div class='inline'><p>
 Returns the connection currently associated with the class.
-
-</span>
+</p>
+</div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="connection= (class method)" href="#connection%3D-class_method">+ (Object) <strong>connection=</strong>(spec) </a>
-  
+      <a href="#connection%3D-class_method" title="connection= (class method)">+ (Object) <strong>connection</strong>(spec) </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc">
+    <span class="summary_desc"><div class='inline'><p>
 Set the connection for the class.
-
-</span>
+</p>
+</div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="create (class method)" href="#create-class_method">+ (Object) <strong>create</strong>(attrs = nil) </a>
-  
+      <a href="#create-class_method" title="create (class method)">+ (Object) <strong>create</strong>(attrs = nil) </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc">
+    <span class="summary_desc"><div class='inline'><p>
 Creates an object, instantly saves it as a record (if the validation
 permits it), and returns it.
-
-</span>
+</p>
+</div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="default_columns (class method)" href="#default_columns-class_method">+ (Object) <strong>default_columns</strong> </a>
-  
+      <a href="#default_column_prefix-class_method" title="default_column_prefix (class method)">+ (Object) <strong>default_column_prefix</strong> </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc">
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#default_columns-class_method" title="default_columns (class method)">+ (Object) <strong>default_columns</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
 Default columns to create with the model, such as primary key.
-
-</span>
+</p>
+</div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="default_family (class method)" href="#default_family-class_method">+ (Object) <strong>default_family</strong> </a>
-  
+      <a href="#default_family-class_method" title="default_family (class method)">+ (Object) <strong>default_family</strong> </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc">
+    <span class="summary_desc"><div class='inline'><p>
 Get the default column family used to store attributes that have no column
 family set explicitly.
-
-</span>
+</p>
+</div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="default_views (class method)" href="#default_views-class_method">+ (Object) <strong>default_views</strong> </a>
-  
+      <a href="#default_views-class_method" title="default_views (class method)">+ (Object) <strong>default_views</strong> </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc">
+    <span class="summary_desc"><div class='inline'><p>
 Return the hash of default views which consist of all columns and the
 :default named views.
-
-</span>
+</p>
+</div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="delete (class method)" href="#delete-class_method">+ (Object) <strong>delete</strong>(id) </a>
-  
+      <a href="#delete-class_method" title="delete (class method)">+ (Object) <strong>delete</strong>(id) </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc">
+    <span class="summary_desc"><div class='inline'><p>
 Deletes the record with the given <tt>id</tt> without instantiating an
 object first.
-
-</span>
+</p>
+</div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="delete_all (class method)" href="#delete_all-class_method">+ (Object) <strong>delete_all</strong>(conditions = nil) </a>
-  
+      <a href="#delete_all-class_method" title="delete_all (class method)">+ (Object) <strong>delete_all</strong>(conditions = nil) </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc">
+    <span class="summary_desc"><div class='inline'><p>
 Deletes all the records that match the <tt>condition</tt> without
 instantiating the objects first (and hence not calling the destroy method).
-
-</span>
+</p>
+</div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="destroy (class method)" href="#destroy-class_method">+ (Object) <strong>destroy</strong>(id) </a>
-  
+      <a href="#destroy-class_method" title="destroy (class method)">+ (Object) <strong>destroy</strong>(id) </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc">
+    <span class="summary_desc"><div class='inline'><p>
 Destroys the record with the given <tt>id</tt> by instantiating the object
 and calling #destroy (all the callbacks are the triggered).
-
-</span>
+</p>
+</div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="destroy_all (class method)" href="#destroy_all-class_method">+ (Object) <strong>destroy_all</strong>(conditions = nil) </a>
-  
+      <a href="#destroy_all-class_method" title="destroy_all (class method)">+ (Object) <strong>destroy_all</strong>(conditions = nil) </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc">
+    <span class="summary_desc"><div class='inline'><p>
 Destroys the objects for all the records that match the <tt>condition</tt>
 by instantiating each object and calling the destroy method.
-
-</span>
+</p>
+</div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="establish_connection (class method)" href="#establish_connection-class_method">+ (Object) <strong>establish_connection</strong>(spec = nil) </a>
-  
+      <a href="#establish_connection-class_method" title="establish_connection (class method)">+ (Object) <strong>establish_connection</strong>(spec = nil) </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc">
+    <span class="summary_desc"><div class='inline'><p>
 Establishes the connection to the database.
-
-</span>
+</p>
+</div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="exists? (class method)" href="#exists%3F-class_method">+ (Object) <strong>exists?</strong>(id) </a>
-  
+      <a href="#exists%3F-class_method" title="exists? (class method)">+ (Boolean) <strong>exists?</strong>(id) </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc">
+    <span class="summary_desc"><div class='inline'><p>
 Returns true if the given <tt>id</tt> represents the primary key of a
 record in the database, false otherwise.
-
-</span>
+</p>
+</div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="families (class method)" href="#families-class_method">+ (Object) <strong>families</strong> </a>
-  
+      <a href="#families-class_method" title="families (class method)">+ (Object) <strong>families</strong> </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc">
+    <span class="summary_desc"><div class='inline'><p>
 Return the list of families for this class.
-
-</span>
+</p>
+</div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="find (class method)" href="#find-class_method">+ (Object) <strong>find</strong>(*args) </a>
-  
+      <a href="#find-class_method" title="find (class method)">+ (Object) <strong>find</strong>(*args) </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc"></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="first (class method)" href="#first-class_method">+ (Object) <strong>first</strong> </a>
-  
+      <a href="#hbase_connection-class_method" title="hbase_connection (class method)">+ (Object) <strong>hbase_connection</strong>(config) </a>
+    
+
+    
   </span>
   
   
   
   
-
-  
-    <span class="summary_desc">
-Returns the first record for the model by invoke find(:first).
-
-</span>
-  
-</li>
-
-    
-      <li class="public ">
-  <span class="summary_signature"><a title="hbase_connection (class method)" href="#hbase_connection-class_method">+ (Object) <strong>hbase_connection</strong>(config) </a>
-  
-  </span>
-  
-  
-  
   
 
   
-    <span class="summary_desc">
+    <span class="summary_desc"><div class='inline'><p>
 Establishes a connection to the database that&#8217;s used by all Active
 Record objects.
-
-</span>
+</p>
+</div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="hbase_rest_connection (class method)" href="#hbase_rest_connection-class_method">+ (Object) <strong>hbase_rest_connection</strong>(config) </a>
-  
+      <a href="#hbase_rest_connection-class_method" title="hbase_rest_connection (class method)">+ (Object) <strong>hbase_rest_connection</strong>(config) </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc">
+    <span class="summary_desc"><div class='inline'><p>
 Establishes a connection to the database that&#8217;s used by all Active
 Record objects.
-
-</span>
+</p>
+</div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="inherited (class method)" href="#inherited-class_method">+ (Object) <strong>inherited</strong>(child) </a>
-  
+      <a href="#inherited-class_method" title="inherited (class method)">+ (Object) <strong>inherited</strong>(child) </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc"></span>
+    <span class="summary_desc"><div class='inline'><p>
+:nodoc:.
+</p>
+</div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="log_connections (class method)" href="#log_connections-class_method">+ (Object) <strong>log_connections</strong> </a>
-  
+      <a href="#log_connections-class_method" title="log_connections (class method)">+ (Object) <strong>log_connections</strong> </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc">
+    <span class="summary_desc"><div class='inline'><p>
 connection state logging.
-
-</span>
+</p>
+</div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="primary_key (class method)" href="#primary_key-class_method">+ (Object) <strong>primary_key</strong> </a>
-  
+      <a href="#primary_key-class_method" title="primary_key (class method)">+ (Object) <strong>primary_key</strong> </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc">
+    <span class="summary_desc"><div class='inline'><p>
 Return the name of the primary key.
-
-</span>
+</p>
+</div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="remove_connection (class method)" href="#remove_connection-class_method">+ (Object) <strong>remove_connection</strong>(klass = self) </a>
-  
+      <a href="#remove_connection-class_method" title="remove_connection (class method)">+ (Object) <strong>remove_connection</strong>(klass = self) </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc">
+    <span class="summary_desc"><div class='inline'><p>
 Remove the connection for this class.
-
-</span>
+</p>
+</div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="retrieve_connection (class method)" href="#retrieve_connection-class_method">+ (Object) <strong>retrieve_connection</strong> </a>
-  
+      <a href="#retrieve_connection-class_method" title="retrieve_connection (class method)">+ (Object) <strong>retrieve_connection</strong> </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc">
+    <span class="summary_desc"><div class='inline'><p>
 Locate the connection of the nearest super class.
-
-</span>
+</p>
+</div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="scan (class method)" href="#scan-class_method">+ (Object) <strong>scan</strong>(options = {}, &amp;code) </a>
-  
+      <a href="#scan-class_method" title="scan (class method)">+ (Object) <strong>scan</strong>(options = {}, &amp;code) </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc">
+    <span class="summary_desc"><div class='inline'><p>
 HBase scanner utility &#8212; scans the table and executes code on each
 record.
-
-</span>
+</p>
+</div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="set_default_family (class method)" href="#set_default_family-class_method">+ (Object) <strong>set_default_family</strong>(name) </a>
-  
+      <a href="#set_default_family-class_method" title="set_default_family (class method)">+ (Object) <strong>set_default_family</strong>(name) </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc">
+    <span class="summary_desc"><div class='inline'><p>
 Set the default column family used to store attributes that have no column
 family set explicitly.
-
-</span>
+</p>
+</div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="set_table_name (class method)" href="#set_table_name-class_method">+ (Object) <strong>set_table_name</strong>(name) </a>
-  
+      <a href="#set_table_name-class_method" title="set_table_name (class method)">+ (Object) <strong>set_table_name</strong>(name) </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc">
-If you want to avoid the table name inflection, you can define the name
-explicitly with this method.
-
-</span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="single_threaded_active_connections (class method)" href="#single_threaded_active_connections-class_method">+ (Object) <strong>single_threaded_active_connections</strong> </a>
-  
+      <a href="#single_threaded_active_connections-class_method" title="single_threaded_active_connections (class method)">+ (Object) <strong>single_threaded_active_connections</strong> </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc"></span>
+    <span class="summary_desc"><div class='inline'><p>
+:nodoc:.
+</p>
+</div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="table_name (class method)" href="#table_name-class_method">+ (Object) <strong>table_name</strong> </a>
-  
+      <a href="#table_name-class_method" title="table_name (class method)">+ (Object) <strong>table_name</strong> </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc">
-Returns the inflected table name as it&#8217;s called in your database.
-
-</span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="thread_safe_active_connections (class method)" href="#thread_safe_active_connections-class_method">+ (Object) <strong>thread_safe_active_connections</strong> </a>
-  
+      <a href="#thread_safe_active_connections-class_method" title="thread_safe_active_connections (class method)">+ (Object) <strong>thread_safe_active_connections</strong> </a>
+    
+
+    
+      (also: active_connections)
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc">
+    <span class="summary_desc"><div class='inline'><p>
 Retrieve the connection cache.
-
-</span>
+</p>
+</div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="truncate (class method)" href="#truncate-class_method">+ (Object) <strong>truncate</strong> </a>
-  
+      <a href="#truncate-class_method" title="truncate (class method)">+ (Object) <strong>truncate</strong> </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc">
+    <span class="summary_desc"><div class='inline'><p>
 Truncate the table for this model.
-
-</span>
+</p>
+</div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="update (class method)" href="#update-class_method">+ (Object) <strong>update</strong>(id, attributes) </a>
-  
+      <a href="#update-class_method" title="update (class method)">+ (Object) <strong>update</strong>(id, attributes) </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc">
+    <span class="summary_desc"><div class='inline'><p>
 Finds the record from the passed <tt>id</tt>, instantly saves it with the
 passed <tt>attributes</tt> (if the validation permits it), and returns it.
-
-</span>
+</p>
+</div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="update_all (class method)" href="#update_all-class_method">+ (Object) <strong>update_all</strong>(updates, conditions = nil) </a>
-  
+      <a href="#update_all-class_method" title="update_all (class method)">+ (Object) <strong>update_all</strong>(updates, conditions = nil) </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc">
+    <span class="summary_desc"><div class='inline'><p>
 Updates all records with the SET-part of an SQL update statement in
 <tt>updates</tt> and returns an integer with the number of rows updated.
-
-</span>
+</p>
+</div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="verify_active_connections! (class method)" href="#verify_active_connections%21-class_method">+ (Object) <strong>verify_active_connections!</strong> </a>
-  
+      <a href="#verify_active_connections%21-class_method" title="verify_active_connections! (class method)">+ (Object) <strong>verify_active_connections!</strong> </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc">
+    <span class="summary_desc"><div class='inline'><p>
 Verify active connections.
-
-</span>
+</p>
+</div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="view (class method)" href="#view-class_method">+ (Object) <strong>view</strong>(name, *columns) </a>
-  
+      <a href="#view-class_method" title="view (class method)">+ (Object) <strong>view</strong>(name, *columns) </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc">
+    <span class="summary_desc"><div class='inline'><p>
 Macro for defining a named view to a list of columns.
-
-</span>
+</p>
+</div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="view_names (class method)" href="#view_names-class_method">+ (Object) <strong>view_names</strong> </a>
-  
+      <a href="#view_names-class_method" title="view_names (class method)">+ (Object) <strong>view_names</strong> </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc">
-Get a list of view names defined by <tt><a title="view" href="#view-class_method">view</a></tt>.
-
-</span>
+    <span class="summary_desc"><div class='inline'><p>
+Get a list of view names defined by <tt><a href="#view-class_method" title="BigRecord::Base.view (method)">view</a></tt>.
+</p>
+</div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="views (class method)" href="#views-class_method">+ (Object) <strong>views</strong> </a>
-  
+      <a href="#views-class_method" title="views (class method)">+ (Object) <strong>views</strong> </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc">
-Get a list of all the views defined by the <tt><a title="view" href="#view-class_method">view</a></tt> macro for the model.
-
-</span>
+    <span class="summary_desc"><div class='inline'><p>
+Get a list of all the views defined by the <tt><a href="#view-class_method" title="BigRecord::Base.view (method)">view</a></tt> macro for the model.
+</p>
+</div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="views_hash (class method)" href="#views_hash-class_method">+ (Object) <strong>views_hash</strong> </a>
-  
+      <a href="#views_hash-class_method" title="views_hash (class method)">+ (Object) <strong>views_hash</strong> </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc">
+    <span class="summary_desc"><div class='inline'><p>
 Get the full hash of views consisting of the name as keys, and the
-<tt><a title="ConnectionAdapters::View" href="ConnectionAdapters/View.html">ConnectionAdapters::View</a></tt> views.
-
-</span>
+<tt><a href="ConnectionAdapters/View.html" title="BigRecord::ConnectionAdapters::View (class)">ConnectionAdapters::View</a></tt> views.
+</p>
+</div></span>
   
 </li>
 
-    
-      <li class="public ">
-  <span class="summary_signature"><a title="#[] (instance method)" href="#%5B%5D-instance_method">- (Object) <strong>[]</strong>(attr_name) </a>
+      
+    </ul>
   
+    <h2>Instance Method Summary</h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#%5B%5D-instance_method" title="#[] (instance method)">- (Object) <strong>[]</strong>(attr_name) </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc">
+    <span class="summary_desc"><div class='inline'><p>
 Returns the value of the attribute identified by <tt>attr_name</tt> after
 it has been typecast (for example, &quot;2004-12-12&quot; in a data column
 is cast to a date object, like Date.new(2004, 12, 12)).
-
-</span>
+</p>
+</div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="#connection (instance method)" href="#connection-instance_method">- (Object) <strong>connection</strong> </a>
-  
+      <a href="#connection-instance_method" title="#connection (instance method)">- (Object) <strong>connection</strong> </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc">
+    <span class="summary_desc"><div class='inline'><p>
 Returns the connection currently associated with the class.
-
-</span>
+</p>
+</div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="#destroy (instance method)" href="#destroy-instance_method">- (Object) <strong>destroy</strong> </a>
-  
+      <a href="#destroy-instance_method" title="#destroy (instance method)">- (Object) <strong>destroy</strong> </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc">
-Deletes the record in the database.
-
-</span>
+    <span class="summary_desc"><div class='inline'><p>
+Deletes the record in the database and freezes this instance to reflect
+that no changes should be made (since they can&#8217;t be persisted).
+</p>
+</div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="#initialize (instance method)" href="#initialize-instance_method">- (Base) <strong>initialize</strong>(attrs = nil) </a>
-  
+      <a href="#initialize-instance_method" title="#initialize (instance method)">- (Base) <strong>initialize</strong>(attrs = nil) </a>
+    
+
+    
   </span>
+  
+    <span class="note title constructor">constructor</span>
+  
   
   
   
   
 
   
-    <span class="summary_desc">
+    <span class="summary_desc"><div class='inline'><p>
 New objects can be instantiated as either empty (pass no construction
 parameter) or pre-set with attributes but not yet saved (pass a hash with
-key names matching the associated column names).
-
-</span>
+key names matching the associated table column names).
+</p>
+</div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="#new_record? (instance method)" href="#new_record%3F-instance_method">- (Object) <strong>new_record?</strong> </a>
-  
+      <a href="#is_loaded%3F-instance_method" title="#is_loaded? (instance method)">- (Boolean) <strong>is_loaded?</strong>(name) </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc">
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#new_record%3F-instance_method" title="#new_record? (instance method)">- (Boolean) <strong>new_record?</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
 Returns true if this object hasn&#8217;t been saved yet &#8212; that is, a
 record for the object doesn&#8217;t exist yet.
-
-</span>
+</p>
+</div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="#read_attribute (instance method)" href="#read_attribute-instance_method">- (Object) <strong>read_attribute</strong>(attr_name, options = {}) </a>
-  
+      <a href="#read_attribute-instance_method" title="#read_attribute (instance method)">- (Object) <strong>read_attribute</strong>(attr_name, options = {}) </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc">
+    <span class="summary_desc"><div class='inline'><p>
 Returns the value of the attribute identified by <tt>attr_name</tt> after
 it has been typecast (for example, &quot;2004-12-12&quot; in a data column
 is cast to a date object, like Date.new(2004, 12, 12)).
-
-</span>
+</p>
+</div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="#read_family_attributes (instance method)" href="#read_family_attributes-instance_method">- (Object) <strong>read_family_attributes</strong>(attr_name) </a>
-  
+      <a href="#read_family_attributes-instance_method" title="#read_family_attributes (instance method)">- (Object) <strong>read_family_attributes</strong>(attr_name) </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc">
-Read an attribute that defines a column family, as opposed to a column
-qualifier.
-
-</span>
+    <span class="summary_desc"><div class='inline'><p>
+Read an attribute that defines a column family.
+</p>
+</div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="#save (instance method)" href="#save-instance_method">- (Object) <strong>save</strong> </a>
-  
+      <a href="#save-instance_method" title="#save (instance method)">- (Object) <strong>save</strong> </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc">
-Method that saves the BigRecord object into the database.
+    <span class="summary_desc"><div class='inline'><ul>
+<li>No record exists: Creates a new record with values matching those of the
+object attributes.
 
-</span>
+</li>
+</ul>
+</div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="#save! (instance method)" href="#save%21-instance_method">- (Object) <strong>save!</strong> </a>
-  
+      <a href="#save%21-instance_method" title="#save! (instance method)">- (Object) <strong>save!</strong> </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc">
+    <span class="summary_desc"><div class='inline'><p>
 Attempts to save the record, but instead of just returning false if it
 couldn&#8217;t happen, it raises a RecordNotSaved exception.
-
-</span>
+</p>
+</div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="#update_attribute (instance method)" href="#update_attribute-instance_method">- (Object) <strong>update_attribute</strong>(name, value) </a>
-  
+      <a href="#set_loaded-instance_method" title="#set_loaded (instance method)">- (Object) <strong>set_loaded</strong>(name) </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc">
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#update_attribute-instance_method" title="#update_attribute (instance method)">- (Object) <strong>update_attribute</strong>(name, value) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
 Updates a single attribute and saves the record.
-
-</span>
+</p>
+</div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="#update_attributes (instance method)" href="#update_attributes-instance_method">- (Object) <strong>update_attributes</strong>(attributes) </a>
-  
+      <a href="#update_attributes-instance_method" title="#update_attributes (instance method)">- (Object) <strong>update_attributes</strong>(attributes) </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc">
+    <span class="summary_desc"><div class='inline'><p>
 Updates all the attributes from the passed-in Hash and saves the record.
-
-</span>
+</p>
+</div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="#update_attributes! (instance method)" href="#update_attributes%21-instance_method">- (Object) <strong>update_attributes!</strong>(attributes) </a>
-  
+      <a href="#update_attributes%21-instance_method" title="#update_attributes! (instance method)">- (Object) <strong>update_attributes!</strong>(attributes) </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc">
+    <span class="summary_desc"><div class='inline'><p>
 Updates an object just like Base.update_attributes but calls save! instead
 of save so an exception is raised if the record is invalid.
-
-</span>
+</p>
+</div></span>
   
 </li>
 
-    
-  </ul>
+      
+    </ul>
+  
 
 
   
@@ -1214,15 +1581,17 @@ of save so an exception is raised if the record is invalid.
   
   
   
-  <h3 class="inherited">Methods inherited from <a title="BigRecord::AbstractBase" href="AbstractBase.html">BigRecord::AbstractBase</a></h3>
-  <p class="inherited"><a title="#==" href="AbstractBase.html#%3D%3D-instance_method">#==</a>, <a title="===" href="AbstractBase.html#%3D%3D%3D-class_method">===</a>, <a title="#[]=" href="AbstractBase.html#%5B%5D%3D-instance_method">#[]=</a>, <a title="accessible_attributes" href="AbstractBase.html#accessible_attributes-class_method">accessible_attributes</a>, <a title="#all_attributes_loaded=" href="AbstractBase.html#all_attributes_loaded%3D-instance_method">#all_attributes_loaded=</a>, <a title="#all_attributes_loaded?" href="AbstractBase.html#all_attributes_loaded%3F-instance_method">#all_attributes_loaded?</a>, <a title="#assign_multiparameter_attributes" href="AbstractBase.html#assign_multiparameter_attributes-instance_method">#assign_multiparameter_attributes</a>, <a title="attr_accessible" href="AbstractBase.html#attr_accessible-class_method">attr_accessible</a>, <a title="attr_create_accessible" href="AbstractBase.html#attr_create_accessible-class_method">attr_create_accessible</a>, <a title="attr_protected" href="AbstractBase.html#attr_protected-class_method">attr_protected</a>, <a title="attr_readonly" href="AbstractBase.html#attr_readonly-class_method">attr_readonly</a>, <a title="#attribute=" href="AbstractBase.html#attribute%3D-instance_method">#attribute=</a>, <a title="#attribute?" href="AbstractBase.html#attribute%3F-instance_method">#attribute?</a>, <a title="#attribute_before_type_cast" href="AbstractBase.html#attribute_before_type_cast-instance_method">#attribute_before_type_cast</a>, <a title="#attribute_for_inspect" href="AbstractBase.html#attribute_for_inspect-instance_method">#attribute_for_inspect</a>, <a title="#attribute_names" href="AbstractBase.html#attribute_names-instance_method">#attribute_names</a>, <a title="#attribute_present?" href="AbstractBase.html#attribute_present%3F-instance_method">#attribute_present?</a>, <a title="#attributes" href="AbstractBase.html#attributes-instance_method">#attributes</a>, <a title="#attributes=" href="AbstractBase.html#attributes%3D-instance_method">#attributes=</a>, <a title="#attributes_from_column_definition" href="AbstractBase.html#attributes_from_column_definition-instance_method">#attributes_from_column_definition</a>, <a title="#attributes_protected_by_default" href="AbstractBase.html#attributes_protected_by_default-instance_method">#attributes_protected_by_default</a>, <a title="benchmark" href="AbstractBase.html#benchmark-class_method">benchmark</a>, <a title="#clone_in_persistence_format" href="AbstractBase.html#clone_in_persistence_format-instance_method">#clone_in_persistence_format</a>, <a title="#column_for_attribute" href="AbstractBase.html#column_for_attribute-instance_method">#column_for_attribute</a>, <a title="column_methods_hash" href="AbstractBase.html#column_methods_hash-class_method">column_methods_hash</a>, <a title="column_names" href="AbstractBase.html#column_names-class_method">column_names</a>, <a title="columns" href="AbstractBase.html#columns-class_method">columns</a>, <a title="columns_hash" href="AbstractBase.html#columns_hash-class_method">columns_hash</a>, <a title="compute_type" href="AbstractBase.html#compute_type-class_method">compute_type</a>, <a title="content_columns" href="AbstractBase.html#content_columns-class_method">content_columns</a>, <a title="#convert_number_column_value" href="AbstractBase.html#convert_number_column_value-instance_method">#convert_number_column_value</a>, <a title="create_accessible_attributes" href="AbstractBase.html#create_accessible_attributes-class_method">create_accessible_attributes</a>, <a title="create_column" href="AbstractBase.html#create_column-class_method">create_column</a>, <a title="#define_question_method" href="AbstractBase.html#define_question_method-instance_method">#define_question_method</a>, <a title="#define_read_method" href="AbstractBase.html#define_read_method-instance_method">#define_read_method</a>, <a title="#define_read_methods" href="AbstractBase.html#define_read_methods-instance_method">#define_read_methods</a>, <a title="#deserialize" href="AbstractBase.html#deserialize-instance_method">#deserialize</a>, <a title="#eql?" href="AbstractBase.html#eql%3F-instance_method">#eql?</a>, <a title="#evaluate_read_method" href="AbstractBase.html#evaluate_read_method-instance_method">#evaluate_read_method</a>, <a title="#execute_callstack_for_multiparameter_attributes" href="AbstractBase.html#execute_callstack_for_multiparameter_attributes-instance_method">#execute_callstack_for_multiparameter_attributes</a>, <a title="#extract_callstack_for_multiparameter_attributes" href="AbstractBase.html#extract_callstack_for_multiparameter_attributes-instance_method">#extract_callstack_for_multiparameter_attributes</a>, <a title="#find_parameter_position" href="AbstractBase.html#find_parameter_position-instance_method">#find_parameter_position</a>, <a title="#freeze" href="AbstractBase.html#freeze-instance_method">#freeze</a>, <a title="#frozen?" href="AbstractBase.html#frozen%3F-instance_method">#frozen?</a>, <a title="#generate_new_id" href="AbstractBase.html#generate_new_id-instance_method">#generate_new_id</a>, <a title="#has_attribute?" href="AbstractBase.html#has_attribute%3F-instance_method">#has_attribute?</a>, <a title="#hash" href="AbstractBase.html#hash-instance_method">#hash</a>, <a title="human_attribute_name" href="AbstractBase.html#human_attribute_name-class_method">human_attribute_name</a>, <a title="#human_attribute_name" href="AbstractBase.html#human_attribute_name-instance_method">#human_attribute_name</a>, <a title="#id" href="AbstractBase.html#id-instance_method">#id</a>, <a title="#id=" href="AbstractBase.html#id%3D-instance_method">#id=</a>, <a title="#inspect" href="AbstractBase.html#inspect-instance_method">#inspect</a>, <a title="instantiate" href="AbstractBase.html#instantiate-class_method">instantiate</a>, <a title="invalidate_columns" href="AbstractBase.html#invalidate_columns-class_method">invalidate_columns</a>, <a title="#log_protected_attribute_removal" href="AbstractBase.html#log_protected_attribute_removal-instance_method">#log_protected_attribute_removal</a>, <a title="#method_missing" href="AbstractBase.html#method_missing-instance_method">#method_missing</a>, <a title="#preinitialize" href="AbstractBase.html#preinitialize-instance_method">#preinitialize</a>, <a title="protected_attributes" href="AbstractBase.html#protected_attributes-class_method">protected_attributes</a>, <a title="quote_value" href="AbstractBase.html#quote_value-class_method">quote_value</a>, <a title="#quote_value" href="AbstractBase.html#quote_value-instance_method">#quote_value</a>, <a title="#quoted_id" href="AbstractBase.html#quoted_id-instance_method">#quoted_id</a>, <a title="#read_attribute_before_type_cast" href="AbstractBase.html#read_attribute_before_type_cast-instance_method">#read_attribute_before_type_cast</a>, <a title="read_methods" href="AbstractBase.html#read_methods-class_method">read_methods</a>, <a title="#readonly!" href="AbstractBase.html#readonly%21-instance_method">#readonly!</a>, <a title="#readonly?" href="AbstractBase.html#readonly%3F-instance_method">#readonly?</a>, <a title="readonly_attributes" href="AbstractBase.html#readonly_attributes-class_method">readonly_attributes</a>, <a title="#reload" href="AbstractBase.html#reload-instance_method">#reload</a>, <a title="#remove_attributes_protected_from_mass_assignment" href="AbstractBase.html#remove_attributes_protected_from_mass_assignment-instance_method">#remove_attributes_protected_from_mass_assignment</a>, <a title="#remove_readonly_attributes" href="AbstractBase.html#remove_readonly_attributes-instance_method">#remove_readonly_attributes</a>, <a title="reset_subclasses" href="AbstractBase.html#reset_subclasses-class_method">reset_subclasses</a>, <a title="#respond_to?" href="AbstractBase.html#respond_to%3F-instance_method">#respond_to?</a>, <a title="#safe_attributes=" href="AbstractBase.html#safe_attributes%3D-instance_method">#safe_attributes=</a>, <a title="silence" href="AbstractBase.html#silence-class_method">silence</a>, <a title="store_primary_key?" href="AbstractBase.html#store_primary_key%3F-class_method">store_primary_key?</a>, <a title="subclasses" href="AbstractBase.html#subclasses-class_method">subclasses</a>, <a title="#to_s" href="AbstractBase.html#to_s-instance_method">#to_s</a>, <a title="#type_cast_attribute_value" href="AbstractBase.html#type_cast_attribute_value-instance_method">#type_cast_attribute_value</a>, <a title="undecorated_table_name" href="AbstractBase.html#undecorated_table_name-class_method">undecorated_table_name</a>, <a title="#validate_attribute_type" href="AbstractBase.html#validate_attribute_type-instance_method">#validate_attribute_type</a>, <a title="#validate_attributes_schema" href="AbstractBase.html#validate_attributes_schema-instance_method">#validate_attributes_schema</a>, <a title="#write_attribute" href="AbstractBase.html#write_attribute-instance_method">#write_attribute</a></p>
-<div id="constructor_details">
+  
+  
+  <h3 class="inherited">Methods inherited from <a href="Model.html" title="BigRecord::Model (class)">Model</a></h3>
+  <p class="inherited"><a href="Model.html#%3D%3D-instance_method" title="BigRecord::Model#== (method)">#==</a>, <a href="Model.html#%3D%3D%3D-class_method" title="BigRecord::Model.=== (method)">===</a>, <a href="Model.html#%5B%5D%3D-instance_method" title="BigRecord::Model#[]= (method)">#[]=</a>, <a href="Model.html#accessible_attributes-class_method" title="BigRecord::Model.accessible_attributes (method)">accessible_attributes</a>, <a href="Model.html#all_attributes_loaded%3D-instance_method" title="BigRecord::Model#all_attributes_loaded= (method)">#all_attributes_loaded=</a>, <a href="Model.html#all_attributes_loaded%3F-instance_method" title="BigRecord::Model#all_attributes_loaded? (method)">#all_attributes_loaded?</a>, <a href="Model.html#attr_accessible-class_method" title="BigRecord::Model.attr_accessible (method)">attr_accessible</a>, <a href="Model.html#attr_create_accessible-class_method" title="BigRecord::Model.attr_create_accessible (method)">attr_create_accessible</a>, <a href="Model.html#attr_protected-class_method" title="BigRecord::Model.attr_protected (method)">attr_protected</a>, <a href="Model.html#attr_readonly-class_method" title="BigRecord::Model.attr_readonly (method)">attr_readonly</a>, <a href="Model.html#attribute_for_inspect-instance_method" title="BigRecord::Model#attribute_for_inspect (method)">#attribute_for_inspect</a>, <a href="Model.html#attribute_names-instance_method" title="BigRecord::Model#attribute_names (method)">#attribute_names</a>, <a href="Model.html#attribute_present%3F-instance_method" title="BigRecord::Model#attribute_present? (method)">#attribute_present?</a>, <a href="Model.html#attributes-instance_method" title="BigRecord::Model#attributes (method)">#attributes</a>, <a href="Model.html#attributes%3D-instance_method" title="BigRecord::Model#attributes= (method)">#attributes=</a>, <a href="Model.html#benchmark-class_method" title="BigRecord::Model.benchmark (method)">benchmark</a>, <a href="Model.html#column-class_method" title="BigRecord::Model.column (method)">column</a>, <a href="Model.html#column_for_attribute-instance_method" title="BigRecord::Model#column_for_attribute (method)">#column_for_attribute</a>, <a href="Model.html#column_methods_hash-class_method" title="BigRecord::Model.column_methods_hash (method)">column_methods_hash</a>, <a href="Model.html#column_names-class_method" title="BigRecord::Model.column_names (method)">column_names</a>, <a href="Model.html#columns-class_method" title="BigRecord::Model.columns (method)">columns</a>, <a href="Model.html#columns_hash-class_method" title="BigRecord::Model.columns_hash (method)">columns_hash</a>, <a href="Model.html#content_columns-class_method" title="BigRecord::Model.content_columns (method)">content_columns</a>, <a href="Model.html#create_accessible_attributes-class_method" title="BigRecord::Model.create_accessible_attributes (method)">create_accessible_attributes</a>, <a href="Model.html#deserialize-instance_method" title="BigRecord::Model#deserialize (method)">#deserialize</a>, <a href="Model.html#eql%3F-instance_method" title="BigRecord::Model#eql? (method)">#eql?</a>, <a href="Model.html#freeze-instance_method" title="BigRecord::Model#freeze (method)">#freeze</a>, <a href="Model.html#frozen%3F-instance_method" title="BigRecord::Model#frozen? (method)">#frozen?</a>, <a href="Model.html#has_attribute%3F-instance_method" title="BigRecord::Model#has_attribute? (method)">#has_attribute?</a>, <a href="Model.html#hash-instance_method" title="BigRecord::Model#hash (method)">#hash</a>, <a href="Model.html#human_attribute_name-instance_method" title="BigRecord::Model#human_attribute_name (method)">#human_attribute_name</a>, <a href="Model.html#human_attribute_name-class_method" title="BigRecord::Model.human_attribute_name (method)">human_attribute_name</a>, <a href="Model.html#id-instance_method" title="BigRecord::Model#id (method)">#id</a>, <a href="Model.html#id%3D-instance_method" title="BigRecord::Model#id= (method)">#id=</a>, <a href="Model.html#inspect-instance_method" title="BigRecord::Model#inspect (method)">#inspect</a>, <a href="Model.html#instantiate-class_method" title="BigRecord::Model.instantiate (method)">instantiate</a>, <a href="Model.html#preinitialize-instance_method" title="BigRecord::Model#preinitialize (method)">#preinitialize</a>, <a href="Model.html#protected_attributes-class_method" title="BigRecord::Model.protected_attributes (method)">protected_attributes</a>, <a href="Model.html#quote_value-class_method" title="BigRecord::Model.quote_value (method)">quote_value</a>, <a href="Model.html#quoted_id-instance_method" title="BigRecord::Model#quoted_id (method)">#quoted_id</a>, <a href="Model.html#read_methods-class_method" title="BigRecord::Model.read_methods (method)">read_methods</a>, <a href="Model.html#readonly%21-instance_method" title="BigRecord::Model#readonly! (method)">#readonly!</a>, <a href="Model.html#readonly%3F-instance_method" title="BigRecord::Model#readonly? (method)">#readonly?</a>, <a href="Model.html#readonly_attributes-class_method" title="BigRecord::Model.readonly_attributes (method)">readonly_attributes</a>, <a href="Model.html#reload-instance_method" title="BigRecord::Model#reload (method)">#reload</a>, <a href="Model.html#reset_subclasses-class_method" title="BigRecord::Model.reset_subclasses (method)">reset_subclasses</a>, <a href="Model.html#respond_to%3F-instance_method" title="BigRecord::Model#respond_to? (method)">#respond_to?</a>, <a href="Model.html#safe_attributes%3D-instance_method" title="BigRecord::Model#safe_attributes= (method)">#safe_attributes=</a>, <a href="Model.html#silence-class_method" title="BigRecord::Model.silence (method)">silence</a>, <a href="Model.html#store_primary_key%3F-class_method" title="BigRecord::Model.store_primary_key? (method)">store_primary_key?</a>, <a href="Model.html#to_s-instance_method" title="BigRecord::Model#to_s (method)">#to_s</a>, <a href="Model.html#undecorated_table_name-class_method" title="BigRecord::Model.undecorated_table_name (method)">undecorated_table_name</a></p>
+<div id="constructor_details" class="method_details_list">
   <h2>Constructor Details</h2>
   
     <div class="method_details first">
   <p class="signature first" id="initialize-instance_method">
   
-    - (<tt><a title="Base" href="">Base</a></tt>) <strong>initialize</strong>(attrs = nil) 
+    - (<tt><a href="" title="BigRecord::Base (class)">Base</a></tt>) <strong>initialize</strong>(attrs = nil) 
   
 
   
@@ -1231,50 +1600,31 @@ of save so an exception is raised if the record is invalid.
     <p>
 New objects can be instantiated as either empty (pass no construction
 parameter) or pre-set with attributes but not yet saved (pass a hash with
-key names matching the associated column names). In both instances, valid
-attribute keys are determined by the column names of the associated table
-&#8212; hence you can&#8217;t have attributes that aren&#8217;t part of the
-table columns.
+key names matching the associated table column names). In both instances,
+valid attribute keys are determined by the column names of the associated
+table &#8212; hence you can&#8217;t have attributes that aren&#8217;t part
+of the table columns.
 </p>
 
 
   </div>
 </div>
 <div class="tags">
-  <h3>Returns:</h3>
-<ul class="return">
   
-    <li>
-      
-        <span class='type'>(<tt><a title="Base" href="">Base</a></tt>)</span>
-      
-      
-      
-      
-        &mdash;
-        
-a new instance of <tt>Base</tt>
-
-
-      
-    </li>
-  
-</ul>
-
 </div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
+18
+19
+20
 21
-22
-23
-24
-25</pre>
+22</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/big_record/base.rb', line 21</span>
+      <pre class="code"><span class="info file"># File 'lib/big_record/base.rb', line 18</span>
 
 <span class='def def kw'>def</span> <span class='initialize identifier id'>initialize</span><span class='lparen token'>(</span><span class='attrs identifier id'>attrs</span> <span class='assign token'>=</span> <span class='nil nil kw'>nil</span><span class='rparen token'>)</span>
   <span class='@new_record ivar id'>@new_record</span> <span class='assign token'>=</span> <span class='true true kw'>true</span>
@@ -1288,19 +1638,19 @@ a new instance of <tt>Base</tt>
 </div>
   
 </div>
-<div id="method_missing_details">
+<div id="method_missing_details" class="method_details_list">
   <h2>Dynamic Method Handling</h2>
   <p class="notice super">
     This class handles dynamic methods through the <tt>method_missing</tt> method
     
-      in the class <a title="BigRecord::AbstractBase" href="AbstractBase.html#method_missing-instance_method">BigRecord::AbstractBase</a>
+      in the class <a href="Model.html#method_missing-instance_method" title="BigRecord::Model#method_missing (method)">BigRecord::Model</a>
     
   </p>
   
 </div>
 
-  <div id="attr_details">
-    <h2>Attribute Details</h2>
+  <div id="instance_attr_details" class="attr_details">
+    <h2>Instance Attribute Details</h2>
     
       
       <span id="modified_attributes=-instance_method"></span>
@@ -1308,14 +1658,14 @@ a new instance of <tt>Base</tt>
       <div class="method_details first">
   <p class="signature first" id="modified_attributes-instance_method">
   
-    - (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>modified_attributes</strong> 
+    - (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>modified_attributes</strong> 
   
 
   
 </p><div class="docstring">
   <div class="discussion">
     <p>
-Returns the value of attribute <tt>modified_attributes</tt>
+Returns the value of attribute modified_attributes
 </p>
 
 
@@ -1348,17 +1698,29 @@ Returns the value of attribute <tt>modified_attributes</tt>
   </div>
 
 
-  <div id="method_details">
-    <h2>Method Details</h2>
+  <div id="class_method_details" class="method_details_list">
+    <h2>Class Method Details</h2>
+    
     
       <div class="method_details first">
   <p class="signature first" id="active_connection_name-class_method">
   
-    + (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>active_connection_name</strong> 
+    + (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>active_connection_name</strong> 
   
 
   
-</p><table class="source_code">
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+:nodoc:
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
@@ -1395,49 +1757,9 @@ Returns the value of attribute <tt>modified_attributes</tt>
 </div>
     
       <div class="method_details ">
-  <p class="signature " id="all-class_method">
-  
-    + (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>all</strong> 
-  
-
-  
-</p><div class="docstring">
-  <div class="discussion">
-    <p>
-Returns all records for the model by invoking find(:all)
-</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-</div><table class="source_code">
-  <tr>
-    <td>
-      <pre class="lines">
-
-
-304
-305
-306</pre>
-    </td>
-    <td>
-      <pre class="code"><span class="info file"># File 'lib/big_record/base.rb', line 304</span>
-
-<span class='def def kw'>def</span> <span class='all identifier id'>all</span>
-  <span class='find identifier id'>find</span><span class='lparen token'>(</span><span class='symbol val'>:all</span><span class='rparen token'>)</span>
-<span class='end end kw'>end</span>
-</pre>
-    </td>
-  </tr>
-</table>
-</div>
-    
-      <div class="method_details ">
   <p class="signature " id="allow_concurrency=-class_method">
   
-    + (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>allow_concurrency=</strong>(threaded) 
+    + (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>allow_concurrency=</strong>(threaded) 
   
 
   
@@ -1521,10 +1843,10 @@ The base class which inherits BigRecord::Base directly.
       
       
         &mdash;
-        
+        <div class='inline'><p>
 The base class which inherits BigRecord::Base directly.
-
-
+</p>
+</div>
       
     </li>
   
@@ -1536,12 +1858,12 @@ The base class which inherits BigRecord::Base directly.
       <pre class="lines">
 
 
-431
-432
-433</pre>
+413
+414
+415</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/big_record/base.rb', line 431</span>
+      <pre class="code"><span class="info file"># File 'lib/big_record/base.rb', line 413</span>
 
 <span class='def def kw'>def</span> <span class='base_class identifier id'>base_class</span>
   <span class='lparen token'>(</span><span class='superclass identifier id'>superclass</span> <span class='eq op'>==</span> <span class='BigRecord constant id'>BigRecord</span><span class='colon2 op'>::</span><span class='Base constant id'>Base</span><span class='rparen token'>)</span> <span class='question op'>?</span> <span class='self self kw'>self</span> <span class='colon op'>:</span> <span class='superclass identifier id'>superclass</span><span class='dot token'>.</span><span class='base_class identifier id'>base_class</span>
@@ -1553,13 +1875,84 @@ The base class which inherits BigRecord::Base directly.
 </div>
     
       <div class="method_details ">
-  <p class="signature " id="clear_active_connection_name-class_method">
+  <p class="signature " id="cassandra_connection-class_method">
   
-    + (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>clear_active_connection_name</strong> 
+    + (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>cassandra_connection</strong>(config) 
   
 
   
-</p><table class="source_code">
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+:nodoc:
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/cassandra_adapter.rb', line 3</span>
+
+<span class='def def kw'>def</span> <span class='self self kw'>self</span><span class='dot token'>.</span><span class='cassandra_connection identifier id'>cassandra_connection</span><span class='lparen token'>(</span><span class='config identifier id'>config</span><span class='rparen token'>)</span> <span class='comment val'># :nodoc:</span>
+  <span class='begin begin kw'>begin</span>
+    <span class='require identifier id'>require</span> <span class='string val'>'cassandra'</span>
+  <span class='rescue rescue kw'>rescue</span> <span class='LoadError constant id'>LoadError</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='e identifier id'>e</span>
+    <span class='puts identifier id'>puts</span> <span class='string val'>&quot;[BigRecord] The 'cassandra' gem is needed for CassandraAdapter. Install it with: gem install cassandra&quot;</span>
+    <span class='raise identifier id'>raise</span> <span class='e identifier id'>e</span>
+  <span class='end end kw'>end</span>
+
+  <span class='config identifier id'>config</span> <span class='assign token'>=</span> <span class='config identifier id'>config</span><span class='dot token'>.</span><span class='symbolize_keys identifier id'>symbolize_keys</span>
+  
+  <span class='client identifier id'>client</span> <span class='assign token'>=</span> <span class='Cassandra constant id'>Cassandra</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='config identifier id'>config</span><span class='lbrack token'>[</span><span class='symbol val'>:keyspace</span><span class='rbrack token'>]</span><span class='comma token'>,</span> <span class='config identifier id'>config</span><span class='lbrack token'>[</span><span class='symbol val'>:servers</span><span class='rbrack token'>]</span><span class='rparen token'>)</span>
+  <span class='ConnectionAdapters constant id'>ConnectionAdapters</span><span class='colon2 op'>::</span><span class='CassandraAdapter constant id'>CassandraAdapter</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='client identifier id'>client</span><span class='comma token'>,</span> <span class='logger identifier id'>logger</span><span class='comma token'>,</span> <span class='lbrack token'>[</span><span class='rbrack token'>]</span><span class='comma token'>,</span> <span class='config identifier id'>config</span><span class='rparen token'>)</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="clear_active_connection_name-class_method">
+  
+    + (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>clear_active_connection_name</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+:nodoc:
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
@@ -1586,7 +1979,7 @@ The base class which inherits BigRecord::Base directly.
       <div class="method_details ">
   <p class="signature " id="clear_active_connections!-class_method">
   
-    + (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>clear_active_connections!</strong> 
+    + (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>clear_active_connections!</strong> 
   
 
   
@@ -1630,7 +2023,7 @@ Clears the cache which maps classes to connections.
       <div class="method_details ">
   <p class="signature " id="clear_reloadable_connections!-class_method">
   
-    + (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>clear_reloadable_connections!</strong> 
+    + (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>clear_reloadable_connections!</strong> 
   
 
   
@@ -1678,59 +2071,9 @@ Clears the cache which maps classes
 </div>
     
       <div class="method_details ">
-  <p class="signature " id="column-class_method">
-  
-    + (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>column</strong>(name, type, options = {}) 
-  
-
-  
-</p><div class="docstring">
-  <div class="discussion">
-    
-
-  </div>
-</div>
-<div class="tags">
-  
-  <h3>See Also:</h3>
-  <ul class="see">
-    
-      <li><a title="BigRecord::AbstractBase.column" href="AbstractBase.html#column-class_method">BigRecord::AbstractBase.column</a></li>
-    
-  </ul>
-
-</div><table class="source_code">
-  <tr>
-    <td>
-      <pre class="lines">
-
-
-487
-488
-489
-490
-491
-492</pre>
-    </td>
-    <td>
-      <pre class="code"><span class="info file"># File 'lib/big_record/base.rb', line 487</span>
-
-<span class='def def kw'>def</span> <span class='column identifier id'>column</span><span class='lparen token'>(</span><span class='name identifier id'>name</span><span class='comma token'>,</span> <span class='type identifier id'>type</span><span class='comma token'>,</span> <span class='options identifier id'>options</span><span class='assign token'>=</span><span class='lbrace token'>{</span><span class='rbrace token'>}</span><span class='rparen token'>)</span>
-  <span class='name identifier id'>name</span> <span class='assign token'>=</span> <span class='name identifier id'>name</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span>
-  <span class='name identifier id'>name</span> <span class='assign token'>=</span> <span class='dstring node'>&quot;#{self.default_family}:#{name}&quot;</span> <span class='unless unless_mod kw'>unless</span> <span class='lparen token'>(</span><span class='name identifier id'>name</span> <span class='match op'>=~</span> <span class='regexp val'>/:/</span><span class='rparen token'>)</span>
-
-  <span class='super super kw'>super</span><span class='lparen token'>(</span><span class='name identifier id'>name</span><span class='comma token'>,</span> <span class='type identifier id'>type</span><span class='comma token'>,</span> <span class='options identifier id'>options</span><span class='rparen token'>)</span>
-<span class='end end kw'>end</span>
-</pre>
-    </td>
-  </tr>
-</table>
-</div>
-    
-      <div class="method_details ">
   <p class="signature " id="columns_to_find-class_method">
   
-    + (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>columns_to_find</strong>(options = {}) 
+    + (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>columns_to_find</strong>(options = {}) 
   
 
   
@@ -1764,10 +2107,10 @@ Returns the column names based on the options argument in order of
               <span class="na">N/A</span>
             
           </span>
-          &mdash;
+          &mdash;<div class='inline'><p>
 List of fully qualified column names or column aliases.
-
-
+</p>
+</div>
         </tr>
       
         <li>
@@ -1778,10 +2121,10 @@ List of fully qualified column names or column aliases.
               <span class="na">N/A</span>
             
           </span>
-          &mdash;
-The name of the view as defined with <tt><a title="view" href="#view-class_method">view</a></tt>.
-
-
+          &mdash;<div class='inline'><p>
+The name of the view as defined with <tt><a href="#view-class_method" title="BigRecord::Base.view (method)">view</a></tt>.
+</p>
+</div>
         </tr>
       
     </ul>
@@ -1793,6 +2136,28 @@ The name of the view as defined with <tt><a title="view" href="#view-class_metho
       <pre class="lines">
 
 
+484
+485
+486
+487
+488
+489
+490
+491
+492
+493
+494
+495
+496
+497
+498
+499
+500
+501
+502
+503
+504
+505
 506
 507
 508
@@ -1801,32 +2166,10 @@ The name of the view as defined with <tt><a title="view" href="#view-class_metho
 511
 512
 513
-514
-515
-516
-517
-518
-519
-520
-521
-522
-523
-524
-525
-526
-527
-528
-529
-530
-531
-532
-533
-534
-535
-536</pre>
+514</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/big_record/base.rb', line 506</span>
+      <pre class="code"><span class="info file"># File 'lib/big_record/base.rb', line 484</span>
 
 <span class='def def kw'>def</span> <span class='columns_to_find identifier id'>columns_to_find</span><span class='lparen token'>(</span><span class='options identifier id'>options</span><span class='assign token'>=</span><span class='lbrace token'>{</span><span class='rbrace token'>}</span><span class='rparen token'>)</span>
   <span class='c identifier id'>c</span> <span class='assign token'>=</span>
@@ -1868,7 +2211,7 @@ The name of the view as defined with <tt><a title="view" href="#view-class_metho
       <div class="method_details ">
   <p class="signature " id="connected?-class_method">
   
-    + (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>connected?</strong> 
+    + (<tt>Boolean</tt>) <strong>connected?</strong> 
   
 
   
@@ -1883,7 +2226,20 @@ already been opened.
   </div>
 </div>
 <div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
   
+    <li>
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
 </div><table class="source_code">
   <tr>
     <td>
@@ -1909,7 +2265,7 @@ already been opened.
       <div class="method_details ">
   <p class="signature " id="connection-class_method">
   
-    + (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>connection</strong> 
+    + (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>connection</strong> 
   
 
   
@@ -1963,7 +2319,7 @@ to any of the specific Active Records.
       <div class="method_details ">
   <p class="signature " id="connection=-class_method">
   
-    + (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>connection=</strong>(spec) 
+    + (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>connection=</strong>(spec) 
   
 
   
@@ -2021,7 +2377,7 @@ Set the connection for the class.
       <div class="method_details ">
   <p class="signature " id="create-class_method">
   
-    + (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>create</strong>(attrs = nil) 
+    + (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>create</strong>(attrs = nil) 
   
 
   
@@ -2044,18 +2400,18 @@ unsaved object is still returned.
       <pre class="lines">
 
 
-322
-323
-324
-325
-326
-327
-328
-329
-330</pre>
+310
+311
+312
+313
+314
+315
+316
+317
+318</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/big_record/base.rb', line 322</span>
+      <pre class="code"><span class="info file"># File 'lib/big_record/base.rb', line 310</span>
 
 <span class='def def kw'>def</span> <span class='create identifier id'>create</span><span class='lparen token'>(</span><span class='attrs identifier id'>attrs</span> <span class='assign token'>=</span> <span class='nil nil kw'>nil</span><span class='rparen token'>)</span>
   <span class='if if kw'>if</span> <span class='attrs identifier id'>attrs</span><span class='dot token'>.</span><span class='is_a? fid id'>is_a?</span><span class='lparen token'>(</span><span class='Array constant id'>Array</span><span class='rparen token'>)</span>
@@ -2073,9 +2429,38 @@ unsaved object is still returned.
 </div>
     
       <div class="method_details ">
+  <p class="signature " id="default_column_prefix-class_method">
+  
+    + (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>default_column_prefix</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+468
+469
+470</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/big_record/base.rb', line 468</span>
+
+<span class='def def kw'>def</span> <span class='default_column_prefix identifier id'>default_column_prefix</span>
+  <span class='dstring node'>&quot;#{default_family}:&quot;</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
   <p class="signature " id="default_columns-class_method">
   
-    + (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>default_columns</strong> 
+    + (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>default_columns</strong> 
   
 
   
@@ -2096,12 +2481,12 @@ Default columns to create with the model, such as primary key.
       <pre class="lines">
 
 
-482
-483
-484</pre>
+464
+465
+466</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/big_record/base.rb', line 482</span>
+      <pre class="code"><span class="info file"># File 'lib/big_record/base.rb', line 464</span>
 
 <span class='def def kw'>def</span> <span class='default_columns identifier id'>default_columns</span>
   <span class='lbrace token'>{</span><span class='primary_key identifier id'>primary_key</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='ConnectionAdapters constant id'>ConnectionAdapters</span><span class='colon2 op'>::</span><span class='Column constant id'>Column</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='primary_key identifier id'>primary_key</span><span class='comma token'>,</span> <span class='string val'>'string'</span><span class='rparen token'>)</span><span class='rbrace token'>}</span>
@@ -2115,7 +2500,7 @@ Default columns to create with the model, such as primary key.
       <div class="method_details ">
   <p class="signature " id="default_family-class_method">
   
-    + (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>default_family</strong> 
+    + (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>default_family</strong> 
   
 
   
@@ -2140,15 +2525,15 @@ Defaults to &quot;attribute&quot;
       <pre class="lines">
 
 
-418
-419
-420</pre>
+400
+401
+402</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/big_record/base.rb', line 418</span>
+      <pre class="code"><span class="info file"># File 'lib/big_record/base.rb', line 400</span>
 
 <span class='def def kw'>def</span> <span class='default_family identifier id'>default_family</span>
-  <span class='lparen token'>(</span><span class='superclass identifier id'>superclass</span> <span class='eq op'>==</span> <span class='BigRecord constant id'>BigRecord</span><span class='colon2 op'>::</span><span class='Base constant id'>Base</span><span class='rparen token'>)</span> <span class='question op'>?</span> <span class='lparen token'>(</span><span class='@default_family ivar id'>@default_family</span> <span class='opasgn op'>||=</span> <span class='string val'>&quot;attribute&quot;</span><span class='rparen token'>)</span> <span class='colon op'>:</span> <span class='superclass identifier id'>superclass</span><span class='dot token'>.</span><span class='default_family identifier id'>default_family</span>
+  <span class='@default_family ivar id'>@default_family</span> <span class='opasgn op'>||=</span> <span class='string val'>&quot;attribute&quot;</span>
 <span class='end end kw'>end</span>
 </pre>
     </td>
@@ -2159,7 +2544,7 @@ Defaults to &quot;attribute&quot;
       <div class="method_details ">
   <p class="signature " id="default_views-class_method">
   
-    + (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>default_views</strong> 
+    + (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>default_views</strong> 
   
 
   
@@ -2181,12 +2566,12 @@ Return the hash of default views which consist of all columns and the
       <pre class="lines">
 
 
-495
-496
-497</pre>
+473
+474
+475</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/big_record/base.rb', line 495</span>
+      <pre class="code"><span class="info file"># File 'lib/big_record/base.rb', line 473</span>
 
 <span class='def def kw'>def</span> <span class='default_views identifier id'>default_views</span>
   <span class='lbrace token'>{</span><span class='symbol val'>:all=</span><span class='gt op'>&gt;</span><span class='ConnectionAdapters constant id'>ConnectionAdapters</span><span class='colon2 op'>::</span><span class='View constant id'>View</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='string val'>'all'</span><span class='comma token'>,</span> <span class='nil nil kw'>nil</span><span class='comma token'>,</span> <span class='self self kw'>self</span><span class='rparen token'>)</span><span class='comma token'>,</span> <span class='symbol val'>:default=</span><span class='gt op'>&gt;</span><span class='ConnectionAdapters constant id'>ConnectionAdapters</span><span class='colon2 op'>::</span><span class='View constant id'>View</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='string val'>'default'</span><span class='comma token'>,</span> <span class='nil nil kw'>nil</span><span class='comma token'>,</span> <span class='self self kw'>self</span><span class='rparen token'>)</span><span class='rbrace token'>}</span>
@@ -2200,7 +2585,7 @@ Return the hash of default views which consist of all columns and the
       <div class="method_details ">
   <p class="signature " id="delete-class_method">
   
-    + (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>delete</strong>(id) 
+    + (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>delete</strong>(id) 
   
 
   
@@ -2222,16 +2607,16 @@ object first. If an array of ids is provided, all of them are deleted.
       <pre class="lines">
 
 
-357
-358
-359
-360
-361
-362
-363</pre>
+345
+346
+347
+348
+349
+350
+351</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/big_record/base.rb', line 357</span>
+      <pre class="code"><span class="info file"># File 'lib/big_record/base.rb', line 345</span>
 
 <span class='def def kw'>def</span> <span class='delete identifier id'>delete</span><span class='lparen token'>(</span><span class='id identifier id'>id</span><span class='rparen token'>)</span>
   <span class='if if kw'>if</span> <span class='id identifier id'>id</span><span class='dot token'>.</span><span class='is_a? fid id'>is_a?</span><span class='lparen token'>(</span><span class='Array constant id'>Array</span><span class='rparen token'>)</span>
@@ -2249,7 +2634,7 @@ object first. If an array of ids is provided, all of them are deleted.
       <div class="method_details ">
   <p class="signature " id="delete_all-class_method">
   
-    + (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>delete_all</strong>(conditions = nil) 
+    + (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>delete_all</strong>(conditions = nil) 
   
 
   
@@ -2258,10 +2643,10 @@ object first. If an array of ids is provided, all of them are deleted.
     
   <p class="note todo">
     <strong>TODO:</strong> 
-    
+    <div class='inline'><p>
 take into consideration the conditions
-
-
+</p>
+</div>
   </p>
 
 <p>
@@ -2284,14 +2669,14 @@ Example:
       <pre class="lines">
 
 
-390
-391
-392
-393
-394</pre>
+378
+379
+380
+381
+382</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/big_record/base.rb', line 390</span>
+      <pre class="code"><span class="info file"># File 'lib/big_record/base.rb', line 378</span>
 
 <span class='def def kw'>def</span> <span class='delete_all identifier id'>delete_all</span><span class='lparen token'>(</span><span class='conditions identifier id'>conditions</span> <span class='assign token'>=</span> <span class='nil nil kw'>nil</span><span class='rparen token'>)</span>
   <span class='connection identifier id'>connection</span><span class='dot token'>.</span><span class='get_consecutive_rows identifier id'>get_consecutive_rows</span><span class='lparen token'>(</span><span class='table_name identifier id'>table_name</span><span class='comma token'>,</span> <span class='nil nil kw'>nil</span><span class='comma token'>,</span> <span class='nil nil kw'>nil</span><span class='comma token'>,</span> <span class='lbrack token'>[</span><span class='dstring node'>&quot;#{default_family}:&quot;</span><span class='rbrack token'>]</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='each identifier id'>each</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='row identifier id'>row</span><span class='bitor op'>|</span>
@@ -2307,7 +2692,7 @@ Example:
       <div class="method_details ">
   <p class="signature " id="destroy-class_method">
   
-    + (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>destroy</strong>(id) 
+    + (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>destroy</strong>(id) 
   
 
   
@@ -2330,12 +2715,12 @@ ids is provided, all of them are destroyed.
       <pre class="lines">
 
 
-367
-368
-369</pre>
+355
+356
+357</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/big_record/base.rb', line 367</span>
+      <pre class="code"><span class="info file"># File 'lib/big_record/base.rb', line 355</span>
 
 <span class='def def kw'>def</span> <span class='destroy identifier id'>destroy</span><span class='lparen token'>(</span><span class='id identifier id'>id</span><span class='rparen token'>)</span>
   <span class='id identifier id'>id</span><span class='dot token'>.</span><span class='is_a? fid id'>is_a?</span><span class='lparen token'>(</span><span class='Array constant id'>Array</span><span class='rparen token'>)</span> <span class='question op'>?</span> <span class='id identifier id'>id</span><span class='dot token'>.</span><span class='each identifier id'>each</span> <span class='lbrace token'>{</span> <span class='bitor op'>|</span><span class='a identifier id'>a</span><span class='bitor op'>|</span> <span class='destroy identifier id'>destroy</span><span class='lparen token'>(</span><span class='a identifier id'>a</span><span class='rparen token'>)</span> <span class='rbrace token'>}</span> <span class='colon op'>:</span> <span class='find identifier id'>find</span><span class='lparen token'>(</span><span class='id identifier id'>id</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='destroy identifier id'>destroy</span>
@@ -2349,7 +2734,7 @@ ids is provided, all of them are destroyed.
       <div class="method_details ">
   <p class="signature " id="destroy_all-class_method">
   
-    + (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>destroy_all</strong>(conditions = nil) 
+    + (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>destroy_all</strong>(conditions = nil) 
   
 
   
@@ -2374,12 +2759,12 @@ by instantiating each object and calling the destroy method. Example:
       <pre class="lines">
 
 
-381
-382
-383</pre>
+369
+370
+371</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/big_record/base.rb', line 381</span>
+      <pre class="code"><span class="info file"># File 'lib/big_record/base.rb', line 369</span>
 
 <span class='def def kw'>def</span> <span class='destroy_all identifier id'>destroy_all</span><span class='lparen token'>(</span><span class='conditions identifier id'>conditions</span> <span class='assign token'>=</span> <span class='nil nil kw'>nil</span><span class='rparen token'>)</span>
   <span class='find identifier id'>find</span><span class='lparen token'>(</span><span class='symbol val'>:all</span><span class='comma token'>,</span> <span class='symbol val'>:conditions</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='conditions identifier id'>conditions</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='each identifier id'>each</span> <span class='lbrace token'>{</span> <span class='bitor op'>|</span><span class='object identifier id'>object</span><span class='bitor op'>|</span> <span class='object identifier id'>object</span><span class='dot token'>.</span><span class='destroy identifier id'>destroy</span> <span class='rbrace token'>}</span>
@@ -2393,7 +2778,7 @@ by instantiating each object and calling the destroy method. Example:
       <div class="method_details ">
   <p class="signature " id="establish_connection-class_method">
   
-    + (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>establish_connection</strong>(spec = nil) 
+    + (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>establish_connection</strong>(spec = nil) 
   
 
   
@@ -2508,7 +2893,7 @@ be returned on an error.
       <div class="method_details ">
   <p class="signature " id="exists?-class_method">
   
-    + (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>exists?</strong>(id) 
+    + (<tt>Boolean</tt>) <strong>exists?</strong>(id) 
   
 
   
@@ -2523,21 +2908,34 @@ record in the database, false otherwise.
   </div>
 </div>
 <div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
   
+    <li>
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
 </div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-314
-315
-316
-317
-318</pre>
+302
+303
+304
+305
+306</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/big_record/base.rb', line 314</span>
+      <pre class="code"><span class="info file"># File 'lib/big_record/base.rb', line 302</span>
 
 <span class='def def kw'>def</span> <span class='exists? fid id'>exists?</span><span class='lparen token'>(</span><span class='id identifier id'>id</span><span class='rparen token'>)</span>
   <span class='notop op'>!</span><span class='find identifier id'>find</span><span class='lparen token'>(</span><span class='id identifier id'>id</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='nil? fid id'>nil?</span>
@@ -2553,7 +2951,7 @@ record in the database, false otherwise.
       <div class="method_details ">
   <p class="signature " id="families-class_method">
   
-    + (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>families</strong> 
+    + (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>families</strong> 
   
 
   
@@ -2574,12 +2972,12 @@ Return the list of families for this class
       <pre class="lines">
 
 
-241
-242
-243</pre>
+239
+240
+241</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/big_record/base.rb', line 241</span>
+      <pre class="code"><span class="info file"># File 'lib/big_record/base.rb', line 239</span>
 
 <span class='def def kw'>def</span> <span class='families identifier id'>families</span>
   <span class='columns identifier id'>columns</span><span class='dot token'>.</span><span class='collect identifier id'>collect</span><span class='lparen token'>(</span><span class='bitand op'>&amp;</span><span class='symbol val'>:family</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='uniq identifier id'>uniq</span>
@@ -2593,7 +2991,7 @@ Return the list of families for this class
       <div class="method_details ">
   <p class="signature " id="find-class_method">
   
-    + (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>find</strong>(*args) 
+    + (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>find</strong>(*args) 
   
 
   
@@ -2603,6 +3001,8 @@ Return the list of families for this class
       <pre class="lines">
 
 
+283
+284
 285
 286
 287
@@ -2617,12 +3017,10 @@ Return the list of families for this class
 296
 297
 298
-299
-300
-301</pre>
+299</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/big_record/base.rb', line 285</span>
+      <pre class="code"><span class="info file"># File 'lib/big_record/base.rb', line 283</span>
 
 <span class='def def kw'>def</span> <span class='find identifier id'>find</span><span class='lparen token'>(</span><span class='mult op'>*</span><span class='args identifier id'>args</span><span class='rparen token'>)</span>
   <span class='options identifier id'>options</span> <span class='assign token'>=</span> <span class='extract_options_from_args! fid id'>extract_options_from_args!</span><span class='lparen token'>(</span><span class='args identifier id'>args</span><span class='rparen token'>)</span>
@@ -2648,49 +3046,9 @@ Return the list of families for this class
 </div>
     
       <div class="method_details ">
-  <p class="signature " id="first-class_method">
-  
-    + (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>first</strong> 
-  
-
-  
-</p><div class="docstring">
-  <div class="discussion">
-    <p>
-Returns the first record for the model by invoke find(:first)
-</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-</div><table class="source_code">
-  <tr>
-    <td>
-      <pre class="lines">
-
-
-309
-310
-311</pre>
-    </td>
-    <td>
-      <pre class="code"><span class="info file"># File 'lib/big_record/base.rb', line 309</span>
-
-<span class='def def kw'>def</span> <span class='first identifier id'>first</span>
-  <span class='find identifier id'>find</span><span class='lparen token'>(</span><span class='symbol val'>:first</span><span class='rparen token'>)</span>
-<span class='end end kw'>end</span>
-</pre>
-    </td>
-  </tr>
-</table>
-</div>
-    
-      <div class="method_details ">
   <p class="signature " id="hbase_connection-class_method">
   
-    + (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>hbase_connection</strong>(config) 
+    + (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>hbase_connection</strong>(config) 
   
 
   
@@ -2712,6 +3070,7 @@ Record objects.
       <pre class="lines">
 
 
+7
 8
 9
 10
@@ -2729,36 +3088,17 @@ Record objects.
 22
 23
 24
-25
-26
-27
-28
-29
-30
-31
-32
-33
-34
-35</pre>
+25</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/hbase_adapter.rb', line 8</span>
+      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/hbase_adapter.rb', line 7</span>
 
-<span class='def def kw'>def</span> <span class='self self kw'>self</span><span class='dot token'>.</span><span class='hbase_connection identifier id'>hbase_connection</span><span class='lparen token'>(</span><span class='config identifier id'>config</span><span class='rparen token'>)</span> <span class='comment val'># :nodoc:</span>
-  <span class='unless unless kw'>unless</span> <span class='defined? defined kw'>defined?</span><span class='lparen token'>(</span><span class='BigRecordDriver constant id'>BigRecordDriver</span><span class='rparen token'>)</span>
-    <span class='begin begin kw'>begin</span>
-      <span class='comment val'># Bigrecord's source is included with Bigrecord-Driver, that's where we check for it first.</span>
-      <span class='require identifier id'>require</span> <span class='File constant id'>File</span><span class='dot token'>.</span><span class='join identifier id'>join</span><span class='lparen token'>(</span><span class='File constant id'>File</span><span class='dot token'>.</span><span class='dirname identifier id'>dirname</span><span class='lparen token'>(</span><span class='__FILE__ __file__ kw'>__FILE__</span><span class='rparen token'>)</span><span class='comma token'>,</span> <span class='string val'>&quot;..&quot;</span><span class='comma token'>,</span> <span class='string val'>&quot;..&quot;</span><span class='comma token'>,</span> <span class='string val'>&quot;..&quot;</span><span class='comma token'>,</span> <span class='string val'>&quot;..&quot;</span><span class='comma token'>,</span> <span class='string val'>&quot;bigrecord-driver&quot;</span><span class='comma token'>,</span> <span class='string val'>&quot;lib&quot;</span><span class='comma token'>,</span> <span class='string val'>&quot;big_record_driver&quot;</span><span class='rparen token'>)</span>
-    <span class='rescue rescue kw'>rescue</span> <span class='LoadError constant id'>LoadError</span>
-      <span class='comment val'># Then we'll require it from the load path (or rubygems)</span>
-      <span class='begin begin kw'>begin</span>
-        <span class='require identifier id'>require</span> <span class='string val'>'bigrecord_driver'</span>
-      <span class='rescue rescue kw'>rescue</span> <span class='LoadError constant id'>LoadError</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='e identifier id'>e</span>
-        <span class='comment val'># If it couldn't be found, we'll just prompt the user to install the gem.</span>
-        <span class='puts identifier id'>puts</span> <span class='string val'>&quot;[BigRecord] bigrecord-driver is needed for HbaseAdapter. Install it with: gem install bigrecord-driver&quot;</span>
-        <span class='raise identifier id'>raise</span> <span class='e identifier id'>e</span>
-      <span class='end end kw'>end</span>
-    <span class='end end kw'>end</span>
+<span class='def def kw'>def</span> <span class='self self kw'>self</span><span class='dot token'>.</span><span class='hbase_connection identifier id'>hbase_connection</span><span class='lparen token'>(</span><span class='config identifier id'>config</span><span class='rparen token'>)</span>
+  <span class='begin begin kw'>begin</span>
+    <span class='require identifier id'>require</span> <span class='string val'>'big_record_driver'</span>
+  <span class='rescue rescue kw'>rescue</span> <span class='LoadError constant id'>LoadError</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='e identifier id'>e</span>
+    <span class='puts identifier id'>puts</span> <span class='string val'>&quot;[BigRecord] bigrecord-driver is needed for HbaseAdapter. Install it with: gem install bigrecord-driver&quot;</span>
+    <span class='raise identifier id'>raise</span> <span class='e identifier id'>e</span>
   <span class='end end kw'>end</span>
 
   <span class='config identifier id'>config</span> <span class='assign token'>=</span> <span class='config identifier id'>config</span><span class='dot token'>.</span><span class='symbolize_keys identifier id'>symbolize_keys</span>
@@ -2768,7 +3108,7 @@ Record objects.
   <span class='drb_host identifier id'>drb_host</span>                <span class='assign token'>=</span> <span class='config identifier id'>config</span><span class='lbrack token'>[</span><span class='symbol val'>:drb_host</span><span class='rbrack token'>]</span>
   <span class='drb_port identifier id'>drb_port</span>                <span class='assign token'>=</span> <span class='config identifier id'>config</span><span class='lbrack token'>[</span><span class='symbol val'>:drb_port</span><span class='rbrack token'>]</span>
 
-  <span class='hbase identifier id'>hbase</span> <span class='assign token'>=</span> <span class='BigRecordDriver constant id'>BigRecordDriver</span><span class='colon2 op'>::</span><span class='Client constant id'>Client</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='config identifier id'>config</span><span class='rparen token'>)</span>
+  <span class='hbase identifier id'>hbase</span> <span class='assign token'>=</span> <span class='BigRecord constant id'>BigRecord</span><span class='colon2 op'>::</span><span class='Driver constant id'>Driver</span><span class='colon2 op'>::</span><span class='Client constant id'>Client</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='config identifier id'>config</span><span class='rparen token'>)</span>
 
   <span class='ConnectionAdapters constant id'>ConnectionAdapters</span><span class='colon2 op'>::</span><span class='HbaseAdapter constant id'>HbaseAdapter</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='hbase identifier id'>hbase</span><span class='comma token'>,</span> <span class='logger identifier id'>logger</span><span class='comma token'>,</span> <span class='lbrack token'>[</span><span class='zookeeper_host identifier id'>zookeeper_host</span><span class='comma token'>,</span> <span class='zookeeper_client_port identifier id'>zookeeper_client_port</span><span class='rbrack token'>]</span><span class='comma token'>,</span> <span class='config identifier id'>config</span><span class='rparen token'>)</span>
 <span class='end end kw'>end</span>
@@ -2781,7 +3121,7 @@ Record objects.
       <div class="method_details ">
   <p class="signature " id="hbase_rest_connection-class_method">
   
-    + (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>hbase_rest_connection</strong>(config) 
+    + (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>hbase_rest_connection</strong>(config) 
   
 
   
@@ -2823,16 +3163,16 @@ Record objects.
 
 <span class='def def kw'>def</span> <span class='self self kw'>self</span><span class='dot token'>.</span><span class='hbase_rest_connection identifier id'>hbase_rest_connection</span><span class='lparen token'>(</span><span class='config identifier id'>config</span><span class='rparen token'>)</span> <span class='comment val'># :nodoc:</span>
   <span class='begin begin kw'>begin</span>
-    <span class='require identifier id'>require</span> <span class='string val'>'hbase'</span>
+    <span class='require identifier id'>require</span> <span class='string val'>'stargate'</span>
   <span class='rescue rescue kw'>rescue</span> <span class='LoadError constant id'>LoadError</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='e identifier id'>e</span>
-    <span class='puts identifier id'>puts</span> <span class='string val'>&quot;[BigRecord] hbase-ruby is needed for HbaseRestAdapter. Install it with: gem install hbase-ruby&quot;</span>
+    <span class='puts identifier id'>puts</span> <span class='string val'>&quot;[BigRecord] hbase-stargate is needed for HbaseRestAdapter. Install it with: gem install hbase-stargate&quot;</span>
     <span class='raise identifier id'>raise</span> <span class='e identifier id'>e</span>
   <span class='end end kw'>end</span>
 
   <span class='config identifier id'>config</span> <span class='assign token'>=</span> <span class='config identifier id'>config</span><span class='dot token'>.</span><span class='symbolize_keys identifier id'>symbolize_keys</span>
 
   <span class='api_address identifier id'>api_address</span> <span class='assign token'>=</span> <span class='config identifier id'>config</span><span class='lbrack token'>[</span><span class='symbol val'>:api_address</span><span class='rbrack token'>]</span>
-  <span class='hbase identifier id'>hbase</span> <span class='assign token'>=</span> <span class='HBase constant id'>HBase</span><span class='colon2 op'>::</span><span class='Client constant id'>Client</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='api_address identifier id'>api_address</span><span class='rparen token'>)</span>
+  <span class='hbase identifier id'>hbase</span> <span class='assign token'>=</span> <span class='Stargate constant id'>Stargate</span><span class='colon2 op'>::</span><span class='Client constant id'>Client</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='api_address identifier id'>api_address</span><span class='rparen token'>)</span>
   <span class='ConnectionAdapters constant id'>ConnectionAdapters</span><span class='colon2 op'>::</span><span class='HbaseRestAdapter constant id'>HbaseRestAdapter</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='hbase identifier id'>hbase</span><span class='comma token'>,</span> <span class='logger identifier id'>logger</span><span class='comma token'>,</span> <span class='lbrack token'>[</span><span class='rbrack token'>]</span><span class='comma token'>,</span> <span class='config identifier id'>config</span><span class='rparen token'>)</span>
 <span class='end end kw'>end</span>
 </pre>
@@ -2844,13 +3184,16 @@ Record objects.
       <div class="method_details ">
   <p class="signature " id="inherited-class_method">
   
-    + (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>inherited</strong>(child) 
+    + (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>inherited</strong>(child) 
   
 
   
 </p><div class="docstring">
   <div class="discussion">
-    
+    <p>
+:nodoc:
+</p>
+
 
   </div>
 </div>
@@ -2862,15 +3205,15 @@ Record objects.
       <pre class="lines">
 
 
+7
 8
 9
 10
 11
-12
-13</pre>
+12</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/big_record/base.rb', line 8</span>
+      <pre class="code"><span class="info file"># File 'lib/big_record/base.rb', line 7</span>
 
 <span class='def def kw'>def</span> <span class='self self kw'>self</span><span class='dot token'>.</span><span class='inherited identifier id'>inherited</span><span class='lparen token'>(</span><span class='child identifier id'>child</span><span class='rparen token'>)</span> <span class='comment val'>#:nodoc:</span>
   <span class='@@subclasses ivar id'>@@subclasses</span><span class='lbrack token'>[</span><span class='self self kw'>self</span><span class='rbrack token'>]</span> <span class='opasgn op'>||=</span> <span class='lbrack token'>[</span><span class='rbrack token'>]</span>
@@ -2887,7 +3230,7 @@ Record objects.
       <div class="method_details ">
   <p class="signature " id="log_connections-class_method">
   
-    + (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>log_connections</strong> 
+    + (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>log_connections</strong> 
   
 
   
@@ -2935,7 +3278,7 @@ connection state logging
       <div class="method_details ">
   <p class="signature " id="primary_key-class_method">
   
-    + (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>primary_key</strong> 
+    + (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>primary_key</strong> 
   
 
   
@@ -2956,12 +3299,12 @@ Return the name of the primary key. Defaults to &quot;id&quot;.
       <pre class="lines">
 
 
-236
-237
-238</pre>
+234
+235
+236</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/big_record/base.rb', line 236</span>
+      <pre class="code"><span class="info file"># File 'lib/big_record/base.rb', line 234</span>
 
 <span class='def def kw'>def</span> <span class='primary_key identifier id'>primary_key</span>
   <span class='@primary_key ivar id'>@primary_key</span> <span class='opasgn op'>||=</span> <span class='string val'>&quot;id&quot;</span>
@@ -2975,7 +3318,7 @@ Return the name of the primary key. Defaults to &quot;id&quot;.
       <div class="method_details ">
   <p class="signature " id="remove_connection-class_method">
   
-    + (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>remove_connection</strong>(klass = self) 
+    + (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>remove_connection</strong>(klass = self) 
   
 
   
@@ -3028,7 +3371,7 @@ connection.
       <div class="method_details ">
   <p class="signature " id="retrieve_connection-class_method">
   
-    + (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>retrieve_connection</strong> 
+    + (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>retrieve_connection</strong> 
   
 
   
@@ -3099,7 +3442,7 @@ current class).
       <div class="method_details ">
   <p class="signature " id="scan-class_method">
   
-    + (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>scan</strong>(options = {}, &amp;code) 
+    + (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>scan</strong>(options = {}, &amp;code) 
   
 
   
@@ -3118,8 +3461,8 @@ record
   <div class="examples">
     <h3>Examples:</h3>
     
-      <h4></h4>
-      <pre class="example code">   <span class='Entity constant id'>Entity</span><span class='dot token'>.</span><span class='scan identifier id'>scan</span><span class='lparen token'>(</span><span class='symbol val'>:batch_size</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='integer val'>200</span><span class='rparen token'>)</span> <span class='lbrace token'>{</span><span class='bitor op'>|</span><span class='e identifier id'>e</span><span class='bitor op'>|</span><span class='puts identifier id'>puts</span> <span class='dstring node'>&quot;#{e.name} is a child!&quot;</span> <span class='if if_mod kw'>if</span> <span class='e identifier id'>e</span><span class='dot token'>.</span><span class='parent identifier id'>parent</span><span class='rbrace token'>}</span>
+      <h4><div class='inline'></div></h4>
+      <pre class="example code"><span class='Entity constant id'>Entity</span><span class='dot token'>.</span><span class='scan identifier id'>scan</span><span class='lparen token'>(</span><span class='symbol val'>:batch_size</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='integer val'>200</span><span class='rparen token'>)</span> <span class='lbrace token'>{</span><span class='bitor op'>|</span><span class='e identifier id'>e</span><span class='bitor op'>|</span><span class='puts identifier id'>puts</span> <span class='dstring node'>&quot;#{e.name} is a child!&quot;</span> <span class='if if_mod kw'>if</span> <span class='e identifier id'>e</span><span class='dot token'>.</span><span class='parent identifier id'>parent</span><span class='rbrace token'>}</span>
 </pre>
     
   </div>
@@ -3138,12 +3481,12 @@ record
               <span class="na">N/A</span>
             
           </span>
-          &mdash;<ul>
+          &mdash;<div class='inline'><ul>
 <li>number of records to retrieve from database with each scan iteration.
 
 </li>
 </ul>
-
+</div>
         </tr>
       
         <li>
@@ -3154,12 +3497,12 @@ record
               <span class="na">N/A</span>
             
           </span>
-          &mdash;<ul>
+          &mdash;<div class='inline'><ul>
 <li>the code to execute (see example above for syntax)
 
 </li>
 </ul>
-
+</div>
         </tr>
       
     </ul>
@@ -3173,6 +3516,8 @@ record
       <pre class="lines">
 
 
+251
+252
 253
 254
 255
@@ -3201,12 +3546,10 @@ record
 278
 279
 280
-281
-282
-283</pre>
+281</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/big_record/base.rb', line 253</span>
+      <pre class="code"><span class="info file"># File 'lib/big_record/base.rb', line 251</span>
 
 <span class='def def kw'>def</span> <span class='scan identifier id'>scan</span><span class='lparen token'>(</span><span class='options identifier id'>options</span><span class='assign token'>=</span><span class='lbrace token'>{</span><span class='rbrace token'>}</span><span class='comma token'>,</span> <span class='bitand op'>&amp;</span><span class='code identifier id'>code</span><span class='rparen token'>)</span>
   <span class='options identifier id'>options</span> <span class='assign token'>=</span> <span class='options identifier id'>options</span><span class='dot token'>.</span><span class='dup identifier id'>dup</span>
@@ -3248,7 +3591,7 @@ record
       <div class="method_details ">
   <p class="signature " id="set_default_family-class_method">
   
-    + (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>set_default_family</strong>(name) 
+    + (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>set_default_family</strong>(name) 
   
 
   
@@ -3267,8 +3610,8 @@ family set explicitly.
   <div class="examples">
     <h3>Examples:</h3>
     
-      <h4></h4>
-      <pre class="example code">  <span class='set_default_family identifier id'>set_default_family</span> <span class='symbol val'>:attr</span>  <span class='comment val'># instead of using :attribute as the default.</span>
+      <h4><div class='inline'></div></h4>
+      <pre class="example code"><span class='set_default_family identifier id'>set_default_family</span> <span class='symbol val'>:attr</span>  <span class='comment val'># instead of using :attribute as the default.</span>
 </pre>
     
   </div>
@@ -3279,12 +3622,12 @@ family set explicitly.
       <pre class="lines">
 
 
-426
-427
-428</pre>
+408
+409
+410</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/big_record/base.rb', line 426</span>
+      <pre class="code"><span class="info file"># File 'lib/big_record/base.rb', line 408</span>
 
 <span class='def def kw'>def</span> <span class='set_default_family identifier id'>set_default_family</span><span class='lparen token'>(</span><span class='name identifier id'>name</span><span class='rparen token'>)</span>
   <span class='@default_family ivar id'>@default_family</span> <span class='assign token'>=</span> <span class='name identifier id'>name</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span>
@@ -3298,43 +3641,22 @@ family set explicitly.
       <div class="method_details ">
   <p class="signature " id="set_table_name-class_method">
   
-    + (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>set_table_name</strong>(name) 
+    + (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>set_table_name</strong>(name) 
   
 
   
-</p><div class="docstring">
-  <div class="discussion">
-    <p>
-If you want to avoid the table name inflection, you can define the name
-explicitly with this method.
-</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-  <div class="examples">
-    <h3>Examples:</h3>
-    
-      <h4></h4>
-      <pre class="example code">  <span class='set_table_name identifier id'>set_table_name</span> <span class='symbol val'>:table_xyz</span>
-</pre>
-    
-  </div>
-
-</div><table class="source_code">
+</p><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-411
-412
-413</pre>
+393
+394
+395</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/big_record/base.rb', line 411</span>
+      <pre class="code"><span class="info file"># File 'lib/big_record/base.rb', line 393</span>
 
 <span class='def def kw'>def</span> <span class='set_table_name identifier id'>set_table_name</span><span class='lparen token'>(</span><span class='name identifier id'>name</span><span class='rparen token'>)</span>
   <span class='@table_name ivar id'>@table_name</span> <span class='assign token'>=</span> <span class='name identifier id'>name</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span>
@@ -3348,11 +3670,22 @@ explicitly with this method.
       <div class="method_details ">
   <p class="signature " id="single_threaded_active_connections-class_method">
   
-    + (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>single_threaded_active_connections</strong> 
+    + (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>single_threaded_active_connections</strong> 
   
 
   
-</p><table class="source_code">
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+:nodoc:
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
@@ -3377,36 +3710,25 @@ explicitly with this method.
       <div class="method_details ">
   <p class="signature " id="table_name-class_method">
   
-    + (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>table_name</strong> 
+    + (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>table_name</strong> 
   
 
   
-</p><div class="docstring">
-  <div class="discussion">
-    <p>
-Returns the inflected table name as it&#8217;s called in your database.
-</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-</div><table class="source_code">
+</p><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-402
-403
-404</pre>
+389
+390
+391</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/big_record/base.rb', line 402</span>
+      <pre class="code"><span class="info file"># File 'lib/big_record/base.rb', line 389</span>
 
 <span class='def def kw'>def</span> <span class='table_name identifier id'>table_name</span>
-  <span class='lparen token'>(</span><span class='superclass identifier id'>superclass</span> <span class='eq op'>==</span> <span class='BigRecord constant id'>BigRecord</span><span class='colon2 op'>::</span><span class='Base constant id'>Base</span><span class='rparen token'>)</span> <span class='question op'>?</span> <span class='@table_name ivar id'>@table_name</span> <span class='colon op'>:</span> <span class='superclass identifier id'>superclass</span><span class='dot token'>.</span><span class='table_name identifier id'>table_name</span>
+  <span class='@table_name ivar id'>@table_name</span> <span class='orop op'>||</span> <span class='superclass identifier id'>superclass</span><span class='dot token'>.</span><span class='table_name identifier id'>table_name</span>
 <span class='end end kw'>end</span>
 </pre>
     </td>
@@ -3417,9 +3739,13 @@ Returns the inflected table name as it&#8217;s called in your database.
       <div class="method_details ">
   <p class="signature " id="thread_safe_active_connections-class_method">
   
-    + (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>thread_safe_active_connections</strong> 
+    + (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>thread_safe_active_connections</strong> 
   
 
+  
+    <span class="aliases">Also known as:
+    <span class="names"><span id='active_connections-class_method'>active_connections</span></span>
+    </span>
   
 </p><div class="docstring">
   <div class="discussion">
@@ -3457,7 +3783,7 @@ Retrieve the connection cache.
       <div class="method_details ">
   <p class="signature " id="truncate-class_method">
   
-    + (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>truncate</strong> 
+    + (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>truncate</strong> 
   
 
   
@@ -3478,12 +3804,12 @@ Truncate the table for this model
       <pre class="lines">
 
 
-397
-398
-399</pre>
+385
+386
+387</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/big_record/base.rb', line 397</span>
+      <pre class="code"><span class="info file"># File 'lib/big_record/base.rb', line 385</span>
 
 <span class='def def kw'>def</span> <span class='truncate identifier id'>truncate</span>
   <span class='connection identifier id'>connection</span><span class='dot token'>.</span><span class='truncate_table identifier id'>truncate_table</span><span class='lparen token'>(</span><span class='table_name identifier id'>table_name</span><span class='rparen token'>)</span>
@@ -3497,7 +3823,7 @@ Truncate the table for this model
       <div class="method_details ">
   <p class="signature " id="update-class_method">
   
-    + (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>update</strong>(id, attributes) 
+    + (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>update</strong>(id, attributes) 
   
 
   
@@ -3522,19 +3848,19 @@ of objects is returned.
   <div class="examples">
     <h3>Examples:</h3>
     
-      <h4>
+      <h4><div class='inline'><p>
 of updating one record:
-
-</h4>
-      <pre class="example code">  <span class='Person constant id'>Person</span><span class='dot token'>.</span><span class='update identifier id'>update</span><span class='lparen token'>(</span><span class='integer val'>15</span><span class='comma token'>,</span> <span class='lbrace token'>{</span><span class='symbol val'>:user_name</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>'Samuel'</span><span class='comma token'>,</span> <span class='symbol val'>:group</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>'expert'</span><span class='rbrace token'>}</span><span class='rparen token'>)</span>
+</p>
+</div></h4>
+      <pre class="example code"><span class='Person constant id'>Person</span><span class='dot token'>.</span><span class='update identifier id'>update</span><span class='lparen token'>(</span><span class='integer val'>15</span><span class='comma token'>,</span> <span class='lbrace token'>{</span><span class='symbol val'>:user_name</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>'Samuel'</span><span class='comma token'>,</span> <span class='symbol val'>:group</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>'expert'</span><span class='rbrace token'>}</span><span class='rparen token'>)</span>
 </pre>
     
-      <h4>
+      <h4><div class='inline'><p>
 of updating multiple records:
-
-</h4>
-      <pre class="example code">  <span class='people identifier id'>people</span> <span class='assign token'>=</span> <span class='lbrace token'>{</span> <span class='integer val'>1</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='lbrace token'>{</span> <span class='string val'>&quot;first_name&quot;</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>&quot;David&quot;</span> <span class='rbrace token'>}</span><span class='comma token'>,</span> <span class='integer val'>2</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='lbrace token'>{</span> <span class='string val'>&quot;first_name&quot;</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>&quot;Jeremy&quot;</span><span class='rbrace token'>}</span> <span class='rbrace token'>}</span>
-  <span class='Person constant id'>Person</span><span class='dot token'>.</span><span class='update identifier id'>update</span><span class='lparen token'>(</span><span class='people identifier id'>people</span><span class='dot token'>.</span><span class='keys identifier id'>keys</span><span class='comma token'>,</span> <span class='people identifier id'>people</span><span class='dot token'>.</span><span class='values identifier id'>values</span><span class='rparen token'>)</span>
+</p>
+</div></h4>
+      <pre class="example code"><span class='people identifier id'>people</span> <span class='assign token'>=</span> <span class='lbrace token'>{</span> <span class='integer val'>1</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='lbrace token'>{</span> <span class='string val'>&quot;first_name&quot;</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>&quot;David&quot;</span> <span class='rbrace token'>}</span><span class='comma token'>,</span> <span class='integer val'>2</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='lbrace token'>{</span> <span class='string val'>&quot;first_name&quot;</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>&quot;Jeremy&quot;</span><span class='rbrace token'>}</span> <span class='rbrace token'>}</span>
+<span class='Person constant id'>Person</span><span class='dot token'>.</span><span class='update identifier id'>update</span><span class='lparen token'>(</span><span class='people identifier id'>people</span><span class='dot token'>.</span><span class='keys identifier id'>keys</span><span class='comma token'>,</span> <span class='people identifier id'>people</span><span class='dot token'>.</span><span class='values identifier id'>values</span><span class='rparen token'>)</span>
 </pre>
     
   </div>
@@ -3545,19 +3871,19 @@ of updating multiple records:
       <pre class="lines">
 
 
-344
-345
-346
-347
-348
-349
-350
-351
-352
-353</pre>
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/big_record/base.rb', line 344</span>
+      <pre class="code"><span class="info file"># File 'lib/big_record/base.rb', line 332</span>
 
 <span class='def def kw'>def</span> <span class='update identifier id'>update</span><span class='lparen token'>(</span><span class='id identifier id'>id</span><span class='comma token'>,</span> <span class='attributes identifier id'>attributes</span><span class='rparen token'>)</span>
   <span class='if if kw'>if</span> <span class='id identifier id'>id</span><span class='dot token'>.</span><span class='is_a? fid id'>is_a?</span><span class='lparen token'>(</span><span class='Array constant id'>Array</span><span class='rparen token'>)</span>
@@ -3578,7 +3904,7 @@ of updating multiple records:
       <div class="method_details ">
   <p class="signature " id="update_all-class_method">
   
-    + (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>update_all</strong>(updates, conditions = nil) 
+    + (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>update_all</strong>(updates, conditions = nil) 
   
 
   
@@ -3603,7 +3929,7 @@ Example:
   
     <li>
       
-        <span class='type'>(<tt><a title="NotImplemented" href="NotImplemented.html">NotImplemented</a></tt>)</span>
+        <span class='type'>(<tt><a href="NotImplemented.html" title="BigRecord::NotImplemented (class)">NotImplemented</a></tt>)</span>
       
       
       
@@ -3618,12 +3944,12 @@ Example:
       <pre class="lines">
 
 
-374
-375
-376</pre>
+362
+363
+364</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/big_record/base.rb', line 374</span>
+      <pre class="code"><span class="info file"># File 'lib/big_record/base.rb', line 362</span>
 
 <span class='def def kw'>def</span> <span class='update_all identifier id'>update_all</span><span class='lparen token'>(</span><span class='updates identifier id'>updates</span><span class='comma token'>,</span> <span class='conditions identifier id'>conditions</span> <span class='assign token'>=</span> <span class='nil nil kw'>nil</span><span class='rparen token'>)</span>
   <span class='raise identifier id'>raise</span> <span class='NotImplemented constant id'>NotImplemented</span><span class='comma token'>,</span> <span class='string val'>&quot;update_all&quot;</span>
@@ -3637,7 +3963,7 @@ Example:
       <div class="method_details ">
   <p class="signature " id="verify_active_connections!-class_method">
   
-    + (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>verify_active_connections!</strong> 
+    + (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>verify_active_connections!</strong> 
   
 
   
@@ -3693,7 +4019,7 @@ Verify active connections.
       <div class="method_details ">
   <p class="signature " id="view-class_method">
   
-    + (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>view</strong>(name, *columns) 
+    + (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>view</strong>(name, *columns) 
   
 
   
@@ -3711,9 +4037,9 @@ Macro for defining a named view to a list of columns.
   <div class="examples">
     <h3>Examples:</h3>
     
-      <h4></h4>
-      <pre class="example code">  <span class='view identifier id'>view</span> <span class='symbol val'>:front_page</span><span class='comma token'>,</span> <span class='symbol val'>:name</span><span class='comma token'>,</span> <span class='symbol val'>:title</span><span class='comma token'>,</span> <span class='symbol val'>:description</span>
-  <span class='view identifier id'>view</span> <span class='symbol val'>:summary</span><span class='comma token'>,</span> <span class='lbrack token'>[</span><span class='string val'>&quot;attribute:name&quot;</span><span class='comma token'>,</span> <span class='string val'>&quot;attribute:title&quot;</span><span class='rbrack token'>]</span>
+      <h4><div class='inline'></div></h4>
+      <pre class="example code"><span class='view identifier id'>view</span> <span class='symbol val'>:front_page</span><span class='comma token'>,</span> <span class='symbol val'>:name</span><span class='comma token'>,</span> <span class='symbol val'>:title</span><span class='comma token'>,</span> <span class='symbol val'>:description</span>
+<span class='view identifier id'>view</span> <span class='symbol val'>:summary</span><span class='comma token'>,</span> <span class='lbrack token'>[</span><span class='string val'>&quot;attribute:name&quot;</span><span class='comma token'>,</span> <span class='string val'>&quot;attribute:title&quot;</span><span class='rbrack token'>]</span>
 </pre>
     
   </div>
@@ -3730,10 +4056,10 @@ Macro for defining a named view to a list of columns.
       
       
         &mdash;
-        
+        <div class='inline'><p>
 Give it an arbitrary name.
-
-
+</p>
+</div>
       
     </li>
   
@@ -3747,11 +4073,11 @@ Give it an arbitrary name.
       
       
         &mdash;
-        
+        <div class='inline'><p>
 List of columns to associate to this view. Can use column aliases or fully
 qualified names.
-
-
+</p>
+</div>
       
     </li>
   
@@ -3763,18 +4089,18 @@ qualified names.
       <pre class="lines">
 
 
-443
-444
-445
-446
-447
-448
-449
-450
-451</pre>
+425
+426
+427
+428
+429
+430
+431
+432
+433</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/big_record/base.rb', line 443</span>
+      <pre class="code"><span class="info file"># File 'lib/big_record/base.rb', line 425</span>
 
 <span class='def def kw'>def</span> <span class='view identifier id'>view</span><span class='lparen token'>(</span><span class='name identifier id'>name</span><span class='comma token'>,</span> <span class='mult op'>*</span><span class='columns identifier id'>columns</span><span class='rparen token'>)</span>
   <span class='name identifier id'>name</span> <span class='assign token'>=</span> <span class='name identifier id'>name</span><span class='dot token'>.</span><span class='to_sym identifier id'>to_sym</span>
@@ -3794,14 +4120,14 @@ qualified names.
       <div class="method_details ">
   <p class="signature " id="view_names-class_method">
   
-    + (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>view_names</strong> 
+    + (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>view_names</strong> 
   
 
   
 </p><div class="docstring">
   <div class="discussion">
     <p>
-Get a list of view names defined by <tt><a title="view" href="#view-class_method">view</a></tt>.
+Get a list of view names defined by <tt><a href="#view-class_method" title="BigRecord::Base.view (method)">view</a></tt>.
 </p>
 
 
@@ -3815,12 +4141,12 @@ Get a list of view names defined by <tt><a title="view" href="#view-class_method
       <pre class="lines">
 
 
-459
-460
-461</pre>
+441
+442
+443</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/big_record/base.rb', line 459</span>
+      <pre class="code"><span class="info file"># File 'lib/big_record/base.rb', line 441</span>
 
 <span class='def def kw'>def</span> <span class='view_names identifier id'>view_names</span>
   <span class='@view_names ivar id'>@view_names</span> <span class='opasgn op'>||=</span> <span class='views_hash identifier id'>views_hash</span><span class='dot token'>.</span><span class='keys identifier id'>keys</span>
@@ -3834,14 +4160,14 @@ Get a list of view names defined by <tt><a title="view" href="#view-class_method
       <div class="method_details ">
   <p class="signature " id="views-class_method">
   
-    + (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>views</strong> 
+    + (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>views</strong> 
   
 
   
 </p><div class="docstring">
   <div class="discussion">
     <p>
-Get a list of all the views defined by the <tt><a title="view" href="#view-class_method">view</a></tt> macro for the model.
+Get a list of all the views defined by the <tt><a href="#view-class_method" title="BigRecord::Base.view (method)">view</a></tt> macro for the model.
 </p>
 
 
@@ -3855,12 +4181,12 @@ Get a list of all the views defined by the <tt><a title="view" href="#view-class
       <pre class="lines">
 
 
-454
-455
-456</pre>
+436
+437
+438</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/big_record/base.rb', line 454</span>
+      <pre class="code"><span class="info file"># File 'lib/big_record/base.rb', line 436</span>
 
 <span class='def def kw'>def</span> <span class='views identifier id'>views</span>
   <span class='@views ivar id'>@views</span> <span class='opasgn op'>||=</span> <span class='views_hash identifier id'>views_hash</span><span class='dot token'>.</span><span class='values identifier id'>values</span>
@@ -3874,7 +4200,7 @@ Get a list of all the views defined by the <tt><a title="view" href="#view-class
       <div class="method_details ">
   <p class="signature " id="views_hash-class_method">
   
-    + (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>views_hash</strong> 
+    + (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>views_hash</strong> 
   
 
   
@@ -3882,7 +4208,7 @@ Get a list of all the views defined by the <tt><a title="view" href="#view-class
   <div class="discussion">
     <p>
 Get the full hash of views consisting of the name as keys, and the
-<tt><a title="ConnectionAdapters::View" href="ConnectionAdapters/View.html">ConnectionAdapters::View</a></tt> views.
+<tt><a href="ConnectionAdapters/View.html" title="BigRecord::ConnectionAdapters::View (class)">ConnectionAdapters::View</a></tt> views.
 </p>
 
 
@@ -3896,25 +4222,25 @@ Get the full hash of views consisting of the name as keys, and the
       <pre class="lines">
 
 
-464
-465
-466
-467
-468
-469
-470
-471
-472
-473
-474
-475
-476
-477
-478
-479</pre>
+446
+447
+448
+449
+450
+451
+452
+453
+454
+455
+456
+457
+458
+459
+460
+461</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/big_record/base.rb', line 464</span>
+      <pre class="code"><span class="info file"># File 'lib/big_record/base.rb', line 446</span>
 
 <span class='def def kw'>def</span> <span class='views_hash identifier id'>views_hash</span>
   <span class='unless unless kw'>unless</span> <span class='@all_views_hash ivar id'>@all_views_hash</span>
@@ -3938,10 +4264,16 @@ Get the full hash of views consisting of the name as keys, and the
 </table>
 </div>
     
-      <div class="method_details ">
-  <p class="signature " id="[]-instance_method">
+  </div>
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+    
+    
+      <div class="method_details first">
+  <p class="signature first" id="[]-instance_method">
   
-    - (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>[]</strong>(attr_name) 
+    - (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>[]</strong>(attr_name) 
   
 
   
@@ -3950,7 +4282,8 @@ Get the full hash of views consisting of the name as keys, and the
     <p>
 Returns the value of the attribute identified by <tt>attr_name</tt> after
 it has been typecast (for example, &quot;2004-12-12&quot; in a data column
-is cast to a date object, like Date.new(2004, 12, 12)).
+is cast to a date object, like Date.new(2004, 12, 12)). (Alias for the
+protected read_attribute method).
 </p>
 
 
@@ -3964,16 +4297,16 @@ is cast to a date object, like Date.new(2004, 12, 12)).
       <pre class="lines">
 
 
+27
+28
 29
 30
 31
 32
-33
-34
-35</pre>
+33</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/big_record/base.rb', line 29</span>
+      <pre class="code"><span class="info file"># File 'lib/big_record/base.rb', line 27</span>
 
 <span class='def def kw'>def</span> <span class='aref op'>[]</span><span class='lparen token'>(</span><span class='attr_name identifier id'>attr_name</span><span class='rparen token'>)</span>
   <span class='if if kw'>if</span> <span class='attr_name identifier id'>attr_name</span><span class='dot token'>.</span><span class='ends_with? fid id'>ends_with?</span><span class='lparen token'>(</span><span class='string val'>&quot;:&quot;</span><span class='rparen token'>)</span>
@@ -3991,7 +4324,7 @@ is cast to a date object, like Date.new(2004, 12, 12)).
       <div class="method_details ">
   <p class="signature " id="connection-instance_method">
   
-    - (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>connection</strong> 
+    - (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>connection</strong> 
   
 
   
@@ -4033,14 +4366,15 @@ isn&#8217;t easily done without going straight to SQL.
       <div class="method_details ">
   <p class="signature " id="destroy-instance_method">
   
-    - (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>destroy</strong> 
+    - (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>destroy</strong> 
   
 
   
 </p><div class="docstring">
   <div class="discussion">
     <p>
-Deletes the record in the database.
+Deletes the record in the database and freezes this instance to reflect
+that no changes should be made (since they can&#8217;t be persisted).
 </p>
 
 
@@ -4054,18 +4388,18 @@ Deletes the record in the database.
       <pre class="lines">
 
 
-153
-154
-155
-156
-157
-158
-159
-160
-161</pre>
+162
+163
+164
+165
+166
+167
+168
+169
+170</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/big_record/base.rb', line 153</span>
+      <pre class="code"><span class="info file"># File 'lib/big_record/base.rb', line 162</span>
 
 <span class='def def kw'>def</span> <span class='destroy identifier id'>destroy</span>
   <span class='unless unless kw'>unless</span> <span class='new_record? fid id'>new_record?</span>
@@ -4083,9 +4417,61 @@ Deletes the record in the database.
 </div>
     
       <div class="method_details ">
+  <p class="signature " id="is_loaded?-instance_method">
+  
+    - (<tt>Boolean</tt>) <strong>is_loaded?</strong>(name) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+137
+138
+139
+140</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/big_record/base.rb', line 137</span>
+
+<span class='def def kw'>def</span> <span class='is_loaded? fid id'>is_loaded?</span><span class='lparen token'>(</span><span class='name identifier id'>name</span><span class='rparen token'>)</span>
+  <span class='@loaded_columns ivar id'>@loaded_columns</span> <span class='opasgn op'>||=</span> <span class='lbrack token'>[</span><span class='rbrack token'>]</span>
+  <span class='@loaded_columns ivar id'>@loaded_columns</span><span class='dot token'>.</span><span class='include? fid id'>include?</span><span class='lparen token'>(</span><span class='name identifier id'>name</span><span class='rparen token'>)</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
   <p class="signature " id="new_record?-instance_method">
   
-    - (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>new_record?</strong> 
+    - (<tt>Boolean</tt>) <strong>new_record?</strong> 
   
 
   
@@ -4100,19 +4486,32 @@ record for the object doesn&#8217;t exist yet.
   </div>
 </div>
 <div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
   
+    <li>
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
 </div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-135
-136
-137</pre>
+144
+145
+146</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/big_record/base.rb', line 135</span>
+      <pre class="code"><span class="info file"># File 'lib/big_record/base.rb', line 144</span>
 
 <span class='def def kw'>def</span> <span class='new_record? fid id'>new_record?</span>
   <span class='@new_record ivar id'>@new_record</span>
@@ -4126,7 +4525,7 @@ record for the object doesn&#8217;t exist yet.
       <div class="method_details ">
   <p class="signature " id="read_attribute-instance_method">
   
-    - (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>read_attribute</strong>(attr_name, options = {}) 
+    - (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>read_attribute</strong>(attr_name, options = {}) 
   
 
   
@@ -4149,6 +4548,8 @@ is cast to a date object, like Date.new(2004, 12, 12)).
       <pre class="lines">
 
 
+37
+38
 39
 40
 41
@@ -4190,12 +4591,10 @@ is cast to a date object, like Date.new(2004, 12, 12)).
 77
 78
 79
-80
-81
-82</pre>
+80</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/big_record/base.rb', line 39</span>
+      <pre class="code"><span class="info file"># File 'lib/big_record/base.rb', line 37</span>
 
 <span class='def def kw'>def</span> <span class='read_attribute identifier id'>read_attribute</span><span class='lparen token'>(</span><span class='attr_name identifier id'>attr_name</span><span class='comma token'>,</span> <span class='options identifier id'>options</span><span class='assign token'>=</span><span class='lbrace token'>{</span><span class='rbrace token'>}</span><span class='rparen token'>)</span>
   <span class='attr_name identifier id'>attr_name</span> <span class='assign token'>=</span> <span class='attr_name identifier id'>attr_name</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span>
@@ -4250,15 +4649,14 @@ is cast to a date object, like Date.new(2004, 12, 12)).
       <div class="method_details ">
   <p class="signature " id="read_family_attributes-instance_method">
   
-    - (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>read_family_attributes</strong>(attr_name) 
+    - (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>read_family_attributes</strong>(attr_name) 
   
 
   
 </p><div class="docstring">
   <div class="discussion">
     <p>
-Read an attribute that defines a column family, as opposed to a column
-qualifier.
+Read an attribute that defines a column family.
 </p>
 
 
@@ -4272,6 +4670,8 @@ qualifier.
       <pre class="lines">
 
 
+83
+84
 85
 86
 87
@@ -4317,12 +4717,10 @@ qualifier.
 127
 128
 129
-130
-131
-132</pre>
+130</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/big_record/base.rb', line 85</span>
+      <pre class="code"><span class="info file"># File 'lib/big_record/base.rb', line 83</span>
 
 <span class='def def kw'>def</span> <span class='read_family_attributes identifier id'>read_family_attributes</span><span class='lparen token'>(</span><span class='attr_name identifier id'>attr_name</span><span class='rparen token'>)</span>
   <span class='attr_name identifier id'>attr_name</span> <span class='assign token'>=</span> <span class='attr_name identifier id'>attr_name</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span>
@@ -4381,23 +4779,19 @@ qualifier.
       <div class="method_details ">
   <p class="signature " id="save-instance_method">
   
-    - (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>save</strong> 
+    - (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>save</strong> 
   
 
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-Method that saves the BigRecord object into the database. It will do one of
-two things:
-</p>
-<ul>
-<li>If no record currently exists: Creates a new record with values matching
-those of the object attributes.
+    <ul>
+<li>No record exists: Creates a new record with values matching those of the
+object attributes.
 
 </li>
-<li>If a record already exist: Updates the record with values matching those of
-the object attributes.
+<li>A record does exist: Updates the record with values matching those of the
+object attributes.
 
 </li>
 </ul>
@@ -4413,12 +4807,12 @@ the object attributes.
       <pre class="lines">
 
 
-142
-143
-144</pre>
+150
+151
+152</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/big_record/base.rb', line 142</span>
+      <pre class="code"><span class="info file"># File 'lib/big_record/base.rb', line 150</span>
 
 <span class='def def kw'>def</span> <span class='save identifier id'>save</span>
   <span class='create_or_update identifier id'>create_or_update</span>
@@ -4432,7 +4826,7 @@ the object attributes.
       <div class="method_details ">
   <p class="signature " id="save!-instance_method">
   
-    - (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>save!</strong> 
+    - (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>save!</strong> 
   
 
   
@@ -4454,12 +4848,12 @@ couldn&#8217;t happen, it raises a RecordNotSaved exception
       <pre class="lines">
 
 
-148
-149
-150</pre>
+156
+157
+158</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/big_record/base.rb', line 148</span>
+      <pre class="code"><span class="info file"># File 'lib/big_record/base.rb', line 156</span>
 
 <span class='def def kw'>def</span> <span class='save! fid id'>save!</span>
   <span class='create_or_update identifier id'>create_or_update</span> <span class='orop op'>||</span> <span class='raise identifier id'>raise</span><span class='lparen token'>(</span><span class='RecordNotSaved constant id'>RecordNotSaved</span><span class='rparen token'>)</span>
@@ -4471,9 +4865,40 @@ couldn&#8217;t happen, it raises a RecordNotSaved exception
 </div>
     
       <div class="method_details ">
+  <p class="signature " id="set_loaded-instance_method">
+  
+    - (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>set_loaded</strong>(name) 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+132
+133
+134
+135</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/big_record/base.rb', line 132</span>
+
+<span class='def def kw'>def</span> <span class='set_loaded identifier id'>set_loaded</span><span class='lparen token'>(</span><span class='name identifier id'>name</span><span class='rparen token'>)</span>
+  <span class='@loaded_columns ivar id'>@loaded_columns</span> <span class='opasgn op'>||=</span> <span class='lbrack token'>[</span><span class='rbrack token'>]</span>
+  <span class='@loaded_columns ivar id'>@loaded_columns</span> <span class='lshft op'>&lt;&lt;</span> <span class='name identifier id'>name</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
   <p class="signature " id="update_attribute-instance_method">
   
-    - (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>update_attribute</strong>(name, value) 
+    - (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>update_attribute</strong>(name, value) 
   
 
   
@@ -4498,13 +4923,13 @@ can be updated even if the full object isn&#8217;t valid.
       <pre class="lines">
 
 
-166
-167
-168
-169</pre>
+175
+176
+177
+178</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/big_record/base.rb', line 166</span>
+      <pre class="code"><span class="info file"># File 'lib/big_record/base.rb', line 175</span>
 
 <span class='def def kw'>def</span> <span class='update_attribute identifier id'>update_attribute</span><span class='lparen token'>(</span><span class='name identifier id'>name</span><span class='comma token'>,</span> <span class='value identifier id'>value</span><span class='rparen token'>)</span>
   <span class='send identifier id'>send</span><span class='lparen token'>(</span><span class='name identifier id'>name</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span> <span class='plus op'>+</span> <span class='string val'>'='</span><span class='comma token'>,</span> <span class='value identifier id'>value</span><span class='rparen token'>)</span>
@@ -4519,7 +4944,7 @@ can be updated even if the full object isn&#8217;t valid.
       <div class="method_details ">
   <p class="signature " id="update_attributes-instance_method">
   
-    - (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>update_attributes</strong>(attributes) 
+    - (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>update_attributes</strong>(attributes) 
   
 
   
@@ -4541,13 +4966,13 @@ the object is invalid, the saving will fail and false will be returned.
       <pre class="lines">
 
 
-173
-174
-175
-176</pre>
+182
+183
+184
+185</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/big_record/base.rb', line 173</span>
+      <pre class="code"><span class="info file"># File 'lib/big_record/base.rb', line 182</span>
 
 <span class='def def kw'>def</span> <span class='update_attributes identifier id'>update_attributes</span><span class='lparen token'>(</span><span class='attributes identifier id'>attributes</span><span class='rparen token'>)</span>
   <span class='self self kw'>self</span><span class='dot token'>.</span><span class='attributes identifier id'>attributes</span> <span class='assign token'>=</span> <span class='attributes identifier id'>attributes</span>
@@ -4562,7 +4987,7 @@ the object is invalid, the saving will fail and false will be returned.
       <div class="method_details ">
   <p class="signature " id="update_attributes!-instance_method">
   
-    - (<tt><a title="Object" href="../Object.html">Object</a></tt>) <strong>update_attributes!</strong>(attributes) 
+    - (<tt><a href="../Object.html" title="Object (class)">Object</a></tt>) <strong>update_attributes!</strong>(attributes) 
   
 
   
@@ -4584,13 +5009,13 @@ of save so an exception is raised if the record is invalid.
       <pre class="lines">
 
 
-179
-180
-181
-182</pre>
+188
+189
+190
+191</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/big_record/base.rb', line 179</span>
+      <pre class="code"><span class="info file"># File 'lib/big_record/base.rb', line 188</span>
 
 <span class='def def kw'>def</span> <span class='update_attributes! fid id'>update_attributes!</span><span class='lparen token'>(</span><span class='attributes identifier id'>attributes</span><span class='rparen token'>)</span>
   <span class='self self kw'>self</span><span class='dot token'>.</span><span class='attributes identifier id'>attributes</span> <span class='assign token'>=</span> <span class='attributes identifier id'>attributes</span>
@@ -4607,9 +5032,9 @@ of save so an exception is raised if the record is invalid.
 </div>
     
     <div id="footer">
-  Generated on Tue Dec  1 18:30:37 2009 by 
+  Generated on Fri Apr 30 12:48:28 2010 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool">yard</a>
-  0.4.0 (ruby-1.8.7).
+  0.5.4 (ruby-1.8.7).
 </div>
 
   </body>

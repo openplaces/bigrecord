@@ -2,7 +2,7 @@
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
-    <meta name="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="Content-Type" content="text/html; charset=utf-8" />
 <title>Module: BigRecord::AttributeMethods::ClassMethods</title>
 <link rel="stylesheet" href="../../css/style.css" type="text/css" media="screen" charset="utf-8" />
 <link rel="stylesheet" href="../../css/common.css" type="text/css" media="screen" charset="utf-8" />
@@ -16,18 +16,24 @@
 
   </head>
   <body>
+    <script type="text/javascript" charset="utf-8">
+      if (window.top.frames.main) document.body.className = 'frames';
+    </script>
+    
     <div id="header">
       <div id="menu">
   
     <a href="../../_index.html">Index (C)</a> &raquo; 
-    <a title="BigRecord" href="../../BigRecord.html">BigRecord</a> &raquo; <a title="AttributeMethods" href="../AttributeMethods.html">AttributeMethods</a>
+    <span class='title'><a href="../../BigRecord.html" title="BigRecord (module)">BigRecord</a></span> &raquo; <span class='title'><a href="../AttributeMethods.html" title="BigRecord::AttributeMethods (module)">AttributeMethods</a></span>
      &raquo; 
     <span class="title">ClassMethods</span>
   
+  
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
 </div>
 
       <div id="search">
-  <a id="class_list_link" href="#">Namespace List</a>
+  <a id="class_list_link" href="#">Class List</a>
   <a id="method_list_link" href="#">Method List</a>
   <a id ="file_list_link" href="#">File List</a>
 </div>
@@ -50,6 +56,7 @@
     
   
   
+  
     <dt class="r1 last">Defined in:</dt>
     <dd class="r1 last">lib/big_record/attribute_methods.rb</dd>
   
@@ -70,56 +77,70 @@ Declare and check for suffixed attribute methods.
 </div>
 
 
-  <h2>Method Summary</h2>
-  <ul class="summary">
-    
-      <li class="public ">
-  <span class="summary_signature"><a title="#attribute_method_suffix (instance method)" href="#attribute_method_suffix-instance_method">- (Object) <strong>attribute_method_suffix</strong>(*suffixes) </a>
   
+    <h2>Instance Method Summary</h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#attribute_method_suffix-instance_method" title="#attribute_method_suffix (instance method)">- (Object) <strong>attribute_method_suffix</strong>(*suffixes) </a>
+    
+
+    
   </span>
+  
   
   
   
   
 
   
-    <span class="summary_desc">
+    <span class="summary_desc"><div class='inline'><p>
 Declare a method available for all attributes with the given suffix.
-
-</span>
+</p>
+</div></span>
   
 </li>
 
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-      <li class="public ">
-  <span class="summary_signature"><a title="#match_attribute_method? (instance method)" href="#match_attribute_method%3F-instance_method">- (Object) <strong>match_attribute_method?</strong>(method_name) </a>
-  
+      <a href="#match_attribute_method%3F-instance_method" title="#match_attribute_method? (instance method)">- (Boolean) <strong>match_attribute_method?</strong>(method_name) </a>
+    
+
+    
   </span>
   
   
   
   
+  
 
   
-    <span class="summary_desc">
+    <span class="summary_desc"><div class='inline'><p>
 Returns MatchData if method_name is an attribute method.
-
-</span>
+</p>
+</div></span>
   
 </li>
 
+      
+    </ul>
+  
+
+
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
     
-  </ul>
-
-
-
-  <div id="method_details">
-    <h2>Method Details</h2>
     
       <div class="method_details first">
   <p class="signature first" id="attribute_method_suffix-instance_method">
   
-    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>attribute_method_suffix</strong>(*suffixes) 
+    - (<tt><a href="../../Object.html" title="Object (class)">Object</a></tt>) <strong>attribute_method_suffix</strong>(*suffixes) 
   
 
   
@@ -139,7 +160,7 @@ to
   <span class='attribute identifier id'>attribute</span><span class='comment val'>#{suffix}(#{attr}, *args, &amp;block)</span>
 </pre>
 <p>
-An attribute#{suffix} instance method must exist and accept at least the
+An attribute#<tt>suffix</tt> instance method must exist and accept at least the
 attr argument.
 </p>
 <p>
@@ -193,7 +214,7 @@ For example:
       <div class="method_details ">
   <p class="signature " id="match_attribute_method?-instance_method">
   
-    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>match_attribute_method?</strong>(method_name) 
+    - (<tt>Boolean</tt>) <strong>match_attribute_method?</strong>(method_name) 
   
 
   
@@ -207,7 +228,20 @@ Returns MatchData if method_name is an attribute method.
   </div>
 </div>
 <div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
   
+    <li>
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
 </div><table class="source_code">
   <tr>
     <td>
@@ -237,9 +271,9 @@ Returns MatchData if method_name is an attribute method.
 </div>
     
     <div id="footer">
-  Generated on Tue Dec  1 18:30:35 2009 by 
+  Generated on Fri Apr 30 12:48:18 2010 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool">yard</a>
-  0.4.0 (ruby-1.8.7).
+  0.5.4 (ruby-1.8.7).
 </div>
 
   </body>

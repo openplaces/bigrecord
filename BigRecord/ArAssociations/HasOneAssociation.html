@@ -2,7 +2,7 @@
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
-    <meta name="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="Content-Type" content="text/html; charset=utf-8" />
 <title>Class: BigRecord::ArAssociations::HasOneAssociation</title>
 <link rel="stylesheet" href="../../css/style.css" type="text/css" media="screen" charset="utf-8" />
 <link rel="stylesheet" href="../../css/common.css" type="text/css" media="screen" charset="utf-8" />
@@ -16,18 +16,24 @@
 
   </head>
   <body>
+    <script type="text/javascript" charset="utf-8">
+      if (window.top.frames.main) document.body.className = 'frames';
+    </script>
+    
     <div id="header">
       <div id="menu">
   
     <a href="../../_index.html">Index (H)</a> &raquo; 
-    <a title="BigRecord" href="../../BigRecord.html">BigRecord</a> &raquo; <a title="ArAssociations" href="../ArAssociations.html">ArAssociations</a>
+    <span class='title'><a href="../../BigRecord.html" title="BigRecord (module)">BigRecord</a></span> &raquo; <span class='title'><a href="../ArAssociations.html" title="BigRecord::ArAssociations (module)">ArAssociations</a></span>
      &raquo; 
     <span class="title">HasOneAssociation</span>
   
+  
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
 </div>
 
       <div id="search">
-  <a id="class_list_link" href="#">Namespace List</a>
+  <a id="class_list_link" href="#">Class List</a>
   <a id="method_list_link" href="#">Method List</a>
   <a id ="file_list_link" href="#">File List</a>
 </div>
@@ -46,14 +52,14 @@
   
     <dt class="r1">Inherits:</dt>
     <dd class="r1">
-      <span class="inheritName"><a title="BigRecord::ArAssociations::BelongsToAssociation" href="BelongsToAssociation.html">BigRecord::ArAssociations::BelongsToAssociation</a></span>
+      <span class="inheritName"><a href="BelongsToAssociation.html" title="BigRecord::ArAssociations::BelongsToAssociation (class)">BelongsToAssociation</a></span>
       
         <ul class="fullTree">
-          <li><a title="Object" href="../../Object.html">Object</a></li>
+          <li><a href="../../Object.html" title="Object (class)">Object</a></li>
           
-            <li class="next"><a title="BigRecord::ArAssociations::AssociationProxy" href="AssociationProxy.html">BigRecord::ArAssociations::AssociationProxy</a></li>
+            <li class="next"><a href="AssociationProxy.html" title="BigRecord::ArAssociations::AssociationProxy (class)">AssociationProxy</a></li>
           
-            <li class="next"><a title="BigRecord::ArAssociations::BelongsToAssociation" href="BelongsToAssociation.html">BigRecord::ArAssociations::BelongsToAssociation</a></li>
+            <li class="next"><a href="BelongsToAssociation.html" title="BigRecord::ArAssociations::BelongsToAssociation (class)">BelongsToAssociation</a></li>
           
             <li class="next">BigRecord::ArAssociations::HasOneAssociation</li>
           
@@ -69,147 +75,169 @@
     
   
   
+  
     <dt class="r2 last">Defined in:</dt>
     <dd class="r2 last">lib/big_record/ar_associations/has_one_association.rb</dd>
   
 </dl>
 <div class="clear"></div>
 
-
-
-  
-  
-  
-  
-  
-  
-  
-  
-
-  <h2>Method Summary</h2>
-  <ul class="summary">
-    
-      <li class="public ">
-  <span class="summary_signature"><a title="#build (instance method)" href="#build-instance_method">- (Object) <strong>build</strong>(attributes = {}, replace_existing = true) </a>
-  
-  </span>
-  
-  
-  
-  
-
-  
-    <span class="summary_desc"></span>
-  
-</li>
-
-    
-      <li class="public ">
-  <span class="summary_signature"><a title="#create (instance method)" href="#create-instance_method">- (Object) <strong>create</strong>(attributes = {}, replace_existing = true) </a>
-  
-  </span>
-  
-  
-  
-  
-
-  
-    <span class="summary_desc"></span>
-  
-</li>
-
-    
-      <li class="public ">
-  <span class="summary_signature"><a title="#initialize (instance method)" href="#initialize-instance_method">- (HasOneAssociation) <strong>initialize</strong>(owner, reflection) </a>
-  
-  </span>
-  
-  
-  
-  
-
-  
-    <span class="summary_desc">
-A new instance of <tt>HasOneAssociation</tt>.
-
-</span>
-  
-</li>
-
-    
-      <li class="public ">
-  <span class="summary_signature"><a title="#replace (instance method)" href="#replace-instance_method">- (Object) <strong>replace</strong>(obj, dont_save = false) </a>
-  
-  </span>
-  
-  
-  
-  
-
-  
-    <span class="summary_desc"></span>
-  
-</li>
-
-    
-  </ul>
-
-
-  
-  
-  
-  
-  
-  <h3 class="inherited">Methods inherited from <a title="BigRecord::ArAssociations::BelongsToAssociation" href="BelongsToAssociation.html">BigRecord::ArAssociations::BelongsToAssociation</a></h3>
-  <p class="inherited"><a title="#foreign_key_present" href="BelongsToAssociation.html#foreign_key_present-instance_method">#foreign_key_present</a>, <a title="#updated?" href="BelongsToAssociation.html#updated%3F-instance_method">#updated?</a></p>
-
-  
-  
-  
-  
-  
-  <h3 class="inherited">Methods inherited from <a title="BigRecord::ArAssociations::AssociationProxy" href="AssociationProxy.html">BigRecord::ArAssociations::AssociationProxy</a></h3>
-  <p class="inherited"><a title="#===" href="AssociationProxy.html#%3D%3D%3D-instance_method">#===</a>, <a title="#aliased_table_name" href="AssociationProxy.html#aliased_table_name-instance_method">#aliased_table_name</a>, <a title="#conditions" href="AssociationProxy.html#conditions-instance_method">#conditions</a>, <a title="#dependent?" href="AssociationProxy.html#dependent%3F-instance_method">#dependent?</a>, <a title="#extract_options_from_args!" href="AssociationProxy.html#extract_options_from_args%21-instance_method">#extract_options_from_args!</a>, <a title="#flatten_deeper" href="AssociationProxy.html#flatten_deeper-instance_method">#flatten_deeper</a>, <a title="#foreign_key_present" href="AssociationProxy.html#foreign_key_present-instance_method">#foreign_key_present</a>, <a title="#interpolate_sql" href="AssociationProxy.html#interpolate_sql-instance_method">#interpolate_sql</a>, <a title="#interpolate_sql_options!" href="AssociationProxy.html#interpolate_sql_options%21-instance_method">#interpolate_sql_options!</a>, <a title="#load_target" href="AssociationProxy.html#load_target-instance_method">#load_target</a>, <a title="#loaded" href="AssociationProxy.html#loaded-instance_method">#loaded</a>, <a title="#loaded?" href="AssociationProxy.html#loaded%3F-instance_method">#loaded?</a>, <a title="#merge_options_from_reflection!" href="AssociationProxy.html#merge_options_from_reflection%21-instance_method">#merge_options_from_reflection!</a>, <a title="#method_missing" href="AssociationProxy.html#method_missing-instance_method">#method_missing</a>, <a title="#proxy_owner" href="AssociationProxy.html#proxy_owner-instance_method">#proxy_owner</a>, <a title="#proxy_reflection" href="AssociationProxy.html#proxy_reflection-instance_method">#proxy_reflection</a>, <a title="#proxy_target" href="AssociationProxy.html#proxy_target-instance_method">#proxy_target</a>, <a title="#quoted_record_ids" href="AssociationProxy.html#quoted_record_ids-instance_method">#quoted_record_ids</a>, <a title="#raise_on_type_mismatch" href="AssociationProxy.html#raise_on_type_mismatch-instance_method">#raise_on_type_mismatch</a>, <a title="#reload" href="AssociationProxy.html#reload-instance_method">#reload</a>, <a title="#reset" href="AssociationProxy.html#reset-instance_method">#reset</a>, <a title="#respond_to?" href="AssociationProxy.html#respond_to%3F-instance_method">#respond_to?</a>, <a title="#sanitize_sql" href="AssociationProxy.html#sanitize_sql-instance_method">#sanitize_sql</a>, <a title="#set_belongs_to_association_for" href="AssociationProxy.html#set_belongs_to_association_for-instance_method">#set_belongs_to_association_for</a>, <a title="#target" href="AssociationProxy.html#target-instance_method">#target</a>, <a title="#target=" href="AssociationProxy.html#target%3D-instance_method">#target=</a></p>
-<div id="constructor_details">
-  <h2>Constructor Details</h2>
-  
-    <div class="method_details first">
-  <p class="signature first" id="initialize-instance_method">
-  
-    - (<tt><a title="HasOneAssociation" href="">HasOneAssociation</a></tt>) <strong>initialize</strong>(owner, reflection) 
-  
-
-  
-</p><div class="docstring">
+<h2>Overview</h2><div class="docstring">
   <div class="discussion">
     <p>
-A new instance of <tt>HasOneAssociation</tt>
+:nodoc:
 </p>
 
 
   </div>
 </div>
 <div class="tags">
-  <h3>Returns:</h3>
-<ul class="return">
   
-    <li>
-      
-        <span class='type'>(<tt><a title="HasOneAssociation" href="">HasOneAssociation</a></tt>)</span>
-      
-      
-      
-      
-        &mdash;
-        
-a new instance of <tt>HasOneAssociation</tt>
+</div>
 
-
-      
-    </li>
   
-</ul>
+  
+  
+  
+  
+  
+  
+  
 
+  
+    <h2>Instance Method Summary</h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#build-instance_method" title="#build (instance method)">- (Object) <strong>build</strong>(attributes = {}, replace_existing = true) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#create-instance_method" title="#create (instance method)">- (Object) <strong>create</strong>(attributes = {}, replace_existing = true) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#initialize-instance_method" title="#initialize (instance method)">- (HasOneAssociation) <strong>initialize</strong>(owner, reflection) </a>
+    
+
+    
+  </span>
+  
+    <span class="note title constructor">constructor</span>
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+A new instance of HasOneAssociation.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#replace-instance_method" title="#replace (instance method)">- (Object) <strong>replace</strong>(obj, dont_save = false) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods inherited from <a href="BelongsToAssociation.html" title="BigRecord::ArAssociations::BelongsToAssociation (class)">BelongsToAssociation</a></h3>
+  <p class="inherited"><a href="BelongsToAssociation.html#updated%3F-instance_method" title="BigRecord::ArAssociations::BelongsToAssociation#updated? (method)">#updated?</a></p>
+
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods inherited from <a href="AssociationProxy.html" title="BigRecord::ArAssociations::AssociationProxy (class)">AssociationProxy</a></h3>
+  <p class="inherited"><a href="AssociationProxy.html#%3D%3D%3D-instance_method" title="BigRecord::ArAssociations::AssociationProxy#=== (method)">#===</a>, <a href="AssociationProxy.html#aliased_table_name-instance_method" title="BigRecord::ArAssociations::AssociationProxy#aliased_table_name (method)">#aliased_table_name</a>, <a href="AssociationProxy.html#conditions-instance_method" title="BigRecord::ArAssociations::AssociationProxy#conditions (method)">#conditions</a>, <a href="AssociationProxy.html#loaded-instance_method" title="BigRecord::ArAssociations::AssociationProxy#loaded (method)">#loaded</a>, <a href="AssociationProxy.html#loaded%3F-instance_method" title="BigRecord::ArAssociations::AssociationProxy#loaded? (method)">#loaded?</a>, <a href="AssociationProxy.html#proxy_owner-instance_method" title="BigRecord::ArAssociations::AssociationProxy#proxy_owner (method)">#proxy_owner</a>, <a href="AssociationProxy.html#proxy_reflection-instance_method" title="BigRecord::ArAssociations::AssociationProxy#proxy_reflection (method)">#proxy_reflection</a>, <a href="AssociationProxy.html#proxy_target-instance_method" title="BigRecord::ArAssociations::AssociationProxy#proxy_target (method)">#proxy_target</a>, <a href="AssociationProxy.html#reload-instance_method" title="BigRecord::ArAssociations::AssociationProxy#reload (method)">#reload</a>, <a href="AssociationProxy.html#reset-instance_method" title="BigRecord::ArAssociations::AssociationProxy#reset (method)">#reset</a>, <a href="AssociationProxy.html#respond_to%3F-instance_method" title="BigRecord::ArAssociations::AssociationProxy#respond_to? (method)">#respond_to?</a>, <a href="AssociationProxy.html#target-instance_method" title="BigRecord::ArAssociations::AssociationProxy#target (method)">#target</a>, <a href="AssociationProxy.html#target%3D-instance_method" title="BigRecord::ArAssociations::AssociationProxy#target= (method)">#target=</a></p>
+<div id="constructor_details" class="method_details_list">
+  <h2>Constructor Details</h2>
+  
+    <div class="method_details first">
+  <p class="signature first" id="initialize-instance_method">
+  
+    - (<tt><a href="" title="BigRecord::ArAssociations::HasOneAssociation (class)">HasOneAssociation</a></tt>) <strong>initialize</strong>(owner, reflection) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+A new instance of HasOneAssociation
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
 </div><table class="source_code">
   <tr>
     <td>
@@ -235,25 +263,26 @@ a new instance of <tt>HasOneAssociation</tt>
 </div>
   
 </div>
-<div id="method_missing_details">
+<div id="method_missing_details" class="method_details_list">
   <h2>Dynamic Method Handling</h2>
   <p class="notice super">
     This class handles dynamic methods through the <tt>method_missing</tt> method
     
-      in the class <a title="BigRecord::ArAssociations::AssociationProxy" href="AssociationProxy.html#method_missing-instance_method">BigRecord::ArAssociations::AssociationProxy</a>
+      in the class <a href="AssociationProxy.html#method_missing-instance_method" title="BigRecord::ArAssociations::AssociationProxy#method_missing (method)">BigRecord::ArAssociations::AssociationProxy</a>
     
   </p>
   
 </div>
 
 
-  <div id="method_details">
-    <h2>Method Details</h2>
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+    
     
       <div class="method_details first">
   <p class="signature first" id="build-instance_method">
   
-    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>build</strong>(attributes = {}, replace_existing = true) 
+    - (<tt><a href="../../Object.html" title="Object (class)">Object</a></tt>) <strong>build</strong>(attributes = {}, replace_existing = true) 
   
 
   
@@ -300,7 +329,7 @@ a new instance of <tt>HasOneAssociation</tt>
       <div class="method_details ">
   <p class="signature " id="create-instance_method">
   
-    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>create</strong>(attributes = {}, replace_existing = true) 
+    - (<tt><a href="../../Object.html" title="Object (class)">Object</a></tt>) <strong>create</strong>(attributes = {}, replace_existing = true) 
   
 
   
@@ -333,7 +362,7 @@ a new instance of <tt>HasOneAssociation</tt>
       <div class="method_details ">
   <p class="signature " id="replace-instance_method">
   
-    - (<tt><a title="Object" href="../../Object.html">Object</a></tt>) <strong>replace</strong>(obj, dont_save = false) 
+    - (<tt><a href="../../Object.html" title="Object (class)">Object</a></tt>) <strong>replace</strong>(obj, dont_save = false) 
   
 
   
@@ -416,9 +445,9 @@ a new instance of <tt>HasOneAssociation</tt>
 </div>
     
     <div id="footer">
-  Generated on Tue Dec  1 18:30:53 2009 by 
+  Generated on Fri Apr 30 12:48:41 2010 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool">yard</a>
-  0.4.0 (ruby-1.8.7).
+  0.5.4 (ruby-1.8.7).
 </div>
 
   </body>

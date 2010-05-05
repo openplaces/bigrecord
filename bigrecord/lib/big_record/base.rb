@@ -376,8 +376,13 @@ module BigRecord
       #
       # @todo take into consideration the conditions
       def delete_all(conditions = nil)
-        connection.get_consecutive_rows(table_name, nil, nil, ["#{default_family}:"]).each do |row|
-          connection.delete(table_name, row["id"])
+        # TODO: This is ugly, but will be fixed later
+        begin
+          connection.delete_all(table_name)
+        rescue NotImplementedError
+          connection.get_consecutive_rows(table_name, nil, nil, ["#{default_family}:"]).each do |row|
+            connection.delete(table_name, row["id"])
+          end
         end
       end
 

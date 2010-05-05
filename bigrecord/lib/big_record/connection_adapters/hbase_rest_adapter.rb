@@ -201,6 +201,7 @@ module BigRecord
       end
 
       def truncate_table(table_name)
+        raise NotImplementedError
       end
 
 

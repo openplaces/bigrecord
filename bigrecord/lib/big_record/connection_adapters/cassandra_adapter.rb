@@ -142,12 +142,7 @@ module BigRecord
         result = {}
         row_cols.each do |key,value|
           begin
-            result[key] =
-              if key == 'id'
-                value
-              else
-                deserialize(value)
-              end
+            result[key] = (key == 'id') ? value : deserialize(value)
           rescue Exception => e
             puts "Could not load column value #{key} for row=#{row.name}"
           end
@@ -163,10 +158,12 @@ module BigRecord
           options[:finish] = stop_row unless stop_row.blank?
           options[:count] = limit unless limit.blank?
 
+          # For some reason, the count option is not working properly with the 'cassandra' gem, so we'll just handle it manually after.
           keys = @connection.get_range(table_name, options)
 
-          # This will be refactored. Don't make fun of me yet.
           if !keys.empty?
+            keys.reject!{|key| key.columns.blank?}
+
             keys.each do |key|
               row = {}
               row["id"] = key.key
@@ -177,6 +174,9 @@ module BigRecord
               end
 
               result << row if row.keys.size > 1
+
+              # This is a hack for the previously ignored count option in the 'cassandra' gem.
+              break if (!limit.blank? && result.size >= limit)
             end
           end
         end
@@ -209,7 +209,7 @@ module BigRecord
       end
 
       def delete_all(table_name)
-        raise NotImplementedError
+        @connection.clear_column_family!(table_name, {:consistency => Cassandra::Consistency::QUORUM})
       end
 
       # SERIALIZATION STATEMENTS =================================

@@ -29,6 +29,29 @@ describe BigRecord::Base do
       Zoo.find(id).should == [zoo]
     end
 
+    describe "limit option" do
+
+      before(:all) do
+        Book.create(:title => "I Am Legend", :author => "Richard Matheson")
+        Book.create(:title => "The Beach", :author => "Alex Garland")
+        Book.create(:title => "Neuromancer", :author => "William Gibson")
+        Book.create(:title => "World War Z", :author => "Max Brooks")
+        Book.create(:title => "The Zombie Survival Guide", :author => "Max Brooks")
+      end
+
+      after(:all) do
+        Book.delete_all
+      end
+
+      it "should limit the result set properly" do
+        results = Book.find(:all)
+        results.size.should == 5
+
+        Book.find(:all, :limit => 3).map(&:title).should == results.slice(0..2).map(&:title)
+      end
+
+    end
+
   end
 
 end

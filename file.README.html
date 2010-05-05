@@ -2,7 +2,7 @@
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
-    <meta name="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="Content-Type" content="text/html; charset=utf8" />
 <title>BigRecord Documentation</title>
 <link rel="stylesheet" href="css/style.css" type="text/css" media="screen" charset="utf-8" />
 <link rel="stylesheet" href="css/common.css" type="text/css" media="screen" charset="utf-8" />
@@ -83,15 +83,22 @@ demand a BigTable model database:
 </p>
 <ol>
 <li>Your data is highly dynamic in nature and would not fit in a schema bound
-model, or you cannot define a schema ahead of time.
-
-</li>
-<li>You know that your database will grow to tens or hundreds of gigabytes, and
-can&#8217;t afford big iron servers. Instead, you&#8217;d like to scale
-horizontally across many commodity servers.
+model, or you cannot define a schema ahead
 
 </li>
 </ol>
+<p>
+of time.
+</p>
+<ol>
+<li>You know that your database will grow to tens or hundreds of gigabytes, and
+can&#8217;t afford big iron servers. Instead,
+
+</li>
+</ol>
+<p>
+you&#8217;d like to scale horizontally across many commodity servers.
+</p>
 <h2>Components</h2>
 <ul>
 <li>Bigrecord: Ruby Object/Data Mapper. Inspired and architected similarly to
@@ -102,25 +109,33 @@ Active Record.
 <h2>Optional Component</h2>
 <ul>
 <li>Bigrecord Driver: Consists of a JRuby server component that bridges Ruby
-and Java (through the DRb protocol) to interact with Java-based data stores
-and their native APIs. Clients that connect to the DRb server can be of any
-Ruby type (JRuby, MRI, etc). Currently, this is used only for HBase to
-serve as a connection alternative to Thrift or Stargate. This application
-can be run from a separate server than your Rails application.
-
-</li>
-<li>Bigindex [http://github.com/openplaces/bigindex]: Due to the nature of
-BigTable databases, some limitations are present while using Bigrecord
-standalone when compared to Active Record. Some major limitations include
-the inability to query for data other than with the row ID, indexing,
-searching, and dynamic finders (find_by_attribute_name). Since these data
-access patterns are vital for most Rails applications to function, Bigindex
-was created to address these issues, and bring the feature set more up to
-par with Active Record. Please refer to the <tt>Bigindex</tt> package for
-more information and its requirements.
+and Java (through the DRb protocol) to
 
 </li>
 </ul>
+<p>
+interact with Java-based data stores and their native APIs. Clients that
+connect to the DRb server can be of any Ruby type (JRuby, MRI, etc).
+Currently, this is used only for HBase to serve as a connection alternative
+to Thrift or Stargate. This application can be run from a separate server
+than your Rails application.
+</p>
+<ul>
+<li>Bigindex [http://github.com/openplaces/bigindex]: Due to the nature of
+BigTable databases, some limitations are
+
+</li>
+</ul>
+<p>
+present while using Bigrecord standalone when compared to Active Record.
+Some major limitations include the inability to query for data other than
+with the row ID, indexing, searching, and dynamic finders
+(find_by_attribute_name). Since these data access patterns are vital for
+most Rails applications to function, Bigindex was created to address these
+issues, and bring the feature set more up to par with Active Record. Please
+refer to the <tt>Bigindex</tt> package for more information and its
+requirements.
+</p>
 <h2>Getting Started</h2>
 <p>
 Check out the <a href="file.getting_started.html" title="guides/getting_started.rdoc">guides/getting_started.rdoc</a> file for more information.
@@ -158,7 +173,7 @@ Big Record is released under the MIT license.
 </div></div>
     
     <div id="footer">
-  Generated on Fri Apr 30 12:48:05 2010 by 
+  Generated on Wed May  5 15:03:15 2010 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool">yard</a>
   0.5.4 (ruby-1.8.7).
 </div>

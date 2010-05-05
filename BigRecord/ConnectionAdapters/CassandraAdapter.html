@@ -2,7 +2,7 @@
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
-    <meta name="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="Content-Type" content="text/html; charset=utf8" />
 <title>Class: BigRecord::ConnectionAdapters::CassandraAdapter</title>
 <link rel="stylesheet" href="../../css/style.css" type="text/css" media="screen" charset="utf-8" />
 <link rel="stylesheet" href="../../css/common.css" type="text/css" media="screen" charset="utf-8" />
@@ -773,12 +773,12 @@ Serialize an object in a given type
       <pre class="lines">
 
 
-233
-234
-235</pre>
+227
+228
+229</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/cassandra_adapter.rb', line 233</span>
+      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/cassandra_adapter.rb', line 227</span>
 
 <span class='def def kw'>def</span> <span class='build_serialized_value identifier id'>build_serialized_value</span><span class='lparen token'>(</span><span class='type identifier id'>type</span><span class='comma token'>,</span> <span class='value identifier id'>value</span><span class='rparen token'>)</span>
   <span class='type identifier id'>type</span><span class='dot token'>.</span><span class='chr identifier id'>chr</span> <span class='plus op'>+</span> <span class='value identifier id'>value</span>
@@ -831,16 +831,16 @@ Serialize an object in a given type
       <pre class="lines">
 
 
-209
-210
-211
-212
-213
-214
-215</pre>
+203
+204
+205
+206
+207
+208
+209</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/cassandra_adapter.rb', line 209</span>
+      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/cassandra_adapter.rb', line 203</span>
 
 <span class='def def kw'>def</span> <span class='delete identifier id'>delete</span><span class='lparen token'>(</span><span class='table_name identifier id'>table_name</span><span class='comma token'>,</span> <span class='row identifier id'>row</span><span class='rparen token'>)</span>
   <span class='result identifier id'>result</span> <span class='assign token'>=</span> <span class='nil nil kw'>nil</span>
@@ -889,12 +889,12 @@ Serialize an object in a given type
       <pre class="lines">
 
 
-217
-218
-219</pre>
+211
+212
+213</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/cassandra_adapter.rb', line 217</span>
+      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/cassandra_adapter.rb', line 211</span>
 
 <span class='def def kw'>def</span> <span class='delete_all identifier id'>delete_all</span><span class='lparen token'>(</span><span class='table_name identifier id'>table_name</span><span class='rparen token'>)</span>
   <span class='raise identifier id'>raise</span> <span class='NotImplementedError constant id'>NotImplementedError</span>
@@ -930,21 +930,21 @@ format and the type header format.
       <pre class="lines">
 
 
+233
+234
+235
+236
+237
+238
 239
 240
 241
 242
 243
-244
-245
-246
-247
-248
-249
-250</pre>
+244</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/cassandra_adapter.rb', line 239</span>
+      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/cassandra_adapter.rb', line 233</span>
 
 <span class='def def kw'>def</span> <span class='deserialize identifier id'>deserialize</span><span class='lparen token'>(</span><span class='str identifier id'>str</span><span class='rparen token'>)</span>
   <span class='return return kw'>return</span> <span class='unless unless_mod kw'>unless</span> <span class='str identifier id'>str</span>
@@ -988,22 +988,22 @@ Deserialize the given string assumed to be in the type header format.
       <pre class="lines">
 
 
+247
+248
+249
+250
+251
+252
 253
 254
 255
 256
 257
 258
-259
-260
-261
-262
-263
-264
-265</pre>
+259</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/cassandra_adapter.rb', line 253</span>
+      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/cassandra_adapter.rb', line 247</span>
 
 <span class='def def kw'>def</span> <span class='deserialize_with_header identifier id'>deserialize_with_header</span><span class='lparen token'>(</span><span class='data identifier id'>data</span><span class='rparen token'>)</span>
   <span class='return return kw'>return</span> <span class='unless unless_mod kw'>unless</span> <span class='data identifier id'>data</span> <span class='and and kw'>and</span> <span class='data identifier id'>data</span><span class='dot token'>.</span><span class='size identifier id'>size</span> <span class='geq op'>&gt;=</span> <span class='integer val'>2</span>
@@ -1079,6 +1079,7 @@ CONNECTION MANAGEMENT ====================================
       <pre class="lines">
 
 
+92
 93
 94
 95
@@ -1087,11 +1088,10 @@ CONNECTION MANAGEMENT ====================================
 98
 99
 100
-101
-102</pre>
+101</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/cassandra_adapter.rb', line 93</span>
+      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/cassandra_adapter.rb', line 92</span>
 
 <span class='def def kw'>def</span> <span class='get identifier id'>get</span><span class='lparen token'>(</span><span class='table_name identifier id'>table_name</span><span class='comma token'>,</span> <span class='row identifier id'>row</span><span class='comma token'>,</span> <span class='column identifier id'>column</span><span class='comma token'>,</span> <span class='options identifier id'>options</span><span class='assign token'>=</span><span class='lbrace token'>{</span><span class='rbrace token'>}</span><span class='rparen token'>)</span>
   <span class='serialized_result identifier id'>serialized_result</span> <span class='assign token'>=</span> <span class='get_raw identifier id'>get_raw</span><span class='lparen token'>(</span><span class='table_name identifier id'>table_name</span><span class='comma token'>,</span> <span class='row identifier id'>row</span><span class='comma token'>,</span> <span class='column identifier id'>column</span><span class='comma token'>,</span> <span class='options identifier id'>options</span><span class='rparen token'>)</span>
@@ -1122,6 +1122,7 @@ CONNECTION MANAGEMENT ====================================
       <pre class="lines">
 
 
+138
 139
 140
 141
@@ -1139,11 +1140,10 @@ CONNECTION MANAGEMENT ====================================
 153
 154
 155
-156
-157</pre>
+156</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/cassandra_adapter.rb', line 139</span>
+      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/cassandra_adapter.rb', line 138</span>
 
 <span class='def def kw'>def</span> <span class='get_columns identifier id'>get_columns</span><span class='lparen token'>(</span><span class='table_name identifier id'>table_name</span><span class='comma token'>,</span> <span class='row identifier id'>row</span><span class='comma token'>,</span> <span class='columns identifier id'>columns</span><span class='comma token'>,</span> <span class='options identifier id'>options</span><span class='assign token'>=</span><span class='lbrace token'>{</span><span class='rbrace token'>}</span><span class='rparen token'>)</span>
   <span class='row_cols identifier id'>row_cols</span> <span class='assign token'>=</span> <span class='get_columns_raw identifier id'>get_columns_raw</span><span class='lparen token'>(</span><span class='table_name identifier id'>table_name</span><span class='comma token'>,</span> <span class='row identifier id'>row</span><span class='comma token'>,</span> <span class='columns identifier id'>columns</span><span class='comma token'>,</span> <span class='options identifier id'>options</span><span class='rparen token'>)</span>
@@ -1153,11 +1153,11 @@ CONNECTION MANAGEMENT ====================================
   <span class='row_cols identifier id'>row_cols</span><span class='dot token'>.</span><span class='each identifier id'>each</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='key identifier id'>key</span><span class='comma token'>,</span><span class='value identifier id'>value</span><span class='bitor op'>|</span>
     <span class='begin begin kw'>begin</span>
       <span class='result identifier id'>result</span><span class='lbrack token'>[</span><span class='key identifier id'>key</span><span class='rbrack token'>]</span> <span class='assign token'>=</span>
-      <span class='if if kw'>if</span> <span class='key identifier id'>key</span> <span class='eq op'>==</span> <span class='string val'>'id'</span>
-        <span class='value identifier id'>value</span>
-      <span class='else else kw'>else</span>
-        <span class='deserialize identifier id'>deserialize</span><span class='lparen token'>(</span><span class='value identifier id'>value</span><span class='rparen token'>)</span>
-      <span class='end end kw'>end</span>
+        <span class='if if kw'>if</span> <span class='key identifier id'>key</span> <span class='eq op'>==</span> <span class='string val'>'id'</span>
+          <span class='value identifier id'>value</span>
+        <span class='else else kw'>else</span>
+          <span class='deserialize identifier id'>deserialize</span><span class='lparen token'>(</span><span class='value identifier id'>value</span><span class='rparen token'>)</span>
+        <span class='end end kw'>end</span>
     <span class='rescue rescue kw'>rescue</span> <span class='Exception constant id'>Exception</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='e identifier id'>e</span>
       <span class='puts identifier id'>puts</span> <span class='dstring node'>&quot;Could not load column value #{key} for row=#{row.name}&quot;</span>
     <span class='end end kw'>end</span>
@@ -1183,6 +1183,7 @@ CONNECTION MANAGEMENT ====================================
       <pre class="lines">
 
 
+103
 104
 105
 106
@@ -1215,41 +1216,40 @@ CONNECTION MANAGEMENT ====================================
 133
 134
 135
-136
-137</pre>
+136</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/cassandra_adapter.rb', line 104</span>
+      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/cassandra_adapter.rb', line 103</span>
 
 <span class='def def kw'>def</span> <span class='get_columns_raw identifier id'>get_columns_raw</span><span class='lparen token'>(</span><span class='table_name identifier id'>table_name</span><span class='comma token'>,</span> <span class='row identifier id'>row</span><span class='comma token'>,</span> <span class='columns identifier id'>columns</span><span class='comma token'>,</span> <span class='options identifier id'>options</span><span class='assign token'>=</span><span class='lbrace token'>{</span><span class='rbrace token'>}</span><span class='rparen token'>)</span>
   <span class='result identifier id'>result</span> <span class='assign token'>=</span> <span class='lbrace token'>{</span><span class='rbrace token'>}</span>
-  
+
   <span class='log identifier id'>log</span> <span class='dstring node'>&quot;SELECT (#{columns.join(&quot;, &quot;)}) FROM #{table_name} WHERE ROW=#{row};&quot;</span> <span class='do do kw'>do</span>
-    <span class='requested_columns identifier id'>requested_columns</span> <span class='assign token'>=</span> <span class='columns_to_cassandra_format identifier id'>columns_to_cassandra_format</span><span class='lparen token'>(</span><span class='columns identifier id'>columns</span><span class='rparen token'>)</span>
-    <span class='super_columns identifier id'>super_columns</span> <span class='assign token'>=</span> <span class='requested_columns identifier id'>requested_columns</span><span class='dot token'>.</span><span class='keys identifier id'>keys</span>
+    <span class='prefix_mode identifier id'>prefix_mode</span> <span class='assign token'>=</span> <span class='false false kw'>false</span>
+    <span class='prefixes identifier id'>prefixes</span> <span class='assign token'>=</span> <span class='lbrack token'>[</span><span class='rbrack token'>]</span>
 
-    <span class='if if kw'>if</span> <span class='super_columns identifier id'>super_columns</span><span class='dot token'>.</span><span class='size identifier id'>size</span> <span class='eq op'>==</span> <span class='integer val'>1</span> <span class='andop op'>&amp;&amp;</span> <span class='requested_columns identifier id'>requested_columns</span><span class='lbrack token'>[</span><span class='super_columns identifier id'>super_columns</span><span class='dot token'>.</span><span class='first identifier id'>first</span><span class='rbrack token'>]</span><span class='dot token'>.</span><span class='size identifier id'>size</span> <span class='gt op'>&gt;</span> <span class='integer val'>0</span>
-      <span class='column_names identifier id'>column_names</span> <span class='assign token'>=</span> <span class='requested_columns identifier id'>requested_columns</span><span class='lbrack token'>[</span><span class='super_columns identifier id'>super_columns</span><span class='dot token'>.</span><span class='first identifier id'>first</span><span class='rbrack token'>]</span>
+    <span class='columns identifier id'>columns</span><span class='dot token'>.</span><span class='each identifier id'>each</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='name identifier id'>name</span><span class='bitor op'>|</span>
+      <span class='prefix identifier id'>prefix</span><span class='comma token'>,</span> <span class='name identifier id'>name</span> <span class='assign token'>=</span> <span class='name identifier id'>name</span><span class='dot token'>.</span><span class='split identifier id'>split</span><span class='lparen token'>(</span><span class='string val'>&quot;:&quot;</span><span class='rparen token'>)</span>
+      <span class='prefixes identifier id'>prefixes</span> <span class='lshft op'>&lt;&lt;</span> <span class='prefix identifier id'>prefix</span><span class='plus op'>+</span><span class='string val'>&quot;:&quot;</span> <span class='unless unless_mod kw'>unless</span> <span class='prefixes identifier id'>prefixes</span><span class='dot token'>.</span><span class='include? fid id'>include?</span><span class='lparen token'>(</span><span class='prefix identifier id'>prefix</span><span class='plus op'>+</span><span class='string val'>&quot;:&quot;</span><span class='rparen token'>)</span>
+      <span class='prefix_mode identifier id'>prefix_mode</span> <span class='assign token'>=</span> <span class='name identifier id'>name</span><span class='dot token'>.</span><span class='blank? fid id'>blank?</span>
+    <span class='end end kw'>end</span>
 
-      <span class='values identifier id'>values</span> <span class='assign token'>=</span> <span class='@connection ivar id'>@connection</span><span class='dot token'>.</span><span class='get_columns identifier id'>get_columns</span><span class='lparen token'>(</span><span class='table_name identifier id'>table_name</span><span class='comma token'>,</span> <span class='row identifier id'>row</span><span class='comma token'>,</span> <span class='super_columns identifier id'>super_columns</span><span class='dot token'>.</span><span class='first identifier id'>first</span><span class='comma token'>,</span> <span class='column_names identifier id'>column_names</span><span class='rparen token'>)</span>
+    <span class='if if kw'>if</span> <span class='prefix_mode identifier id'>prefix_mode</span>
+      <span class='prefixes identifier id'>prefixes</span><span class='dot token'>.</span><span class='sort! fid id'>sort!</span>
+      <span class='values identifier id'>values</span> <span class='assign token'>=</span> <span class='@connection ivar id'>@connection</span><span class='dot token'>.</span><span class='get identifier id'>get</span><span class='lparen token'>(</span><span class='table_name identifier id'>table_name</span><span class='comma token'>,</span> <span class='row identifier id'>row</span><span class='comma token'>,</span> <span class='lbrace token'>{</span><span class='symbol val'>:start</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='prefixes identifier id'>prefixes</span><span class='dot token'>.</span><span class='first identifier id'>first</span><span class='comma token'>,</span> <span class='symbol val'>:finish</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='prefixes identifier id'>prefixes</span><span class='dot token'>.</span><span class='last identifier id'>last</span> <span class='plus op'>+</span> <span class='string val'>&quot;~&quot;</span><span class='rbrace token'>}</span><span class='rparen token'>)</span>
 
-      <span class='result identifier id'>result</span><span class='lbrack token'>[</span><span class='string val'>&quot;id&quot;</span><span class='rbrack token'>]</span> <span class='assign token'>=</span> <span class='row identifier id'>row</span> <span class='if if_mod kw'>if</span> <span class='values identifier id'>values</span> <span class='andop op'>&amp;&amp;</span> <span class='values identifier id'>values</span><span class='dot token'>.</span><span class='compact identifier id'>compact</span><span class='dot token'>.</span><span class='size identifier id'>size</span> <span class='gt op'>&gt;</span> <span class='integer val'>0</span>
-      <span class='column_names identifier id'>column_names</span><span class='dot token'>.</span><span class='each_index identifier id'>each_index</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='id identifier id'>id</span><span class='bitor op'>|</span>
-        <span class='full_key identifier id'>full_key</span> <span class='assign token'>=</span> <span class='super_columns identifier id'>super_columns</span><span class='dot token'>.</span><span class='first identifier id'>first</span> <span class='plus op'>+</span> <span class='string val'>&quot;:&quot;</span> <span class='plus op'>+</span> <span class='column_names identifier id'>column_names</span><span class='lbrack token'>[</span><span class='id identifier id'>id</span><span class='rbrack token'>]</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span>
-        <span class='result identifier id'>result</span><span class='lbrack token'>[</span><span class='full_key identifier id'>full_key</span><span class='rbrack token'>]</span> <span class='assign token'>=</span> <span class='values identifier id'>values</span><span class='lbrack token'>[</span><span class='id identifier id'>id</span><span class='rbrack token'>]</span> <span class='unless unless_mod kw'>unless</span> <span class='values identifier id'>values</span><span class='lbrack token'>[</span><span class='id identifier id'>id</span><span class='rbrack token'>]</span><span class='dot token'>.</span><span class='nil? fid id'>nil?</span>
+      <span class='result identifier id'>result</span><span class='lbrack token'>[</span><span class='string val'>&quot;id&quot;</span><span class='rbrack token'>]</span> <span class='assign token'>=</span> <span class='row identifier id'>row</span> <span class='if if_mod kw'>if</span> <span class='values identifier id'>values</span> <span class='andop op'>&amp;&amp;</span> <span class='values identifier id'>values</span><span class='dot token'>.</span><span class='size identifier id'>size</span> <span class='gt op'>&gt;</span> <span class='integer val'>0</span>
+
+      <span class='values identifier id'>values</span><span class='dot token'>.</span><span class='each identifier id'>each</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='key identifier id'>key</span><span class='comma token'>,</span><span class='value identifier id'>value</span><span class='bitor op'>|</span>
+        <span class='result identifier id'>result</span><span class='lbrack token'>[</span><span class='key identifier id'>key</span><span class='rbrack token'>]</span> <span class='assign token'>=</span> <span class='value identifier id'>value</span> <span class='unless unless_mod kw'>unless</span> <span class='value identifier id'>value</span><span class='dot token'>.</span><span class='blank? fid id'>blank?</span>
       <span class='end end kw'>end</span>
     <span class='else else kw'>else</span>
-      <span class='values identifier id'>values</span> <span class='assign token'>=</span> <span class='@connection ivar id'>@connection</span><span class='dot token'>.</span><span class='get_columns identifier id'>get_columns</span><span class='lparen token'>(</span><span class='table_name identifier id'>table_name</span><span class='comma token'>,</span> <span class='row identifier id'>row</span><span class='comma token'>,</span> <span class='super_columns identifier id'>super_columns</span><span class='rparen token'>)</span>
+      <span class='values identifier id'>values</span> <span class='assign token'>=</span> <span class='@connection ivar id'>@connection</span><span class='dot token'>.</span><span class='get_columns identifier id'>get_columns</span><span class='lparen token'>(</span><span class='table_name identifier id'>table_name</span><span class='comma token'>,</span> <span class='row identifier id'>row</span><span class='comma token'>,</span> <span class='columns identifier id'>columns</span><span class='rparen token'>)</span>
+
       <span class='result identifier id'>result</span><span class='lbrack token'>[</span><span class='string val'>&quot;id&quot;</span><span class='rbrack token'>]</span> <span class='assign token'>=</span> <span class='row identifier id'>row</span> <span class='if if_mod kw'>if</span> <span class='values identifier id'>values</span> <span class='andop op'>&amp;&amp;</span> <span class='values identifier id'>values</span><span class='dot token'>.</span><span class='compact identifier id'>compact</span><span class='dot token'>.</span><span class='size identifier id'>size</span> <span class='gt op'>&gt;</span> <span class='integer val'>0</span>
-      <span class='super_columns identifier id'>super_columns</span><span class='dot token'>.</span><span class='each_index identifier id'>each_index</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='id identifier id'>id</span><span class='bitor op'>|</span>
-        <span class='next next kw'>next</span> <span class='if if_mod kw'>if</span> <span class='values identifier id'>values</span><span class='lbrack token'>[</span><span class='id identifier id'>id</span><span class='rbrack token'>]</span><span class='dot token'>.</span><span class='nil? fid id'>nil?</span>
-        
-        <span class='values identifier id'>values</span><span class='lbrack token'>[</span><span class='id identifier id'>id</span><span class='rbrack token'>]</span><span class='dot token'>.</span><span class='each identifier id'>each</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='column_name identifier id'>column_name</span><span class='comma token'>,</span> <span class='value identifier id'>value</span><span class='bitor op'>|</span>
-          <span class='next next kw'>next</span> <span class='if if_mod kw'>if</span> <span class='value identifier id'>value</span><span class='dot token'>.</span><span class='nil? fid id'>nil?</span>
-          
-          <span class='full_key identifier id'>full_key</span> <span class='assign token'>=</span> <span class='super_columns identifier id'>super_columns</span><span class='lbrack token'>[</span><span class='id identifier id'>id</span><span class='rbrack token'>]</span> <span class='plus op'>+</span> <span class='string val'>&quot;:&quot;</span> <span class='plus op'>+</span> <span class='column_name identifier id'>column_name</span>
-          <span class='result identifier id'>result</span><span class='lbrack token'>[</span><span class='full_key identifier id'>full_key</span><span class='rbrack token'>]</span> <span class='assign token'>=</span> <span class='value identifier id'>value</span>
-        <span class='end end kw'>end</span>
+
+      <span class='columns identifier id'>columns</span><span class='dot token'>.</span><span class='each_index identifier id'>each_index</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='id identifier id'>id</span><span class='bitor op'>|</span>
+        <span class='result identifier id'>result</span><span class='lbrack token'>[</span><span class='columns identifier id'>columns</span><span class='lbrack token'>[</span><span class='id identifier id'>id</span><span class='rbrack token'>]</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span><span class='rbrack token'>]</span> <span class='assign token'>=</span> <span class='values identifier id'>values</span><span class='lbrack token'>[</span><span class='id identifier id'>id</span><span class='rbrack token'>]</span> <span class='unless unless_mod kw'>unless</span> <span class='values identifier id'>values</span><span class='lbrack token'>[</span><span class='id identifier id'>id</span><span class='rbrack token'>]</span><span class='dot token'>.</span><span class='blank? fid id'>blank?</span>
       <span class='end end kw'>end</span>
     <span class='end end kw'>end</span>
   <span class='end end kw'>end</span>
@@ -1274,6 +1274,12 @@ CONNECTION MANAGEMENT ====================================
       <pre class="lines">
 
 
+186
+187
+188
+189
+190
+191
 192
 193
 194
@@ -1283,16 +1289,10 @@ CONNECTION MANAGEMENT ====================================
 198
 199
 200
-201
-202
-203
-204
-205
-206
-207</pre>
+201</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/cassandra_adapter.rb', line 192</span>
+      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/cassandra_adapter.rb', line 186</span>
 
 <span class='def def kw'>def</span> <span class='get_consecutive_rows identifier id'>get_consecutive_rows</span><span class='lparen token'>(</span><span class='table_name identifier id'>table_name</span><span class='comma token'>,</span> <span class='start_row identifier id'>start_row</span><span class='comma token'>,</span> <span class='limit identifier id'>limit</span><span class='comma token'>,</span> <span class='columns identifier id'>columns</span><span class='comma token'>,</span> <span class='stop_row identifier id'>stop_row</span> <span class='assign token'>=</span> <span class='nil nil kw'>nil</span><span class='rparen token'>)</span>
   <span class='rows identifier id'>rows</span> <span class='assign token'>=</span> <span class='get_consecutive_rows_raw identifier id'>get_consecutive_rows_raw</span><span class='lparen token'>(</span><span class='table_name identifier id'>table_name</span><span class='comma token'>,</span> <span class='start_row identifier id'>start_row</span><span class='comma token'>,</span> <span class='limit identifier id'>limit</span><span class='comma token'>,</span> <span class='columns identifier id'>columns</span><span class='comma token'>,</span> <span class='stop_row identifier id'>stop_row</span><span class='rparen token'>)</span>
@@ -1329,6 +1329,7 @@ CONNECTION MANAGEMENT ====================================
       <pre class="lines">
 
 
+158
 159
 160
 161
@@ -1354,24 +1355,18 @@ CONNECTION MANAGEMENT ====================================
 181
 182
 183
-184
-185
-186
-187
-188
-189
-190</pre>
+184</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/cassandra_adapter.rb', line 159</span>
+      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/cassandra_adapter.rb', line 158</span>
 
 <span class='def def kw'>def</span> <span class='get_consecutive_rows_raw identifier id'>get_consecutive_rows_raw</span><span class='lparen token'>(</span><span class='table_name identifier id'>table_name</span><span class='comma token'>,</span> <span class='start_row identifier id'>start_row</span><span class='comma token'>,</span> <span class='limit identifier id'>limit</span><span class='comma token'>,</span> <span class='columns identifier id'>columns</span><span class='comma token'>,</span> <span class='stop_row identifier id'>stop_row</span> <span class='assign token'>=</span> <span class='nil nil kw'>nil</span><span class='rparen token'>)</span>
   <span class='result identifier id'>result</span> <span class='assign token'>=</span> <span class='lbrack token'>[</span><span class='rbrack token'>]</span>
   <span class='log identifier id'>log</span> <span class='dstring node'>&quot;SCAN (#{columns.join(&quot;, &quot;)}) FROM #{table_name} WHERE START_ROW=#{start_row} AND STOP_ROW=#{stop_row} LIMIT=#{limit};&quot;</span> <span class='do do kw'>do</span>
     <span class='options identifier id'>options</span> <span class='assign token'>=</span> <span class='lbrace token'>{</span><span class='rbrace token'>}</span>
-    <span class='options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:start</span><span class='rbrack token'>]</span> <span class='assign token'>=</span> <span class='start_row identifier id'>start_row</span> <span class='if if_mod kw'>if</span> <span class='start_row identifier id'>start_row</span>
-    <span class='options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:finish</span><span class='rbrack token'>]</span> <span class='assign token'>=</span> <span class='stop_row identifier id'>stop_row</span> <span class='if if_mod kw'>if</span> <span class='stop_row identifier id'>stop_row</span>
-    <span class='options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:count</span><span class='rbrack token'>]</span> <span class='assign token'>=</span> <span class='limit identifier id'>limit</span> <span class='if if_mod kw'>if</span> <span class='limit identifier id'>limit</span>
+    <span class='options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:start</span><span class='rbrack token'>]</span> <span class='assign token'>=</span> <span class='start_row identifier id'>start_row</span> <span class='unless unless_mod kw'>unless</span> <span class='start_row identifier id'>start_row</span><span class='dot token'>.</span><span class='blank? fid id'>blank?</span>
+    <span class='options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:finish</span><span class='rbrack token'>]</span> <span class='assign token'>=</span> <span class='stop_row identifier id'>stop_row</span> <span class='unless unless_mod kw'>unless</span> <span class='stop_row identifier id'>stop_row</span><span class='dot token'>.</span><span class='blank? fid id'>blank?</span>
+    <span class='options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:count</span><span class='rbrack token'>]</span> <span class='assign token'>=</span> <span class='limit identifier id'>limit</span> <span class='unless unless_mod kw'>unless</span> <span class='limit identifier id'>limit</span><span class='dot token'>.</span><span class='blank? fid id'>blank?</span>
 
     <span class='keys identifier id'>keys</span> <span class='assign token'>=</span> <span class='@connection ivar id'>@connection</span><span class='dot token'>.</span><span class='get_range identifier id'>get_range</span><span class='lparen token'>(</span><span class='table_name identifier id'>table_name</span><span class='comma token'>,</span> <span class='options identifier id'>options</span><span class='rparen token'>)</span>
 
@@ -1381,14 +1376,9 @@ CONNECTION MANAGEMENT ====================================
         <span class='row identifier id'>row</span> <span class='assign token'>=</span> <span class='lbrace token'>{</span><span class='rbrace token'>}</span>
         <span class='row identifier id'>row</span><span class='lbrack token'>[</span><span class='string val'>&quot;id&quot;</span><span class='rbrack token'>]</span> <span class='assign token'>=</span> <span class='key identifier id'>key</span><span class='dot token'>.</span><span class='key identifier id'>key</span>
 
-        <span class='key identifier id'>key</span><span class='dot token'>.</span><span class='columns identifier id'>columns</span><span class='dot token'>.</span><span class='each identifier id'>each</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='s_col identifier id'>s_col</span><span class='bitor op'>|</span>
-          <span class='super_column identifier id'>super_column</span> <span class='assign token'>=</span> <span class='s_col identifier id'>s_col</span><span class='dot token'>.</span><span class='super_column identifier id'>super_column</span>
-          <span class='super_column_name identifier id'>super_column_name</span> <span class='assign token'>=</span> <span class='super_column identifier id'>super_column</span><span class='dot token'>.</span><span class='name identifier id'>name</span>
-
-          <span class='super_column identifier id'>super_column</span><span class='dot token'>.</span><span class='columns identifier id'>columns</span><span class='dot token'>.</span><span class='each identifier id'>each</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='column identifier id'>column</span><span class='bitor op'>|</span>
-            <span class='full_key identifier id'>full_key</span> <span class='assign token'>=</span> <span class='super_column_name identifier id'>super_column_name</span> <span class='plus op'>+</span> <span class='string val'>&quot;:&quot;</span> <span class='plus op'>+</span> <span class='column identifier id'>column</span><span class='dot token'>.</span><span class='name identifier id'>name</span>
-            <span class='row identifier id'>row</span><span class='lbrack token'>[</span><span class='full_key identifier id'>full_key</span><span class='rbrack token'>]</span> <span class='assign token'>=</span> <span class='column identifier id'>column</span><span class='dot token'>.</span><span class='value identifier id'>value</span>
-          <span class='end end kw'>end</span>
+        <span class='key identifier id'>key</span><span class='dot token'>.</span><span class='columns identifier id'>columns</span><span class='dot token'>.</span><span class='each identifier id'>each</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='col identifier id'>col</span><span class='bitor op'>|</span>
+          <span class='column identifier id'>column</span> <span class='assign token'>=</span> <span class='col identifier id'>col</span><span class='dot token'>.</span><span class='column identifier id'>column</span>
+          <span class='row identifier id'>row</span><span class='lbrack token'>[</span><span class='column identifier id'>column</span><span class='dot token'>.</span><span class='name identifier id'>name</span><span class='rbrack token'>]</span> <span class='assign token'>=</span> <span class='column identifier id'>column</span><span class='dot token'>.</span><span class='value identifier id'>value</span>
         <span class='end end kw'>end</span>
 
         <span class='result identifier id'>result</span> <span class='lshft op'>&lt;&lt;</span> <span class='row identifier id'>row</span> <span class='if if_mod kw'>if</span> <span class='row identifier id'>row</span><span class='dot token'>.</span><span class='keys identifier id'>keys</span><span class='dot token'>.</span><span class='size identifier id'>size</span> <span class='gt op'>&gt;</span> <span class='integer val'>1</span>
@@ -1422,8 +1412,7 @@ CONNECTION MANAGEMENT ====================================
 87
 88
 89
-90
-91</pre>
+90</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/cassandra_adapter.rb', line 84</span>
@@ -1431,8 +1420,7 @@ CONNECTION MANAGEMENT ====================================
 <span class='def def kw'>def</span> <span class='get_raw identifier id'>get_raw</span><span class='lparen token'>(</span><span class='table_name identifier id'>table_name</span><span class='comma token'>,</span> <span class='row identifier id'>row</span><span class='comma token'>,</span> <span class='column identifier id'>column</span><span class='comma token'>,</span> <span class='options identifier id'>options</span><span class='assign token'>=</span><span class='lbrace token'>{</span><span class='rbrace token'>}</span><span class='rparen token'>)</span>
   <span class='result identifier id'>result</span> <span class='assign token'>=</span> <span class='nil nil kw'>nil</span>
   <span class='log identifier id'>log</span> <span class='dstring node'>&quot;SELECT (#{column}) FROM #{table_name} WHERE ROW=#{row};&quot;</span> <span class='do do kw'>do</span>
-    <span class='super_column identifier id'>super_column</span><span class='comma token'>,</span> <span class='name identifier id'>name</span> <span class='assign token'>=</span> <span class='column identifier id'>column</span><span class='dot token'>.</span><span class='split identifier id'>split</span><span class='lparen token'>(</span><span class='string val'>&quot;:&quot;</span><span class='rparen token'>)</span>
-    <span class='result identifier id'>result</span> <span class='assign token'>=</span> <span class='@connection ivar id'>@connection</span><span class='dot token'>.</span><span class='get identifier id'>get</span><span class='lparen token'>(</span><span class='table_name identifier id'>table_name</span><span class='comma token'>,</span> <span class='row identifier id'>row</span><span class='comma token'>,</span> <span class='super_column identifier id'>super_column</span><span class='comma token'>,</span> <span class='name identifier id'>name</span><span class='rparen token'>)</span>
+    <span class='result identifier id'>result</span> <span class='assign token'>=</span> <span class='@connection ivar id'>@connection</span><span class='dot token'>.</span><span class='get identifier id'>get</span><span class='lparen token'>(</span><span class='table_name identifier id'>table_name</span><span class='comma token'>,</span> <span class='row identifier id'>row</span><span class='comma token'>,</span> <span class='column identifier id'>column</span><span class='rparen token'>)</span>
   <span class='end end kw'>end</span>
   <span class='result identifier id'>result</span>
 <span class='end end kw'>end</span>
@@ -1466,16 +1454,16 @@ Serialize the given value
       <pre class="lines">
 
 
-224
-225
-226
-227
-228
-229
-230</pre>
+218
+219
+220
+221
+222
+223
+224</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/cassandra_adapter.rb', line 224</span>
+      <pre class="code"><span class="info file"># File 'lib/big_record/connection_adapters/cassandra_adapter.rb', line 218</span>
 
 <span class='def def kw'>def</span> <span class='serialize identifier id'>serialize</span><span class='lparen token'>(</span><span class='value identifier id'>value</span><span class='rparen token'>)</span>
   <span class='case case kw'>case</span> <span class='value identifier id'>value</span>
@@ -1618,7 +1606,7 @@ DATABASE STATEMENTS ======================================
 <span class='def def kw'>def</span> <span class='update_raw identifier id'>update_raw</span><span class='lparen token'>(</span><span class='table_name identifier id'>table_name</span><span class='comma token'>,</span> <span class='row identifier id'>row</span><span class='comma token'>,</span> <span class='values identifier id'>values</span><span class='comma token'>,</span> <span class='timestamp identifier id'>timestamp</span><span class='rparen token'>)</span>
   <span class='result identifier id'>result</span> <span class='assign token'>=</span> <span class='nil nil kw'>nil</span>
   <span class='log identifier id'>log</span> <span class='dstring node'>&quot;UPDATE #{table_name} SET #{values.inspect if values} WHERE ROW=#{row};&quot;</span> <span class='do do kw'>do</span>
-    <span class='result identifier id'>result</span> <span class='assign token'>=</span> <span class='@connection ivar id'>@connection</span><span class='dot token'>.</span><span class='insert identifier id'>insert</span><span class='lparen token'>(</span><span class='table_name identifier id'>table_name</span><span class='comma token'>,</span> <span class='row identifier id'>row</span><span class='comma token'>,</span> <span class='data_to_cassandra_format identifier id'>data_to_cassandra_format</span><span class='lparen token'>(</span><span class='values identifier id'>values</span><span class='rparen token'>)</span><span class='comma token'>,</span> <span class='lbrace token'>{</span><span class='symbol val'>:consistency</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='Cassandra constant id'>Cassandra</span><span class='colon2 op'>::</span><span class='Consistency constant id'>Consistency</span><span class='colon2 op'>::</span><span class='QUORUM constant id'>QUORUM</span><span class='rbrace token'>}</span><span class='rparen token'>)</span>
+    <span class='result identifier id'>result</span> <span class='assign token'>=</span> <span class='@connection ivar id'>@connection</span><span class='dot token'>.</span><span class='insert identifier id'>insert</span><span class='lparen token'>(</span><span class='table_name identifier id'>table_name</span><span class='comma token'>,</span> <span class='row identifier id'>row</span><span class='comma token'>,</span> <span class='values identifier id'>values</span><span class='comma token'>,</span> <span class='lbrace token'>{</span><span class='symbol val'>:consistency</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='Cassandra constant id'>Cassandra</span><span class='colon2 op'>::</span><span class='Consistency constant id'>Consistency</span><span class='colon2 op'>::</span><span class='QUORUM constant id'>QUORUM</span><span class='rbrace token'>}</span><span class='rparen token'>)</span>
   <span class='end end kw'>end</span>
   <span class='result identifier id'>result</span>
 <span class='end end kw'>end</span>
@@ -1633,7 +1621,7 @@ DATABASE STATEMENTS ======================================
 </div>
     
     <div id="footer">
-  Generated on Fri Apr 30 12:48:18 2010 by 
+  Generated on Wed May  5 15:04:04 2010 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool">yard</a>
   0.5.4 (ruby-1.8.7).
 </div>

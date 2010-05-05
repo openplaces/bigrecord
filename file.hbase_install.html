@@ -1,0 +1,131 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta name="Content-Type" content="text/html; charset=utf8" />
+<title>File: hbase_install</title>
+<link rel="stylesheet" href="css/style.css" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="css/common.css" type="text/css" media="screen" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  relpath = '';
+  if (relpath != '') relpath += '/';
+</script>
+<script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+  </head>
+  <body>
+    <script type="text/javascript" charset="utf-8">
+      if (window.top.frames.main) document.body.className = 'frames';
+    </script>
+    
+    <div id="header">
+      <div id="menu">
+  
+    <a href="_index.html" title="Index">Index</a> &raquo; 
+    <span class="title">File: hbase_install</span>
+  
+  
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  <a id="class_list_link" href="#">Class List</a>
+  <a id="method_list_link" href="#">Method List</a>
+  <a id ="file_list_link" href="#">File List</a>
+</div>
+
+      <div class="clear"></div>
+    </div>
+    
+    <iframe id="search_frame"></iframe>
+    
+    <div id="content"><div id='filecontents'><h2>Setting up HBase and Stargate</h2>
+<p>
+To quickly get started with development, you can set up HBase to run as a
+single server on your local computer, along with Stargate, its RESTful web
+service front-end.
+</p>
+<p>
+(1) Download and unpack the most recent release of HBase from
+http://hadoop.apache.org/hbase/releases.html#Download
+</p>
+<p>
+(2) Edit (hbase-dir)/conf/hbase-env.sh and uncomment/modify the following
+line to correspond to your Java home path:
+</p>
+<pre class="code">
+  <span class='export identifier id'>export</span> <span class='JAVA_HOME constant id'>JAVA_HOME</span><span class='assign token'>=</span><span class='regexp val'>/usr/</span><span class='lib identifier id'>lib</span><span class='div op'>/</span><span class='jvm identifier id'>jvm</span><span class='div op'>/</span><span class='java identifier id'>java</span><span class='minus op'>-</span><span class='integer val'>6</span><span class='minus op'>-</span><span class='sun identifier id'>sun</span>
+</pre>
+<p>
+(3) Copy (hbase-dir)/contrib/stargate/hbase-&lt;version&gt;-stargate.jar
+into &lt;hbase-dir&gt;/lib
+</p>
+<p>
+(4) Copy all the files in the (hbase-dir)/contrib/stargate/lib folder into
+&lt;hbase-dir&gt;/lib
+</p>
+<p>
+(5) Start up HBase:
+</p>
+<pre class="code">
+  $ <span class='lparen token'>(</span><span class='hbase identifier id'>hbase</span><span class='minus op'>-</span><span class='dir identifier id'>dir</span><span class='rparen token'>)</span><span class='div op'>/</span><span class='bin identifier id'>bin</span><span class='div op'>/</span><span class='start identifier id'>start</span><span class='minus op'>-</span><span class='hbase identifier id'>hbase</span><span class='dot token'>.</span><span class='sh identifier id'>sh</span>
+</pre>
+<p>
+(6)Start up Stargate (append &quot;-p 1234&quot; at the end if you want to
+change the port):
+</p>
+<pre class="code">
+  $ <span class='lparen token'>(</span><span class='hbase identifier id'>hbase</span><span class='minus op'>-</span><span class='dir identifier id'>dir</span><span class='rparen token'>)</span><span class='div op'>/</span><span class='bin identifier id'>bin</span><span class='div op'>/</span><span class='hbase identifier id'>hbase</span> <span class='org identifier id'>org</span><span class='dot token'>.</span><span class='apache identifier id'>apache</span><span class='dot token'>.</span><span class='hadoop identifier id'>hadoop</span><span class='dot token'>.</span><span class='hbase identifier id'>hbase</span><span class='dot token'>.</span><span class='stargate identifier id'>stargate</span><span class='dot token'>.</span><span class='Main constant id'>Main</span>
+</pre>
+<h2>Setting up Bigrecord</h2>
+<p>
+(1) Install the Bigrecord Driver gem and its dependencies, then start up a
+DRb server. Please see the Bigrecord Driver documentation for more detailed
+instructions.
+(http://github.com/openplaces/bigrecord/blob/master/bigrecord-driver/README.rdoc)
+</p>
+<p>
+(2) Add the following line into the Rails::Initializer.run do |config|
+block:
+</p>
+<pre class="code">
+  <span class='config identifier id'>config</span><span class='dot token'>.</span><span class='gem identifier id'>gem</span> <span class='string val'>&quot;bigrecord&quot;</span><span class='comma token'>,</span> <span class='symbol val'>:source</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>&quot;http://gemcutter.org&quot;</span>
+</pre>
+<p>
+and run the following command to install all the gems listed for your Rails
+app:
+</p>
+<pre class="code">
+  <span class='lbrack token'>[</span><span class='sudo identifier id'>sudo</span><span class='rbrack token'>]</span> <span class='rake identifier id'>rake</span> <span class='gems identifier id'>gems</span><span class='symbol val'>:install</span>
+</pre>
+<p>
+(3) Bootstrap Bigrecord into your project:
+</p>
+<pre class="code">
+  <span class='script identifier id'>script</span><span class='div op'>/</span><span class='generate identifier id'>generate</span> <span class='bigrecord identifier id'>bigrecord</span>
+</pre>
+<p>
+(4) Edit the config/bigrecord.yml[.sample] file in your Rails root to the
+information corresponding to the Stargate server.
+</p>
+<pre class="code">
+  <span class='development identifier id'>development</span><span class='colon op'>:</span>
+    <span class='adapter identifier id'>adapter</span><span class='colon op'>:</span> <span class='hbase_rest identifier id'>hbase_rest</span>
+    <span class='api_address identifier id'>api_address</span><span class='colon op'>:</span> <span class='http identifier id'>http</span><span class='symbol val'>:/</span><span class='regexp val'>/localhost:8080
+</span></pre>
+<p>
+Note: 8080 is the default port that Stargate starts up on. Make sure you
+modify this if you changed the port from the default.
+</p>
+</div></div>
+    
+    <div id="footer">
+  Generated on Wed May  5 15:03:15 2010 by 
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool">yard</a>
+  0.5.4 (ruby-1.8.7).
+</div>
+
+  </body>
+</html>

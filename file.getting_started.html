@@ -2,7 +2,7 @@
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
-    <meta name="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="Content-Type" content="text/html; charset=utf8" />
 <title>File: getting_started</title>
 <link rel="stylesheet" href="css/style.css" type="text/css" media="screen" charset="utf-8" />
 <link rel="stylesheet" href="css/common.css" type="text/css" media="screen" charset="utf-8" />
@@ -42,84 +42,15 @@
     <iframe id="search_frame"></iframe>
     
     <div id="content"><div id='filecontents'><h1>Getting Started</h1>
-<h2>Setting up HBase and Stargate</h2>
-<p>
-To quickly get started with development, you can set up HBase to run as a
-single server on your local computer, along with Stargate, its RESTful web
-service front-end.
-</p>
-<p>
-(1) Download and unpack the most recent release of HBase from
-http://hadoop.apache.org/hbase/releases.html#Download
-</p>
-<p>
-(2) Edit (hbase-dir)/conf/hbase-env.sh and uncomment/modify the following
-line to correspond to your Java home path:
-</p>
-<pre class="code">
-  <span class='export identifier id'>export</span> <span class='JAVA_HOME constant id'>JAVA_HOME</span><span class='assign token'>=</span><span class='regexp val'>/usr/</span><span class='lib identifier id'>lib</span><span class='div op'>/</span><span class='jvm identifier id'>jvm</span><span class='div op'>/</span><span class='java identifier id'>java</span><span class='minus op'>-</span><span class='integer val'>6</span><span class='minus op'>-</span><span class='sun identifier id'>sun</span>
-</pre>
-<p>
-(3) Copy (hbase-dir)/contrib/stargate/hbase-&lt;version&gt;-stargate.jar
-into &lt;hbase-dir&gt;/lib
-</p>
-<p>
-(4) Copy all the files in the (hbase-dir)/contrib/stargate/lib folder into
-&lt;hbase-dir&gt;/lib
-</p>
-<p>
-(5) Start up HBase:
-</p>
-<pre class="code">
-  $ <span class='lparen token'>(</span><span class='hbase identifier id'>hbase</span><span class='minus op'>-</span><span class='dir identifier id'>dir</span><span class='rparen token'>)</span><span class='div op'>/</span><span class='bin identifier id'>bin</span><span class='div op'>/</span><span class='start identifier id'>start</span><span class='minus op'>-</span><span class='hbase identifier id'>hbase</span><span class='dot token'>.</span><span class='sh identifier id'>sh</span>
-</pre>
-<p>
-(6)Start up Stargate (append &quot;-p 1234&quot; at the end if you want to
-change the port):
-</p>
-<pre class="code">
-  $ <span class='lparen token'>(</span><span class='hbase identifier id'>hbase</span><span class='minus op'>-</span><span class='dir identifier id'>dir</span><span class='rparen token'>)</span><span class='div op'>/</span><span class='bin identifier id'>bin</span><span class='div op'>/</span><span class='hbase identifier id'>hbase</span> <span class='org identifier id'>org</span><span class='dot token'>.</span><span class='apache identifier id'>apache</span><span class='dot token'>.</span><span class='hadoop identifier id'>hadoop</span><span class='dot token'>.</span><span class='hbase identifier id'>hbase</span><span class='dot token'>.</span><span class='stargate identifier id'>stargate</span><span class='dot token'>.</span><span class='Main constant id'>Main</span>
-</pre>
-<h2>Setting up Bigrecord</h2>
-<p>
-(1) Install the Bigrecord Driver gem and its dependencies, then start up a
-DRb server. Please see the Bigrecord Driver documentation for more detailed
-instructions.
-(http://github.com/openplaces/bigrecord/blob/master/bigrecord-driver/README.rdoc)
-</p>
-<p>
-(2) Add the following line into the Rails::Initializer.run do |config|
-block:
-</p>
-<pre class="code">
-  <span class='config identifier id'>config</span><span class='dot token'>.</span><span class='gem identifier id'>gem</span> <span class='string val'>&quot;bigrecord&quot;</span><span class='comma token'>,</span> <span class='symbol val'>:source</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>&quot;http://gemcutter.org&quot;</span>
-</pre>
-<p>
-and run the following command to install all the gems listed for your Rails
-app:
-</p>
-<pre class="code">
-  <span class='lbrack token'>[</span><span class='sudo identifier id'>sudo</span><span class='rbrack token'>]</span> <span class='rake identifier id'>rake</span> <span class='gems identifier id'>gems</span><span class='symbol val'>:install</span>
-</pre>
-<p>
-(3) Bootstrap Bigrecord into your project:
-</p>
-<pre class="code">
-  <span class='script identifier id'>script</span><span class='div op'>/</span><span class='generate identifier id'>generate</span> <span class='bigrecord identifier id'>bigrecord</span>
-</pre>
-<p>
-(4) Edit the config/bigrecord.yml[.sample] file in your Rails root to the
-information corresponding to the Stargate server.
-</p>
-<pre class="code">
-  <span class='development identifier id'>development</span><span class='colon op'>:</span>
-    <span class='adapter identifier id'>adapter</span><span class='colon op'>:</span> <span class='hbase_rest identifier id'>hbase_rest</span>
-    <span class='api_address identifier id'>api_address</span><span class='colon op'>:</span> <span class='http identifier id'>http</span><span class='symbol val'>:/</span><span class='regexp val'>/localhost:8080
-</span></pre>
-<p>
-Note: 8080 is the default port that Stargate starts up on. Make sure you
-modify this if you changed the port from the default.
-</p>
+<h2>Install HBase or Cassandra</h2>
+<ul>
+<li>HBase: <a href="file.hbase_install.html" title="guides/hbase_install.rdoc">guides/hbase_install.rdoc</a>
+
+</li>
+<li>Cassandra: <a href="file.cassandra_install.html" title="guides/cassandra_install.rdoc">guides/cassandra_install.rdoc</a>
+
+</li>
+</ul>
 <h2>Usage</h2>
 <h3>Generators</h3>
 <p>
@@ -141,6 +72,12 @@ Creates a Bigrecord specific migration and adds it into
 db/bigrecord_migrate
 </p>
 <h3><tt><a href="BigRecord/Migration.html" title="BigRecord::Migration (class)">Migration File</a></tt></h3>
+<p>
+Note: Cassandra doesn&#8217;t have the capability to modify the
+ColumnFamily schema while running, and can only be edited from the
+storage-conf.xml configuration while the cluster is down. Future versions
+of Cassandra have this planned.
+</p>
 <p>
 Although column-oriented databases are generally schema-less, certain ones
 (like Hbase) require the creation of tables and column families ahead of
@@ -171,21 +108,28 @@ scheme. Leave any options blank for the default value.
     <span class='end end kw'>end</span>
   <span class='end end kw'>end</span>
 </pre>
-<h3>HBase column family options (HBase specific)</h3>
+<h4>HBase column family options (HBase specific)</h4>
 <ul>
 <li>versions: integer. By default, Hbase will store 3 versions of changes for
-any column family. Changing this value on the creation will change this
-behavior.
-
-</li>
-<li>compression: &#8216;none&#8217;, &#8216;gz&#8217;, &#8216;lzo&#8217;.
-Defaults to &#8216;none&#8217;. Since Hbase 0.20, column families can be
-stored using compression. The compression scheme you define here must be
-installed on the Hbase servers!
+any column family. Changing this value on
 
 </li>
 </ul>
-<h3>Migrating</h3>
+<p>
+the creation will change this behavior.
+</p>
+<ul>
+<li>compression: &#8216;none&#8217;, &#8216;gz&#8217;, &#8216;lzo&#8217;.
+Defaults to &#8216;none&#8217;. Since Hbase 0.20, column families can be
+stored using
+
+</li>
+</ul>
+<p>
+compression. The compression scheme you define here must be installed on
+the Hbase servers!
+</p>
+<h4>Migrating</h4>
 <p>
 Run the following rake task to migrate your tables and column families up
 to the latest version:
@@ -310,11 +254,14 @@ As you may have noticed, this functionality is synonymous with the :select
 option in Activerecord.
 </p>
 <h3><tt><a href="BigRecord/Embedded.html" title="BigRecord::Embedded (class)">Embedded Records</a></tt></h3>
-<h3>At this point, usage patterns for a Bigrecord model are similar to that of an Activerecord model, and much of that documentation applies as well. Please refer to those and see if they work!</h3>
+<h3>At this point, usage patterns for a Bigrecord model are similar to that of an Activerecord model, and much of that</h3>
+<p>
+documentation applies as well. Please refer to those and see if they work!
+</p>
 </div></div>
     
     <div id="footer">
-  Generated on Fri Apr 30 12:48:06 2010 by 
+  Generated on Wed May  5 15:03:16 2010 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool">yard</a>
   0.5.4 (ruby-1.8.7).
 </div>

@@ -1,0 +1,144 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta name="Content-Type" content="text/html; charset=utf8" />
+<title>File: cassandra_install</title>
+<link rel="stylesheet" href="css/style.css" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="css/common.css" type="text/css" media="screen" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  relpath = '';
+  if (relpath != '') relpath += '/';
+</script>
+<script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+  </head>
+  <body>
+    <script type="text/javascript" charset="utf-8">
+      if (window.top.frames.main) document.body.className = 'frames';
+    </script>
+    
+    <div id="header">
+      <div id="menu">
+  
+    <a href="_index.html" title="Index">Index</a> &raquo; 
+    <span class="title">File: cassandra_install</span>
+  
+  
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  <a id="class_list_link" href="#">Class List</a>
+  <a id="method_list_link" href="#">Method List</a>
+  <a id ="file_list_link" href="#">File List</a>
+</div>
+
+      <div class="clear"></div>
+    </div>
+    
+    <iframe id="search_frame"></iframe>
+    
+    <div id="content"><div id='filecontents'><h2>Setting up Cassandra</h2>
+<p>
+To quickly get started with development, you can set up Cassandra to run as
+a single node cluster on your local system.
+</p>
+<p>
+(1) Download and unpack the most recent release of Cassandra from
+http://cassandra.apache.org/download/
+</p>
+<p>
+(2) Add a &lt;Keyspace&gt;&lt;/Keyspace&gt; entry into your
+(cassandra-dir)/conf/storage-conf.xml configuration file named after your
+application, and create &lt;ColumnFamily&gt; entries corresponding to each
+model you wish to add. The following is an example of the Bigrecord
+keyspace used to run the spec suite against:
+</p>
+<pre class="code">
+  <span class='lt op'>&lt;</span><span class='Keyspace constant id'>Keyspace</span> <span class='Name constant id'>Name</span><span class='assign token'>=</span><span class='string val'>&quot;Bigrecord&quot;</span><span class='gt op'>&gt;</span>
+    <span class='lt op'>&lt;</span><span class='ColumnFamily constant id'>ColumnFamily</span> <span class='Name constant id'>Name</span><span class='assign token'>=</span><span class='string val'>&quot;animals&quot;</span> <span class='CompareWith constant id'>CompareWith</span><span class='assign token'>=</span><span class='string val'>&quot;UTF8Type&quot;</span> <span class='div op'>/</span><span class='gt op'>&gt;</span>
+    <span class='lt op'>&lt;</span><span class='ColumnFamily constant id'>ColumnFamily</span> <span class='Name constant id'>Name</span><span class='assign token'>=</span><span class='string val'>&quot;books&quot;</span> <span class='CompareWith constant id'>CompareWith</span><span class='assign token'>=</span><span class='string val'>&quot;UTF8Type&quot;</span> <span class='div op'>/</span><span class='gt op'>&gt;</span>
+    <span class='lt op'>&lt;</span><span class='ColumnFamily constant id'>ColumnFamily</span> <span class='Name constant id'>Name</span><span class='assign token'>=</span><span class='string val'>&quot;companies&quot;</span> <span class='CompareWith constant id'>CompareWith</span><span class='assign token'>=</span><span class='string val'>&quot;UTF8Type&quot;</span> <span class='div op'>/</span><span class='gt op'>&gt;</span>
+    <span class='lt op'>&lt;</span><span class='ColumnFamily constant id'>ColumnFamily</span> <span class='Name constant id'>Name</span><span class='assign token'>=</span><span class='string val'>&quot;employees&quot;</span> <span class='CompareWith constant id'>CompareWith</span><span class='assign token'>=</span><span class='string val'>&quot;UTF8Type&quot;</span> <span class='div op'>/</span><span class='gt op'>&gt;</span>
+    <span class='lt op'>&lt;</span><span class='ColumnFamily constant id'>ColumnFamily</span> <span class='Name constant id'>Name</span><span class='assign token'>=</span><span class='string val'>&quot;novels&quot;</span> <span class='CompareWith constant id'>CompareWith</span><span class='assign token'>=</span><span class='string val'>&quot;UTF8Type&quot;</span> <span class='div op'>/</span><span class='gt op'>&gt;</span>
+    <span class='lt op'>&lt;</span><span class='ColumnFamily constant id'>ColumnFamily</span> <span class='Name constant id'>Name</span><span class='assign token'>=</span><span class='string val'>&quot;zoos&quot;</span> <span class='CompareWith constant id'>CompareWith</span><span class='assign token'>=</span><span class='string val'>&quot;UTF8Type&quot;</span> <span class='div op'>/</span><span class='gt op'>&gt;</span>
+
+    <span class='lt op'>&lt;</span><span class='ReplicaPlacementStrategy constant id'>ReplicaPlacementStrategy</span><span class='gt op'>&gt;</span><span class='org identifier id'>org</span><span class='dot token'>.</span><span class='apache identifier id'>apache</span><span class='dot token'>.</span><span class='cassandra identifier id'>cassandra</span><span class='dot token'>.</span><span class='locator identifier id'>locator</span><span class='dot token'>.</span><span class='RackUnawareStrategy constant id'>RackUnawareStrategy</span><span class='lt op'>&lt;</span><span class='regexp val'>/ReplicaPlacementStrategy&gt;
+
+    &lt;ReplicationFactor&gt;1&lt;/</span><span class='ReplicationFactor constant id'>ReplicationFactor</span><span class='gt op'>&gt;</span>
+
+    <span class='lt op'>&lt;</span><span class='EndPointSnitch constant id'>EndPointSnitch</span><span class='gt op'>&gt;</span><span class='org identifier id'>org</span><span class='dot token'>.</span><span class='apache identifier id'>apache</span><span class='dot token'>.</span><span class='cassandra identifier id'>cassandra</span><span class='dot token'>.</span><span class='locator identifier id'>locator</span><span class='dot token'>.</span><span class='EndPointSnitch constant id'>EndPointSnitch</span><span class='lt op'>&lt;</span><span class='regexp val'>/EndPointSnitch&gt;
+  &lt;/</span><span class='Keyspace constant id'>Keyspace</span><span class='gt op'>&gt;</span>
+</pre>
+<p>
+You can also see <a href="file.storage-conf.html" title="guides/storage-conf.rdoc">guides/storage-conf.rdoc</a>
+for an example of a full configuration. More documentation on setting up
+Cassandra can be found at http://wiki.apache.org/cassandra/GettingStarted
+</p>
+<p>
+(3) Install the Cassandra Rubygem:
+</p>
+<pre class="code">
+  $ <span class='lbrack token'>[</span><span class='sudo identifier id'>sudo</span><span class='rbrack token'>]</span> <span class='gem identifier id'>gem</span> <span class='install identifier id'>install</span> <span class='cassandra identifier id'>cassandra</span>
+</pre>
+<p>
+(4) Start up Cassandra:
+</p>
+<pre class="code">
+  $ <span class='lparen token'>(</span><span class='cassandra identifier id'>cassandra</span><span class='minus op'>-</span><span class='dir identifier id'>dir</span><span class='rparen token'>)</span><span class='div op'>/</span><span class='bin identifier id'>bin</span><span class='div op'>/</span><span class='cassandra identifier id'>cassandra</span> <span class='minus op'>-</span><span class='f identifier id'>f</span>
+</pre>
+<h2>Setting up Bigrecord</h2>
+<p>
+(1) Add the following line into the Rails::Initializer.run do |config|
+block:
+</p>
+<pre class="code">
+  <span class='config identifier id'>config</span><span class='dot token'>.</span><span class='gem identifier id'>gem</span> <span class='string val'>&quot;bigrecord&quot;</span><span class='comma token'>,</span> <span class='symbol val'>:source</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>&quot;http://gemcutter.org&quot;</span>
+</pre>
+<p>
+and run the following command to install all the gems listed for your Rails
+app:
+</p>
+<pre class="code">
+  <span class='lbrack token'>[</span><span class='sudo identifier id'>sudo</span><span class='rbrack token'>]</span> <span class='rake identifier id'>rake</span> <span class='gems identifier id'>gems</span><span class='symbol val'>:install</span>
+</pre>
+<p>
+(2) Bootstrap Bigrecord into your project:
+</p>
+<pre class="code">
+  <span class='script identifier id'>script</span><span class='div op'>/</span><span class='generate identifier id'>generate</span> <span class='bigrecord identifier id'>bigrecord</span>
+</pre>
+<p>
+(3) Edit the config/bigrecord.yml[.sample] file in your Rails root to the
+information corresponding to your Cassandra install (keyspace should
+correspond to the one you defined in step 2 of &quot;Setting up
+Cassandra&quot; above):
+</p>
+<pre class="code">
+  <span class='development identifier id'>development</span><span class='colon op'>:</span>
+    <span class='adapter identifier id'>adapter</span><span class='colon op'>:</span> <span class='cassandra identifier id'>cassandra</span>
+    <span class='keyspace identifier id'>keyspace</span><span class='colon op'>:</span> <span class='Bigrecord constant id'>Bigrecord</span>
+    <span class='servers identifier id'>servers</span><span class='colon op'>:</span> <span class='localhost identifier id'>localhost</span><span class='symbol val'>:9160</span>
+  <span class='production identifier id'>production</span><span class='colon op'>:</span>
+    <span class='adapter identifier id'>adapter</span><span class='colon op'>:</span> <span class='cassandra identifier id'>cassandra</span>
+    <span class='keyspace identifier id'>keyspace</span><span class='colon op'>:</span> <span class='Bigrecord constant id'>Bigrecord</span>
+    <span class='servers identifier id'>servers</span><span class='colon op'>:</span>
+      <span class='minus op'>-</span> <span class='server1 identifier id'>server1</span><span class='symbol val'>:9160</span>
+      <span class='minus op'>-</span> <span class='server2 identifier id'>server2</span><span class='symbol val'>:9160</span>
+</pre>
+<p>
+Note: 9160 is the default port for Cassandra&#8217;s Thrift server.
+</p>
+</div></div>
+    
+    <div id="footer">
+  Generated on Wed May  5 15:03:15 2010 by 
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool">yard</a>
+  0.5.4 (ruby-1.8.7).
+</div>
+
+  </body>
+</html>

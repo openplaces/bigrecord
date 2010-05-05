@@ -2,7 +2,7 @@
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
-    <meta name="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="Content-Type" content="text/html; charset=utf8" />
 <title>File: deployment</title>
 <link rel="stylesheet" href="css/style.css" type="text/css" media="screen" charset="utf-8" />
 <link rel="stylesheet" href="css/common.css" type="text/css" media="screen" charset="utf-8" />
@@ -41,7 +41,7 @@
     
     <iframe id="search_frame"></iframe>
     
-    <div id="content"><div id='filecontents'><h1>Deploying Big Record</h1>
+    <div id="content"><div id='filecontents'><h1>Deploying Big Record with HBase</h1>
 <p>
 Stargate is a new implementation for HBase&#8217;s web service front-end,
 and as such, is not currently recommended for deployment.
@@ -56,11 +56,15 @@ scanner functionality).
 <h2>Instructions</h2>
 <ul>
 <li>Your database should already be set up (please refer to the
-database&#8217;s own documentation) with the required information known
-such as the zookeeper quorum/port, etc. in order for Bigrecord to connect
-to it.
+database&#8217;s own documentation) with the required
 
 </li>
+</ul>
+<p>
+information known such as the zookeeper quorum/port, etc. in order for
+Bigrecord to connect to it.
+</p>
+<ul>
 <li>Bigrecord Driver (if your database requires it for connecting)
 
 <ul>
@@ -90,7 +94,7 @@ Edit your bigrecord.yml config file as follows:
 </div></div>
     
     <div id="footer">
-  Generated on Fri Apr 30 12:48:05 2010 by 
+  Generated on Wed May  5 15:03:15 2010 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool">yard</a>
   0.5.4 (ruby-1.8.7).
 </div>

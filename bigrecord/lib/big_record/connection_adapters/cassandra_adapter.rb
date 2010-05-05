@@ -68,7 +68,7 @@ module BigRecord
       def update_raw(table_name, row, values, timestamp)
         result = nil
         log "UPDATE #{table_name} SET #{values.inspect if values} WHERE ROW=#{row};" do
-          result = @connection.insert(table_name, row, data_to_cassandra_format(values), {:consistency => Cassandra::Consistency::QUORUM})
+          result = @connection.insert(table_name, row, values, {:consistency => Cassandra::Consistency::QUORUM})
         end
         result
       end
@@ -84,8 +84,7 @@ module BigRecord
       def get_raw(table_name, row, column, options={})
         result = nil
         log "SELECT (#{column}) FROM #{table_name} WHERE ROW=#{row};" do
-          super_column, name = column.split(":")
-          result = @connection.get(table_name, row, super_column, name)
+          result = @connection.get(table_name, row, column)
         end
         result
       end
@@ -103,33 +102,33 @@ module BigRecord
 
       def get_columns_raw(table_name, row, columns, options={})
         result = {}
-        
+
         log "SELECT (#{columns.join(", ")}) FROM #{table_name} WHERE ROW=#{row};" do
-          requested_columns = columns_to_cassandra_format(columns)
-          super_columns = requested_columns.keys
+          prefix_mode = false
+          prefixes = []
 
-          if super_columns.size == 1 && requested_columns[super_columns.first].size > 0
-            column_names = requested_columns[super_columns.first]
+          columns.each do |name|
+            prefix, name = name.split(":")
+            prefixes << prefix unless prefixes.include?(prefix)
+            prefix_mode = name.blank?
+          end
 
-            values = @connection.get_columns(table_name, row, super_columns.first, column_names)
+          if prefix_mode
+            prefixes.sort!
+            values = @connection.get(table_name, row, {:start => prefixes[0]+":", :finish => prefixes.last + ":~"})
 
-            result["id"] = row if values && values.compact.size > 0
-            column_names.each_index do |id|
-              full_key = super_columns.first + ":" + column_names[id].to_s
-              result[full_key] = values[id] unless values[id].nil?
+            result["id"] = row if values && values.size > 0
+
+            values.each do |key,value|
+              result[key] = value unless value.blank?
             end
           else
-            values = @connection.get_columns(table_name, row, super_columns)
+            values = @connection.get_columns(table_name, row, columns)
+
             result["id"] = row if values && values.compact.size > 0
-            super_columns.each_index do |id|
-              next if values[id].nil?
-              
-              values[id].each do |column_name, value|
-                next if value.nil?
-                
-                full_key = super_columns[id] + ":" + column_name
-                result[full_key] = value
-              end
+
+            columns.each_index do |id|
+              result[columns[id].to_s] = values[id] unless values[id].blank?
             end
           end
         end
@@ -144,11 +143,11 @@ module BigRecord
         row_cols.each do |key,value|
           begin
             result[key] =
-            if key == 'id'
-              value
-            else
-              deserialize(value)
-            end
+              if key == 'id'
+                value
+              else
+                deserialize(value)
+              end
           rescue Exception => e
             puts "Could not load column value #{key} for row=#{row.name}"
           end
@@ -160,9 +159,9 @@ module BigRecord
         result = []
         log "SCAN (#{columns.join(", ")}) FROM #{table_name} WHERE START_ROW=#{start_row} AND STOP_ROW=#{stop_row} LIMIT=#{limit};" do
           options = {}
-          options[:start] = start_row if start_row
-          options[:finish] = stop_row if stop_row
-          options[:count] = limit if limit
+          options[:start] = start_row unless start_row.blank?
+          options[:finish] = stop_row unless stop_row.blank?
+          options[:count] = limit unless limit.blank?
 
           keys = @connection.get_range(table_name, options)
 
@@ -172,14 +171,9 @@ module BigRecord
               row = {}
               row["id"] = key.key
 
-              key.columns.each do |s_col|
-                super_column = s_col.super_column
-                super_column_name = super_column.name
-
-                super_column.columns.each do |column|
-                  full_key = super_column_name + ":" + column.name
-                  row[full_key] = column.value
-                end
+              key.columns.each do |col|
+                column = col.column
+                row[column.name] = column.value
               end
 
               result << row if row.keys.size > 1
@@ -265,31 +259,6 @@ module BigRecord
       end
       
     protected
-
-      def data_to_cassandra_format(data = {})
-        super_columns = {}
-        
-        data.each do |name, value|
-          super_column, column = name.split(":")
-          super_columns[super_column.to_s] = {} unless super_columns.has_key?(super_column.to_s)
-          super_columns[super_column.to_s][column.to_s] = value
-        end
-
-        return super_columns
-      end
-
-      def columns_to_cassandra_format(column_names = [])
-        super_columns = {}
-
-        column_names.each do |name|
-          super_column, sub_column = name.split(":")
-          
-          super_columns[super_column.to_s] = [] unless super_columns.has_key?(super_column.to_s)
-          super_columns[super_column.to_s] << sub_column
-        end
-
-        return super_columns
-      end
 
       def log(str, name = nil)
         if block_given?

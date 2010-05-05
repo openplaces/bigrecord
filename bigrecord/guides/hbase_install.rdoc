@@ -1,0 +1,48 @@
+== Setting up HBase and Stargate
+
+To quickly get started with development, you can set up HBase to run as a single server on your local computer,
+along with Stargate, its RESTful web service front-end.
+
+(1) Download and unpack the most recent release of HBase from http://hadoop.apache.org/hbase/releases.html#Download
+
+(2) Edit (hbase-dir)/conf/hbase-env.sh and uncomment/modify the following line to correspond to your Java home path:
+  export JAVA_HOME=/usr/lib/jvm/java-6-sun
+
+(3) Copy (hbase-dir)/contrib/stargate/hbase-<version>-stargate.jar into <hbase-dir>/lib
+
+(4) Copy all the files in the (hbase-dir)/contrib/stargate/lib folder into <hbase-dir>/lib
+
+(5) Start up HBase:
+  $ (hbase-dir)/bin/start-hbase.sh
+
+(6)Start up Stargate (append "-p 1234" at the end if you want to change the port):
+  $ (hbase-dir)/bin/hbase org.apache.hadoop.hbase.stargate.Main
+
+
+== Setting up Bigrecord
+
+(1) Install the Bigrecord Driver gem and its dependencies, then start up a DRb server. Please see the Bigrecord Driver
+documentation for more detailed instructions.
+(http://github.com/openplaces/bigrecord/blob/master/bigrecord-driver/README.rdoc)
+
+(2) Add the following line into the Rails::Initializer.run do |config| block:
+
+  config.gem "bigrecord", :source => "http://gemcutter.org"
+
+and run the following command to install all the gems listed for your Rails app:
+
+  [sudo] rake gems:install
+
+(3) Bootstrap Bigrecord into your project:
+
+  script/generate bigrecord
+
+(4) Edit the config/bigrecord.yml[.sample] file in your Rails root to the information corresponding to the Stargate
+server.
+
+  development:
+    adapter: hbase_rest
+    api_address: http://localhost:8080
+
+Note: 8080 is the default port that Stargate starts up on. Make sure you modify this if you changed the port from
+the default.

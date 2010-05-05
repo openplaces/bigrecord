@@ -2,11 +2,15 @@
 
 == Data store information
 
-The default settings for the Bigrecord specs can be found at spec/connections/bigrecord.yml with each environment broken down by the data store type (Hbase and Cassandra at the time of writing). These are the minimal settings required to connect to each data store, and should be modified freely to reflect your own system configurations.
+The default settings for the Bigrecord specs can be found at spec/connections/bigrecord.yml with each environment
+broken down by the data store type (Hbase and Cassandra at the time of writing). These are the minimal settings
+required to connect to each data store, and should be modified freely to reflect your own system configurations.
 
 == Data store migration
 
-There are also migrations to create the necessary tables for the specs to run. To ensure migrations are functioning properly before actually running the migrations, you can run: spec spec/unit/migration_spec.rb. Alternatively, you can manually create the tables according to the migration files under: spec/lib/migrations
+There are also migrations to create the necessary tables for the specs to run. To ensure migrations are functioning
+properly before actually running the migrations, you can run: spec spec/unit/migration_spec.rb. Alternatively, you
+can manually create the tables according to the migration files under: spec/lib/migrations
 
 Migrations have their own log file for debugging purposes. It's created under: bigrecord/migrate.log
 
@@ -31,6 +35,8 @@ To run a specific spec, you can run the following command from the bigrecord roo
 
 == Debugging
 
-If any problems or failures arise during the unit tests, please refer to the log files before submitting it as an issue. Often, it's a simple matter of forgetting to turn on BigrecordDriver, the tables weren't created, or configurations weren't set properly.
+If any problems or failures arise during the unit tests, please refer to the log files before submitting it as an
+issue. Often, it's a simple matter of forgetting to turn on BigrecordDriver, the tables weren't created, or
+configurations weren't set properly.
 
 The log file for specs is created under: <bigrecord root>/spec/debug.log

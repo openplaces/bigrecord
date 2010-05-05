@@ -1,0 +1,65 @@
+== Setting up Cassandra
+
+To quickly get started with development, you can set up Cassandra to run as a single node cluster on your local system.
+
+(1) Download and unpack the most recent release of Cassandra from http://cassandra.apache.org/download/
+
+(2) Add a <Keyspace></Keyspace> entry into your (cassandra-dir)/conf/storage-conf.xml configuration file named after
+your application, and create <ColumnFamily> entries corresponding to each model you wish to add. The following is an
+example of the Bigrecord keyspace used to run the spec suite against:
+
+  <Keyspace Name="Bigrecord">
+    <ColumnFamily Name="animals" CompareWith="UTF8Type" />
+    <ColumnFamily Name="books" CompareWith="UTF8Type" />
+    <ColumnFamily Name="companies" CompareWith="UTF8Type" />
+    <ColumnFamily Name="employees" CompareWith="UTF8Type" />
+    <ColumnFamily Name="novels" CompareWith="UTF8Type" />
+    <ColumnFamily Name="zoos" CompareWith="UTF8Type" />
+
+    <ReplicaPlacementStrategy>org.apache.cassandra.locator.RackUnawareStrategy</ReplicaPlacementStrategy>
+
+    <ReplicationFactor>1</ReplicationFactor>
+
+    <EndPointSnitch>org.apache.cassandra.locator.EndPointSnitch</EndPointSnitch>
+  </Keyspace>
+
+You can also see {file:guides/storage-conf.rdoc guides/storage-conf.rdoc} for an example of a full configuration. More
+documentation on setting up Cassandra can be found at http://wiki.apache.org/cassandra/GettingStarted
+
+(3) Install the Cassandra Rubygem:
+
+  $ [sudo] gem install cassandra
+
+(4) Start up Cassandra:
+  $ (cassandra-dir)/bin/cassandra -f
+
+
+== Setting up Bigrecord
+
+(1) Add the following line into the Rails::Initializer.run do |config| block:
+
+  config.gem "bigrecord", :source => "http://gemcutter.org"
+
+and run the following command to install all the gems listed for your Rails app:
+
+  [sudo] rake gems:install
+
+(2) Bootstrap Bigrecord into your project:
+
+  script/generate bigrecord
+
+(3) Edit the config/bigrecord.yml[.sample] file in your Rails root to the information corresponding to your Cassandra
+install (keyspace should correspond to the one you defined in step 2 of "Setting up Cassandra" above):
+
+  development:
+    adapter: cassandra
+    keyspace: Bigrecord
+    servers: localhost:9160
+  production:
+    adapter: cassandra
+    keyspace: Bigrecord
+    servers:
+      - server1:9160
+      - server2:9160
+
+Note: 9160 is the default port for Cassandra's Thrift server.

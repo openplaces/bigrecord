@@ -5,19 +5,22 @@
 
 Gem::Specification.new do |s|
   s.name = %q{bigrecord}
-  s.version = "0.1.0"
+  s.version = "0.1.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["openplaces.org"]
-  s.date = %q{2010-04-27}
+  s.date = %q{2010-05-05}
   s.description = %q{BigRecord is built from ActiveRecord, and intended to seamlessly integrate into your Ruby on Rails applications.}
   s.email = %q{bigrecord@openplaces.org}
   s.extra_rdoc_files = [
     "LICENSE",
      "README.rdoc",
      "guides/bigrecord_specs.rdoc",
+     "guides/cassandra_install.rdoc",
      "guides/deployment.rdoc",
-     "guides/getting_started.rdoc"
+     "guides/getting_started.rdoc",
+     "guides/hbase_install.rdoc",
+     "guides/storage-conf.rdoc"
   ]
   s.files = [
     "Rakefile",
@@ -32,8 +35,11 @@ Gem::Specification.new do |s|
      "generators/bigrecord_model/templates/model.rb",
      "generators/bigrecord_model/templates/model_spec.rb",
      "guides/bigrecord_specs.rdoc",
+     "guides/cassandra_install.rdoc",
      "guides/deployment.rdoc",
      "guides/getting_started.rdoc",
+     "guides/hbase_install.rdoc",
+     "guides/storage-conf.rdoc",
      "init.rb",
      "install.rb",
      "lib/big_record.rb",

@@ -109,13 +109,13 @@ module BigRecord
 
           columns.each do |name|
             prefix, name = name.split(":")
-            prefixes << prefix unless prefixes.include?(prefix)
+            prefixes << prefix+":" unless prefixes.include?(prefix+":")
             prefix_mode = name.blank?
           end
 
           if prefix_mode
             prefixes.sort!
-            values = @connection.get(table_name, row, {:start => prefixes[0]+":", :finish => prefixes.last + ":~"})
+            values = @connection.get(table_name, row, {:start => prefixes.first, :finish => prefixes.last + "~"})
 
             result["id"] = row if values && values.size > 0
 

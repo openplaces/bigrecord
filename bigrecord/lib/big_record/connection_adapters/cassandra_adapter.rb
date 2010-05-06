@@ -9,8 +9,10 @@ module BigRecord
       end
 
       config = config.symbolize_keys
-      
-      client = Cassandra.new(config[:keyspace], config[:servers])
+
+      client_options = config[:framed] ? {:transport_wrapper => Thrift::FramedTransport} : {}
+
+      client = Cassandra.new(config[:keyspace], config[:servers], client_options)
       ConnectionAdapters::CassandraAdapter.new(client, logger, [], config)
     end
   end
@@ -158,27 +160,28 @@ module BigRecord
           options[:finish] = stop_row unless stop_row.blank?
           options[:count] = limit unless limit.blank?
 
-          # For some reason, the count option is not working properly with the 'cassandra' gem, so we'll just handle it manually after.
-          keys = @connection.get_range(table_name, options)
+          until (limit && result.size >= limit) || (keys = @connection.get_range(table_name, options)).size < 100
+            options[:start] = keys.last.key
+            # For some reason, the count option is not working properly with the 'cassandra' gem, so we'll just handle it manually after.
+            if !keys.empty?
+              keys.reject!{|key| key.columns.blank?}
 
-          if !keys.empty?
-            keys.reject!{|key| key.columns.blank?}
+              keys.each do |key|
+                row = {}
+                row["id"] = key.key
 
-            keys.each do |key|
-              row = {}
-              row["id"] = key.key
+                key.columns.each do |col|
+                  column = col.column
+                  row[column.name] = column.value
+                end
 
-              key.columns.each do |col|
-                column = col.column
-                row[column.name] = column.value
+                result << row if row.keys.size > 1
+
+                # This is a hack for the previously ignored count option in the 'cassandra' gem.
+                break if (limit && limit > 0 && result.size >= limit)
               end
-
-              result << row if row.keys.size > 1
-
-              # This is a hack for the previously ignored count option in the 'cassandra' gem.
-              break if (!limit.blank? && result.size >= limit)
-            end
-          end
+            end # if
+          end # until()
         end
         result
       end
@@ -209,7 +212,11 @@ module BigRecord
       end
 
       def delete_all(table_name)
-        @connection.clear_column_family!(table_name, {:consistency => Cassandra::Consistency::QUORUM})
+        log "DELETE ALL FROM #{table_name};" do
+          get_consecutive_rows_raw(table_name, nil, nil, []).each do |row|
+            delete(table_name, row['id'])
+          end
+        end
       end
 
       # SERIALIZATION STATEMENTS =================================

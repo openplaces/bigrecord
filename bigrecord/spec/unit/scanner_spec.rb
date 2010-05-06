@@ -3,7 +3,6 @@ require File.expand_path(File.join(File.dirname(__FILE__), '..', 'spec_helper'))
 describe BigRecord::Base do
 
   before(:all) do
-    Book.delete_all
     @titles = ["I Am Legend", "The Beach", "Neuromancer"]
     Book.create(:title => @titles[0], :author => "Richard Matheson")
     Book.create(:title => @titles[1], :author => "Alex Garland")

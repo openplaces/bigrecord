@@ -174,7 +174,7 @@ Example storage-conf.xml file:
      ~ is set to true then you must also use a framed transport on the
      ~ client-side, (framed and non-framed transports are not compatible).
     -->
-    <ThriftFramedTransport>false</ThriftFramedTransport>
+    <ThriftFramedTransport>true</ThriftFramedTransport>
 
 
     <!--======================================================================-->

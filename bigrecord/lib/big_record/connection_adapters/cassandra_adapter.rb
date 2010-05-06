@@ -154,19 +154,29 @@ module BigRecord
 
       def get_consecutive_rows_raw(table_name, start_row, limit, columns, stop_row = nil)
         result = []
+
         log "SCAN (#{columns.join(", ")}) FROM #{table_name} WHERE START_ROW=#{start_row} AND STOP_ROW=#{stop_row} LIMIT=#{limit};" do
           options = {}
           options[:start] = start_row unless start_row.blank?
           options[:finish] = stop_row unless stop_row.blank?
           options[:count] = limit unless limit.blank?
 
-          until (limit && result.size >= limit) || (keys = @connection.get_range(table_name, options)).size < 100
-            options[:start] = keys.last.key
+          # We need to keep looping until we've gone through all rows (including empty or deleted ones) from Thrift.
+          result_loop = true
+          begin
+            keys = @connection.get_range(table_name, options)
+            rows_returned = keys.size
+
             # For some reason, the count option is not working properly with the 'cassandra' gem, so we'll just handle it manually after.
             if !keys.empty?
+              # Making this batch's end key the next batch's start key
+              options[:start] = keys.last.key
+
+              # Remove any keys without columns
               keys.reject!{|key| key.columns.blank?}
 
               keys.each do |key|
+                # Construct hash representing the row
                 row = {}
                 row["id"] = key.key
 
@@ -178,11 +188,16 @@ module BigRecord
                 result << row if row.keys.size > 1
 
                 # This is a hack for the previously ignored count option in the 'cassandra' gem.
-                break if (limit && limit > 0 && result.size >= limit)
+                if (limit && limit > 0 && result.size >= limit)
+                  result_loop = false
+                  break
+                end
               end
-            end # if
-          end # until()
+            end
+
+          end while (result_loop && rows_returned >= 100)
         end
+
         result
       end
 

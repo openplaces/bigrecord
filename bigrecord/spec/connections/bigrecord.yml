@@ -10,6 +10,7 @@ hbase_brd:
 cassandra:
   adapter: cassandra
   keyspace: Bigrecord
+  framed: true
   servers:
     - localhost:9160
     - 127.0.0.1:9160

@@ -20,7 +20,7 @@ begin
   require 'connection'
 rescue LoadError
   BigRecord::Base.logger.info "No data store defined. Using Hbase..."
-  require File.join(File.dirname(__FILE__), 'connections', 'hbase', 'connection')
+  require File.join(File.dirname(__FILE__), 'connections', 'cassandra', 'connection')
 end
 
 # Load the various helpers for the spec suite

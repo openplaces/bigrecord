@@ -72,6 +72,8 @@ BigRecord::Base.class_eval do
   include BigRecord::FamilySpanColumns
 end
 
+require dir + '/simple_inverted_index'
+
 BigRecord::Embedded.class_eval do
   include BigRecord::Validations
   include ActiveRecord::Callbacks
